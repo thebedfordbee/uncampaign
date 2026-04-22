@@ -756,35 +756,87 @@ p { max-width: 68ch; }
   padding-block: 4rem 3.5rem;
 }
 .issues-hero .eyebrow { color: rgba(255,255,255,0.55); margin-bottom: 0.875rem; }
-.issues-hero h1 { color: var(--white); max-width: 22ch; }
-.issues-hero__lead {
-  color: rgba(255,255,255,0.82);
-  font-size: 1.125rem;
-  margin-top: 1rem;
-  max-width: 54ch;
+.issues-hero h1 { color: var(--white); max-width: 22ch; margin-bottom: 0; }
+
+/* Mobile-first: flex column in DOM order — eyebrow/h1 → image → deck → disclosure */
+.issues-hero__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-.roundtable-image-block {
-  margin-block: 2.5rem 1.75rem;
-  max-width: 520px;
+.issues-hero__visual {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
 }
-.roundtable-image-block img {
+.issues-hero__visual img {
   width: 100%;
   height: auto;
   display: block;
 }
 
+.issues-hero__copy-bot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.issues-hero__deck {
+  color: rgba(255,255,255,0.85);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
 .roundtable-disclosure {
-  font-size: 0.875rem;
-  color: rgba(255,255,255,0.58);
-  border-left: 2px solid rgba(255,255,255,0.22);
-  padding-left: 1rem;
-  margin-top: 0;
-  max-width: 54ch;
-  line-height: 1.65;
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.5);
+  border-left: 2px solid rgba(255,255,255,0.18);
+  padding-left: 0.875rem;
+  line-height: 1.6;
+  max-width: 52ch;
+}
+
+/* Desktop: editorial two-column split */
+@media (min-width: 768px) {
+  .issues-hero { padding-block: 5rem 4.5rem; }
+  .issues-hero__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "top  img"
+      "bot  img";
+    gap: 0 3.5rem;
+  }
+  .issues-hero__copy-top {
+    grid-area: top;
+    align-self: end;
+    padding-bottom: 2.25rem;
+  }
+  .issues-hero__copy-bot {
+    grid-area: bot;
+    align-self: start;
+    padding-top: 2.25rem;
+  }
+  .issues-hero__visual {
+    grid-area: img;
+  }
+  .issues-hero__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .issues-hero__deck { max-width: none; }
+  .roundtable-disclosure { max-width: none; }
+}
+
+@media (min-width: 960px) {
+  .issues-hero__inner {
+    grid-template-columns: 1fr 1.15fr;
+    gap: 0 4.5rem;
+  }
 }
 
 /* =============================================
