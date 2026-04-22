@@ -90,8 +90,9 @@ p { max-width: 68ch; }
   padding-inline: 1.25rem;
 }
 
-.section { padding-block: 5rem; }
+.section { padding-block: 3rem; }
 .section--alt { background: var(--white); }
+@media (min-width: 768px) { .section { padding-block: 4.5rem; } }
 
 /* --- Buttons --- */
 .btn {
@@ -753,7 +754,7 @@ p { max-width: 68ch; }
    ============================================= */
 .issues-hero {
   background: var(--moss);
-  padding-block: 4rem 3.5rem;
+  padding-block: 2.5rem 2rem;
 }
 .issues-hero .eyebrow { color: rgba(255,255,255,0.55); margin-bottom: 0.875rem; }
 .issues-hero h1 { color: var(--white); max-width: 22ch; margin-bottom: 0; }
@@ -809,7 +810,7 @@ p { max-width: 68ch; }
 
 /* Desktop: editorial two-column split */
 @media (min-width: 768px) {
-  .issues-hero { padding-block: 5rem 4.5rem; }
+  .issues-hero { padding-block: 3.5rem 3rem; }
   .issues-hero__inner {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -848,11 +849,35 @@ p { max-width: 68ch; }
 }
 
 /* =============================================
-   ISSUES INTRO
+   ISSUES EXPLAINER — COMBINED WHY + OFFERS
    ============================================= */
-.issues-intro { max-width: 680px; }
-.issues-intro h2 { margin-top: 0.5rem; margin-bottom: 1.25rem; }
-.issues-intro p { color: var(--muted); margin-bottom: 0.875rem; }
+.issues-explainer {
+  display: grid;
+  gap: 2.5rem;
+}
+@media (min-width: 768px) {
+  .issues-explainer { grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+}
+.issues-explainer__why h2 { margin-top: 0.5rem; margin-bottom: 1rem; }
+.issues-explainer__why p { color: var(--muted); margin-bottom: 0.875rem; max-width: 52ch; }
+.issues-explainer__offers .eyebrow { margin-bottom: 1rem; display: block; }
+
+.explainer-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.explainer-points li {
+  font-size: 0.9rem;
+  color: var(--muted);
+  padding-left: 1rem;
+  border-left: 2px solid var(--sage);
+  line-height: 1.6;
+}
+.explainer-points li strong { color: var(--charcoal); }
 
 /* =============================================
    PERSONA GALLERY — CARD FLIP SYSTEM
