@@ -821,12 +821,11 @@ p { max-width: 68ch; }
   }
   .issues-hero__visual {
     grid-area: img;
+    align-self: center;
   }
   .issues-hero__visual img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    height: auto;
   }
   .issues-hero__deck { max-width: none; }
   .roundtable-disclosure { max-width: none; }
