@@ -804,9 +804,6 @@ p { max-width: 68ch; }
   padding: 0;
   margin-top: 2.5rem;
 }
-@media (min-width: 420px) {
-  .persona-gallery { grid-template-columns: repeat(2, 1fr); }
-}
 @media (min-width: 700px) {
   .persona-gallery { grid-template-columns: repeat(3, 1fr); }
 }
@@ -991,6 +988,114 @@ p { max-width: 68ch; }
   .persona-card,
   .persona-card__front,
   .persona-card__back { transition: none; }
+}
+
+/* =============================================
+   PERSONA GALLERY — MOBILE COMPACT ACCORDION
+   ============================================= */
+
+/* Compact row trigger — desktop hidden by default, shown on mobile */
+.persona-row-trigger {
+  display: none;
+  width: 100%;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 1.125rem;
+  background: var(--white);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  min-height: 60px;
+  transition: background 0.15s;
+}
+.persona-row-trigger:hover { background: var(--cream); }
+.persona-row-trigger:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
+
+.persona-row-trigger__text { flex: 1; min-width: 0; }
+.persona-row-trigger__name {
+  font-family: var(--serif);
+  font-size: 0.9375rem;
+  color: var(--charcoal);
+  display: block;
+  line-height: 1.3;
+}
+.persona-row-trigger__subtitle {
+  font-size: 0.8rem;
+  color: var(--muted);
+  display: block;
+  margin-top: 0.125rem;
+  line-height: 1.4;
+}
+.persona-row-trigger__icon {
+  font-size: 1.375rem;
+  color: var(--sage);
+  line-height: 1;
+  flex-shrink: 0;
+  font-style: normal;
+  transition: transform 0.22s ease;
+}
+.persona-card-wrapper.is-expanded .persona-row-trigger__icon {
+  transform: rotate(45deg);
+}
+
+/* Chair row trigger — subtle moss tint */
+.persona-row-trigger--chair { background: rgba(62, 82, 64, 0.06); }
+.persona-row-trigger--chair .persona-row-trigger__name { color: var(--moss); }
+.persona-row-trigger--chair:hover { background: rgba(62, 82, 64, 0.12); }
+.persona-card-wrapper.is-expanded .persona-row-trigger--chair { background: rgba(62, 82, 64, 0.1); }
+
+/* Expandable card panel */
+.persona-card-expandable { display: block; }
+
+/* Mobile: compact stacked list */
+@media (max-width: 699px) {
+  .persona-row-trigger { display: flex; }
+
+  .persona-gallery {
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin-top: 2rem;
+  }
+  .persona-card-wrapper { border-bottom: 1px solid var(--border); }
+  .persona-card-wrapper:last-child { border-bottom: none; }
+
+  .persona-card-expandable {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .persona-card-wrapper.is-expanded .persona-card-expandable {
+    max-height: 700px;
+  }
+
+  /* Card inside expandable: flatten edges to merge with list */
+  .persona-card-expandable .persona-card {
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid var(--border);
+    box-shadow: none;
+  }
+  .persona-card-expandable .persona-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Desktop: expandable always open, no height restriction */
+@media (min-width: 700px) {
+  .persona-card-expandable {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+/* Reduced motion — disable accordion + icon transitions */
+@media (max-width: 699px) and (prefers-reduced-motion: reduce) {
+  .persona-card-expandable,
+  .persona-row-trigger__icon { transition: none; }
 }
 
 /* =============================================

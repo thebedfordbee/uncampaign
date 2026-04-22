@@ -80,7 +80,7 @@
 
   <main id="main-content">
 
-    <!-- WHY THIS PAGE EXISTS -->
+    <!-- 1. WHY THIS PAGE EXISTS -->
     <section class="section section--alt" aria-labelledby="why-headline">
       <div class="container">
         <div class="issues-intro">
@@ -103,7 +103,7 @@
       </div>
     </section>
 
-    <!-- WHO IS AT THE TABLE -->
+    <!-- 2. WHO IS AT THE TABLE -->
     <section class="section" aria-labelledby="personas-headline">
       <div class="container">
         <div class="section-header">
@@ -112,44 +112,55 @@
           <p class="section-header__lead">
             Eight recurring perspectives — seven AI-assisted civic personas and Don as chair.
             Each represents a real pattern of concern in Bedford. None is a real resident.
-            Tap any card to learn more.
+            Tap any name to expand.
           </p>
         </div>
 
-        <ul class="persona-gallery" role="list" aria-label="Roundtable personas — tap a card to flip it">
+        <ul class="persona-gallery" role="list" aria-label="Roundtable personas">
 
           <!-- 1. The Preservationist -->
           <li class="persona-card-wrapper" role="listitem">
-            <div class="persona-card"
-                 tabindex="0"
-                 role="button"
-                 aria-pressed="false"
-                 aria-label="The Preservationist — tap to learn more">
-              <div class="persona-card__front">
-                <div class="persona-card__portrait">
-                  <img
-                    src="../assets/img/personas/preservationist.jpg"
-                    alt="The Preservationist — rooted, thoughtful, classic Bedford energy"
-                    width="400" height="400"
-                    onerror="this.style.display='none'"
-                  >
-                  <div class="persona-card__portrait-placeholder" aria-hidden="true">
-                    <span>Portrait coming soon</span>
+            <button class="persona-row-trigger"
+                    aria-expanded="false"
+                    aria-controls="persona-panel-preservationist">
+              <span class="persona-row-trigger__text">
+                <span class="persona-row-trigger__name">The Preservationist</span>
+                <span class="persona-row-trigger__subtitle">Protects Bedford's character</span>
+              </span>
+              <i class="persona-row-trigger__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="persona-card-expandable" id="persona-panel-preservationist">
+              <div class="persona-card"
+                   tabindex="0"
+                   role="button"
+                   aria-pressed="false"
+                   aria-label="The Preservationist — tap to learn more">
+                <div class="persona-card__front">
+                  <div class="persona-card__portrait">
+                    <img
+                      src="../assets/img/personas/preservationist.jpg"
+                      alt="The Preservationist — rooted, thoughtful, classic Bedford energy"
+                      width="400" height="400"
+                      onerror="this.style.display='none'"
+                    >
+                    <div class="persona-card__portrait-placeholder" aria-hidden="true">
+                      <span>Portrait coming soon</span>
+                    </div>
+                  </div>
+                  <div class="persona-card__front-text">
+                    <p class="persona-card__name">The Preservationist</p>
+                    <p class="persona-card__subtitle">Protects Bedford's character</p>
+                    <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
                   </div>
                 </div>
-                <div class="persona-card__front-text">
-                  <p class="persona-card__name">The Preservationist</p>
-                  <p class="persona-card__subtitle">Protects Bedford's character</p>
-                  <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
-                </div>
-              </div>
-              <div class="persona-card__back" aria-hidden="true">
-                <div class="persona-card__back-inner">
-                  <p class="persona-card__name">The Preservationist</p>
-                  <p>Cares deeply about Bedford's scale, open space, and architectural character. Has watched other Westchester towns lose their distinctiveness to growth that happened faster than anyone planned for.</p>
-                  <p class="persona-card__back-label"><strong>Why it matters:</strong> Every decision about density and design is effectively permanent. Once you build it, it's there.</p>
-                  <p class="persona-card__back-label"><strong>What they watch for:</strong> Variances approved without visible justification, changes to hamlet scale, reduction in tree canopy.</p>
-                  <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                <div class="persona-card__back" aria-hidden="true">
+                  <div class="persona-card__back-inner">
+                    <p class="persona-card__name">The Preservationist</p>
+                    <p>Cares deeply about Bedford's scale, open space, and architectural character. Has watched other Westchester towns lose their distinctiveness to growth that happened faster than anyone planned for.</p>
+                    <p class="persona-card__back-label"><strong>Why it matters:</strong> Every decision about density and design is effectively permanent. Once you build it, it's there.</p>
+                    <p class="persona-card__back-label"><strong>What they watch for:</strong> Variances approved without visible justification, changes to hamlet scale, reduction in tree canopy.</p>
+                    <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -157,36 +168,47 @@
 
           <!-- 2. The Practical Family -->
           <li class="persona-card-wrapper" role="listitem">
-            <div class="persona-card"
-                 tabindex="0"
-                 role="button"
-                 aria-pressed="false"
-                 aria-label="The Practical Family — tap to learn more">
-              <div class="persona-card__front">
-                <div class="persona-card__portrait">
-                  <img
-                    src="../assets/img/personas/practical-family.jpg"
-                    alt="The Practical Family — grounded, warm, family-life energy"
-                    width="400" height="400"
-                    onerror="this.style.display='none'"
-                  >
-                  <div class="persona-card__portrait-placeholder" aria-hidden="true">
-                    <span>Portrait coming soon</span>
+            <button class="persona-row-trigger"
+                    aria-expanded="false"
+                    aria-controls="persona-panel-practical-family">
+              <span class="persona-row-trigger__text">
+                <span class="persona-row-trigger__name">The Practical Family</span>
+                <span class="persona-row-trigger__subtitle">Tests whether daily life actually works</span>
+              </span>
+              <i class="persona-row-trigger__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="persona-card-expandable" id="persona-panel-practical-family">
+              <div class="persona-card"
+                   tabindex="0"
+                   role="button"
+                   aria-pressed="false"
+                   aria-label="The Practical Family — tap to learn more">
+                <div class="persona-card__front">
+                  <div class="persona-card__portrait">
+                    <img
+                      src="../assets/img/personas/practical-family.jpg"
+                      alt="The Practical Family — grounded, warm, family-life energy"
+                      width="400" height="400"
+                      onerror="this.style.display='none'"
+                    >
+                    <div class="persona-card__portrait-placeholder" aria-hidden="true">
+                      <span>Portrait coming soon</span>
+                    </div>
+                  </div>
+                  <div class="persona-card__front-text">
+                    <p class="persona-card__name">The Practical Family</p>
+                    <p class="persona-card__subtitle">Tests whether daily life actually works</p>
+                    <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
                   </div>
                 </div>
-                <div class="persona-card__front-text">
-                  <p class="persona-card__name">The Practical Family</p>
-                  <p class="persona-card__subtitle">Tests whether daily life actually works</p>
-                  <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
-                </div>
-              </div>
-              <div class="persona-card__back" aria-hidden="true">
-                <div class="persona-card__back-inner">
-                  <p class="persona-card__name">The Practical Family</p>
-                  <p>Balancing two commutes, school pickups, and a schedule with almost no slack. Values government that works in real life — not government that sounds good in a planning document.</p>
-                  <p class="persona-card__back-label"><strong>Why it matters:</strong> Local decisions accumulate. The sum of small failures is a daily grind that's hard to name but easy to feel.</p>
-                  <p class="persona-card__back-label"><strong>What they watch for:</strong> Permit delays, school capacity, childcare gaps, and anything that adds cost or friction to an already tight day.</p>
-                  <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                <div class="persona-card__back" aria-hidden="true">
+                  <div class="persona-card__back-inner">
+                    <p class="persona-card__name">The Practical Family</p>
+                    <p>Balancing two commutes, school pickups, and a schedule with almost no slack. Values government that works in real life — not government that sounds good in a planning document.</p>
+                    <p class="persona-card__back-label"><strong>Why it matters:</strong> Local decisions accumulate. The sum of small failures is a daily grind that's hard to name but easy to feel.</p>
+                    <p class="persona-card__back-label"><strong>What they watch for:</strong> Permit delays, school capacity, childcare gaps, and anything that adds cost or friction to an already tight day.</p>
+                    <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -194,36 +216,47 @@
 
           <!-- 3. The Main-Streeter -->
           <li class="persona-card-wrapper" role="listitem">
-            <div class="persona-card"
-                 tabindex="0"
-                 role="button"
-                 aria-pressed="false"
-                 aria-label="The Main-Streeter — tap to learn more">
-              <div class="persona-card__front">
-                <div class="persona-card__portrait">
-                  <img
-                    src="../assets/img/personas/main-streeter.jpg"
-                    alt="The Main-Streeter — local business owner, practical and engaged"
-                    width="400" height="400"
-                    onerror="this.style.display='none'"
-                  >
-                  <div class="persona-card__portrait-placeholder" aria-hidden="true">
-                    <span>Portrait coming soon</span>
+            <button class="persona-row-trigger"
+                    aria-expanded="false"
+                    aria-controls="persona-panel-main-streeter">
+              <span class="persona-row-trigger__text">
+                <span class="persona-row-trigger__name">The Main-Streeter</span>
+                <span class="persona-row-trigger__subtitle">Hamlets, storefronts, and visible results</span>
+              </span>
+              <i class="persona-row-trigger__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="persona-card-expandable" id="persona-panel-main-streeter">
+              <div class="persona-card"
+                   tabindex="0"
+                   role="button"
+                   aria-pressed="false"
+                   aria-label="The Main-Streeter — tap to learn more">
+                <div class="persona-card__front">
+                  <div class="persona-card__portrait">
+                    <img
+                      src="../assets/img/personas/main-streeter.jpg"
+                      alt="The Main-Streeter — local business owner, practical and engaged"
+                      width="400" height="400"
+                      onerror="this.style.display='none'"
+                    >
+                    <div class="persona-card__portrait-placeholder" aria-hidden="true">
+                      <span>Portrait coming soon</span>
+                    </div>
+                  </div>
+                  <div class="persona-card__front-text">
+                    <p class="persona-card__name">The Main-Streeter</p>
+                    <p class="persona-card__subtitle">Hamlets, storefronts, and visible results</p>
+                    <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
                   </div>
                 </div>
-                <div class="persona-card__front-text">
-                  <p class="persona-card__name">The Main-Streeter</p>
-                  <p class="persona-card__subtitle">Hamlets, storefronts, and visible results</p>
-                  <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
-                </div>
-              </div>
-              <div class="persona-card__back" aria-hidden="true">
-                <div class="persona-card__back-inner">
-                  <p class="persona-card__name">The Main-Streeter</p>
-                  <p>Bedford Hills is the commercial core, and it often feels forgotten. Cares about foot traffic, parking, storefronts, and whether local businesses can actually survive here.</p>
-                  <p class="persona-card__back-label"><strong>Why it matters:</strong> A town's economic energy is visible on its main streets. When those feel neglected, everything else follows.</p>
-                  <p class="persona-card__back-label"><strong>What they watch for:</strong> Parking policy, storefront vacancy, train station access, and whether Bedford Hills improvement plans ever reach construction.</p>
-                  <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                <div class="persona-card__back" aria-hidden="true">
+                  <div class="persona-card__back-inner">
+                    <p class="persona-card__name">The Main-Streeter</p>
+                    <p>Bedford Hills is the commercial core, and it often feels forgotten. Cares about foot traffic, parking, storefronts, and whether local businesses can actually survive here.</p>
+                    <p class="persona-card__back-label"><strong>Why it matters:</strong> A town's economic energy is visible on its main streets. When those feel neglected, everything else follows.</p>
+                    <p class="persona-card__back-label"><strong>What they watch for:</strong> Parking policy, storefront vacancy, train station access, and whether Bedford Hills improvement plans ever reach construction.</p>
+                    <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -231,36 +264,47 @@
 
           <!-- 4. The Affordability Realist -->
           <li class="persona-card-wrapper" role="listitem">
-            <div class="persona-card"
-                 tabindex="0"
-                 role="button"
-                 aria-pressed="false"
-                 aria-label="The Affordability Realist — tap to learn more">
-              <div class="persona-card__front">
-                <div class="persona-card__portrait">
-                  <img
-                    src="../assets/img/personas/affordability-realist.jpg"
-                    alt="The Affordability Realist — thoughtful and financially alert"
-                    width="400" height="400"
-                    onerror="this.style.display='none'"
-                  >
-                  <div class="persona-card__portrait-placeholder" aria-hidden="true">
-                    <span>Portrait coming soon</span>
+            <button class="persona-row-trigger"
+                    aria-expanded="false"
+                    aria-controls="persona-panel-affordability-realist">
+              <span class="persona-row-trigger__text">
+                <span class="persona-row-trigger__name">The Affordability Realist</span>
+                <span class="persona-row-trigger__subtitle">Keeps cost burden in view</span>
+              </span>
+              <i class="persona-row-trigger__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="persona-card-expandable" id="persona-panel-affordability-realist">
+              <div class="persona-card"
+                   tabindex="0"
+                   role="button"
+                   aria-pressed="false"
+                   aria-label="The Affordability Realist — tap to learn more">
+                <div class="persona-card__front">
+                  <div class="persona-card__portrait">
+                    <img
+                      src="../assets/img/personas/affordability-realist.jpg"
+                      alt="The Affordability Realist — thoughtful and financially alert"
+                      width="400" height="400"
+                      onerror="this.style.display='none'"
+                    >
+                    <div class="persona-card__portrait-placeholder" aria-hidden="true">
+                      <span>Portrait coming soon</span>
+                    </div>
+                  </div>
+                  <div class="persona-card__front-text">
+                    <p class="persona-card__name">The Affordability Realist</p>
+                    <p class="persona-card__subtitle">Keeps cost burden in view</p>
+                    <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
                   </div>
                 </div>
-                <div class="persona-card__front-text">
-                  <p class="persona-card__name">The Affordability Realist</p>
-                  <p class="persona-card__subtitle">Keeps cost burden in view</p>
-                  <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
-                </div>
-              </div>
-              <div class="persona-card__back" aria-hidden="true">
-                <div class="persona-card__back-inner">
-                  <p class="persona-card__name">The Affordability Realist</p>
-                  <p>Pays close attention to the full cost picture — utility bills, property taxes, rents, and the downstream effects of mandates that sound good but cost someone real money.</p>
-                  <p class="persona-card__back-label"><strong>Why it matters:</strong> A policy can serve the right values and still make life harder for people who can't absorb the added cost.</p>
-                  <p class="persona-card__back-label"><strong>What they watch for:</strong> Tax increases without visible results, energy mandates with opaque cost paths, programs that benefit some residents more than others.</p>
-                  <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                <div class="persona-card__back" aria-hidden="true">
+                  <div class="persona-card__back-inner">
+                    <p class="persona-card__name">The Affordability Realist</p>
+                    <p>Pays close attention to the full cost picture — utility bills, property taxes, rents, and the downstream effects of mandates that sound good but cost someone real money.</p>
+                    <p class="persona-card__back-label"><strong>Why it matters:</strong> A policy can serve the right values and still make life harder for people who can't absorb the added cost.</p>
+                    <p class="persona-card__back-label"><strong>What they watch for:</strong> Tax increases without visible results, energy mandates with opaque cost paths, programs that benefit some residents more than others.</p>
+                    <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -268,36 +312,47 @@
 
           <!-- 5. The Environmental Steward -->
           <li class="persona-card-wrapper" role="listitem">
-            <div class="persona-card"
-                 tabindex="0"
-                 role="button"
-                 aria-pressed="false"
-                 aria-label="The Environmental Steward — tap to learn more">
-              <div class="persona-card__front">
-                <div class="persona-card__portrait">
-                  <img
-                    src="../assets/img/personas/environmental-steward.jpg"
-                    alt="The Environmental Steward — thoughtful, outdoors-aware, sincere"
-                    width="400" height="400"
-                    onerror="this.style.display='none'"
-                  >
-                  <div class="persona-card__portrait-placeholder" aria-hidden="true">
-                    <span>Portrait coming soon</span>
+            <button class="persona-row-trigger"
+                    aria-expanded="false"
+                    aria-controls="persona-panel-environmental-steward">
+              <span class="persona-row-trigger__text">
+                <span class="persona-row-trigger__name">The Environmental Steward</span>
+                <span class="persona-row-trigger__subtitle">Protects long-term natural stewardship</span>
+              </span>
+              <i class="persona-row-trigger__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="persona-card-expandable" id="persona-panel-environmental-steward">
+              <div class="persona-card"
+                   tabindex="0"
+                   role="button"
+                   aria-pressed="false"
+                   aria-label="The Environmental Steward — tap to learn more">
+                <div class="persona-card__front">
+                  <div class="persona-card__portrait">
+                    <img
+                      src="../assets/img/personas/environmental-steward.jpg"
+                      alt="The Environmental Steward — thoughtful, outdoors-aware, sincere"
+                      width="400" height="400"
+                      onerror="this.style.display='none'"
+                    >
+                    <div class="persona-card__portrait-placeholder" aria-hidden="true">
+                      <span>Portrait coming soon</span>
+                    </div>
+                  </div>
+                  <div class="persona-card__front-text">
+                    <p class="persona-card__name">The Environmental Steward</p>
+                    <p class="persona-card__subtitle">Protects long-term natural stewardship</p>
+                    <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
                   </div>
                 </div>
-                <div class="persona-card__front-text">
-                  <p class="persona-card__name">The Environmental Steward</p>
-                  <p class="persona-card__subtitle">Protects long-term natural stewardship</p>
-                  <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
-                </div>
-              </div>
-              <div class="persona-card__back" aria-hidden="true">
-                <div class="persona-card__back-inner">
-                  <p class="persona-card__name">The Environmental Steward</p>
-                  <p>Not interested in symbolic gestures. Cares about water quality, tree canopy, habitat, and policies that produce real, measurable environmental outcomes — not ones that merely look good on paper.</p>
-                  <p class="persona-card__back-label"><strong>Why it matters:</strong> Bedford's open land, water, and forests are its most valuable and most fragile assets. Protection requires more than good intentions.</p>
-                  <p class="persona-card__back-label"><strong>What they watch for:</strong> Development near sensitive areas, policies praised without being measured, and long-term effects of decisions that seem minor today.</p>
-                  <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                <div class="persona-card__back" aria-hidden="true">
+                  <div class="persona-card__back-inner">
+                    <p class="persona-card__name">The Environmental Steward</p>
+                    <p>Not interested in symbolic gestures. Cares about water quality, tree canopy, habitat, and policies that produce real, measurable environmental outcomes — not ones that merely look good on paper.</p>
+                    <p class="persona-card__back-label"><strong>Why it matters:</strong> Bedford's open land, water, and forests are its most valuable and most fragile assets. Protection requires more than good intentions.</p>
+                    <p class="persona-card__back-label"><strong>What they watch for:</strong> Development near sensitive areas, policies praised without being measured, and long-term effects of decisions that seem minor today.</p>
+                    <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -305,36 +360,47 @@
 
           <!-- 6. The Civic Skeptic -->
           <li class="persona-card-wrapper" role="listitem">
-            <div class="persona-card"
-                 tabindex="0"
-                 role="button"
-                 aria-pressed="false"
-                 aria-label="The Civic Skeptic — tap to learn more">
-              <div class="persona-card__front">
-                <div class="persona-card__portrait">
-                  <img
-                    src="../assets/img/personas/civic-skeptic.jpg"
-                    alt="The Civic Skeptic — alert, analytical, budget-and-binder energy"
-                    width="400" height="400"
-                    onerror="this.style.display='none'"
-                  >
-                  <div class="persona-card__portrait-placeholder" aria-hidden="true">
-                    <span>Portrait coming soon</span>
+            <button class="persona-row-trigger"
+                    aria-expanded="false"
+                    aria-controls="persona-panel-civic-skeptic">
+              <span class="persona-row-trigger__text">
+                <span class="persona-row-trigger__name">The Civic Skeptic</span>
+                <span class="persona-row-trigger__subtitle">Asks who decided this and what it costs</span>
+              </span>
+              <i class="persona-row-trigger__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="persona-card-expandable" id="persona-panel-civic-skeptic">
+              <div class="persona-card"
+                   tabindex="0"
+                   role="button"
+                   aria-pressed="false"
+                   aria-label="The Civic Skeptic — tap to learn more">
+                <div class="persona-card__front">
+                  <div class="persona-card__portrait">
+                    <img
+                      src="../assets/img/personas/civic-skeptic.jpg"
+                      alt="The Civic Skeptic — alert, analytical, budget-and-binder energy"
+                      width="400" height="400"
+                      onerror="this.style.display='none'"
+                    >
+                    <div class="persona-card__portrait-placeholder" aria-hidden="true">
+                      <span>Portrait coming soon</span>
+                    </div>
+                  </div>
+                  <div class="persona-card__front-text">
+                    <p class="persona-card__name">The Civic Skeptic</p>
+                    <p class="persona-card__subtitle">Asks who decided this and what it costs</p>
+                    <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
                   </div>
                 </div>
-                <div class="persona-card__front-text">
-                  <p class="persona-card__name">The Civic Skeptic</p>
-                  <p class="persona-card__subtitle">Asks who decided this and what it costs</p>
-                  <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
-                </div>
-              </div>
-              <div class="persona-card__back" aria-hidden="true">
-                <div class="persona-card__back-inner">
-                  <p class="persona-card__name">The Civic Skeptic</p>
-                  <p>Reads the contracts, watches the votes, and asks who authorized what. Not angry — just paying attention and skeptical of consultants, process language, and results that are never quite verified.</p>
-                  <p class="persona-card__back-label"><strong>Why it matters:</strong> Public trust requires accountability. That means defining success upfront, measuring it honestly, and explaining what went wrong when it does.</p>
-                  <p class="persona-card__back-label"><strong>What they watch for:</strong> Consultant contracts without deliverables, votes without public notice, budgets with opaque line items.</p>
-                  <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                <div class="persona-card__back" aria-hidden="true">
+                  <div class="persona-card__back-inner">
+                    <p class="persona-card__name">The Civic Skeptic</p>
+                    <p>Reads the contracts, watches the votes, and asks who authorized what. Not angry — just paying attention and skeptical of consultants, process language, and results that are never quite verified.</p>
+                    <p class="persona-card__back-label"><strong>Why it matters:</strong> Public trust requires accountability. That means defining success upfront, measuring it honestly, and explaining what went wrong when it does.</p>
+                    <p class="persona-card__back-label"><strong>What they watch for:</strong> Consultant contracts without deliverables, votes without public notice, budgets with opaque line items.</p>
+                    <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -342,36 +408,47 @@
 
           <!-- 7. The Services Neighbor -->
           <li class="persona-card-wrapper" role="listitem">
-            <div class="persona-card"
-                 tabindex="0"
-                 role="button"
-                 aria-pressed="false"
-                 aria-label="The Services Neighbor — tap to learn more">
-              <div class="persona-card__front">
-                <div class="persona-card__portrait">
-                  <img
-                    src="../assets/img/personas/services-neighbor.jpg"
-                    alt="The Services Neighbor — practical, neighborly, no-nonsense"
-                    width="400" height="400"
-                    onerror="this.style.display='none'"
-                  >
-                  <div class="persona-card__portrait-placeholder" aria-hidden="true">
-                    <span>Portrait coming soon</span>
+            <button class="persona-row-trigger"
+                    aria-expanded="false"
+                    aria-controls="persona-panel-services-neighbor">
+              <span class="persona-row-trigger__text">
+                <span class="persona-row-trigger__name">The Services Neighbor</span>
+                <span class="persona-row-trigger__subtitle">Keeps the basics front and center</span>
+              </span>
+              <i class="persona-row-trigger__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="persona-card-expandable" id="persona-panel-services-neighbor">
+              <div class="persona-card"
+                   tabindex="0"
+                   role="button"
+                   aria-pressed="false"
+                   aria-label="The Services Neighbor — tap to learn more">
+                <div class="persona-card__front">
+                  <div class="persona-card__portrait">
+                    <img
+                      src="../assets/img/personas/services-neighbor.jpg"
+                      alt="The Services Neighbor — practical, neighborly, no-nonsense"
+                      width="400" height="400"
+                      onerror="this.style.display='none'"
+                    >
+                    <div class="persona-card__portrait-placeholder" aria-hidden="true">
+                      <span>Portrait coming soon</span>
+                    </div>
+                  </div>
+                  <div class="persona-card__front-text">
+                    <p class="persona-card__name">The Services Neighbor</p>
+                    <p class="persona-card__subtitle">Keeps the basics front and center</p>
+                    <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
                   </div>
                 </div>
-                <div class="persona-card__front-text">
-                  <p class="persona-card__name">The Services Neighbor</p>
-                  <p class="persona-card__subtitle">Keeps the basics front and center</p>
-                  <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
-                </div>
-              </div>
-              <div class="persona-card__back" aria-hidden="true">
-                <div class="persona-card__back-inner">
-                  <p class="persona-card__name">The Services Neighbor</p>
-                  <p>Just wants the roads fixed, the culverts cleared, and the town services to work reliably before anything else gets complicated. Doesn't want a plan — wants results.</p>
-                  <p class="persona-card__back-label"><strong>Why it matters:</strong> Government's first obligation is to do the basics well. Everything else is commentary until that's handled.</p>
-                  <p class="persona-card__back-label"><strong>What they watch for:</strong> Potholes in year three, drainage that floods the same spots every spring, emergency access routes nobody checked until it mattered.</p>
-                  <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                <div class="persona-card__back" aria-hidden="true">
+                  <div class="persona-card__back-inner">
+                    <p class="persona-card__name">The Services Neighbor</p>
+                    <p>Just wants the roads fixed, the culverts cleared, and the town services to work reliably before anything else gets complicated. Doesn't want a plan — wants results.</p>
+                    <p class="persona-card__back-label"><strong>Why it matters:</strong> Government's first obligation is to do the basics well. Everything else is commentary until that's handled.</p>
+                    <p class="persona-card__back-label"><strong>What they watch for:</strong> Potholes in year three, drainage that floods the same spots every spring, emergency access routes nobody checked until it mattered.</p>
+                    <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -379,32 +456,43 @@
 
           <!-- 8. Don Scott, Chair -->
           <li class="persona-card-wrapper" role="listitem">
-            <div class="persona-card persona-card--chair"
-                 tabindex="0"
-                 role="button"
-                 aria-pressed="false"
-                 aria-label="Don Scott, Chair — tap to learn more">
-              <div class="persona-card__front">
-                <div class="persona-card__portrait">
-                  <img
-                    src="../assets/img/don-hero.png"
-                    alt="Don Scott, candidate for Bedford Town Supervisor"
-                    width="400" height="400"
-                  >
+            <button class="persona-row-trigger persona-row-trigger--chair"
+                    aria-expanded="false"
+                    aria-controls="persona-panel-don-scott">
+              <span class="persona-row-trigger__text">
+                <span class="persona-row-trigger__name">Don Scott</span>
+                <span class="persona-row-trigger__subtitle">Chair &middot; Reviews perspectives, makes the call</span>
+              </span>
+              <i class="persona-row-trigger__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="persona-card-expandable" id="persona-panel-don-scott">
+              <div class="persona-card persona-card--chair"
+                   tabindex="0"
+                   role="button"
+                   aria-pressed="false"
+                   aria-label="Don Scott, Chair — tap to learn more">
+                <div class="persona-card__front">
+                  <div class="persona-card__portrait">
+                    <img
+                      src="../assets/img/don-hero.png"
+                      alt="Don Scott, candidate for Bedford Town Supervisor"
+                      width="400" height="400"
+                    >
+                  </div>
+                  <div class="persona-card__front-text">
+                    <p class="persona-card__name">Don Scott</p>
+                    <p class="persona-card__subtitle">Chair &middot; Reviews perspectives, makes the call</p>
+                    <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
+                  </div>
                 </div>
-                <div class="persona-card__front-text">
-                  <p class="persona-card__name">Don Scott</p>
-                  <p class="persona-card__subtitle">Chair &middot; Reviews perspectives, makes the call</p>
-                  <span class="persona-card__hint" aria-hidden="true">Tap to learn more</span>
-                </div>
-              </div>
-              <div class="persona-card__back" aria-hidden="true">
-                <div class="persona-card__back-inner">
-                  <p class="persona-card__name">Don Scott, Chair</p>
-                  <p>Don is not a synthetic persona. He chairs the Roundtable — reviews what each perspective surfaces, looks for the overlap and the tradeoffs, then decides.</p>
-                  <p class="persona-card__back-label"><strong>Why it matters:</strong> The Roundtable informs judgment. It doesn't replace it. Final positions are Don's, written in his own words, with visible reasoning.</p>
-                  <p class="persona-card__back-label"><strong>What he watches for:</strong> Where perspectives agree, where they diverge, and whether any important angle was missed before he forms a view.</p>
-                  <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                <div class="persona-card__back" aria-hidden="true">
+                  <div class="persona-card__back-inner">
+                    <p class="persona-card__name">Don Scott, Chair</p>
+                    <p>Don is not a synthetic persona. He chairs the Roundtable — reviews what each perspective surfaces, looks for the overlap and the tradeoffs, then decides.</p>
+                    <p class="persona-card__back-label"><strong>Why it matters:</strong> The Roundtable informs judgment. It doesn't replace it. Final positions are Don's, written in his own words, with visible reasoning.</p>
+                    <p class="persona-card__back-label"><strong>What he watches for:</strong> Where perspectives agree, where they diverge, and whether any important angle was missed before he forms a view.</p>
+                    <button class="persona-card__back-btn" aria-label="Return to front of card">&#8592; Back</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -414,99 +502,7 @@
       </div>
     </section>
 
-    <!-- WHAT THE ROUNDTABLE OFFERS -->
-    <section class="section section--alt" aria-labelledby="offers-headline">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">What the Roundtable offers</p>
-          <h2 id="offers-headline">Better decisions come from better conversations.</h2>
-          <p class="section-header__lead">
-            The Roundtable isn't a gimmick. It's a structured way to pressure-test an issue
-            before Don takes a public position.
-          </p>
-        </div>
-
-        <ul class="offers-grid" role="list">
-          <li class="offer-card">
-            <h3 class="offer-card__title">Clearer tradeoffs</h3>
-            <p>Most local decisions involve real competing interests. The Roundtable names them instead of pretending they don't exist.</p>
-          </li>
-          <li class="offer-card">
-            <h3 class="offer-card__title">More transparent reasoning</h3>
-            <p>Residents can see not just what Don thinks, but why — and which perspectives he weighed before deciding.</p>
-          </li>
-          <li class="offer-card">
-            <h3 class="offer-card__title">Broader representation</h3>
-            <p>Each persona represents a recurring pattern of concern in Bedford — from affordability to preservation to basic services — so no perspective gets systematically ignored.</p>
-          </li>
-          <li class="offer-card">
-            <h3 class="offer-card__title">Less political theater</h3>
-            <p>The process is designed to reduce the gap between what sounds good and what actually works. Slogans get tested before they become positions.</p>
-          </li>
-          <li class="offer-card">
-            <h3 class="offer-card__title">A repeatable model</h3>
-            <p>The Roundtable can be applied to any issue. The approach doesn't depend on which specific question is in front of it.</p>
-          </li>
-          <li class="offer-card">
-            <h3 class="offer-card__title">Public trust through process</h3>
-            <p>When residents can see the reasoning — not just the conclusion — trust is easier to build and easier to sustain over time.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- HOW WE BUILT IT -->
-    <section class="section" aria-labelledby="howbuilt-headline">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">How we built it</p>
-          <h2 id="howbuilt-headline">AI-assisted. Human-decided.</h2>
-          <p class="section-header__lead">
-            The Roundtable uses consistent AI-assisted civic personas to pressure-test each issue.
-            Here's how the process works in practice.
-          </p>
-        </div>
-
-        <div class="process-steps">
-          <div class="process-step">
-            <div class="process-step__number" aria-hidden="true">1</div>
-            <div class="process-step__content">
-              <h3>Define the issue</h3>
-              <p>Start with a real Bedford question — not a slogan, not a campaign talking point. Something residents argue about, or a decision that's been avoided for too long.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="process-step__number" aria-hidden="true">2</div>
-            <div class="process-step__content">
-              <h3>Pressure-test it through the Roundtable</h3>
-              <p>Each persona responds from its own consistent perspective. What does the Preservationist see? What does the Affordability Realist worry about? What does the Civic Skeptic need to verify?</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="process-step__number" aria-hidden="true">3</div>
-            <div class="process-step__content">
-              <h3>Identify tradeoffs and common ground</h3>
-              <p>Don reviews the responses, looks for where perspectives align, and names the real tensions — the places where doing right by one group genuinely complicates things for another.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="process-step__number" aria-hidden="true">4</div>
-            <div class="process-step__content">
-              <h3>Don states his view</h3>
-              <p>With the full picture visible, Don writes his own position in plain English, with the tradeoffs acknowledged. The AI structures the conversation. It doesn't write the conclusion.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="callout" role="note" style="margin-top: 2.5rem;">
-          <p>
-            <strong>On AI transparency:</strong> The personas are synthetic tools — consistent characters designed to represent recurring Bedford viewpoints, not real residents. They help structure perspective-taking at low cost. Don reviews every output before anything is published. No AI-generated content goes live without a human reading it first.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPLORE THE ISSUES -->
+    <!-- 3. EXPLORE THE ISSUES — moved up -->
     <section class="section section--alt" aria-labelledby="explore-headline">
       <div class="container">
         <div class="section-header">
@@ -631,7 +627,99 @@
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- 4. WHAT THE ROUNDTABLE OFFERS — moved down, background adjusted -->
+    <section class="section" aria-labelledby="offers-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">What the Roundtable offers</p>
+          <h2 id="offers-headline">Better decisions come from better conversations.</h2>
+          <p class="section-header__lead">
+            The Roundtable isn't a gimmick. It's a structured way to pressure-test an issue
+            before Don takes a public position.
+          </p>
+        </div>
+
+        <ul class="offers-grid" role="list">
+          <li class="offer-card">
+            <h3 class="offer-card__title">Clearer tradeoffs</h3>
+            <p>Most local decisions involve real competing interests. The Roundtable names them instead of pretending they don't exist.</p>
+          </li>
+          <li class="offer-card">
+            <h3 class="offer-card__title">More transparent reasoning</h3>
+            <p>Residents can see not just what Don thinks, but why — and which perspectives he weighed before deciding.</p>
+          </li>
+          <li class="offer-card">
+            <h3 class="offer-card__title">Broader representation</h3>
+            <p>Each persona represents a recurring pattern of concern in Bedford — from affordability to preservation to basic services — so no perspective gets systematically ignored.</p>
+          </li>
+          <li class="offer-card">
+            <h3 class="offer-card__title">Less political theater</h3>
+            <p>The process is designed to reduce the gap between what sounds good and what actually works. Slogans get tested before they become positions.</p>
+          </li>
+          <li class="offer-card">
+            <h3 class="offer-card__title">A repeatable model</h3>
+            <p>The Roundtable can be applied to any issue. The approach doesn't depend on which specific question is in front of it.</p>
+          </li>
+          <li class="offer-card">
+            <h3 class="offer-card__title">Public trust through process</h3>
+            <p>When residents can see the reasoning — not just the conclusion — trust is easier to build and easier to sustain over time.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. HOW WE BUILT IT — moved down, background adjusted -->
+    <section class="section section--alt" aria-labelledby="howbuilt-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">How we built it</p>
+          <h2 id="howbuilt-headline">AI-assisted. Human-decided.</h2>
+          <p class="section-header__lead">
+            The Roundtable uses consistent AI-assisted civic personas to pressure-test each issue.
+            Here's how the process works in practice.
+          </p>
+        </div>
+
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-step__number" aria-hidden="true">1</div>
+            <div class="process-step__content">
+              <h3>Define the issue</h3>
+              <p>Start with a real Bedford question — not a slogan, not a campaign talking point. Something residents argue about, or a decision that's been avoided for too long.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="process-step__number" aria-hidden="true">2</div>
+            <div class="process-step__content">
+              <h3>Pressure-test it through the Roundtable</h3>
+              <p>Each persona responds from its own consistent perspective. What does the Preservationist see? What does the Affordability Realist worry about? What does the Civic Skeptic need to verify?</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="process-step__number" aria-hidden="true">3</div>
+            <div class="process-step__content">
+              <h3>Identify tradeoffs and common ground</h3>
+              <p>Don reviews the responses, looks for where perspectives align, and names the real tensions — the places where doing right by one group genuinely complicates things for another.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <div class="process-step__number" aria-hidden="true">4</div>
+            <div class="process-step__content">
+              <h3>Don states his view</h3>
+              <p>With the full picture visible, Don writes his own position in plain English, with the tradeoffs acknowledged. The AI structures the conversation. It doesn't write the conclusion.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout" role="note" style="margin-top: 2.5rem;">
+          <p>
+            <strong>On AI transparency:</strong> The personas are synthetic tools — consistent characters designed to represent recurring Bedford viewpoints, not real residents. They help structure perspective-taking at low cost. Don reviews every output before anything is published. No AI-generated content goes live without a human reading it first.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CTA -->
     <section class="section issues-cta" aria-labelledby="cta-headline">
       <div class="container">
         <p class="eyebrow">Don's approach</p>

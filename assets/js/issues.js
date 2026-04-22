@@ -1,58 +1,102 @@
-/* UNCAMPAIGN — Issues page: persona card flip */
+/* UNCAMPAIGN — Issues page: persona card flip + mobile accordion */
 (function () {
   'use strict';
 
+  /* --- Persona card flip (front ↔ back) --- */
   var cards = document.querySelectorAll('.persona-card');
-  if (!cards.length) return;
+  if (cards.length) {
+    cards.forEach(function (card) {
+      var front   = card.querySelector('.persona-card__front');
+      var back    = card.querySelector('.persona-card__back');
+      var backBtn = card.querySelector('.persona-card__back-btn');
+      var nameEl  = card.querySelector('.persona-card__name');
+      var baseName = nameEl ? nameEl.textContent.trim() : 'Persona';
 
-  cards.forEach(function (card) {
-    var front = card.querySelector('.persona-card__front');
-    var back  = card.querySelector('.persona-card__back');
-    var backBtn = card.querySelector('.persona-card__back-btn');
-    var nameEl  = card.querySelector('.persona-card__name');
-    var baseName = nameEl ? nameEl.textContent.trim() : 'Persona';
+      function doFlip() {
+        var flipped = card.classList.toggle('is-flipped');
+        card.setAttribute('aria-pressed', String(flipped));
+        card.setAttribute('aria-label',
+          flipped ? baseName + ' — tap to go back'
+                  : baseName + ' — tap to learn more');
+        if (front)   front.setAttribute('aria-hidden', String(flipped));
+        if (back)    back.setAttribute('aria-hidden', String(!flipped));
+        if (backBtn) backBtn.tabIndex = flipped ? 0 : -1;
+      }
 
-    function doFlip() {
-      var flipped = card.classList.toggle('is-flipped');
-      card.setAttribute('aria-pressed', String(flipped));
-      card.setAttribute('aria-label',
-        flipped ? baseName + ' — tap to go back'
-                : baseName + ' — tap to learn more');
-      if (front) front.setAttribute('aria-hidden', String(flipped));
-      if (back)  back.setAttribute('aria-hidden', String(!flipped));
-      if (backBtn) backBtn.tabIndex = flipped ? 0 : -1;
-    }
+      function doUnflip() {
+        card.classList.remove('is-flipped');
+        card.setAttribute('aria-pressed', 'false');
+        card.setAttribute('aria-label', baseName + ' — tap to learn more');
+        if (front)   front.setAttribute('aria-hidden', 'false');
+        if (back)    back.setAttribute('aria-hidden', 'true');
+        if (backBtn) backBtn.tabIndex = -1;
+        card.focus();
+      }
 
-    function doUnflip() {
-      card.classList.remove('is-flipped');
-      card.setAttribute('aria-pressed', 'false');
-      card.setAttribute('aria-label', baseName + ' — tap to learn more');
-      if (front) front.setAttribute('aria-hidden', 'false');
-      if (back)  back.setAttribute('aria-hidden', 'true');
       if (backBtn) backBtn.tabIndex = -1;
-      card.focus();
-    }
 
-    // Set initial tabindex on back button
-    if (backBtn) backBtn.tabIndex = -1;
-
-    card.addEventListener('click', function (e) {
-      if (e.target === backBtn || (backBtn && backBtn.contains(e.target))) return;
-      doFlip();
-    });
-
-    card.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
+      card.addEventListener('click', function (e) {
+        if (e.target === backBtn || (backBtn && backBtn.contains(e.target))) return;
         doFlip();
+      });
+
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          doFlip();
+        }
+      });
+
+      if (backBtn) {
+        backBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          doUnflip();
+        });
       }
     });
+  }
 
-    if (backBtn) {
-      backBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        doUnflip();
+  /* --- Mobile persona accordion (expand/collapse rows) --- */
+  var wrappers = document.querySelectorAll('.persona-card-wrapper');
+  if (!wrappers.length) return;
+
+  function resetCard(card) {
+    if (!card || !card.classList.contains('is-flipped')) return;
+    var front   = card.querySelector('.persona-card__front');
+    var back    = card.querySelector('.persona-card__back');
+    var backBtn = card.querySelector('.persona-card__back-btn');
+    var nameEl  = card.querySelector('.persona-card__name');
+    card.classList.remove('is-flipped');
+    card.setAttribute('aria-pressed', 'false');
+    if (nameEl) card.setAttribute('aria-label', nameEl.textContent.trim() + ' — tap to learn more');
+    if (front)   front.setAttribute('aria-hidden', 'false');
+    if (back)    back.setAttribute('aria-hidden', 'true');
+    if (backBtn) backBtn.tabIndex = -1;
+  }
+
+  wrappers.forEach(function (wrapper) {
+    var trigger = wrapper.querySelector('.persona-row-trigger');
+    if (!trigger) return;
+
+    trigger.addEventListener('click', function () {
+      var expanding = !wrapper.classList.contains('is-expanded');
+
+      // Collapse all wrappers and reset any flipped cards inside
+      wrappers.forEach(function (w) {
+        if (w.classList.contains('is-expanded')) {
+          w.classList.remove('is-expanded');
+          var t = w.querySelector('.persona-row-trigger');
+          if (t) t.setAttribute('aria-expanded', 'false');
+          resetCard(w.querySelector('.persona-card'));
+        }
       });
-    }
+
+      // Open the tapped wrapper if it was closed
+      if (expanding) {
+        wrapper.classList.add('is-expanded');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
   });
+
 })();
