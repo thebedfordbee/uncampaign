@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" width="400" height="480" role="img" aria-label="Portrait placeholder for Don Scott">
+  <!-- Background -->
+  <rect width="400" height="480" fill="#EAE6DE"/>
+  <!-- Subtle inner border -->
+  <rect x="10" y="10" width="380" height="460" rx="2" fill="none" stroke="#D5D0C8" stroke-width="1"/>
+  <!-- Head -->
+  <circle cx="200" cy="172" r="76" fill="#BAC4B9"/>
+  <!-- Shoulders / body -->
+  <path d="M48 480 Q48 344 148 314 Q172 304 200 304 Q228 304 252 314 Q352 344 352 480 Z" fill="#BAC4B9"/>
+  <!-- Name label -->
+  <text
+    x="200"
+    y="454"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="13"
+    fill="#7B8C79"
+    letter-spacing="2"
+  >DON SCOTT</text>
+</svg>
