@@ -58,9 +58,24 @@
       <div class="container">
         <div class="hero__inner">
 
-          <div class="hero__text">
+          <!-- Mobile order: text-top → image → text-bottom. Desktop: 2-col via grid-template-areas. -->
+          <div class="hero__text-top">
             <p class="eyebrow hero__eyebrow">Bedford, New York &middot; 2025</p>
             <h1 class="hero__headline" id="hero-headline">Bedford deserves&nbsp;a&nbsp;choice.</h1>
+          </div>
+
+          <div class="hero__image">
+            <div class="hero__image-frame">
+              <img
+                src="assets/img/don-hero.png"
+                alt="Don Scott, candidate for Bedford Town Supervisor"
+                width="680"
+                height="816"
+              >
+            </div>
+          </div>
+
+          <div class="hero__text-bottom">
             <p class="hero__body">
               I'm Don Scott, and I'm running for Bedford Town Supervisor. Not to run a traditional
               campaign — to show that a neighbor talking honestly with neighbors can matter more
@@ -70,18 +85,6 @@
             <div class="cta-row">
               <a href="pages/contact.html" class="btn btn--primary">Request a Conversation</a>
               <a href="pages/how-it-works.html" class="btn btn--secondary">How This Campaign Works</a>
-            </div>
-          </div>
-
-          <div class="hero__image">
-            <!-- Swap src for a real photo or caricature — layout and frame won't change -->
-            <div class="hero__image-frame">
-              <img
-                src="assets/img/don-hero.png"
-                alt="Don Scott, candidate for Bedford Town Supervisor"
-                width="680"
-                height="816"
-              >
             </div>
           </div>
 

@@ -304,22 +304,32 @@ p { max-width: 68ch; }
   padding-block: 4rem 3.5rem;
 }
 
+/* Mobile: 3 grid items stack in DOM order — text-top, image, text-bottom */
 .hero__inner {
   display: grid;
-  gap: 3rem;
-  align-items: center;
+  gap: 1.75rem;
 }
 
+/* Desktop: 2-column layout via named grid areas */
 @media (min-width: 768px) {
   .hero { padding-block: 6rem 5rem; }
   .hero__inner {
     grid-template-columns: 1fr 340px;
-    gap: 5rem;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "top   image"
+      "bot   image";
+    column-gap: 5rem;
+    row-gap: 0;
+    align-items: start;
   }
+  .hero__text-top    { grid-area: top; padding-bottom: 1.25rem; }
+  .hero__text-bottom { grid-area: bot; }
+  .hero__image       { grid-area: image; margin-inline: 0; }
 }
 
-.hero__eyebrow { margin-bottom: 1rem; }
-.hero__headline { margin-bottom: 1.25rem; }
+.hero__eyebrow  { margin-bottom: 0.875rem; }
+.hero__headline { margin-bottom: 0; }
 
 .hero__body {
   color: var(--muted);
@@ -328,26 +338,38 @@ p { max-width: 68ch; }
   max-width: 54ch;
 }
 
-/* Image frame — designed to swap in a photo or caricature without layout changes */
+/* Portrait column — soft ambient shape anchors image to hero composition on desktop */
 .hero__image {
   width: 100%;
   max-width: 340px;
   margin-inline: auto;
+  position: relative;
 }
-@media (min-width: 768px) {
-  .hero__image { margin-inline: 0; }
+.hero__image::before {
+  content: '';
+  position: absolute;
+  inset: -3rem -2.5rem -2rem -2rem;
+  background: radial-gradient(
+    ellipse at 58% 44%,
+    rgba(123, 140, 121, 0.13) 0%,
+    rgba(248, 245, 239, 0) 65%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+@media (max-width: 767px) {
+  .hero__image::before { display: none; }
 }
 
+/* Portrait frame — swap src to update photo without touching layout */
 .hero__image-frame {
   position: relative;
-  border-radius: 16px;
+  z-index: 1;
+  border-radius: 14px;
   overflow: hidden;
   background: #E8E4DC;
-  box-shadow: 0 6px 32px rgba(43, 43, 43, 0.07);
+  box-shadow: 0 4px 24px rgba(43, 43, 43, 0.07);
   aspect-ratio: 5 / 6;
-  /* Soft bottom fade — blends image edge into hero background */
-  -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
 }
 .hero__image-frame img,
 .hero__image-frame svg {
