@@ -62,18 +62,18 @@
           <h1 id="issues-title">The Bedford Roundtable</h1>
         </div>
 
-        <a href="#personas-headline" class="issues-hero__visual" aria-label="Meet the Roundtable voices">
+        <button type="button" class="issues-hero__visual" aria-label="Expand Roundtable scene" aria-haspopup="dialog">
           <img
             src="../assets/img/roundtable-scene.png"
             alt="The Bedford Roundtable — eight perspectives around the table"
             width="1200"
             height="800"
           >
-        </a>
+        </button>
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">A reusable civic framework that examines every issue through eight distinct local perspectives.</p>
-          <p class="roundtable-disclosure" role="note">AI-assisted civic personas, not real residents. Final positions are Don's.</p>
+          <p class="roundtable-disclosure" role="note">An AI-assisted, disciplined way to weigh Bedford's tradeoffs.</p>
         </div>
 
       </div>
@@ -740,6 +740,20 @@
       </div>
     </div>
   </footer>
+
+  <!-- Roundtable image modal -->
+  <div class="rt-modal" id="rt-modal" role="dialog" aria-label="Bedford Roundtable — expanded view" aria-modal="true" hidden>
+    <div class="rt-modal__backdrop" aria-hidden="true"></div>
+    <div class="rt-modal__frame">
+      <img
+        src="../assets/img/roundtable-scene.png"
+        alt="The Bedford Roundtable — eight perspectives around the table"
+        width="1200"
+        height="800"
+      >
+      <button class="rt-modal__close" aria-label="Close expanded image">&#x2715;</button>
+    </div>
+  </div>
 
   <script src="../assets/js/site.js"></script>
   <script src="../assets/js/issues.js"></script>

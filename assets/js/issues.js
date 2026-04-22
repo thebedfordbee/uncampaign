@@ -100,3 +100,40 @@
   });
 
 })();
+
+/* --- Roundtable image lightbox --- */
+(function () {
+  'use strict';
+
+  var trigger  = document.querySelector('.issues-hero__visual');
+  var modal    = document.getElementById('rt-modal');
+  if (!trigger || !modal) return;
+
+  var closeBtn = modal.querySelector('.rt-modal__close');
+  var backdrop = modal.querySelector('.rt-modal__backdrop');
+  var lastFocus;
+
+  function openModal() {
+    lastFocus = document.activeElement;
+    modal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    if (closeBtn) closeBtn.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  function closeModal() {
+    modal.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKeydown);
+    if (lastFocus) lastFocus.focus();
+  }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape') closeModal();
+  }
+
+  trigger.addEventListener('click', openModal);
+  if (closeBtn)  closeBtn.addEventListener('click',  closeModal);
+  if (backdrop)  backdrop.addEventListener('click',  closeModal);
+
+})();
