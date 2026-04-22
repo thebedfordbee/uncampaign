@@ -952,15 +952,30 @@ p { max-width: 68ch; }
   max-width: none;
   flex: 1;
 }
-.persona-card__hint {
-  display: block;
-  font-size: 0.6875rem;
-  color: var(--sage);
-  letter-spacing: 0.06em;
+.persona-card__hint { display: none; } /* replaced by portrait overlay */
+
+/* Interactive hint — overlay at bottom of portrait */
+.persona-card__portrait::after {
+  content: "Tap to learn more";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.4rem 0.75rem;
+  background: rgba(25, 25, 25, 0.5);
+  color: rgba(255, 255, 255, 0.92);
+  font-family: var(--sans);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  margin-top: 0.75rem;
-  opacity: 0.8;
+  text-align: center;
+  z-index: 2;
 }
+@media (hover: hover) and (pointer: fine) {
+  .persona-card__portrait::after { content: "Click to learn more"; }
+}
+.persona-card.is-flipped .persona-card__portrait::after { display: none; }
 
 /* Back face — absolutely positioned, fades in on flip */
 .persona-card__back {
@@ -1135,12 +1150,15 @@ p { max-width: 68ch; }
   }
 }
 
-/* Desktop: expandable always open, no height restriction */
+/* Desktop: expandable always open; tighten card typography for even grid */
 @media (min-width: 700px) {
   .persona-card-expandable {
     max-height: none;
     overflow: visible;
   }
+  .persona-card__name { font-size: 0.875rem; }
+  .persona-card__front-text { min-height: 5.25rem; }
+  .persona-card__back { overflow-y: hidden; }
 }
 
 /* Reduced motion — disable accordion + icon transitions */
