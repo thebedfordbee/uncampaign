@@ -1401,57 +1401,52 @@ p { max-width: 68ch; }
   .issue-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
+/* Wide lead — let body copy span section width */
+.section-header__lead--wide { max-width: none; }
+
 .issue-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
   text-decoration: none;
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.25rem 3rem 1.125rem 1.375rem;
-  position: relative;
+  padding: 1.25rem 1.375rem;
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
-  min-height: 48px;
 }
 .issue-card:hover {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
   border-color: var(--sage);
 }
+.issue-card__icon {
+  width: 1.625rem;
+  height: 1.625rem;
+  color: var(--sage);
+  flex-shrink: 0;
+}
+.issue-card__icon svg { width: 100%; height: 100%; display: block; }
 .issue-card__title {
   font-family: var(--serif);
   font-size: 0.9375rem;
   color: var(--charcoal);
   line-height: 1.35;
-  margin-bottom: 0.375rem;
   display: block;
+  flex: 1;
 }
-.issue-card__desc {
-  font-size: 0.8375rem;
-  color: var(--muted);
-  max-width: none;
-  line-height: 1.55;
-  display: block;
-}
-.issue-card__arrow {
-  position: absolute;
-  right: 1.125rem;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--sage);
-  font-size: 1rem;
-  transition: transform 0.15s;
-}
-.issue-card:hover .issue-card__arrow { transform: translateY(-50%) translateX(3px); }
-.issue-card__soon {
-  display: inline-block;
+.issue-card__explore {
   font-size: 0.6875rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--sage);
-  opacity: 0.65;
-  margin-top: 0.5rem;
+  color: var(--moss);
+  display: block;
+  margin-top: 0.125rem;
 }
+.issue-card:hover .issue-card__explore { color: #2d3e2f; }
 
 /* =============================================
    ISSUES CTA SECTION
