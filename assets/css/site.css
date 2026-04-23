@@ -1919,3 +1919,37 @@ p { max-width: 68ch; }
   .instr-panel__body { padding: 2rem; }
   .instr-panel__text { font-size: 0.9375rem; }
 }
+
+/* =============================================
+   RULES PAGE
+   ============================================= */
+.rules-list {
+  margin-top: 2.5rem;
+}
+.rule-item {
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.rule-item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+.rule-item h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.125rem;
+}
+.rule-item p:last-child {
+  margin-bottom: 0;
+}
+.rules-closing {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  font-size: 1.0625rem;
+  color: var(--charcoal);
+  font-style: italic;
+}
+.callout .cta-row {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}

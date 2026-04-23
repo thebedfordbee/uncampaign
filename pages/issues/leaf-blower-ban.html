@@ -19,6 +19,7 @@
       <nav class="site-nav" aria-label="Main navigation">
         <ul class="site-nav__links" role="list">
           <li><a href="../issues.html">Issues</a></li>
+          <li><a href="../rules.html">Rules</a></li>
         </ul>
         <a href="#subscribe" class="btn btn--subscribe site-nav__cta">Subscribe</a>
         <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu">
@@ -30,6 +31,7 @@
     </div>
     <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
       <a href="../issues.html">Issues</a>
+      <a href="../rules.html">Rules</a>
       <a href="#subscribe" class="btn btn--subscribe">Subscribe</a>
     </nav>
   </header>
@@ -42,9 +44,13 @@
           <a href="../issues.html" class="issue-back">← Back to Issues</a>
           <h1 id="issue-title">Leaf Blower Ban</h1>
         </div>
-        <div class="issues-hero__visual issues-hero__visual--placeholder" aria-hidden="true">
-          <span>Leaf Blower Ban</span>
-        </div>
+        <button type="button" class="issues-hero__visual" aria-label="Expand Leaf Blower Ban image" aria-haspopup="dialog">
+          <img
+            src="../../assets/img/leafblower.png"
+            alt="Leaf Blower Ban — Bedford, NY"
+            width="1200" height="800"
+          >
+        </button>
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">Eight consistent civic perspectives weigh in on Bedford's gas-powered leaf blower ban, whether the rule has drifted from common sense, and what a more practical quality-of-life standard could look like.</p>
         </div>
@@ -390,6 +396,7 @@ Output format:
           <p class="footer-nav__label">Pages</p>
           <a href="../../index.html">Home</a>
           <a href="../issues.html">Issues</a>
+          <a href="../rules.html">Rules</a>
         </nav>
         <div class="footer-cta">
           <p class="footer-nav__label">Stay informed</p>
@@ -398,6 +405,20 @@ Output format:
       </div>
     </div>
   </footer>
+
+  <!-- Hero image lightbox -->
+  <div class="rt-modal" id="rt-modal" role="dialog" aria-label="Leaf Blower Ban — expanded view" aria-modal="true" hidden>
+    <div class="rt-modal__backdrop" aria-hidden="true"></div>
+    <div class="rt-modal__frame">
+      <img
+        src="../../assets/img/leafblower.png"
+        alt="Leaf Blower Ban — Bedford, NY"
+        width="1200"
+        height="800"
+      >
+      <button class="rt-modal__close" aria-label="Close expanded image">&#x2715;</button>
+    </div>
+  </div>
 
   <script src="../../assets/js/site.js"></script>
   <script src="../../assets/js/issue.js"></script>
