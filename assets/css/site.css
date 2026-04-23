@@ -1405,15 +1405,18 @@ p { max-width: 68ch; }
 .section-header__lead--wide { max-width: none; }
 
 .issue-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "icon title"
+    "cta  cta";
+  column-gap: 0.625rem;
+  row-gap: 0.5rem;
   text-decoration: none;
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.25rem 1.375rem;
+  padding: 0.875rem 1rem;
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
 }
@@ -1423,28 +1426,31 @@ p { max-width: 68ch; }
   border-color: var(--sage);
 }
 .issue-card__icon {
-  width: 1.625rem;
-  height: 1.625rem;
+  grid-area: icon;
+  width: 1.25rem;
+  height: 1.25rem;
   color: var(--sage);
-  flex-shrink: 0;
+  align-self: start;
+  margin-top: 0.1em;
 }
 .issue-card__icon svg { width: 100%; height: 100%; display: block; }
 .issue-card__title {
+  grid-area: title;
   font-family: var(--serif);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--charcoal);
   line-height: 1.35;
   display: block;
-  flex: 1;
 }
 .issue-card__explore {
+  grid-area: cta;
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--moss);
   display: block;
-  margin-top: 0.125rem;
+  text-align: center;
 }
 .issue-card:hover .issue-card__explore { color: #2d3e2f; }
 
