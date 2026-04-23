@@ -51,13 +51,13 @@
           <h1 id="issue-title">Road Conditions</h1>
         </div>
 
-        <div class="issues-hero__visual">
+        <button type="button" class="issues-hero__visual" aria-label="Expand Road Conditions image" aria-haspopup="dialog">
           <img
             src="../../assets/img/pothole.png"
             alt="Road Conditions — Bedford, NY"
             width="1200" height="800"
           >
-        </div>
+        </button>
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">Eight consistent civic perspectives weigh in on road conditions, state jurisdiction, and what leadership owes residents when the problem isn't directly theirs to fix.</p>
@@ -123,6 +123,7 @@
                 <span class="voice-panel__name">The Preservationist</span>
                 <span class="voice-panel__role">Protects Bedford's character</span>
               </span>
+              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-1-body">
               <div class="voice-panel__inner">
@@ -161,6 +162,7 @@
                 <span class="voice-panel__name">The Practical Family</span>
                 <span class="voice-panel__role">Tests whether daily life actually works</span>
               </span>
+              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-2-body">
               <div class="voice-panel__inner">
@@ -199,6 +201,7 @@
                 <span class="voice-panel__name">The Main-Streeter</span>
                 <span class="voice-panel__role">Hamlets, storefronts, and visible results</span>
               </span>
+              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-3-body">
               <div class="voice-panel__inner">
@@ -237,6 +240,7 @@
                 <span class="voice-panel__name">The Affordability Realist</span>
                 <span class="voice-panel__role">Keeps cost burden in view</span>
               </span>
+              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-4-body">
               <div class="voice-panel__inner">
@@ -275,6 +279,7 @@
                 <span class="voice-panel__name">The Environmental Steward</span>
                 <span class="voice-panel__role">Protects long-term natural stewardship</span>
               </span>
+              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-5-body">
               <div class="voice-panel__inner">
@@ -313,6 +318,7 @@
                 <span class="voice-panel__name">The Civic Skeptic</span>
                 <span class="voice-panel__role">Asks who decided this and what it costs</span>
               </span>
+              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-6-body">
               <div class="voice-panel__inner">
@@ -351,6 +357,7 @@
                 <span class="voice-panel__name">The Services Neighbor</span>
                 <span class="voice-panel__role">Keeps the basics front and center</span>
               </span>
+              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-7-body">
               <div class="voice-panel__inner">
@@ -426,7 +433,7 @@
         <div class="cta-row cta-row--centered">
           <div class="howbuilt-cta-group">
             <a href="#" class="btn btn--primary">Download The Instructions Set</a>
-            <p>See the exact framework and adapt it for your own decisions</p>
+            <p>See the exact framework &amp; adapt it for your own decisions</p>
           </div>
         </div>
       </div>
@@ -461,6 +468,20 @@
       </div>
     </div>
   </footer>
+
+  <!-- Hero image lightbox -->
+  <div class="rt-modal" id="rt-modal" role="dialog" aria-label="Road Conditions — expanded view" aria-modal="true" hidden>
+    <div class="rt-modal__backdrop" aria-hidden="true"></div>
+    <div class="rt-modal__frame">
+      <img
+        src="../../assets/img/pothole.png"
+        alt="Road Conditions — Bedford, NY"
+        width="1200"
+        height="800"
+      >
+      <button class="rt-modal__close" aria-label="Close expanded image">&#x2715;</button>
+    </div>
+  </div>
 
   <script src="../../assets/js/site.js"></script>
   <script src="../../assets/js/issue.js"></script>

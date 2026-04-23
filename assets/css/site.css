@@ -1675,6 +1675,8 @@ p { max-width: 68ch; }
   line-height: 1;
   flex-shrink: 0;
   transition: transform 0.22s ease;
+  align-self: flex-start;
+  margin-top: 0.25rem;
 }
 .voice-panel.is-open .voice-panel__caret { transform: rotate(45deg); }
 
