@@ -1466,8 +1466,9 @@ p { max-width: 68ch; }
 .issue-card:hover .issue-card__explore { color: #2d3e2f; }
 
 /* How This Was Built — CTA groups */
-.howbuilt-cta-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.howbuilt-cta-group p { font-size: 0.875rem; color: var(--muted); max-width: 36ch; }
+.cta-row--centered { justify-content: center; }
+.howbuilt-cta-group { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.howbuilt-cta-group p { font-size: 0.875rem; color: var(--muted); text-align: center; max-width: 24ch; }
 
 /* =============================================
    ISSUES CTA SECTION
