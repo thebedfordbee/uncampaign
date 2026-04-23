@@ -1106,6 +1106,7 @@ p { max-width: 68ch; }
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 .persona-card.is-flipped .persona-card__back {
   opacity: 1;
@@ -1113,7 +1114,6 @@ p { max-width: 68ch; }
 }
 
 .persona-card__back-inner {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -1482,7 +1482,7 @@ p { max-width: 68ch; }
 .issues-cta p {
   color: var(--muted);
   margin-top: 1rem;
-  max-width: 54ch;
+  max-width: none;
 }
 
 /* =============================================
