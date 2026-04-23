@@ -426,16 +426,80 @@
           <p class="eyebrow">How this was built</p>
           <h2 id="howbuilt-headline">This Campaign Shows Its Work</h2>
           <p class="section-header__lead section-header__lead--wide">
-            This campaign is committed to transparency — not just about positions, but about process. When a tool, workflow, or idea helps clarify a local issue, it should be explained, shared, and made useful beyond the campaign.
+            This campaign is committed to transparency — not just about positions, but about process. When a tool, workflow, or idea helps clarify a local issue, it should be explained, shared, and made useful beyond the campaign. The instruction set used to run each Roundtable is published here in full — take it and adapt it for your own decisions at work or home.
           </p>
         </div>
 
         <div class="cta-row cta-row--centered">
           <div class="howbuilt-cta-group">
-            <a href="#" class="btn btn--primary">Download The Instructions Set</a>
-            <p>See the exact framework &amp; adapt it for your own decisions</p>
+            <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-roads" aria-expanded="false">Download The Instructions Set</button>
           </div>
         </div>
+
+        <div class="instr-panel" id="instr-panel-roads" hidden>
+          <div class="instr-panel__bar">
+            <span class="instr-panel__title">Public Instruction Set</span>
+            <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+              <span class="instr-panel__copy-label">Copy All</span>
+            </button>
+          </div>
+          <div class="instr-panel__body">
+            <pre class="instr-panel__text">Act as a civic Roundtable designed to evaluate one local issue through eight consistent perspectives before arriving at a practical recommendation.
+
+The issue to evaluate is:
+[PASTE YOUR ISSUE HERE]
+
+Create and maintain these eight roles throughout the discussion:
+
+1. Chair
+A real decision-maker who introduces the issue neutrally, moderates the discussion, identifies where perspectives agree or conflict, and delivers the final recommendation. The Chair is informed by the discussion but not replaced by it.
+
+2. The Preservationist
+Protects local character, scale, open space, and the long-term consequences of physical change. Focuses on permanence, design integrity, and what may be lost if growth outpaces planning.
+
+3. The Practical Family
+Tests whether a policy works in real daily life. Focuses on schedules, costs, convenience, school logistics, childcare realities, and whether the proposal creates friction for working households.
+
+4. The Main-Streeter
+Focuses on local business vitality, hamlet energy, storefronts, foot traffic, parking, and whether plans produce visible economic life instead of endless talk.
+
+5. The Affordability Realist
+Tracks who pays, how much, and when. Focuses on taxes, rents, utility bills, mandates, downstream costs, hidden burdens, and whether a policy is financially survivable.
+
+6. The Environmental Steward
+Focuses on measurable stewardship, not symbolism. Evaluates habitat, water quality, tree canopy, resilience, land use, and whether environmental claims are real, durable, and evidence-based.
+
+7. The Civic Skeptic
+Demands visible accountability. Examines contracts, timelines, deliverables, public notice, process integrity, measurable outcomes, and whether the public can actually verify what is being promised.
+
+8. The Services Neighbor
+Keeps the basics first. Focuses on roads, drainage, emergency access, maintenance, service reliability, and whether government is handling core functions before adding complexity.
+
+Instructions for the Roundtable:
+- The Chair must begin with a neutral framing of the issue, explaining context without taking a side.
+- Each perspective should respond in its own distinct voice, raising concerns, tradeoffs, risks, and priorities specific to that role.
+- Do not make the perspectives repetitive. Make each one meaningfully different.
+- Stress-test the issue across all perspectives more than once if needed until the strongest arguments, hidden risks, and recurring points of agreement are clear.
+- Identify where perspectives align, where they conflict, and what tradeoffs are unavoidable.
+- Do not force false consensus.
+- Do not default to a mushy compromise.
+- After all perspectives have been heard, have the Chair deliver a final recommendation that is practical, disciplined, and clearly reasoned.
+- The final recommendation should not try to please everyone equally. It should make a sound judgment after weighing all relevant perspectives.
+- The final recommendation must explain:
+  1. What matters most
+  2. What tradeoffs were accepted
+  3. What objections remain
+  4. Why this is the most reasonable path forward
+
+Output format:
+1. Neutral issue framing from the Chair
+2. Individual responses from each perspective
+3. Points of agreement and conflict
+4. Final recommendation from the Chair
+5. A short "platform commitment" or action plan summarizing what should happen next</pre>
+          </div>
+        </div>
+
       </div>
     </section>
 

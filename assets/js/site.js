@@ -57,3 +57,63 @@
   });
 
 })();
+
+// --- Instruction set reveal + copy-to-clipboard ---
+(function () {
+  'use strict';
+
+  // Toggle reveal
+  document.querySelectorAll('[data-instr-toggle]').forEach(function (btn) {
+    var panel = document.getElementById(btn.getAttribute('data-instr-toggle'));
+    if (!panel) return;
+
+    btn.addEventListener('click', function () {
+      var isHidden = panel.hasAttribute('hidden');
+      if (isHidden) {
+        panel.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        panel.setAttribute('hidden', '');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // Copy all
+  document.querySelectorAll('.instr-panel__copy').forEach(function (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      var panel  = copyBtn.closest('.instr-panel');
+      var textEl = panel && panel.querySelector('.instr-panel__text');
+      if (!textEl) return;
+      var text = textEl.textContent.trim();
+
+      function confirm() {
+        var lbl = copyBtn.querySelector('.instr-panel__copy-label');
+        if (lbl) lbl.textContent = 'Copied!';
+        copyBtn.classList.add('is-copied');
+        setTimeout(function () {
+          if (lbl) lbl.textContent = 'Copy All';
+          copyBtn.classList.remove('is-copied');
+        }, 2200);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(confirm).catch(function () { fallback(text, confirm); });
+      } else {
+        fallback(text, confirm);
+      }
+    });
+  });
+
+  function fallback(text, cb) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { if (document.execCommand('copy')) cb(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+})();
