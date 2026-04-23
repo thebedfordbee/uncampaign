@@ -1116,9 +1116,20 @@ p { max-width: 68ch; }
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.625rem;
+  gap: 0.5rem;
 }
 .persona-card__back-inner .persona-card__name { display: none; }
+
+.persona-card__back-role {
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--sage);
+  max-width: none;
+  margin-bottom: 0.125rem;
+}
+.persona-card--chair .persona-card__back-role { color: rgba(255,255,255,0.45); }
 
 .persona-card__back-name {
   font-family: var(--serif);
