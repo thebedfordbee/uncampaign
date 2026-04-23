@@ -639,7 +639,7 @@ p { max-width: 68ch; }
   .footer-brand {
     grid-area: brand;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 1rem;
   }
