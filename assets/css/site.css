@@ -1468,7 +1468,12 @@ p { max-width: 68ch; }
 /* How This Was Built — CTA groups */
 .cta-row--centered { justify-content: center; }
 .howbuilt-cta-group { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-.howbuilt-cta-group p { font-size: 0.875rem; color: var(--muted); text-align: center; max-width: 24ch; }
+.howbuilt-cta-group p { font-size: 0.875rem; color: var(--muted); text-align: center; max-width: 24ch; font-style: italic; }
+.howbuilt-cta-group .btn--secondary:hover {
+  background: rgba(123, 140, 121, 0.12);
+  color: var(--moss);
+  border-color: var(--moss);
+}
 
 /* =============================================
    ISSUES CTA SECTION
