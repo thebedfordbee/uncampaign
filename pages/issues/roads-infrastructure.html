@@ -41,7 +41,7 @@
     </nav>
   </header>
 
-  <!-- HERO — mirrors /issues page layout with placeholder visual -->
+  <!-- HERO -->
   <section class="issues-hero" aria-labelledby="issue-title">
     <div class="container">
       <div class="issues-hero__inner">
@@ -51,8 +51,12 @@
           <h1 id="issue-title">Road Conditions</h1>
         </div>
 
-        <div class="issues-hero__visual issues-hero__visual--placeholder" aria-hidden="true">
-          <span>Road Conditions</span>
+        <div class="issues-hero__visual">
+          <img
+            src="../../assets/img/pothole.png"
+            alt="Road Conditions — Bedford, NY"
+            width="1200" height="800"
+          >
         </div>
 
         <div class="issues-hero__copy-bot">
@@ -68,30 +72,28 @@
     <!-- DON SETS THE TABLE -->
     <section class="section" aria-labelledby="don-framing-headline">
       <div class="container">
+        <p class="eyebrow">Don Sets the Table</p>
+        <h2 id="don-framing-headline">The Full Picture on Bedford's Road Conditions</h2>
         <div class="don-framing">
-
-          <div class="don-framing__portrait">
-            <div class="persona-card__portrait">
-              <img
-                src="../../assets/img/personas/don-chair.png"
-                alt="Don Scott"
-                width="400" height="400"
-                loading="lazy"
-              >
+          <div class="don-framing__speaker">
+            <img
+              class="voice-panel__portrait"
+              src="../../assets/img/personas/don-chair.png"
+              alt="Don Scott"
+              width="400" height="400"
+              loading="lazy"
+            >
+            <div>
+              <span class="don-framing__speaker-name">Don Scott</span>
+              <span class="don-framing__speaker-role">Candidate for Bedford Town Supervisor</span>
             </div>
           </div>
-
-          <div class="don-framing__content">
-            <p class="eyebrow">Don Sets the Table</p>
-            <h2 id="don-framing-headline">The Full Picture on Bedford's Road Conditions</h2>
-            <div class="don-framing__text">
-              <p>Bedford's own roads are, by most accounts, in reasonable shape. The Highway Department deserves credit for that. Maintaining local road infrastructure on a small-town budget, through harsh winters and heavy storm seasons, is unglamorous work done consistently well.</p>
-              <p>The frustration residents raise most often is with a different category entirely: state-owned roads that run through Bedford. Routes like 117 and 172 fall under the jurisdiction of the New York State Department of Transportation. Bedford cannot schedule paving on them. The Town Board cannot direct NYSDOT crews or override the state's capital budget priorities.</p>
-              <p>The Town Board has said it has sent letters and made contact with the responsible agencies. Route 117 is on NYSDOT's paving schedule — though the current timeline puts that work in 2027. Route 172 has not been announced for any paving program, which means relief there likely means 2028 at minimum, if not longer.</p>
-            </div>
-            <p class="don-framing__transition">Let's separate what Bedford directly controls from what it doesn't — and then ask the harder question: when the problem belongs to someone else, what does local leadership still owe the people who live with it every day?</p>
+          <div class="don-framing__text">
+            <p>Bedford's own roads are, by most accounts, in reasonable shape. The Highway Department deserves credit for that. Maintaining local road infrastructure on a small-town budget, through harsh winters and heavy storm seasons, is unglamorous work done consistently well.</p>
+            <p>The frustration residents raise most often is with a different category entirely: state-owned roads that run through Bedford. Routes like 117 and 172 fall under the jurisdiction of the New York State Department of Transportation. Bedford cannot schedule paving on them. The Town Board cannot direct NYSDOT crews or override the state's capital budget priorities.</p>
+            <p>The Town Board has said it has sent letters and made contact with the responsible agencies. Route 117 is on NYSDOT's paving schedule — though the current timeline puts that work in 2027. Route 172 has not been announced for any paving program, which means relief there likely means 2028 at minimum, if not longer.</p>
           </div>
-
+          <p class="don-framing__transition">Let's separate what Bedford directly controls from what it doesn't — and then ask the harder question: when the problem belongs to someone else, what does local leadership still owe the people who live with it every day?</p>
         </div>
       </div>
     </section>
@@ -109,11 +111,18 @@
           <!-- 1. The Preservationist -->
           <li class="voice-panel" role="listitem">
             <button class="voice-panel__trigger" aria-expanded="false" aria-controls="voice-1-body">
+              <img
+                class="voice-panel__portrait"
+                src="../../assets/img/personas/preservationist.png"
+                alt=""
+                aria-hidden="true"
+                width="400" height="400"
+                onerror="this.style.display='none'"
+              >
               <span class="voice-panel__meta">
                 <span class="voice-panel__name">The Preservationist</span>
                 <span class="voice-panel__role">Protects Bedford's character</span>
               </span>
-              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-1-body">
               <div class="voice-panel__inner">
@@ -140,11 +149,18 @@
           <!-- 2. The Practical Family -->
           <li class="voice-panel" role="listitem">
             <button class="voice-panel__trigger" aria-expanded="false" aria-controls="voice-2-body">
+              <img
+                class="voice-panel__portrait"
+                src="../../assets/img/personas/practical-family.png"
+                alt=""
+                aria-hidden="true"
+                width="400" height="400"
+                onerror="this.style.display='none'"
+              >
               <span class="voice-panel__meta">
                 <span class="voice-panel__name">The Practical Family</span>
                 <span class="voice-panel__role">Tests whether daily life actually works</span>
               </span>
-              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-2-body">
               <div class="voice-panel__inner">
@@ -171,11 +187,18 @@
           <!-- 3. The Main-Streeter -->
           <li class="voice-panel" role="listitem">
             <button class="voice-panel__trigger" aria-expanded="false" aria-controls="voice-3-body">
+              <img
+                class="voice-panel__portrait"
+                src="../../assets/img/personas/main-streeter.png"
+                alt=""
+                aria-hidden="true"
+                width="400" height="400"
+                onerror="this.style.display='none'"
+              >
               <span class="voice-panel__meta">
                 <span class="voice-panel__name">The Main-Streeter</span>
                 <span class="voice-panel__role">Hamlets, storefronts, and visible results</span>
               </span>
-              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-3-body">
               <div class="voice-panel__inner">
@@ -202,11 +225,18 @@
           <!-- 4. The Affordability Realist -->
           <li class="voice-panel" role="listitem">
             <button class="voice-panel__trigger" aria-expanded="false" aria-controls="voice-4-body">
+              <img
+                class="voice-panel__portrait"
+                src="../../assets/img/personas/affordability-realist.png"
+                alt=""
+                aria-hidden="true"
+                width="400" height="400"
+                onerror="this.style.display='none'"
+              >
               <span class="voice-panel__meta">
                 <span class="voice-panel__name">The Affordability Realist</span>
                 <span class="voice-panel__role">Keeps cost burden in view</span>
               </span>
-              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-4-body">
               <div class="voice-panel__inner">
@@ -233,11 +263,18 @@
           <!-- 5. The Environmental Steward -->
           <li class="voice-panel" role="listitem">
             <button class="voice-panel__trigger" aria-expanded="false" aria-controls="voice-5-body">
+              <img
+                class="voice-panel__portrait"
+                src="../../assets/img/personas/environmental-steward.png"
+                alt=""
+                aria-hidden="true"
+                width="400" height="400"
+                onerror="this.style.display='none'"
+              >
               <span class="voice-panel__meta">
                 <span class="voice-panel__name">The Environmental Steward</span>
                 <span class="voice-panel__role">Protects long-term natural stewardship</span>
               </span>
-              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-5-body">
               <div class="voice-panel__inner">
@@ -264,11 +301,18 @@
           <!-- 6. The Civic Skeptic -->
           <li class="voice-panel" role="listitem">
             <button class="voice-panel__trigger" aria-expanded="false" aria-controls="voice-6-body">
+              <img
+                class="voice-panel__portrait"
+                src="../../assets/img/personas/civic-skeptic.png"
+                alt=""
+                aria-hidden="true"
+                width="400" height="400"
+                onerror="this.style.display='none'"
+              >
               <span class="voice-panel__meta">
                 <span class="voice-panel__name">The Civic Skeptic</span>
                 <span class="voice-panel__role">Asks who decided this and what it costs</span>
               </span>
-              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-6-body">
               <div class="voice-panel__inner">
@@ -295,11 +339,18 @@
           <!-- 7. The Services Neighbor -->
           <li class="voice-panel" role="listitem">
             <button class="voice-panel__trigger" aria-expanded="false" aria-controls="voice-7-body">
+              <img
+                class="voice-panel__portrait"
+                src="../../assets/img/personas/services-neighbor.png"
+                alt=""
+                aria-hidden="true"
+                width="400" height="400"
+                onerror="this.style.display='none'"
+              >
               <span class="voice-panel__meta">
                 <span class="voice-panel__name">The Services Neighbor</span>
                 <span class="voice-panel__role">Keeps the basics front and center</span>
               </span>
-              <i class="voice-panel__caret" aria-hidden="true">+</i>
             </button>
             <div class="voice-panel__body" id="voice-7-body">
               <div class="voice-panel__inner">
