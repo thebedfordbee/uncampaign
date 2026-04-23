@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A short list of things Don Scott will not be doing between now and Election Day. On purpose.">
+  <title>The Full Rules — Don Scott for Bedford Town Supervisor</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    /*
+     * ═══════════════════════════════════════════════
+     * CAMPAIGN-RULES VARIANT — page-specific CSS
+     * All custom classes prefixed .cr-
+     * Mobile-first: base = 375px, enhanced at 600px / 900px
+     * ═══════════════════════════════════════════════
+     */
+
+    /* ── Compare notice ───────────────────────────── */
+    .cr-notice {
+      background: var(--warm);
+      padding: 0.5rem 0;
+    }
+    .cr-notice__inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.625rem;
+      flex-wrap: wrap;
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.88);
+    }
+    .cr-notice__tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      font-family: var(--sans);
+      font-size: 0.5625rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .cr-notice a {
+      color: #fff;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      white-space: nowrap;
+    }
+
+    /* ── Hero ─────────────────────────────────────── */
+    .cr-hero {
+      background: #1c1c1c;
+      padding: 3.5rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Barely-visible watermark text in bottom corner */
+    .cr-hero::after {
+      content: "Not your\A average\A campaign.";
+      white-space: pre;
+      position: absolute;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      font-family: var(--sans);
+      font-size: 0.4375rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.045);
+      text-align: right;
+      line-height: 2.8;
+      pointer-events: none;
+    }
+    .cr-hero__eyebrow {
+      font-family: var(--sans);
+      font-size: 0.5625rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.38);
+      margin-bottom: 0.875rem;
+      max-width: none;
+    }
+    .cr-hero__rule {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.11);
+      border: none;
+      margin: 0 0 1.125rem;
+    }
+    .cr-hero__title {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 13vw, 5.75rem);
+      font-weight: normal;
+      line-height: 1.0;
+      color: #fff;
+      margin: 0;
+    }
+    .cr-hero__rule--below {
+      margin: 1rem 0 1.5rem;
+    }
+    .cr-hero__lead {
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 40ch;
+      margin: 0 0 1.875rem;
+    }
+    .cr-hero__badge {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 0.5625rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.26);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.3125rem 0.6875rem;
+      border-radius: 2px;
+    }
+
+    /* ── Intro section ────────────────────────────── */
+    .cr-intro {
+      padding: 2.75rem 0 0;
+    }
+    .cr-intro__text {
+      color: var(--muted);
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      max-width: 58ch;
+      margin-bottom: 1rem;
+    }
+    .cr-pullquote {
+      font-family: var(--serif);
+      font-size: clamp(1.875rem, 7.5vw, 2.875rem);
+      font-style: italic;
+      color: var(--moss);
+      line-height: 1.2;
+      padding-left: 1.125rem;
+      border-left: 3px solid var(--sage);
+      margin: 1.625rem 0;
+      max-width: none;
+    }
+
+    /* ── Rules section ────────────────────────────── */
+    .cr-rules-section {
+      padding-bottom: 0;
+    }
+    .cr-rules-header {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 2.5rem 0 0;
+    }
+    .cr-rules-header__label {
+      font-family: var(--sans);
+      font-size: 0.5625rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--sage);
+      flex-shrink: 0;
+    }
+    .cr-rules-header__line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      border: none;
+    }
+    .cr-rules-header__count {
+      font-family: var(--sans);
+      font-size: 0.5625rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--sage);
+      flex-shrink: 0;
+    }
+
+    /* The track creates the shared top border */
+    .cr-rules-track {
+      border-top: 1px solid var(--border);
+      margin-top: 1.25rem;
+    }
+
+    /* ── Rule card ────────────────────────────────── */
+    .cr-rule {
+      padding: 1.875rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    /* Number: oversized, very faint — purely decorative */
+    .cr-rule__num {
+      display: block;
+      font-family: var(--serif);
+      font-size: clamp(4.5rem, 17vw, 7rem);
+      line-height: 1;
+      color: rgba(62, 82, 64, 0.085);
+      letter-spacing: -0.02em;
+      margin-bottom: -1rem; /* title pulls up into the number */
+      pointer-events: none;
+      user-select: none;
+    }
+    .cr-rule__title {
+      font-family: var(--serif);
+      font-size: clamp(1.1875rem, 4vw, 1.5rem);
+      font-weight: normal;
+      color: var(--charcoal);
+      line-height: 1.3;
+      margin: 0 0 0.625rem;
+    }
+    .cr-rule__body {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 56ch;
+      margin: 0;
+    }
+
+    /* ── Redirect callout ─────────────────────────── */
+    .cr-redirect {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-top: 3px solid var(--moss);
+      border-radius: 0 0 var(--radius) var(--radius);
+      padding: 1.25rem 1.375rem 1.5rem;
+      margin-top: 0.75rem;
+    }
+    /* Rule immediately after a redirect gets a top border */
+    .cr-redirect + .cr-rule {
+      border-top: 1px solid var(--border);
+    }
+    .cr-redirect__label {
+      font-family: var(--sans);
+      font-size: 0.5625rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--moss);
+      margin: 0 0 0.75rem;
+      max-width: none;
+    }
+    .cr-redirect__text {
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      color: var(--charcoal);
+      line-height: 1.55;
+      max-width: 46ch;
+      margin: 0 0 0.375rem;
+    }
+    .cr-redirect__sub {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      margin: 0 0 1.125rem;
+      max-width: none;
+    }
+    .cr-redirect .cta-row {
+      margin-top: 0;
+    }
+
+    /* ── Rule 10 finale ───────────────────────────── */
+    .cr-finale {
+      background: var(--moss);
+      padding: 3rem 0 3.5rem;
+    }
+    .cr-finale__label {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      margin-bottom: 2.25rem;
+    }
+    .cr-finale__label-text {
+      font-family: var(--sans);
+      font-size: 0.5625rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.28);
+      flex-shrink: 0;
+    }
+    .cr-finale__label-rule {
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+    }
+    .cr-finale .cr-rule {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .cr-finale .cr-rule__num {
+      color: rgba(255, 255, 255, 0.055);
+    }
+    .cr-finale .cr-rule__title {
+      color: #fff;
+      font-size: clamp(1.375rem, 5vw, 2rem);
+    }
+    .cr-finale .cr-rule__body {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.0625rem;
+      max-width: 52ch;
+    }
+
+    /* ── Closing section ──────────────────────────── */
+    .cr-closing {
+      background: #fff;
+      padding: 4rem 0 4.5rem;
+      text-align: center;
+    }
+    .cr-closing__line {
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 4.5vw, 1.875rem);
+      font-style: italic;
+      color: var(--charcoal);
+      max-width: 38ch;
+      margin: 0 auto 2.5rem;
+      line-height: 1.45;
+    }
+    .cr-closing .cta-row {
+      justify-content: center;
+      margin-top: 0;
+    }
+
+    /* ── Responsive enhancements ──────────────────── */
+    @media (min-width: 600px) {
+      .cr-hero {
+        padding: 4.5rem 0 4rem;
+      }
+      .cr-hero__lead {
+        font-size: 1.0625rem;
+        max-width: 44ch;
+      }
+      .cr-rule {
+        padding: 2.25rem 0;
+      }
+      .cr-rule__num {
+        margin-bottom: -1.5rem;
+      }
+      .cr-redirect {
+        padding: 1.5rem 1.75rem 1.75rem;
+      }
+      .cr-finale {
+        padding: 3.5rem 0 4.25rem;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .cr-rule__body {
+        font-size: 1.0625rem;
+      }
+      .cr-rules-section {
+        padding-bottom: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER — same nav as rules.html; no aria-current since this is a variant route -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+        <span class="site-logo__name">Don Scott</span>
+        <span class="site-logo__race">for Bedford</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__links" role="list">
+          <li><a href="about.html">About</a></li>
+          <li><a href="issues.html">Issues</a></li>
+          <li><a href="rules.html">Rules</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="spending.html">Spending</a></li>
+          <li><a href="ask-don.html">Ask Don</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="#subscribe" class="btn btn--subscribe site-nav__cta">Subscribe</a>
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Open navigation menu"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </nav>
+    </div>
+
+    <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
+      <a href="about.html">About</a>
+      <a href="issues.html">Issues</a>
+      <a href="rules.html">Rules</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="spending.html">Spending</a>
+      <a href="ask-don.html">Ask Don</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+      <a href="#subscribe" class="btn btn--subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <!-- COMPARE NOTICE -->
+  <div class="cr-notice" role="note">
+    <div class="container">
+      <div class="cr-notice__inner">
+        <span class="cr-notice__tag" aria-hidden="true">Preview</span>
+        This is a redesign variant. The original is still live.
+        <a href="rules.html">Compare with current Rules page &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="cr-hero" aria-labelledby="page-title">
+    <div class="container">
+      <p class="cr-hero__eyebrow">The Uncampaign</p>
+      <hr class="cr-hero__rule" aria-hidden="true">
+      <h1 class="cr-hero__title" id="page-title">The Full Rules</h1>
+      <hr class="cr-hero__rule cr-hero__rule--below" aria-hidden="true">
+      <p class="cr-hero__lead">A short list of things I will not be doing between now and Election Day. On purpose.</p>
+      <span class="cr-hero__badge" aria-hidden="true">10 rules &middot; no exceptions</span>
+    </div>
+  </section>
+
+  <main id="main-content">
+
+    <!-- INTRO -->
+    <div class="cr-intro">
+      <div class="container">
+        <p class="cr-intro__text">Most campaigns follow a familiar script. Raise money. Print signs. Send mail. Hire consultants. Show up where people are busy and ask them to pretend they&#8217;re thrilled about it.</p>
+        <p class="cr-pullquote">Mine won&#8217;t.</p>
+        <p class="cr-intro__text">I&#8217;m running because Bedford deserves a choice in an election that should not be uncontested. That does not require noise, pressure, or performance. It requires a name on the ballot, a clear point of view, and an open invitation to talk if you want to.</p>
+      </div>
+    </div>
+
+    <!-- RULES 01–09 -->
+    <div class="cr-rules-section">
+      <div class="container">
+
+        <div class="cr-rules-header" aria-hidden="true">
+          <span class="cr-rules-header__label">The rules</span>
+          <hr class="cr-rules-header__line">
+          <span class="cr-rules-header__count">01 &ndash; 10</span>
+        </div>
+
+        <div class="cr-rules-track">
+
+          <article class="cr-rule">
+            <span class="cr-rule__num" aria-hidden="true">01</span>
+            <h2 class="cr-rule__title">Rule 01 &#8212; No signs.</h2>
+            <p class="cr-rule__body">I&#8217;m not turning Bedford into a corrugated plastic hostage situation. If you need a lawn ornament, there are better options.</p>
+          </article>
+
+          <article class="cr-rule">
+            <span class="cr-rule__num" aria-hidden="true">02</span>
+            <h2 class="cr-rule__title">Rule 02 &#8212; No fundraising.</h2>
+            <p class="cr-rule__body">No donation emails. No finance committee. No &#8220;chip in before midnight.&#8221; If a local campaign needs a small fortune just to exist, something has gone off the rails.</p>
+          </article>
+
+          <div class="cr-redirect" role="note">
+            <p class="cr-redirect__label">&#8594;&ensp;Instead</p>
+            <p class="cr-redirect__text">If you were thinking about donating, please give to the SPCA of Westchester instead.</p>
+            <p class="cr-redirect__sub">Invest in pooches, not politicians.</p>
+            <div class="cta-row">
+              <a href="https://spcawestchester.org/" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">Donate to SPCA of Westchester</a>
+            </div>
+          </div>
+
+          <article class="cr-rule">
+            <span class="cr-rule__num" aria-hidden="true">03</span>
+            <h2 class="cr-rule__title">Rule 03 &#8212; No ads.</h2>
+            <p class="cr-rule__body">No paid social. No glossy persuasion campaigns. No digital stalking. If you want to hear from me, it should be because you chose to.</p>
+          </article>
+
+          <article class="cr-rule">
+            <span class="cr-rule__num" aria-hidden="true">04</span>
+            <h2 class="cr-rule__title">Rule 04 &#8212; No letters, mailers, or mailbox clutter.</h2>
+            <p class="cr-rule__body">I will not be sending dramatic postcards to your house pretending urgency in 72-point type. You already get enough paper from people who want something.</p>
+          </article>
+
+          <article class="cr-rule">
+            <span class="cr-rule__num" aria-hidden="true">05</span>
+            <h2 class="cr-rule__title">Rule 05 &#8212; No train station ambushes. No grocery store intercepts.</h2>
+            <p class="cr-rule__body">No forced smiles at 7:14 AM. No clipboard energy in the produce aisle. You are allowed to buy bananas in peace.</p>
+          </article>
+
+          <article class="cr-rule">
+            <span class="cr-rule__num" aria-hidden="true">06</span>
+            <h2 class="cr-rule__title">Rule 06 &#8212; No rallies, kickoffs, launch parties, or &#8220;special events.&#8221;</h2>
+            <p class="cr-rule__body">There was no big announcement. There will be no choreographed enthusiasm. This is a campaign, not a traveling production of civic theater.</p>
+          </article>
+
+          <article class="cr-rule">
+            <span class="cr-rule__num" aria-hidden="true">07</span>
+            <h2 class="cr-rule__title">Rule 07 &#8212; No consultants.</h2>
+            <p class="cr-rule__body">No outside strategists billing by the hour to explain Bedford to people who already live here. If the message needs a focus group to sound human, it probably isn&#8217;t.</p>
+          </article>
+
+          <div class="cr-redirect" role="note">
+            <p class="cr-redirect__label">&#8594;&ensp;Instead</p>
+            <p class="cr-redirect__text">If you&#8217;d like a roundtable, the Bedford Roundtable serves a better purpose.</p>
+            <div class="cta-row">
+              <a href="issues.html" class="btn btn--secondary">Visit Bedford Roundtable</a>
+            </div>
+          </div>
+
+          <article class="cr-rule">
+            <span class="cr-rule__num" aria-hidden="true">08</span>
+            <h2 class="cr-rule__title">Rule 08 &#8212; No opponent obsession.</h2>
+            <p class="cr-rule__body">You will not find a page dedicated to attacks, outrage, or daily reactive drama. If you want to compare candidates, you can do that. I trust you.</p>
+          </article>
+
+          <article class="cr-rule">
+            <span class="cr-rule__num" aria-hidden="true">09</span>
+            <h2 class="cr-rule__title">Rule 09 &#8212; No selfies.</h2>
+            <p class="cr-rule__body">No endless &#8220;me at&#8221; photos. No ceremonial handshakes posted as policy. No staged proof-of-presence content. Being photographed near a thing is not the same as improving it.</p>
+          </article>
+
+        </div><!-- /cr-rules-track -->
+      </div>
+    </div><!-- /cr-rules-section -->
+
+    <!-- RULE 10 — FINALE -->
+    <div class="cr-finale">
+      <div class="container">
+        <div class="cr-finale__label" aria-hidden="true">
+          <span class="cr-finale__label-text">Final rule</span>
+          <hr class="cr-finale__label-rule">
+        </div>
+        <article class="cr-rule">
+          <span class="cr-rule__num" aria-hidden="true">10</span>
+          <h2 class="cr-rule__title">Rule 10 &#8212; No pretending this is normal.</h2>
+          <p class="cr-rule__body">This is not a traditional campaign, and I&#8217;m not going to act like it is. Bedford deserves a choice. That&#8217;s the point. Everything else is optional.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- CLOSING -->
+    <div class="cr-closing">
+      <div class="container">
+        <p class="cr-closing__line">You don&#8217;t have to vote for me to believe Bedford should have a choice.</p>
+        <div class="cta-row">
+          <a href="../index.html" class="btn btn--secondary">Back to Home</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <div class="footer-brand">
+          <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+            <span class="site-logo__name">Don Scott</span>
+            <span class="site-logo__race">for Bedford</span>
+          </a>
+          <p class="footer-brand__tagline">Less Campaign. More Bedford.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <p class="footer-nav__label">Pages</p>
+          <a href="../index.html">Home</a>
+          <a href="issues.html">Issues</a>
+          <a href="rules.html">Rules</a>
+        </nav>
+
+        <div class="footer-cta">
+          <p class="footer-nav__label">Stay informed</p>
+          <a href="#subscribe" class="btn btn--ghost" id="subscribe">Subscribe</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
