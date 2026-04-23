@@ -1526,30 +1526,69 @@ p { max-width: 68ch; }
    individual issue Roundtable pages
    ============================================= */
 
-/* Back breadcrumb — inside .page-hero */
+/* Back link — eyebrow-style uppercase, inside .issues-hero */
 .issue-back {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  font-size: 0.8125rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
   color: rgba(255,255,255,0.55);
   text-decoration: none;
-  margin-bottom: 1.375rem;
-  letter-spacing: 0.02em;
+  margin-bottom: 1.125rem;
   transition: color 0.15s;
 }
-.issue-back::before { content: '←'; }
-.issue-back:hover { color: var(--white); }
+.issue-back:hover { color: rgba(255,255,255,0.88); }
 
-/* Don's neutral framing section */
-.don-framing__text {
-  margin-top: 1.25rem;
+/* Hero image placeholder — matches .issues-hero__visual treatment */
+.issues-hero__visual--placeholder {
+  cursor: default;
+  aspect-ratio: 3 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14) !important;
+  box-shadow: none !important;
 }
+.issues-hero__visual--placeholder:hover { box-shadow: none !important; }
+.issues-hero__visual--placeholder span {
+  font-family: var(--sans);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+
+/* Don's neutral framing — two-column with portrait */
+.don-framing {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+@media (min-width: 768px) {
+  .don-framing { grid-template-columns: 180px 1fr; gap: 2.5rem; }
+}
+
+.don-framing__portrait .persona-card__portrait {
+  max-width: 180px;
+  border-radius: var(--radius);
+}
+
+.don-framing__text { margin-top: 0.875rem; }
+
+.don-framing__content p,
 .don-framing__text p {
   color: var(--muted);
   line-height: 1.75;
   margin-bottom: 1rem;
+  max-width: none;
 }
+.don-framing__content p:last-child,
 .don-framing__text p:last-child { margin-bottom: 0; }
 
 .don-framing__transition {
@@ -1561,7 +1600,7 @@ p { max-width: 68ch; }
   border-left: 3px solid var(--sage);
   padding-left: 1.125rem;
   margin-top: 1.75rem;
-  max-width: 62ch;
+  max-width: none;
 }
 
 /* Voice stack — Roundtable responses */
@@ -1633,17 +1672,33 @@ p { max-width: 68ch; }
   max-height: 0;
   transition: max-height 0.35s ease;
 }
-.voice-panel.is-open .voice-panel__body { max-height: 1200px; }
+.voice-panel.is-open .voice-panel__body { max-height: 1400px; }
 
 .voice-panel__inner { padding: 0 1.25rem 1.375rem; }
 
-/* Desktop name/role header — hidden on mobile since trigger shows it */
+/* Persona portrait — square, matching /issues card treatment */
+.voice-panel__portrait {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+  object-fit: cover;
+  object-position: center top;
+  flex-shrink: 0;
+  display: block;
+}
+
+/* Voice panel header — portrait + name/role, always in DOM (inside collapsible body) */
 .voice-panel__header {
-  display: none;
-  margin-bottom: 0.875rem;
-  padding-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.875rem;
   border-bottom: 1px solid var(--border);
 }
+
+/* Name/role text: hidden on mobile (trigger already shows them) */
+.voice-panel__header-text { display: none; }
 .voice-panel__header .voice-panel__name { font-size: 1rem; }
 
 .voice-panel__pullquote {
@@ -1668,6 +1723,9 @@ p { max-width: 68ch; }
 
 /* Desktop: always-visible editorial layout */
 @media (min-width: 768px) {
+  .voice-panel__portrait { width: 60px; height: 60px; }
+  .voice-panel__header-text { display: block; }
+
   .voice-stack {
     border: none;
     border-radius: 0;
@@ -1683,7 +1741,6 @@ p { max-width: 68ch; }
   .voice-panel__trigger { display: none; }
   .voice-panel__body { max-height: none !important; overflow: visible; }
   .voice-panel__inner { padding: 1.5rem; }
-  .voice-panel__header { display: block; }
 }
 
 /* Don's View — closing platform section */
@@ -1698,6 +1755,32 @@ p { max-width: 68ch; }
 @media (min-width: 768px) {
   .dons-view__layout { grid-template-columns: 3fr 2fr; gap: 4rem; align-items: start; }
 }
+
+/* Don speaker byline with portrait */
+.dons-view__speaker {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1.375rem;
+  padding-bottom: 1.125rem;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+.dons-view__speaker-name {
+  font-family: var(--serif);
+  color: var(--white);
+  font-size: 1rem;
+  display: block;
+  line-height: 1.3;
+  max-width: none;
+}
+.dons-view__speaker-role {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+  display: block;
+  margin-top: 0.1875rem;
+  max-width: none;
+}
+.dons-view .voice-panel__portrait { border: 1px solid rgba(255,255,255,0.18); }
 
 .dons-view__prose p {
   color: rgba(255,255,255,0.82);
