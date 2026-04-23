@@ -618,17 +618,21 @@ p { max-width: 68ch; }
 .site-footer {
   background: var(--charcoal);
   color: rgba(255, 255, 255, 0.7);
-  padding-block: 2rem 1.5rem;
+  padding-block: 1.75rem 1.5rem;
 }
 
 .site-footer p { max-width: none; }
 
 .site-footer__inner {
   display: grid;
-  gap: 2rem;
+  gap: 1.25rem;
 }
 @media (min-width: 768px) {
-  .site-footer__inner { grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; }
+  .site-footer__inner {
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
 }
 
 .footer-brand .site-logo__name { color: var(--white); }
@@ -665,22 +669,6 @@ p { max-width: 68ch; }
   margin-bottom: 1.125rem;
 }
 
-.site-footer__bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: 1.5rem;
-  padding-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 0.5rem;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.35);
-}
-.site-footer__bottom a {
-  color: rgba(255, 255, 255, 0.35);
-  text-decoration: none;
-}
-.site-footer__bottom a:hover { color: rgba(255, 255, 255, 0.65); }
 
 /* =============================================
    INNER PAGE STYLES (template.html)
