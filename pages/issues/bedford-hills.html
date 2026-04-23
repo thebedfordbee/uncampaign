@@ -51,9 +51,13 @@
           <h1 id="issue-title">Bedford Hills</h1>
         </div>
 
-        <div class="issues-hero__visual issues-hero__visual--placeholder" aria-hidden="true">
-          <span>Bedford Hills</span>
-        </div>
+        <button type="button" class="issues-hero__visual" aria-label="Expand Bedford Hills image" aria-haspopup="dialog">
+          <img
+            src="../../assets/img/bedford-hills.png"
+            alt="Bedford Hills — Bedford, NY"
+            width="1200" height="800"
+          >
+        </button>
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">Eight consistent civic perspectives weigh in on Bedford Hills, years of stalled revitalization, and what local leadership should do when planning has outpaced visible progress.</p>
@@ -432,6 +436,20 @@ Output format:
       </div>
     </div>
   </footer>
+
+  <!-- Hero image lightbox -->
+  <div class="rt-modal" id="rt-modal" role="dialog" aria-label="Bedford Hills — expanded view" aria-modal="true" hidden>
+    <div class="rt-modal__backdrop" aria-hidden="true"></div>
+    <div class="rt-modal__frame">
+      <img
+        src="../../assets/img/bedford-hills.png"
+        alt="Bedford Hills — Bedford, NY"
+        width="1200"
+        height="800"
+      >
+      <button class="rt-modal__close" aria-label="Close expanded image">&#x2715;</button>
+    </div>
+  </div>
 
   <script src="../../assets/js/site.js"></script>
   <script src="../../assets/js/issue.js"></script>
