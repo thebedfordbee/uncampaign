@@ -1420,7 +1420,7 @@ p { max-width: 68ch; }
   grid-template-columns: auto 1fr;
   grid-template-areas:
     "icon title"
-    "cta  cta";
+    ".    cta";
   column-gap: 0.625rem;
   row-gap: 0.5rem;
   text-decoration: none;
@@ -1459,9 +1459,9 @@ p { max-width: 68ch; }
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--moss);
+  color: var(--sage);
   display: block;
-  text-align: center;
+  text-align: left;
 }
 .issue-card:hover .issue-card__explore { color: #2d3e2f; }
 
