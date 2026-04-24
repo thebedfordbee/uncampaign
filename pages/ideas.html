@@ -932,14 +932,9 @@
       });
     }
 
-    /* GET helper */
+    /* GET helper — errors propagate so the caller can log with context */
     function apiGet(url) {
-      return fetch(url)
-        .then(function(r) { return r.json(); })
-        .catch(function(err) {
-          console.warn('[ideas] API GET failed:', err);
-          return null;
-        });
+      return fetch(url).then(function(r) { return r.json(); });
     }
 
     var CATEGORIES = [
@@ -1000,10 +995,12 @@
       return true;
     }
 
+    /* Update count span + button state for one idea after a local vote */
     function updateAllVoteDisplays(id) {
+      document.querySelectorAll('[data-vote-count="' + id + '"]').forEach(function(el) {
+        el.textContent = votes[id];
+      });
       document.querySelectorAll('[data-idea-id="' + id + '"]').forEach(function(card) {
-        var numEl = card.querySelector('.idea-card__votes-num');
-        if (numEl) numEl.textContent = votes[id];
         var btn = card.querySelector('.idea-card__vote-btn');
         if (btn && sessionVotes[id]) {
           btn.disabled = true;
@@ -1013,11 +1010,47 @@
       });
     }
 
-    /* Replace local vote total with server-confirmed value and re-render */
+    /* Replace local vote total with server-confirmed value; sync both stores */
     function setVoteTotal(id, total) {
       votes[id] = total;
+      for (var _i = 0; _i < IDEAS.length; _i++) {
+        if (IDEAS[_i].id === id) { IDEAS[_i].votes = total; break; }
+      }
       saveVotes(votes);
       updateAllVoteDisplays(id);
+    }
+
+    /* Merge a { idea_id -> { total_votes } } or { idea_id -> total } map into IDEAS + votes */
+    function mergeServerVotes(voteMap) {
+      IDEAS.forEach(function(idea) {
+        var entry = voteMap[idea.id];
+        if (entry === undefined || entry === null) return;
+        var raw = (entry !== null && typeof entry === 'object' && 'total_votes' in entry)
+                  ? entry.total_votes
+                  : entry;
+        var n = Number(raw);
+        if (!isNaN(n) && n >= 0) {
+          idea.votes   = n;
+          votes[idea.id] = n;
+        }
+      });
+      saveVotes(votes);
+    }
+
+    /* Re-render every visible vote-count span from the current votes map */
+    function refreshAllVoteCounts() {
+      IDEAS.forEach(function(idea) {
+        document.querySelectorAll('[data-vote-count="' + idea.id + '"]').forEach(function(el) {
+          el.textContent = votes[idea.id];
+        });
+      });
+      /* Matchup cards don't display vote counts but update aria-labels to stay accurate */
+      if (matchupCurrentA) {
+        document.getElementById('matchup-a').setAttribute('aria-label', 'Vote for: ' + matchupCurrentA.title);
+      }
+      if (matchupCurrentB) {
+        document.getElementById('matchup-b').setAttribute('aria-label', 'Vote for: ' + matchupCurrentB.title);
+      }
     }
 
     /* =============================================
@@ -1151,7 +1184,7 @@
         '<p class="idea-card__desc">' + escHtml(idea.description) + '</p>' +
         '<div class="idea-card__meta">' +
           '<span class="idea-card__cat">' + escHtml(idea.category) + '</span>' +
-          '<span class="idea-card__votes"><span class="idea-card__votes-num">' + votes[idea.id] + '</span> votes</span>' +
+          '<span class="idea-card__votes"><span class="idea-card__votes-num" data-vote-count="' + idea.id + '">' + votes[idea.id] + '</span> votes</span>' +
         '</div>' +
         '<button class="idea-card__vote-btn" type="button"' +
           (voted ? ' disabled' : '') +
@@ -1170,7 +1203,7 @@
             action: 'vote', idea_id: idea.id, source: 'card',
             session_id: sessionId, user_agent: navigator.userAgent, page: '/ideas'
           }).then(function(data) {
-            if (data && typeof data.total_votes === 'number') setVoteTotal(idea.id, data.total_votes);
+            if (data && data.total_votes != null) { var _n = Number(data.total_votes); if (!isNaN(_n)) setVoteTotal(idea.id, _n); }
           });
         }
       });
@@ -1186,15 +1219,44 @@
 
     buildAccordion();
 
-    /* Hydrate vote totals from API (non-blocking; falls back to seeded/local values) */
-    apiGet(IDEAS_API_URL + '?action=getVotes').then(function(data) {
-      if (!data || !Array.isArray(data.votes)) return;
-      data.votes.forEach(function(item) {
-        if (item.idea_id && typeof item.total_votes === 'number' && item.total_votes > (votes[item.idea_id] || 0)) {
-          setVoteTotal(item.idea_id, item.total_votes);
+    /* Hydrate vote totals from Google Sheets on page load (non-blocking) */
+    apiGet(IDEAS_API_URL + '?action=getVotes')
+      .then(function(data) {
+        if (!data) {
+          console.warn('[ideas] Could not load live vote totals; using fallback votes.');
+          return;
         }
+
+        /* Build a normalised map: { idea_id -> { total_votes: n } }
+           Handles both array format [{idea_id, total_votes}] and
+           object format {idea_id: total_votes} from the Sheet */
+        var voteMap = {};
+
+        if (Array.isArray(data.votes)) {
+          data.votes.forEach(function(item) {
+            if (!item || item.idea_id == null) return;
+            var known = IDEAS.some(function(idea) { return idea.id === item.idea_id; });
+            if (!known) { console.warn('[ideas] Vote total returned for unknown idea_id:', item.idea_id); return; }
+            voteMap[item.idea_id] = { total_votes: item.total_votes };
+          });
+        } else if (data.votes && typeof data.votes === 'object') {
+          Object.keys(data.votes).forEach(function(id) {
+            var known = IDEAS.some(function(idea) { return idea.id === id; });
+            if (!known) { console.warn('[ideas] Vote total returned for unknown idea_id:', id); return; }
+            voteMap[id] = { total_votes: data.votes[id] };
+          });
+        } else {
+          console.warn('[ideas] Could not load live vote totals; using fallback votes.', data);
+          return;
+        }
+
+        mergeServerVotes(voteMap);
+        refreshAllVoteCounts();
+        console.info('[ideas] Live vote totals loaded from Google Sheets:', Object.keys(voteMap).length);
+      })
+      .catch(function(err) {
+        console.warn('[ideas] Could not load live vote totals; using fallback votes.', err);
       });
-    });
 
     /* =============================================
        MODAL
