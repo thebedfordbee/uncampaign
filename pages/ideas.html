@@ -723,7 +723,7 @@
           </div>
           <div>
             <label for="idea-note">Optional Note</label>
-            <input type="text" id="idea-note" name="note" placeholder="Leave Your Name Or Any Additional Context (Optional)">
+            <textarea id="idea-note" name="note" rows="2" placeholder="Leave Your Name Or Any Additional Context (Optional)"></textarea>
           </div>
           <div class="ideas-form__actions">
             <button type="submit" class="btn btn--primary">Submit</button>
@@ -733,10 +733,8 @@
         </form>
 
         <div class="ideas-modal__confirm" id="modal-confirm" role="alert" aria-live="assertive">
-          <div class="ideas-modal__confirm-icon" aria-hidden="true">&#x2713;</div>
-          <h3 id="modal-confirm-msg">Thanks. Your idea has been saved on this device for now.</h3>
-          <p>We review resident suggestions regularly. If you'd like to make sure it reaches Don directly, you can also <a id="mailto-confirm" href="mailto:ideas@donscottforbedford.com?subject=Idea+for+Bedford" style="color:var(--moss)">send it by email</a>.</p>
-          <button type="button" class="btn btn--secondary" id="modal-done" style="margin-top:0.75rem">Close</button>
+          <p id="modal-confirm-msg" style="color:var(--charcoal);font-size:1rem;line-height:1.6;margin-bottom:1.25rem;">Thanks for your idea! Don will review and add it to the list if it makes sense.</p>
+          <button type="button" class="btn btn--secondary" id="modal-done">Close</button>
         </div>
       </div>
     </div>
@@ -1321,13 +1319,7 @@
       if (!ideaText) { document.getElementById('idea-text').focus(); return; }
       var noteText = document.getElementById('idea-note').value.trim();
 
-      /* Update mailto fallback link */
-      var subject = encodeURIComponent('Idea for Bedford: ' + ideaText.substring(0, 60));
-      var body    = encodeURIComponent('Idea: ' + ideaText + (noteText ? '\nNote: ' + noteText : ''));
-      document.getElementById('mailto-confirm').href =
-        'mailto:ideas@donscottforbedford.com?subject=' + subject + '&body=' + body;
-
-      /* Try API; on null (failure) fall back to localStorage */
+      /* Try API; save locally as fallback if it fails */
       apiPost({
         action: 'submitIdea',
         idea: ideaText,
@@ -1335,17 +1327,12 @@
         session_id: sessionId,
         page: '/ideas'
       }).then(function(data) {
-        var msgEl = document.getElementById('modal-confirm-msg');
-        if (data && data.success) {
-          if (msgEl) msgEl.textContent = 'Thanks. Your Idea Has Been Submitted.';
-        } else {
-          /* Save locally when API is unavailable */
+        if (!data || !data.success) {
           try {
             var existing = JSON.parse(localStorage.getItem(SUBMISSIONS_KEY) || '[]');
             existing.push({ idea: ideaText, note: noteText, ts: new Date().toISOString() });
             localStorage.setItem(SUBMISSIONS_KEY, JSON.stringify(existing));
           } catch(err) {}
-          if (msgEl) msgEl.textContent = 'Thanks. Your Idea Has Been Saved On This Device For Now.';
         }
         submitForm.style.display = 'none';
         modalConfirm.classList.add('is-visible');
