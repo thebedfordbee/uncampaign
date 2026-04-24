@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A $49.99 local campaign using civic tools, public AI transparency, and open spending records instead of traditional fundraising, consultants, mailers, or paid ads.">
+  <meta property="og:title" content="Press | Don Scott for Bedford">
+  <meta property="og:description" content="A $49.99 local campaign using civic tools, public AI transparency, and open spending records instead of traditional fundraising, consultants, mailers, or paid ads.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Press | Don Scott for Bedford">
+  <meta name="twitter:description" content="A $49.99 local campaign using civic tools, public AI transparency, and open spending records instead of traditional fundraising, consultants, mailers, or paid ads.">
+  <title>Press | Don Scott for Bedford</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    /* ── Press page: page-scoped overrides ─────────────────────────────────
+       All rules are scoped so nothing outside this page is affected.
+       Uses existing design tokens (--moss, --sage, --cream, etc.) throughout. */
+
+    /* Hero: override issues-hero h1 max-width for a longer editorial headline */
+    .issues-hero .press-hero__headline { max-width: none; }
+
+    /* Hero: white primary button on moss background (mirrors ideas.html pattern) */
+    .issues-hero .btn--primary {
+      background: var(--white);
+      color: var(--moss);
+      border-color: var(--white);
+    }
+    .issues-hero .btn--primary:hover {
+      background: var(--cream);
+      border-color: var(--cream);
+      color: var(--moss);
+    }
+
+    /* Hero body copy and standout line */
+    .press-hero__deck {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      max-width: 64ch;
+      margin-top: 1.125rem;
+    }
+    .press-hero__body {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 62ch;
+      margin-top: 0.875rem;
+    }
+    .press-hero__standout {
+      font-family: var(--serif);
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      border-left: 3px solid rgba(255, 255, 255, 0.3);
+      padding-left: 1.125rem;
+      margin-top: 1.625rem;
+      max-width: 56ch;
+    }
+
+    /* Reporter hook list — numbered with sage circular badges */
+    .press-hooks {
+      list-style: none;
+      padding: 0;
+      margin: 1.75rem 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+    .press-hooks li {
+      display: flex;
+      gap: 0.875rem;
+      align-items: flex-start;
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .press-hooks__num {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: var(--sage);
+      color: var(--white);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.15rem;
+    }
+
+    /* Closing italic callout with sage left border */
+    .press-closing {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.0625rem;
+      color: var(--charcoal);
+      line-height: 1.7;
+      border-left: 3px solid var(--sage);
+      padding-left: 1.125rem;
+      margin-top: 1.75rem;
+      max-width: 62ch;
+    }
+
+    /* Tools cards — 3-up grid matching .offers-grid pattern */
+    .press-cards-grid {
+      display: grid;
+      gap: 1.125rem;
+      grid-template-columns: 1fr;
+      margin-top: 2.5rem;
+    }
+    @media (min-width: 560px) {
+      .press-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .press-cards-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .press-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.375rem 1.5rem 1.25rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+    .press-card__title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--charcoal);
+      margin-bottom: 0.625rem;
+    }
+    .press-card__body {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: none;
+      line-height: 1.65;
+      flex: 1;
+    }
+    .press-card__angle {
+      margin-top: 1rem;
+      padding-top: 0.875rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      max-width: none;
+    }
+    .press-card__angle span {
+      display: block;
+      font-weight: 400;
+      font-size: 0.825rem;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      line-height: 1.55;
+    }
+
+    /* AI section: single-column prose inside .ai-section dark background */
+    .press-ai-inner { max-width: 700px; }
+    .press-ai-inner p { max-width: none; }
+    .press-ai-inner p + p { margin-top: 0.875rem; }
+    .press-ai-emphasis {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.0625rem;
+      color: rgba(255, 255, 255, 0.92) !important;
+      border-left: 3px solid rgba(255, 255, 255, 0.3);
+      padding-left: 1.125rem;
+      margin-top: 1.75rem !important;
+    }
+
+    /* What's Missing checklist — 2-col on wider screens */
+    .not-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.75rem 0 1.75rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    @media (min-width: 600px) {
+      .not-list { grid-template-columns: repeat(2, 1fr); }
+    }
+    .not-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      font-size: 0.9375rem;
+      color: var(--muted);
+      padding: 0.5625rem 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5;
+    }
+    @media (min-width: 600px) {
+      .not-list li:nth-last-child(-n+2) { border-bottom: none; }
+      .not-list li:nth-child(odd) { padding-right: 1.5rem; }
+    }
+    @media (max-width: 599px) {
+      .not-list li:last-child { border-bottom: none; }
+    }
+    .not-list__x {
+      font-size: 0.625rem;
+      font-weight: 700;
+      color: var(--sage);
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 0.2em;
+    }
+
+    /* Fast facts: bordered table-style definition list */
+    .press-facts {
+      margin-top: 2rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .press-fact {
+      display: grid;
+      grid-template-columns: 9rem 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .press-fact:last-child { border-bottom: none; }
+    .press-fact__label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--sage);
+      padding: 0.875rem 1rem 0.875rem 1.125rem;
+      background: rgba(123, 140, 121, 0.05);
+      border-right: 1px solid var(--border);
+      max-width: none;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+    }
+    .press-fact__value {
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      padding: 0.875rem 1.125rem;
+      max-width: none;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+    }
+    @media (max-width: 479px) {
+      .press-fact { grid-template-columns: 1fr; }
+      .press-fact__label {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.375rem;
+      }
+      .press-fact__value { padding-top: 0.375rem; }
+    }
+
+    /* Quote cards — 2-col grid with sage left border */
+    .press-quotes-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+      margin-top: 2.5rem;
+    }
+    @media (min-width: 640px) {
+      .press-quotes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    .press-quote {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--sage);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.375rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .press-quote p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--charcoal);
+      line-height: 1.7;
+      max-width: none;
+    }
+
+    /* Press contact section — moss background matching .ai-section pattern */
+    .press-contact {
+      background: var(--moss);
+      color: var(--white);
+    }
+    .press-contact .eyebrow { color: rgba(255, 255, 255, 0.55); }
+    .press-contact h2 { color: var(--white); margin-top: 0.5rem; margin-bottom: 1.125rem; }
+    .press-contact p { color: rgba(255, 255, 255, 0.82); max-width: 58ch; }
+    .press-contact .cta-row { margin-top: 2rem; }
+    .press-contact__note {
+      margin-top: 1.25rem;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.5);
+      max-width: 52ch;
+    }
+    .press-contact .btn--primary {
+      background: var(--white);
+      color: var(--moss);
+      border-color: var(--white);
+    }
+    .press-contact .btn--primary:hover {
+      background: var(--cream);
+      border-color: var(--cream);
+      color: var(--moss);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+        <span class="site-logo__name">Don Scott</span>
+        <span class="site-logo__race">for Bedford</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__links" role="list">
+          <li><a href="issues.html">Issues</a></li>
+          <li><a href="rules.html">Rules</a></li>
+          <li><a href="ideas.html">Ideas</a></li>
+          <li><a href="press.html" aria-current="page">Press</a></li>
+        </ul>
+        <a href="#subscribe" class="btn btn--subscribe site-nav__cta">Subscribe</a>
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Open navigation menu"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </nav>
+    </div>
+
+    <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
+      <a href="issues.html">Issues</a>
+      <a href="rules.html">Rules</a>
+      <a href="ideas.html">Ideas</a>
+      <a href="press.html" aria-current="page">Press</a>
+      <a href="#subscribe" class="btn btn--subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <!-- SECTION 1: HERO -->
+  <section class="issues-hero" aria-labelledby="press-title">
+    <div class="container">
+      <p class="eyebrow">Press</p>
+      <h1 id="press-title" class="press-hero__headline">A $49.99 Campaign Building Civic Tools Instead of Buying Attention</h1>
+      <p class="press-hero__deck">Don Scott&#8217;s campaign for Bedford Town Supervisor is an intentionally unconventional experiment in local democracy: no traditional fundraising, no mailers, no paid consultants, no robocalls, no door knocking, and no paid ad dependence.</p>
+      <p class="press-hero__body">Instead, the campaign is building public-facing civic tools, openly using AI, publishing its spending, and documenting a different way to run for local office.</p>
+      <p class="press-hero__standout">Bedford deserves a choice. This campaign is trying to prove that choice does not have to be expensive.</p>
+      <div class="cta-row">
+        <!-- TODO: Verify press@donscottforbedford.com is configured and active before launch -->
+        <a href="mailto:press@donscottforbedford.com" class="btn btn--primary">Request an Interview</a>
+        <a href="#tools" class="btn btn--ghost">Explore the Tools</a>
+      </div>
+    </div>
+  </section>
+
+  <main id="main-content">
+
+    <!-- SECTION 2: WHY THIS IS A STORY -->
+    <section class="section section--alt" aria-labelledby="story-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Why This Is a Story</p>
+          <h2 id="story-headline">Most campaigns ask for money. This one is asking a different question.</h2>
+        </div>
+
+        <p>Local campaigns usually follow a familiar script: raise money, hire consultants, print signs, send mailers, knock on doors, buy ads, and try to look bigger than they are.</p>
+        <p style="margin-top:0.875rem">This campaign is deliberately doing the opposite.</p>
+        <p style="margin-top:0.875rem">It is built around a simpler civic question: should Bedford&#8217;s Town Supervisor election offer voters a real choice?</p>
+
+        <ol class="press-hooks" aria-label="Six reasons this campaign is newsworthy">
+          <li>
+            <span class="press-hooks__num" aria-hidden="true">1</span>
+            <span>A Republican running in a heavily Democratic town without trying to nationalize the race.</span>
+          </li>
+          <li>
+            <span class="press-hooks__num" aria-hidden="true">2</span>
+            <span>A down-ballot local campaign designed around participation, not pressure.</span>
+          </li>
+          <li>
+            <span class="press-hooks__num" aria-hidden="true">3</span>
+            <span>A public spend target of $49.99 or less.</span>
+          </li>
+          <li>
+            <span class="press-hooks__num" aria-hidden="true">4</span>
+            <span>Open use of AI in campaign planning, writing, civic tools, and voter education.</span>
+          </li>
+          <li>
+            <span class="press-hooks__num" aria-hidden="true">5</span>
+            <span>A set of public tools that invite residents to compare ideas, not just react to slogans.</span>
+          </li>
+          <li>
+            <span class="press-hooks__num" aria-hidden="true">6</span>
+            <span>A campaign model transparent enough to be studied, copied, challenged, or improved.</span>
+          </li>
+        </ol>
+
+        <p class="press-closing">It is a local campaign, but the question behind it is larger: how much money does democracy actually need?</p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: THE SIMPLE VERSION -->
+    <section class="section" aria-labelledby="simple-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">The Simple Version</p>
+          <h2 id="simple-headline">A local campaign trying to earn attention by being useful.</h2>
+        </div>
+
+        <p>The UNCAMPAIGN is not trying to simulate momentum with fundraising emails, lawn signs, paid ads, or consultant language. It is trying to earn attention by building things Bedford residents can actually use.</p>
+
+        <blockquote class="don-framing__transition">
+          &#8220;We are not treating residents as targets, donors, or data points. We are inviting them to think with us.&#8221;
+        </blockquote>
+
+        <p style="margin-top:1.5rem">That means structured issue pages, public ranking tools, a resident-centered Roundtable, transparent AI workflows, and a campaign budget that remains small enough to understand without a finance degree.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 4: WHAT WE BUILT -->
+    <section class="section section--alt" id="tools" aria-labelledby="tools-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">What We Built</p>
+          <h2 id="tools-headline">Civic tools instead of campaign theater.</h2>
+          <p class="section-header__lead section-header__lead--wide">The campaign&#8217;s central bet is that residents will pay more attention to useful tools than to traditional campaign noise. Each tool is designed to make local politics easier to understand, easier to question, and easier to participate in.</p>
+        </div>
+
+        <div class="press-cards-grid">
+
+          <article class="press-card">
+            <h3 class="press-card__title">The Bedford Roundtable</h3>
+            <p class="press-card__body">The Bedford Roundtable is a structured public conversation format for local issues. Instead of presenting one campaign talking point, it shows how different Bedford residents might reasonably see the same problem. It is designed to surface tradeoffs, tensions, shared concerns, and practical middle ground.</p>
+            <p class="press-card__angle">Press angle<span>A local campaign using AI-assisted civic simulation to model better public conversation.</span></p>
+          </article>
+
+          <article class="press-card">
+            <h3 class="press-card__title">Ideas Ranking + Matchups</h3>
+            <p class="press-card__body">The ideas system lets residents compare possible town priorities through rankings and head-to-head matchups. It is a low-cost way to learn what people actually value when they have to choose between competing ideas. This is different from a petition, a Facebook comment thread, or a traditional poll. It asks residents to make tradeoffs.</p>
+            <p class="press-card__angle">Press angle<span>A local campaign turning issue discovery into an interactive civic product.</span></p>
+          </article>
+
+          <article class="press-card">
+            <h3 class="press-card__title">Ask Don</h3>
+            <p class="press-card__body">Ask Don is an AI-assisted question tool built from Don&#8217;s own answers, language, and judgment. It is designed to help residents explore where Don stands, what he knows, what he does not know yet, and what he believes belongs in the Town Supervisor&#8217;s lane. It does not replace Don. It makes his thinking easier to access.</p>
+            <p class="press-card__angle">Press angle<span>A transparent use of AI for candidate accessibility, with human-reviewed source material.</span></p>
+          </article>
+
+          <article class="press-card">
+            <h3 class="press-card__title">The Rules</h3>
+            <p class="press-card__body">The Rules page explains what this campaign will not do: no fundraising machine, no door knocking, no mailers, no robocalls, no pressure tactics, no fake urgency, and no pretending this is normal. The rules are not a gimmick. They are the campaign&#8217;s operating system.</p>
+            <p class="press-card__angle">Press angle<span>A campaign defined as much by what it refuses as what it builds.</span></p>
+          </article>
+
+          <article class="press-card">
+            <h3 class="press-card__title">Public Spending Transparency</h3>
+            <p class="press-card__body">Every dollar spent by the campaign is shown publicly. The target is $49.99 or less. That number is intentionally small. The point is not that every campaign can or should spend this little. The point is to test how much civic participation can be created before money becomes the answer.</p>
+            <p class="press-card__angle">Press angle<span>A local candidate treating campaign finance transparency as a live product, not a compliance footnote.</span></p>
+          </article>
+
+          <article class="press-card">
+            <h3 class="press-card__title">AI Methods in Public</h3>
+            <p class="press-card__body">The campaign openly explains where AI helps, where it does not, and how residents can use similar tools themselves. AI is not being used to fake support, impersonate people, or manufacture endorsements. It is being used to reduce cost, organize information, draft materials, test ideas, and make civic participation easier to access.</p>
+            <p class="press-card__angle">Press angle<span>A local campaign treating AI literacy as part of civic participation.</span></p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: AI WITHOUT THE MAGIC TRICK -->
+    <section class="section ai-section" aria-labelledby="ai-headline">
+      <div class="container">
+        <div class="press-ai-inner">
+          <p class="eyebrow">AI, Without the Magic Trick</p>
+          <h2 id="ai-headline">The AI story is not that the campaign uses AI. It is what AI makes possible at this scale.</h2>
+          <p>A local campaign that once would have needed designers, copywriters, data staff, web developers, consultants, pollsters, and a serious fundraising operation can now build credible public tools with almost no money. That changes the economics of participation.</p>
+          <p>This campaign is not using AI to make politics less human. It is using AI to remove some of the cost and friction that keep ordinary people from participating in local politics at all.</p>
+          <p>The campaign is also teaching as it goes. When AI helps draft copy, structure a tool, summarize resident priorities, or build a page, the campaign is willing to say so. The goal is not to make AI seem mysterious. The goal is to make civic technology feel reachable.</p>
+          <p class="press-ai-emphasis">AI is the tool. Bedford is the subject. Don is the candidate.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: WHAT IS MISSING ON PURPOSE -->
+    <section class="section" aria-labelledby="missing-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">What Is Missing on Purpose</p>
+          <h2 id="missing-headline">No mailers. No robocalls. No consultants. No campaign noise.</h2>
+        </div>
+
+        <ul class="not-list" aria-label="Things this campaign intentionally does not do">
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No traditional fundraising.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No consultant class.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No direct mail.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No robocalls.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No paid ad dependence.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No door knocking.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No train station ambushes.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No grocery store pestering.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No pressure tactics.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No opponent obsession.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No national political bait-taking.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No fake urgency.</li>
+          <li><span class="not-list__x" aria-hidden="true">&#x2715;</span> No pretending this is normal.</li>
+        </ul>
+
+        <p>Instead of spending money to simulate momentum, the campaign is trying to earn attention by being transparent, useful, and a little difficult to ignore.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 7: STORY ANGLES -->
+    <section class="section section--alt" aria-labelledby="angles-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Possible Story Angles</p>
+          <h2 id="angles-headline">Several stories are happening at once.</h2>
+          <p class="section-header__lead section-header__lead--wide">For reporters, editors, researchers, and civic technologists, this campaign can be understood through several lenses.</p>
+        </div>
+
+        <!-- Reuses .faq-item accordion pattern wired by site.js -->
+        <div class="faq-list" style="max-width:none">
+
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false" aria-controls="angle-1">
+              Can AI make local campaigns viable without money?
+              <i class="faq-item__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="faq-item__answer" id="angle-1" role="region">
+              <div class="faq-item__answer-inner">
+                <p>The campaign is testing whether modern tools can replace parts of the traditional campaign apparatus while keeping the process transparent and human-reviewed.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false" aria-controls="angle-2">
+              What happens when a campaign builds tools instead of buying ads?
+              <i class="faq-item__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="faq-item__answer" id="angle-2" role="region">
+              <div class="faq-item__answer-inner">
+                <p>The UNCAMPAIGN is trying to generate civic engagement through public products: issue explainers, rankings, matchups, AI-assisted Q&amp;A, and structured local conversation.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false" aria-controls="angle-3">
+              Can a candidate run without treating voters as targets?
+              <i class="faq-item__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="faq-item__answer" id="angle-3" role="region">
+              <div class="faq-item__answer-inner">
+                <p>There is no pressure ladder here. No donor funnel. No door-knocking script. The campaign is built around availability and resident choice.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false" aria-controls="angle-4">
+              What does radical campaign spending transparency look like in practice?
+              <i class="faq-item__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="faq-item__answer" id="angle-4" role="region">
+              <div class="faq-item__answer-inner">
+                <p>The campaign publishes spending as part of the message. The budget is not hidden behind compliance reports. It is part of the argument.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false" aria-controls="angle-5">
+              Can a down-ballot race become interesting by refusing to act like a normal campaign?
+              <i class="faq-item__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="faq-item__answer" id="angle-5" role="region">
+              <div class="faq-item__answer-inner">
+                <p>Bedford&#8217;s Town Supervisor race is local, but the broader dynamics are familiar: nationalized politics, expensive campaigns, low trust, and residents tired of being marketed to.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false" aria-controls="angle-6">
+              Is this a model, a critique, or both?
+              <i class="faq-item__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="faq-item__answer" id="angle-6" role="region">
+              <div class="faq-item__answer-inner">
+                <p>The campaign is not claiming to have solved local democracy. It is making a testable argument: more people might participate if campaigns were more transparent, less intrusive, and more useful.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: FAST FACTS -->
+    <section class="section" aria-labelledby="facts-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Fast Facts</p>
+          <h2 id="facts-headline">The basics.</h2>
+        </div>
+
+        <dl class="press-facts" aria-label="Campaign fast facts">
+          <div class="press-fact">
+            <dt class="press-fact__label">Candidate</dt>
+            <dd class="press-fact__value">Don Scott</dd>
+          </div>
+          <div class="press-fact">
+            <dt class="press-fact__label">Office</dt>
+            <dd class="press-fact__value">Bedford Town Supervisor</dd>
+          </div>
+          <div class="press-fact">
+            <dt class="press-fact__label">Location</dt>
+            <dd class="press-fact__value">Bedford, New York</dd>
+          </div>
+          <div class="press-fact">
+            <dt class="press-fact__label">Campaign posture</dt>
+            <dd class="press-fact__value">The UNCAMPAIGN</dd>
+          </div>
+          <div class="press-fact">
+            <dt class="press-fact__label">Spend target</dt>
+            <dd class="press-fact__value">$49.99 or less</dd>
+          </div>
+          <div class="press-fact">
+            <dt class="press-fact__label">Fundraising</dt>
+            <dd class="press-fact__value">No traditional fundraising</dd>
+          </div>
+          <div class="press-fact">
+            <dt class="press-fact__label">Core message</dt>
+            <dd class="press-fact__value">Bedford deserves a choice.</dd>
+          </div>
+          <div class="press-fact">
+            <dt class="press-fact__label">Signature line</dt>
+            <dd class="press-fact__value">You don&#8217;t have to vote for Don to believe Bedford should have a choice.</dd>
+          </div>
+          <div class="press-fact">
+            <dt class="press-fact__label">Primary tools</dt>
+            <dd class="press-fact__value">The Bedford Roundtable, Ideas Ranking + Matchups, Ask Don, public spending transparency</dd>
+          </div>
+          <div class="press-fact">
+            <dt class="press-fact__label">AI policy</dt>
+            <dd class="press-fact__value">Openly disclosed, human-reviewed, never used to fake support or impersonate residents</dd>
+          </div>
+          <div class="press-fact">
+            <dt class="press-fact__label">Campaign style</dt>
+            <dd class="press-fact__value">Calm, local, transparent, non-intrusive</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- SECTION 9: THE DIFFERENCE -->
+    <section class="section section--alt" aria-labelledby="diff-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">The Difference</p>
+          <h2 id="diff-headline">This is not a protest campaign. It is a proof-of-concept.</h2>
+        </div>
+        <p>The campaign is not built around outrage. It is not built around personal attacks. It is not asking Bedford residents to join a movement, pick a fight, or pretend national politics belongs in every local conversation.</p>
+        <p style="margin-top:0.875rem">It is built around a quieter premise: local democracy works better when residents have choices, information, and low-friction ways to participate.</p>
+        <p style="margin-top:0.875rem">The campaign may win, lose, or simply prove that a different model is possible. But the experiment itself is the story: a local candidate using transparency, restraint, and civic technology to make a buried race harder to ignore.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 10: QUOTABLE -->
+    <section class="section" aria-labelledby="quotes-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Quotable</p>
+          <h2 id="quotes-headline">Lines that explain the campaign.</h2>
+        </div>
+
+        <div class="press-quotes-grid">
+
+          <figure class="press-quote">
+            <p>&#8220;Bedford deserves a choice. That should not be a controversial idea.&#8221;</p>
+          </figure>
+
+          <figure class="press-quote">
+            <p>&#8220;You don&#8217;t have to vote for Don to believe Bedford should have a choice.&#8221;</p>
+          </figure>
+
+          <figure class="press-quote">
+            <p>&#8220;This campaign is not trying to spend its way into relevance. It is trying to build something useful enough to earn attention.&#8221;</p>
+          </figure>
+
+          <figure class="press-quote">
+            <p>&#8220;AI is not replacing the candidate. It is replacing some of the cost and friction that keep normal people out of politics.&#8221;</p>
+          </figure>
+
+          <figure class="press-quote">
+            <p>&#8220;The Town Supervisor&#8217;s job is Bedford. Not cable news. Not Washington. Bedford.&#8221;</p>
+          </figure>
+
+          <figure class="press-quote">
+            <p>&#8220;We are not treating residents as targets, donors, or data points. We are inviting them to think with us.&#8221;</p>
+          </figure>
+
+          <figure class="press-quote">
+            <p>&#8220;Less shouting. More listening. More tradeoffs. More honesty.&#8221;</p>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 11: PRESS CONTACT -->
+    <section class="section press-contact" aria-labelledby="contact-headline">
+      <div class="container">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-headline">For interviews or background.</h2>
+        <p>For interviews, background conversations, screenshots, demonstrations of the campaign tools, or questions about how the campaign is being built, please reach out directly.</p>
+        <div class="cta-row">
+          <!-- TODO: Verify press@donscottforbedford.com is configured and active before launch -->
+          <a href="mailto:press@donscottforbedford.com" class="btn btn--primary">Request an Interview</a>
+        </div>
+        <p class="press-contact__note">This campaign is intentionally transparent about its methods, spending, and use of AI. Questions about the tools, the strategy, or the experiment itself are welcome.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <div class="footer-brand">
+          <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+            <span class="site-logo__name">Don Scott</span>
+            <span class="site-logo__race">for Bedford</span>
+          </a>
+          <p class="footer-brand__tagline">Less Campaign. More Bedford.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <p class="footer-nav__label">Pages</p>
+          <a href="../index.html">Home</a>
+          <a href="issues.html">Issues</a>
+          <a href="rules.html">Rules</a>
+          <a href="ideas.html">Ideas</a>
+          <a href="press.html" aria-current="page">Press</a>
+        </nav>
+
+        <div class="footer-cta">
+          <p class="footer-nav__label">Stay informed</p>
+          <a href="#subscribe" class="btn btn--ghost" id="subscribe">Subscribe</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
