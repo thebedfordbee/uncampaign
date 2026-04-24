@@ -1243,7 +1243,13 @@
           Object.keys(data.votes).forEach(function(id) {
             var known = IDEAS.some(function(idea) { return idea.id === id; });
             if (!known) { console.warn('[ideas] Vote total returned for unknown idea_id:', id); return; }
-            voteMap[id] = { total_votes: data.votes[id] };
+            /* data.votes[id] may be a plain number OR a nested object
+               { seed_votes, live_votes, total_votes } — handle both */
+            var raw = data.votes[id];
+            var tv  = (raw && typeof raw === 'object' && 'total_votes' in raw)
+                      ? raw.total_votes
+                      : raw;
+            voteMap[id] = { total_votes: tv };
           });
         } else {
           console.warn('[ideas] Could not load live vote totals; using fallback votes.', data);
@@ -1253,6 +1259,22 @@
         mergeServerVotes(voteMap);
         refreshAllVoteCounts();
         console.info('[ideas] Live vote totals loaded from Google Sheets:', Object.keys(voteMap).length);
+
+        /* Debug badge — only shown when URL contains ?debug=hydrate */
+        if (window.location.search.indexOf('debug=hydrate') !== -1) {
+          var lines = ['Hydration loaded'];
+          ['roads-bridges', 'dirt-roads', 'water-quality'].forEach(function(id) {
+            if (votes[id] !== undefined) lines.push(id + ': ' + votes[id]);
+          });
+          var badge = document.createElement('div');
+          badge.setAttribute('style',
+            'position:fixed;bottom:1rem;right:1rem;z-index:9999;' +
+            'background:#2B2B2B;color:#fff;font:12px/1.5 monospace;' +
+            'padding:0.6rem 0.9rem;border-radius:4px;white-space:pre;pointer-events:none;' +
+            'box-shadow:0 2px 8px rgba(0,0,0,0.4)');
+          badge.textContent = lines.join('\n');
+          document.body.appendChild(badge);
+        }
       })
       .catch(function(err) {
         console.warn('[ideas] Could not load live vote totals; using fallback votes.', err);
