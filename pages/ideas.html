@@ -14,11 +14,7 @@
     /* Hero — reset cta-row margin inside issues-hero__copy-bot flex gap */
     .issues-hero__copy-bot .cta-row { margin-top: 0; }
 
-    /* The /ideas image wrapper is a non-interactive div, not a button.
-       Suppress the cursor:pointer and hover shadow-lift inherited from site.css
-       which is written for the clickable /issues button wrapper. */
-    div.issues-hero__visual { cursor: default; }
-    div.issues-hero__visual:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.22); }
+    /* /ideas hero image is now a clickable button, same as /issues — no suppressions needed */
 
     /* Hero CTA: white-filled button on moss background so it reads as a button at rest.
        Hover darkens to cream. Keeps the site's button shape/type language. */
@@ -44,7 +40,7 @@
 
     .matchup-header { margin-bottom: 2rem; }
     .matchup-header h2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
-    .matchup-header p { color: var(--muted); margin-top: 0; }
+    .matchup-header p { color: var(--muted); margin-top: 0; max-width: none; }
 
     /* Arena: desktop 2-col side-by-side; skip spans both columns below */
     .matchup-arena {
@@ -145,23 +141,25 @@
     }
     .matchup-card__confirm.is-visible { opacity: 1; }
 
-    /* Skip button — centered below both cards */
+    /* Skip button — centered below both cards, warm-white background like the option cards */
     .matchup-skip {
-      background: none;
+      background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
       cursor: pointer;
       padding: 0.5625rem 1.375rem;
       color: var(--muted);
       font-size: 0.875rem;
       font-weight: 600;
       font-family: var(--sans);
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
     }
     .matchup-skip:hover {
-      background: rgba(0,0,0,0.04);
+      background: var(--cream);
       color: var(--charcoal);
       border-color: var(--sage);
+      box-shadow: var(--shadow-md);
     }
     .matchup-skip:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 
@@ -587,10 +585,10 @@
           <h1 id="ideas-title">100+ Ideas for Bedford</h1>
         </div>
 
-        <!-- Non-interactive div wrapper matches /issues button.issues-hero__visual
-             so that the descendant rule .issues-hero__visual img { height:auto } fires
-             and the HTML height="1200" attribute cannot set a fixed 1200px rendered height -->
-        <div class="issues-hero__visual">
+        <!-- Button wrapper: makes the image clickable to expand (same pattern as /issues).
+             overflow:hidden + border-radius on the button clips the image correctly,
+             and .issues-hero__visual img { height:auto } fires via the descendant rule. -->
+        <button type="button" class="issues-hero__visual" aria-label="Expand whiteboard image" aria-haspopup="dialog">
           <img
             src="../assets/img/whiteboard.png"
             alt="Don Scott reviewing and sketching practical ideas for Bedford on a whiteboard"
@@ -598,7 +596,7 @@
             height="1200"
             loading="eager"
           >
-        </div>
+        </button>
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">
@@ -720,42 +718,15 @@
       <div class="ideas-modal__body">
         <form class="ideas-form" id="submit-form" novalidate>
           <div>
-            <label for="idea-text">Your idea <span style="color:var(--muted);font-weight:400">(required)</span></label>
+            <label for="idea-text">Your Idea <span style="color:var(--muted);font-weight:400">(Required)</span></label>
             <textarea id="idea-text" name="idea" rows="3" placeholder="Describe your idea in a sentence or two." required></textarea>
           </div>
           <div>
-            <label for="idea-category">Category</label>
-            <select id="idea-category" name="category">
-              <option value="">Select a category</option>
-              <option>Infrastructure &amp; Mobility</option>
-              <option>Seniors, Health &amp; Community Care</option>
-              <option>Families, Youth &amp; Schools</option>
-              <option>Parks, Recreation &amp; Public Spaces</option>
-              <option>Small Business &amp; Hamlet Vitality</option>
-              <option>Government Responsiveness</option>
-              <option>Housing, Planning &amp; Bedford Character</option>
-              <option>Environment, Water &amp; Practical Sustainability</option>
-              <option>Arts, Culture &amp; Civic Life</option>
-              <option>Not sure</option>
-            </select>
-          </div>
-          <div>
-            <label for="idea-hamlet">Hamlet or town-wide?</label>
-            <select id="idea-hamlet" name="hamlet">
-              <option value="">Select</option>
-              <option>Town-wide</option>
-              <option>Bedford Village</option>
-              <option>Bedford Hills</option>
-              <option>Katonah</option>
-              <option>Not sure</option>
-            </select>
-          </div>
-          <div>
-            <label for="idea-note">Optional note</label>
-            <input type="text" id="idea-note" name="note" placeholder="Any context, examples, or urgency (optional)">
+            <label for="idea-note">Optional Note</label>
+            <input type="text" id="idea-note" name="note" placeholder="Leave Your Name Or Any Additional Context (Optional)">
           </div>
           <div class="ideas-form__actions">
-            <button type="submit" class="btn btn--primary">Save My Idea</button>
+            <button type="submit" class="btn btn--primary">Submit</button>
             <button type="button" class="btn btn--secondary" id="modal-cancel">Cancel</button>
           </div>
           <p class="ideas-form__hint">Your idea is saved on this device. You can also <a id="mailto-link" href="mailto:ideas@donscottforbedford.com?subject=Idea+for+Bedford" style="color:var(--moss)">email it directly</a> if you prefer.</p>
@@ -771,7 +742,22 @@
     </div>
   </div>
 
+  <!-- Hero image lightbox — same rt-modal system as /issues -->
+  <div class="rt-modal" id="rt-modal" role="dialog" aria-label="100+ Ideas for Bedford — expanded view" aria-modal="true" hidden>
+    <div class="rt-modal__backdrop" aria-hidden="true"></div>
+    <div class="rt-modal__frame">
+      <img
+        src="../assets/img/whiteboard.png"
+        alt="Don Scott reviewing and sketching practical ideas for Bedford on a whiteboard"
+        width="1600"
+        height="1200"
+      >
+      <button class="rt-modal__close" aria-label="Close expanded image">&#x2715;</button>
+    </div>
+  </div>
+
   <script src="../assets/js/site.js"></script>
+  <script src="../assets/js/issues.js"></script>
   <script>
   (function () {
     'use strict';
@@ -1173,11 +1159,9 @@
       if (!ideaText) { document.getElementById('idea-text').focus(); return; }
 
       var submission = {
-        idea:     ideaText,
-        category: document.getElementById('idea-category').value,
-        hamlet:   document.getElementById('idea-hamlet').value,
-        note:     document.getElementById('idea-note').value.trim(),
-        ts:       new Date().toISOString()
+        idea: ideaText,
+        note: document.getElementById('idea-note').value.trim(),
+        ts:   new Date().toISOString()
       };
       try {
         var existing = JSON.parse(localStorage.getItem(SUBMISSIONS_KEY) || '[]');
@@ -1187,9 +1171,7 @@
 
       var subject = encodeURIComponent('Idea for Bedford: ' + ideaText.substring(0, 60));
       var body    = encodeURIComponent('Idea: ' + ideaText +
-        (submission.category ? '\nCategory: ' + submission.category : '') +
-        (submission.hamlet   ? '\nHamlet: '   + submission.hamlet   : '') +
-        (submission.note     ? '\nNote: '     + submission.note     : ''));
+        (submission.note ? '\nNote: ' + submission.note : ''));
       document.getElementById('mailto-confirm').href =
         'mailto:ideas@donscottforbedford.com?subject=' + subject + '&body=' + body;
 
