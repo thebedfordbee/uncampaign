@@ -2118,3 +2118,30 @@ p { max-width: 68ch; }
   margin-top: 1rem;
   margin-bottom: 0;
 }
+
+/* =============================================
+   SOCIAL CTA BUTTONS — Rule 03
+   ============================================= */
+.btn--facebook {
+  background: #1877F2;
+  color: #ffffff;
+  border-color: #1877F2;
+  gap: 0.5rem;
+}
+.btn--facebook:hover {
+  background: #0e5fcf;
+  border-color: #0e5fcf;
+  color: #ffffff;
+}
+
+.btn--instagram {
+  background: linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #FCAF45 100%);
+  color: #ffffff;
+  border-color: transparent;
+  gap: 0.5rem;
+}
+.btn--instagram:hover {
+  opacity: 0.88;
+  color: #ffffff;
+  border-color: transparent;
+}
