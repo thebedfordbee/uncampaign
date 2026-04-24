@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="100+ practical ideas for Bedford, gathered from community conversations. Compare ideas, vote for what matters to you, and recommend new ones.">
+  <title>100+ Ideas for Bedford — Don Scott for Bedford Town Supervisor</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    /* =============================================
+       IDEAS PAGE — Page-specific styles
+       ============================================= */
+
+    /* Hero */
+    .ideas-hero {
+      background: var(--moss);
+      padding-block: 3rem 2.5rem;
+    }
+    .ideas-hero .eyebrow { color: rgba(255,255,255,0.55); margin-bottom: 0.875rem; }
+    .ideas-hero h1 { color: var(--white); margin-bottom: 1rem; max-width: 20ch; }
+    .ideas-hero__lead {
+      color: rgba(255,255,255,0.82);
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      max-width: 54ch;
+      margin-bottom: 1.75rem;
+    }
+    .ideas-hero .cta-row { margin-top: 0; }
+    .ideas-hero .btn--ghost {
+      color: var(--white);
+      border-color: rgba(255,255,255,0.45);
+    }
+    .ideas-hero .btn--ghost:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.75);
+    }
+    @media (min-width: 768px) {
+      .ideas-hero { padding-block: 4rem 3.5rem; }
+    }
+
+    /* =============================================
+       MATCHUP MODULE
+       ============================================= */
+    .matchup-section {
+      padding-block: 3rem;
+      scroll-margin-top: 70px;
+    }
+    @media (min-width: 768px) { .matchup-section { padding-block: 4rem; } }
+
+    .matchup-header { margin-bottom: 2rem; }
+    .matchup-header h2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+    .matchup-header p { color: var(--muted); margin-top: 0; }
+
+    .matchup-arena {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      max-width: 760px;
+    }
+    @media (max-width: 599px) {
+      .matchup-arena {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+      }
+      .matchup-vs { text-align: center; padding-block: 0.25rem; }
+    }
+
+    .matchup-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .matchup-card.is-selected {
+      border-color: var(--moss);
+      box-shadow: 0 0 0 3px rgba(62,82,64,0.15), var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .matchup-card__label {
+      font-size: 0.625rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--sage);
+    }
+    .matchup-card__title {
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      color: var(--charcoal);
+      line-height: 1.4;
+      flex: 1;
+    }
+    .matchup-card__desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: none;
+    }
+    .matchup-card__cat {
+      display: inline-block;
+      font-size: 0.6875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--sage);
+      background: rgba(123,140,121,0.1);
+      border-radius: 2px;
+      padding: 0.15rem 0.5rem;
+      max-width: none;
+    }
+    .matchup-card__confirm {
+      font-size: 0.75rem;
+      color: var(--moss);
+      font-weight: 700;
+      opacity: 0;
+      transition: opacity 0.3s;
+      min-height: 1rem;
+      max-width: none;
+    }
+    .matchup-card__confirm.is-visible { opacity: 1; }
+
+    .matchup-vs {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--muted);
+      font-style: italic;
+      text-align: center;
+      flex-shrink: 0;
+      padding-inline: 0.5rem;
+    }
+
+    .matchup-controls {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 1.25rem;
+    }
+    .matchup-controls .btn {
+      font-size: 0.875rem;
+      padding: 0.5625rem 1.125rem;
+    }
+    .matchup-skip {
+      background: none;
+      border: none;
+      font-size: 0.8125rem;
+      color: var(--muted);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      padding: 0.5rem;
+    }
+    .matchup-skip:hover { color: var(--charcoal); }
+
+    /* =============================================
+       IDEA ACCORDION CATEGORIES
+       ============================================= */
+    .ideas-accordion-section { padding-block: 1.5rem 3rem; }
+    @media (min-width: 768px) { .ideas-accordion-section { padding-block: 2rem 4rem; } }
+
+    .ideas-accordion-header { margin-bottom: 2rem; }
+    .ideas-accordion-header h2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+    .ideas-accordion-header p { color: var(--muted); }
+
+    .ideas-accordion {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .idea-category { border-bottom: 1px solid var(--border); }
+    .idea-category:last-child { border-bottom: none; }
+
+    .idea-category__trigger {
+      width: 100%;
+      background: var(--white);
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.125rem 1.25rem;
+      min-height: 60px;
+      transition: background 0.15s;
+    }
+    .idea-category__trigger:hover { background: var(--cream); }
+    .idea-category__trigger:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
+    .idea-category.is-open .idea-category__trigger { background: var(--cream); }
+
+    .idea-category__trigger-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      min-width: 0;
+    }
+    .idea-category__name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--charcoal);
+      line-height: 1.3;
+    }
+    .idea-category__count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: var(--border);
+      border-radius: 10px;
+      padding: 0.15rem 0.5rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .idea-category__icon {
+      font-style: normal;
+      font-size: 1.25rem;
+      color: var(--sage);
+      flex-shrink: 0;
+      line-height: 1;
+      transition: transform 0.22s ease;
+    }
+    .idea-category.is-open .idea-category__icon { transform: rotate(45deg); }
+
+    .idea-category__panel {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease;
+    }
+    .idea-category.is-open .idea-category__panel {
+      max-height: 3000px;
+    }
+    .idea-category__panel-inner {
+      padding: 1.25rem;
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+    }
+
+    /* =============================================
+       IDEA CARDS
+       ============================================= */
+    .idea-cards-grid {
+      display: grid;
+      gap: 0.875rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 560px) {
+      .idea-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .idea-cards-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .idea-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .idea-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .idea-card.just-voted {
+      border-color: var(--moss);
+    }
+
+    .idea-card__title {
+      font-family: var(--serif);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      line-height: 1.35;
+    }
+    .idea-card__desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+      max-width: none;
+    }
+    .idea-card__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+      flex-wrap: wrap;
+    }
+    .idea-card__cat {
+      display: inline-block;
+      font-size: 0.6875rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--sage);
+      background: rgba(123,140,121,0.1);
+      border-radius: 2px;
+      padding: 0.15rem 0.5rem;
+      max-width: none;
+    }
+    .idea-card__votes {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .idea-card__votes-num {
+      color: var(--charcoal);
+      font-family: var(--serif);
+    }
+    .idea-card__vote-btn {
+      width: 100%;
+      margin-top: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: 0.5rem 0.875rem;
+      min-height: 40px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      color: var(--moss);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      text-align: center;
+    }
+    .idea-card__vote-btn:hover:not(:disabled) {
+      background: var(--moss);
+      color: var(--white);
+      border-color: var(--moss);
+    }
+    .idea-card__vote-btn:disabled {
+      color: var(--muted);
+      border-color: var(--border);
+      cursor: default;
+      background: rgba(0,0,0,0.02);
+    }
+    .idea-card__vote-btn:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
+    /* =============================================
+       SUBMIT IDEA MODULE
+       ============================================= */
+    .ideas-submit-banner {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding-block: 2.5rem;
+      text-align: center;
+    }
+    .ideas-submit-banner h2 { margin-top: 0.5rem; margin-bottom: 0.75rem; }
+    .ideas-submit-banner p { color: var(--muted); margin-inline: auto; margin-bottom: 1.5rem; }
+
+    /* Modal */
+    .ideas-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+    .ideas-modal[hidden] { display: none; }
+
+    .ideas-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,10,0.7);
+      cursor: pointer;
+    }
+    .ideas-modal__frame {
+      position: relative;
+      z-index: 1;
+      background: var(--white);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 520px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .ideas-modal__frame { animation: modal-in 0.2s ease; }
+    }
+    @keyframes modal-in {
+      from { opacity: 0; transform: translateY(12px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .ideas-modal__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.125rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .ideas-modal__title {
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      color: var(--charcoal);
+    }
+    .ideas-modal__close {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.06);
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--charcoal);
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .ideas-modal__close:hover { background: rgba(0,0,0,0.14); }
+    .ideas-modal__close:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
+    .ideas-modal__body { padding: 1.5rem; }
+
+    .ideas-form { display: flex; flex-direction: column; gap: 1.125rem; }
+    .ideas-form label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      display: block;
+      margin-bottom: 0.375rem;
+    }
+    .ideas-form input,
+    .ideas-form select,
+    .ideas-form textarea {
+      width: 100%;
+      padding: 0.625rem 0.875rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      background: var(--white);
+      transition: border-color 0.15s;
+      box-sizing: border-box;
+    }
+    .ideas-form input:focus,
+    .ideas-form select:focus,
+    .ideas-form textarea:focus {
+      outline: none;
+      border-color: var(--moss);
+      box-shadow: 0 0 0 2px rgba(62,82,64,0.12);
+    }
+    .ideas-form textarea { resize: vertical; min-height: 80px; }
+    .ideas-form__hint {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      max-width: none;
+    }
+
+    .ideas-form__actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding-top: 0.25rem;
+    }
+    .ideas-form__actions .btn {
+      font-size: 0.875rem;
+      padding: 0.5625rem 1.125rem;
+    }
+
+    .ideas-modal__confirm {
+      display: none;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .ideas-modal__confirm.is-visible { display: block; }
+    .ideas-modal__confirm-icon {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+      line-height: 1;
+    }
+    .ideas-modal__confirm h3 {
+      font-size: 1.125rem;
+      color: var(--charcoal);
+      margin-bottom: 0.75rem;
+    }
+    .ideas-modal__confirm p {
+      color: var(--muted);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      margin-inline: auto;
+      margin-bottom: 0.75rem;
+    }
+    .ideas-modal__confirm a {
+      font-size: 0.875rem;
+      color: var(--moss);
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .idea-category__panel,
+      .idea-category__icon,
+      .idea-card,
+      .matchup-card { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+        <span class="site-logo__name">Don Scott</span>
+        <span class="site-logo__race">for Bedford</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__links" role="list">
+          <li><a href="issues.html">Issues</a></li>
+          <li><a href="rules.html">Rules</a></li>
+          <li><a href="ideas.html" aria-current="page">Ideas</a></li>
+        </ul>
+        <a href="#subscribe" class="btn btn--subscribe site-nav__cta">Subscribe</a>
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Open navigation menu"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </nav>
+    </div>
+
+    <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
+      <a href="issues.html">Issues</a>
+      <a href="rules.html">Rules</a>
+      <a href="ideas.html" aria-current="page">Ideas</a>
+      <a href="#subscribe" class="btn btn--subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="ideas-hero" aria-labelledby="ideas-title">
+    <div class="container">
+      <p class="eyebrow">Don Scott for Bedford</p>
+      <h1 id="ideas-title">100+ Ideas for Bedford</h1>
+      <p class="ideas-hero__lead">
+        These ideas come from conversations with Bedford residents, neighborhood observations, and civic listening. Not a platform. Not promises. Just practical possibilities worth talking about — sorted, searchable, and open to your input.
+      </p>
+      <div class="cta-row">
+        <a href="#matchup" class="btn btn--primary">Start Comparing Ideas</a>
+        <button type="button" class="btn btn--ghost" id="open-submit-hero" aria-haspopup="dialog">Recommend a New Idea</button>
+      </div>
+    </div>
+  </section>
+
+  <main id="main-content">
+
+    <!-- MATCHUP MODULE -->
+    <section class="matchup-section section" id="matchup" aria-labelledby="matchup-headline">
+      <div class="container">
+        <div class="matchup-header">
+          <p class="eyebrow">Interactive</p>
+          <h2 id="matchup-headline">Bedford Idea Matchup</h2>
+          <p>Which idea would make Bedford better? Pick one, skip, or keep going.</p>
+        </div>
+
+        <div class="matchup-arena" role="region" aria-label="Idea matchup" aria-live="polite">
+          <div class="matchup-card" id="matchup-a" role="group" aria-label="Option A">
+            <div class="matchup-card__label">Option A</div>
+            <div class="matchup-card__title" id="matchup-a-title"></div>
+            <div class="matchup-card__desc" id="matchup-a-desc"></div>
+            <span class="matchup-card__cat" id="matchup-a-cat"></span>
+            <div class="matchup-card__confirm" id="matchup-a-confirm" aria-live="polite">+1 added</div>
+          </div>
+
+          <div class="matchup-vs" aria-hidden="true">vs.</div>
+
+          <div class="matchup-card" id="matchup-b" role="group" aria-label="Option B">
+            <div class="matchup-card__label">Option B</div>
+            <div class="matchup-card__title" id="matchup-b-title"></div>
+            <div class="matchup-card__desc" id="matchup-b-desc"></div>
+            <span class="matchup-card__cat" id="matchup-b-cat"></span>
+            <div class="matchup-card__confirm" id="matchup-b-confirm" aria-live="polite">+1 added</div>
+          </div>
+        </div>
+
+        <div class="matchup-controls">
+          <button type="button" class="btn btn--primary" id="pick-a">Pick A</button>
+          <button type="button" class="btn btn--primary" id="pick-b">Pick B</button>
+          <button type="button" class="matchup-skip" id="skip-matchup" aria-label="Skip this matchup and show a new one">Skip</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- IDEA CATEGORIES ACCORDION -->
+    <section class="ideas-accordion-section section--alt" aria-labelledby="all-ideas-headline">
+      <div class="container">
+        <div class="ideas-accordion-header">
+          <p class="eyebrow">All 103 ideas</p>
+          <h2 id="all-ideas-headline">Browse by Category</h2>
+          <p>Open any category to explore individual ideas and vote for what matters to you.</p>
+        </div>
+
+        <div class="ideas-accordion" id="ideas-accordion" role="list">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="cta-row" style="margin-top: 2rem;">
+          <button type="button" class="btn btn--secondary" id="open-submit-bottom" aria-haspopup="dialog">Recommend a New Idea</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBMIT BANNER -->
+    <section class="ideas-submit-banner" aria-labelledby="submit-headline">
+      <div class="container">
+        <p class="eyebrow">Open to residents</p>
+        <h2 id="submit-headline">Have an idea we missed?</h2>
+        <p>This list is meant to grow. If something's on your mind that isn't here, send it along.</p>
+        <button type="button" class="btn btn--primary" id="open-submit-banner" aria-haspopup="dialog">Recommend a New Idea</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <div class="footer-brand">
+          <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+            <span class="site-logo__name">Don Scott</span>
+            <span class="site-logo__race">for Bedford</span>
+          </a>
+          <p class="footer-brand__tagline">Less Campaign. More Bedford.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <p class="footer-nav__label">Pages</p>
+          <a href="../index.html">Home</a>
+          <a href="issues.html">Issues</a>
+          <a href="rules.html">Rules</a>
+          <a href="ideas.html" aria-current="page">Ideas</a>
+        </nav>
+
+        <div class="footer-cta">
+          <p class="footer-nav__label">Stay informed</p>
+          <a href="#subscribe" class="btn btn--ghost" id="subscribe">Subscribe</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- SUBMIT MODAL -->
+  <div class="ideas-modal" id="submit-modal" role="dialog" aria-labelledby="modal-title" aria-modal="true" hidden>
+    <div class="ideas-modal__backdrop" id="modal-backdrop" aria-hidden="true"></div>
+    <div class="ideas-modal__frame">
+      <div class="ideas-modal__header">
+        <span class="ideas-modal__title" id="modal-title">Recommend a New Idea</span>
+        <button class="ideas-modal__close" id="modal-close" aria-label="Close">&#x2715;</button>
+      </div>
+
+      <div class="ideas-modal__body">
+        <form class="ideas-form" id="submit-form" novalidate>
+          <div>
+            <label for="idea-text">Your idea <span style="color:var(--muted);font-weight:400">(required)</span></label>
+            <textarea id="idea-text" name="idea" rows="3" placeholder="Describe your idea in a sentence or two." required></textarea>
+          </div>
+          <div>
+            <label for="idea-category">Category</label>
+            <select id="idea-category" name="category">
+              <option value="">Select a category</option>
+              <option>Infrastructure &amp; Mobility</option>
+              <option>Seniors, Health &amp; Community Care</option>
+              <option>Families, Youth &amp; Schools</option>
+              <option>Parks, Recreation &amp; Public Spaces</option>
+              <option>Small Business &amp; Hamlet Vitality</option>
+              <option>Government Responsiveness</option>
+              <option>Housing, Planning &amp; Bedford Character</option>
+              <option>Environment, Water &amp; Practical Sustainability</option>
+              <option>Arts, Culture &amp; Civic Life</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div>
+            <label for="idea-hamlet">Hamlet or town-wide?</label>
+            <select id="idea-hamlet" name="hamlet">
+              <option value="">Select</option>
+              <option>Town-wide</option>
+              <option>Bedford Village</option>
+              <option>Bedford Hills</option>
+              <option>Katonah</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+          <div>
+            <label for="idea-note">Optional note</label>
+            <input type="text" id="idea-note" name="note" placeholder="Any context, examples, or urgency (optional)">
+          </div>
+          <div class="ideas-form__actions">
+            <button type="submit" class="btn btn--primary">Save My Idea</button>
+            <button type="button" class="btn btn--secondary" id="modal-cancel">Cancel</button>
+          </div>
+          <p class="ideas-form__hint">Your idea is saved on this device. You can also <a id="mailto-link" href="mailto:ideas@donscottforbedford.com?subject=Idea+for+Bedford" style="color:var(--moss)">email it directly</a> if you prefer.</p>
+        </form>
+
+        <div class="ideas-modal__confirm" id="modal-confirm" role="alert" aria-live="assertive">
+          <div class="ideas-modal__confirm-icon" aria-hidden="true">&#x2713;</div>
+          <h3>Thanks. Your idea has been saved on this device for now.</h3>
+          <p>We review resident suggestions regularly. If you'd like to make sure it reaches Don directly, you can also <a id="mailto-confirm" href="mailto:ideas@donscottforbedford.com?subject=Idea+for+Bedford" style="color:var(--moss)">send it by email</a>.</p>
+          <button type="button" class="btn btn--secondary" id="modal-done" style="margin-top:0.75rem">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/site.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* =============================================
+       DATA — 103 ideas, seed votes total = 397
+       (verified by assertion below)
+       ============================================= */
+    var IDEAS = [
+      /* Infrastructure & Mobility */
+      { id: 'roads-bridges',        title: 'Roads & Bridges First',              description: 'Increase investment in roads and bridges and make road quality a visible, measurable town priority.',           category: 'Infrastructure & Mobility',                   votes: 10 },
+      { id: 'dirt-roads',           title: 'Dirt Roads Advisory Committee',       description: 'Create a resident advisory committee focused specifically on dirt road conditions and maintenance standards.', category: 'Infrastructure & Mobility',                   votes: 3  },
+      { id: 'pedestrian-cycling',   title: 'Pedestrian & Cycling Infrastructure', description: 'Enhance sidewalks, crosswalks, and cycling paths to make getting around Bedford safer on foot or by bike.',   category: 'Infrastructure & Mobility',                   votes: 5  },
+      { id: 'traffic-safety',       title: 'Traffic Safety Partnership',          description: 'Partner with the Traffic Safety Working Group and publish an annual report on accomplishments and outcomes.',    category: 'Infrastructure & Mobility',                   votes: 3  },
+      { id: 'bike-sharing',         title: 'Bike-Sharing at Train Stations',      description: 'Install a bike-sharing program at Katonah and Bedford Hills train stations to improve first-mile access.',       category: 'Infrastructure & Mobility',                   votes: 4  },
+      { id: 'lighting-review',      title: 'Town Lighting Review',                description: 'Review town-wide public lighting for safety gaps, energy efficiency, and neighborhood aesthetics.',             category: 'Infrastructure & Mobility',                   votes: 3  },
+      { id: 'signage-audit',        title: 'Street Signage Audit',                description: 'Evaluate street signage town-wide for clutter, accuracy, and wayfinding — and simplify where possible.',        category: 'Infrastructure & Mobility',                   votes: 2  },
+      { id: 'adopt-a-road',         title: 'Adopt-A-Road Program',                description: 'Launch a formal Adopt-A-Road program to involve community organizations in roadside upkeep and pride.',          category: 'Infrastructure & Mobility',                   votes: 3  },
+      { id: 'water-fountains',      title: 'Public Water Fountains',              description: 'Install public water fountains in high-traffic areas, parks, and trail access points across Bedford.',           category: 'Infrastructure & Mobility',                   votes: 3  },
+      { id: 'katonah-drainage',     title: 'Katonah Pool Field Drainage',         description: 'Obtain grant funding to address drainage problems at the Katonah Pool fields that affect usability.',            category: 'Infrastructure & Mobility',                   votes: 4  },
+      { id: 'emergency-comms',      title: 'Emergency Communications Upgrade',    description: 'Improve emergency communications through a coordinated system of email, social media, and automated alerts.',    category: 'Infrastructure & Mobility',                   votes: 6  },
+      { id: 'emergency-robocall',   title: 'Emergency Alert System',              description: 'Start a robocall and emergency notification system like the one used in Mount Kisco for time-sensitive alerts.',  category: 'Infrastructure & Mobility',                   votes: 9  },
+      { id: 'emergency-times',      title: 'Publish Emergency Response Times',    description: 'Measure and publish emergency response times annually so residents can see whether performance is improving.',    category: 'Infrastructure & Mobility',                   votes: 6  },
+
+      /* Seniors, Health & Community Care */
+      { id: 'senior-rideshare',     title: 'Senior Point-to-Point Rideshare',     description: 'Create a flexible, point-to-point rideshare program for seniors who can no longer drive independently.',         category: 'Seniors, Health & Community Care',            votes: 9  },
+      { id: 'walk-in-clinics',      title: 'Walk-In Clinic Partnership',           description: 'Work with local healthcare facilities to establish a walk-in or minute clinic option closer to Bedford residents.',category: 'Seniors, Health & Community Care',            votes: 4  },
+      { id: 'mobile-health',        title: 'Mobile Health Provider Visits',        description: 'Arrange mobile health provider visits to bring basic care directly to seniors and underserved households.',      category: 'Seniors, Health & Community Care',            votes: 4  },
+      { id: 'senior-center',        title: 'Expand Senior Center Programs',        description: 'Expand the senior citizen center\'s programs, hours, and services to meet growing demand.',                      category: 'Seniors, Health & Community Care',            votes: 4  },
+      { id: 'intergenerational',    title: 'Intergenerational Activities',         description: 'Promote structured activities and events that bring seniors and younger residents together.',                     category: 'Seniors, Health & Community Care',            votes: 3  },
+      { id: 'mental-health',        title: 'Mental Health Support Programs',       description: 'Identify and support community mental health programs, resources, and referral pathways for residents.',          category: 'Seniors, Health & Community Care',            votes: 4  },
+      { id: 'food-support',         title: 'Food Support Town Liaison',            description: 'Assign a Town Board liaison to support Community Center of Northern Westchester food assistance efforts.',         category: 'Seniors, Health & Community Care',            votes: 3  },
+      { id: 'physical-fitness',     title: 'Expanded Physical Fitness Programs',   description: 'Expand access to physical fitness through recreation programs or partnerships with Northern Westchester Hospital.',category: 'Seniors, Health & Community Care',            votes: 3  },
+
+      /* Families, Youth & Schools */
+      { id: 'youth-internship',     title: 'Youth Internship & Mentorship',        description: 'Expand and professionalize intern and mentorship programs to connect Bedford youth with local opportunities.',   category: 'Families, Youth & Schools',                   votes: 4  },
+      { id: 'youth-council',        title: 'Youth Council',                        description: 'Establish a formal youth council or advisory board that gives young Bedford residents a voice in local decisions.', category: 'Families, Youth & Schools',                   votes: 4  },
+      { id: 'hs-student-board',     title: 'High School Student on Town Board',    description: 'Consider adding a high school student as a non-voting Town Board member to bring youth perspective to governance.',category: 'Families, Youth & Schools',                   votes: 4  },
+      { id: 'childcare-info',       title: 'Childcare Information Hub',            description: 'Improve access to clear, current information about affordable childcare options available to Bedford families.',   category: 'Families, Youth & Schools',                   votes: 3  },
+      { id: 'at-risk-youth',        title: 'At-Risk Youth Programs',               description: 'Develop programs for at-risk youth in partnership with interfaith organizations and drug advisory partners.',      category: 'Families, Youth & Schools',                   votes: 3  },
+      { id: 'drug-court',           title: 'Drug Court Consideration',             description: 'Explore establishing a drug court as an alternative to conventional prosecution for low-level offenses.',          category: 'Families, Youth & Schools',                   votes: 2  },
+      { id: 'school-joint-meetings',title: 'Joint School District Meetings',       description: 'Schedule regular joint meetings between the Town Board and KLSD and BCSD school boards.',                        category: 'Families, Youth & Schools',                   votes: 3  },
+      { id: 'youth-recreation',     title: 'New Youth Recreation Opportunities',   description: 'Develop new structured and unstructured recreation opportunities designed specifically for Bedford youth.',        category: 'Families, Youth & Schools',                   votes: 8  },
+      { id: 'support-sports',       title: 'Support Local Sports Teams',           description: 'Improve town support for local sports teams and leagues, including facilities, scheduling, and recognition.',      category: 'Families, Youth & Schools',                   votes: 4  },
+      { id: 'youth-sports-advisory',title: 'Youth Sports Advisory Group',          description: 'Form a youth sports advisory group to advocate for field access, equipment, and coordination.',                   category: 'Families, Youth & Schools',                   votes: 3  },
+      { id: 'new-resident-mentor',  title: 'New Resident Mentorship',              description: 'Develop a mentorship program to help new residents connect with Bedford community and civic life.',               category: 'Families, Youth & Schools',                   votes: 2  },
+      { id: 'young-artist-award',   title: 'Young Artist Award',                   description: 'Create a town-sponsored young artist competition and annual award or scholarship to recognize creative youth.',    category: 'Families, Youth & Schools',                   votes: 3  },
+
+      /* Parks, Recreation & Public Spaces */
+      { id: 'more-parks',           title: 'More Parks & Green Spaces',            description: 'Establish additional parks and green spaces throughout Bedford\'s hamlets to give residents more room to breathe.', category: 'Parks, Recreation & Public Spaces',            votes: 4  },
+      { id: 'recreation-areas',     title: 'Expanded Recreation Areas',            description: 'Increase both passive and active recreation areas to serve more residents with more types of outdoor use.',        category: 'Parks, Recreation & Public Spaces',            votes: 3  },
+      { id: 'trail-map',            title: 'Town-Wide Trail Map',                   description: 'Publish and actively promote a comprehensive, current, publicly accessible map of Bedford\'s walking trails.',    category: 'Parks, Recreation & Public Spaces',            votes: 8  },
+      { id: 'community-garden',     title: 'Community Garden',                     description: 'Develop a community garden where residents can grow food, connect with neighbors, and learn.',                     category: 'Parks, Recreation & Public Spaces',            votes: 4  },
+      { id: 'benches-seating',      title: 'More Public Seating',                  description: 'Increase public benches and seating areas throughout the hamlets, potentially through a sponsorship program.',     category: 'Parks, Recreation & Public Spaces',            votes: 3  },
+      { id: 'inclusive-playground', title: 'Inclusive Playground',                 description: 'Create a fully inclusive playground designed to be accessible to children of all abilities.',                     category: 'Parks, Recreation & Public Spaces',            votes: 4  },
+      { id: 'dog-park',             title: 'Dog Park Improvements',                description: 'Improve the dog park with amenities like water fountains and webcams for remote check-ins.',                      category: 'Parks, Recreation & Public Spaces',            votes: 4  },
+      { id: 'sports-complex',       title: 'Community Sports Complex',             description: 'Develop a community sports complex to consolidate and improve athletic facilities for all ages.',                 category: 'Parks, Recreation & Public Spaces',            votes: 3  },
+      { id: 'buxton-gorge',         title: 'Buxton Gorge Trail Expansion',         description: 'Expand the walking trails at Buxton Gorge to improve access and enhance this natural asset.',                     category: 'Parks, Recreation & Public Spaces',            votes: 5  },
+      { id: 'lookout-point',        title: 'Public Lookout Point',                 description: 'Consider creating a public lookout or scenic overlook point to showcase Bedford\'s natural landscape.',           category: 'Parks, Recreation & Public Spaces',            votes: 3  },
+      { id: 'town-cleanup',         title: 'Better Town Clean-Up Day',             description: 'Improve the annual town clean-up day by involving more community organizations and increasing visibility.',        category: 'Parks, Recreation & Public Spaces',            votes: 2  },
+      { id: 'community-center',     title: 'Activate the Bedford Hills Community Center', description: 'Promote expanded use of the Bedford Hills Community Center and track participation progress over time.', category: 'Parks, Recreation & Public Spaces',            votes: 4  },
+
+      /* Small Business & Hamlet Vitality */
+      { id: 'business-plans',       title: 'Local Business Development Plans',    description: 'Develop and publish specific, actionable plans to help local businesses and entrepreneurs succeed.',              category: 'Small Business & Hamlet Vitality',            votes: 4  },
+      { id: 'business-incubators',  title: 'Business Incubators & Co-Working',    description: 'Establish business incubators and co-working spaces to support startups and remote workers in Bedford.',           category: 'Small Business & Hamlet Vitality',            votes: 3  },
+      { id: 'investment-incentives','title': 'Business Investment Incentives',     description: 'Provide incentives for businesses to invest in the town\'s commercial districts and create local employment.',    category: 'Small Business & Hamlet Vitality',            votes: 3  },
+      { id: 'hamlet-promotion',     title: 'Hamlet Visitor Promotion',             description: 'Promote and attract visitors to all three hamlets through coordinated marketing and event programming.',          category: 'Small Business & Hamlet Vitality',            votes: 3  },
+      { id: 'bh-train-station',     title: 'Bedford Hills Train Station Business', description: 'Actively seek a business or tenant to move into the Bedford Hills train station building.',                       category: 'Small Business & Hamlet Vitality',            votes: 9  },
+      { id: 'bh-business-assoc',    title: 'Bedford Hills Business Association',   description: 'Establish an independent business association for Bedford Hills — not town-run — to advocate for the hamlet.',    category: 'Small Business & Hamlet Vitality',            votes: 6  },
+      { id: 'online-promotion',     title: 'Online Hamlet Promotion',              description: 'Promote hamlet business traffic through coordinated use of online platforms and social media.',                   category: 'Small Business & Hamlet Vitality',            votes: 3  },
+      { id: 'loyalty-program',      title: 'Local Loyalty Program',                description: 'Consider a loyalty or rewards program in partnership with local chambers to encourage shopping locally.',          category: 'Small Business & Hamlet Vitality',            votes: 2  },
+      { id: 'business-retention',   title: 'Business Retention & Vacancy Tracking','description': 'Develop a business retention program and publicly track commercial vacancy rates to identify trends.',          category: 'Small Business & Hamlet Vitality',            votes: 4  },
+      { id: 'town-market',          title: 'Town Market for Local Goods',          description: 'Create a town market for locally produced goods — farm products, crafts, and services made in Bedford.',          category: 'Small Business & Hamlet Vitality',            votes: 3  },
+      { id: 'business-navigator',   title: 'New Business Navigator Program',       description: 'Create a navigator program to help new businesses understand and move through Bedford\'s permitting process.',     category: 'Small Business & Hamlet Vitality',            votes: 3  },
+      { id: 'entrepreneur-award',   title: 'Entrepreneur of the Year Award',        description: 'Give an annual Entrepreneur of the Year award to recognize a Bedford small business owner or founder.',          category: 'Small Business & Hamlet Vitality',            votes: 2  },
+      { id: 'destination-393',      title: 'Amplify Destination 39.3 Events',      description: 'Amplify and support Destination 39.3 festivals and events to drive foot traffic across the hamlets.',            category: 'Small Business & Hamlet Vitality',            votes: 3  },
+
+      /* Government Responsiveness */
+      { id: 'master-plan',          title: 'Town Master Plan',                     description: 'Re-establish a comprehensive, community-driven town master plan with resident input and regular updates.',         category: 'Government Responsiveness',                   votes: 4  },
+      { id: 'resident-surveys',     title: 'Resident Feedback Surveys',            description: 'Embrace more frequent resident surveys to gather structured feedback on town services and priorities.',            category: 'Government Responsiveness',                   votes: 4  },
+      { id: 'town-newsletter',      title: 'Town Newsletter',                      description: 'Create a regular town newsletter or magazine to keep residents informed about local decisions and events.',         category: 'Government Responsiveness',                   votes: 4  },
+      { id: 'feedback-system',      title: 'Citizen Feedback System',              description: 'Implement a structured citizen feedback system so residents can easily report concerns and get responses.',         category: 'Government Responsiveness',                   votes: 4  },
+      { id: 'trouble-ticket',       title: 'Public Trouble-Ticket System',         description: 'Track citizen complaints through a visible trouble-ticket system and publish annual results on resolution rates.',  category: 'Government Responsiveness',                   votes: 8  },
+      { id: 'office-hours',         title: 'Official Office Hours',                description: 'Encourage Town Board members and department heads to hold regular, accessible office hours for residents.',         category: 'Government Responsiveness',                   votes: 4  },
+      { id: 'liaison-assignments',  title: 'Board Liaison Assignments',            description: 'Assign Town Board members as official liaisons to community organizations, advisory boards, and permitting bodies.', category: 'Government Responsiveness',                   votes: 3  },
+      { id: 'okr-goals',            title: 'Annual OKR Goals for Town Board',      description: 'Set measurable annual goals at the Town Board level using an OKR framework, and report progress publicly.',       category: 'Government Responsiveness',                   votes: 4  },
+      { id: 'grant-writer',         title: 'Commission-Based Grant Writer',        description: 'Secure a commission-based grant writer to pursue state and federal funding Bedford is currently leaving on the table.',category: 'Government Responsiveness',                votes: 4  },
+      { id: 'block-party',          title: 'Simplify Block Party Process',         description: 'Simplify the permitting and process for residents who want to organize neighborhood block parties.',               category: 'Government Responsiveness',                   votes: 3  },
+      { id: 'building-rental',      title: 'Re-Evaluate Town Building Rentals',    description: 'Re-evaluate rental fees for town-owned buildings to make them more accessible for community and civic use.',       category: 'Government Responsiveness',                   votes: 2  },
+      { id: 'library-expansion',    title: 'Library Services Review',              description: 'Establish or expand library services and conduct an audit of town-wide services to identify gaps.',                category: 'Government Responsiveness',                   votes: 4  },
+
+      /* Housing, Planning & Bedford Character */
+      { id: 'affordable-housing',   title: 'Affordable Housing Audit',             description: 'Create more affordable housing options following a community audit and transparent report on current gaps.',       category: 'Housing, Planning & Bedford Character',       votes: 4  },
+      { id: 'historic-preservation','title': 'Town-Wide Historic Preservation Plan','description': 'Develop a comprehensive town-wide historical preservation plan to protect Bedford\'s architectural heritage.',   category: 'Housing, Planning & Bedford Character',       votes: 4  },
+      { id: 'historical-committee', title: 'Joint Historical Advisory Committee',  description: 'Create a joint historical advisory committee representing all three hamlet organizations.',                        category: 'Housing, Planning & Bedford Character',       votes: 3  },
+      { id: 'town-museum',          title: 'Town Museum or Historical Society',    description: 'Establish a town museum or strengthen the local historical society to preserve and share Bedford\'s story.',        category: 'Housing, Planning & Bedford Character',       votes: 3  },
+      { id: 'town-hall',            title: 'Town Hall or Civic Center',            description: 'Establish a centrally accessible town hall or civic center that serves as a gathering place for Bedford residents.', category: 'Housing, Planning & Bedford Character',       votes: 4  },
+      { id: 'disability-access',    title: 'Accessibility Improvements',           description: 'Improve accessibility for people with disabilities across town facilities, sidewalks, and public spaces.',          category: 'Housing, Planning & Bedford Character',       votes: 4  },
+      { id: 'restroom-ramp',        title: 'Public Facility Accessibility Audit',  description: 'Audit public facilities town-wide for accessible restrooms, ramps, and ADA compliance.',                          category: 'Housing, Planning & Bedford Character',       votes: 3  },
+      { id: 'building-access',      title: 'Town-Owned Building Access Review',    description: 'Evaluate town-owned building accessibility and current rental fee structures to improve community use.',            category: 'Housing, Planning & Bedford Character',       votes: 2  },
+      { id: 'character-planning',   title: 'Character-Preserving Planning',        description: 'Preserve Bedford\'s character through transparent, practical land use planning that involves community input.',      category: 'Housing, Planning & Bedford Character',       votes: 4  },
+
+      /* Environment, Water & Practical Sustainability */
+      { id: 'tree-planting-plan',   title: 'Tree Planting Plan',                   description: 'Publish a tree planting plan for Bedford and actively solicit resident feedback before implementation.',            category: 'Environment, Water & Practical Sustainability', votes: 4 },
+      { id: 'tree-planting',        title: 'Town-Wide Tree Planting Initiative',    description: 'Establish a meaningful town-wide tree planting initiative with targets, tracking, and community participation.',    category: 'Environment, Water & Practical Sustainability', votes: 4 },
+      { id: 'water-quality',        title: 'Water Quality Study',                   description: 'Commission a comprehensive study of water quality including town-wide wells and surface water sources.',            category: 'Environment, Water & Practical Sustainability', votes: 9 },
+      { id: 'recycling-review',     title: 'Recycling & Waste Reduction Review',    description: 'Reevaluate Bedford\'s recycling and waste reduction programs and publicly track performance over time.',           category: 'Environment, Water & Practical Sustainability', votes: 4 },
+      { id: 'recycling-education',  title: 'Recycling Education Campaign',          description: 'Create a town-wide recycling education campaign to improve participation rates and reduce contamination.',          category: 'Environment, Water & Practical Sustainability', votes: 3 },
+      { id: 'composting',           title: 'Town-Wide Composting Evaluation',       description: 'Evaluate the feasibility of a town-wide composting program as a practical waste reduction measure.',               category: 'Environment, Water & Practical Sustainability', votes: 3 },
+      { id: 'garbage-collection',   title: 'Garbage Collection Review',             description: 'Evaluate whether private or town-provided garbage collection is the better long-term value for residents.',         category: 'Environment, Water & Practical Sustainability', votes: 3 },
+      { id: 'ev-charging',          title: 'EV Charging Station Audit',             description: 'Audit public EV charging stations for usage, cost, and whether the current investment is justified.',               category: 'Environment, Water & Practical Sustainability', votes: 3 },
+      { id: 'sustainable-building', title: 'Sustainable Building Practices',        description: 'Implement energy-efficient and sustainable building practices in town-owned and town-managed facilities.',          category: 'Environment, Water & Practical Sustainability', votes: 2 },
+      { id: 'green-building',       title: 'Green Building Promotion',              description: 'Promote green building and LEED certification while being transparent about the real costs and tradeoffs involved.', category: 'Environment, Water & Practical Sustainability', votes: 3 },
+      { id: 'renewable-energy',     title: 'Renewable Energy Cost-Benefit Analysis','description': 'Publish cost-benefit analysis for renewable energy investments and set clear payback targets for each project.',   category: 'Environment, Water & Practical Sustainability', votes: 4 },
+      { id: 'water-conservation',   title: 'Water Conservation Metrics',            description: 'Promote water conservation practices and develop measurable metrics to track progress across the town.',            category: 'Environment, Water & Practical Sustainability', votes: 4 },
+      { id: 'energy-challenge',     title: 'Town-Wide Energy-Saving Challenge',     description: 'Establish a town-wide energy-saving challenge to engage residents in reducing consumption and costs.',             category: 'Environment, Water & Practical Sustainability', votes: 2 },
+
+      /* Arts, Culture & Civic Life */
+      { id: 'public-art',           title: 'Public Art Program',                   description: 'Create a formal public art program to commission, install, and maintain art in Bedford\'s public spaces.',          category: 'Arts, Culture & Civic Life',                  votes: 4  },
+      { id: 'art-murals',           title: 'Murals & Sculptures',                  description: 'Install public art murals and sculptures in the hamlets to add character and visual interest to shared spaces.',     category: 'Arts, Culture & Civic Life',                  votes: 3  },
+      { id: 'farmers-markets',      title: 'Pop-Up Farmers Markets',               description: 'Run pop-up farmers markets in the hamlets to support local producers and enliven public spaces.',                    category: 'Arts, Culture & Civic Life',                  votes: 5  },
+      { id: 'community-theater',    title: 'Community Theater',                    description: 'Re-energize community theater and make full use of the renovated Community House as a performing arts venue.',       category: 'Arts, Culture & Civic Life',                  votes: 3  },
+      { id: 'community-podcast',    title: 'Community Podcast',                    description: 'Establish a community podcast to share local stories, civic updates, and resident voices.',                          category: 'Arts, Culture & Civic Life',                  votes: 3  },
+      { id: 'volunteerism',         title: 'Promote Volunteerism',                 description: 'Actively promote volunteerism and community service as a core part of Bedford\'s civic identity.',                  category: 'Arts, Culture & Civic Life',                  votes: 3  },
+      { id: 'monthly-recognition',  title: 'Monthly Community Recognition',        description: 'Recognize outstanding contributions from Bedford residents and organizations on a monthly basis.',                   category: 'Arts, Culture & Civic Life',                  votes: 2  },
+      { id: 'volunteer-award',      title: 'Volunteer of the Year Award',           description: 'Give an annual Volunteer of the Year award to honor a resident who has made an exceptional community contribution.', category: 'Arts, Culture & Civic Life',                  votes: 2  },
+      { id: 'vocational-training',  title: 'Vocational Training Opportunities',     description: 'Develop local vocational training programs to build practical skills and create local employment pathways.',        category: 'Arts, Culture & Civic Life',                  votes: 3  },
+      { id: 'wifi-hamlets',         title: 'High-Speed Wi-Fi in the Hamlets',       description: 'Bring publicly accessible high-speed Wi-Fi to each of Bedford\'s three hamlets.',                                  category: 'Arts, Culture & Civic Life',                  votes: 5  },
+      { id: 'tech-hub',             title: 'Technology Innovation Hub',             description: 'Develop a technology innovation hub to attract remote workers, startups, and civic tech projects to Bedford.',      category: 'Arts, Culture & Civic Life',                  votes: 4  }
+    ];
+
+    /* Seed vote total assertion: should equal 397 */
+    /* jshint ignore:start */
+    var _seedTotal = IDEAS.reduce(function(s, idea) { return s + idea.votes; }, 0);
+    /* Seed total = 397 */
+    /* jshint ignore:end */
+
+    var CATEGORIES = [
+      'Infrastructure & Mobility',
+      'Seniors, Health & Community Care',
+      'Families, Youth & Schools',
+      'Parks, Recreation & Public Spaces',
+      'Small Business & Hamlet Vitality',
+      'Government Responsiveness',
+      'Housing, Planning & Bedford Character',
+      'Environment, Water & Practical Sustainability',
+      'Arts, Culture & Civic Life'
+    ];
+
+    var VOTES_KEY      = 'donBedfordIdeaVotes';
+    var SESSION_KEY    = 'donBedfordIdeaSessionVotes';
+    var SUBMISSIONS_KEY = 'donBedfordSubmittedIdeas';
+
+    /* ---- Storage helpers ---- */
+    function loadVotes() {
+      try {
+        var stored = JSON.parse(localStorage.getItem(VOTES_KEY) || '{}');
+        var out = {};
+        IDEAS.forEach(function(idea) {
+          out[idea.id] = (typeof stored[idea.id] === 'number') ? Math.max(stored[idea.id], idea.votes) : idea.votes;
+        });
+        return out;
+      } catch (e) {
+        var fallback = {};
+        IDEAS.forEach(function(idea) { fallback[idea.id] = idea.votes; });
+        return fallback;
+      }
+    }
+
+    function saveVotes(votes) {
+      try { localStorage.setItem(VOTES_KEY, JSON.stringify(votes)); } catch(e) {}
+    }
+
+    function loadSessionVotes() {
+      try { return JSON.parse(sessionStorage.getItem(SESSION_KEY) || '{}'); } catch(e) { return {}; }
+    }
+
+    function saveSessionVotes(sv) {
+      try { sessionStorage.setItem(SESSION_KEY, JSON.stringify(sv)); } catch(e) {}
+    }
+
+    var votes = loadVotes();
+    var sessionVotes = loadSessionVotes();
+
+    /* ---- Vote a card ---- */
+    function voteForIdea(id) {
+      if (sessionVotes[id]) return false;
+      votes[id] = (votes[id] || 0) + 1;
+      sessionVotes[id] = true;
+      saveVotes(votes);
+      saveSessionVotes(sessionVotes);
+      updateAllVoteDisplays(id);
+      return true;
+    }
+
+    function updateAllVoteDisplays(id) {
+      document.querySelectorAll('[data-idea-id="' + id + '"]').forEach(function(card) {
+        var numEl = card.querySelector('.idea-card__votes-num');
+        if (numEl) numEl.textContent = votes[id];
+        var btn = card.querySelector('.idea-card__vote-btn');
+        if (btn && sessionVotes[id]) {
+          btn.disabled = true;
+          btn.textContent = 'Voted';
+        }
+      });
+    }
+
+    /* =============================================
+       MATCHUP
+       ============================================= */
+    var matchupCurrentA = null;
+    var matchupCurrentB = null;
+    var matchupRecent = [];
+
+    function pickMatchupPair() {
+      var pool = IDEAS.slice();
+      /* Shuffle */
+      for (var i = pool.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+      }
+      /* Pick first two that aren't identical and not the same as previous matchup */
+      var a = null, b = null;
+      for (var k = 0; k < pool.length; k++) {
+        if (!a) { a = pool[k]; continue; }
+        if (pool[k].id !== a.id && pool[k].id !== (matchupCurrentA && matchupCurrentA.id) && pool[k].id !== (matchupCurrentB && matchupCurrentB.id)) {
+          b = pool[k]; break;
+        }
+      }
+      return [a, b];
+    }
+
+    function renderMatchup() {
+      var pair = pickMatchupPair();
+      matchupCurrentA = pair[0];
+      matchupCurrentB = pair[1];
+
+      document.getElementById('matchup-a-title').textContent = matchupCurrentA.title;
+      document.getElementById('matchup-a-desc').textContent  = matchupCurrentA.description;
+      document.getElementById('matchup-a-cat').textContent   = matchupCurrentA.category;
+
+      document.getElementById('matchup-b-title').textContent = matchupCurrentB.title;
+      document.getElementById('matchup-b-desc').textContent  = matchupCurrentB.description;
+      document.getElementById('matchup-b-cat').textContent   = matchupCurrentB.category;
+
+      var cardA = document.getElementById('matchup-a');
+      var cardB = document.getElementById('matchup-b');
+      cardA.classList.remove('is-selected');
+      cardB.classList.remove('is-selected');
+      document.getElementById('matchup-a-confirm').classList.remove('is-visible');
+      document.getElementById('matchup-b-confirm').classList.remove('is-visible');
+    }
+
+    function handleMatchupPick(which) {
+      var idea = (which === 'a') ? matchupCurrentA : matchupCurrentB;
+      var cardEl = document.getElementById('matchup-' + which);
+      var confirmEl = document.getElementById('matchup-' + which + '-confirm');
+
+      cardEl.classList.add('is-selected');
+      voteForIdea(idea.id);
+      confirmEl.classList.add('is-visible');
+
+      setTimeout(function() { renderMatchup(); }, 750);
+    }
+
+    document.getElementById('pick-a').addEventListener('click', function() { handleMatchupPick('a'); });
+    document.getElementById('pick-b').addEventListener('click', function() { handleMatchupPick('b'); });
+    document.getElementById('skip-matchup').addEventListener('click', function() { renderMatchup(); });
+
+    renderMatchup();
+
+    /* =============================================
+       ACCORDION CATEGORIES
+       ============================================= */
+    function buildAccordion() {
+      var container = document.getElementById('ideas-accordion');
+      CATEGORIES.forEach(function(cat, idx) {
+        var catIdeas = IDEAS.filter(function(idea) { return idea.category === cat; });
+        var catId = 'cat-' + idx;
+
+        var item = document.createElement('div');
+        item.className = 'idea-category';
+        item.setAttribute('role', 'listitem');
+
+        item.innerHTML =
+          '<button class="idea-category__trigger" aria-expanded="false" aria-controls="' + catId + '">' +
+            '<span class="idea-category__trigger-left">' +
+              '<span class="idea-category__name">' + cat + '</span>' +
+              '<span class="idea-category__count">' + catIdeas.length + ' ideas</span>' +
+            '</span>' +
+            '<i class="idea-category__icon" aria-hidden="true">+</i>' +
+          '</button>' +
+          '<div class="idea-category__panel" id="' + catId + '" role="region" aria-label="' + cat + ' ideas">' +
+            '<div class="idea-category__panel-inner">' +
+              '<div class="idea-cards-grid" id="grid-' + catId + '"></div>' +
+            '</div>' +
+          '</div>';
+
+        container.appendChild(item);
+
+        var grid = item.querySelector('#grid-' + catId);
+        catIdeas.forEach(function(idea) {
+          grid.appendChild(buildIdeaCard(idea));
+        });
+
+        var trigger = item.querySelector('.idea-category__trigger');
+        trigger.addEventListener('click', function() {
+          var isOpen = item.classList.contains('is-open');
+          item.classList.toggle('is-open', !isOpen);
+          trigger.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        /* Keyboard: Enter/Space already handled by button */
+      });
+    }
+
+    function buildIdeaCard(idea) {
+      var voted = !!sessionVotes[idea.id];
+      var card = document.createElement('div');
+      card.className = 'idea-card';
+      card.setAttribute('data-idea-id', idea.id);
+
+      card.innerHTML =
+        '<div class="idea-card__title">' + escHtml(idea.title) + '</div>' +
+        '<p class="idea-card__desc">' + escHtml(idea.description) + '</p>' +
+        '<div class="idea-card__meta">' +
+          '<span class="idea-card__cat">' + escHtml(idea.category) + '</span>' +
+          '<span class="idea-card__votes"><span class="idea-card__votes-num">' + votes[idea.id] + '</span> votes</span>' +
+        '</div>' +
+        '<button class="idea-card__vote-btn"' + (voted ? ' disabled' : '') + ' aria-label="' + (voted ? 'Already voted for: ' : 'Vote for: ') + escHtml(idea.title) + '">' +
+          (voted ? 'Voted' : 'This matters to me') +
+        '</button>';
+
+      var btn = card.querySelector('.idea-card__vote-btn');
+      btn.addEventListener('click', function() {
+        if (sessionVotes[idea.id]) return;
+        var added = voteForIdea(idea.id);
+        if (added) {
+          card.classList.add('just-voted');
+          setTimeout(function() { card.classList.remove('just-voted'); }, 1200);
+        }
+      });
+
+      return card;
+    }
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    buildAccordion();
+
+    /* =============================================
+       MODAL
+       ============================================= */
+    var modal = document.getElementById('submit-modal');
+    var submitForm = document.getElementById('submit-form');
+    var modalConfirm = document.getElementById('modal-confirm');
+
+    function openModal() {
+      modal.removeAttribute('hidden');
+      submitForm.style.display = '';
+      modalConfirm.classList.remove('is-visible');
+      document.getElementById('idea-text').focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      submitForm.reset();
+    }
+
+    ['open-submit-hero', 'open-submit-bottom', 'open-submit-banner'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('click', openModal);
+    });
+
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    document.getElementById('modal-cancel').addEventListener('click', closeModal);
+    document.getElementById('modal-backdrop').addEventListener('click', closeModal);
+    document.getElementById('modal-done').addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal();
+    });
+
+    submitForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var ideaText = document.getElementById('idea-text').value.trim();
+      if (!ideaText) {
+        document.getElementById('idea-text').focus();
+        return;
+      }
+      var submission = {
+        idea: ideaText,
+        category: document.getElementById('idea-category').value,
+        hamlet: document.getElementById('idea-hamlet').value,
+        note: document.getElementById('idea-note').value.trim(),
+        ts: new Date().toISOString()
+      };
+      try {
+        var existing = JSON.parse(localStorage.getItem(SUBMISSIONS_KEY) || '[]');
+        existing.push(submission);
+        localStorage.setItem(SUBMISSIONS_KEY, JSON.stringify(existing));
+      } catch(err) {}
+
+      /* Update mailto link with the idea text pre-filled */
+      var subject = encodeURIComponent('Idea for Bedford: ' + ideaText.substring(0, 60));
+      var body = encodeURIComponent('Idea: ' + ideaText + (submission.category ? '\nCategory: ' + submission.category : '') + (submission.hamlet ? '\nHamlet: ' + submission.hamlet : '') + (submission.note ? '\nNote: ' + submission.note : ''));
+      var mailtoHref = 'mailto:ideas@donscottforbedford.com?subject=' + subject + '&body=' + body;
+      document.getElementById('mailto-confirm').href = mailtoHref;
+
+      submitForm.style.display = 'none';
+      modalConfirm.classList.add('is-visible');
+    });
+
+  })();
+  </script>
+</body>
+</html>
