@@ -2036,6 +2036,9 @@ p { max-width: 68ch; }
   background: rgba(62, 82, 64, 0.035);
   border-top: 1px solid var(--border);
   padding: 1.375rem 1.5rem 1.625rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .rule-card .rule-card__cta-label {
   font-family: var(--sans);
