@@ -1929,7 +1929,7 @@ p { max-width: 68ch; }
   color: var(--muted);
   font-size: 1.0625rem;
   line-height: 1.75;
-  max-width: 58ch;
+  max-width: none;
   margin-bottom: 1rem;
 }
 .rules-intro__standout {
@@ -1963,9 +1963,8 @@ p { max-width: 68ch; }
   box-shadow: var(--shadow-sm);
 }
 
-/* Last rule — slightly stronger treatment */
+/* Last rule — subtle shadow distinction only, no border override */
 .rule-card--finale {
-  border-color: var(--moss);
   box-shadow: 0 2px 12px rgba(62, 82, 64, 0.12);
 }
 .rule-card--finale .rule-card__cta {
@@ -1988,7 +1987,7 @@ p { max-width: 68ch; }
   padding: 1.5rem 1.5rem 1.75rem;
 }
 
-/* Oversized decorative number */
+/* Oversized decorative number (legacy — superseded by .rule-card__icon) */
 .rule-card .rule-card__num {
   display: block;
   font-family: var(--serif);
@@ -1999,6 +1998,23 @@ p { max-width: 68ch; }
   margin-bottom: -0.75rem;
   pointer-events: none;
   user-select: none;
+}
+
+/* Decorative icon — replaces oversized number, low-contrast, non-interactive */
+.rule-card .rule-card__icon {
+  display: block;
+  width: clamp(2.25rem, 7vw, 3.5rem);
+  height: clamp(2.25rem, 7vw, 3.5rem);
+  color: rgba(62, 82, 64, 0.11);
+  margin-bottom: 0.625rem;
+  pointer-events: none;
+  user-select: none;
+}
+.rule-card .rule-card__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  stroke-width: 1.25;
 }
 .rule-card .rule-card__title {
   font-size: clamp(1.125rem, 3.5vw, 1.375rem);
@@ -2059,15 +2075,16 @@ p { max-width: 68ch; }
   margin-top: 3rem;
   padding-top: 2.5rem;
   border-top: 1px solid var(--border);
+  text-align: center;
 }
 .rules-sign-off__line {
   font-family: var(--serif);
   font-size: clamp(1.125rem, 3.5vw, 1.5rem);
   font-style: italic;
   color: var(--charcoal);
-  max-width: 44ch;
+  max-width: none;
   line-height: 1.5;
-  margin-bottom: 1.75rem;
+  margin-inline: auto;
 }
 
 /* Desktop: side-by-side split */
@@ -2077,7 +2094,7 @@ p { max-width: 68ch; }
     align-items: stretch;
   }
   .rule-card .rule-card__content {
-    padding: 2rem 2.25rem 2.25rem;
+    padding: 1.5rem 2rem 1.75rem;
   }
   .rule-card .rule-card__num {
     margin-bottom: -1rem;
@@ -2088,7 +2105,7 @@ p { max-width: 68ch; }
   .rule-card .rule-card__cta {
     border-top: none;
     border-left: 1px solid var(--border);
-    padding: 2rem 2.25rem 2.25rem;
+    padding: 1.5rem 2rem 1.75rem;
   }
   .rule-card--finale .rule-card__cta {
     border-left-color: rgba(255, 255, 255, 0.15);
