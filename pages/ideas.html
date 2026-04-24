@@ -11,9 +11,21 @@
        IDEAS PAGE — Page-specific styles
        ============================================= */
 
-    /* Hero uses site.css .issues-hero / .issues-hero__* classes — no overrides needed */
-    /* Reset the cta-row margin so it sits flush inside issues-hero__copy-bot's flex gap */
+    /* Hero — reset cta-row margin inside issues-hero__copy-bot flex gap */
     .issues-hero__copy-bot .cta-row { margin-top: 0; }
+
+    /* Hero CTA: white-filled button on moss background so it reads as a button at rest.
+       Hover darkens to cream. Keeps the site's button shape/type language. */
+    .issues-hero .btn--primary {
+      background: var(--white);
+      color: var(--moss);
+      border-color: var(--white);
+    }
+    .issues-hero .btn--primary:hover {
+      background: var(--cream);
+      border-color: var(--cream);
+      color: var(--moss);
+    }
 
     /* =============================================
        MATCHUP MODULE
@@ -28,31 +40,36 @@
     .matchup-header h2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
     .matchup-header p { color: var(--muted); margin-top: 0; }
 
-    /* Arena — card | skip | card at all widths */
+    /* Arena: desktop 2-col side-by-side; skip spans both columns below */
     .matchup-arena {
       display: grid;
-      column-gap: 0.5rem;
-      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-      align-items: start;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "a    b"
+        "skip skip";
+      gap: 0.875rem 1rem;
       max-width: 820px;
     }
+    #matchup-a        { grid-area: a; }
+    #matchup-b        { grid-area: b; }
+    .matchup-divider  { display: none; } /* hidden on desktop */
+    .matchup-skip     { grid-area: skip; justify-self: center; }
 
-    /* Matchup cards — now <button> elements */
+    /* Matchup cards — <button> elements, equal height via grid row stretch */
     .matchup-card {
       background: var(--white);
       border: 2px solid var(--border);
       border-radius: 8px;
-      padding: 0.875rem 0.75rem;
+      padding: 1.25rem;
       box-shadow: var(--shadow-sm);
       transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s, background 0.18s;
       display: flex;
       flex-direction: column;
-      gap: 0.375rem;
+      gap: 0.5rem;
       cursor: pointer;
       text-align: left;
       width: 100%;
       font-family: inherit;
-      /* Reset button defaults */
       appearance: none;
       -webkit-appearance: none;
     }
@@ -72,10 +89,7 @@
       transform: translateY(-3px);
       background: #F6FAF6;
     }
-    /* Subtle "tap to pick" hint on hover */
-    .matchup-card:not(.is-selected):hover .matchup-card__label {
-      color: var(--moss);
-    }
+    .matchup-card:not(.is-selected):hover .matchup-card__label { color: var(--moss); }
 
     .matchup-card__label {
       font-size: 0.5625rem;
@@ -88,76 +102,53 @@
     }
     .matchup-card__title {
       font-family: var(--serif);
-      font-size: 0.9375rem;
+      font-size: 1.0625rem;
       color: var(--charcoal);
       line-height: 1.4;
     }
+    /* No clamp — all description text must be fully visible */
     .matchup-card__desc {
-      font-size: 0.8125rem;
+      font-size: 0.875rem;
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.6;
       max-width: none;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      flex: 1;
     }
     .matchup-card__cat {
       display: inline-block;
-      font-size: 0.5625rem;
+      font-size: 0.625rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       font-weight: 600;
       color: var(--sage);
       background: rgba(123,140,121,0.1);
       border-radius: 2px;
-      padding: 0.125rem 0.375rem;
+      padding: 0.15rem 0.5rem;
       max-width: none;
       margin-top: 0.125rem;
     }
     .matchup-card__confirm {
-      font-size: 0.6875rem;
+      font-size: 0.75rem;
       color: var(--moss);
       font-weight: 700;
       opacity: 0;
       transition: opacity 0.3s;
-      min-height: 0.875rem;
+      min-height: 1rem;
       max-width: none;
       margin-top: 0.125rem;
     }
     .matchup-card__confirm.is-visible { opacity: 1; }
 
-    /* Desktop: slightly more breathing room on cards */
-    @media (min-width: 600px) {
-      .matchup-card { padding: 1.25rem 1.125rem; gap: 0.5rem; }
-      .matchup-card__title { font-size: 1.0625rem; }
-      .matchup-card__desc { font-size: 0.875rem; -webkit-line-clamp: 4; }
-      .matchup-card__cat { font-size: 0.625rem; }
-      .matchup-card__confirm { font-size: 0.75rem; }
-    }
-    @media (min-width: 768px) {
-      .matchup-card { padding: 1.5rem; gap: 0.625rem; }
-    }
-
-    /* Skip button — center column between the two matchup cards */
+    /* Skip button — centered below both cards */
     .matchup-skip {
-      /* Mobile: vertical writing so the button stays narrow */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      align-self: stretch;           /* fills the height of the taller card */
       background: none;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       cursor: pointer;
-      padding: 0.75rem 0.375rem;
+      padding: 0.5625rem 1.375rem;
       color: var(--muted);
-      font-size: 0.5625rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      writing-mode: vertical-lr;
-      white-space: nowrap;
+      font-size: 0.875rem;
+      font-weight: 600;
       font-family: var(--sans);
       transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
@@ -167,16 +158,30 @@
       border-color: var(--sage);
     }
     .matchup-skip:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
-    /* Desktop: switch to horizontal text */
-    @media (min-width: 600px) {
-      .matchup-skip {
-        writing-mode: horizontal-tb;
-        text-transform: none;
-        letter-spacing: 0.01em;
-        font-size: 0.8125rem;
-        padding: 0.5rem 0.875rem;
-        align-self: center;
+
+    /* Mobile: stack cards full-width, show "or" divider, skip below */
+    @media (max-width: 599px) {
+      .matchup-arena {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "a"
+          "divider"
+          "b"
+          "skip";
+        gap: 0.625rem;
       }
+      .matchup-divider {
+        grid-area: divider;
+        display: block;
+        text-align: center;
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 0.9375rem;
+        color: var(--muted);
+        padding: 0.125rem 0;
+      }
+      .matchup-card { padding: 1.125rem 1rem; }
+      .matchup-card__title { font-size: 0.9375rem; }
     }
 
     /* Reduced motion */
@@ -381,7 +386,7 @@
       padding-block: 2.5rem;
       text-align: center;
     }
-    .ideas-submit-banner h2 { margin-top: 0.5rem; margin-bottom: 0.75rem; }
+    .ideas-submit-banner h2 { margin-top: 0; margin-bottom: 0.75rem; }
     .ideas-submit-banner .banner-subtext {
       color: var(--muted);
       margin-inline: auto;
@@ -618,9 +623,8 @@
           <p>Which idea would make Bedford better? Tap a card to vote, or skip to see two more.</p>
         </div>
 
-        <!-- Layout: Card A | Skip This Pair | Card B
-             Skip is the center grid column at all viewport widths.
-             On mobile it uses writing-mode:vertical-lr to stay narrow. -->
+        <!-- Desktop:  [Card A]  [Card B]  /  [Skip This Pair centered]
+             Mobile:   [Card A full-width]  [or]  [Card B full-width]  [Skip centered] -->
         <div class="matchup-arena" role="group" aria-label="Idea matchup — choose one">
 
           <button class="matchup-card" id="matchup-a" type="button" aria-label="Vote for Option A">
@@ -631,7 +635,7 @@
             <div class="matchup-card__confirm" id="matchup-a-confirm" aria-live="polite" aria-atomic="true">+1 added</div>
           </button>
 
-          <button type="button" class="matchup-skip" id="skip-matchup" aria-label="Skip — show two new ideas">Skip This Pair</button>
+          <div class="matchup-divider" aria-hidden="true">or</div>
 
           <button class="matchup-card" id="matchup-b" type="button" aria-label="Vote for Option B">
             <div class="matchup-card__label" aria-hidden="true">Option B</div>
@@ -640,6 +644,8 @@
             <span class="matchup-card__cat" id="matchup-b-cat"></span>
             <div class="matchup-card__confirm" id="matchup-b-confirm" aria-live="polite" aria-atomic="true">+1 added</div>
           </button>
+
+          <button type="button" class="matchup-skip" id="skip-matchup" aria-label="Skip — show two new ideas">Skip This Pair</button>
 
         </div>
       </div>
@@ -663,7 +669,6 @@
     <!-- SUBMIT BANNER -->
     <section class="ideas-submit-banner" aria-labelledby="submit-headline">
       <div class="container">
-        <p class="eyebrow">Other Ideas</p>
         <h2 id="submit-headline">Have A New Idea?</h2>
         <p class="banner-subtext">This list is meant to keep growing as Bedford residents add practical ideas for the town.</p>
         <button type="button" class="btn btn--primary" id="open-submit-banner" aria-haspopup="dialog">Recommend a New Idea</button>
