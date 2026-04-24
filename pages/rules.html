@@ -6,6 +6,33 @@
   <meta name="description" content="Ten things Don Scott will not be doing between now and Election Day — and what to do instead.">
   <title>The Rulebook — Don Scott for Bedford Town Supervisor</title>
   <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    /* ── Rules page: Do This Instead CTA sizing ──────────────────────────
+       Scoped entirely to .rule-card so nothing outside this page is touched.
+       Single-button CTAs fill their column for uniform visual weight.
+       Social pair (Rule 03) stays side-by-side, equal-width, slightly smaller. */
+
+    /* Single CTA buttons: full column width → all look the same size */
+    .rule-card .cta-row .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Social pair exception: equal flex halves, a bit smaller than single CTAs */
+    .rule-card .cta-row--social {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .rule-card .cta-row--social .btn {
+      width: auto;
+      flex: 1 1 0;
+      min-width: 0;
+      justify-content: center;
+      font-size: 0.8125rem;
+      padding: 0.4375rem 0.75rem;
+      min-height: 44px;
+    }
+  </style>
 </head>
 <body>
 
@@ -153,7 +180,7 @@
                   <h3 class="rule-card__cta-heading">Give it to the SPCA of Westchester.</h3>
                   <p class="rule-card__cta-text">Invest in pooches, not politicians.</p>
                   <div class="cta-row">
-                    <a href="https://spcawestchester.org/" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Donate to SPCA</a>
+                    <a href="https://spcawestchester.org/" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Donate to the SPCA</a>
                   </div>
                 </div>
               </div>
@@ -187,7 +214,7 @@
                   <p class="rule-card__cta-label">Do this instead</p>
                   <h3 class="rule-card__cta-heading">Follow along on your own terms.</h3>
                   <p class="rule-card__cta-text">I&#8217;ll show up in your feed only if you put me there.</p>
-                  <div class="cta-row">
+                  <div class="cta-row cta-row--social">
                     <!-- PLACEHOLDER: add Facebook page URL when account is live -->
                     <a href="#" class="btn btn--primary" aria-label="Follow on Facebook (coming soon)">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -230,7 +257,7 @@
                   <h3 class="rule-card__cta-heading">Subscribe to my email list.</h3>
                   <p class="rule-card__cta-text">I&#8217;ll come to your inbox on invitation only.</p>
                   <div class="cta-row">
-                    <a href="#subscribe" class="btn btn--primary">Subscribe</a>
+                    <a href="#subscribe" class="btn btn--primary">Sign Up For Emails</a>
                   </div>
                 </div>
               </div>
@@ -299,7 +326,7 @@
                   <h3 class="rule-card__cta-heading">Book a real conversation.</h3>
                   <p class="rule-card__cta-text">Twenty minutes. No agenda. Talk about whatever&#8217;s on your mind.</p>
                   <div class="cta-row">
-                    <a href="contact.html" class="btn btn--primary">Request a Conversation</a>
+                    <a href="contact.html" class="btn btn--primary">Request a Chat</a>
                   </div>
                 </div>
               </div>
@@ -333,7 +360,7 @@
                   <h3 class="rule-card__cta-heading">See how I run this campaign with AI.</h3>
                   <p class="rule-card__cta-text">The whole process is documented and public.</p>
                   <div class="cta-row">
-                    <a href="how-it-works.html" class="btn btn--primary">How it works</a>
+                    <a href="how-it-works.html" class="btn btn--primary">See How It Works</a>
                   </div>
                 </div>
               </div>
@@ -365,7 +392,7 @@
                   <h3 class="rule-card__cta-heading">Read the issues.</h3>
                   <p class="rule-card__cta-text">Seven civic perspectives on Bedford&#8217;s real questions.</p>
                   <div class="cta-row">
-                    <a href="issues.html" class="btn btn--primary">Explore the issues</a>
+                    <a href="issues.html" class="btn btn--primary">Explore The Issues</a>
                   </div>
                 </div>
               </div>
@@ -399,7 +426,7 @@
                   <p class="rule-card__cta-text">Don built a tool that puts me in the picture &#8212; without the grocery store encounter.</p>
                   <div class="cta-row">
                     <!-- PLACEHOLDER: AI photo tool not yet built — update this link when ready -->
-                    <a href="#" class="btn btn--primary" aria-label="AI photo tool (coming soon)">Try it</a>
+                    <a href="#" class="btn btn--primary" aria-label="AI photo tool (coming soon)">Generate Your Own Photo</a>
                   </div>
                 </div>
               </div>
@@ -432,7 +459,7 @@
                   <h3 class="rule-card__cta-heading">Explore the rest of the site.</h3>
                   <p class="rule-card__cta-text">The rules are only the beginning. See how this campaign is being built without the usual money, pressure, or machinery.</p>
                   <div class="cta-row">
-                    <a href="../index.html" class="btn btn--primary">Explore The Site</a>
+                    <a href="../index.html" class="btn btn--primary">Explore The Website</a>
                   </div>
                 </div>
               </div>
