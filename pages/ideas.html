@@ -734,7 +734,7 @@
 
         <div class="ideas-modal__confirm" id="modal-confirm" role="alert" aria-live="assertive">
           <div class="ideas-modal__confirm-icon" aria-hidden="true">&#x2713;</div>
-          <h3>Thanks. Your idea has been saved on this device for now.</h3>
+          <h3 id="modal-confirm-msg">Thanks. Your idea has been saved on this device for now.</h3>
           <p>We review resident suggestions regularly. If you'd like to make sure it reaches Don directly, you can also <a id="mailto-confirm" href="mailto:ideas@donscottforbedford.com?subject=Idea+for+Bedford" style="color:var(--moss)">send it by email</a>.</p>
           <button type="button" class="btn btn--secondary" id="modal-done" style="margin-top:0.75rem">Close</button>
         </div>
@@ -893,6 +893,55 @@
     var _seedTotal = IDEAS.reduce(function(s, i) { return s + i.votes; }, 0);
     /* _seedTotal === 397 */
 
+    /* =============================================
+       API — Google Apps Script backend
+       ============================================= */
+    var IDEAS_API_URL = 'https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec';
+
+    /* Persistent anonymous session ID */
+    var SESSION_ID_KEY = 'donBedfordIdeaSessionId';
+    var sessionId = (function() {
+      var id = '';
+      try { id = localStorage.getItem(SESSION_ID_KEY) || ''; } catch(e) {}
+      if (!id) {
+        id = 'sid_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+        try { localStorage.setItem(SESSION_ID_KEY, id); } catch(e) {}
+      }
+      return id;
+    })();
+
+    /* POST helper: tries text/plain first (Apps Script preferred), falls back to
+       form-encoded if JSON parsing fails, returns null on total failure. */
+    function apiPost(payload) {
+      return fetch(IDEAS_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      })
+      .then(function(r) { return r.json(); })
+      .catch(function() {
+        return fetch(IDEAS_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: new URLSearchParams({ payload: JSON.stringify(payload) }).toString()
+        }).then(function(r) { return r.json(); });
+      })
+      .catch(function(err) {
+        console.warn('[ideas] API request failed:', err);
+        return null;
+      });
+    }
+
+    /* GET helper */
+    function apiGet(url) {
+      return fetch(url)
+        .then(function(r) { return r.json(); })
+        .catch(function(err) {
+          console.warn('[ideas] API GET failed:', err);
+          return null;
+        });
+    }
+
     var CATEGORIES = [
       'Infrastructure & Mobility',
       'Seniors, Health & Community Care',
@@ -964,6 +1013,13 @@
       });
     }
 
+    /* Replace local vote total with server-confirmed value and re-render */
+    function setVoteTotal(id, total) {
+      votes[id] = total;
+      saveVotes(votes);
+      updateAllVoteDisplays(id);
+    }
+
     /* =============================================
        MATCHUP
        ============================================= */
@@ -1026,6 +1082,12 @@
       cardEl.classList.add('is-selected');
       voteForIdea(idea.id);
       confirmEl.classList.add('is-visible');
+      apiPost({
+        action: 'vote', idea_id: idea.id, source: 'matchup',
+        session_id: sessionId, user_agent: navigator.userAgent, page: '/ideas'
+      }).then(function(data) {
+        if (data && typeof data.total_votes === 'number') setVoteTotal(idea.id, data.total_votes);
+      });
 
       setTimeout(function() { renderMatchup(); }, 750);
     }
@@ -1104,6 +1166,12 @@
         if (voteForIdea(idea.id)) {
           card.classList.add('just-voted');
           setTimeout(function() { card.classList.remove('just-voted'); }, 1200);
+          apiPost({
+            action: 'vote', idea_id: idea.id, source: 'card',
+            session_id: sessionId, user_agent: navigator.userAgent, page: '/ideas'
+          }).then(function(data) {
+            if (data && typeof data.total_votes === 'number') setVoteTotal(idea.id, data.total_votes);
+          });
         }
       });
 
@@ -1117,6 +1185,16 @@
     }
 
     buildAccordion();
+
+    /* Hydrate vote totals from API (non-blocking; falls back to seeded/local values) */
+    apiGet(IDEAS_API_URL + '?action=getVotes').then(function(data) {
+      if (!data || !Array.isArray(data.votes)) return;
+      data.votes.forEach(function(item) {
+        if (item.idea_id && typeof item.total_votes === 'number' && item.total_votes > (votes[item.idea_id] || 0)) {
+          setVoteTotal(item.idea_id, item.total_votes);
+        }
+      });
+    });
 
     /* =============================================
        MODAL
@@ -1157,26 +1235,37 @@
       e.preventDefault();
       var ideaText = document.getElementById('idea-text').value.trim();
       if (!ideaText) { document.getElementById('idea-text').focus(); return; }
+      var noteText = document.getElementById('idea-note').value.trim();
 
-      var submission = {
-        idea: ideaText,
-        note: document.getElementById('idea-note').value.trim(),
-        ts:   new Date().toISOString()
-      };
-      try {
-        var existing = JSON.parse(localStorage.getItem(SUBMISSIONS_KEY) || '[]');
-        existing.push(submission);
-        localStorage.setItem(SUBMISSIONS_KEY, JSON.stringify(existing));
-      } catch(err) {}
-
+      /* Update mailto fallback link */
       var subject = encodeURIComponent('Idea for Bedford: ' + ideaText.substring(0, 60));
-      var body    = encodeURIComponent('Idea: ' + ideaText +
-        (submission.note ? '\nNote: ' + submission.note : ''));
+      var body    = encodeURIComponent('Idea: ' + ideaText + (noteText ? '\nNote: ' + noteText : ''));
       document.getElementById('mailto-confirm').href =
         'mailto:ideas@donscottforbedford.com?subject=' + subject + '&body=' + body;
 
-      submitForm.style.display = 'none';
-      modalConfirm.classList.add('is-visible');
+      /* Try API; on null (failure) fall back to localStorage */
+      apiPost({
+        action: 'submitIdea',
+        idea: ideaText,
+        note: noteText,
+        session_id: sessionId,
+        page: '/ideas'
+      }).then(function(data) {
+        var msgEl = document.getElementById('modal-confirm-msg');
+        if (data && data.success) {
+          if (msgEl) msgEl.textContent = 'Thanks. Your Idea Has Been Submitted.';
+        } else {
+          /* Save locally when API is unavailable */
+          try {
+            var existing = JSON.parse(localStorage.getItem(SUBMISSIONS_KEY) || '[]');
+            existing.push({ idea: ideaText, note: noteText, ts: new Date().toISOString() });
+            localStorage.setItem(SUBMISSIONS_KEY, JSON.stringify(existing));
+          } catch(err) {}
+          if (msgEl) msgEl.textContent = 'Thanks. Your Idea Has Been Saved On This Device For Now.';
+        }
+        submitForm.style.display = 'none';
+        modalConfirm.classList.add('is-visible');
+      });
     });
 
   })();
