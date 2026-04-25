@@ -135,9 +135,10 @@
        HOMEPAGE — page-specific overrides
        ============================================= */
 
-    /* AI section: start-align the two body columns on desktop */
+    /* AI section: left column anchored to top; right column (checkmarks) centered vertically */
     @media (min-width: 768px) {
       .ai-section__inner { align-items: start; }
+      .ai-points { align-self: center; }
     }
 
     /* Justified body copy — scoped to sections that warrant it */
@@ -145,28 +146,11 @@
     .spending__body,
     .ai-section__text p { text-align: justify; }
 
-    /* 1. Hero: center eyebrow + H1 within left column (desktop only) */
-    @media (min-width: 768px) {
-      .issues-hero__copy-top .eyebrow,
-      .issues-hero__copy-top h1 { text-align: center; }
-    }
-
-    /* 2. Different section: center header (eyebrow, H2, subcopy) */
-    .different__header { text-align: center; }
-
-    /* 3. Radical Transparency: center eyebrow + H2 in left column (desktop only);
-          remove artificial width cap from subcopy */
-    @media (min-width: 768px) {
-      .spending__left .eyebrow,
-      .spending__left h2 { text-align: center; }
-    }
+    /* Radical Transparency: remove artificial width cap from subcopy */
     .spending__body { max-width: none; }
 
-    /* 4. AI section: full-width centered header above the two columns */
-    .ai-section__header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
+    /* AI section: spacing below full-width header */
+    .ai-section__header { margin-bottom: 2.5rem; }
     .ai-section__header h2 { margin-bottom: 0; }
 
     /* Mobile: center bottom-of-section CTAs */
@@ -193,10 +177,6 @@
     /* =============================================
        FAQ — restyled to match /ideas category rows
        ============================================= */
-
-    /* Center the section header */
-    .faq__header { text-align: center; }
-    .faq__header p { margin-inline: auto; }
 
     /* Accordion container */
     .faq-list {
