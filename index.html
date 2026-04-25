@@ -3,9 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Don Scott is running for Bedford — The Uncampaign. A calm, transparent, AI-assisted campaign that behaves differently.">
-  <title>Don Scott for Bedford — The Uncampaign</title>
+
+  <!-- Primary meta -->
+  <title>Don Scott for Bedford Town Supervisor — The Uncampaign</title>
+  <meta name="description" content="Don Scott is running for Bedford Town Supervisor. No consultants, no mailers, no robocalls. A transparent, low-cost campaign that proves civic participation doesn't require a media budget.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://donscottforbedford.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Don Scott for Bedford Town Supervisor — The Uncampaign">
+  <meta property="og:description" content="No consultants. No mailers. No robocalls. Bedford's Supervisor race deserves a choice, and this campaign proves anyone can make a serious civic argument for under $50.">
+  <meta property="og:url"         content="https://donscottforbedford.com/">
+  <meta property="og:image"       content="https://donscottforbedford.com/assets/img/don-hero.png">
+  <meta property="og:site_name"   content="Don Scott for Bedford">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Don Scott for Bedford Town Supervisor — The Uncampaign">
+  <meta name="twitter:description" content="No consultants. No mailers. No robocalls. Bedford deserves a choice — and a campaign that behaves itself.">
+  <meta name="twitter:image"       content="https://donscottforbedford.com/assets/img/don-hero.png">
+
+  <!-- Browser theme -->
+  <meta name="theme-color" content="#3E5240">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://donscottforbedford.com/#website",
+        "url": "https://donscottforbedford.com/",
+        "name": "Don Scott for Bedford",
+        "description": "The Uncampaign — Don Scott for Bedford Town Supervisor"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://donscottforbedford.com/#don-scott",
+        "name": "Don Scott",
+        "url": "https://donscottforbedford.com/",
+        "jobTitle": "Candidate for Town Supervisor",
+        "description": "Don Scott is a candidate for Bedford Town Supervisor in Bedford, New York, running a transparent, low-cost, AI-assisted campaign called The Uncampaign.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bedford",
+          "addressRegion": "NY",
+          "addressCountry": "US"
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="assets/css/site.css">
+
+  <style>
+    /* =============================================
+       HOMEPAGE — page-specific overrides
+       ============================================= */
+
+    /* AI section: vertically center right column on desktop */
+    @media (min-width: 768px) {
+      .ai-section__inner { align-items: center; }
+    }
+
+    /* Different section: rules CTA link */
+    .different__cta { margin-top: 2rem; }
+
+    /* =============================================
+       FAQ — restyled to match /ideas category rows
+       ============================================= */
+
+    /* Center the section header */
+    .faq__header { text-align: center; }
+    .faq__header p { margin-inline: auto; }
+
+    /* Accordion container */
+    .faq-list {
+      max-width: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Row borders */
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-item:first-child { border-top: none; }
+    .faq-item:last-child  { border-bottom: none; }
+
+    /* Alternating row backgrounds — 5-color cycle matching /ideas */
+    .faq-item:nth-child(5n+1) .faq-item__question { background: var(--white); }
+    .faq-item:nth-child(5n+2) .faq-item__question { background: var(--cream); }
+    .faq-item:nth-child(5n+3) .faq-item__question { background: rgba(123,140,121,0.07); }
+    .faq-item:nth-child(5n+4) .faq-item__question { background: rgba(224,219,211,0.55); }
+    .faq-item:nth-child(5n+5) .faq-item__question { background: rgba(62,82,64,0.05); }
+
+    /* Row trigger — matches /ideas trigger sizing */
+    .faq-item__question {
+      padding: 1.125rem 1.25rem;
+      min-height: 60px;
+      font-size: 1rem;
+      transition: background 0.15s, filter 0.15s, color 0.15s;
+    }
+    .faq-item__question:hover {
+      filter: brightness(0.965);
+      color: var(--charcoal);
+    }
+    .faq-item__question[aria-expanded="true"] {
+      filter: brightness(0.955);
+    }
+
+    /* Answer panel interior — cream bg + separator, full-width text */
+    .faq-item__answer-inner {
+      padding: 1.25rem;
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      padding-bottom: 1.25rem; /* explicit, overrides site.css default */
+    }
+    .faq-item__answer-inner p {
+      max-width: none;
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .faq-item__answer-inner p + p { margin-top: 0.75rem; }
+    .faq-item__answer-inner a { color: var(--moss); }
+
+    /* Center the bottom CTA */
+    .faq__more { text-align: center; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .faq-item__question { transition: none; }
+    }
+  </style>
 </head>
 <body>
 
@@ -48,32 +182,33 @@
     </nav>
   </header>
 
-  <!-- HERO — matches /issues hero structure exactly -->
+  <!-- HERO — exact /issues hero pattern. site.js lightbox handles click-to-expand. -->
   <section class="issues-hero" aria-labelledby="hero-headline">
     <div class="container">
       <div class="issues-hero__inner">
 
         <div class="issues-hero__copy-top">
-          <p class="eyebrow">Bedford, New York &middot; 2025</p>
+          <p class="eyebrow">The Uncampaign</p>
           <h1 id="hero-headline">Bedford deserves&nbsp;a&nbsp;choice.</h1>
         </div>
 
-        <div class="issues-hero__visual issues-hero__visual--static">
+        <!-- Button triggers site.js self-contained lightbox via aria-haspopup="dialog" -->
+        <button type="button" class="issues-hero__visual" aria-label="View expanded image" aria-haspopup="dialog">
           <img
-            src="assets/img/don-hero.png"
+            src="assets/img/home-hero-placeholder.svg"
             alt="Don Scott, candidate for Bedford Town Supervisor"
-            width="680"
-            height="816"
+            width="1600"
+            height="1200"
           >
-        </div>
+        </button>
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">
-            I'm Don Scott, and I'm running for Bedford Town Supervisor. This campaign
-            is also a proof point: anyone can run for local office without a media buying
-            team, strategy consultants, or a pile of money. What you need is to think
-            ahead, be resourceful, communicate clearly, and be accountable. Those are
-            probably useful traits in local government too.
+            This campaign exists because Bedford's Town Supervisor race should not be uncontested.
+            It is also a proof point. You do not need a media buying team, a consultant class,
+            or a pile of money to make a serious civic argument. You need to think ahead,
+            be resourceful, communicate clearly, and be accountable.
+            Bedford could use more of that in campaigns. Probably in government too.
           </p>
         </div>
 
@@ -83,7 +218,7 @@
 
   <main id="main-content">
 
-    <!-- BEHAVES DIFFERENTLY -->
+    <!-- A DIFFERENT KIND OF CAMPAIGN -->
     <section class="section section--alt" aria-labelledby="different-headline">
       <div class="container">
         <div class="different__header">
@@ -124,6 +259,10 @@
             <p class="card__body">This site was built with AI assistance. We're not hiding it. We think that's more interesting than pretending otherwise.</p>
           </li>
         </ul>
+
+        <div class="different__cta">
+          <a href="pages/rules.html" class="btn btn--secondary">Read the campaign rules</a>
+        </div>
       </div>
     </section>
 
@@ -165,7 +304,7 @@
             </div>
 
             <p class="spending__note">
-              Full itemized record &rarr; <a href="pages/spending.html">View the spending page</a>
+              <a href="pages/spending.html">View full spending record &rarr;</a>
             </p>
           </div>
 
@@ -280,7 +419,7 @@
       </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- COMMON QUESTIONS -->
     <section class="section section--alt" aria-labelledby="faq-headline">
       <div class="container">
         <div class="faq__header">
@@ -305,10 +444,22 @@
 
           <div class="faq-item">
             <button class="faq-item__question" aria-expanded="false" aria-controls="faq-2">
-              What does a Town Supervisor actually do?
+              Haven't you run before and lost?
               <i class="faq-item__icon" aria-hidden="true">+</i>
             </button>
             <div class="faq-item__answer" id="faq-2">
+              <div class="faq-item__answer-inner">
+                <p>Yes. But if I did not run this year, the Supervisor election would have been uncontested. Bedford deserves better than that. A healthy local election should give residents a choice, even when the race is uphill.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-3">
+              What does a Town Supervisor actually do?
+              <i class="faq-item__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="faq-item__answer" id="faq-3">
               <div class="faq-item__answer-inner">
                 <p>The Town Supervisor is Bedford's chief executive. The role involves running town government day-to-day, chairing the Town Board, managing the town budget, and representing Bedford in its dealings with county and state agencies. It's a hands-on local job — not a platform for national politics.</p>
               </div>
@@ -316,11 +467,11 @@
           </div>
 
           <div class="faq-item">
-            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-3">
+            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-4">
               Why do you call this the Uncampaign?
               <i class="faq-item__icon" aria-hidden="true">+</i>
             </button>
-            <div class="faq-item__answer" id="faq-3">
+            <div class="faq-item__answer" id="faq-4">
               <div class="faq-item__answer-inner">
                 <p>Because it operates by rejecting most of what modern campaigns treat as standard practice. No door knocking, no mailers, no robocalls, no consultants, no pressure tactics. Part of the point of this campaign is to show that running for office should not feel impossible. You do not need a media buying team or a consultant class to make a serious civic argument. You need to think ahead, be resourceful, communicate clearly, and be honest about what you are doing. The behavior is the message. If we're asking Bedford to trust us with local government, the least we can do is behave respectfully while we're asking.</p>
               </div>
@@ -328,11 +479,11 @@
           </div>
 
           <div class="faq-item">
-            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-4">
+            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-5">
               Are you really spending less than $50?
               <i class="faq-item__icon" aria-hidden="true">+</i>
             </button>
-            <div class="faq-item__answer" id="faq-4">
+            <div class="faq-item__answer" id="faq-5">
               <div class="faq-item__answer-inner">
                 <p>That's the commitment. The spending cap is $49.99, total, for the entire campaign. Every dollar spent is documented on the <a href="pages/spending.html">spending page</a>. The constraint is intentional — it forces creativity and proves the point that good civic engagement doesn't require a war chest.</p>
               </div>
@@ -340,23 +491,23 @@
           </div>
 
           <div class="faq-item">
-            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-5">
+            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-6">
               Are you using AI to run this campaign?
               <i class="faq-item__icon" aria-hidden="true">+</i>
             </button>
-            <div class="faq-item__answer" id="faq-5">
+            <div class="faq-item__answer" id="faq-6">
               <div class="faq-item__answer-inner">
-                <p>Yes, openly. Claude, Anthropic's AI assistant, helped design this website, draft copy, and support strategic thinking. Every AI output was reviewed by a human before going live. We think this is worth being transparent about — not just because it's honest, but because it's genuinely interesting to show what's now possible for a local campaign on a minimal budget.</p>
+                <p>Yes, openly. Claude, Anthropic's AI assistant, helped design this website, draft copy, and support strategic thinking. Every AI output was reviewed by a human before it went live. The AI drafts. Don decides. We think showing how that works is more useful than pretending it doesn't happen.</p>
               </div>
             </div>
           </div>
 
           <div class="faq-item">
-            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-6">
+            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-7">
               How can I talk to Don?
               <i class="faq-item__icon" aria-hidden="true">+</i>
             </button>
-            <div class="faq-item__answer" id="faq-6">
+            <div class="faq-item__answer" id="faq-7">
               <div class="faq-item__answer-inner">
                 <p>Use the <a href="pages/contact.html">Request a Conversation</a> page to reach out directly. You can also submit a question through <a href="pages/ask-don.html">Ask Don</a> — Don reads and responds to those personally.</p>
               </div>
@@ -366,7 +517,8 @@
         </div>
 
         <div class="faq__more">
-          <a href="pages/faq.html" class="btn btn--secondary">See all questions</a>
+          <!-- TODO: update href to pages/ask-don.html once that page is created -->
+          <a href="#" class="btn btn--secondary">Ask Don-Bot</a>
         </div>
       </div>
     </section>
