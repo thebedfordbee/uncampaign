@@ -3,8 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ten things Don Scott will not be doing between now and Election Day — and what to do instead.">
+  <meta name="description" content="Ten things this campaign will not do, and what Don Scott is doing instead: less pressure, less money, more Bedford.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <title>The Rulebook — Don Scott for Bedford Town Supervisor</title>
+  <link rel="canonical" href="https://uncampaign.pages.dev/pages/rules.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uncampaign.pages.dev/pages/rules.html">
+  <meta property="og:title" content="The Rulebook — Don Scott for Bedford">
+  <meta property="og:description" content="Ten things this campaign will not do, and what Don Scott is doing instead: less pressure, less money, more Bedford.">
+  <meta property="og:image" content="https://uncampaign.pages.dev/assets/img/og-image.png">
+  <meta property="og:image:secure_url" content="https://uncampaign.pages.dev/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Rulebook — Don Scott for Bedford. Ten things this campaign will not do.">
+  <meta property="og:site_name" content="Don Scott for Bedford">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://uncampaign.pages.dev/pages/rules.html">
+  <meta name="twitter:title" content="The Rulebook — Don Scott for Bedford">
+  <meta name="twitter:description" content="Ten things this campaign will not do, and what Don Scott is doing instead: less pressure, less money, more Bedford.">
+  <meta name="twitter:image" content="https://uncampaign.pages.dev/assets/img/og-image.png">
+  <meta name="twitter:image:alt" content="The Rulebook — Don Scott for Bedford. Ten things this campaign will not do.">
+
   <!-- Favicons and browser theme -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -14,6 +39,50 @@
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4A5240">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#4A5240">
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://uncampaign.pages.dev/#website",
+        "url": "https://uncampaign.pages.dev/",
+        "name": "Don Scott for Bedford",
+        "description": "The Uncampaign — Don Scott for Bedford Town Supervisor"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://uncampaign.pages.dev/pages/rules.html#webpage",
+        "url": "https://uncampaign.pages.dev/pages/rules.html",
+        "name": "The Rulebook — Don Scott for Bedford Town Supervisor",
+        "description": "Ten things this campaign will not do, and what Don Scott is doing instead: less pressure, less money, more Bedford.",
+        "isPartOf": { "@id": "https://uncampaign.pages.dev/#website" },
+        "about": { "@id": "https://uncampaign.pages.dev/#don-scott" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://uncampaign.pages.dev/assets/img/og-image.png",
+          "width": 1200,
+          "height": 630
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://uncampaign.pages.dev/#don-scott",
+        "name": "Don Scott",
+        "url": "https://uncampaign.pages.dev/",
+        "jobTitle": "Candidate for Town Supervisor",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bedford",
+          "addressRegion": "NY",
+          "addressCountry": "US"
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="../assets/css/site.css">
   <style>
     /* ── Rules page: Do This Instead CTA sizing ──────────────────────────
@@ -41,6 +110,36 @@
       padding: 0.4375rem 0.75rem;
       min-height: 44px;
     }
+
+    /* ── Justified subcopy — scoped to rules page content sections ────────
+       Applies to body/description text only; never headings, labels, buttons,
+       nav, or footer. Page-level style so it cannot affect other pages. */
+    .rule-card__desc,
+    .rule-card__cta-text,
+    .issues-explainer__why p,
+    .issues-explainer__offers p:not(.rules-intro__standout),
+    .personas-intro__lead {
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    /* Override site.css 52ch cap so left column fills the grid column */
+    .issues-explainer__why p,
+    .issues-explainer__offers p:not(.rules-intro__standout) {
+      max-width: none;
+    }
+
+    /* Narrow screens: revert to left-align to preserve readability */
+    @media (max-width: 380px) {
+      .rule-card__desc,
+      .rule-card__cta-text,
+      .issues-explainer__why p,
+      .issues-explainer__offers p:not(.rules-intro__standout),
+      .personas-intro__lead {
+        text-align: left;
+        hyphens: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -55,13 +154,12 @@
 
       <nav class="site-nav" aria-label="Main navigation">
         <ul class="site-nav__links" role="list">
-          <li><a href="issues.html">Issues</a></li>
           <li><a href="rules.html" aria-current="page">Rules</a></li>
+          <li><a href="issues.html">Issues</a></li>
           <li><a href="ideas.html">Ideas</a></li>
           <li><a href="minutes.html">Minutes</a></li>
-          <li><a href="press.html">Press</a></li>
-          <li><a href="photos.html">Photos</a></li>
           <li><a href="odds.html">Odds</a></li>
+          <li><a href="press.html">Press</a></li>
         </ul>
         <a href="#subscribe" class="btn btn--subscribe site-nav__cta">Subscribe</a>
         <button
@@ -78,13 +176,12 @@
     </div>
 
     <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
-      <a href="issues.html">Issues</a>
       <a href="rules.html" aria-current="page">Rules</a>
+      <a href="issues.html">Issues</a>
       <a href="ideas.html">Ideas</a>
       <a href="minutes.html">Minutes</a>
-      <a href="press.html">Press</a>
-      <a href="photos.html">Photos</a>
       <a href="odds.html">Odds</a>
+      <a href="press.html">Press</a>
       <a href="#subscribe" class="btn btn--subscribe">Subscribe</a>
     </nav>
   </header>
@@ -111,7 +208,7 @@
         </button>
 
         <div class="issues-hero__copy-bot">
-          <p class="issues-hero__deck">A short list of things I will not be doing between now and Election Day. On purpose.</p>
+          <p class="issues-hero__deck">A short list of things this campaign will not do. On purpose.</p>
         </div>
 
       </div>
@@ -120,20 +217,36 @@
 
   <main id="main-content">
 
-    <!-- Intro -->
-    <section class="section section--alt section--compact" aria-label="Campaign approach">
+    <!-- Campaign approach intro -->
+    <section class="section section--alt" aria-labelledby="approach-headline">
       <div class="container">
-        <div class="rules-intro">
-          <p>Most campaigns follow a familiar script. Raise money. Print signs. Send mail. Hire consultants. Show up where people are busy and ask them to pretend they&#8217;re thrilled about it.</p>
-          <p class="rules-intro__standout">Mine won&#8217;t.</p>
-          <p>I&#8217;m running because Bedford deserves a choice in an election that should not be uncontested. That does not require noise, pressure, or performance. It requires a name on the ballot, a clear point of view, and an open invitation to talk if you want to.</p>
+        <div class="issues-explainer">
+
+          <div class="issues-explainer__why">
+            <p class="eyebrow">The Familiar Playbook</p>
+            <h2 id="approach-headline">Most Campaigns Follow a Familiar Script</h2>
+            <p>Raise money. Print signs. Send mail. Hire consultants. Show up where people are busy and ask them to pretend they&#8217;re thrilled about it.</p>
+          </div>
+
+          <div class="issues-explainer__offers">
+            <p class="eyebrow">This One Doesn&#8217;t</p>
+            <p class="rules-intro__standout">Mine won&#8217;t.</p>
+            <p>I&#8217;m running because Bedford deserves a choice in an election that should not be uncontested. That does not require noise, pressure, or performance. It requires a name on the ballot, a clear point of view, and an open invitation to talk if you want to.</p>
+          </div>
+
         </div>
       </div>
     </section>
 
     <!-- Rule cards -->
-    <section class="section" aria-label="The ten rules">
+    <section class="section" aria-labelledby="rules-headline">
       <div class="container">
+
+        <div class="personas-intro">
+          <p class="eyebrow">The Campaign Rules</p>
+          <h2 id="rules-headline">Ten Things This Campaign Will Not Do</h2>
+          <p class="personas-intro__lead">Each rule is a deliberate choice. The opposite of every rule is what this campaign is actually doing instead.</p>
+        </div>
 
         <ul class="rule-cards" role="list" aria-label="Campaign rules">
 
@@ -232,8 +345,7 @@
                   <h3 class="rule-card__cta-heading">Follow along on your own terms.</h3>
                   <p class="rule-card__cta-text">I&#8217;ll show up in your feed only if you put me there.</p>
                   <div class="cta-row cta-row--social">
-                    <!-- PLACEHOLDER: add Facebook page URL when account is live -->
-                    <a href="#" class="btn btn--primary" aria-label="Follow on Facebook (coming soon)">
+                    <a href="https://www.facebook.com/DonScottBedfordNY/" class="btn btn--primary" target="_blank" rel="noopener noreferrer" aria-label="Follow on Facebook">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                       Facebook
                     </a>
@@ -375,7 +487,7 @@
                 <div class="rule-card__cta">
                   <p class="rule-card__cta-label">Do this instead</p>
                   <h3 class="rule-card__cta-heading">See how I run this campaign with AI.</h3>
-                  <p class="rule-card__cta-text">The whole process is documented and public.</p>
+                  <p class="rule-card__cta-text">The tools, costs, and decisions are being documented in public.</p>
                   <div class="cta-row">
                     <a href="how-it-works.html" class="btn btn--primary">See How It Works</a>
                   </div>
@@ -440,7 +552,7 @@
                 <div class="rule-card__cta">
                   <p class="rule-card__cta-label">Do this instead</p>
                   <h3 class="rule-card__cta-heading">View the photo timeline.</h3>
-                  <p class="rule-card__cta-text">The full AI-generated campaign photo-op collection, all in one place. Scroll once. Like one if you must.</p>
+                  <p class="rule-card__cta-text">Scroll once. That should cover it.</p>
                   <div class="cta-row">
                     <a href="photos.html" class="btn btn--primary">View the Photo Timeline</a>
                   </div>
@@ -475,7 +587,7 @@
                   <h3 class="rule-card__cta-heading">Explore the rest of the site.</h3>
                   <p class="rule-card__cta-text">The rules are only the beginning. See how this campaign is being built without the usual money, pressure, or machinery.</p>
                   <div class="cta-row">
-                    <a href="../index.html" class="btn btn--primary">Explore The Website</a>
+                    <a href="../index.html" class="btn btn--primary">Explore the Website</a>
                   </div>
                 </div>
               </div>
