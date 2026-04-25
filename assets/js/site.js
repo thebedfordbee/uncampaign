@@ -117,3 +117,65 @@
   }
 
 })();
+
+// --- Hero image lightbox ---
+// Handles any .issues-hero__visual[aria-haspopup="dialog"] button on any page.
+(function () {
+  'use strict';
+
+  var triggers = document.querySelectorAll('.issues-hero__visual[aria-haspopup="dialog"]');
+  if (!triggers.length) return;
+
+  var overlay = document.createElement('div');
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Expanded image');
+  overlay.setAttribute('tabindex', '-1');
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:500;display:none;align-items:center;justify-content:center;padding:1.5rem;background:rgba(10,10,10,0.92);cursor:zoom-out';
+
+  var lbImg = document.createElement('img');
+  lbImg.style.cssText = 'max-width:100%;max-height:90vh;object-fit:contain;display:block;border-radius:6px;box-shadow:0 24px 80px rgba(0,0,0,0.5);cursor:default';
+  lbImg.alt = '';
+
+  var lbClose = document.createElement('button');
+  lbClose.type = 'button';
+  lbClose.setAttribute('aria-label', 'Close expanded image');
+  lbClose.innerHTML = '&#x2715;';
+  lbClose.style.cssText = 'position:fixed;top:0.75rem;right:0.75rem;width:2rem;height:2rem;border-radius:50%;border:none;background:rgba(0,0,0,0.55);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1';
+
+  overlay.appendChild(lbImg);
+  overlay.appendChild(lbClose);
+  document.body.appendChild(overlay);
+
+  function openLightbox(trigger) {
+    var heroImg = trigger.querySelector('img');
+    if (!heroImg) return;
+    lbImg.src = heroImg.src;
+    lbImg.alt = heroImg.alt;
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    overlay.focus();
+  }
+
+  function closeLightbox() {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  triggers.forEach(function (trigger) {
+    trigger.addEventListener('click', function () { openLightbox(trigger); });
+  });
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeLightbox();
+  });
+
+  lbClose.addEventListener('click', function (e) {
+    e.stopPropagation();
+    closeLightbox();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.style.display !== 'none') closeLightbox();
+  });
+})();

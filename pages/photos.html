@@ -11,25 +11,16 @@
        PHOTOS PAGE — page-specific styles
        ============================================= */
 
-    /* Placeholder hero visual — replace with photos-hero.png when ready */
-    .photos-hero__visual-wrap { cursor: default; }
-    .photos-hero__visual-wrap:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.22); }
+    /* Override global p { max-width: 68ch } so bio stays on one line */
+    .profile-bio { max-width: none; }
 
-    .photos-hero__placeholder {
+    /* Hero image — crop portrait selfie to 3:2 landscape hero */
+    .photos-hero-img {
       width: 100%;
+      display: block;
       aspect-ratio: 3/2;
-      background: rgba(255,255,255,0.07);
-      border: 1.5px dashed rgba(255,255,255,0.18);
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      color: rgba(255,255,255,0.3);
-      font-size: 0.6875rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      object-fit: cover;
+      object-position: center top;
     }
 
     /* Profile section */
@@ -514,15 +505,15 @@
           <h1 id="photos-title">The Campaign Photo Archive</h1>
         </div>
 
-        <div class="issues-hero__visual photos-hero__visual-wrap" aria-hidden="true">
-          <div class="photos-hero__placeholder">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-              <circle cx="12" cy="13" r="4"/>
-            </svg>
-            <span>Hero image — coming soon</span>
-          </div>
-        </div>
+        <button type="button" class="issues-hero__visual" aria-label="Expand campaign photo archive image" aria-haspopup="dialog">
+          <img
+            class="photos-hero-img"
+            src="../assets/img/social/selfie.png"
+            alt="Don Scott taking a campaign-style selfie in downtown Bedford"
+            width="1200"
+            height="800"
+          >
+        </button>
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">Every staged campaign photo in one place. AI-generated. Scroll through once. Like one if you must. Share one if your group chat requires evidence.</p>
