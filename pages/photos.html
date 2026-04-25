@@ -289,8 +289,35 @@
       display: flex;
       align-items: stretch;
       flex-shrink: 0;
+      position: relative;
     }
     @media (min-width: 640px) { .photo-modal__img-col { width: 58%; } }
+
+    /* Prev / Next nav arrows */
+    .photo-modal__nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.5);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: background 0.15s;
+      line-height: 1;
+    }
+    .photo-modal__nav:hover { background: rgba(0,0,0,0.85); }
+    .photo-modal__nav:focus-visible { outline: 2px solid rgba(255,255,255,0.8); outline-offset: 2px; }
+    .photo-modal__nav[hidden] { display: none; }
+    .photo-modal__nav--prev { left: 0.5rem; }
+    .photo-modal__nav--next { right: 0.5rem; }
 
     .photo-modal__img-wrap {
       position: relative;
@@ -432,7 +459,8 @@
     .photo-modal__close:focus-visible { outline: 2px solid rgba(255,255,255,0.8); outline-offset: 2px; }
 
     @media (prefers-reduced-motion: reduce) {
-      .photo-modal__like-btn { transition: none; }
+      .photo-modal__like-btn,
+      .photo-modal__nav { transition: none; }
     }
   </style>
 </head>
@@ -661,6 +689,9 @@ VISUAL STYLE
 
       <!-- Image column -->
       <div class="photo-modal__img-col">
+        <button class="photo-modal__nav photo-modal__nav--prev" id="modal-prev-btn" type="button" aria-label="Previous photo" hidden>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
         <div class="photo-modal__img-wrap">
           <img id="modal-img" src="" alt="" />
           <div class="photo-modal__img-placeholder" id="modal-img-placeholder" hidden>
@@ -671,6 +702,9 @@ VISUAL STYLE
             <span id="modal-placeholder-label"></span>
           </div>
         </div>
+        <button class="photo-modal__nav photo-modal__nav--next" id="modal-next-btn" type="button" aria-label="Next photo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
 
       <!-- Info column -->
@@ -711,7 +745,7 @@ VISUAL STYLE
       {
         id:      'ribbon',
         title:   'Ribbon Cutting',
-        caption: 'The ribbon has been cut. These things still require scissors and a local official willing to hold them. #TownSupervisorThings #Bedford',
+        caption: 'Giant scissors are a local candidate\'s best friend this time of year. No, I didn\'t open this place. I just made sure I was standing nearby when someone else did. #ScissorsSeason',
         alt:     'Don Scott at a small ribbon cutting ceremony outside a Bedford community building',
         src:     '../assets/img/social/ribbon.png',
         likes:   14
@@ -719,7 +753,7 @@ VISUAL STYLE
       {
         id:      'shake',
         title:   'The Handshake',
-        caption: 'She knows Bedford better than most officials do. The handshake was just how the conversation started. #ConversationNotCampaigning #Bedford',
+        caption: 'That\'s not cash changing hands. It\'s a firm Bedford handshake between two men doing their best to act like this photo wasn\'t arranged 14 seconds ago. #HandshakeContent',
         alt:     'Don Scott shaking hands warmly with a senior Bedford resident',
         src:     '../assets/img/social/shake.png',
         likes:   9
@@ -727,7 +761,7 @@ VISUAL STYLE
       {
         id:      'baby',
         title:   'Campaign Baby Photo',
-        caption: 'Every campaign includes one of these. This one was quick. The baby had no notes, which was appreciated. #CampaignRequired #Bedford',
+        caption: 'Every campaign eventually requires a tasteful baby photo. This one was completed quickly, respectfully, and without pretending the baby had endorsed anyone. #BabyPhotoObligation',
         alt:     'Don Scott meeting a young baby while out in Bedford',
         src:     '../assets/img/social/baby.png',
         likes:   23
@@ -735,7 +769,7 @@ VISUAL STYLE
       {
         id:      'coffee',
         title:   'Coffee With Residents',
-        caption: 'Two Bedford residents, one table, no printed agenda. This is what talking to people actually looks like. #ConversationNotCampaigning #Bedford',
+        caption: 'Nothing says "serious local candidate" like being photographed near coffee while listening intently. To be fair, we were already talking before someone decided this should become content. #CoffeeWithConstituents',
         alt:     'Don Scott sitting with two Bedford residents over coffee',
         src:     '../assets/img/social/coffee.png',
         likes:   18
@@ -743,7 +777,7 @@ VISUAL STYLE
       {
         id:      'podium',
         title:   'Podium, As Required',
-        caption: 'There is a podium. There is a meeting. There is a lot to talk about in this town. #LocalGovernmentContent #Bedford',
+        caption: 'A podium was located, so naturally I stood behind it for a while. That\'s just how campaigns work. If you can look mildly concerned near a microphone, people assume you\'re prepared. #PodiumSeason',
         alt:     'Don Scott standing at a podium during a Bedford town meeting',
         src:     '../assets/img/social/podium.png',
         likes:   5
@@ -751,7 +785,7 @@ VISUAL STYLE
       {
         id:      'garbage',
         title:   'Cleanup Day',
-        caption: 'Yes, the photo exists. Also, the block looks better. #CivicDuty #Bedford',
+        caption: 'The classic cleanup-day photo: one bag of litter, one candidate, and just enough effort to prove this wasn\'t purely symbolic. In fairness, the block did end up cleaner. #CleanupContent',
         alt:     'Don Scott participating in a community cleanup day in Bedford',
         src:     '../assets/img/social/garbage.png',
         likes:   16
@@ -759,7 +793,7 @@ VISUAL STYLE
       {
         id:      'group',
         title:   'Group Photo',
-        caption: 'Bedford, assembled briefly for a photo. Nobody was ambushed. Nobody signed anything. #Bedford #PhotoOps',
+        caption: 'A classic campaign group photo, where everyone agrees for three seconds to stand close together and look like they\'ve been discussing municipal governance all morning. #GroupPhotoProtocol',
         alt:     'Don Scott posing with a group of Bedford residents',
         src:     '../assets/img/social/group.png',
         likes:   20
@@ -767,7 +801,7 @@ VISUAL STYLE
       {
         id:      'crossing',
         title:   'Crossing Guard Shift',
-        caption: 'Borrowed vest. Real stop sign. Zero cars ran the light. It was a good shift. #CivicDuty #Bedford',
+        caption: 'Some candidates kiss babies. Some candidates inspect potholes. I borrowed a crossing vest and briefly became the most visible unpaid municipal employee in Bedford. #SafetyVestContent',
         alt:     'Don Scott in a crossing guard vest helping residents cross a Bedford street',
         src:     '../assets/img/social/crossing.png',
         likes:   31
@@ -775,7 +809,7 @@ VISUAL STYLE
       {
         id:      'map',
         title:   'Reviewing the Trail Map',
-        caption: 'Bedford\'s trails are worth knowing. A local resident explained the parts no map covers. #Bedford #LocalGovernmentContent',
+        caption: 'Campaigns love a good "candidate studying a map" photo because it suggests leadership, curiosity, and possibly a plan. In reality, a resident was explaining where the good trail actually starts. #MapBasedLeadership',
         alt:     'Don Scott and a resident reviewing a trail map together in Bedford',
         src:     '../assets/img/social/map.png',
         likes:   8
@@ -783,7 +817,7 @@ VISUAL STYLE
       {
         id:      'road',
         title:   'Road Check',
-        caption: 'These roads are in the job description. Decided to actually look at them. #TownSupervisorThings #Bedford',
+        caption: 'You can\'t run for Town Supervisor without eventually crouching near a road and looking disappointed by infrastructure. It\'s one of the oldest rituals in local politics. #PotholeAdjacency',
         alt:     'Don Scott inspecting a Bedford road or street condition',
         src:     '../assets/img/social/road.png',
         likes:   12
@@ -791,7 +825,7 @@ VISUAL STYLE
       {
         id:      'porch',
         title:   'Front Porch Conversation',
-        caption: 'This is what the campaign is actually for. Not the podiums. Not the photos. This. #ConversationNotCampaigning #Bedford',
+        caption: 'This is the only photo here that actually matters. Two chairs, one porch, no performance. The rest of the album is mostly to satisfy campaign traditions and the internet. #ConversationNotCampaigning',
         alt:     'Don Scott sitting with a Bedford resident on a front porch in conversation',
         src:     '../assets/img/social/porch.png',
         likes:   27
@@ -799,7 +833,7 @@ VISUAL STYLE
       {
         id:      'dog',
         title:   'Candidate Meets Dog',
-        caption: 'The dog asked nothing of me, which was refreshing. The owners did, and we talked for a while. #Bedford #LocalGovernmentContent',
+        caption: 'The dog was immediately supportive, which I appreciated. The owners had actual questions, which felt more on brand for Bedford. #DogFirstOutreach',
         alt:     'Don Scott crouching to pet a dog while meeting a resident couple in Bedford',
         src:     '../assets/img/social/dog.png',
         likes:   38
@@ -956,22 +990,50 @@ VISUAL STYLE
     var downloadBtn = document.getElementById('modal-download-btn');
     var likeBtn     = document.getElementById('modal-like-btn');
     var likeCount   = document.getElementById('modal-like-count');
+    var prevBtn     = document.getElementById('modal-prev-btn');
+    var nextBtn     = document.getElementById('modal-next-btn');
     var currentPhoto = null;
 
-    function openModal(photo) {
-      currentPhoto = photo;
+    function getCurrentPhotoIndex() {
+      if (!currentPhoto) return -1;
+      for (var i = 0; i < PHOTOS.length; i++) {
+        if (PHOTOS[i].id === currentPhoto.id) return i;
+      }
+      return -1;
+    }
 
+    function updateNavButtons() {
+      var idx = getCurrentPhotoIndex();
+      if (idx <= 0) { prevBtn.setAttribute('hidden', ''); } else { prevBtn.removeAttribute('hidden'); }
+      if (idx < 0 || idx >= PHOTOS.length - 1) { nextBtn.setAttribute('hidden', ''); } else { nextBtn.removeAttribute('hidden'); }
+    }
+
+    function updateModalContent(photo) {
+      currentPhoto = photo;
       var captionEl = document.getElementById('modal-caption');
       captionEl.innerHTML = '<strong class="photo-modal__caption-handle">donforbedford</strong> ' + escHtml(photo.caption);
       modalImg.alt = photo.alt;
-
       loadModalImage(photo);
       renderLikeState(photo);
-
+      updateNavButtons();
       history.replaceState(null, '', '#' + photo.id);
+    }
+
+    function openModal(photo) {
+      updateModalContent(photo);
       modal.removeAttribute('hidden');
       document.body.style.overflow = 'hidden';
       document.getElementById('photo-modal-close').focus();
+    }
+
+    function goPreviousPhoto() {
+      var idx = getCurrentPhotoIndex();
+      if (idx > 0) updateModalContent(PHOTOS[idx - 1]);
+    }
+
+    function goNextPhoto() {
+      var idx = getCurrentPhotoIndex();
+      if (idx >= 0 && idx < PHOTOS.length - 1) updateModalContent(PHOTOS[idx + 1]);
     }
 
     function closeModal() {
@@ -1122,8 +1184,16 @@ VISUAL STYLE
     /* Close handlers */
     document.getElementById('photo-modal-close').addEventListener('click', closeModal);
     document.getElementById('photo-modal-backdrop').addEventListener('click', closeModal);
+
+    /* Nav handlers */
+    prevBtn.addEventListener('click', goPreviousPhoto);
+    nextBtn.addEventListener('click', goNextPhoto);
+
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal();
+      if (modal.hasAttribute('hidden')) return;
+      if (e.key === 'Escape') { closeModal(); return; }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); goPreviousPhoto(); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); goNextPhoto(); }
     });
 
     /* =============================================
