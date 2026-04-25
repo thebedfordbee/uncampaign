@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ten reasons Don Scott could win, ten reasons he could lose, and two election-night speeches written in advance because this campaign believes in transparency over theater.">
+  <title>How This Could Go | Don Scott for Bedford</title>
+  <link rel="canonical" href="https://thebedfordbee.github.io/don-scott/pages/odds.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://thebedfordbee.github.io/don-scott/pages/odds.html">
+  <meta property="og:title"       content="How This Could Go | Don Scott for Bedford">
+  <meta property="og:description" content="Ten reasons Don Scott could win, ten reasons he could lose, and two election-night speeches written in advance.">
+  <meta property="og:site_name"   content="Don Scott for Bedford">
+  <meta property="og:locale"      content="en_US">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="How This Could Go | Don Scott for Bedford">
+  <meta name="twitter:description" content="Ten reasons Don could win. Ten reasons he could lose. Both speeches written before Election Day.">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "How This Could Go | Don Scott for Bedford",
+    "description": "Ten reasons Don Scott could win, ten reasons he could lose, and two election-night speeches written in advance because this campaign believes in transparency over theater.",
+    "url": "https://thebedfordbee.github.io/don-scott/pages/odds.html",
+    "isPartOf": {
+      "@id": "https://thebedfordbee.github.io/don-scott/#website"
+    },
+    "about": {
+      "@type": "Person",
+      "name": "Don Scott",
+      "jobTitle": "Candidate for Bedford Town Supervisor"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Don Scott for Bedford"
+    }
+  }
+  </script>
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    /* ── Odds page: page-scoped styles ─────────────────────────────────────
+       All rules scoped so nothing outside this page is affected.
+       Uses existing design tokens throughout. */
+
+    /* Hero: white primary button on moss background — mirrors ideas.html */
+    .issues-hero .btn--primary {
+      background: var(--white);
+      color: var(--moss);
+      border-color: var(--white);
+    }
+    .issues-hero .btn--primary:hover {
+      background: var(--cream);
+      border-color: var(--cream);
+      color: var(--moss);
+    }
+    .issues-hero .btn--secondary {
+      border-color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.85);
+    }
+    .issues-hero .btn--secondary:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.7);
+      color: var(--white);
+    }
+    .issues-hero__copy-bot .cta-row { margin-top: 0; }
+
+    /* Two-column odds layout */
+    .odds-columns {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    @media (min-width: 768px) {
+      .odds-columns {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+      }
+    }
+
+    .odds-column__heading {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--charcoal);
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      line-height: 1.35;
+    }
+    .odds-column__intro {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.65;
+      font-style: italic;
+    }
+    .odds-column--win .odds-column__heading { color: var(--moss); }
+    .odds-column--lose .odds-column__heading { color: var(--sage); }
+
+    .odds-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.125rem;
+    }
+    .odds-list__item {
+      display: flex;
+      gap: 0.875rem;
+      align-items: flex-start;
+    }
+    .odds-list__num {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--sage);
+      min-width: 1.5rem;
+      padding-top: 0.25em;
+      flex-shrink: 0;
+      font-family: var(--sans);
+    }
+    .odds-column--win .odds-list__num { color: var(--moss); }
+    .odds-list__text {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--charcoal);
+    }
+    .odds-list__reason {
+      display: block;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.2rem;
+    }
+
+    /* Speeches intro */
+    .speeches-intro {
+      max-width: 68ch;
+      margin-bottom: 2rem;
+    }
+    .speeches-intro p {
+      color: var(--muted);
+      margin-top: 0;
+      line-height: 1.75;
+    }
+    .speeches-intro a { color: var(--moss); }
+
+    /* Speech accordion headers — extend .faq-item__question layout */
+    .speech-q-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+    }
+    .speech-q-heading {
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      line-height: 1.4;
+    }
+    .speech-q-sub {
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* Speech body text */
+    .speech-text {
+      font-family: var(--serif);
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--charcoal);
+      padding-bottom: 1.75rem;
+    }
+    .speech-text p + p { margin-top: 1rem; }
+
+    /* Prediction CTA box */
+    .prediction-cta-box {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 640px;
+      margin-top: 1.5rem;
+    }
+    .prediction-cta-box p {
+      color: var(--muted);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      line-height: 1.75;
+    }
+    .prediction-placeholder-note {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      border-left: 2px solid var(--sage);
+      padding-left: 0.75rem;
+      margin-top: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* Section anchor offset for sticky nav */
+    #the-odds, #speeches { scroll-margin-top: 70px; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+        <span class="site-logo__name">Don Scott</span>
+        <span class="site-logo__race">for Bedford</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__links" role="list">
+          <li><a href="issues.html">Issues</a></li>
+          <li><a href="rules.html">Rules</a></li>
+          <li><a href="ideas.html">Ideas</a></li>
+          <li><a href="minutes.html">Minutes</a></li>
+          <li><a href="press.html">Press</a></li>
+          <li><a href="odds.html" aria-current="page">Odds</a></li>
+        </ul>
+        <a href="#subscribe" class="btn btn--subscribe site-nav__cta">Subscribe</a>
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Open navigation menu"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </nav>
+    </div>
+
+    <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
+      <a href="issues.html">Issues</a>
+      <a href="rules.html">Rules</a>
+      <a href="ideas.html">Ideas</a>
+      <a href="minutes.html">Minutes</a>
+      <a href="press.html">Press</a>
+      <a href="odds.html" aria-current="page">Odds</a>
+      <a href="#subscribe" class="btn btn--subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <!-- HERO — matches .issues-hero pattern from site.css -->
+  <section class="issues-hero" aria-labelledby="odds-title">
+    <div class="container">
+      <div class="issues-hero__inner">
+
+        <div class="issues-hero__copy-top">
+          <p class="eyebrow">A little honesty before Election Day</p>
+          <h1 id="odds-title">How This Could Go</h1>
+        </div>
+
+        <!-- Placeholder matches .issues-hero__visual--placeholder pattern -->
+        <div class="issues-hero__visual issues-hero__visual--placeholder" role="img" aria-label="Placeholder image for the How This Could Go page">
+          <span>How This Could Go</span>
+        </div>
+
+        <div class="issues-hero__copy-bot">
+          <p class="issues-hero__deck">This campaign is not pretending certainty. It is making a choice available. Here are ten reasons Don could win, ten reasons he could lose, and the two speeches he wrote ahead of time because this campaign is committed to transparency, not theater.</p>
+          <div class="cta-row">
+            <a href="#the-odds" class="btn btn--primary">Read the odds</a>
+            <a href="#speeches" class="btn btn--secondary">Read the speeches</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <main id="main-content">
+
+    <!-- SECTION 1: THE ODDS -->
+    <section class="section section--alt" id="the-odds" aria-labelledby="odds-columns-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Both directions, honestly</p>
+          <h2 id="odds-columns-headline">The case for both outcomes</h2>
+          <p class="section-header__lead section-header__lead--wide">Most campaign websites pretend the ending is obvious. This one will not. Bedford is a heavily Democratic town. Don is running as a Republican. The race is buried low on a high-turnout even-year ballot. That is the reality.</p>
+          <p class="section-header__lead section-header__lead--wide" style="margin-top:0.75rem">But local government is supposed to be local. The Town Supervisor is not being asked to settle Washington. The job is roads, budgets, process, transparency, communication, and common sense. So here is the honest case for how Don could win, and how he could lose.</p>
+        </div>
+
+        <div class="odds-columns">
+
+          <!-- WIN COLUMN -->
+          <div class="odds-column odds-column--win">
+            <h3 class="odds-column__heading">10 reasons Don could win</h3>
+            <p class="odds-column__intro">If Don wins, it will be because enough Bedford voters decided local government should be local again.</p>
+            <ol class="odds-list" aria-label="Ten reasons Don could win">
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">1</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because local government is not cable news.</span>The Town Supervisor is not being asked to settle Washington. The job is practical, local, and close to home.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">2</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because there is no partisan way to pave a road.</span>Potholes do not care how anyone voted for president.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">3</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because Bedford voters are smarter than the ballot designers assume.</span>A long even-year ballot encourages straight-ticket habits. It does not require them.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">4</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because people are tired of national politics leaking into everything.</span>Plenty of residents want at least one part of civic life that still feels practical and neighborly.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">5</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because Don is running as a person, not a costume.</span>This campaign asks residents to evaluate a neighbor, not a slogan.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">6</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because calm is underrated.</span>In a political culture built on volume, a restrained campaign can stand out precisely because it refuses to perform outrage.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">7</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because Bedford deserves a real choice.</span>Some voters may reward the simple act of showing up seriously in a race that could have gone uncontested.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">8</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because transparency builds trust.</span>Publishing the rules, the spending, the AI use, and even the possible election-night speeches is either refreshing or deeply strange. Possibly both. Either way, it is memorable.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">9</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because voters can tell when someone actually lives here.</span>Local credibility matters. If residents believe Don understands Bedford as a place rather than a platform, that matters more than party labels for some people.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">10</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because enough people may decide that local office should be earned, not inherited.</span>Even in an uphill race, a meaningful number of independent-minded voters can change the shape of the result.</div>
+              </li>
+            </ol>
+          </div>
+
+          <!-- LOSE COLUMN -->
+          <div class="odds-column odds-column--lose">
+            <h3 class="odds-column__heading">10 reasons Don could lose</h3>
+            <p class="odds-column__intro">If Don loses, it may have less to do with Don than with how modern ballots flatten local judgment into national reflex.</p>
+            <ol class="odds-list" aria-label="Ten reasons Don could lose">
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">1</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because many voters never make it to the bottom of the ballot with fresh eyes.</span>By the time they reach Town Supervisor, they may still be voting emotionally about offices much higher up.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">2</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because party labels do a lot of work for busy people.</span>Not always thoughtful work, but efficient work.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">3</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because New York made local races more national by design.</span>Moving local elections into even years means local offices now compete with national noise.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">4</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because some people will vote the line and never look back.</span>The candidate could be a saint, a lunatic, or a Labrador retriever. The bubble still gets filled in.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">5</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because &#8220;Republican&#8221; may be the only word some voters notice.</span>In a heavily Democratic town, that one letter can erase the rest of the page for some people.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">6</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because local offices are often decided by habit, not scrutiny.</span>Most residents are busy. Many are not researching Town Supervisor candidates in detail. That is reality, not an insult.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">7</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because down-ballot races are structurally buried.</span>The lower the office, the harder it is to separate substance from straight-ticket momentum.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">8</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because some voters treat every election like a national referendum.</span>Which is a very dramatic way to decide who should run Town Hall.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">9</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because unconventional campaigns are easy to dismiss before they are understood.</span>No signs, no mailers, no fundraising, no consultants, no events. To some people, that reads as thoughtful. To others, it reads as suspiciously calm.</div>
+              </li>
+              <li class="odds-list__item">
+                <span class="odds-list__num" aria-hidden="true">10</span>
+                <div class="odds-list__text"><span class="odds-list__reason">Because Bedford may still prefer the familiar, even when the familiar goes unchallenged.</span>Incumbency plus party alignment plus ballot structure is a real wall. This campaign is honest enough to admit it.</div>
+              </li>
+            </ol>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE SPEECHES -->
+    <section class="section" id="speeches" aria-labelledby="speeches-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Written before anyone voted</p>
+          <h2 id="speeches-headline">Two speeches, both written in advance</h2>
+        </div>
+
+        <div class="speeches-intro">
+          <p>There will be no election night event. As explained on the <a href="rules.html">Rules page</a>, this campaign does not do events, rented rooms, balloons, or performative suspense. So in the interest of full transparency, Don is publishing both speeches in advance.</p>
+        </div>
+
+        <!-- Speech accordions — use .faq-item pattern wired up in site.js -->
+        <div class="faq-list" style="max-width:none">
+
+          <!-- Speech 1: Victory -->
+          <div class="faq-item">
+            <button
+              class="faq-item__question"
+              aria-expanded="false"
+              aria-controls="speech-win"
+            >
+              <span class="speech-q-inner">
+                <span class="speech-q-heading">If Don wins</span>
+                <span class="speech-q-sub">The victory speech, written before anyone voted.</span>
+              </span>
+              <i class="faq-item__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="faq-item__answer" id="speech-win">
+              <div class="faq-item__answer-inner speech-text">
+                <p>Good evening, Bedford.</p>
+                <p>I should begin by noting that I wrote this before the election, which is either an admirable commitment to transparency or a sign that this campaign took its own bit too far. Possibly both.</p>
+                <p>If you are reading this because we won, then thank you.</p>
+                <p>Thank you for looking past the letter next to my name. Thank you for treating this race like a local election. Thank you for deciding that Town Supervisor should be about roads, budgets, communication, process, transparency, and whether Town Hall feels connected to the people it serves.</p>
+                <p>There is no Republican way to fill a pothole. There is no Democratic way to answer an email. There is no partisan method for making a meeting easier to understand. Local government is supposed to be practical. It is supposed to be close to the ground. It is supposed to belong to the people who live here.</p>
+                <p>This campaign never pretended to be normal. We did not raise money in the usual way. We did not blanket the town with signs. We did not mail glossy pieces to your house. We did not hire consultants to tell us how to sound like neighbors.</p>
+                <p>We just tried to make a choice available.</p>
+                <p>And enough of you decided that was worth something.</p>
+                <p>I do not read this result as a mandate for theatrics. I read it as a responsibility. A responsibility to govern calmly, to listen carefully, to be honest about what the Town can and cannot do, and to remember that people are tired of politics becoming louder than the problems it is supposed to solve.</p>
+                <p>To everyone who voted for me, thank you.</p>
+                <p>To everyone who did not, I understand. I will work to earn your trust too.</p>
+                <p>And to everyone who thought publishing both a victory speech and a concession speech before Election Day was ridiculous, you were not wrong. But you did read this far.</p>
+                <p>Now the campaign is over. The work begins.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Speech 2: Concession -->
+          <div class="faq-item">
+            <button
+              class="faq-item__question"
+              aria-expanded="false"
+              aria-controls="speech-lose"
+            >
+              <span class="speech-q-inner">
+                <span class="speech-q-heading">If Don loses</span>
+                <span class="speech-q-sub">The concession speech, also written before anyone voted.</span>
+              </span>
+              <i class="faq-item__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="faq-item__answer" id="speech-lose">
+              <div class="faq-item__answer-inner speech-text">
+                <p>Good evening, Bedford.</p>
+                <p>I should begin by congratulating my opponent and thanking everyone who took the time to participate in this election.</p>
+                <p>I should also note that this speech was written before Election Day, because this campaign believed in transparency, efficiency, and apparently removing even the suspense from losing.</p>
+                <p>If you are reading this because we lost, then the first thing to say is simple: Bedford still deserved a choice.</p>
+                <p>That was the point of this campaign from the beginning.</p>
+                <p>We knew the odds. Bedford is a heavily Democratic town. I ran as a Republican. The race sat low on a long even-year ballot dominated by national politics. Many voters were always going to see the party label before they saw the person.</p>
+                <p>That is not bitterness. That is the structure.</p>
+                <p>And it is exactly why this campaign mattered.</p>
+                <p>Local government should not be swallowed whole by national politics. The Town Supervisor does not decide foreign policy. The Town Supervisor does not appoint Supreme Court justices. The Town Supervisor helps manage budgets, roads, land use, communication, services, meetings, and the daily machinery of a town people actually live in.</p>
+                <p>There is no Republican way to pave a road. There is no Democratic way to fix a drainage problem. There is no partisan way to make local government easier to follow.</p>
+                <p>But too often, down-ballot races are decided by habit. The line gets filled in. The office gets overlooked. The person disappears behind the label.</p>
+                <p>If that happened here, then the campaign did not fail to identify the problem. It ran directly into it.</p>
+                <p>I am proud of what we built. We showed that a campaign can exist without fundraising pressure, without signs on every corner, without mailers, without consultants, without pretending that more money equals more seriousness.</p>
+                <p>We used technology openly. We published our rules. We explained our spending. We made useful civic tools. We tried to treat voters like adults.</p>
+                <p>That was worth doing.</p>
+                <p>To everyone who supported this campaign, thank you. To everyone who disagreed with it, thank you for being part of a contested election. And to everyone who never made it this far down the ballot, I suppose this speech was not really for you anyway.</p>
+                <p>Bedford had a choice. That matters.</p>
+                <p>Even when you lose.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PREDICTION SHEET -->
+    <section class="section section--alt" aria-labelledby="prediction-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">A civic experiment</p>
+          <h2 id="prediction-headline">Want to make your own prediction?</h2>
+        </div>
+        <div class="prediction-cta-box">
+          <p>This campaign also includes a lightweight prediction sheet where residents can make their own call about how the race might go. No money changes hands. No gambling. Just a small civic experiment in expectations, turnout, and whether Bedford thinks local politics can still be local.</p>
+          <!-- TODO: Replace href below with the live prediction app URL before launch -->
+          <a href="https://example.com/bedford-odds" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Open the prediction sheet</a>
+          <p class="prediction-placeholder-note"><em>Placeholder link. Replace with the live prediction app URL before launch.</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: HOW THIS WAS BUILT -->
+    <section class="section" aria-labelledby="howbuilt-odds-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">How this was built</p>
+          <h2 id="howbuilt-odds-headline">This Campaign Shows Its Work</h2>
+          <p class="section-header__lead section-header__lead--wide">
+            This page was built as part of the campaign&#8217;s commitment to radical transparency. Most campaign websites only publish confidence. This one publishes uncertainty too.
+          </p>
+          <p class="section-header__lead section-header__lead--wide" style="margin-top:0.75rem">
+            The structure, copy, and layout were developed with AI assistance, then reviewed and edited by a human before publication. The goal is not to automate judgment. It is to use low-cost tools to make the campaign more open, more useful, and more honest about how it works.
+          </p>
+          <p class="section-header__lead section-header__lead--wide" style="margin-top:0.75rem">
+            We also used AI to help design the betting-style prediction sheet where residents can make their own forecasts about the race without money, gambling, or campaign theatrics.
+          </p>
+        </div>
+
+        <div class="cta-row cta-row--centered">
+          <div class="howbuilt-cta-group">
+            <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-odds" aria-expanded="false">View the instruction set</button>
+          </div>
+        </div>
+
+        <div class="instr-panel" id="instr-panel-odds" hidden>
+          <div class="instr-panel__bar">
+            <span class="instr-panel__title">Public Instruction Set</span>
+            <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+              <span class="instr-panel__copy-label">Copy All</span>
+            </button>
+          </div>
+          <div class="instr-panel__body">
+            <pre class="instr-panel__text">Placeholder: Add the full AI instruction set used to structure this page and the prediction sheet workflow. This should eventually include the prompts, editing process, human review steps, and any implementation notes used to build the public odds page and prediction app.</pre>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <div class="footer-brand">
+          <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+            <span class="site-logo__name">Don Scott</span>
+            <span class="site-logo__race">for Bedford</span>
+          </a>
+          <p class="footer-brand__tagline">Less Campaign. More Bedford.</p>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="https://www.facebook.com/DonScottBedfordNY/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <!-- TODO: replace # with real Instagram URL when available -->
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <p class="footer-nav__label">Pages</p>
+          <a href="../index.html">Home</a>
+          <a href="issues.html">Issues</a>
+          <a href="rules.html">Rules</a>
+          <a href="ideas.html">Ideas</a>
+          <a href="minutes.html">Minutes</a>
+          <a href="press.html">Press</a>
+          <a href="odds.html" aria-current="page">Odds</a>
+        </nav>
+
+        <div class="footer-cta">
+          <p class="footer-nav__label">Stay informed</p>
+          <a href="#subscribe" class="btn btn--ghost" id="subscribe">Subscribe</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
