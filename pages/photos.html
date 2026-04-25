@@ -823,6 +823,68 @@ VISUAL STYLE
     PHOTOS.forEach(function (p) { counts[p.id] = p.likes; });
 
     /* =============================================
+       API — Google Apps Script backend
+       ============================================= */
+    var API_URL = 'https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec';
+
+    var SESSION_ID_KEY = 'donBedfordSessionId';
+    var stableSessionId = (function () {
+      var id = '';
+      try { id = localStorage.getItem(SESSION_ID_KEY) || ''; } catch (e) {}
+      if (!id) {
+        try { id = crypto.randomUUID(); } catch (e) {
+          id = 'sid_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+        }
+        try { localStorage.setItem(SESSION_ID_KEY, id); } catch (e) {}
+      }
+      return id;
+    })();
+
+    function apiPost(payload) {
+      return fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      })
+      .then(function (r) { return r.json(); })
+      .catch(function () {
+        return fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: new URLSearchParams({ payload: JSON.stringify(payload) }).toString()
+        }).then(function (r) { return r.json(); });
+      })
+      .catch(function (err) {
+        console.warn('[photos] API request failed:', err);
+        return null;
+      });
+    }
+
+    function fetchServerLikes() {
+      fetch(API_URL + '?action=getPhotoLikes')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (!data || !data.ok || typeof data.likes !== 'object') return;
+          Object.keys(data.likes).forEach(function (id) {
+            if (typeof counts[id] === 'undefined') return;
+            var entry = data.likes[id];
+            if (entry && typeof entry.total_likes === 'number') {
+              counts[id] = entry.total_likes;
+            }
+          });
+          PHOTOS.forEach(function (p) {
+            document.querySelectorAll('[data-grid-like-count="' + p.id + '"]').forEach(function (el) {
+              el.textContent = counts[p.id];
+            });
+          });
+          if (currentPhoto) renderLikeState(currentPhoto);
+        })
+        .catch(function (err) {
+          console.warn('[photos] Could not load server like counts:', err);
+        });
+    }
+
+    /* =============================================
        IMAGE PRELOAD TRACKING
        ============================================= */
     var imgState = {}; /* true = loaded, false = failed, undefined = pending */
@@ -996,23 +1058,26 @@ VISUAL STYLE
       saveLiked(liked);
       renderLikeState(currentPhoto);
 
-      /*
-       * TODO: Wire to Apps Script endpoint to persist photo likes server-side.
-       * The /ideas endpoint handles action:'vote'; add a new handler to the
-       * Apps Script for photo_like events.
-       *
-       * var API_URL = 'https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec';
-       * fetch(API_URL, {
-       *   method: 'POST',
-       *   headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-       *   body: JSON.stringify({
-       *     action:     'photo_like',
-       *     item_id:    currentPhoto.id,
-       *     item_title: currentPhoto.title,
-       *     page:       '/photos'
-       *   })
-       * }).catch(function () {});
-       */
+      var snapshot = currentPhoto;
+      apiPost({
+        action:     'photo_like',
+        photo_id:   snapshot.id,
+        title:      snapshot.title,
+        session_id: stableSessionId,
+        user_agent: navigator.userAgent,
+        page:       '/photos'
+      }).then(function (data) {
+        if (data && data.ok && typeof data.total_likes === 'number') {
+          counts[snapshot.id] = data.total_likes;
+          if (currentPhoto && currentPhoto.id === snapshot.id) {
+            renderLikeState(currentPhoto);
+          } else {
+            document.querySelectorAll('[data-grid-like-count="' + snapshot.id + '"]').forEach(function (el) {
+              el.textContent = data.total_likes;
+            });
+          }
+        }
+      }).catch(function () {});
     });
 
     /* Share handler */
@@ -1075,6 +1140,7 @@ VISUAL STYLE
     /* Init */
     renderGrid();
     checkHash();
+    fetchServerLikes();
 
   })();
   </script>
