@@ -140,6 +140,13 @@
       .ai-section__inner { align-items: center; }
     }
 
+    /* Justified body copy */
+    .issues-hero__deck,
+    .different__header p,
+    .spending__body,
+    .ai-section__text p,
+    .faq__header p { text-align: justify; }
+
     /* Different section: rules CTA link */
     .different__cta { margin-top: 2rem; }
 
@@ -266,7 +273,7 @@
 
         <div class="issues-hero__copy-top">
           <p class="eyebrow">The Uncampaign</p>
-          <h1 id="hero-headline">Bedford deserves&nbsp;a&nbsp;choice.</h1>
+          <h1 id="hero-headline">Don Scott For Bedford</h1>
         </div>
 
         <!-- Button triggers site.js self-contained lightbox via aria-haspopup="dialog" -->
@@ -283,10 +290,8 @@
           <p class="issues-hero__deck">
             I'm Don Scott, and I'm running for Bedford Town Supervisor because local elections
             should not go uncontested. Bedford deserves a choice. This campaign is also a proof
-            point: you do not need a consultant class, a media buying team, or a pile of money
-            to make a serious civic argument. You need to think ahead, be resourceful,
-            communicate clearly, and be accountable. Those are useful traits in local
-            government too.
+            point: you need to think ahead, be resourceful, and communicate clearly. Those are
+            useful traits in local government too.
           </p>
         </div>
 
@@ -301,7 +306,7 @@
       <div class="container">
         <div class="different__header">
           <p class="eyebrow">A different kind of campaign</p>
-          <h2 id="different-headline">A campaign that behaves differently.</h2>
+          <h2 id="different-headline">A Campaign That Behaves Differently</h2>
           <p>Most campaigns follow a familiar script. This one doesn't. Here's what that actually means in practice.</p>
         </div>
 
@@ -352,7 +357,7 @@
           <!-- Left column: label, headline, copy, comparison bars -->
           <div class="spending__left">
             <p class="eyebrow">Radical transparency</p>
-            <h2 id="spending-headline">The public spending record.</h2>
+            <h2 id="spending-headline">The Public Spending Record</h2>
             <p class="spending__body">
               This campaign has committed to spending $49.99 or less. Not per week. Total.
               Every expense is public. The point is not to be cute. The point is to show
@@ -433,12 +438,10 @@
 
           <div class="ai-section__text">
             <p class="eyebrow">AI transparency</p>
-            <h2 id="ai-headline">Yes, AI helped build this campaign.</h2>
+            <h2 id="ai-headline">Yes, AI Helped Build This Campaign</h2>
             <p>
-              We're not hiding it. Claude, Anthropic's AI assistant, helped design this site,
-              draft copy, think through strategy, and build civic tools. A human reviewed
-              everything before it went live. We think being open about that is more useful
-              than pretending it didn't happen.
+              We're not hiding it. AI helped build this site and refine the approach. We
+              think being open about that is more useful than pretending it didn't happen.
             </p>
             <p>
               Modern tools can lower the barriers to civic participation. A small local
@@ -462,20 +465,6 @@
             <div class="ai-point">
               <i class="ai-point__icon" aria-hidden="true">&#10003;</i>
               <p class="ai-point__text">
-                <strong>Human review always.</strong> No AI output goes public without a human
-                reading it first. The AI drafts. Don decides.
-              </p>
-            </div>
-            <div class="ai-point">
-              <i class="ai-point__icon" aria-hidden="true">&#10003;</i>
-              <p class="ai-point__text">
-                <strong>No fabricated facts.</strong> If something is uncertain, we say so.
-                We don't let the AI invent positions or make up statistics.
-              </p>
-            </div>
-            <div class="ai-point">
-              <i class="ai-point__icon" aria-hidden="true">&#10003;</i>
-              <p class="ai-point__text">
                 <strong>A civic demonstration.</strong> We want to show Bedford residents what
                 this technology can actually do — and why it makes local civic participation
                 more accessible than most people assume.
@@ -492,7 +481,7 @@
       <div class="container">
         <div class="faq__header">
           <p class="eyebrow">Common questions</p>
-          <h2 id="faq-headline">A few things people ask.</h2>
+          <h2 id="faq-headline">Frequently Asked Questions</h2>
           <p>Straightforward answers to the questions we hear most often.</p>
         </div>
 
@@ -541,7 +530,7 @@
             </button>
             <div class="faq-item__answer" id="faq-4">
               <div class="faq-item__answer-inner">
-                <p>Yes, openly. AI helped build parts of this site, draft copy, and support strategy. Every public-facing output was reviewed by a human before it went live. We're being transparent about it because that's the honest thing to do, and because it shows what a small local campaign can now build without a staff or consultant class.</p>
+                <p>Yes, openly. AI helped build this site and refine the approach. We're being transparent about it because that's the honest thing to do, and because it shows what a small local campaign can now build without a staff or a consultant class.</p>
               </div>
             </div>
           </div>
@@ -592,6 +581,15 @@
             <span class="site-logo__race">for Bedford</span>
           </a>
           <p class="footer-brand__tagline">Less Campaign. More Bedford.</p>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="https://www.facebook.com/DonScottBedfordNY/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <!-- TODO: replace # with real Instagram URL when available -->
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
         </div>
 
         <nav class="footer-nav" aria-label="Footer navigation">
@@ -606,11 +604,6 @@
         <div class="footer-cta">
           <p class="footer-nav__label">Stay informed</p>
           <a href="#subscribe" class="btn btn--ghost" id="subscribe">Subscribe</a>
-          <div class="footer-social" aria-label="Social media links">
-            <a href="https://www.facebook.com/DonScottBedfordNY/" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <!-- TODO: replace # with real Instagram URL when available -->
-            <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
-          </div>
         </div>
 
       </div>
