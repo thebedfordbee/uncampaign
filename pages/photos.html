@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Every staged campaign photo in one place. AI-generated. No consultants were harmed.">
+  <title>Campaign Photo Archive — Don Scott for Bedford Town Supervisor</title>
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    /* =============================================
+       PHOTOS PAGE — page-specific styles
+       ============================================= */
+
+    /* Hero: single-column, no side image */
+    .issues-hero__inner--solo {
+      max-width: 640px;
+    }
+    @media (min-width: 768px) {
+      .issues-hero__inner--solo {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+    }
+    .issues-hero__inner--solo h1 { margin-bottom: 0; }
+
+    /* Profile section */
+    .photos-profile-section { padding-block: 2.5rem 0; }
+    @media (min-width: 768px) { .photos-profile-section { padding-block: 3rem 0; } }
+
+    /* ---- Profile Header ---- */
+    .profile-header {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+
+    .profile-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      background: var(--cream);
+      flex-shrink: 0;
+    }
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      display: block;
+    }
+
+    .profile-info { flex: 1; min-width: 0; }
+
+    .profile-handle {
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      display: block;
+      margin-bottom: 0.125rem;
+    }
+    .profile-display-name {
+      font-family: var(--serif);
+      font-size: 0.9375rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.625rem;
+    }
+
+    .profile-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.625rem 1.375rem;
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.75rem;
+    }
+    .profile-stat__value {
+      display: block;
+      font-family: var(--serif);
+      font-weight: bold;
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+    .profile-stat__label {
+      display: block;
+      font-size: 0.6875rem;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    .profile-bio {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0 0 1rem;
+      max-width: 44ch;
+    }
+
+    .profile-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .profile-actions .btn {
+      font-size: 0.8125rem;
+      padding: 0.4375rem 1rem;
+      min-height: 36px;
+    }
+
+    @media (min-width: 600px) {
+      .profile-header { gap: 2rem; align-items: center; }
+      .profile-avatar { width: 96px; height: 96px; }
+      .profile-stats { flex-wrap: nowrap; gap: 2rem; }
+      .profile-stat__value { font-size: 1.0625rem; }
+      .profile-bio { max-width: 52ch; }
+    }
+
+    /* ---- Grid Rule Separator ---- */
+    .photos-grid-rule {
+      border-top: 1px solid var(--border);
+      margin-block: 0 1rem;
+      padding-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    .photos-grid-rule svg { color: var(--sage); opacity: 0.6; display: block; }
+
+    /* ---- Photo Grid ---- */
+    .photos-grid-section {
+      padding-block: 0 0;
+    }
+
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+    @media (min-width: 480px) { .photos-grid { gap: 4px; } }
+
+    /* ---- Photo Item ---- */
+    .photo-item {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #E8E4DC;
+      cursor: pointer;
+    }
+    .photo-item:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
+
+    .photo-item__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.22s ease;
+    }
+    .photo-item--no-image .photo-item__img { display: none; }
+
+    /* Hover overlay */
+    .photo-item__hover {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.15s, opacity 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .photo-item:hover .photo-item__hover,
+    .photo-item:focus-visible .photo-item__hover {
+      background: rgba(0,0,0,0.28);
+      opacity: 1;
+    }
+    .photo-item__hover-stat {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--white);
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+
+    /* Placeholder state */
+    .photo-item__placeholder {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      background: #E8E4DC;
+    }
+    .photo-item--no-image .photo-item__placeholder { display: flex; }
+    .photo-item__placeholder svg { color: var(--sage); opacity: 0.45; }
+    .photo-item__placeholder-label {
+      font-size: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--sage);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .photo-item__img,
+      .photo-item__hover { transition: none; }
+    }
+
+    /* ---- AI Note ---- */
+    .photos-ai-note-section {
+      padding-block: 2rem 3rem;
+    }
+    @media (min-width: 768px) { .photos-ai-note-section { padding-block: 2.5rem 4rem; } }
+
+    .photos-ai-note {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.7;
+      border-left: 2px solid var(--border);
+      padding-left: 0.875rem;
+      max-width: 60ch;
+    }
+
+    /* =============================================
+       PHOTO MODAL
+       ============================================= */
+    .photo-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .photo-modal[hidden] { display: none; }
+
+    .photo-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,10,0.88);
+      cursor: pointer;
+    }
+
+    .photo-modal__frame {
+      position: relative;
+      z-index: 1;
+      background: var(--white);
+      width: 100%;
+      max-width: min(92vw, 920px);
+      max-height: 90vh;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    @media (min-width: 640px) {
+      .photo-modal__frame {
+        flex-direction: row;
+        overflow-y: hidden;
+        max-height: 86vh;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .photo-modal__frame { animation: photo-modal-in 0.2s ease; }
+    }
+    @keyframes photo-modal-in {
+      from { opacity: 0; transform: scale(0.97) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Image column */
+    .photo-modal__img-col {
+      background: #1C1C1C;
+      display: flex;
+      align-items: stretch;
+      flex-shrink: 0;
+    }
+    @media (min-width: 640px) { .photo-modal__img-col { width: 58%; } }
+
+    .photo-modal__img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+    }
+
+    .photo-modal__img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-modal__img-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.625rem;
+      background: #2B2B2B;
+    }
+    .photo-modal__img-placeholder[hidden] { display: none; }
+    .photo-modal__img-placeholder svg { color: rgba(255,255,255,0.18); }
+    .photo-modal__img-placeholder span {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      max-width: 16ch;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* Info column */
+    .photo-modal__info-col {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    @media (min-width: 640px) {
+      .photo-modal__info-col {
+        flex: 1;
+        min-width: 0;
+        overflow-y: auto;
+        max-height: 86vh;
+      }
+    }
+
+    .photo-modal__info-header {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.875rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .photo-modal__avatar-wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .photo-modal__avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 10%;
+      display: block;
+    }
+
+    .photo-modal__handle {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .photo-modal__caption-area {
+      padding: 1.125rem 1.25rem;
+      flex: 1;
+    }
+    .photo-modal__photo-title {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--charcoal);
+      line-height: 1.35;
+      margin: 0 0 0.5rem;
+      max-width: none;
+    }
+    .photo-modal__caption-text {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+      max-width: none;
+    }
+
+    .photo-modal__actions {
+      padding: 0.875rem 1.25rem 1.125rem;
+      border-top: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .photo-modal__like-row {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      margin-bottom: 0.875rem;
+    }
+
+    .photo-modal__like-btn {
+      background: none;
+      border: none;
+      padding: 0.25rem;
+      cursor: pointer;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      line-height: 1;
+      transition: color 0.12s, transform 0.1s;
+      border-radius: var(--radius);
+    }
+    .photo-modal__like-btn:hover { color: var(--warm); }
+    .photo-modal__like-btn:active { transform: scale(1.25); }
+    .photo-modal__like-btn:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+    .photo-modal__like-btn.is-liked { color: var(--warm); }
+    .photo-modal__like-btn.is-liked svg { fill: var(--warm); }
+
+    .photo-modal__like-count {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .photo-modal__btn-row {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .photo-modal__btn-row .btn {
+      flex: 1;
+      font-size: 0.8125rem;
+      padding: 0.5rem 0.875rem;
+      min-height: 40px;
+    }
+
+    .photo-modal__close {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      z-index: 10;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.55);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+      line-height: 1;
+    }
+    .photo-modal__close:hover { background: rgba(0,0,0,0.88); }
+    .photo-modal__close:focus-visible { outline: 2px solid rgba(255,255,255,0.8); outline-offset: 2px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .photo-modal__like-btn { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+        <span class="site-logo__name">Don Scott</span>
+        <span class="site-logo__race">for Bedford</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__links" role="list">
+          <li><a href="issues.html">Issues</a></li>
+          <li><a href="rules.html">Rules</a></li>
+          <li><a href="ideas.html">Ideas</a></li>
+          <li><a href="press.html">Press</a></li>
+          <li><a href="photos.html" aria-current="page">Photos</a></li>
+        </ul>
+        <a href="#subscribe" class="btn btn--subscribe site-nav__cta">Subscribe</a>
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Open navigation menu"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </nav>
+    </div>
+
+    <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
+      <a href="issues.html">Issues</a>
+      <a href="rules.html">Rules</a>
+      <a href="ideas.html">Ideas</a>
+      <a href="press.html">Press</a>
+      <a href="photos.html" aria-current="page">Photos</a>
+      <a href="#subscribe" class="btn btn--subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="issues-hero" aria-labelledby="photos-title">
+    <div class="container">
+      <div class="issues-hero__inner issues-hero__inner--solo">
+        <p class="eyebrow">Don Scott Presents</p>
+        <h1 id="photos-title">The Campaign Photo Archive</h1>
+        <p class="issues-hero__deck">Every staged campaign photo in one place. AI-generated. Scroll through once. Like one if you must. Share one if your group chat requires evidence.</p>
+      </div>
+    </div>
+  </section>
+
+  <main id="main-content">
+
+    <!-- PROFILE + GRID -->
+    <section class="section section--alt photos-profile-section" aria-labelledby="profile-heading">
+      <div class="container">
+
+        <h2 id="profile-heading" class="sr-only">Campaign profile and photo archive</h2>
+
+        <!-- Profile Header -->
+        <div class="profile-header">
+          <div class="profile-avatar" aria-hidden="true">
+            <img src="../assets/img/don-hero.png" alt="" width="96" height="96">
+          </div>
+          <div class="profile-info">
+            <span class="profile-handle">@donforbedford</span>
+            <span class="profile-display-name">Don Scott for Bedford</span>
+            <ul class="profile-stats" aria-label="Campaign stats">
+              <li>
+                <span class="profile-stat__value">12</span>
+                <span class="profile-stat__label">posts</span>
+              </li>
+              <li>
+                <span class="profile-stat__value">$49.99</span>
+                <span class="profile-stat__label">max spend</span>
+              </li>
+              <li>
+                <span class="profile-stat__value">0</span>
+                <span class="profile-stat__label">consultants</span>
+              </li>
+            </ul>
+            <p class="profile-bio">The staged campaign photo archive. Generated by AI so we could get this part over with.</p>
+            <div class="profile-actions">
+              <button class="btn btn--secondary" id="share-profile-btn" type="button">Share Profile</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid separator -->
+        <div class="photos-grid-rule" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+          </svg>
+        </div>
+
+        <!-- Photo Grid -->
+        <div class="photos-grid" id="photos-grid" role="list" aria-label="Campaign photos"></div>
+
+      </div>
+    </section>
+
+    <!-- AI NOTE -->
+    <section class="photos-ai-note-section section--alt" aria-label="AI transparency note">
+      <div class="container">
+        <p class="photos-ai-note">These images are staged and AI-generated. They are part of the campaign&#8217;s experiment in transparency, low-cost tools, and not pretending politics is more spontaneous than it is.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <div class="footer-brand">
+          <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+            <span class="site-logo__name">Don Scott</span>
+            <span class="site-logo__race">for Bedford</span>
+          </a>
+          <p class="footer-brand__tagline">Less Campaign. More Bedford.</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <p class="footer-nav__label">Pages</p>
+          <a href="../index.html">Home</a>
+          <a href="issues.html">Issues</a>
+          <a href="rules.html">Rules</a>
+          <a href="ideas.html">Ideas</a>
+          <a href="press.html">Press</a>
+          <a href="photos.html" aria-current="page">Photos</a>
+        </nav>
+
+        <div class="footer-cta">
+          <p class="footer-nav__label">Stay informed</p>
+          <a href="#subscribe" class="btn btn--ghost" id="subscribe">Subscribe</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- PHOTO MODAL -->
+  <div class="photo-modal" id="photo-modal" role="dialog" aria-modal="true" aria-labelledby="modal-photo-title" hidden>
+    <div class="photo-modal__backdrop" id="photo-modal-backdrop" aria-hidden="true"></div>
+    <div class="photo-modal__frame">
+
+      <!-- Image column -->
+      <div class="photo-modal__img-col">
+        <div class="photo-modal__img-wrap">
+          <img id="modal-img" src="" alt="" />
+          <div class="photo-modal__img-placeholder" id="modal-img-placeholder" hidden>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+              <circle cx="12" cy="13" r="4"/>
+            </svg>
+            <span id="modal-placeholder-label"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info column -->
+      <div class="photo-modal__info-col">
+        <div class="photo-modal__info-header">
+          <div class="photo-modal__avatar-wrap" aria-hidden="true">
+            <img src="../assets/img/don-hero.png" alt="" width="32" height="32">
+          </div>
+          <span class="photo-modal__handle">@donforbedford</span>
+        </div>
+
+        <div class="photo-modal__caption-area">
+          <p class="photo-modal__photo-title" id="modal-photo-title"></p>
+          <p class="photo-modal__caption-text" id="modal-caption"></p>
+        </div>
+
+        <div class="photo-modal__actions">
+          <div class="photo-modal__like-row">
+            <button class="photo-modal__like-btn" id="modal-like-btn" type="button" aria-label="Like this photo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+            <span class="photo-modal__like-count" id="modal-like-count" aria-live="polite" aria-atomic="true"></span>
+          </div>
+          <div class="photo-modal__btn-row">
+            <button class="btn btn--secondary" id="modal-share-btn" type="button">Share</button>
+            <a class="btn btn--secondary" id="modal-download-btn" hidden>Download</a>
+          </div>
+        </div>
+      </div>
+
+      <button class="photo-modal__close" id="photo-modal-close" type="button" aria-label="Close photo">&#x2715;</button>
+    </div>
+  </div>
+
+  <script src="../assets/js/site.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* =============================================
+       PHOTO DATA
+       ============================================= */
+    var PHOTOS = [
+      {
+        id:      'don-ribbon-cutting',
+        title:   'Ribbon Cutting',
+        caption: 'The ribbon has been cut. The scissors have been returned.',
+        alt:     'AI-generated Don Scott at a ribbon cutting ceremony',
+        src:     '../assets/photos/don-ribbon-cutting.jpg',
+        likes:   14
+      },
+      {
+        id:      'don-farmers-market',
+        title:   'Farmers Market',
+        caption: 'A farmers market appearance, generated without blocking anyone’s path to tomatoes.',
+        alt:     'AI-generated Don Scott at a farmers market',
+        src:     '../assets/photos/don-farmers-market.jpg',
+        likes:   11
+      },
+      {
+        id:      'don-handshake',
+        title:   'The Handshake',
+        caption: 'A firm handshake, because tradition requires at least one.',
+        alt:     'AI-generated Don Scott shaking hands with a Bedford resident',
+        src:     '../assets/photos/don-handshake.jpg',
+        likes:   9
+      },
+      {
+        id:      'don-baby',
+        title:   'Baby Photo',
+        caption: 'The baby is AI-generated. The restraint was real.',
+        alt:     'AI-generated Don Scott in a classic wholesome campaign baby photo',
+        src:     '../assets/photos/don-baby.jpg',
+        likes:   23
+      },
+      {
+        id:      'don-town-meeting',
+        title:   'Town Meeting',
+        caption: 'Listening thoughtfully at a meeting, as required by municipal photography law.',
+        alt:     'AI-generated Don Scott listening at a town meeting',
+        src:     '../assets/photos/don-town-meeting.jpg',
+        likes:   7
+      },
+      {
+        id:      'don-breakfast',
+        title:   'Breakfast With Residents',
+        caption: 'Breakfast with residents, minus the ambush.',
+        alt:     'AI-generated Don Scott at a diner breakfast counter with residents',
+        src:     '../assets/photos/don-breakfast.jpg',
+        likes:   18
+      },
+      {
+        id:      'don-podium',
+        title:   'Behind the Podium',
+        caption: 'A podium photo, included for completeness.',
+        alt:     'AI-generated Don Scott speaking at a podium',
+        src:     '../assets/photos/don-podium.jpg',
+        likes:   5
+      },
+      {
+        id:      'don-trash-pickup',
+        title:   'Trash Pickup',
+        caption: 'Picking up trash, because someone had to stage it.',
+        alt:     'AI-generated Don Scott picking up trash in Bedford',
+        src:     '../assets/photos/don-trash-pickup.jpg',
+        likes:   16
+      },
+      {
+        id:      'don-community-garden',
+        title:   'Community Garden',
+        caption: 'Community gardening, but make it campaign-adjacent.',
+        alt:     'AI-generated Don Scott at a community garden',
+        src:     '../assets/photos/don-community-garden.jpg',
+        likes:   12
+      },
+      {
+        id:      'don-group-photo',
+        title:   'Group Photo',
+        caption: 'A group photo with people who did not have to sign anything.',
+        alt:     'AI-generated Don Scott in a group photo with Bedford residents',
+        src:     '../assets/photos/don-group-photo.jpg',
+        likes:   20
+      },
+      {
+        id:      'don-crossing-guard',
+        title:   'Crossing Guard',
+        caption: 'Crossing guard vest. High visibility. Low pressure.',
+        alt:     'AI-generated Don Scott wearing a crossing guard vest',
+        src:     '../assets/photos/don-crossing-guard.jpg',
+        likes:   31
+      },
+      {
+        id:      'don-trail-map',
+        title:   'Trail Map Review',
+        caption: 'Reviewing a trail map, which is safer than pretending to have all the answers.',
+        alt:     'AI-generated Don Scott reviewing a trail map or road plan',
+        src:     '../assets/photos/don-trail-map.jpg',
+        likes:   8
+      }
+    ];
+
+    /* =============================================
+       STORAGE — likes (localStorage, no login)
+       ============================================= */
+    var LIKES_KEY = 'donBedfordPhotoLikes';
+
+    function loadLiked() {
+      try { return JSON.parse(localStorage.getItem(LIKES_KEY) || '{}'); } catch (e) { return {}; }
+    }
+    function saveLiked(obj) {
+      try { localStorage.setItem(LIKES_KEY, JSON.stringify(obj)); } catch (e) {}
+    }
+
+    var liked  = loadLiked();
+    var counts = {};
+    PHOTOS.forEach(function (p) { counts[p.id] = p.likes; });
+
+    /* =============================================
+       IMAGE PRELOAD TRACKING
+       ============================================= */
+    var imgState = {}; /* true = loaded, false = failed, undefined = pending */
+
+    PHOTOS.forEach(function (photo) {
+      var img = new Image();
+      img.onload  = function () { imgState[photo.id] = true; };
+      img.onerror = function () { imgState[photo.id] = false; };
+      img.src = photo.src;
+    });
+
+    /* =============================================
+       RENDER GRID
+       ============================================= */
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function renderGrid() {
+      var grid = document.getElementById('photos-grid');
+
+      PHOTOS.forEach(function (photo, i) {
+        var item = document.createElement('div');
+        item.className = 'photo-item';
+        item.setAttribute('role', 'listitem');
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('aria-label', 'View: ' + photo.title);
+        item.setAttribute('data-photo-id', photo.id);
+
+        item.innerHTML =
+          '<img class="photo-item__img" src="' + escHtml(photo.src) + '"' +
+              ' alt="' + escHtml(photo.alt) + '"' +
+              ' loading="' + (i < 6 ? 'eager' : 'lazy') + '"' +
+              ' onerror="this.closest(\'.photo-item\').classList.add(\'photo-item--no-image\')">' +
+          '<div class="photo-item__placeholder" aria-hidden="true">' +
+            '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
+              '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>' +
+              '<circle cx="12" cy="13" r="4"/>' +
+            '</svg>' +
+            '<span class="photo-item__placeholder-label">' + escHtml(photo.title) + '</span>' +
+          '</div>' +
+          '<div class="photo-item__hover" aria-hidden="true">' +
+            '<span class="photo-item__hover-stat">' +
+              '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">' +
+                '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>' +
+              '</svg>' +
+              '<span data-grid-like-count="' + photo.id + '">' + counts[photo.id] + '</span>' +
+            '</span>' +
+          '</div>';
+
+        item.addEventListener('click', function () { openModal(photo); });
+        item.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(photo); }
+        });
+
+        grid.appendChild(item);
+      });
+    }
+
+    /* =============================================
+       MODAL
+       ============================================= */
+    var modal       = document.getElementById('photo-modal');
+    var modalImg    = document.getElementById('modal-img');
+    var placeholder = document.getElementById('modal-img-placeholder');
+    var placeholderLabel = document.getElementById('modal-placeholder-label');
+    var downloadBtn = document.getElementById('modal-download-btn');
+    var likeBtn     = document.getElementById('modal-like-btn');
+    var likeCount   = document.getElementById('modal-like-count');
+    var currentPhoto = null;
+
+    function openModal(photo) {
+      currentPhoto = photo;
+
+      document.getElementById('modal-photo-title').textContent = photo.title;
+      document.getElementById('modal-caption').textContent     = photo.caption;
+      modalImg.alt = photo.alt;
+
+      loadModalImage(photo);
+      renderLikeState(photo);
+
+      history.replaceState(null, '', '#' + photo.id);
+      modal.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('photo-modal-close').focus();
+    }
+
+    function closeModal() {
+      modal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      currentPhoto = null;
+      /* Strip hash without triggering scroll */
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+
+    function loadModalImage(photo) {
+      /* Reset handlers before assigning new src */
+      modalImg.onload  = null;
+      modalImg.onerror = null;
+
+      if (imgState[photo.id] === true) {
+        modalImg.src = photo.src;
+        modalImg.style.display = '';
+        placeholder.setAttribute('hidden', '');
+        enableDownload(photo);
+      } else if (imgState[photo.id] === false) {
+        modalImg.src = '';
+        modalImg.style.display = 'none';
+        placeholderLabel.textContent = photo.title;
+        placeholder.removeAttribute('hidden');
+        downloadBtn.setAttribute('hidden', '');
+      } else {
+        /* Image still preloading — show placeholder, wait */
+        placeholderLabel.textContent = photo.title;
+        placeholder.removeAttribute('hidden');
+        modalImg.style.display = 'none';
+        downloadBtn.setAttribute('hidden', '');
+
+        modalImg.onload = function () {
+          imgState[photo.id] = true;
+          placeholder.setAttribute('hidden', '');
+          modalImg.style.display = '';
+          enableDownload(photo);
+        };
+        modalImg.onerror = function () {
+          imgState[photo.id] = false;
+        };
+        modalImg.src = photo.src;
+      }
+    }
+
+    function enableDownload(photo) {
+      downloadBtn.href = photo.src;
+      downloadBtn.setAttribute('download', photo.id + '.jpg');
+      downloadBtn.removeAttribute('hidden');
+    }
+
+    function renderLikeState(photo) {
+      var isLiked = !!liked[photo.id];
+      var n = counts[photo.id];
+
+      likeCount.textContent = n + (n === 1 ? ' like' : ' likes');
+
+      var svg = likeBtn.querySelector('svg');
+      if (isLiked) {
+        svg.setAttribute('fill', 'var(--warm)');
+        svg.setAttribute('stroke', 'var(--warm)');
+        likeBtn.classList.add('is-liked');
+        likeBtn.setAttribute('aria-label', 'Already liked');
+      } else {
+        svg.setAttribute('fill', 'none');
+        svg.setAttribute('stroke', 'currentColor');
+        likeBtn.classList.remove('is-liked');
+        likeBtn.setAttribute('aria-label', 'Like this photo');
+      }
+
+      /* Sync grid hover count */
+      document.querySelectorAll('[data-grid-like-count="' + photo.id + '"]').forEach(function (el) {
+        el.textContent = n;
+      });
+    }
+
+    /* Like handler */
+    likeBtn.addEventListener('click', function () {
+      if (!currentPhoto || liked[currentPhoto.id]) return;
+
+      counts[currentPhoto.id] = (counts[currentPhoto.id] || 0) + 1;
+      liked[currentPhoto.id]  = true;
+      saveLiked(liked);
+      renderLikeState(currentPhoto);
+
+      /*
+       * TODO: Wire to Apps Script endpoint to persist photo likes server-side.
+       * The /ideas endpoint handles action:'vote'; add a new handler to the
+       * Apps Script for photo_like events.
+       *
+       * var API_URL = 'https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec';
+       * fetch(API_URL, {
+       *   method: 'POST',
+       *   headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+       *   body: JSON.stringify({
+       *     action:     'photo_like',
+       *     item_id:    currentPhoto.id,
+       *     item_title: currentPhoto.title,
+       *     page:       '/photos'
+       *   })
+       * }).catch(function () {});
+       */
+    });
+
+    /* Share handler */
+    document.getElementById('modal-share-btn').addEventListener('click', function () {
+      if (!currentPhoto) return;
+      shareItem(
+        currentPhoto.title + ' — Don Scott for Bedford',
+        currentPhoto.caption,
+        window.location.origin + window.location.pathname + '#' + currentPhoto.id,
+        this
+      );
+    });
+
+    /* Share profile */
+    document.getElementById('share-profile-btn').addEventListener('click', function () {
+      shareItem(
+        'Don Scott for Bedford — Campaign Photo Archive',
+        'Every staged campaign photo in one place. AI-generated.',
+        window.location.origin + window.location.pathname,
+        this
+      );
+    });
+
+    function shareItem(title, text, url, btn) {
+      if (navigator.share) {
+        navigator.share({ title: title, text: text, url: url }).catch(function () {});
+      } else {
+        copyToClipboard(url, btn);
+      }
+    }
+
+    function copyToClipboard(text, btn) {
+      var orig = btn.textContent;
+      function confirm() {
+        btn.textContent = 'Copied!';
+        setTimeout(function () { btn.textContent = orig; }, 2000);
+      }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(confirm).catch(fallback);
+      } else {
+        fallback();
+      }
+      function fallback() {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); confirm(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    }
+
+    /* Close handlers */
+    document.getElementById('photo-modal-close').addEventListener('click', closeModal);
+    document.getElementById('photo-modal-backdrop').addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal();
+    });
+
+    /* =============================================
+       HASH ROUTING — open photo from shared URL
+       ============================================= */
+    function checkHash() {
+      var hash = window.location.hash.replace('#', '');
+      if (!hash) return;
+      for (var i = 0; i < PHOTOS.length; i++) {
+        if (PHOTOS[i].id === hash) { openModal(PHOTOS[i]); return; }
+      }
+    }
+
+    /* Init */
+    renderGrid();
+    checkHash();
+
+  })();
+  </script>
+</body>
+</html>
