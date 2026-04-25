@@ -147,10 +147,9 @@
        HOMEPAGE — page-specific overrides
        ============================================= */
 
-    /* AI section: left column anchored to top; right column (checkmarks) centered vertically */
+    /* AI section: both columns vertically centered to each other */
     @media (min-width: 768px) {
-      .ai-section__inner { align-items: start; }
-      .ai-points { align-self: center; }
+      .ai-section__inner { align-items: center; }
     }
 
     /* Justified body copy — scoped to sections that warrant it */
@@ -165,10 +164,15 @@
     .ai-section__header { margin-bottom: 2.5rem; }
     .ai-section__header h2 { margin-bottom: 0; }
 
-    /* Mobile: center bottom-of-section CTAs */
-    @media (max-width: 767px) {
-      .ai-section .cta-row { justify-content: center; }
+    /* AI section: centered section-level CTA below columns */
+    .ai-section__cta-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 2.5rem;
     }
+
+    /* Card body text: justified alignment */
+    .card__body { text-align: justify; }
 
     /* Linked overview cards */
     a.card {
@@ -263,12 +267,12 @@
 
       <nav class="site-nav" aria-label="Main navigation">
         <ul class="site-nav__links" role="list">
-          <li><a href="pages/issues.html">Issues</a></li>
           <li><a href="pages/rules.html">Rules</a></li>
+          <li><a href="pages/issues.html">Issues</a></li>
           <li><a href="pages/ideas.html">Ideas</a></li>
           <li><a href="pages/minutes.html">Minutes</a></li>
-          <li><a href="pages/press.html">Press</a></li>
           <li><a href="pages/odds.html">Odds</a></li>
+          <li><a href="pages/press.html">Press</a></li>
         </ul>
         <a href="#subscribe" class="btn btn--subscribe site-nav__cta">Subscribe</a>
         <button
@@ -286,12 +290,12 @@
 
     <!-- Mobile nav drawer -->
     <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
-      <a href="pages/issues.html">Issues</a>
       <a href="pages/rules.html">Rules</a>
+      <a href="pages/issues.html">Issues</a>
       <a href="pages/ideas.html">Ideas</a>
       <a href="pages/minutes.html">Minutes</a>
-      <a href="pages/press.html">Press</a>
       <a href="pages/odds.html">Odds</a>
+      <a href="pages/press.html">Press</a>
       <a href="#subscribe" class="btn btn--subscribe">Subscribe</a>
     </nav>
   </header>
@@ -337,7 +341,7 @@
         <div class="different__header">
           <p class="eyebrow">A different kind of campaign</p>
           <h2 id="different-headline">A Campaign That Behaves Differently</h2>
-          <p>This campaign is not just a biography and a ballot line. It is a set of tools, rules, and experiments designed to make local civic participation easier to understand and easier to join.</p>
+          <p>Most campaigns follow a familiar script. This one does not. It is a set of tools, rules, and experiments designed to make local civic participation easier to understand and easier to join.</p>
         </div>
 
         <ul class="cards-grid" role="list">
@@ -392,7 +396,6 @@
               </div>
               <h3 class="card__title">Town Board in Minutes</h3>
               <p class="card__body">Short audio recaps of Bedford Town Board meetings, built for residents who want to stay informed but cannot watch every meeting.</p>
-              <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--sage);margin-top:0.5rem;max-width:none;">Listen to recaps &#8594;</p>
             </a>
           </li>
 
@@ -530,9 +533,6 @@
               millions for. That is part of what makes the $49.99 model possible — and
               part of what running for office without a consultant class actually looks like.
             </p>
-            <div class="cta-row">
-              <a href="pages/how-it-works.html" class="btn btn--ghost">How We Use AI</a>
-            </div>
           </div>
 
           <div class="ai-points">
@@ -554,6 +554,10 @@
           </div>
 
         </div>
+
+        <div class="ai-section__cta-row">
+          <a href="pages/how-it-works.html" class="btn btn--ghost">How We Use AI</a>
+        </div>
       </div>
     </section>
 
@@ -563,7 +567,7 @@
         <div class="faq__header">
           <p class="eyebrow">Common questions</p>
           <h2 id="faq-headline">Frequently Asked Questions</h2>
-          <p>Straightforward answers to the questions we hear most often.</p>
+          <p>You've got questions. Don's got answers.</p>
         </div>
 
         <div class="faq-list">
@@ -644,7 +648,7 @@
 
         <div class="faq__more">
           <!-- TODO: update href to pages/ask-don.html once that page is created -->
-          <a href="#" class="btn btn--secondary">Ask Don-Bot</a>
+          <a href="#" class="btn btn--primary">Ask Don-Bot</a>
         </div>
       </div>
     </section>
