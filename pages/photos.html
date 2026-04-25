@@ -345,48 +345,9 @@
       }
     }
 
-    .photo-modal__info-header {
-      display: flex;
-      align-items: center;
-      gap: 0.625rem;
-      padding: 0.875rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-
-    .photo-modal__avatar-wrap {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      flex-shrink: 0;
-    }
-    .photo-modal__avatar-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 10%;
-      display: block;
-    }
-
-    .photo-modal__handle {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--charcoal);
-    }
-
     .photo-modal__caption-area {
-      padding: 1.125rem 1.25rem;
+      padding: 0.75rem 1.25rem;
       flex: 1;
-    }
-    .photo-modal__photo-title {
-      font-family: var(--serif);
-      font-size: 1rem;
-      color: var(--charcoal);
-      line-height: 1.35;
-      margin: 0 0 0.5rem;
-      max-width: none;
     }
     .photo-modal__caption-text {
       font-size: 0.9375rem;
@@ -394,6 +355,10 @@
       line-height: 1.65;
       margin: 0;
       max-width: none;
+    }
+    .photo-modal__caption-handle {
+      font-weight: 700;
+      color: var(--charcoal);
     }
 
     .photo-modal__actions {
@@ -690,7 +655,7 @@ VISUAL STYLE
   </footer>
 
   <!-- PHOTO MODAL -->
-  <div class="photo-modal" id="photo-modal" role="dialog" aria-modal="true" aria-labelledby="modal-photo-title" hidden>
+  <div class="photo-modal" id="photo-modal" role="dialog" aria-modal="true" aria-label="Campaign photo detail" hidden>
     <div class="photo-modal__backdrop" id="photo-modal-backdrop" aria-hidden="true"></div>
     <div class="photo-modal__frame">
 
@@ -710,15 +675,7 @@ VISUAL STYLE
 
       <!-- Info column -->
       <div class="photo-modal__info-col">
-        <div class="photo-modal__info-header">
-          <div class="photo-modal__avatar-wrap" aria-hidden="true">
-            <img src="../assets/img/don-hero.png" alt="" width="32" height="32">
-          </div>
-          <span class="photo-modal__handle">@donforbedford</span>
-        </div>
-
         <div class="photo-modal__caption-area">
-          <p class="photo-modal__photo-title" id="modal-photo-title"></p>
           <p class="photo-modal__caption-text" id="modal-caption"></p>
         </div>
 
@@ -942,8 +899,8 @@ VISUAL STYLE
     function openModal(photo) {
       currentPhoto = photo;
 
-      document.getElementById('modal-photo-title').textContent = photo.title;
-      document.getElementById('modal-caption').textContent     = photo.caption;
+      var captionEl = document.getElementById('modal-caption');
+      captionEl.innerHTML = '<strong class="photo-modal__caption-handle">donforbedford</strong> ' + escHtml(photo.caption);
       modalImg.alt = photo.alt;
 
       loadModalImage(photo);
