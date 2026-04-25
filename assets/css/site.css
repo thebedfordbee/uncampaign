@@ -2201,3 +2201,148 @@ p { max-width: 68ch; }
   .rule-card .rule-card__cta { transition: none; }
 }
 
+/* =============================================
+   CARD HOVER — DESKTOP / POINTER FINE ONLY
+   ============================================= */
+@media (hover: hover) and (pointer: fine) {
+  .card {
+    transition: background 0.18s ease, border-color 0.18s ease,
+                box-shadow 0.18s ease, transform 0.18s ease;
+  }
+  .card:hover {
+    background: var(--cream);
+    border-color: var(--sage);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .card:hover { transform: none; }
+}
+
+/* =============================================
+   SPENDING — HOMEPAGE TWO-COLUMN REDESIGN
+   ============================================= */
+
+/* Override old centered default */
+.spending { text-align: left; }
+
+.spending__inner {
+  display: grid;
+  gap: 3rem;
+}
+@media (min-width: 768px) {
+  .spending__inner {
+    grid-template-columns: 1fr 300px;
+    gap: 4.5rem;
+    align-items: start;
+  }
+}
+@media (min-width: 960px) {
+  .spending__inner { grid-template-columns: 1fr 320px; gap: 5rem; }
+}
+
+.spending__left .eyebrow { display: block; margin-bottom: 0.625rem; }
+.spending__left h2 { margin-top: 0.375rem; margin-bottom: 1rem; }
+
+.spending__body {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  max-width: 54ch;
+}
+
+/* Comparison bars */
+.spend-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.spend-compare-item__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.375rem;
+}
+.spend-compare-item__name {
+  font-size: 0.875rem;
+  color: var(--charcoal);
+  font-weight: 500;
+  max-width: none;
+}
+.spend-compare-item__amount {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  flex-shrink: 0;
+  max-width: none;
+  font-variant-numeric: tabular-nums;
+}
+.spend-compare-item__bar {
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.spend-compare-item__fill {
+  height: 100%;
+  border-radius: 4px;
+}
+.spend-compare-item--typical .spend-compare-item__fill {
+  background: #b8b0a6;
+  width: 95%;
+}
+.spend-compare-item--this .spend-compare-item__fill {
+  background: var(--sage);
+  width: 4%;
+  min-width: 6px;
+}
+
+/* Right column — meter card */
+.spending__meter-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.875rem 1.625rem;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+.spending__meter-eyebrow {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+.spending__current-amount {
+  font-family: var(--serif);
+  font-size: clamp(2.75rem, 8vw, 3.75rem);
+  color: var(--charcoal);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+.spending__current-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 1.625rem;
+}
+/* Unset inherited centering constraints inside the card */
+.spending__meter-card .thermometer {
+  max-width: none;
+  margin-inline: 0;
+}
+.spending__meter-card .thermometer__summary {
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.625rem;
+}
+.spending__meter-card .spend-stat__value {
+  font-size: 1.5rem;
+}
+

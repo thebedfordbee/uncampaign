@@ -19,14 +19,10 @@
 
       <nav class="site-nav" aria-label="Main navigation">
         <ul class="site-nav__links" role="list">
-          <li><a href="pages/about.html">About</a></li>
           <li><a href="pages/issues.html">Issues</a></li>
           <li><a href="pages/rules.html">Rules</a></li>
           <li><a href="pages/ideas.html">Ideas</a></li>
-          <li><a href="pages/how-it-works.html">How It Works</a></li>
-          <li><a href="pages/spending.html">Spending</a></li>
-          <li><a href="pages/ask-don.html">Ask Don</a></li>
-          <li><a href="pages/faq.html">FAQ</a></li>
+          <li><a href="pages/press.html">Press</a></li>
         </ul>
         <a href="#subscribe" class="btn btn--subscribe site-nav__cta">Subscribe</a>
         <button
@@ -44,15 +40,10 @@
 
     <!-- Mobile nav drawer -->
     <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
-      <a href="pages/about.html">About</a>
       <a href="pages/issues.html">Issues</a>
       <a href="pages/rules.html">Rules</a>
       <a href="pages/ideas.html">Ideas</a>
-      <a href="pages/how-it-works.html">How It Works</a>
-      <a href="pages/spending.html">Spending</a>
-      <a href="pages/ask-don.html">Ask Don</a>
-      <a href="pages/faq.html">FAQ</a>
-      <a href="pages/contact.html">Contact</a>
+      <a href="pages/press.html">Press</a>
       <a href="#subscribe" class="btn btn--subscribe">Subscribe</a>
     </nav>
   </header>
@@ -83,15 +74,12 @@
 
           <div class="hero__text-bottom">
             <p class="hero__body">
-              I'm Don Scott, and I'm running for Bedford Town Supervisor. Not to run a traditional
-              campaign — to show that a neighbor talking honestly with neighbors can matter more
-              than signs, mailers, and consultants. No pressure. No theater. Just a genuine offer
-              to be of service.
+              I'm Don Scott, and I'm running for Bedford Town Supervisor. This campaign
+              is also a proof point: anyone can run for local office without a media buying
+              team, strategy consultants, or a pile of money. What you need is to think
+              ahead, be resourceful, communicate clearly, and be accountable. Those are
+              probably useful traits in local government too.
             </p>
-            <div class="cta-row">
-              <a href="pages/contact.html" class="btn btn--primary">Request a Conversation</a>
-              <a href="pages/how-it-works.html" class="btn btn--secondary">How This Campaign Works</a>
-            </div>
           </div>
 
         </div>
@@ -142,53 +130,90 @@
       </div>
     </section>
 
-    <!-- SPENDING THERMOMETER -->
+    <!-- RADICAL TRANSPARENCY -->
     <section class="section spending" aria-labelledby="spending-headline">
       <div class="container">
-        <div class="spending__header">
-          <p class="eyebrow">Radical transparency</p>
-          <h2 id="spending-headline">The public spending record.</h2>
-          <p>
-            This campaign has committed to spending $49.99 or less — total. Not per week. Ever.
-            Every dollar spent is documented here as a public record, updated as it happens.
-          </p>
-        </div>
+        <div class="spending__inner">
 
-        <div class="thermometer" role="region" aria-label="Campaign spending progress">
-          <div class="thermometer__track">
-            <div
-              class="thermometer__fill"
-              role="progressbar"
-              aria-valuenow="0"
-              aria-valuemin="0"
-              aria-valuemax="49.99"
-              aria-label="$0.00 of $49.99 spent"
-            ></div>
-          </div>
-          <div class="thermometer__labels" aria-hidden="true">
-            <span>$0 spent</span>
-            <span>$49.99 cap</span>
-          </div>
-        </div>
+          <!-- Left column: label, headline, copy, comparison bars -->
+          <div class="spending__left">
+            <p class="eyebrow">Radical transparency</p>
+            <h2 id="spending-headline">The public spending record.</h2>
+            <p class="spending__body">
+              This campaign has committed to spending $49.99 or less. Not per week. Total.
+              Every expense is public. The point is not to be cute. The point is to show
+              that civic participation does not have to require fundraising, consultants,
+              paid ads, or political machinery.
+            </p>
 
-        <div class="thermometer__summary">
-          <div class="spend-stat">
-            <span class="spend-stat__value">$0.00</span>
-            <span class="spend-stat__label">Total spent</span>
-          </div>
-          <div class="spend-stat">
-            <span class="spend-stat__value">$49.99</span>
-            <span class="spend-stat__label">Spending cap</span>
-          </div>
-          <div class="spend-stat">
-            <span class="spend-stat__value">0%</span>
-            <span class="spend-stat__label">Of limit used</span>
-          </div>
-        </div>
+            <div class="spend-compare" aria-label="Campaign spending comparison">
+              <div class="spend-compare-item spend-compare-item--typical">
+                <div class="spend-compare-item__label">
+                  <span class="spend-compare-item__name">Typical local campaign</span>
+                  <span class="spend-compare-item__amount">$5,000 – $20,000+</span>
+                </div>
+                <div class="spend-compare-item__bar" aria-hidden="true">
+                  <div class="spend-compare-item__fill"></div>
+                </div>
+              </div>
+              <div class="spend-compare-item spend-compare-item--this">
+                <div class="spend-compare-item__label">
+                  <span class="spend-compare-item__name">This campaign (hard cap)</span>
+                  <span class="spend-compare-item__amount">$49.99</span>
+                </div>
+                <div class="spend-compare-item__bar" aria-hidden="true">
+                  <div class="spend-compare-item__fill"></div>
+                </div>
+              </div>
+            </div>
 
-        <p class="spending__note">
-          Full itemized record &rarr; <a href="pages/spending.html">View the spending page</a>
-        </p>
+            <p class="spending__note">
+              Full itemized record &rarr; <a href="pages/spending.html">View the spending page</a>
+            </p>
+          </div>
+
+          <!-- Right column: spending meter card -->
+          <div class="spending__right">
+            <div class="spending__meter-card" role="region" aria-label="Campaign spending tracker">
+              <p class="eyebrow spending__meter-eyebrow">Current total</p>
+              <span class="spending__current-amount">$0.00</span>
+              <span class="spending__current-label">spent so far</span>
+
+              <div class="thermometer">
+                <div class="thermometer__track">
+                  <div
+                    class="thermometer__fill"
+                    role="progressbar"
+                    aria-valuenow="0"
+                    aria-valuemin="0"
+                    aria-valuemax="49.99"
+                    aria-label="$0.00 of $49.99 spending cap used"
+                  ></div>
+                </div>
+                <div class="thermometer__labels" aria-hidden="true">
+                  <span>$0 spent</span>
+                  <span>$49.99 cap</span>
+                </div>
+              </div>
+
+              <div class="thermometer__summary">
+                <div class="spend-stat">
+                  <span class="spend-stat__value">$0.00</span>
+                  <span class="spend-stat__label">Total spent</span>
+                </div>
+                <div class="spend-stat">
+                  <span class="spend-stat__value">$49.99</span>
+                  <span class="spend-stat__label">Spending cap</span>
+                </div>
+                <div class="spend-stat">
+                  <span class="spend-stat__value">0%</span>
+                  <span class="spend-stat__label">Of limit used</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -207,9 +232,10 @@
               than pretending it didn't happen.
             </p>
             <p>
-              We also think it's worth showing how a small local campaign can use the same
-              technology that large organizations pay millions to access — and do it
-              for under fifty dollars.
+              Modern tools can lower the barriers to civic participation. A small local
+              campaign can now access the same technology that large organizations pay
+              millions for. That is part of what makes the $49.99 model possible — and
+              part of what running for office without a consultant class actually looks like.
             </p>
             <div class="cta-row">
               <a href="pages/how-it-works.html" class="btn btn--ghost">How we use AI</a>
@@ -242,7 +268,8 @@
               <i class="ai-point__icon" aria-hidden="true">&#10003;</i>
               <p class="ai-point__text">
                 <strong>A civic demonstration.</strong> We want to show Bedford residents what
-                this technology can actually do — and how you can use it too.
+                this technology can actually do — and why it makes local civic participation
+                more accessible than most people assume.
               </p>
             </div>
           </div>
@@ -293,7 +320,7 @@
             </button>
             <div class="faq-item__answer" id="faq-3">
               <div class="faq-item__answer-inner">
-                <p>Because it operates by rejecting most of what modern campaigns treat as standard practice. No door knocking, no mailers, no robocalls, no consultants, no pressure tactics. The behavior is the message. If we're asking Bedford to trust us with local government, the least we can do is behave respectfully while we're asking.</p>
+                <p>Because it operates by rejecting most of what modern campaigns treat as standard practice. No door knocking, no mailers, no robocalls, no consultants, no pressure tactics. Part of the point of this campaign is to show that running for office should not feel impossible. You do not need a media buying team or a consultant class to make a serious civic argument. You need to think ahead, be resourceful, communicate clearly, and be honest about what you are doing. The behavior is the message. If we're asking Bedford to trust us with local government, the least we can do is behave respectfully while we're asking.</p>
               </div>
             </div>
           </div>
@@ -363,6 +390,7 @@
           <a href="pages/issues.html">Issues</a>
           <a href="pages/rules.html">Rules</a>
           <a href="pages/ideas.html">Ideas</a>
+          <a href="pages/press.html">Press</a>
         </nav>
 
         <div class="footer-cta">
