@@ -143,6 +143,12 @@
     /* Different section: rules CTA link */
     .different__cta { margin-top: 2rem; }
 
+    /* Mobile: center bottom-of-section CTAs */
+    @media (max-width: 767px) {
+      .different__cta { text-align: center; }
+      .ai-section .cta-row { justify-content: center; }
+    }
+
     /* =============================================
        FAQ — restyled to match /ideas category rows
        ============================================= */
@@ -282,9 +288,6 @@
             communicate clearly, and be accountable. Those are useful traits in local
             government too.
           </p>
-          <p class="roundtable-disclosure" role="note">
-            You don't have to vote for Don to believe Bedford should have a choice.
-          </p>
         </div>
 
       </div>
@@ -336,7 +339,7 @@
         </ul>
 
         <div class="different__cta">
-          <a href="pages/rules.html" class="btn btn--secondary">Read the campaign rules</a>
+          <a href="pages/rules.html" class="btn btn--secondary">Read The Campaign Rules</a>
         </div>
       </div>
     </section>
@@ -378,9 +381,6 @@
               </div>
             </div>
 
-            <p class="spending__note">
-              <a href="pages/spending.html">View full spending record &rarr;</a>
-            </p>
           </div>
 
           <!-- Right column: spending meter card -->
@@ -413,14 +413,7 @@
                   <span class="expense-item__name">Domain Name</span>
                   <span class="expense-item__amount">$9.99</span>
                 </li>
-                <li class="expense-item">
-                  <span class="expense-item__name">Web Hosting</span>
-                  <span class="expense-item__amount">$0.00</span>
-                </li>
-                <li class="expense-item">
-                  <span class="expense-item__name">Mailers</span>
-                  <span class="expense-item__amount">$0.00</span>
-                </li>
+
               </ul>
               <div class="expense-total">
                 <span class="expense-total__label">Total</span>
@@ -454,7 +447,7 @@
               part of what running for office without a consultant class actually looks like.
             </p>
             <div class="cta-row">
-              <a href="pages/how-it-works.html" class="btn btn--ghost">How we use AI</a>
+              <a href="pages/how-it-works.html" class="btn btn--ghost">How We Use AI</a>
             </div>
           </div>
 
@@ -613,6 +606,11 @@
         <div class="footer-cta">
           <p class="footer-nav__label">Stay informed</p>
           <a href="#subscribe" class="btn btn--ghost" id="subscribe">Subscribe</a>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="https://www.facebook.com/DonScottBedfordNY/" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <!-- TODO: replace # with real Instagram URL when available -->
+            <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+          </div>
         </div>
 
       </div>
