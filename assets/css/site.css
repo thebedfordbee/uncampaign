@@ -237,9 +237,9 @@ p { max-width: 68ch; }
   .nav-toggle { display: none; }
 }
 
-/* Hamburger */
+/* Hamburger — hidden by default (desktop); shown only on mobile */
 .nav-toggle {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
@@ -251,6 +251,9 @@ p { max-width: 68ch; }
   padding: 8px;
   border-radius: var(--radius);
   flex-shrink: 0;
+}
+@media (max-width: 767px) {
+  .nav-toggle { display: flex; }
 }
 .nav-toggle:hover { background: rgba(0, 0, 0, 0.05); }
 
