@@ -140,6 +140,28 @@
         hyphens: none;
       }
     }
+
+    /* ── Rule card hover — mirrors homepage .card hover treatment ────────────
+       Scoped to .rule-card so no other pages are affected.
+       Gated to pointer-capable hover devices only. */
+    @media (hover: hover) and (pointer: fine) {
+      .rule-card {
+        transition: background 0.18s ease, border-color 0.18s ease,
+                    box-shadow 0.18s ease, transform 0.18s ease;
+      }
+      .rule-card:hover {
+        background: var(--cream);
+        border-color: var(--sage);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .rule-card {
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+      .rule-card:hover { transform: none; }
+    }
   </style>
 </head>
 <body>
@@ -229,7 +251,6 @@
           </div>
 
           <div class="issues-explainer__offers">
-            <p class="eyebrow">This One Doesn&#8217;t</p>
             <p class="rules-intro__standout">Mine won&#8217;t.</p>
             <p>I&#8217;m running because Bedford deserves a choice in an election that should not be uncontested. That does not require noise, pressure, or performance. It requires a name on the ballot, a clear point of view, and an open invitation to talk if you want to.</p>
           </div>
