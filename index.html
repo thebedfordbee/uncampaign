@@ -135,17 +135,39 @@
        HOMEPAGE — page-specific overrides
        ============================================= */
 
-    /* AI section: vertically center right column on desktop */
+    /* AI section: start-align the two body columns on desktop */
     @media (min-width: 768px) {
-      .ai-section__inner { align-items: center; }
+      .ai-section__inner { align-items: start; }
     }
 
-    /* Justified body copy */
+    /* Justified body copy — scoped to sections that warrant it */
     .issues-hero__deck,
-    .different__header p,
     .spending__body,
-    .ai-section__text p,
-    .faq__header p { text-align: justify; }
+    .ai-section__text p { text-align: justify; }
+
+    /* 1. Hero: center eyebrow + H1 within left column (desktop only) */
+    @media (min-width: 768px) {
+      .issues-hero__copy-top .eyebrow,
+      .issues-hero__copy-top h1 { text-align: center; }
+    }
+
+    /* 2. Different section: center header (eyebrow, H2, subcopy) */
+    .different__header { text-align: center; }
+
+    /* 3. Radical Transparency: center eyebrow + H2 in left column (desktop only);
+          remove artificial width cap from subcopy */
+    @media (min-width: 768px) {
+      .spending__left .eyebrow,
+      .spending__left h2 { text-align: center; }
+    }
+    .spending__body { max-width: none; }
+
+    /* 4. AI section: full-width centered header above the two columns */
+    .ai-section__header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .ai-section__header h2 { margin-bottom: 0; }
 
     /* Mobile: center bottom-of-section CTAs */
     @media (max-width: 767px) {
@@ -490,11 +512,15 @@
     <!-- AI TRANSPARENCY -->
     <section class="section ai-section" aria-labelledby="ai-headline">
       <div class="container">
+
+        <div class="ai-section__header">
+          <p class="eyebrow">AI transparency</p>
+          <h2 id="ai-headline">Yes, AI Helped Build This Campaign</h2>
+        </div>
+
         <div class="ai-section__inner">
 
           <div class="ai-section__text">
-            <p class="eyebrow">AI transparency</p>
-            <h2 id="ai-headline">Yes, AI Helped Build This Campaign</h2>
             <p>
               We're not hiding it. AI helped build this site and refine the approach. We
               think being open about that is more useful than pretending it didn't happen.
