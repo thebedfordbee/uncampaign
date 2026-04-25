@@ -23,7 +23,7 @@
   --max-w:  1100px;
 
   /* Spending thermometer fill — update to reflect actual spend percentage */
-  --spend-pct: 0%;
+  --spend-pct: 20%;
 }
 
 /* --- Reset & Base --- */
@@ -2337,12 +2337,75 @@ p { max-width: 68ch; }
   max-width: none;
   margin-inline: 0;
 }
-.spending__meter-card .thermometer__summary {
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1.625rem;
+/* =============================================
+   ISSUES-HERO — STATIC IMAGE VARIANT (homepage)
+   Non-interactive image; no modal, no pointer cursor
+   ============================================= */
+div.issues-hero__visual--static {
+  cursor: default;
+  pointer-events: none;
 }
-.spending__meter-card .spend-stat__value {
-  font-size: 1.5rem;
+div.issues-hero__visual--static:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+}
+
+/* =============================================
+   EXPENSE LIST — METER CARD (homepage spending)
+   ============================================= */
+.spending__expenses-label {
+  display: block;
+  margin-top: 1.5rem;
+  margin-bottom: 0.625rem;
+  text-align: left;
+}
+.expense-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding-block: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.expense-item:last-child { border-bottom: none; }
+.expense-item__name {
+  font-size: 0.875rem;
+  color: var(--charcoal);
+  max-width: none;
+}
+.expense-item__amount {
+  font-size: 0.875rem;
+  color: var(--muted);
+  flex-shrink: 0;
+  max-width: none;
+  font-variant-numeric: tabular-nums;
+}
+.expense-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding-top: 0.625rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid var(--border);
+  text-align: left;
+}
+.expense-total__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  max-width: none;
+}
+.expense-total__value {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  color: var(--charcoal);
+  max-width: none;
+  font-variant-numeric: tabular-nums;
 }
 

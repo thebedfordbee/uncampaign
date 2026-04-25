@@ -48,43 +48,40 @@
     </nav>
   </header>
 
-  <main id="main-content">
+  <!-- HERO — matches /issues hero structure exactly -->
+  <section class="issues-hero" aria-labelledby="hero-headline">
+    <div class="container">
+      <div class="issues-hero__inner">
 
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-headline">
-      <div class="container">
-        <div class="hero__inner">
-
-          <!-- Mobile order: text-top → image → text-bottom. Desktop: 2-col via grid-template-areas. -->
-          <div class="hero__text-top">
-            <p class="eyebrow hero__eyebrow">Bedford, New York &middot; 2025</p>
-            <h1 class="hero__headline" id="hero-headline">Bedford deserves&nbsp;a&nbsp;choice.</h1>
-          </div>
-
-          <div class="hero__image">
-            <div class="hero__image-frame">
-              <img
-                src="assets/img/don-hero.png"
-                alt="Don Scott, candidate for Bedford Town Supervisor"
-                width="680"
-                height="816"
-              >
-            </div>
-          </div>
-
-          <div class="hero__text-bottom">
-            <p class="hero__body">
-              I'm Don Scott, and I'm running for Bedford Town Supervisor. This campaign
-              is also a proof point: anyone can run for local office without a media buying
-              team, strategy consultants, or a pile of money. What you need is to think
-              ahead, be resourceful, communicate clearly, and be accountable. Those are
-              probably useful traits in local government too.
-            </p>
-          </div>
-
+        <div class="issues-hero__copy-top">
+          <p class="eyebrow">Bedford, New York &middot; 2025</p>
+          <h1 id="hero-headline">Bedford deserves&nbsp;a&nbsp;choice.</h1>
         </div>
+
+        <div class="issues-hero__visual issues-hero__visual--static">
+          <img
+            src="assets/img/don-hero.png"
+            alt="Don Scott, candidate for Bedford Town Supervisor"
+            width="680"
+            height="816"
+          >
+        </div>
+
+        <div class="issues-hero__copy-bot">
+          <p class="issues-hero__deck">
+            I'm Don Scott, and I'm running for Bedford Town Supervisor. This campaign
+            is also a proof point: anyone can run for local office without a media buying
+            team, strategy consultants, or a pile of money. What you need is to think
+            ahead, be resourceful, communicate clearly, and be accountable. Those are
+            probably useful traits in local government too.
+          </p>
+        </div>
+
       </div>
-    </section>
+    </div>
+  </section>
+
+  <main id="main-content">
 
     <!-- BEHAVES DIFFERENTLY -->
     <section class="section section--alt" aria-labelledby="different-headline">
@@ -176,39 +173,44 @@
           <div class="spending__right">
             <div class="spending__meter-card" role="region" aria-label="Campaign spending tracker">
               <p class="eyebrow spending__meter-eyebrow">Current total</p>
-              <span class="spending__current-amount">$0.00</span>
-              <span class="spending__current-label">spent so far</span>
+              <span class="spending__current-amount">$9.99</span>
+              <span class="spending__current-label">of $49.99 cap</span>
 
               <div class="thermometer">
                 <div class="thermometer__track">
                   <div
                     class="thermometer__fill"
                     role="progressbar"
-                    aria-valuenow="0"
+                    aria-valuenow="9.99"
                     aria-valuemin="0"
                     aria-valuemax="49.99"
-                    aria-label="$0.00 of $49.99 spending cap used"
+                    aria-label="$9.99 of $49.99 spending cap used"
                   ></div>
                 </div>
                 <div class="thermometer__labels" aria-hidden="true">
-                  <span>$0 spent</span>
+                  <span>$9.99 spent</span>
                   <span>$49.99 cap</span>
                 </div>
               </div>
 
-              <div class="thermometer__summary">
-                <div class="spend-stat">
-                  <span class="spend-stat__value">$0.00</span>
-                  <span class="spend-stat__label">Total spent</span>
-                </div>
-                <div class="spend-stat">
-                  <span class="spend-stat__value">$49.99</span>
-                  <span class="spend-stat__label">Spending cap</span>
-                </div>
-                <div class="spend-stat">
-                  <span class="spend-stat__value">0%</span>
-                  <span class="spend-stat__label">Of limit used</span>
-                </div>
+              <p class="eyebrow spending__expenses-label">Expenses</p>
+              <ul class="expense-list" role="list" aria-label="Itemized campaign expenses">
+                <li class="expense-item">
+                  <span class="expense-item__name">Domain Name</span>
+                  <span class="expense-item__amount">$9.99</span>
+                </li>
+                <li class="expense-item">
+                  <span class="expense-item__name">Web Hosting</span>
+                  <span class="expense-item__amount">$0.00</span>
+                </li>
+                <li class="expense-item">
+                  <span class="expense-item__name">Mailers</span>
+                  <span class="expense-item__amount">$0.00</span>
+                </li>
+              </ul>
+              <div class="expense-total">
+                <span class="expense-total__label">Total</span>
+                <span class="expense-total__value">$9.99</span>
               </div>
             </div>
           </div>
