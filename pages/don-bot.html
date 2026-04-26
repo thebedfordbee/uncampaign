@@ -535,6 +535,152 @@
       .donbot-history__chip { transition: none; }
       .donbot-typing__dot { animation: none; opacity: 0.55; }
     }
+
+    /* ── Hero placeholder (plain CSS div, no img/svg/canvas) ────────── */
+    .donbot-hero-placeholder {
+      aspect-ratio: 4 / 3;
+      border-radius: 8px;
+    }
+    .donbot-hero-placeholder span {
+      text-align: center;
+      line-height: 2.4;
+    }
+
+    /* ── Sticky answer column (desktop only, bounded by section) ─────── */
+    @media (min-width: 800px) {
+      .donbot-answer-col {
+        position: sticky;
+        top: 5.5rem;
+      }
+    }
+
+    /* ── HOW THIS WAS BUILT section ─────────────────────────────────── */
+    .donbot-built-section {
+      padding-block: 2.5rem 3.5rem;
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+    }
+    @media (min-width: 768px) { .donbot-built-section { padding-block: 3rem 4.5rem; } }
+
+    .donbot-built-header { margin-bottom: 2rem; }
+    .donbot-built-header h2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+    .donbot-built-lead {
+      color: var(--muted);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      margin: 0;
+      max-width: 58ch;
+    }
+
+    .donbot-built-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .donbot-built-stat {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.875rem 1.125rem;
+      flex: 1;
+      min-width: 120px;
+      box-shadow: var(--shadow-sm);
+    }
+    .donbot-built-stat__value {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--moss);
+      display: block;
+      line-height: 1.2;
+    }
+    .donbot-built-stat__label {
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      display: block;
+    }
+
+    .donbot-built-details {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .donbot-built-summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      font-family: var(--serif);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      user-select: none;
+      transition: background 0.15s;
+    }
+    .donbot-built-summary::-webkit-details-marker { display: none; }
+    .donbot-built-summary::marker { display: none; }
+    .donbot-built-summary:hover { background: rgba(0,0,0,0.03); }
+    .donbot-built-summary:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
+    .donbot-built-chevron {
+      font-style: normal;
+      font-size: 1.25rem;
+      color: var(--sage);
+      flex-shrink: 0;
+      line-height: 1;
+      transition: transform 0.22s ease;
+    }
+    .donbot-built-details[open] .donbot-built-chevron { transform: rotate(45deg); }
+    @media (prefers-reduced-motion: reduce) { .donbot-built-chevron { transition: none; } }
+
+    .donbot-built-content {
+      padding: 1.25rem 1.375rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .donbot-built-content h3 {
+      font-family: var(--serif);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      margin: 0 0 0.5rem;
+    }
+    .donbot-built-content h3:not(:first-child) { margin-top: 1.5rem; }
+    .donbot-built-content p, .donbot-built-content li {
+      font-size: 0.875rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin: 0 0 0.625rem;
+    }
+    .donbot-built-content ul {
+      padding-left: 1.25rem;
+      margin: 0 0 0.625rem;
+    }
+    .donbot-built-content code {
+      font-size: 0.8125rem;
+      background: rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.1em 0.35em;
+      font-family: monospace;
+      color: var(--charcoal);
+    }
+    .donbot-built-prompt {
+      background: rgba(62,82,64,0.05);
+      border-left: 3px solid var(--sage);
+      border-radius: 0 4px 4px 0;
+      padding: 0.875rem 1rem;
+      margin: 0.5rem 0 1rem;
+      font-size: 0.8125rem;
+      line-height: 1.75;
+      color: var(--charcoal);
+      font-family: var(--sans);
+      white-space: pre-wrap;
+    }
   </style>
 </head>
 <body>
@@ -587,18 +733,13 @@
       <div class="issues-hero__inner">
 
         <div class="issues-hero__copy-top">
-          <p class="eyebrow">Don-Bot</p>
+          <p class="eyebrow">Don Scott Presents</p>
           <h1 id="donbot-title">Ask Don. Without the clipboard.</h1>
         </div>
 
-        <button type="button" class="issues-hero__visual" aria-label="Expand Don Scott photo" aria-haspopup="dialog">
-          <img
-            src="../assets/img/don-hero.png"
-            alt="Don Scott, candidate for Bedford Town Supervisor"
-            width="800"
-            height="800"
-          >
-        </button>
+        <div class="issues-hero__visual issues-hero__visual--placeholder donbot-hero-placeholder" role="img" aria-label="Hero image placeholder — Don at a laptop answering resident questions">
+          <span>DON-BOT HERO IMAGE PLACEHOLDER<br>Same specs as /issues hero image<br>Final art: Don at a laptop answering resident questions</span>
+        </div>
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">Choose a question and Don-Bot will show you Don's answer. No email capture. No donation pitch. No pretending this is a normal campaign.</p>
@@ -702,6 +843,91 @@
     </section>
 
   </main>
+
+  <!-- HOW THIS WAS BUILT -->
+  <section class="donbot-built-section" id="donbot-built" aria-labelledby="donbot-built-title">
+    <div class="container">
+
+      <div class="donbot-built-header">
+        <p class="eyebrow">Behind the Curtain</p>
+        <h2 id="donbot-built-title">How This Was Built</h2>
+        <p class="donbot-built-lead">Don-Bot was built with Claude Code, a plain text editor, and $0 in tool costs. The full process is documented here — questions authored by a candidate, answers written by a human, presentation assembled by AI following explicit instructions.</p>
+      </div>
+
+      <div class="donbot-built-stats">
+        <div class="donbot-built-stat">
+          <span class="donbot-built-stat__value">$0</span>
+          <span class="donbot-built-stat__label">Tool cost</span>
+        </div>
+        <div class="donbot-built-stat">
+          <span class="donbot-built-stat__value">Claude Code</span>
+          <span class="donbot-built-stat__label">Build platform</span>
+        </div>
+        <div class="donbot-built-stat">
+          <span class="donbot-built-stat__value">60+</span>
+          <span class="donbot-built-stat__label">Questions answered</span>
+        </div>
+        <div class="donbot-built-stat">
+          <span class="donbot-built-stat__value">HTML / CSS / JS</span>
+          <span class="donbot-built-stat__label">Stack (no framework)</span>
+        </div>
+      </div>
+
+      <details class="donbot-built-details">
+        <summary class="donbot-built-summary">
+          <span>See the full instruction set used to build this page</span>
+          <i class="donbot-built-chevron" aria-hidden="true">+</i>
+        </summary>
+        <div class="donbot-built-content">
+
+          <h3>Step 1 — Campaign context</h3>
+          <p>Every Claude Code session in this repo begins with a <code>CLAUDE.md</code> file that sets the operating brief. It defines the candidate, the race, the philosophy, the tone rules, and the non-negotiable constraints. Claude reads this before touching a single file.</p>
+          <p>Key constraints from that brief that shaped this page:</p>
+          <ul>
+            <li>No consultant voice. No marketing agency voice. Sound like a thoughtful local resident.</li>
+            <li>Prefer simple, low-cost, GitHub Pages-compatible solutions.</li>
+            <li>Prefer single-file HTML, CSS, and JS. Avoid unnecessary dependencies.</li>
+            <li>AI use is a feature, not a liability. Show how it helped. Teach residents they can use it too.</li>
+            <li>Always document tools, prompts, and outputs for post-election storytelling and awards.</li>
+          </ul>
+
+          <h3>Step 2 — Build prompt</h3>
+          <p>The prompt given to Claude Code to build this page:</p>
+          <div class="donbot-built-prompt">Build a Don-Bot Q&amp;A page for the UNCAMPAIGN. It should:
+
+— Use the campaign's existing site.css (no new frameworks)
+— Display questions organized in collapsible category accordions
+— Animate typed answers character by character with a realistic human feel
+— Include occasional typo + backspace correction moments to feel authentic
+— Show a typing indicator before each answer appears
+— Keep a short recent-questions history as chip buttons
+— Work on both mobile and desktop
+— Be a single HTML file with embedded CSS and JS
+— Follow all tone rules from CLAUDE.md (calm, neighborly, no consultant voice)
+— Include full structured data for SEO (FAQPage schema)
+— Be accessible: ARIA labels, keyboard navigation, reduced-motion support
+
+The Q&amp;A content should cover: who Don is, why he's running, the UNCAMPAIGN philosophy,
+Bedford issues (roads, development, taxes, cell service), the Town Supervisor role,
+party politics, and tough questions.
+
+All answers must reflect Don's actual views. AI organizes and presents; it does not invent positions.</div>
+
+          <h3>Step 3 — Q&amp;A authoring</h3>
+          <p>The 60+ questions and answers were written collaboratively. Don provided his positions, experience, and views. Claude drafted answer language consistent with his voice and the campaign's tone rules. Don reviewed and approved every answer before it was published. Nothing was invented by AI.</p>
+
+          <h3>Step 4 — Upgrades</h3>
+          <p>Subsequent sessions added: desktop sticky answer panel, guaranteed correction moments in every typed answer, this transparency section, reduced-motion support, and a CSS hero image placeholder pending final photography.</p>
+          <p>Each session began with the same <code>CLAUDE.md</code> context and a self-contained build prompt requiring inspection of existing files before making changes.</p>
+
+          <h3>Why document this?</h3>
+          <p>Because transparency is the point. This campaign uses AI openly. Showing the instructions is not a risk — it is the demonstration. Any resident, candidate, or civic organization could read this and build something similar. That is a feature, not a flaw.</p>
+
+        </div>
+      </details>
+
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="site-footer" role="contentinfo">
@@ -932,15 +1158,28 @@
     }
 
     function pickTypos(text) {
-      if (text.length < 200 || Math.random() > 0.32) return {};
       var typos = {};
       var pool = 'abcdefghijklmnoprstw';
-      var count = Math.random() < 0.6 ? 1 : 2;
-      for (var t = 0; t < count; t++) {
-        var pos = Math.floor(30 + Math.random() * (text.length - 60));
-        if (/[a-zA-Z]/.test(text[pos]) && !typos[pos]) {
+      var minPos = Math.min(25, Math.floor(text.length * 0.15));
+      var maxPos = Math.max(minPos + 10, text.length - 30);
+      var attempts = 0;
+      while (Object.keys(typos).length < 1 && attempts < 30) {
+        attempts++;
+        var pos = Math.floor(minPos + Math.random() * (maxPos - minPos));
+        if (/[a-zA-Z]/.test(text[pos])) {
           var wrong = pool[Math.floor(Math.random() * pool.length)];
-          if (wrong !== text[pos].toLowerCase()) typos[pos] = wrong;
+          if (wrong !== text[pos].toLowerCase()) { typos[pos] = wrong; }
+        }
+      }
+      if (text.length > 250 && Math.random() < 0.45) {
+        var attempts2 = 0;
+        while (attempts2 < 20) {
+          attempts2++;
+          var pos2 = Math.floor(minPos + Math.random() * (maxPos - minPos));
+          if (/[a-zA-Z]/.test(text[pos2]) && !typos[pos2]) {
+            var wrong2 = pool[Math.floor(Math.random() * pool.length)];
+            if (wrong2 !== text[pos2].toLowerCase()) { typos[pos2] = wrong2; break; }
+          }
         }
       }
       return typos;
@@ -958,18 +1197,19 @@
         if (i >= text.length) { el.textContent = text; return; }
 
         if (typos[i]) {
-          cur += typos[i];
+          var capturedI = i;
+          cur += typos[capturedI];
           el.textContent = cur;
           activeTimer = setTimeout(function () {
             cur = cur.slice(0, -1);
             el.textContent = cur;
             activeTimer = setTimeout(function () {
-              cur += text[i];
+              cur += text[capturedI];
               el.textContent = cur;
               i++;
               activeTimer = setTimeout(step, delay);
-            }, 65);
-          }, 170);
+            }, 110);
+          }, 290);
           return;
         }
 
@@ -1049,9 +1289,9 @@
       /* Update history */
       updateHistory(qObj);
 
-      /* Scroll to panel on narrow screens */
+      /* Scroll to answer panel on narrow screens */
       if (window.innerWidth < 800) {
-        document.querySelector('.donbot-answer-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        document.querySelector('.donbot-answer-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
 
       if (prefersReducedMotion) {
