@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A transparent look at how Don Scott's Bedford Town Supervisor campaign uses AI to build civic tools, reduce costs, and keep human judgment at the center.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <title>How We Use AI | Don Scott for Bedford Town Supervisor</title>
+  <link rel="canonical" href="https://uncampaign.pages.dev/pages/ai.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uncampaign.pages.dev/pages/ai.html">
+  <meta property="og:title" content="How We Use AI | Don for Bedford">
+  <meta property="og:description" content="This campaign uses AI openly. See the prompts, tools, and human-reviewed workflows behind the Don for Bedford site.">
+  <meta property="og:image" content="https://uncampaign.pages.dev/assets/img/don-bot.png">
+  <meta property="og:image:secure_url" content="https://uncampaign.pages.dev/assets/img/don-bot.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="How We Use AI — Don Scott for Bedford Town Supervisor campaign AI transparency page.">
+  <meta property="og:site_name" content="Don Scott for Bedford">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://uncampaign.pages.dev/pages/ai.html">
+  <meta name="twitter:title" content="How We Use AI | Don for Bedford">
+  <meta name="twitter:description" content="This campaign uses AI openly. See the prompts, tools, and human-reviewed workflows behind the Don for Bedford site.">
+  <meta name="twitter:image" content="https://uncampaign.pages.dev/assets/img/don-bot.png">
+  <meta name="twitter:image:alt" content="How We Use AI — Don Scott for Bedford Town Supervisor campaign AI transparency page.">
+
+  <!-- Favicons and browser theme -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4A5240">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#4A5240">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://uncampaign.pages.dev/#website",
+        "url": "https://uncampaign.pages.dev/",
+        "name": "Don Scott for Bedford",
+        "description": "The Uncampaign — Don Scott for Bedford Town Supervisor"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://uncampaign.pages.dev/pages/ai.html#webpage",
+        "url": "https://uncampaign.pages.dev/pages/ai.html",
+        "name": "How We Use AI | Don Scott for Bedford Town Supervisor",
+        "description": "A transparent look at how Don Scott's Bedford Town Supervisor campaign uses AI to build civic tools, reduce costs, and keep human judgment at the center.",
+        "isPartOf": { "@id": "https://uncampaign.pages.dev/#website" },
+        "about": { "@id": "https://uncampaign.pages.dev/#don-scott" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://uncampaign.pages.dev/assets/img/don-bot.png",
+          "width": 1536,
+          "height": 1024
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://uncampaign.pages.dev/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "How We Use AI",
+            "item": "https://uncampaign.pages.dev/pages/ai.html"
+          }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://uncampaign.pages.dev/#don-scott",
+        "name": "Don Scott",
+        "url": "https://uncampaign.pages.dev/",
+        "jobTitle": "Candidate for Town Supervisor",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bedford",
+          "addressRegion": "NY",
+          "addressCountry": "US"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    /* ── Tighter section spacing (ai page only) ──────────────────────────── */
+    .section { padding-block: 2.25rem; }
+    @media (min-width: 768px) { .section { padding-block: 3.25rem; } }
+
+    /* ── Justified body copy — scoped to this page ───────────────────────── */
+    .issues-explainer__why p,
+    .issues-explainer__offers p:not(.rules-intro__standout) {
+      text-align: justify;
+      hyphens: auto;
+    }
+    .issues-explainer__why p { max-width: none; }
+    @media (max-width: 380px) {
+      .issues-explainer__why p,
+      .issues-explainer__offers p:not(.rules-intro__standout) {
+        text-align: left;
+        hyphens: none;
+      }
+    }
+
+    /* ── AI tools accordion (mirrors ideas.html accordion pattern) ────────── */
+    .ai-tools-accordion {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* idea-category styles are page-scoped in ideas.html; copy them here */
+    .idea-category { border-bottom: 1px solid var(--border); }
+    .idea-category:last-child { border-bottom: none; }
+
+    .idea-category__trigger {
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.125rem 1.25rem;
+      min-height: 60px;
+      transition: background 0.15s, filter 0.15s;
+      font-family: inherit;
+    }
+    .idea-category__trigger:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
+
+    .idea-category:nth-child(5n+1) .idea-category__trigger { background: var(--white); }
+    .idea-category:nth-child(5n+2) .idea-category__trigger { background: var(--cream); }
+    .idea-category:nth-child(5n+3) .idea-category__trigger { background: rgba(123,140,121,0.07); }
+    .idea-category:nth-child(5n+4) .idea-category__trigger { background: rgba(224,219,211,0.55); }
+    .idea-category:nth-child(5n+5) .idea-category__trigger { background: rgba(62,82,64,0.05); }
+
+    .idea-category__trigger:hover { filter: brightness(0.965); }
+    .idea-category.is-open .idea-category__trigger { filter: brightness(0.955); }
+
+    .idea-category__trigger-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      min-width: 0;
+    }
+    .idea-category__name {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--charcoal);
+      line-height: 1.3;
+    }
+    .idea-category__count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: rgba(0,0,0,0.06);
+      border-radius: 10px;
+      padding: 0.15rem 0.5rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .idea-category__icon {
+      font-style: normal;
+      font-size: 1.25rem;
+      color: var(--sage);
+      flex-shrink: 0;
+      line-height: 1;
+      transition: transform 0.22s ease;
+    }
+    .idea-category.is-open .idea-category__icon { transform: rotate(45deg); }
+
+    .idea-category__panel {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease;
+    }
+    .idea-category.is-open .idea-category__panel { max-height: 5000px; }
+    .idea-category__panel-inner {
+      padding: 1.25rem;
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+    }
+
+    /* Brief description above the instruction panel */
+    .ai-tool-desc {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    /* Reduce top margin on instr-panel when nested inside accordion */
+    .idea-category__panel-inner .instr-panel { margin-top: 1.25rem; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .idea-category__panel { transition: none; }
+      .idea-category__icon { transition: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER — matches rules.html exactly (same links, same order, no aria-current) -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+        <span class="site-logo__name">Don Scott</span>
+        <span class="site-logo__race">for Bedford</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__links" role="list">
+          <li><a href="rules.html">Rules</a></li>
+          <li><a href="issues.html">Issues</a></li>
+          <li><a href="ideas.html">Ideas</a></li>
+          <li><a href="minutes.html">Minutes</a></li>
+          <li><a href="odds.html">Odds</a></li>
+          <li><a href="press.html">Press</a></li>
+        </ul>
+        <a href="#subscribe" class="btn btn--subscribe site-nav__cta">Subscribe</a>
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Open navigation menu"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </nav>
+    </div>
+
+    <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
+      <a href="rules.html">Rules</a>
+      <a href="issues.html">Issues</a>
+      <a href="ideas.html">Ideas</a>
+      <a href="minutes.html">Minutes</a>
+      <a href="odds.html">Odds</a>
+      <a href="press.html">Press</a>
+      <a href="#subscribe" class="btn btn--subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <!-- HERO — matches rules.html hero pattern exactly -->
+  <section class="issues-hero" aria-labelledby="ai-title">
+    <div class="container">
+      <div class="issues-hero__inner">
+
+        <div class="issues-hero__copy-top">
+          <p class="eyebrow">Don Scott for Bedford</p>
+          <h1 id="ai-title">How We Use AI</h1>
+        </div>
+
+        <button type="button" class="issues-hero__visual" aria-label="Expand image" aria-haspopup="dialog">
+          <img
+            src="../assets/img/don-bot.png"
+            alt="Don-Bot, the AI-assisted Q&amp;A tool built for the Don Scott for Bedford campaign"
+            width="1536"
+            height="1024"
+            loading="eager"
+            decoding="async"
+          >
+        </button>
+
+        <div class="issues-hero__copy-bot">
+          <p class="issues-hero__deck">AI helped build this campaign. Not to replace judgment &#8212; to reduce cost. This page explains what was built, how it works, and shows the exact instructions behind each tool.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <main id="main-content">
+
+    <!-- AI APPROACH — mirrors rules.html campaign approach section layout -->
+    <section class="section section--alt" aria-labelledby="ai-approach-headline">
+      <div class="container">
+        <div class="issues-explainer">
+
+          <div class="issues-explainer__why">
+            <p class="eyebrow">AI Assistance, Human Review</p>
+            <h2 id="ai-approach-headline">This Campaign Uses AI Openly</h2>
+            <p>Most campaigns spend thousands of dollars on consultants, designers, and communications staff. This campaign uses AI to do what those consultants would have done &#8212; at a fraction of the cost, and transparently. The tools on this page were built with AI. Don reviewed everything before it went public.</p>
+          </div>
+
+          <div class="issues-explainer__offers">
+            <p class="rules-intro__standout">AI is a tool. Don is the candidate.</p>
+            <p>AI does not set positions, invent answers, or make campaign decisions. It helps draft, structure, and build. Every output is reviewed by a human before it is published. That is not a disclaimer &#8212; it is the design.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- AI TOOLS ACCORDION — section header mirrors personas-intro pattern from rules.html -->
+    <section class="section" aria-labelledby="ai-tools-headline">
+      <div class="container">
+
+        <div class="personas-intro">
+          <p class="eyebrow">AI tools used in this campaign</p>
+          <h2 id="ai-tools-headline">How Each Tool Was Built</h2>
+          <p class="personas-intro__lead">This campaign publishes the exact AI instructions behind each tool it uses. These are the real prompts &#8212; not summaries. Click any row to read them. Copy them if they&#8217;re useful.</p>
+        </div>
+
+        <div class="ai-tools-accordion" role="list" aria-label="AI tools and instruction sets">
+
+          <!-- 1. Civic Roundtable -->
+          <div class="idea-category" role="listitem">
+            <button
+              class="idea-category__trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="ai-panel-roundtable"
+              aria-label="Civic Roundtable — expand to view instruction set"
+            >
+              <span class="idea-category__trigger-left">
+                <span class="idea-category__name">Civic Roundtable</span>
+                <span class="idea-category__count">Instruction set</span>
+              </span>
+              <i class="idea-category__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="idea-category__panel" id="ai-panel-roundtable" role="region" aria-label="Civic Roundtable instruction set">
+              <div class="idea-category__panel-inner">
+                <p class="ai-tool-desc">The Bedford Roundtable examines every local issue through eight distinct civic perspectives before arriving at a recommendation. This is the exact prompt used to run each discussion. <a href="issues.html">Explore the issues &#8594;</a></p>
+                <div class="instr-panel">
+                  <div class="instr-panel__bar">
+                    <span class="instr-panel__title">Public Instruction Set &#8212; Civic Roundtable</span>
+                    <button class="instr-panel__copy" aria-label="Copy Civic Roundtable instruction set to clipboard">
+                      <span class="instr-panel__copy-label">Copy All</span>
+                    </button>
+                  </div>
+                  <div class="instr-panel__body">
+                    <pre class="instr-panel__text">Act as a civic Roundtable designed to evaluate one local issue through eight consistent perspectives before arriving at a practical recommendation.
+
+The issue to evaluate is:
+[PASTE YOUR ISSUE HERE]
+
+Create and maintain these eight roles throughout the discussion:
+
+1. Chair
+A real decision-maker who introduces the issue neutrally, moderates the discussion, identifies where perspectives agree or conflict, and delivers the final recommendation. The Chair is informed by the discussion but not replaced by it.
+
+2. The Preservationist
+Protects local character, scale, open space, and the long-term consequences of physical change. Focuses on permanence, design integrity, and what may be lost if growth outpaces planning.
+
+3. The Practical Family
+Tests whether a policy works in real daily life. Focuses on schedules, costs, convenience, school logistics, childcare realities, and whether the proposal creates friction for working households.
+
+4. The Main-Streeter
+Focuses on local business vitality, hamlet energy, storefronts, foot traffic, parking, and whether plans produce visible economic life instead of endless talk.
+
+5. The Affordability Realist
+Tracks who pays, how much, and when. Focuses on taxes, rents, utility bills, mandates, downstream costs, hidden burdens, and whether a policy is financially survivable.
+
+6. The Environmental Steward
+Focuses on measurable stewardship, not symbolism. Evaluates habitat, water quality, tree canopy, resilience, land use, and whether environmental claims are real, durable, and evidence-based.
+
+7. The Civic Skeptic
+Demands visible accountability. Examines contracts, timelines, deliverables, public notice, process integrity, measurable outcomes, and whether the public can actually verify what is being promised.
+
+8. The Services Neighbor
+Keeps the basics first. Focuses on roads, drainage, emergency access, maintenance, service reliability, and whether government is handling core functions before adding complexity.
+
+Instructions for the Roundtable:
+- The Chair must begin with a neutral framing of the issue, explaining context without taking a side.
+- Each perspective should respond in its own distinct voice, raising concerns, tradeoffs, risks, and priorities specific to that role.
+- Do not make the perspectives repetitive. Make each one meaningfully different.
+- Stress-test the issue across all perspectives more than once if needed until the strongest arguments, hidden risks, and recurring points of agreement are clear.
+- Identify where perspectives align, where they conflict, and what tradeoffs are unavoidable.
+- Do not force false consensus.
+- Do not default to a mushy compromise.
+- After all perspectives have been heard, have the Chair deliver a final recommendation that is practical, disciplined, and clearly reasoned.
+- The final recommendation should not try to please everyone equally. It should make a sound judgment after weighing all relevant perspectives.
+- The final recommendation must explain:
+  1. What matters most
+  2. What tradeoffs were accepted
+  3. What objections remain
+  4. Why this is the most reasonable path forward
+
+Output format:
+1. Neutral issue framing from the Chair
+2. Individual responses from each perspective
+3. Points of agreement and conflict
+4. Final recommendation from the Chair
+5. A short "platform commitment" or action plan summarizing what should happen next</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Meeting Summary Podcasts -->
+          <div class="idea-category" role="listitem">
+            <button
+              class="idea-category__trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="ai-panel-minutes"
+              aria-label="Meeting Summary Podcasts — expand to view instruction set"
+            >
+              <span class="idea-category__trigger-left">
+                <span class="idea-category__name">Meeting Summary Podcasts</span>
+                <span class="idea-category__count">Placeholder</span>
+              </span>
+              <i class="idea-category__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="idea-category__panel" id="ai-panel-minutes" role="region" aria-label="Meeting Summary Podcasts instruction set">
+              <div class="idea-category__panel-inner">
+                <p class="ai-tool-desc">Town Board in Minutes turns long public meetings into short audio recaps. The exact production prompt will be published here once the first recap is complete. <a href="minutes.html">See the project &#8594;</a></p>
+                <div class="instr-panel">
+                  <div class="instr-panel__bar">
+                    <span class="instr-panel__title">Production Prompt &#8212; Placeholder</span>
+                    <button class="instr-panel__copy" aria-label="Copy Meeting Summary Podcasts instruction set to clipboard">
+                      <span class="instr-panel__copy-label">Copy All</span>
+                    </button>
+                  </div>
+                  <div class="instr-panel__body">
+                    <p style="font-size:0.8125rem;color:var(--muted);font-style:italic;margin:0 0 1.25rem;max-width:none">The full production instructions will be published here once the first recap workflow is finalized. The placeholder below reflects the current working approach.</p>
+                    <pre class="instr-panel__text">Use the public replay video for this Bedford Town Board meeting. Create a short audio overview featuring two hosts who clearly and fairly recap the meeting for residents. Focus on what was discussed, what was decided, what remains unresolved, and what a resident might want to follow next. Keep the tone plainspoken, calm, and useful. Do not add facts that are not supported by the meeting materials.
+
+Note: The exact production instructions will be added once the workflow is finalized.</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Interactive Chatbot -->
+          <div class="idea-category" role="listitem">
+            <button
+              class="idea-category__trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="ai-panel-chatbot"
+              aria-label="Interactive Chatbot — expand to view instruction set"
+            >
+              <span class="idea-category__trigger-left">
+                <span class="idea-category__name">Interactive Chatbot</span>
+                <span class="idea-category__count">Instruction set</span>
+              </span>
+              <i class="idea-category__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="idea-category__panel" id="ai-panel-chatbot" role="region" aria-label="Interactive Chatbot instruction set">
+              <div class="idea-category__panel-inner">
+                <p class="ai-tool-desc">Don-Bot is a human-reviewed Q&amp;A tool. Visitors choose from prewritten questions organized by topic. AI formats and presents the answers Don reviewed in advance &#8212; nothing is made up on the fly. <a href="don-bot.html">Try Don-Bot &#8594;</a></p>
+                <div class="instr-panel">
+                  <div class="instr-panel__bar">
+                    <span class="instr-panel__title">Public Instruction Set &#8212; Interactive Chatbot</span>
+                    <button class="instr-panel__copy" aria-label="Copy Interactive Chatbot instruction set to clipboard">
+                      <span class="instr-panel__copy-label">Copy All</span>
+                    </button>
+                  </div>
+                  <div class="instr-panel__body">
+                    <pre class="instr-panel__text">Build a Human-Reviewed Q&amp;A Chatbot
+
+I want to build a simple chatbot-style webpage from a set of questions and answers I provide.
+
+The chatbot should not make up answers. Visitors should choose from prewritten questions, organized by topic, and the site should show the answer I already reviewed.
+
+Please build it with these requirements:
+
+1. Create expandable categories for the questions.
+2. Put each question under the right category.
+3. When someone clicks a question, show the matching answer in a chat-style answer window.
+4. Do not allow visitors to type their own questions unless I specifically provide a safe answer system.
+5. Add a short "typing" indicator before the answer appears.
+6. Make the answer appear with a fast typewriter effect.
+7. Add one subtle human-like correction while typing, such as a typo that gets erased and fixed, or a word that gets replaced with a better word.
+8. Make the correction slow enough that people can notice it, but not so slow that the tool becomes annoying.
+9. On desktop, keep the answer window visible while people browse questions.
+10. On mobile, scroll people to the answer after they select a question, then give them an easy way to return to the question list.
+11. Add a plain-language note explaining that the chatbot uses human-reviewed answers.
+12. Add page metadata and FAQ schema so search engines can understand the questions and answers.
+13. Respect reduced-motion settings by showing the answer immediately for people who prefer less animation.
+14. Keep the tone useful and transparent. Do not pretend the chatbot is alive or that AI is deciding what to say.
+
+The goal is to make information easier to browse, not to replace a real conversation.</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Social Media Clone -->
+          <div class="idea-category" role="listitem">
+            <button
+              class="idea-category__trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="ai-panel-photos"
+              aria-label="Social Media Clone — expand to view instruction set"
+            >
+              <span class="idea-category__trigger-left">
+                <span class="idea-category__name">Social Media Clone</span>
+                <span class="idea-category__count">Instruction set</span>
+              </span>
+              <i class="idea-category__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="idea-category__panel" id="ai-panel-photos" role="region" aria-label="Social Media Clone instruction set">
+              <div class="idea-category__panel-inner">
+                <p class="ai-tool-desc">The Campaign Photo Archive uses AI-generated images to produce a complete set of staged campaign photos &#8212; posted all at once, upfront, so there&#8217;s no suspense about what campaign photography looks like. <a href="photos.html">See the archive &#8594;</a></p>
+                <div class="instr-panel">
+                  <div class="instr-panel__bar">
+                    <span class="instr-panel__title">Public Instruction Set &#8212; AI Photo Series</span>
+                    <button class="instr-panel__copy" aria-label="Copy Social Media Clone instruction set to clipboard">
+                      <span class="instr-panel__copy-label">Copy All</span>
+                    </button>
+                  </div>
+                  <div class="instr-panel__body">
+                    <p style="font-size:0.8125rem;color:var(--muted);font-style:italic;margin:0 0 1.25rem;max-width:none">Cleaned up slightly for readability. Functionally the same instructions used to generate the staged photo series.</p>
+                    <pre class="instr-panel__text">We are creating a multi-image series of AI-generated campaign photos featuring the same fictionalized Don Scott character for the Bedford Town Supervisor UNCAMPAIGN.
+
+SERIES RULES
+- Generate only one image at a time.
+- Format: 4:5 portrait (1080 x 1350), optimized for Instagram feed.
+- Compose each image so it also crops cleanly into a square for Instagram grid use.
+- Keep Don centered enough for square-crop safety.
+- Use the exact same fictionalized Don Scott character in every image: same face, hair, age, build, skin tone, and overall appearance.
+- Style should feel like realistic civic campaign photography in Bedford, New York: warm, local, natural light, lightly staged but believable.
+- Humor should come from the concept, not from making the image visually absurd.
+
+DO NOT INCLUDE
+- Any text in the image
+- Logos or campaign branding
+- Watermarks
+- Readable political signs or readable signage
+- Partisan symbols
+- Giant flags
+- Distorted hands
+- Weird AI artifacts
+- An exaggerated politician grin
+
+IMAGE REQUEST
+Generate a realistic civic campaign-style photo of the same fictionalized Don Scott character for the Bedford Town Supervisor UNCAMPAIGN.
+
+SCENE
+Don is standing outside a small local community building in Bedford, New York, at a modest ribbon-cutting ceremony. He is holding oversized ceremonial scissors near a ribbon, with a few local residents nearby. The mood is warm, neighborly, and slightly staged in the familiar political photo-op way, but restrained and believable. Natural daylight. Small-town suburban Westchester feel.
+
+VISUAL STYLE
+- Realistic campaign photography
+- Warm, clean natural light
+- Lightly polished editorial look
+- Calm, modest smile
+- Practical local-candidate clothing</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER — matches rules.html exactly -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <div class="footer-brand">
+          <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+            <span class="site-logo__name">Don Scott</span>
+            <span class="site-logo__race">for Bedford</span>
+          </a>
+          <p class="footer-brand__tagline">Less Campaign. More Bedford.</p>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="https://www.facebook.com/DonScottBedfordNY/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <!-- TODO: replace # with real Instagram URL when available -->
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <p class="footer-nav__label">Pages</p>
+          <a href="../index.html">Home</a>
+          <a href="issues.html">Issues</a>
+          <a href="rules.html">Rules</a>
+          <a href="ideas.html">Ideas</a>
+          <a href="minutes.html">Minutes</a>
+          <a href="press.html">Press</a>
+          <a href="odds.html">Odds</a>
+        </nav>
+
+        <div class="footer-cta">
+          <p class="footer-nav__label">Stay informed</p>
+          <a href="#subscribe" class="btn btn--ghost" id="subscribe">Subscribe</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script>
+    /* AI tools accordion toggle — each row independently expandable */
+    (function () {
+      'use strict';
+      document.querySelectorAll('.ai-tools-accordion .idea-category__trigger').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = this.closest('.idea-category');
+          var isOpen = item.classList.contains('is-open');
+          item.classList.toggle('is-open', !isOpen);
+          this.setAttribute('aria-expanded', String(!isOpen));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
