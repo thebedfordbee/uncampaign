@@ -265,6 +265,50 @@
     @media (prefers-reduced-motion: reduce) {
       .faq-item__question { transition: none; }
     }
+
+    /* Homepage: modestly tighter section spacing */
+    .section { padding-block: 2.375rem; }
+    @media (min-width: 768px) { .section { padding-block: 3.5rem; } }
+
+    /* Expense accordion — matches /ideas category expand/collapse pattern */
+    .expense-accordion__trigger {
+      width: 100%;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0;
+      font-family: inherit;
+      text-align: left;
+    }
+    .expense-accordion__trigger:focus-visible {
+      outline: 2px solid var(--moss);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+    .expense-accordion__icon {
+      font-style: normal;
+      font-size: 1.125rem;
+      color: var(--sage);
+      flex-shrink: 0;
+      line-height: 1;
+      transition: transform 0.22s ease;
+    }
+    .expense-accordion.is-open .expense-accordion__icon { transform: rotate(45deg); }
+    .expense-accordion__panel {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease;
+    }
+    .expense-accordion.is-open .expense-accordion__panel { max-height: 400px; }
+    .expense-accordion__panel-inner { padding-top: 0.75rem; }
+    @media (prefers-reduced-motion: reduce) {
+      .expense-accordion__icon { transition: none; }
+      .expense-accordion__panel { transition: none; }
+    }
   </style>
 </head>
 <body>
@@ -335,9 +379,9 @@
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">
             I'm Don Scott, and I'm running for Bedford Town Supervisor because local elections
-            should not go uncontested. Bedford deserves a choice. This campaign is also a proof
-            point: you need to think ahead, be resourceful, and communicate clearly. Those are
-            useful traits in local government too.
+            should not go uncontested. This campaign is intentionally unconventional because I
+            think Bedford could use fewer stale political habits and more fresh thinking, smarter
+            use of technology, and broader community involvement.
           </p>
         </div>
 
@@ -368,7 +412,7 @@
                 </svg>
               </div>
               <h3 class="card__title">Campaign Rules</h3>
-              <p class="card__body">A short list of things this campaign will not be doing between now and Election Day. On purpose.</p>
+              <p class="card__body">A short list of things this campaign will <u>not</u> be doing between now and Election Day. On purpose.</p>
             </a>
           </li>
 
@@ -392,7 +436,7 @@
                 </svg>
               </div>
               <h3 class="card__title">Idea Ranking</h3>
-              <p class="card__body">A collaborative tool where residents can compare possible town priorities through rankings and head-to-head matchups.</p>
+              <p class="card__body">A list of ideas for Bedford, organized by category. Browse the proposals and vote for the ones that matter most to you.</p>
             </a>
           </li>
 
@@ -504,17 +548,35 @@
                 </div>
               </div>
 
-              <p class="eyebrow spending__expenses-label">Expenses</p>
-              <ul class="expense-list" role="list" aria-label="Itemized campaign expenses">
-                <li class="expense-item">
-                  <span class="expense-item__name">Domain Name</span>
-                  <span class="expense-item__amount">$9.99</span>
-                </li>
-
-              </ul>
-              <div class="expense-total">
-                <span class="expense-total__label">Total</span>
-                <span class="expense-total__value">$9.99</span>
+              <div class="expense-accordion" id="expense-accordion">
+                <button
+                  class="expense-accordion__trigger"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="expense-panel"
+                >
+                  <span class="eyebrow">Expenses</span>
+                  <i class="expense-accordion__icon" aria-hidden="true">+</i>
+                </button>
+                <div
+                  class="expense-accordion__panel"
+                  id="expense-panel"
+                  role="region"
+                  aria-label="Itemized campaign expenses"
+                >
+                  <div class="expense-accordion__panel-inner">
+                    <ul class="expense-list" role="list">
+                      <li class="expense-item">
+                        <span class="expense-item__name">Domain Name</span>
+                        <span class="expense-item__amount">$9.99</span>
+                      </li>
+                    </ul>
+                    <div class="expense-total">
+                      <span class="expense-total__label">Total</span>
+                      <span class="expense-total__value">$9.99</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -709,6 +771,18 @@
     </div>
   </footer>
 
+  <script>
+    (function() {
+      var el = document.getElementById('expense-accordion');
+      if (!el) return;
+      var trigger = el.querySelector('.expense-accordion__trigger');
+      trigger.addEventListener('click', function() {
+        var open = el.classList.contains('is-open');
+        el.classList.toggle('is-open', !open);
+        trigger.setAttribute('aria-expanded', String(!open));
+      });
+    })();
+  </script>
   <script src="assets/js/site.js"></script>
 </body>
 </html>
