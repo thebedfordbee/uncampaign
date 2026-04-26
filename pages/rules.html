@@ -489,7 +489,7 @@
                   <h3 class="rule-card__cta-heading">Book a real conversation.</h3>
                   <p class="rule-card__cta-text">Twenty minutes. No agenda. Talk about whatever&#8217;s on your mind.</p>
                   <div class="cta-row">
-                    <a href="contact.html" class="btn btn--primary">Request a Chat</a>
+                    <button type="button" class="btn btn--primary" data-chat-req-open>Request a Chat</button>
                   </div>
                 </div>
               </div>
@@ -677,7 +677,84 @@
     </div>
   </footer>
 
+  <!-- CHAT REQUEST MODAL -->
+  <div class="chat-req-modal" id="chat-req-modal" role="dialog" aria-labelledby="chat-req-title" aria-modal="true" hidden>
+    <div class="chat-req-modal__backdrop" id="chat-req-backdrop" aria-hidden="true"></div>
+    <div class="chat-req-modal__frame">
+      <div class="chat-req-modal__header">
+        <span class="chat-req-modal__title" id="chat-req-title">Request a Chat with Don</span>
+        <button class="chat-req-modal__close" id="chat-req-close" aria-label="Close">&#x2715;</button>
+      </div>
+      <div class="chat-req-modal__body">
+
+        <!-- Step 1: Meeting format -->
+        <div class="chat-step" id="chat-step-1">
+          <p class="chat-step__label">Step 1 of 3</p>
+          <p class="chat-step__prompt">Would you prefer to meet virtually or in person?</p>
+          <div class="chat-choice-group" role="group" aria-label="Preferred meeting format">
+            <button type="button" class="chat-choice-btn" data-value="virtual" aria-pressed="false">Virtually</button>
+            <button type="button" class="chat-choice-btn" data-value="in-person" aria-pressed="false">In Person</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Preferred time -->
+        <div class="chat-step" id="chat-step-2" hidden>
+          <p class="chat-step__label">Step 2 of 3</p>
+          <p class="chat-step__prompt">What time of day works best for you?</p>
+          <div class="chat-choice-group" role="group" aria-label="Preferred time of day">
+            <button type="button" class="chat-choice-btn" data-value="morning" aria-pressed="false">Morning</button>
+            <button type="button" class="chat-choice-btn" data-value="afternoon" aria-pressed="false">Afternoon</button>
+            <button type="button" class="chat-choice-btn" data-value="evening" aria-pressed="false">Evening</button>
+          </div>
+          <div class="chat-step__nav">
+            <button type="button" class="btn btn--secondary" id="chat-back-1">Back</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Contact info -->
+        <div class="chat-step" id="chat-step-3" hidden>
+          <p class="chat-step__label">Step 3 of 3</p>
+          <form class="chat-req-form" id="chat-req-form" novalidate>
+            <div>
+              <label for="chat-name">Your Name <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="text" id="chat-name" name="name" placeholder="Full name" autocomplete="name">
+            </div>
+            <div>
+              <label for="chat-street">Street Address <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="text" id="chat-street" name="street" placeholder="e.g. 123 Main St, Katonah" autocomplete="street-address">
+            </div>
+            <div>
+              <label for="chat-email">Email Address <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="email" id="chat-email" name="email" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div id="chat-phone-field">
+              <label for="chat-phone">Cell Phone <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="tel" id="chat-phone" name="phone" placeholder="(914) 555-0100" autocomplete="tel">
+            </div>
+            <div>
+              <label for="chat-note">Anything else? <span class="chat-req-form__optional">(Optional)</span></label>
+              <textarea id="chat-note" name="note" rows="2" placeholder="Topics, questions, or anything you&#8217;d like Don to know before the chat."></textarea>
+            </div>
+            <div class="chat-req-form__error" id="chat-req-error" role="alert" hidden></div>
+            <div class="chat-req-form__actions">
+              <button type="button" class="btn btn--secondary" id="chat-back-2">Back</button>
+              <button type="submit" class="btn btn--primary" id="chat-req-submit">Send Request</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Confirmation -->
+        <div class="chat-req-modal__confirm" id="chat-req-confirm" role="status" hidden>
+          <p>Thanks. Don will reach back out shortly to schedule.</p>
+          <button type="button" class="btn btn--secondary" id="chat-req-done">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <script src="../assets/js/site.js"></script>
   <script src="../assets/js/rules.js"></script>
+  <script src="../assets/js/chat-modal.js"></script>
 </body>
 </html>

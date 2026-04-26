@@ -540,59 +540,6 @@
     .donbot-ask-another:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
     @media (min-width: 800px) { .donbot-ask-another { display: none; } }
 
-    /* ── Conversation modal ──────────────────────────────────────────── */
-    .donbot-modal-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 400;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      background: rgba(10,10,10,0.82);
-    }
-    .donbot-modal-overlay[hidden] { display: none; }
-    .donbot-modal {
-      background: var(--white);
-      border-radius: 8px;
-      max-width: 420px;
-      width: 100%;
-      padding: 2rem 1.75rem 1.75rem;
-      box-shadow: 0 16px 60px rgba(0,0,0,0.35);
-      position: relative;
-    }
-    .donbot-modal__close {
-      position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 50%;
-      border: none;
-      background: rgba(0,0,0,0.07);
-      color: var(--charcoal);
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
-    }
-    .donbot-modal__close:hover { background: rgba(0,0,0,0.13); }
-    .donbot-modal__close:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
-    .donbot-modal .eyebrow { margin-bottom: 0.5rem; }
-    .donbot-modal h3 {
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      color: var(--charcoal);
-      margin: 0 0 0.875rem;
-    }
-    .donbot-modal p {
-      font-size: 0.9375rem;
-      line-height: 1.7;
-      color: var(--muted);
-      margin: 0;
-    }
   </style>
 </head>
 <body>
@@ -662,7 +609,7 @@
           <p class="issues-hero__deck">Choose a question and Don-Bot will show you Don's answer. No email capture. No donation pitch. No pretending this is a normal campaign.</p>
           <p class="roundtable-disclosure" role="note">A human-reviewed Q&amp;A tool for a campaign built around availability, not intrusion.</p>
           <div class="cta-row">
-            <button type="button" class="btn btn--primary" id="donbot-convo-btn">Ask Real Don a Question</button>
+            <button type="button" class="btn btn--primary" id="donbot-convo-btn" data-chat-req-open>Ask Real Don a Question</button>
           </div>
         </div>
 
@@ -806,13 +753,79 @@ The goal is to make information easier to browse, not to replace a real conversa
 
   </main>
 
-  <!-- REQUEST CONVERSATION MODAL -->
-  <div class="donbot-modal-overlay" id="donbot-modal" hidden role="dialog" aria-modal="true" aria-labelledby="donbot-modal-title">
-    <div class="donbot-modal">
-      <button type="button" class="donbot-modal__close" id="donbot-modal-close" aria-label="Close">&#x2715;</button>
-      <p class="eyebrow">Coming Soon</p>
-      <h3 id="donbot-modal-title">Request a Conversation</h3>
-      <p>Request conversation module coming soon.</p>
+  <!-- CHAT REQUEST MODAL -->
+  <div class="chat-req-modal" id="chat-req-modal" role="dialog" aria-labelledby="chat-req-title" aria-modal="true" hidden>
+    <div class="chat-req-modal__backdrop" id="chat-req-backdrop" aria-hidden="true"></div>
+    <div class="chat-req-modal__frame">
+      <div class="chat-req-modal__header">
+        <span class="chat-req-modal__title" id="chat-req-title">Request a Chat with Don</span>
+        <button class="chat-req-modal__close" id="chat-req-close" aria-label="Close">&#x2715;</button>
+      </div>
+      <div class="chat-req-modal__body">
+
+        <!-- Step 1: Meeting format -->
+        <div class="chat-step" id="chat-step-1">
+          <p class="chat-step__label">Step 1 of 3</p>
+          <p class="chat-step__prompt">Would you prefer to meet virtually or in person?</p>
+          <div class="chat-choice-group" role="group" aria-label="Preferred meeting format">
+            <button type="button" class="chat-choice-btn" data-value="virtual" aria-pressed="false">Virtually</button>
+            <button type="button" class="chat-choice-btn" data-value="in-person" aria-pressed="false">In Person</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Preferred time -->
+        <div class="chat-step" id="chat-step-2" hidden>
+          <p class="chat-step__label">Step 2 of 3</p>
+          <p class="chat-step__prompt">What time of day works best for you?</p>
+          <div class="chat-choice-group" role="group" aria-label="Preferred time of day">
+            <button type="button" class="chat-choice-btn" data-value="morning" aria-pressed="false">Morning</button>
+            <button type="button" class="chat-choice-btn" data-value="afternoon" aria-pressed="false">Afternoon</button>
+            <button type="button" class="chat-choice-btn" data-value="evening" aria-pressed="false">Evening</button>
+          </div>
+          <div class="chat-step__nav">
+            <button type="button" class="btn btn--secondary" id="chat-back-1">Back</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Contact info -->
+        <div class="chat-step" id="chat-step-3" hidden>
+          <p class="chat-step__label">Step 3 of 3</p>
+          <form class="chat-req-form" id="chat-req-form" novalidate>
+            <div>
+              <label for="chat-name">Your Name <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="text" id="chat-name" name="name" placeholder="Full name" autocomplete="name">
+            </div>
+            <div>
+              <label for="chat-street">Street Address <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="text" id="chat-street" name="street" placeholder="e.g. 123 Main St, Katonah" autocomplete="street-address">
+            </div>
+            <div>
+              <label for="chat-email">Email Address <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="email" id="chat-email" name="email" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div id="chat-phone-field">
+              <label for="chat-phone">Cell Phone <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="tel" id="chat-phone" name="phone" placeholder="(914) 555-0100" autocomplete="tel">
+            </div>
+            <div>
+              <label for="chat-note">Anything else? <span class="chat-req-form__optional">(Optional)</span></label>
+              <textarea id="chat-note" name="note" rows="2" placeholder="Topics, questions, or anything you&#8217;d like Don to know before the chat."></textarea>
+            </div>
+            <div class="chat-req-form__error" id="chat-req-error" role="alert" hidden></div>
+            <div class="chat-req-form__actions">
+              <button type="button" class="btn btn--secondary" id="chat-back-2">Back</button>
+              <button type="submit" class="btn btn--primary" id="chat-req-submit">Send Request</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Confirmation -->
+        <div class="chat-req-modal__confirm" id="chat-req-confirm" role="status" hidden>
+          <p>Thanks. Don will reach back out shortly to schedule.</p>
+          <button type="button" class="btn btn--secondary" id="chat-req-done">Close</button>
+        </div>
+
+      </div>
     </div>
   </div>
 
@@ -1272,36 +1285,8 @@ The goal is to make information easier to browse, not to replace a real conversa
       });
     }
 
-    /* ── Conversation modal ─────────────────────────────────────────── */
-    var modalOverlay = document.getElementById('donbot-modal');
-    var convoBtn     = document.getElementById('donbot-convo-btn');
-    var modalClose   = document.getElementById('donbot-modal-close');
-
-    function openModal() {
-      if (!modalOverlay) return;
-      modalOverlay.removeAttribute('hidden');
-      document.body.style.overflow = 'hidden';
-      if (modalClose) modalClose.focus();
-    }
-    function closeModal() {
-      if (!modalOverlay) return;
-      modalOverlay.setAttribute('hidden', '');
-      document.body.style.overflow = '';
-      if (convoBtn) convoBtn.focus();
-    }
-
-    if (convoBtn)   convoBtn.addEventListener('click', openModal);
-    if (modalClose) modalClose.addEventListener('click', closeModal);
-    if (modalOverlay) {
-      modalOverlay.addEventListener('click', function (e) {
-        if (e.target === modalOverlay) closeModal();
-      });
-    }
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modalOverlay && !modalOverlay.hasAttribute('hidden')) closeModal();
-    });
-
   })();
   </script>
+  <script src="../assets/js/chat-modal.js"></script>
 </body>
 </html>
