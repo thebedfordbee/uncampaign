@@ -184,44 +184,6 @@
     }
     .issues-hero__copy-bot .cta-row { margin-top: 0; }
 
-    /* ── Intro / disclaimer ──────────────────────────────────────────── */
-    .donbot-intro-section {
-      padding-block: 2.5rem;
-      background: var(--cream);
-      border-bottom: 1px solid var(--border);
-    }
-    @media (min-width: 768px) { .donbot-intro-section { padding-block: 3rem; } }
-
-    .donbot-intro {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    @media (min-width: 768px) {
-      .donbot-intro { flex-direction: row; align-items: flex-start; gap: 3rem; }
-    }
-    .donbot-intro__disclaimer {
-      flex: 1;
-      font-size: 0.9375rem;
-      color: var(--muted);
-      line-height: 1.75;
-      border-left: 2px solid var(--sage);
-      padding-left: 1rem;
-      margin: 0;
-    }
-    .donbot-intro__note {
-      flex-shrink: 0;
-      font-size: 0.8125rem;
-      color: var(--muted);
-      line-height: 1.65;
-      padding: 0.875rem 1rem;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-    }
-    @media (min-width: 768px) { .donbot-intro__note { max-width: 220px; } }
-
     /* ── Q&A section layout ──────────────────────────────────────────── */
     .donbot-qa-section {
       padding-block: 2.5rem 3.5rem;
@@ -536,16 +498,6 @@
       .donbot-typing__dot { animation: none; opacity: 0.55; }
     }
 
-    /* ── Hero placeholder (plain CSS div, no img/svg/canvas) ────────── */
-    .donbot-hero-placeholder {
-      aspect-ratio: 4 / 3;
-      border-radius: 8px;
-    }
-    .donbot-hero-placeholder span {
-      text-align: center;
-      line-height: 2.4;
-    }
-
     /* ── Sticky answer column (desktop only, bounded by section) ─────── */
     @media (min-width: 800px) {
       .donbot-answer-col {
@@ -554,132 +506,88 @@
       }
     }
 
-    /* ── HOW THIS WAS BUILT section ─────────────────────────────────── */
-    .donbot-built-section {
-      padding-block: 2.5rem 3.5rem;
-      background: var(--cream);
+    /* ── Disclaimer note below accordion ────────────────────────────── */
+    .donbot-browse-note {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 1.25rem 0 0;
+      padding-top: 1rem;
       border-top: 1px solid var(--border);
     }
-    @media (min-width: 768px) { .donbot-built-section { padding-block: 3rem 4.5rem; } }
 
-    .donbot-built-header { margin-bottom: 2rem; }
-    .donbot-built-header h2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
-    .donbot-built-lead {
-      color: var(--muted);
-      font-size: 0.9375rem;
-      line-height: 1.7;
-      margin: 0;
-      max-width: 58ch;
-    }
-
-    .donbot-built-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.75rem;
-    }
-    .donbot-built-stat {
-      background: var(--white);
+    /* ── Ask another question CTA (mobile only) ─────────────────────── */
+    .donbot-ask-another {
+      display: block;
+      width: 100%;
+      margin-top: 0.875rem;
+      padding: 0.75rem 1rem;
+      background: var(--cream);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 0.875rem 1.125rem;
-      flex: 1;
-      min-width: 120px;
-      box-shadow: var(--shadow-sm);
-    }
-    .donbot-built-stat__value {
       font-family: var(--serif);
-      font-size: 1.25rem;
+      font-size: 0.9375rem;
       color: var(--moss);
-      display: block;
-      line-height: 1.2;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s, border-color 0.15s;
     }
-    .donbot-built-stat__label {
-      font-size: 0.6875rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 0.25rem;
-      display: block;
-    }
+    .donbot-ask-another:hover { background: var(--white); border-color: var(--sage); }
+    .donbot-ask-another:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+    @media (min-width: 800px) { .donbot-ask-another { display: none; } }
 
-    .donbot-built-details {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
+    /* ── Conversation modal ──────────────────────────────────────────── */
+    .donbot-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: rgba(10,10,10,0.82);
     }
-    .donbot-built-summary {
-      list-style: none;
+    .donbot-modal-overlay[hidden] { display: none; }
+    .donbot-modal {
+      background: var(--white);
+      border-radius: 8px;
+      max-width: 420px;
+      width: 100%;
+      padding: 2rem 1.75rem 1.75rem;
+      box-shadow: 0 16px 60px rgba(0,0,0,0.35);
+      position: relative;
+    }
+    .donbot-modal__close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0,0,0,0.07);
+      color: var(--charcoal);
+      font-size: 1rem;
       cursor: pointer;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1rem 1.25rem;
-      font-family: var(--serif);
-      font-size: 0.9375rem;
-      color: var(--charcoal);
-      user-select: none;
-      transition: background 0.15s;
-    }
-    .donbot-built-summary::-webkit-details-marker { display: none; }
-    .donbot-built-summary::marker { display: none; }
-    .donbot-built-summary:hover { background: rgba(0,0,0,0.03); }
-    .donbot-built-summary:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
-    .donbot-built-chevron {
-      font-style: normal;
-      font-size: 1.25rem;
-      color: var(--sage);
-      flex-shrink: 0;
+      justify-content: center;
       line-height: 1;
-      transition: transform 0.22s ease;
     }
-    .donbot-built-details[open] .donbot-built-chevron { transform: rotate(45deg); }
-    @media (prefers-reduced-motion: reduce) { .donbot-built-chevron { transition: none; } }
-
-    .donbot-built-content {
-      padding: 1.25rem 1.375rem 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-    .donbot-built-content h3 {
+    .donbot-modal__close:hover { background: rgba(0,0,0,0.13); }
+    .donbot-modal__close:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+    .donbot-modal .eyebrow { margin-bottom: 0.5rem; }
+    .donbot-modal h3 {
       font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--charcoal);
+      margin: 0 0 0.875rem;
+    }
+    .donbot-modal p {
       font-size: 0.9375rem;
-      color: var(--charcoal);
-      margin: 0 0 0.5rem;
-    }
-    .donbot-built-content h3:not(:first-child) { margin-top: 1.5rem; }
-    .donbot-built-content p, .donbot-built-content li {
-      font-size: 0.875rem;
-      line-height: 1.75;
+      line-height: 1.7;
       color: var(--muted);
-      margin: 0 0 0.625rem;
-    }
-    .donbot-built-content ul {
-      padding-left: 1.25rem;
-      margin: 0 0 0.625rem;
-    }
-    .donbot-built-content code {
-      font-size: 0.8125rem;
-      background: rgba(0,0,0,0.05);
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 0.1em 0.35em;
-      font-family: monospace;
-      color: var(--charcoal);
-    }
-    .donbot-built-prompt {
-      background: rgba(62,82,64,0.05);
-      border-left: 3px solid var(--sage);
-      border-radius: 0 4px 4px 0;
-      padding: 0.875rem 1rem;
-      margin: 0.5rem 0 1rem;
-      font-size: 0.8125rem;
-      line-height: 1.75;
-      color: var(--charcoal);
-      font-family: var(--sans);
-      white-space: pre-wrap;
+      margin: 0;
     }
   </style>
 </head>
@@ -737,16 +645,20 @@
           <h1 id="donbot-title">Ask Don. Without the clipboard.</h1>
         </div>
 
-        <div class="issues-hero__visual issues-hero__visual--placeholder donbot-hero-placeholder" role="img" aria-label="Hero image placeholder — Don at a laptop answering resident questions">
-          <span>DON-BOT HERO IMAGE PLACEHOLDER<br>Same specs as /issues hero image<br>Final art: Don at a laptop answering resident questions</span>
-        </div>
+        <button type="button" class="issues-hero__visual" aria-label="Expand Don-Bot hero image" aria-haspopup="dialog">
+          <img
+            src="../assets/img/don-bot.png"
+            alt="Don Scott at a laptop, ready to answer your questions about Bedford"
+            width="1200"
+            height="900"
+          >
+        </button>
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">Choose a question and Don-Bot will show you Don's answer. No email capture. No donation pitch. No pretending this is a normal campaign.</p>
           <p class="roundtable-disclosure" role="note">A human-reviewed Q&amp;A tool for a campaign built around availability, not intrusion.</p>
           <div class="cta-row">
-            <a href="#donbot-qa" class="btn btn--primary">Start asking</a>
-            <a href="#donbot-about" class="btn btn--ghost">Why this exists</a>
+            <button type="button" class="btn btn--primary" id="donbot-convo-btn">Ask Real Don a Question</button>
           </div>
         </div>
 
@@ -756,21 +668,7 @@
 
   <main id="main-content">
 
-    <!-- INTRO / DISCLAIMER -->
-    <section class="donbot-intro-section" id="donbot-about" aria-labelledby="donbot-about-label">
-      <div class="container">
-        <div class="donbot-intro">
-          <p class="donbot-intro__disclaimer" id="donbot-about-label">
-            Don-Bot is a human-reviewed Q&amp;A tool built from real questions Bedford residents are likely to ask. You are selecting from prewritten questions, not chatting live with Don. AI helps organize and present the answers. It does not invent Don's positions.
-          </p>
-          <div class="donbot-intro__note" role="note">
-            Every answer here reflects Don's actual views. If you want a real conversation, Don is available.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Q&A INTERFACE -->
+    <!-- Q&A INTERFACE — directly under hero -->
     <section class="donbot-qa-section" id="donbot-qa" aria-label="Don-Bot question and answer interface">
       <div class="container">
         <div class="donbot-layout">
@@ -785,6 +683,8 @@
             <div class="donbot-accordion" id="donbot-accordion" role="list" aria-label="Question categories">
               <!-- Populated by JS -->
             </div>
+            <!-- Disclaimer moved here from the top intro section -->
+            <p class="donbot-browse-note">Don-Bot is a human-reviewed Q&amp;A tool. You are selecting from prewritten questions, not chatting live with Don. AI helps organize and present the answers. It does not invent his positions. Every answer here reflects Don's actual views.</p>
           </div>
 
           <!-- RIGHT: Answer panel -->
@@ -837,97 +737,80 @@
               </div>
             </div>
 
+            <!-- Mobile-only: return to questions CTA -->
+            <button type="button" class="donbot-ask-another" id="donbot-ask-another" aria-label="Scroll back to question categories">Ask another question</button>
+
           </div>
         </div>
       </div>
     </section>
 
+    <!-- HOW THIS WAS BUILT — matches /issues pattern exactly -->
+    <section class="section" id="donbot-built" aria-labelledby="donbot-built-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">How this was built</p>
+          <h2 id="donbot-built-headline">This Campaign Shows Its Work</h2>
+          <p class="section-header__lead section-header__lead--wide">
+            Don-Bot was built with Claude Code and $0 in tool costs. The questions came from the candidate. The answers reflect his actual views. AI helped organize and present them. The full instruction set is published here so anyone can build something similar.
+          </p>
+        </div>
+
+        <div class="cta-row cta-row--centered">
+          <div class="howbuilt-cta-group">
+            <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-donbot" aria-expanded="false">View The Instruction Set</button>
+          </div>
+        </div>
+
+        <div class="instr-panel" id="instr-panel-donbot" hidden>
+          <div class="instr-panel__bar">
+            <span class="instr-panel__title">Public Instruction Set</span>
+            <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+              <span class="instr-panel__copy-label">Copy All</span>
+            </button>
+          </div>
+          <div class="instr-panel__body">
+            <pre class="instr-panel__text">Build a Human-Reviewed Q&A Chatbot
+
+I want to build a simple chatbot-style webpage from a set of questions and answers I provide.
+
+The chatbot should not make up answers. Visitors should choose from prewritten questions, organized by topic, and the site should show the answer I already reviewed.
+
+Please build it with these requirements:
+
+1. Create expandable categories for the questions.
+2. Put each question under the right category.
+3. When someone clicks a question, show the matching answer in a chat-style answer window.
+4. Do not allow visitors to type their own questions unless I specifically provide a safe answer system.
+5. Add a short "typing" indicator before the answer appears.
+6. Make the answer appear with a fast typewriter effect.
+7. Add one subtle human-like correction while typing, such as a typo that gets erased and fixed, or a word that gets replaced with a better word.
+8. Make the correction slow enough that people can notice it, but not so slow that the tool becomes annoying.
+9. On desktop, keep the answer window visible while people browse questions.
+10. On mobile, scroll people to the answer after they select a question, then give them an easy way to return to the question list.
+11. Add a plain-language note explaining that the chatbot uses human-reviewed answers.
+12. Add page metadata and FAQ schema so search engines can understand the questions and answers.
+13. Respect reduced-motion settings by showing the answer immediately for people who prefer less animation.
+14. Keep the tone useful and transparent. Do not pretend the chatbot is alive or that AI is deciding what to say.
+
+The goal is to make information easier to browse, not to replace a real conversation.</pre>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
-  <!-- HOW THIS WAS BUILT -->
-  <section class="donbot-built-section" id="donbot-built" aria-labelledby="donbot-built-title">
-    <div class="container">
-
-      <div class="donbot-built-header">
-        <p class="eyebrow">Behind the Curtain</p>
-        <h2 id="donbot-built-title">How This Was Built</h2>
-        <p class="donbot-built-lead">Don-Bot was built with Claude Code, a plain text editor, and $0 in tool costs. The full process is documented here — questions authored by a candidate, answers written by a human, presentation assembled by AI following explicit instructions.</p>
-      </div>
-
-      <div class="donbot-built-stats">
-        <div class="donbot-built-stat">
-          <span class="donbot-built-stat__value">$0</span>
-          <span class="donbot-built-stat__label">Tool cost</span>
-        </div>
-        <div class="donbot-built-stat">
-          <span class="donbot-built-stat__value">Claude Code</span>
-          <span class="donbot-built-stat__label">Build platform</span>
-        </div>
-        <div class="donbot-built-stat">
-          <span class="donbot-built-stat__value">60+</span>
-          <span class="donbot-built-stat__label">Questions answered</span>
-        </div>
-        <div class="donbot-built-stat">
-          <span class="donbot-built-stat__value">HTML / CSS / JS</span>
-          <span class="donbot-built-stat__label">Stack (no framework)</span>
-        </div>
-      </div>
-
-      <details class="donbot-built-details">
-        <summary class="donbot-built-summary">
-          <span>See the full instruction set used to build this page</span>
-          <i class="donbot-built-chevron" aria-hidden="true">+</i>
-        </summary>
-        <div class="donbot-built-content">
-
-          <h3>Step 1 — Campaign context</h3>
-          <p>Every Claude Code session in this repo begins with a <code>CLAUDE.md</code> file that sets the operating brief. It defines the candidate, the race, the philosophy, the tone rules, and the non-negotiable constraints. Claude reads this before touching a single file.</p>
-          <p>Key constraints from that brief that shaped this page:</p>
-          <ul>
-            <li>No consultant voice. No marketing agency voice. Sound like a thoughtful local resident.</li>
-            <li>Prefer simple, low-cost, GitHub Pages-compatible solutions.</li>
-            <li>Prefer single-file HTML, CSS, and JS. Avoid unnecessary dependencies.</li>
-            <li>AI use is a feature, not a liability. Show how it helped. Teach residents they can use it too.</li>
-            <li>Always document tools, prompts, and outputs for post-election storytelling and awards.</li>
-          </ul>
-
-          <h3>Step 2 — Build prompt</h3>
-          <p>The prompt given to Claude Code to build this page:</p>
-          <div class="donbot-built-prompt">Build a Don-Bot Q&amp;A page for the UNCAMPAIGN. It should:
-
-— Use the campaign's existing site.css (no new frameworks)
-— Display questions organized in collapsible category accordions
-— Animate typed answers character by character with a realistic human feel
-— Include occasional typo + backspace correction moments to feel authentic
-— Show a typing indicator before each answer appears
-— Keep a short recent-questions history as chip buttons
-— Work on both mobile and desktop
-— Be a single HTML file with embedded CSS and JS
-— Follow all tone rules from CLAUDE.md (calm, neighborly, no consultant voice)
-— Include full structured data for SEO (FAQPage schema)
-— Be accessible: ARIA labels, keyboard navigation, reduced-motion support
-
-The Q&amp;A content should cover: who Don is, why he's running, the UNCAMPAIGN philosophy,
-Bedford issues (roads, development, taxes, cell service), the Town Supervisor role,
-party politics, and tough questions.
-
-All answers must reflect Don's actual views. AI organizes and presents; it does not invent positions.</div>
-
-          <h3>Step 3 — Q&amp;A authoring</h3>
-          <p>The 60+ questions and answers were written collaboratively. Don provided his positions, experience, and views. Claude drafted answer language consistent with his voice and the campaign's tone rules. Don reviewed and approved every answer before it was published. Nothing was invented by AI.</p>
-
-          <h3>Step 4 — Upgrades</h3>
-          <p>Subsequent sessions added: desktop sticky answer panel, guaranteed correction moments in every typed answer, this transparency section, reduced-motion support, and a CSS hero image placeholder pending final photography.</p>
-          <p>Each session began with the same <code>CLAUDE.md</code> context and a self-contained build prompt requiring inspection of existing files before making changes.</p>
-
-          <h3>Why document this?</h3>
-          <p>Because transparency is the point. This campaign uses AI openly. Showing the instructions is not a risk — it is the demonstration. Any resident, candidate, or civic organization could read this and build something similar. That is a feature, not a flaw.</p>
-
-        </div>
-      </details>
-
+  <!-- REQUEST CONVERSATION MODAL -->
+  <div class="donbot-modal-overlay" id="donbot-modal" hidden role="dialog" aria-modal="true" aria-labelledby="donbot-modal-title">
+    <div class="donbot-modal">
+      <button type="button" class="donbot-modal__close" id="donbot-modal-close" aria-label="Close">&#x2715;</button>
+      <p class="eyebrow">Coming Soon</p>
+      <h3 id="donbot-modal-title">Request a Conversation</h3>
+      <p>Request conversation module coming soon.</p>
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer class="site-footer" role="contentinfo">
@@ -1289,9 +1172,13 @@ All answers must reflect Don's actual views. AI organizes and presents; it does 
       /* Update history */
       updateHistory(qObj);
 
-      /* Scroll to answer panel on narrow screens */
+      /* Scroll to answer card on narrow screens, accounting for fixed nav */
       if (window.innerWidth < 800) {
-        document.querySelector('.donbot-answer-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        var card = document.querySelector('.donbot-answer-card');
+        var nav  = document.querySelector('.site-header');
+        var navH = nav ? nav.offsetHeight : 64;
+        var top  = card.getBoundingClientRect().top + window.pageYOffset - navH - 12;
+        window.scrollTo({ top: top, behavior: 'smooth' });
       }
 
       if (prefersReducedMotion) {
@@ -1365,15 +1252,50 @@ All answers must reflect Don's actual views. AI organizes and presents; it does 
         });
       });
 
-      /* Auto-open first category */
-      var first = container.querySelector('.donbot-category');
-      if (first) {
-        first.classList.add('is-open');
-        first.querySelector('.donbot-category__trigger').setAttribute('aria-expanded', 'true');
-      }
     }
 
     buildAccordion();
+
+    /* ── Ask another question (mobile) ─────────────────────────────── */
+    var askAnotherBtn = document.getElementById('donbot-ask-another');
+    if (askAnotherBtn) {
+      askAnotherBtn.addEventListener('click', function () {
+        var accordion = document.getElementById('donbot-accordion');
+        var nav  = document.querySelector('.site-header');
+        var navH = nav ? nav.offsetHeight : 64;
+        var top  = accordion.getBoundingClientRect().top + window.pageYOffset - navH - 12;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      });
+    }
+
+    /* ── Conversation modal ─────────────────────────────────────────── */
+    var modalOverlay = document.getElementById('donbot-modal');
+    var convoBtn     = document.getElementById('donbot-convo-btn');
+    var modalClose   = document.getElementById('donbot-modal-close');
+
+    function openModal() {
+      if (!modalOverlay) return;
+      modalOverlay.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      if (modalClose) modalClose.focus();
+    }
+    function closeModal() {
+      if (!modalOverlay) return;
+      modalOverlay.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      if (convoBtn) convoBtn.focus();
+    }
+
+    if (convoBtn)   convoBtn.addEventListener('click', openModal);
+    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', function (e) {
+        if (e.target === modalOverlay) closeModal();
+      });
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modalOverlay && !modalOverlay.hasAttribute('hidden')) closeModal();
+    });
 
   })();
   </script>
