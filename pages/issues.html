@@ -15,6 +15,41 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#4A5240">
   <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    /* ── Tighter section spacing (issues page only) ───────────────────── */
+    .section { padding-block: 2.25rem; }
+    @media (min-width: 768px) { .section { padding-block: 3.25rem; } }
+
+    /* ── Alternating issue card shading ──────────────────────────────── */
+    .issue-grid > li:nth-child(even) .issue-card {
+      background: var(--cream);
+    }
+
+    /* ── Justified subtext — never headings, eyebrows, labels, nav ───── */
+    .issues-hero__deck,
+    .issues-explainer__why p,
+    .personas-intro__lead,
+    .section-header__lead,
+    .persona-card__back-inner p {
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    /* Override max-width cap so explainer paragraph fills its column */
+    .issues-explainer__why p { max-width: none; }
+
+    /* Narrow screens: revert to left-align to avoid ugly gapping */
+    @media (max-width: 380px) {
+      .issues-hero__deck,
+      .issues-explainer__why p,
+      .personas-intro__lead,
+      .section-header__lead,
+      .persona-card__back-inner p {
+        text-align: left;
+        hyphens: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -32,8 +67,8 @@
           <li><a href="rules.html">Rules</a></li>
           <li><a href="ideas.html">Ideas</a></li>
           <li><a href="minutes.html">Minutes</a></li>
-          <li><a href="press.html">Press</a></li>
           <li><a href="odds.html">Odds</a></li>
+          <li><a href="press.html">Press</a></li>
         </ul>
         <a href="#subscribe" class="btn btn--subscribe site-nav__cta">Subscribe</a>
         <button
@@ -54,8 +89,8 @@
       <a href="rules.html">Rules</a>
       <a href="ideas.html">Ideas</a>
       <a href="minutes.html">Minutes</a>
-      <a href="press.html">Press</a>
       <a href="odds.html">Odds</a>
+      <a href="press.html">Press</a>
       <a href="#subscribe" class="btn btn--subscribe">Subscribe</a>
     </nav>
   </header>
@@ -747,7 +782,7 @@ Output format:
         <nav class="footer-nav" aria-label="Footer navigation">
           <p class="footer-nav__label">Pages</p>
           <a href="../index.html">Home</a>
-          <a href="issues.html">Issues</a>
+          <a href="issues.html" aria-current="page">Issues</a>
           <a href="rules.html">Rules</a>
           <a href="ideas.html">Ideas</a>
           <a href="minutes.html">Minutes</a>
@@ -763,20 +798,6 @@ Output format:
       </div>
     </div>
   </footer>
-
-  <!-- Roundtable image modal -->
-  <div class="rt-modal" id="rt-modal" role="dialog" aria-label="Bedford Roundtable — expanded view" aria-modal="true" hidden>
-    <div class="rt-modal__backdrop" aria-hidden="true"></div>
-    <div class="rt-modal__frame">
-      <img
-        src="../assets/img/roundtable-scene.png"
-        alt="The Bedford Roundtable — eight perspectives around the table"
-        width="1200"
-        height="800"
-      >
-      <button class="rt-modal__close" aria-label="Close expanded image">&#x2715;</button>
-    </div>
-  </div>
 
   <script src="../assets/js/site.js"></script>
   <script src="../assets/js/issues.js"></script>
