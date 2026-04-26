@@ -162,6 +162,15 @@
       }
       .rule-card:hover { transform: none; }
     }
+
+    /* ── Tighter section spacing (rules page only) ──────────────────────── */
+    .section { padding-block: 2.25rem; }
+    @media (min-width: 768px) { .section { padding-block: 3.25rem; } }
+
+    /* ── Alternating card shading — even cards get subtle cream tint ──── */
+    .rule-cards > li:nth-child(even) .rule-card {
+      background: var(--cream);
+    }
   </style>
 </head>
 <body>
@@ -664,22 +673,7 @@
     </div>
   </footer>
 
-  <!-- Referee image modal — reuses .rt-modal system from /issues -->
-  <div class="rt-modal" id="rt-modal" role="dialog" aria-label="Don Scott as a referee — expanded view" aria-modal="true" hidden>
-    <div class="rt-modal__backdrop" aria-hidden="true"></div>
-    <div class="rt-modal__frame">
-      <img
-        src="../assets/img/referee.png"
-        alt="Don Scott dressed as a referee signaling no catch"
-        width="1536"
-        height="1024"
-      >
-      <button class="rt-modal__close" aria-label="Close expanded image">&#x2715;</button>
-    </div>
-  </div>
-
   <script src="../assets/js/site.js"></script>
-  <script src="../assets/js/issues.js"></script>
   <script src="../assets/js/rules.js"></script>
 </body>
 </html>
