@@ -109,17 +109,30 @@
 
     /* ── Justified body copy — scoped to this page ───────────────────────── */
     .issues-explainer__why p,
-    .issues-explainer__offers p:not(.rules-intro__standout) {
+    .issues-explainer__offers p:not(.rules-intro__standout),
+    .issues-hero__deck,
+    .personas-intro__lead,
+    .ai-tool-desc {
       text-align: justify;
       hyphens: auto;
     }
     .issues-explainer__why p { max-width: none; }
     @media (max-width: 380px) {
       .issues-explainer__why p,
-      .issues-explainer__offers p:not(.rules-intro__standout) {
+      .issues-explainer__offers p:not(.rules-intro__standout),
+      .issues-hero__deck,
+      .personas-intro__lead,
+      .ai-tool-desc {
         text-align: left;
         hyphens: none;
       }
+    }
+
+    /* ── Restrained standout quote in AI approach section ─────────────────── */
+    .issues-explainer__offers .rules-intro__standout {
+      font-size: clamp(1.0625rem, 2.5vw, 1.25rem);
+      line-height: 1.45;
+      margin: 0.875rem 0 1rem;
     }
 
     /* ── AI tools accordion (mirrors ideas.html accordion pattern) ────────── */
@@ -208,7 +221,7 @@
       font-size: 0.9375rem;
       color: var(--muted);
       margin: 0;
-      max-width: 60ch;
+      max-width: none;
     }
 
     /* Reduce top margin on instr-panel when nested inside accordion */
@@ -345,7 +358,7 @@
             </button>
             <div class="idea-category__panel" id="ai-panel-roundtable" role="region" aria-label="Civic Roundtable instruction set">
               <div class="idea-category__panel-inner">
-                <p class="ai-tool-desc">The Bedford Roundtable examines every local issue through eight distinct civic perspectives before arriving at a recommendation. This is the exact prompt used to run each discussion. <a href="issues.html">Explore the issues &#8594;</a></p>
+                <p class="ai-tool-desc">The Bedford Roundtable examines every local issue through eight distinct civic perspectives before arriving at a recommendation. This is the exact prompt used to run each discussion.</p>
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
                     <span class="instr-panel__title">Public Instruction Set &#8212; Civic Roundtable</span>
@@ -354,6 +367,7 @@
                     </button>
                   </div>
                   <div class="instr-panel__body">
+                    <p style="font-size:0.8125rem;color:var(--muted);font-style:italic;margin:0 0 1.25rem;max-width:none">Cleaned up slightly for readability. Functionally the same instructions used to generate the Civic Roundtable.</p>
                     <pre class="instr-panel__text">Act as a civic Roundtable designed to evaluate one local issue through eight consistent perspectives before arriving at a practical recommendation.
 
 The issue to evaluate is:
@@ -430,7 +444,7 @@ Output format:
             </button>
             <div class="idea-category__panel" id="ai-panel-minutes" role="region" aria-label="Meeting Summary Podcasts instruction set">
               <div class="idea-category__panel-inner">
-                <p class="ai-tool-desc">Town Board in Minutes turns long public meetings into short audio recaps. The exact production prompt will be published here once the first recap is complete. <a href="minutes.html">See the project &#8594;</a></p>
+                <p class="ai-tool-desc">Town Board in Minutes turns long public meetings into short audio recaps. The exact production prompt will be published here once the first recap workflow is finalized.</p>
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
                     <span class="instr-panel__title">Production Prompt &#8212; Placeholder</span>
@@ -439,7 +453,7 @@ Output format:
                     </button>
                   </div>
                   <div class="instr-panel__body">
-                    <p style="font-size:0.8125rem;color:var(--muted);font-style:italic;margin:0 0 1.25rem;max-width:none">The full production instructions will be published here once the first recap workflow is finalized. The placeholder below reflects the current working approach.</p>
+                    <p style="font-size:0.8125rem;color:var(--muted);font-style:italic;margin:0 0 1.25rem;max-width:none">Cleaned up slightly for readability. Functionally the same instructions used to generate the Meeting Summary Podcasts.</p>
                     <pre class="instr-panel__text">Use the public replay video for this Bedford Town Board meeting. Create a short audio overview featuring two hosts who clearly and fairly recap the meeting for residents. Focus on what was discussed, what was decided, what remains unresolved, and what a resident might want to follow next. Keep the tone plainspoken, calm, and useful. Do not add facts that are not supported by the meeting materials.
 
 Note: The exact production instructions will be added once the workflow is finalized.</pre>
@@ -466,7 +480,7 @@ Note: The exact production instructions will be added once the workflow is final
             </button>
             <div class="idea-category__panel" id="ai-panel-chatbot" role="region" aria-label="Interactive Chatbot instruction set">
               <div class="idea-category__panel-inner">
-                <p class="ai-tool-desc">Don-Bot is a human-reviewed Q&amp;A tool. Visitors choose from prewritten questions organized by topic. AI formats and presents the answers Don reviewed in advance &#8212; nothing is made up on the fly. <a href="don-bot.html">Try Don-Bot &#8594;</a></p>
+                <p class="ai-tool-desc">Don-Bot is a human-reviewed Q&amp;A tool. Visitors choose from prewritten questions organized by topic. AI formats and presents the answers Don reviewed in advance &#8212; nothing is made up on the fly.</p>
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
                     <span class="instr-panel__title">Public Instruction Set &#8212; Interactive Chatbot</span>
@@ -475,6 +489,7 @@ Note: The exact production instructions will be added once the workflow is final
                     </button>
                   </div>
                   <div class="instr-panel__body">
+                    <p style="font-size:0.8125rem;color:var(--muted);font-style:italic;margin:0 0 1.25rem;max-width:none">Cleaned up slightly for readability. Functionally the same instructions used to generate the Interactive Chatbot.</p>
                     <pre class="instr-panel__text">Build a Human-Reviewed Q&amp;A Chatbot
 
 I want to build a simple chatbot-style webpage from a set of questions and answers I provide.
@@ -522,7 +537,7 @@ The goal is to make information easier to browse, not to replace a real conversa
             </button>
             <div class="idea-category__panel" id="ai-panel-photos" role="region" aria-label="Social Media Clone instruction set">
               <div class="idea-category__panel-inner">
-                <p class="ai-tool-desc">The Campaign Photo Archive uses AI-generated images to produce a complete set of staged campaign photos &#8212; posted all at once, upfront, so there&#8217;s no suspense about what campaign photography looks like. <a href="photos.html">See the archive &#8594;</a></p>
+                <p class="ai-tool-desc">The Campaign Photo Archive uses AI-generated images to produce a complete set of staged campaign photos &#8212; posted all at once, upfront, so there&#8217;s no suspense about what campaign photography looks like.</p>
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
                     <span class="instr-panel__title">Public Instruction Set &#8212; AI Photo Series</span>
@@ -531,7 +546,7 @@ The goal is to make information easier to browse, not to replace a real conversa
                     </button>
                   </div>
                   <div class="instr-panel__body">
-                    <p style="font-size:0.8125rem;color:var(--muted);font-style:italic;margin:0 0 1.25rem;max-width:none">Cleaned up slightly for readability. Functionally the same instructions used to generate the staged photo series.</p>
+                    <p style="font-size:0.8125rem;color:var(--muted);font-style:italic;margin:0 0 1.25rem;max-width:none">Cleaned up slightly for readability. Functionally the same instructions used to generate the Social Media Clone.</p>
                     <pre class="instr-panel__text">We are creating a multi-image series of AI-generated campaign photos featuring the same fictionalized Don Scott character for the Bedford Town Supervisor UNCAMPAIGN.
 
 SERIES RULES
