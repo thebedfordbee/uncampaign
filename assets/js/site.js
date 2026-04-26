@@ -141,7 +141,7 @@
   lbClose.type = 'button';
   lbClose.setAttribute('aria-label', 'Close expanded image');
   lbClose.innerHTML = '&#x2715;';
-  lbClose.style.cssText = 'position:fixed;top:0.75rem;right:0.75rem;width:2rem;height:2rem;border-radius:50%;border:none;background:rgba(0,0,0,0.55);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1';
+  lbClose.style.cssText = 'position:absolute;top:0.75rem;right:0.75rem;width:2.25rem;height:2.25rem;border-radius:50%;border:none;background:rgba(0,0,0,0.6);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;z-index:1;flex-shrink:0';
 
   overlay.appendChild(lbImg);
   overlay.appendChild(lbClose);
