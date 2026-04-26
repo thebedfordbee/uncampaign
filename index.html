@@ -305,9 +305,15 @@
     }
     .expense-accordion.is-open .expense-accordion__panel { max-height: 400px; }
     .expense-accordion__panel-inner { padding-top: 0.75rem; }
+    .expense-accordion { margin-top: 2rem; }
     @media (prefers-reduced-motion: reduce) {
       .expense-accordion__icon { transition: none; }
       .expense-accordion__panel { transition: none; }
+    }
+
+    /* Alternating card shading — even cards get subtle cream tint */
+    .cards-grid > li:nth-child(even) .card {
+      background: var(--cream);
     }
   </style>
 </head>
@@ -543,7 +549,7 @@
                   ></div>
                 </div>
                 <div class="thermometer__labels" aria-hidden="true">
-                  <span>$9.99 spent</span>
+                  <span>$9.99 Spent</span>
                   <span>$49.99 cap</span>
                 </div>
               </div>
