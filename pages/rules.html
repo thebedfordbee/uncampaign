@@ -167,6 +167,11 @@
     .section { padding-block: 2.25rem; }
     @media (min-width: 768px) { .section { padding-block: 3.25rem; } }
 
+    /* ── Mobile: tighten gap above "Mine won't" block ───────────────────── */
+    @media (max-width: 767px) {
+      .issues-explainer { gap: 1rem; }
+    }
+
     /* ── Alternating card shading — even cards get subtle cream tint ──── */
     .rule-cards > li:nth-child(even) .rule-card {
       background: var(--cream);
