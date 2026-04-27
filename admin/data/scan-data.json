@@ -23,10 +23,10 @@
     "performance":              { "score": 70, "status": "warn", "notes": "Persona PNG images likely unoptimized. No lazy loading on below-fold images." },
     "mobileUX":                 { "score": 82, "status": "pass", "notes": "Responsive layout works well. Mobile nav functional." },
     "schema":                   { "score": 78, "status": "warn", "notes": "FAQPage schema on homepage. Issue pages and subpages lack structured data." },
-    "internalLinking":          { "score": 65, "status": "warn", "notes": "Some issue subpages lack links back to the issues overview. Footer nav is minimal." },
+    "internalLinking":          { "score": 90, "status": "pass", "notes": "All 9 issue subpages verified with back-links to issues overview. Footer nav minimal but functional." },
     "imageAltText":             { "score": 70, "status": "warn", "notes": "Some persona and social images may have generic or missing alt text." },
     "llmDiscoverability":       { "score": 40, "status": "fail", "notes": "No llms.txt file. No explicit AI agent guidance. Entity markup minimal." },
-    "securityPrivacy":          { "score": 75, "status": "pass", "notes": "Deployed on Cloudflare Pages (HTTPS). No mixed content. No privacy/terms pages — intentional UNCAMPAIGN policy." },
+    "securityPrivacy":          { "score": 90, "status": "pass", "notes": "Deployed on Cloudflare Pages (HTTPS). No mixed content. Admin is disallowed and noindexed." },
     "campaignCompliance":       { "score": 90, "status": "pass", "notes": "Good candidate disclosure. No paid advertising so no disclaimer requirements triggered." },
     "aiTransparency":           { "score": 88, "status": "pass", "notes": "Dedicated AI transparency page at /pages/ai.html. Clear disclosure language." },
     "spendingTransparency":     { "score": 82, "status": "pass", "notes": "Spending section on homepage. Budget cap prominently featured." },
@@ -34,7 +34,7 @@
   },
   "criticalCount": 4,
   "importantCount": 3,
-  "enhancementCount": 4,
+  "enhancementCount": 3,
   "infoCount": 2,
   "scanHistory": [
     {

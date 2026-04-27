@@ -25,16 +25,16 @@ const SCAN_DEFAULTS = {
     performance:               { score: 70, status: 'warn', notes: 'Persona PNGs likely unoptimized; no lazy loading on below-fold images.' },
     mobileUX:                  { score: 82, status: 'pass', notes: 'Responsive layout functional; mobile nav works.' },
     schema:                    { score: 78, status: 'warn', notes: 'FAQPage schema on homepage; issue pages lack structured data.' },
-    internalLinking:           { score: 65, status: 'warn', notes: 'Some issue subpages lack back-links to issues overview.' },
+    internalLinking:           { score: 90, status: 'pass', notes: 'All 9 issue subpages verified with back-links to issues overview. Footer nav minimal but functional.' },
     imageAltText:              { score: 70, status: 'warn', notes: 'Some persona/social images may have generic or missing alt text.' },
     llmDiscoverability:        { score: 40, status: 'fail', notes: 'No llms.txt; no explicit AI agent guidance; minimal entity markup.' },
-    securityPrivacy:           { score: 75, status: 'pass', notes: 'Cloudflare Pages (HTTPS); no mixed content. No privacy/terms pages — intentional.' },
+    securityPrivacy:           { score: 90, status: 'pass', notes: 'Cloudflare Pages (HTTPS); no mixed content. Admin is disallowed and noindexed.' },
     campaignCompliance:        { score: 90, status: 'pass', notes: 'Good candidate disclosure; no paid ads so no disclaimer triggers.' },
     aiTransparency:            { score: 88, status: 'pass', notes: '/pages/ai.html exists; clear disclosure language present.' },
     spendingTransparency:      { score: 82, status: 'pass', notes: 'Spending section on homepage; budget cap prominently featured.' },
     contentFreshness:          { score: 75, status: 'warn', notes: 'Site recently launched; monitor as campaign progresses.' }
   },
-  criticalCount: 4, importantCount: 3, enhancementCount: 4, infoCount: 2,
+  criticalCount: 4, importantCount: 3, enhancementCount: 3, infoCount: 2,
   scanHistory: [{ scanDate: '2026-04-27', overallScore: 59, grade: 'D', pagesScanned: 12, note: 'Initial stub' }]
 };
 
@@ -115,11 +115,11 @@ const FINDINGS_DATA = [
     status:'open', dateFound:'2026-04-27', dateResolved:null },
 
   { id:'FIND-012', title:'Issue subpages lack back-links to Issues overview', severity:'enhancement', category:'Navigation', affectedPage:'pages/issues/*.html',
-    explanation:'Individual issue subpages may not consistently link back to the main /pages/issues.html listing.',
+    explanation:'Verified 2026-04-27: all 9 issue subpages (advocacy-government, battery-storage, bedford-hills, cell-service, consultants, energy-costs, growth-character, leaf-blower-ban, roads-infrastructure) contain a link to ../issues.html. No missing back-links found.',
     whyItMatters:'Good internal linking helps user navigation and SEO crawlability.',
-    suggestedFix:'Run "Internal Linking Audit" prompt. Add "Back to Issues" breadcrumb to each issue page.',
-    watchOuts:'Check all 9 issue subpages consistently.',
-    status:'open', dateFound:'2026-04-27', dateResolved:null },
+    suggestedFix:'No fix needed. All issue pages already link back to the issues overview.',
+    watchOuts:'Re-run "Internal Linking Audit" after adding any new issue subpage to verify it also includes the back-link.',
+    status:'resolved', dateFound:'2026-04-27', dateResolved:'2026-04-27' },
 
   /* FIND-013 (No privacy policy or terms) excluded — intentional UNCAMPAIGN policy. See CFG.ignoreMissingTerms. */
 
@@ -216,11 +216,11 @@ const AGENTS = [
   reviews:'External script sources, mixed content signals, HTTPS enforcement.',
   output:'Security findings with recommendations.', tool:'cc' },
 
-{ id:'privacy', cat:'tech', name:'Privacy Agent', tagline:'Privacy compliance basics',
-  purpose:'Audit for privacy issues — data collection disclosures, third-party scripts, cookie notices.',
+{ id:'privacy', cat:'tech', name:'Privacy Agent', tagline:'Data handling + script audit',
+  purpose:'Audit data collection disclosures, third-party script sources, and cookie-related signals. Does not check for privacy policy — intentional project policy.',
   when:'Quarterly or after adding forms or scripts.',
-  reviews:'Forms, data collection paths, third-party scripts, privacy policy existence.',
-  output:'Privacy gap report + recommendations.', tool:'cc' },
+  reviews:'Forms, data collection paths, third-party scripts (GA4, Clarity, etc.), consent signals. No privacy policy check.',
+  output:'Data handling gap report + recommendations for third-party scripts and form submissions.', tool:'cc' },
 
 { id:'legal', cat:'tech', name:'Legal/Compliance Agent', tagline:'Campaign compliance audit',
   purpose:'Check for required political disclosures, FEC/state compliance, candidate identification.',
@@ -245,6 +245,13 @@ const AGENTS = [
   when:'Monthly.',
   reviews:'Form pages, CTA placement, user flows from landing to conversion.',
   output:'Conversion friction report + improvement prompts.', tool:'cc' },
+
+{ id:'template-consistency', cat:'tech', name:'Page Template Consistency Agent', tagline:'Sitewide template + design audit',
+  purpose:'Ensure all public pages follow a consistent visual and structural pattern based on the site design system. Flag pages that deviate from the established header/nav/footer pattern, typography, button styles, metadata structure, hero layout, CTA placement, and responsive behavior.',
+  when:'After adding new pages, after CSS changes, or monthly.',
+  reviews:'All public HTML pages vs. pages/template.html — header, nav, footer, CSS variable usage, hero structure, button classes, form structure, internal navigation, metadata pattern, issue-page template, accessibility basics, responsive signals.',
+  output:'Page-by-page consistency report: pass/warn/fail per check. Sitewide audit prompt, page-specific fix prompt, and "normalize this page to site pattern" prompt for each deviating page.',
+  tool:'cc' },
 
 /* --- CAMPAIGN AGENTS (23) --- */
 { id:'campaign-mgr', cat:'campaign', name:'Campaign Manager Agent', tagline:'Campaign strategy review',
@@ -408,36 +415,50 @@ const CLAUDE_PROMPTS = [
 
 TASK: Perform a complete site health scan and update /admin/data/scan-data.json.
 
+PROJECT-LEVEL OVERRIDES (these are intentional — never flag as issues):
+- No privacy policy page: intentional UNCAMPAIGN policy (CFG.ignoreMissingPrivacyPolicy = true)
+- No terms of service page: intentional (CFG.ignoreMissingTerms = true)
+- Do NOT create findings, deductions, or opportunities for missing privacy/terms pages.
+
 BEFORE STARTING:
 1. Read CLAUDE.md carefully.
-2. Inspect the full repo structure (all non-.git files).
+2. List ALL public HTML files in the repo (index.html + pages/**/*.html). Note any pages not in sitemap.xml.
 3. Do NOT modify any public HTML, CSS, JS, or image files.
 4. Do NOT commit any secrets or credentials.
 5. Preserve all existing public site behavior.
 
-SCAN CHECKLIST — check each item and note findings:
-1. INVENTORY — List all public HTML pages and key asset files.
-2. SITEMAP — Compare pages against sitemap.xml; list missing and extra URLs.
-3. ROBOTS.TXT — Verify /admin/ is disallowed; confirm Sitemap directive URL is correct.
-4. METADATA — For each public page: title, meta description, og:title, og:description, canonical, robots meta.
-5. SCHEMA — Check for valid JSON-LD on each page; list pages with no schema.
-6. GA4 — Check for Google Analytics 4 snippet (G-XXXXXXXXXX / gtag.js) on all public pages.
-7. GOOGLE SEARCH CONSOLE — Check for GSC verification meta (name="google-site-verification").
-8. BING WEBMASTER — Check for Bing verification meta (name="msvalidate.01").
-9. MICROSOFT CLARITY — Check for Clarity tracking script on public pages.
-10. INTERNAL LINKS — Identify orphaned pages; check for broken internal hrefs.
-11. BROKEN LINKS — Test all <a href> values for valid internal targets.
-12. IMAGE ALT TEXT — Check all <img> tags for meaningful alt attributes.
-13. ACCESSIBILITY — Heading hierarchy; skip links; ARIA labels on interactive elements.
-14. PERFORMANCE — Large images (>200KB); render-blocking scripts; missing lazy loading.
-15. MOBILE UX — Viewport meta on all pages; touch target sizes; responsive layout signals.
-16. LLM DISCOVERABILITY — /llms.txt existence; entity clarity; AI-friendly content structure.
-17. AI TRANSPARENCY — /pages/ai.html exists and is linked from nav or footer.
-18. SPENDING TRANSPARENCY — Spending data is visible and appears current.
-19. CAMPAIGN COMPLIANCE — Candidate name/paid-for disclosures on public pages.
-20. SECURITY/PRIVACY — Mixed content signals; external script sources; HTTPS only.
-21. CONTENT FRESHNESS — Last-modified dates; sections that appear stale.
-22. NOINDEX CHECK — /admin/index.html has noindex,nofollow; no public pages accidentally noindexed.
+SCAN CHECKLIST — for each item, note exactly which files pass/fail:
+1. INVENTORY — List all public HTML pages. Compare against sitemap.xml; flag new pages not in sitemap.
+2. SITEMAP — For each URL in sitemap.xml: is the file present? Is the domain uncampaign.pages.dev?
+3. ROBOTS.TXT — Verify /admin/ is disallowed; confirm Sitemap directive is https://uncampaign.pages.dev/sitemap.xml.
+4. METADATA — For each public page: read the file and extract title, meta description, og:title, og:description, canonical, robots meta. Flag missing or empty values with exact file path.
+5. SCHEMA — Read each public HTML file and check for <script type="application/ld+json">. List exact files with no schema.
+6. GA4 — Read each public page's <head>. Check for gtag.js or G-XXXXXXXXXX pattern. Note exact files missing GA4.
+7. GOOGLE SEARCH CONSOLE — Read index.html. Check for meta[name="google-site-verification"].
+8. BING WEBMASTER — Read index.html. Check for meta[name="msvalidate.01"].
+9. MICROSOFT CLARITY — Read each public page. Check for clarity.ms/tag script. Note exact files missing Clarity.
+10. INTERNAL LINKS — For each public HTML file: extract all internal hrefs. Verify each target file exists. List exact broken links with source file and target. For issue subpages (pages/issues/*.html): open each file and confirm it contains a link to ../issues.html — only flag as missing if you actually verified the file lacks the link.
+11. IMAGE ALT TEXT — Read each public HTML file. List any <img> tags with missing or empty alt attributes. Note exact file and element.
+12. ACCESSIBILITY — Check heading hierarchy (h1 → h2 → h3), ARIA labels on nav/buttons, form labels. Note exact files with issues.
+13. PERFORMANCE — Check image files in assets/ for file sizes >200KB. Check public HTML for non-deferred scripts in <head> and missing lazy loading on below-fold images.
+14. MOBILE UX — Check each page for viewport meta tag. Check CSS for responsive patterns.
+15. LLM DISCOVERABILITY — Check for /llms.txt at repo root. Note if missing.
+16. AI TRANSPARENCY — Check /pages/ai.html exists and is reachable via nav or footer link.
+17. SPENDING TRANSPARENCY — Check index.html for spending section with current data.
+18. CAMPAIGN COMPLIANCE — Check each public page for candidate name display.
+19. SECURITY — Check for any http:// (non-HTTPS) resource references. List external scripts.
+20. CONTENT FRESHNESS — Note any sections referencing dates that appear stale.
+21. NOINDEX CHECK — Read /admin/index.html: confirm noindex,nofollow present. Read all public pages: confirm none have accidental noindex.
+22. TEMPLATE CONSISTENCY — Check that all public pages link to the same CSS file, share the same nav/footer structure, and follow the design system pattern from pages/template.html.
+
+SCORING RULES PER CATEGORY (each can reach 100/100 when fully fixed):
+- Score 100 = no issues detected for this category across all files
+- Score 90 = minor/cosmetic issues only, all critical requirements met
+- Score 70-89 = some pages missing requirements (warn)
+- Score 1-69 = significant gaps (warn/fail depending on severity)
+- Score 0 = completely absent (fail)
+- NEVER deduct for privacy/terms absence — intentional project policy
+- NEVER carry over a finding from a previous scan unless you verified it still exists
 
 OUTPUT FORMAT:
 After scanning, write results to /admin/data/scan-data.json with this structure:
@@ -450,36 +471,51 @@ After scanning, write results to /admin/data/scan-data.json with this structure:
   "previousScore": N_or_null,
   "scoreChange": N_or_null,
   "categories": {
-    "sitemapCoverage": {"score":0-100,"status":"pass|warn|fail","notes":""},
-    "metadataQuality": {"score":0-100,"status":"pass|warn|fail","notes":""},
+    "sitemapCoverage": {"score":0-100,"status":"pass|warn|fail","notes":"exact files missing from sitemap if any"},
+    "metadataQuality": {"score":0-100,"status":"pass|warn|fail","notes":"exact files with missing metadata if any"},
     "analyticsCoverage": {"score":0-100,"status":"pass|warn|fail","notes":""},
-    "ga4Coverage": {"score":0-100,"status":"pass|warn|fail","notes":""},
+    "ga4Coverage": {"score":0-100,"status":"pass|warn|fail","notes":"exact files missing GA4 if any"},
     "searchConsoleVerification": {"score":0-100,"status":"pass|warn|fail","notes":""},
     "bingVerification": {"score":0-100,"status":"pass|warn|fail","notes":""},
-    "microsoftClarity": {"score":0-100,"status":"pass|warn|fail","notes":""},
+    "microsoftClarity": {"score":0-100,"status":"pass|warn|fail","notes":"exact files missing Clarity if any"},
     "robotsNoindex": {"score":0-100,"status":"pass|warn|fail","notes":""},
-    "canonicalTags": {"score":0-100,"status":"pass|warn|fail","notes":""},
-    "brokenLinks": {"score":0-100,"status":"pass|warn|fail","notes":""},
-    "accessibility": {"score":0-100,"status":"pass|warn|fail","notes":""},
-    "performance": {"score":0-100,"status":"pass|warn|fail","notes":""},
+    "canonicalTags": {"score":0-100,"status":"pass|warn|fail","notes":"exact files missing canonical if any"},
+    "brokenLinks": {"score":0-100,"status":"pass|warn|fail","notes":"exact broken hrefs with source file if any"},
+    "accessibility": {"score":0-100,"status":"pass|warn|fail","notes":"exact files/elements with issues"},
+    "performance": {"score":0-100,"status":"pass|warn|fail","notes":"exact files/sizes if over threshold"},
     "mobileUX": {"score":0-100,"status":"pass|warn|fail","notes":""},
-    "schema": {"score":0-100,"status":"pass|warn|fail","notes":""},
-    "internalLinking": {"score":0-100,"status":"pass|warn|fail","notes":""},
-    "imageAltText": {"score":0-100,"status":"pass|warn|fail","notes":""},
+    "schema": {"score":0-100,"status":"pass|warn|fail","notes":"exact files missing schema if any"},
+    "internalLinking": {"score":0-100,"status":"pass|warn|fail","notes":"exact files with missing back-links if any (verify by reading each file)"},
+    "imageAltText": {"score":0-100,"status":"pass|warn|fail","notes":"exact files/elements with missing alt text"},
     "llmDiscoverability": {"score":0-100,"status":"pass|warn|fail","notes":""},
-    "securityPrivacy": {"score":0-100,"status":"pass|warn|fail","notes":""},
+    "securityPrivacy": {"score":0-100,"status":"pass|warn|fail","notes":"no privacy/terms deductions — check only HTTPS/mixed-content/script sources"},
     "campaignCompliance": {"score":0-100,"status":"pass|warn|fail","notes":""},
     "aiTransparency": {"score":0-100,"status":"pass|warn|fail","notes":""},
     "spendingTransparency": {"score":0-100,"status":"pass|warn|fail","notes":""},
     "contentFreshness": {"score":0-100,"status":"pass|warn|fail","notes":""}
   },
   "findings": [
-    {"id":"FIND-001","title":"","severity":"critical|important|enhancement|info",
-     "category":"","affectedPage":"","explanation":"","suggestedFix":"","status":"open"}
+    {
+      "id": "FIND-XXX",
+      "title": "",
+      "severity": "critical|important|enhancement|info",
+      "category": "",
+      "affectedPage": "exact file path or URL",
+      "detectedCondition": "what the scanner actually found",
+      "expectedCondition": "what the scanner expected to find",
+      "explanation": "",
+      "suggestedFix": "",
+      "deduction": N,
+      "status": "open|resolved",
+      "dateFound": "YYYY-MM-DD",
+      "dateResolved": null
+    }
   ],
   "criticalCount": N, "importantCount": N, "enhancementCount": N, "infoCount": N
 }
 Also append entry to scanHistory array.
+
+RESOLVED FINDINGS: If a previous finding's condition no longer exists (you verified by reading the file), set its status to "resolved" and add "dateResolved". Do not carry it forward as open. Do not add findings for privacy/terms pages.
 
 AFTER COMPLETING:
 1. Write results to /admin/data/scan-data.json.
@@ -690,6 +726,58 @@ STEPS:
 
 Report: findings with file sizes and specific fix recommendations. Do not modify files in this pass.` },
 
+{ id:'template-consistency', title:'Page Template Consistency Audit',
+  desc:'Verify all pages match the site template — header, nav, footer, typography, metadata, CTAs, responsive behavior.',
+  when:'After adding new pages or after CSS changes.',
+  text:`You are the technical lead for Don Scott's Uncampaign (uncampaign.pages.dev).
+
+TASK: Audit all public pages for template and design consistency.
+
+BEFORE STARTING:
+1. Read pages/template.html to understand the canonical page structure.
+2. Read assets/css/site.css to understand the design token system.
+3. List all public HTML files to audit.
+
+CHECK EACH PAGE AGAINST THESE STANDARDS:
+- [ ] Links to assets/css/site.css (not hardcoded inline styles)
+- [ ] Uses CSS variables (var(--color), var(--font), etc.) — not hardcoded hex colors
+- [ ] Same <header> / nav structure as template.html
+- [ ] Same <footer> structure as template.html
+- [ ] Has <meta name="viewport" content="width=device-width, initial-scale=1.0">
+- [ ] Has title tag (page-specific, not generic)
+- [ ] Has meta description
+- [ ] Has canonical tag pointing to correct domain
+- [ ] H1 exists and is page-specific (not copy of site name)
+- [ ] Button/link classes match design system (.btn, .btn-primary, etc.)
+- [ ] CTA placement follows page rhythm (not buried)
+- [ ] Internal nav link back to relevant parent page (issue subpages → issues.html)
+- [ ] No inline style= overrides that break design consistency
+- [ ] Responsive: no fixed-width elements that break mobile
+- [ ] Images have alt text
+
+FOR ISSUE PAGES (pages/issues/*.html) also check:
+- [ ] Has Article or FAQPage schema
+- [ ] Has "Back to Issues" breadcrumb link
+- [ ] Consistent hero/header structure matching other issue pages
+
+OUTPUT:
+1. Table: page | checks passed | checks failed | issues
+2. For each failing page, output a targeted "normalize this page" Claude Code prompt:
+
+---
+NORMALIZE PROMPT for [page]:
+You are the technical lead for Don Scott's Uncampaign (uncampaign.pages.dev).
+TASK: Normalize [page path] to match the site template.
+ISSUES FOUND: [list exact issues]
+STEPS: [specific fixes only]
+After fixing: git add [file] && git commit -m "Normalize [page] to site template" && git push
+Rollback: git revert HEAD && git push
+---
+
+3. Sitewide summary: total pages, pass rate, top recurring issue.
+
+Do not modify files during this audit pass. Report only.` },
+
 { id:'design-audit', title:'Design Consistency Audit',
   desc:'Verify all pages use the same design system — colors, typography, components.',
   when:'After adding new pages or changing CSS.',
@@ -734,8 +822,8 @@ STEPS:
 2. List all external script sources (src="https://..."). Note: GA4, Clarity, GSC, Bing are expected.
 3. Flag any unexpected or unknown external scripts.
 4. Check if forms POST to external services and whether those services are disclosed.
-5. Check if there is a privacy policy page linked from the site.
-6. Check if /admin/ is properly disallowed in robots.txt and has noindex meta.
+5. Check if /admin/ is properly disallowed in robots.txt and has noindex meta.
+6. Verify no public pages accidentally have noindex meta tags.
 
 Report: security and privacy findings + recommendations. Do not modify files.` },
 
@@ -797,20 +885,21 @@ STEPS:
 Report: link map, orphaned pages, broken internal links, navigation gaps. Do not modify files.` },
 
 { id:'legal-audit', title:'Legal & Compliance Audit',
-  desc:'Check campaign disclosures, political compliance basics, privacy policy.',
+  desc:'Check campaign disclosures and political compliance basics for this New York State local race.',
   when:'Monthly.',
   text:`You are the technical lead for Don Scott's Uncampaign (uncampaign.pages.dev).
 
 TASK: Perform a campaign legal and compliance audit.
 
-STEPS:
-1. Check each public page for: candidate name display, "paid for by" or equivalent disclosure.
-2. Note: this is a New York State local race. The Uncampaign has no paid advertising, which reduces disclosure requirements significantly.
-3. Check if a privacy policy page exists. If not, flag as a gap.
-4. Check if the Ideas/submission form has a note about how submitted data is used.
-5. Check the footer for any missing required disclosures.
+CONTEXT: New York State local race. No paid advertising, so no paid-for disclaimer requirements are triggered. No privacy policy or terms pages are required or expected for this campaign — intentional project policy.
 
-Report: compliance status by page + recommended additions. Do not modify files.` },
+STEPS:
+1. Check each public page for: candidate name display, any required "authorized by" or "paid for by" equivalent disclosures (N/A if no paid ads).
+2. Check if the Ideas/submission form has a note about how submitted data is used.
+3. Check the footer for any missing required disclosures.
+4. Verify no public page accidentally includes disqualifying language or unverified factual claims.
+
+Report: compliance status by page + recommended additions. Do not check for or flag missing privacy policy or terms pages. Do not modify files.` },
 
 { id:'add-page', title:'Add New Website Page',
   desc:'Add a new page to the site following the existing design system and structure.',
