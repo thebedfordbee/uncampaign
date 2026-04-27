@@ -286,11 +286,20 @@
       max-height: 0;
       transition: max-height 0.4s ease;
     }
-    .idea-category.is-open .idea-category__panel { max-height: 3000px; }
+    /* Regression guard: categories with 12–14 ideas render as a single column on
+       mobile. At ~280px per card that exceeds 3000px and gets clipped by
+       overflow:hidden. Keep this value above (max-ideas-per-category × ~300px).
+       Desktop is unaffected (3-col grid stays well under 2000px). */
+    .idea-category.is-open .idea-category__panel { max-height: 5000px; }
     .idea-category__panel-inner {
       padding: 1.25rem;
       background: var(--cream);
       border-top: 1px solid var(--border);
+    }
+    /* Extra bottom clearance on mobile so the final card CTA clears the
+       next category header. Not needed on desktop (3-col height stays low). */
+    @media (max-width: 559px) {
+      .idea-category__panel-inner { padding-bottom: 1.75rem; }
     }
 
     /* =============================================
