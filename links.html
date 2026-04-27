@@ -168,44 +168,137 @@
       text-align: center;
     }
 
+    /* ---- Divider (between identity and social row) ---- */
+    .links-divider {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 140px;
+      margin: 1.25rem auto 0;
+      flex-shrink: 0;
+    }
+
+    .links-divider__line {
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    /* Centered dot — circle, not hex */
+    .links-divider__dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(123, 140, 121, 0.75); /* sage */
+      flex-shrink: 0;
+    }
+
     /* ---- Social icon row ---- */
     .links-social {
       display: flex;
       gap: 0.875rem;
-      margin-top: 1.5rem;
+      margin-top: 1.125rem;
       align-items: center;
     }
 
-    .links-social__icon {
+    /*
+     * Each social item: 56px circle
+     * On hover/focus: icon fades out, text label fades in, bg shifts to brand color.
+     * Pattern mirrors Bedford Bee crossfade — adapted to circular containers, no hexagons.
+     */
+    .links-social-item {
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.09);
       border: 1px solid rgba(255, 255, 255, 0.20);
       color: rgba(255, 255, 255, 0.80);
       text-decoration: none;
-      transition: background 0.15s, border-color 0.15s, color 0.15s;
       flex-shrink: 0;
+      overflow: hidden;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
-    .links-social__icon:hover {
-      background: rgba(255, 255, 255, 0.18);
-      border-color: rgba(255, 255, 255, 0.40);
-      color: var(--white);
-    }
-    .links-social__icon:focus-visible {
+
+    .links-social-item:focus-visible {
       outline: 2px solid rgba(255, 255, 255, 0.70);
       outline-offset: 3px;
     }
-    .links-social__icon svg {
-      width: 19px;
-      height: 19px;
+
+    /* Icon: visible by default */
+    .links-social-item__icon {
+      width: 20px;
+      height: 20px;
       display: block;
+      flex-shrink: 0;
+      transition: opacity 0.2s;
+      position: relative;
+      z-index: 1;
     }
 
-    /* ---- Primary CTA ---- */
+    /* Label: hidden by default, centered absolutely over the icon */
+    .links-social-item__label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: 0.5rem; /* 8px — fits "Newsletter" in 56px circle */
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: currentColor;
+      text-align: center;
+      line-height: 1.25;
+      padding: 4px 3px;
+      opacity: 0;
+      transition: opacity 0.2s;
+      pointer-events: none;
+      z-index: 2;
+      word-break: break-word;
+    }
+
+    /* Hover/focus: crossfade icon out, label in */
+    .links-social-item:hover .links-social-item__icon,
+    .links-social-item:focus-visible .links-social-item__icon { opacity: 0; }
+
+    .links-social-item:hover .links-social-item__label,
+    .links-social-item:focus-visible .links-social-item__label { opacity: 1; }
+
+    /* Platform brand colors on hover/focus — circular containers, no hexagons */
+    .links-social-item--facebook:hover,
+    .links-social-item--facebook:focus-visible {
+      background: #1877F2;
+      border-color: #1877F2;
+      color: #fff;
+    }
+
+    .links-social-item--instagram:hover,
+    .links-social-item--instagram:focus-visible {
+      background: #E1306C;
+      border-color: #E1306C;
+      color: #fff;
+    }
+
+    .links-social-item--newsletter:hover,
+    .links-social-item--newsletter:focus-visible {
+      background: #FF6719;
+      border-color: #FF6719;
+      color: #fff;
+    }
+
+    .links-social-item--podcast:hover,
+    .links-social-item--podcast:focus-visible {
+      background: #1DB954;
+      border-color: #1DB954;
+      color: #fff;
+    }
+
+    /* ---- Primary CTA (Subscribe + Contact share this style) ---- */
     .links-primary-cta {
       display: flex;
       align-items: center;
@@ -305,7 +398,6 @@
     .links-btn {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       gap: 0.75rem;
       width: 100%;
       min-height: 52px;
@@ -331,40 +423,69 @@
       outline: 2px solid rgba(255, 255, 255, 0.70);
       outline-offset: 3px;
     }
+
+    /* Left icon in each link button */
+    .links-btn__icon {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.50);
+      transition: color 0.15s;
+    }
+    .links-btn__icon svg {
+      width: 16px;
+      height: 16px;
+      display: block;
+    }
+    .links-btn:hover .links-btn__icon {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
     .links-btn__label {
       flex: 1;
     }
+
     .links-btn__arrow {
       flex-shrink: 0;
-      color: rgba(255, 255, 255, 0.35);
+      color: rgba(255, 255, 255, 0.32);
       font-size: 1rem;
       line-height: 1;
+      transition: color 0.15s, transform 0.15s;
+    }
+    .links-btn:hover .links-btn__arrow {
+      color: rgba(255, 255, 255, 0.58);
+      transform: translateX(2px);
     }
 
-    /* ---- Contact button ---- */
+    /* ---- Contact button — matches .links-primary-cta exactly ---- */
     .links-contact {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
       min-height: 52px;
-      margin-top: 0.75rem;
+      margin-top: 1.5rem;
       padding: 0.875rem 1.5rem;
-      background: transparent;
-      color: rgba(255, 255, 255, 0.86);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      border-radius: 8px;
+      background: var(--cream);
+      color: var(--moss);
+      border: 2px solid var(--cream);
+      border-radius: 50px;
       font-family: var(--sans);
-      font-size: 0.9375rem;
-      font-weight: 600;
+      font-size: 1rem;
+      font-weight: 700;
       letter-spacing: 0.01em;
       text-decoration: none;
-      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
     }
     .links-contact:hover {
-      background: rgba(255, 255, 255, 0.09);
-      border-color: rgba(255, 255, 255, 0.46);
-      color: var(--white);
+      background: var(--white);
+      border-color: var(--white);
+      color: var(--moss);
     }
     .links-contact:focus-visible {
       outline: 2px solid rgba(255, 255, 255, 0.70);
@@ -439,9 +560,13 @@
 
     @media (prefers-reduced-motion: reduce) {
       .links-primary-cta,
-      .links-social__icon,
-      .links-btn,
       .links-contact,
+      .links-social-item,
+      .links-social-item__icon,
+      .links-social-item__label,
+      .links-btn,
+      .links-btn__icon,
+      .links-btn__arrow,
       .links-share { transition: none; }
       .links-toast { transition: none; }
     }
@@ -465,44 +590,62 @@
     <h1 class="links-name">Don Scott</h1>
     <p class="links-tagline">For Bedford</p>
 
+    <!-- =============================================
+         DIVIDER
+         Subtle rule between identity and social row.
+         Circle center — no hex geometry.
+         ============================================= -->
+    <div class="links-divider" aria-hidden="true">
+      <div class="links-divider__line"></div>
+      <div class="links-divider__dot"></div>
+      <div class="links-divider__line"></div>
+    </div>
+
 
     <!-- =============================================
          SOCIAL ICONS
+         On hover/focus: icon fades out, platform label fades in,
+         background shifts to brand color.
+         Uses circular containers — no hexagonal shapes.
          ============================================= -->
     <nav class="links-social" aria-label="Social media and contact channels">
 
       <!-- PLACEHOLDER: Update href when Facebook page is live -->
-      <a href="#" class="links-social__icon" aria-label="Follow on Facebook">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <a href="#" class="links-social-item links-social-item--facebook" aria-label="Follow on Facebook">
+        <svg class="links-social-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
         </svg>
+        <span class="links-social-item__label" aria-hidden="true">Facebook</span>
       </a>
 
       <!-- PLACEHOLDER: Update href when Instagram account is live -->
-      <a href="#" class="links-social__icon" aria-label="Follow on Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <a href="#" class="links-social-item links-social-item--instagram" aria-label="Follow on Instagram">
+        <svg class="links-social-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
           <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
           <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
         </svg>
+        <span class="links-social-item__label" aria-hidden="true">Instagram</span>
       </a>
 
       <!-- PLACEHOLDER: Update href when Substack / newsletter URL is confirmed -->
-      <a href="#" class="links-social__icon" aria-label="Subscribe to newsletter">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <a href="#" class="links-social-item links-social-item--newsletter" aria-label="Subscribe to newsletter">
+        <svg class="links-social-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
           <polyline points="22,6 12,13 2,6"/>
         </svg>
+        <span class="links-social-item__label" aria-hidden="true">Newsletter</span>
       </a>
 
       <!-- PLACEHOLDER: Update href when podcast / audio feed is live -->
-      <a href="#" class="links-social__icon" aria-label="Listen to podcast">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <a href="#" class="links-social-item links-social-item--podcast" aria-label="Listen to podcast">
+        <svg class="links-social-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
           <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
           <line x1="12" y1="19" x2="12" y2="23"/>
           <line x1="8" y1="23" x2="16" y2="23"/>
         </svg>
+        <span class="links-social-item__label" aria-hidden="true">Podcast</span>
       </a>
 
     </nav>
@@ -541,15 +684,28 @@
 
     <!-- =============================================
          LINK STACK
+         Each item has a left-side icon, label, and right arrow.
          ============================================= -->
     <nav class="links-stack" aria-label="Quick links">
 
       <a href="/" class="links-btn" aria-label="Visit the Don Scott for Bedford homepage">
+        <span class="links-btn__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </span>
         <span class="links-btn__label">My Website</span>
         <span class="links-btn__arrow" aria-hidden="true">→</span>
       </a>
 
       <a href="pages/rules.html" class="links-btn" aria-label="Learn about The Uncampaign">
+        <span class="links-btn__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
+        </span>
         <span class="links-btn__label">The Uncampaign</span>
         <span class="links-btn__arrow" aria-hidden="true">→</span>
       </a>
@@ -559,16 +715,34 @@
         Currently links to the don-bot page.
       -->
       <a href="pages/don-bot.html" class="links-btn" aria-label="Ask Don a question">
+        <span class="links-btn__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+        </span>
         <span class="links-btn__label">Ask Don</span>
         <span class="links-btn__arrow" aria-hidden="true">→</span>
       </a>
 
       <a href="/#spending" class="links-btn" aria-label="See all campaign spending — every dollar, public">
+        <span class="links-btn__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </span>
         <span class="links-btn__label">Campaign Spending</span>
         <span class="links-btn__arrow" aria-hidden="true">→</span>
       </a>
 
       <a href="pages/ideas.html" class="links-btn" aria-label="Browse practical ideas for Bedford">
+        <span class="links-btn__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="9" y1="18" x2="15" y2="18"/>
+            <line x1="10" y1="22" x2="14" y2="22"/>
+            <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
+          </svg>
+        </span>
         <span class="links-btn__label">Bedford Ideas</span>
         <span class="links-btn__arrow" aria-hidden="true">→</span>
       </a>
@@ -577,7 +751,8 @@
 
 
     <!-- =============================================
-         CONTACT
+         CONTACT — visually matches Subscribe CTA:
+         same pill shape, cream fill, moss text, hover state.
          ============================================= -->
     <!--
       PLACEHOLDER: Update href when a contact or conversation-request page is live.
