@@ -42,23 +42,36 @@
       <div class="sidebar-sub">Don Scott for Bedford</div>
     </div>
 
+    <!-- SCORE BLOCK -->
+    <div class="sidebar-score-block" id="sb-score-block">
+      <div class="sb-grade-circle" onclick="navigate('health')" title="View Site Health">
+        <div class="sb-grade score-d" id="sb-grade">D</div>
+        <div class="sb-score-sub" id="sb-score">59/100</div>
+      </div>
+      <div class="sb-label" id="sb-label">Campaign Score</div>
+      <button class="sb-scan-btn" onclick="navigate('scan')">&#128269; Generate New Scan Prompt</button>
+      <div class="sb-last-scan" id="sb-last-scan">Last scan: loading…</div>
+    </div>
+
     <nav class="sidebar-nav" id="sidebar-nav">
-      <a href="#mission"    class="nav-item active" data-section="mission">&#127968; Mission Control</a>
-      <a href="#health"     class="nav-item"         data-section="health">&#128200; Site Health</a>
-      <a href="#reportcard" class="nav-item"     data-section="reportcard">&#128203; Report Card</a>
-      <a href="#scan"       class="nav-item"           data-section="scan">&#128269; Run New Scan</a>
+      <a href="#mission"       class="nav-item active" data-section="mission">&#127919; Mission Control</a>
+      <a href="#dashboard"     class="nav-item"     data-section="dashboard">&#128200; Dashboard</a>
+      <a href="#health"        class="nav-item"        data-section="health">&#9898; Site Health</a>
+      <a href="#reportcard"    class="nav-item"    data-section="reportcard">&#128203; Report Card</a>
+      <a href="#opportunities" class="nav-item" data-section="opportunities">&#128161; Opportunities</a>
+      <a href="#scan"          class="nav-item"           data-section="scan">&#9654;&#65039; Run New Scan</a>
       <div class="nav-divider"></div>
-      <a href="#findings"   class="nav-item"       data-section="findings">&#9888;&#65039; Findings</a>
-      <a href="#inbox"      class="nav-item"          data-section="inbox">&#128140; Inbox</a>
-      <a href="#tasks"      class="nav-item"          data-section="tasks">&#9989; Tasks</a>
-      <a href="#calendar"   class="nav-item"       data-section="calendar">&#128197; Calendar</a>
+      <a href="#findings"      class="nav-item"       data-section="findings">&#9888;&#65039; Findings</a>
+      <a href="#inbox"         class="nav-item"          data-section="inbox">&#128140; Inbox</a>
+      <a href="#tasks"         class="nav-item"          data-section="tasks">&#9989; Tasks</a>
+      <a href="#calendar"      class="nav-item"       data-section="calendar">&#128197; Calendar</a>
       <div class="nav-divider"></div>
-      <a href="#agents"     class="nav-item"         data-section="agents">&#129302; Agent Library</a>
-      <a href="#prompts"    class="nav-item"         data-section="prompts">&#128196; Prompt Library</a>
-      <a href="#studio"     class="nav-item"          data-section="studio">&#9999;&#65039; Content Studio</a>
+      <a href="#agents"        class="nav-item"         data-section="agents">&#129302; Agent Library</a>
+      <a href="#prompts"       class="nav-item"         data-section="prompts">&#128196; Prompt Library</a>
+      <a href="#studio"        class="nav-item"          data-section="studio">&#9999;&#65039; Content Studio</a>
       <div class="nav-divider"></div>
-      <a href="#pollie"     class="nav-item"          data-section="pollie">&#127942; Pollie Vault</a>
-      <a href="#settings"   class="nav-item"       data-section="settings">&#9881;&#65039; Settings</a>
+      <a href="#pollie"        class="nav-item"          data-section="pollie">&#127942; Pollie Vault</a>
+      <a href="#settings"      class="nav-item"       data-section="settings">&#9881;&#65039; Settings</a>
     </nav>
 
     <div class="sidebar-footer">
@@ -80,20 +93,33 @@
     </header>
 
     <main id="content" class="content">
-      <div id="section-mission"    class="section active"></div>
-      <div id="section-health"     class="section hidden"></div>
-      <div id="section-reportcard" class="section hidden"></div>
-      <div id="section-scan"       class="section hidden"></div>
-      <div id="section-findings"   class="section hidden"></div>
-      <div id="section-inbox"      class="section hidden"></div>
-      <div id="section-tasks"      class="section hidden"></div>
-      <div id="section-calendar"   class="section hidden"></div>
-      <div id="section-agents"     class="section hidden"></div>
-      <div id="section-prompts"    class="section hidden"></div>
-      <div id="section-studio"     class="section hidden"></div>
-      <div id="section-pollie"     class="section hidden"></div>
-      <div id="section-settings"   class="section hidden"></div>
+      <div id="section-mission"       class="section active"></div>
+      <div id="section-dashboard"     class="section hidden"></div>
+      <div id="section-health"        class="section hidden"></div>
+      <div id="section-reportcard"    class="section hidden"></div>
+      <div id="section-opportunities" class="section hidden"></div>
+      <div id="section-scan"          class="section hidden"></div>
+      <div id="section-findings"      class="section hidden"></div>
+      <div id="section-inbox"         class="section hidden"></div>
+      <div id="section-tasks"         class="section hidden"></div>
+      <div id="section-calendar"      class="section hidden"></div>
+      <div id="section-agents"        class="section hidden"></div>
+      <div id="section-prompts"       class="section hidden"></div>
+      <div id="section-studio"        class="section hidden"></div>
+      <div id="section-pollie"        class="section hidden"></div>
+      <div id="section-settings"      class="section hidden"></div>
     </main>
+  </div>
+
+  <!-- DETAIL SIDE PANEL -->
+  <div class="detail-overlay" id="detail-overlay" onclick="closeDetailPanel()"></div>
+  <div class="detail-panel" id="detail-panel">
+    <div class="dp-header">
+      <div class="dp-title" id="dp-title">Detail</div>
+      <button class="dp-close" onclick="closeDetailPanel()" title="Close">&#215;</button>
+    </div>
+    <div class="dp-body" id="dp-body"></div>
+    <div class="dp-actions" id="dp-actions"></div>
   </div>
 
 </div><!-- /app -->
