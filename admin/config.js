@@ -16,7 +16,7 @@ const CFG = {
      Replace with your deployed Google Apps Script Web App URL.
      Format: https://script.google.com/macros/s/XXXXXXX/exec
      Leave as placeholder to run in demo mode (sample data shown).                       */
-  appsScriptUrl: 'APPS_SCRIPT_URL_PLACEHOLDER',
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec',
 
   /* ADMIN TOKEN — included in every Apps Script POST */
   adminToken: 'lastoftherepublicans2026',

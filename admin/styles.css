@@ -227,6 +227,10 @@ button { cursor: pointer; }
   font-size: 0.85rem; font-weight: 600; color: var(--heading); flex: 1;
 }
 
+.topbar-right {
+  display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;
+}
+
 .topbar-site-link {
   font-size: 0.75rem; color: var(--muted);
 }
