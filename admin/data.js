@@ -28,13 +28,13 @@ const SCAN_DEFAULTS = {
     internalLinking:           { score: 65, status: 'warn', notes: 'Some issue subpages lack back-links to issues overview.' },
     imageAltText:              { score: 70, status: 'warn', notes: 'Some persona/social images may have generic or missing alt text.' },
     llmDiscoverability:        { score: 40, status: 'fail', notes: 'No llms.txt; no explicit AI agent guidance; minimal entity markup.' },
-    securityPrivacy:           { score: 75, status: 'pass', notes: 'Cloudflare Pages (HTTPS); no mixed content; no privacy policy yet.' },
+    securityPrivacy:           { score: 75, status: 'pass', notes: 'Cloudflare Pages (HTTPS); no mixed content. No privacy/terms pages — intentional.' },
     campaignCompliance:        { score: 90, status: 'pass', notes: 'Good candidate disclosure; no paid ads so no disclaimer triggers.' },
     aiTransparency:            { score: 88, status: 'pass', notes: '/pages/ai.html exists; clear disclosure language present.' },
     spendingTransparency:      { score: 82, status: 'pass', notes: 'Spending section on homepage; budget cap prominently featured.' },
     contentFreshness:          { score: 75, status: 'warn', notes: 'Site recently launched; monitor as campaign progresses.' }
   },
-  criticalCount: 4, importantCount: 4, enhancementCount: 5, infoCount: 2,
+  criticalCount: 4, importantCount: 3, enhancementCount: 4, infoCount: 2,
   scanHistory: [{ scanDate: '2026-04-27', overallScore: 59, grade: 'D', pagesScanned: 12, note: 'Initial stub' }]
 };
 
@@ -91,12 +91,7 @@ const FINDINGS_DATA = [
     watchOuts:'Update consistently across all pages that share the footer.',
     status:'open', dateFound:'2026-04-27', dateResolved:null },
 
-  { id:'FIND-008', title:'No privacy policy page', severity:'important', category:'Legal', affectedPage:'Site-wide',
-    explanation:'The site collects submissions via the Ideas page and Ask Don. No privacy policy explains what data is collected and how it is used.',
-    whyItMatters:'Builds trust; may be required depending on data processing. Low effort, high credibility.',
-    suggestedFix:'Run the "Legal & Compliance Audit" prompt to draft a simple, accurate privacy policy page.',
-    watchOuts:'Keep it plain language and honest. Do not over-promise.',
-    status:'open', dateFound:'2026-04-27', dateResolved:null },
+  /* FIND-008 (No privacy policy page) excluded — intentional UNCAMPAIGN policy. See CFG.ignoreMissingPrivacyPolicy. */
 
   { id:'FIND-009', title:'sitemap.xml domain inconsistency', severity:'important', category:'Crawlability', affectedPage:'/sitemap.xml',
     explanation:'sitemap.xml mixes URLs from uncampaign.pages.dev and thebedfordbee.github.io/don-scott. This causes inconsistent canonical signals.',
@@ -126,12 +121,7 @@ const FINDINGS_DATA = [
     watchOuts:'Check all 9 issue subpages consistently.',
     status:'open', dateFound:'2026-04-27', dateResolved:null },
 
-  { id:'FIND-013', title:'No privacy policy or terms', severity:'enhancement', category:'Legal', affectedPage:'Site-wide',
-    explanation:'No privacy policy linked from footer or form pages.',
-    whyItMatters:'Builds trust with residents. Especially important if the Ideas form or chat sends data to third-party services.',
-    suggestedFix:'Add a simple /pages/privacy.html page. Link from footer and form pages.',
-    watchOuts:'Keep it accurate and honest. Do not use a template that makes false claims.',
-    status:'open', dateFound:'2026-04-27', dateResolved:null },
+  /* FIND-013 (No privacy policy or terms) excluded — intentional UNCAMPAIGN policy. See CFG.ignoreMissingTerms. */
 
   { id:'FIND-014', title:'Site deployed on Cloudflare Pages', severity:'info', category:'Infrastructure', affectedPage:'Site-wide',
     explanation:'Site is at uncampaign.pages.dev on Cloudflare Pages. Provides HTTPS, CDN, and Cloudflare Access capability.',
@@ -1403,9 +1393,7 @@ const SAMPLE_TASKS_DEFAULT = [
   { id:'task-009', task:'Configure Apps Script URL in config.js', owner:'Mike', priority:'medium', status:'open',
     dueDate:'2026-05-11', category:'Admin', notes:'Deploy Google Apps Script web app. Get URL. Update APPS_SCRIPT_URL_PLACEHOLDER.',
     createdDate:'2026-04-27', completedDate:null },
-  { id:'task-010', task:'Create privacy policy page', owner:'Mike', priority:'medium', status:'open',
-    dueDate:'2026-06-01', category:'Legal', notes:'See FIND-008. Use "Legal & Compliance Audit" prompt for draft.',
-    createdDate:'2026-04-27', completedDate:null }
+  /* task-010 (Create privacy policy page) removed — intentional UNCAMPAIGN policy. */
 ];
 
 /* ============================================================

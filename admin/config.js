@@ -33,6 +33,12 @@ const CFG = {
 
   /* SPENDING — update spendActual as expenses occur */
   spendBudget: 49.99,
-  spendActual: 0.00
+  spendActual: 0.00,
+
+  /* PROJECT-LEVEL SCAN OVERRIDES
+     These suppress specific checks that are intentionally not applicable to this site.
+     Scan prompts and findings should respect these flags.                              */
+  ignoreMissingPrivacyPolicy: true,
+  ignoreMissingTerms:         true
 
 };

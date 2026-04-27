@@ -26,15 +26,15 @@
     "internalLinking":          { "score": 65, "status": "warn", "notes": "Some issue subpages lack links back to the issues overview. Footer nav is minimal." },
     "imageAltText":             { "score": 70, "status": "warn", "notes": "Some persona and social images may have generic or missing alt text." },
     "llmDiscoverability":       { "score": 40, "status": "fail", "notes": "No llms.txt file. No explicit AI agent guidance. Entity markup minimal." },
-    "securityPrivacy":          { "score": 75, "status": "pass", "notes": "Deployed on Cloudflare Pages (HTTPS). No mixed content. No privacy policy page yet." },
+    "securityPrivacy":          { "score": 75, "status": "pass", "notes": "Deployed on Cloudflare Pages (HTTPS). No mixed content. No privacy/terms pages — intentional UNCAMPAIGN policy." },
     "campaignCompliance":       { "score": 90, "status": "pass", "notes": "Good candidate disclosure. No paid advertising so no disclaimer requirements triggered." },
     "aiTransparency":           { "score": 88, "status": "pass", "notes": "Dedicated AI transparency page at /pages/ai.html. Clear disclosure language." },
     "spendingTransparency":     { "score": 82, "status": "pass", "notes": "Spending section on homepage. Budget cap prominently featured." },
     "contentFreshness":         { "score": 75, "status": "warn", "notes": "Site launched recently. Content freshness should be monitored as campaign progresses." }
   },
   "criticalCount": 4,
-  "importantCount": 4,
-  "enhancementCount": 5,
+  "importantCount": 3,
+  "enhancementCount": 4,
   "infoCount": 2,
   "scanHistory": [
     {
