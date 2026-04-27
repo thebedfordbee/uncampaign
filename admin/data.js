@@ -20,7 +20,7 @@ const SCAN_DEFAULTS = {
     microsoftClarity:          { score: 0,  status: 'fail', notes: 'Microsoft Clarity not installed.' },
     robotsNoindex:             { score: 90, status: 'pass', notes: 'robots.txt configured; admin disallowed; public pages accessible.' },
     canonicalTags:             { score: 85, status: 'pass', notes: 'Main pages have canonical tags; issue subpages need review.' },
-    brokenLinks:               { score: 90, status: 'pass', notes: 'One placeholder found: Instagram footer link (#).' },
+    brokenLinks:               { score: 95, status: 'pass', notes: 'All links live. Instagram footer link updated to @DonForBedford.' },
     accessibility:             { score: 65, status: 'warn', notes: 'Missing ARIA labels on some elements; heading hierarchy needs review.' },
     performance:               { score: 70, status: 'warn', notes: 'Persona PNGs likely unoptimized; no lazy loading on below-fold images.' },
     mobileUX:                  { score: 82, status: 'pass', notes: 'Responsive layout functional; mobile nav works.' },
@@ -85,11 +85,11 @@ const FINDINGS_DATA = [
     status:'resolved', dateFound:'2026-04-27', dateResolved:'2026-04-27' },
 
   { id:'FIND-007', title:'Instagram footer link is a placeholder (#)', severity:'important', category:'Links', affectedPage:'All pages (footer)',
-    explanation:'Instagram social link in the footer points to # with a code comment: "TODO: replace # with real Instagram URL when available".',
+    explanation:'Instagram social link in the footer pointed to # with a code comment. Fixed: all pages now link to https://www.instagram.com/donforbedford/.',
     whyItMatters:'Dead social links look unfinished. Should be removed or replaced.',
-    suggestedFix:'Either add the real Instagram URL or remove the icon from the footer until the account is ready.',
+    suggestedFix:'Already resolved. Instagram account @DonForBedford is live and linked across all pages.',
     watchOuts:'Update consistently across all pages that share the footer.',
-    status:'open', dateFound:'2026-04-27', dateResolved:null },
+    status:'resolved', dateFound:'2026-04-27', dateResolved:'2026-04-27' },
 
   /* FIND-008 (No privacy policy page) excluded — intentional UNCAMPAIGN policy. See CFG.ignoreMissingPrivacyPolicy. */
 
@@ -130,12 +130,12 @@ const FINDINGS_DATA = [
     watchOuts:'Custom domain (e.g. donscottbedford.com) can be added to Cloudflare Pages.',
     status:'info', dateFound:'2026-04-27', dateResolved:null },
 
-  { id:'FIND-015', title:'Facebook page active; Instagram pending', severity:'info', category:'Social', affectedPage:'Footer',
-    explanation:'Facebook page (DonScottBedfordNY) is active and linked. Instagram is a placeholder.',
+  { id:'FIND-015', title:'Facebook and Instagram both active and linked', severity:'info', category:'Social', affectedPage:'Footer',
+    explanation:'Facebook page (DonScottBedfordNY) and Instagram (@DonForBedford) are both active and linked across all pages.',
     whyItMatters:'Social presence supports earned media. Keep footer link current.',
-    suggestedFix:'Replace Instagram # with real URL when account is ready, or remove icon for now.',
-    watchOuts:'Update consistently across all pages.',
-    status:'info', dateFound:'2026-04-27', dateResolved:null }
+    suggestedFix:'No action needed. Both social links are live.',
+    watchOuts:'Update consistently across all pages if handles change.',
+    status:'resolved', dateFound:'2026-04-27', dateResolved:'2026-04-27' }
 ];
 
 /* ============================================================
@@ -1470,9 +1470,9 @@ const SAMPLE_TASKS_DEFAULT = [
   { id:'task-005', task:'Create llms.txt for AI discoverability', owner:'Mike', priority:'high', status:'open',
     dueDate:'2026-05-11', category:'SEO', notes:'See FIND-005. Use "LLM Discoverability Audit" Claude Code prompt.',
     createdDate:'2026-04-27', completedDate:null },
-  { id:'task-006', task:'Fix Instagram footer link (placeholder #)', owner:'Mike', priority:'medium', status:'open',
-    dueDate:'2026-05-18', category:'Content', notes:'Either add real Instagram URL or remove icon. Update across all pages.',
-    createdDate:'2026-04-27', completedDate:null },
+  { id:'task-006', task:'Fix Instagram footer link (placeholder #)', owner:'Mike', priority:'medium', status:'completed',
+    dueDate:'2026-05-18', category:'Content', notes:'Resolved. All pages now link to https://www.instagram.com/donforbedford/ (@DonForBedford).',
+    createdDate:'2026-04-27', completedDate:'2026-04-27' },
   { id:'task-007', task:'Standardize sitemap.xml domain to uncampaign.pages.dev', owner:'Mike', priority:'medium', status:'open',
     dueDate:'2026-05-18', category:'SEO', notes:'See FIND-009. Use "Fix Sitemap Coverage" Claude Code prompt.',
     createdDate:'2026-04-27', completedDate:null },
