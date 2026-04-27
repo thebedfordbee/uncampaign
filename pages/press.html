@@ -20,6 +20,50 @@
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4A5240">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#4A5240">
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://uncampaign.pages.dev/#website",
+        "url": "https://uncampaign.pages.dev/",
+        "name": "Don Scott for Bedford",
+        "description": "The Uncampaign — Don Scott for Bedford Town Supervisor"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://uncampaign.pages.dev/pages/press.html#webpage",
+        "url": "https://uncampaign.pages.dev/pages/press.html",
+        "name": "Press | Don Scott for Bedford",
+        "description": "A $49.99 local campaign using civic tools, public AI transparency, and open spending records instead of traditional fundraising, consultants, mailers, or paid ads.",
+        "isPartOf": { "@id": "https://uncampaign.pages.dev/#website" },
+        "about": { "@id": "https://uncampaign.pages.dev/#don-scott" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://uncampaign.pages.dev/" },
+          { "@type": "ListItem", "position": 2, "name": "Press", "item": "https://uncampaign.pages.dev/pages/press.html" }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": "https://uncampaign.pages.dev/#don-scott",
+        "name": "Don Scott",
+        "url": "https://uncampaign.pages.dev/",
+        "jobTitle": "Candidate for Town Supervisor",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bedford",
+          "addressRegion": "NY",
+          "addressCountry": "US"
+        }
+      }
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="../assets/css/site.css">
   <style>
     /* ── Press page: page-scoped overrides ─────────────────────────────────
