@@ -534,6 +534,9 @@
               <p class="eyebrow spending__meter-eyebrow">Current total</p>
               <span class="spending__current-amount">$9.99</span>
               <span class="spending__current-label">of $49.99 cap</span>
+              <p id="transparency-date"
+                 title="Daily transparency tracker current through today's date"
+                 style="font-size:0.75rem;color:var(--muted);margin-top:-1.25rem;margin-bottom:1.25rem;letter-spacing:0.02em;"></p>
 
               <div class="thermometer">
                 <div class="thermometer__track">
@@ -782,6 +785,14 @@
         el.classList.toggle('is-open', !open);
         trigger.setAttribute('aria-expanded', String(!open));
       });
+    })();
+
+    (function() {
+      var dateEl = document.getElementById('transparency-date');
+      if (!dateEl) return;
+      var d = new Date();
+      dateEl.textContent = 'Daily transparency tracker. Current through: ' +
+        d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + '.';
     })();
   </script>
   <script src="assets/js/site.js"></script>
