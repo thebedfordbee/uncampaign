@@ -1017,6 +1017,50 @@ html { font-size: 15.5px; }
 }
 
 /* ============================================================
+   PROMPT BOX — standardized copy-adjacent pattern
+   ============================================================ */
+.prompt-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  margin-top: 0.45rem;
+}
+.prompt-box-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.35rem 0.6rem;
+  background: var(--card2); border-bottom: 1px solid var(--border);
+  gap: 0.5rem;
+}
+.prompt-box-label {
+  font-size: 0.66rem; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.prompt-box-ta {
+  width: 100%; min-height: 110px;
+  background: transparent; border: none;
+  color: var(--text); padding: 0.6rem 0.65rem;
+  font-size: 0.74rem; line-height: 1.55;
+  font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
+  resize: vertical; outline: none; display: block;
+}
+.prompt-box-pre {
+  margin: 0; padding: 0.65rem;
+  font-size: 0.74rem; line-height: 1.55; white-space: pre-wrap;
+  word-break: break-word; background: transparent;
+  border: none; border-radius: 0;
+}
+.prompt-copy-btn {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  padding: 0.22rem 0.5rem; font-size: 0.72rem; font-weight: 600;
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--moss); border-radius: var(--r-sm);
+  cursor: pointer; transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
+}
+.prompt-copy-btn:hover { background: var(--moss-bg); border-color: var(--moss); }
+.prompt-copy-btn.copied { background: var(--moss-bg); color: var(--green); border-color: var(--green); }
+
+/* ============================================================
    TASK CARDS (upgraded)
    ============================================================ */
 .task-card {
@@ -1036,3 +1080,9 @@ html { font-size: 15.5px; }
 .task-source-inbox   { background: rgba(210,153,34,0.15); color: var(--yellow); }
 .task-source-pollie  { background: rgba(240,136,62,0.15); color: var(--orange); }
 .task-source-calendar { background: rgba(163,113,247,0.15); color: var(--purple); }
+
+.agent-prompt-out { margin-top: 0.5rem; }
+.agent-prompt-out.hidden { display: none; }
+
+.studio-output { display: none; margin-top: 0.65rem; }
+.studio-output.visible { display: block; }
