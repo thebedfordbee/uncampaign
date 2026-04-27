@@ -166,84 +166,90 @@
     .odds-column--win .odds-column__heading { color: var(--moss); }
     .odds-column--lose .odds-column__heading { color: var(--sage); }
 
-    /* Odds accordion — mirrors .faq-item visual style, independent toggle */
-    .odds-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .odds-item { border-bottom: 1px solid var(--border); }
-    .odds-item:first-child { border-top: 1px solid var(--border); }
-    .odds-item__question {
+    /* Column-level accordion toggle (heading button) */
+    .odds-column__heading { margin: 0; }
+    .odds-col-toggle {
       width: 100%;
       background: none;
       border: none;
-      padding: 0.875rem 0;
+      padding: 0.5rem 0;
       text-align: left;
       cursor: pointer;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-      color: var(--charcoal);
-      line-height: 1.4;
+      gap: 0.75rem;
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: inherit;
+      line-height: 1.35;
     }
-    .odds-item__question:hover { color: var(--moss); }
-    .odds-item__question:focus-visible {
+    .odds-col-toggle:hover { opacity: 0.75; }
+    .odds-col-toggle:focus-visible {
       outline: 2px solid var(--moss);
-      outline-offset: 2px;
+      outline-offset: 3px;
       border-radius: 2px;
     }
-    .odds-item__label-wrap {
-      display: flex;
-      gap: 0.625rem;
-      align-items: flex-start;
-      flex: 1;
-    }
-    .odds-item__num {
-      font-size: 0.6875rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: var(--sage);
-      min-width: 1.375rem;
-      padding-top: 0.25em;
-      flex-shrink: 0;
-      font-family: var(--sans);
-    }
-    .odds-column--win .odds-item__num { color: var(--moss); }
-    .odds-item__label {
-      font-size: 0.9375rem;
-      font-weight: 700;
-      color: inherit;
-    }
-    .odds-item__icon {
+    .odds-col-icon {
       font-style: normal;
       font-size: 1.375rem;
       line-height: 1;
       flex-shrink: 0;
-      margin-top: 0.0625rem;
       transition: transform 0.25s ease;
       user-select: none;
     }
-    .odds-item__question[aria-expanded="true"] .odds-item__icon {
-      transform: rotate(45deg);
-    }
-    .odds-item__answer {
+    .odds-col-toggle[aria-expanded="true"] .odds-col-icon { transform: rotate(45deg); }
+
+    /* Collapsible list panel */
+    .odds-list-wrap {
       overflow: hidden;
       max-height: 0;
-      transition: max-height 0.3s ease;
+      transition: max-height 0.4s ease;
     }
-    .odds-item__answer-inner {
-      padding: 0 0 1.125rem 2rem;
+
+    /* Plain numbered list inside panel */
+    .odds-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.125rem;
+      padding-bottom: 0.5rem;
+    }
+    .odds-list__item {
+      display: flex;
+      gap: 0.875rem;
+      align-items: flex-start;
+    }
+    .odds-list__num {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--sage);
+      min-width: 1.5rem;
+      padding-top: 0.25em;
+      flex-shrink: 0;
+      font-family: var(--sans);
+    }
+    .odds-column--win .odds-list__num { color: var(--moss); }
+    .odds-list__text {
       font-size: 0.9375rem;
-      color: var(--muted);
-      line-height: 1.75;
+      line-height: 1.65;
+      color: var(--charcoal);
       text-align: justify;
       hyphens: auto;
     }
+    .odds-list__reason {
+      display: block;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.2rem;
+    }
     @media (prefers-reduced-motion: reduce) {
-      .odds-item__icon { transition: none; }
-      .odds-item__answer { transition: none; }
+      .odds-col-icon { transition: none; }
+      .odds-list-wrap { transition: none; }
     }
 
     /* Speeches intro */
@@ -442,280 +448,112 @@
 
           <!-- WIN COLUMN -->
           <div class="odds-column odds-column--win">
-            <h3 class="odds-column__heading">10 reasons Don could win</h3>
-            <p class="odds-column__intro">If Don wins, it will be because enough Bedford voters decided local government should be local again.</p>
-            <ul class="odds-list" aria-label="Ten reasons Don could win">
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="win-1">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">1</span>
-                    <span class="odds-item__label">Because local government is not cable news.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="win-1">
-                  <div class="odds-item__answer-inner">The Town Supervisor is not being asked to settle Washington. The job is practical, local, and close to home.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="win-2">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">2</span>
-                    <span class="odds-item__label">Because there is no partisan way to pave a road.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="win-2">
-                  <div class="odds-item__answer-inner">Potholes do not care how anyone voted for president.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="win-3">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">3</span>
-                    <span class="odds-item__label">Because Bedford voters are smarter than the ballot designers assume.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="win-3">
-                  <div class="odds-item__answer-inner">A long even-year ballot encourages straight-ticket habits. It does not require them.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="win-4">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">4</span>
-                    <span class="odds-item__label">Because people are tired of national politics leaking into everything.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="win-4">
-                  <div class="odds-item__answer-inner">Plenty of residents want at least one part of civic life that still feels practical and neighborly.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="win-5">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">5</span>
-                    <span class="odds-item__label">Because Don is running as a person, not a costume.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="win-5">
-                  <div class="odds-item__answer-inner">This campaign asks residents to evaluate a neighbor, not a slogan.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="win-6">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">6</span>
-                    <span class="odds-item__label">Because calm is underrated.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="win-6">
-                  <div class="odds-item__answer-inner">In a political culture built on volume, a restrained campaign can stand out precisely because it refuses to perform outrage.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="win-7">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">7</span>
-                    <span class="odds-item__label">Because Bedford deserves a real choice.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="win-7">
-                  <div class="odds-item__answer-inner">Some voters may reward the simple act of showing up seriously in a race that could have gone uncontested.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="win-8">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">8</span>
-                    <span class="odds-item__label">Because transparency builds trust.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="win-8">
-                  <div class="odds-item__answer-inner">Publishing the rules, the spending, the AI use, and even the possible election-night speeches is either refreshing or deeply strange. Possibly both. Either way, it is memorable.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="win-9">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">9</span>
-                    <span class="odds-item__label">Because voters can tell when someone actually lives here.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="win-9">
-                  <div class="odds-item__answer-inner">Local credibility matters. If residents believe Don understands Bedford as a place rather than a platform, that matters more than party labels for some people.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="win-10">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">10</span>
-                    <span class="odds-item__label">Because enough people may decide that local office should be earned, not inherited.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="win-10">
-                  <div class="odds-item__answer-inner">Even in an uphill race, a meaningful number of independent-minded voters can change the shape of the result.</div>
-                </div>
-              </li>
-
-            </ul>
+            <h3 class="odds-column__heading">
+              <button class="odds-col-toggle" aria-expanded="false" aria-controls="win-list">
+                10 reasons Don could win
+                <i class="odds-col-icon" aria-hidden="true">+</i>
+              </button>
+            </h3>
+            <div class="odds-list-wrap" id="win-list">
+              <p class="odds-column__intro">If Don wins, it will be because enough Bedford voters decided local government should be local again.</p>
+              <ol class="odds-list" aria-label="Ten reasons Don could win">
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">1</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because local government is not cable news.</span>The Town Supervisor is not being asked to settle Washington. The job is practical, local, and close to home.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">2</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because there is no partisan way to pave a road.</span>Potholes do not care how anyone voted for president.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">3</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because Bedford voters are smarter than the ballot designers assume.</span>A long even-year ballot encourages straight-ticket habits. It does not require them.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">4</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because people are tired of national politics leaking into everything.</span>Plenty of residents want at least one part of civic life that still feels practical and neighborly.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">5</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because Don is running as a person, not a costume.</span>This campaign asks residents to evaluate a neighbor, not a slogan.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">6</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because calm is underrated.</span>In a political culture built on volume, a restrained campaign can stand out precisely because it refuses to perform outrage.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">7</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because Bedford deserves a real choice.</span>Some voters may reward the simple act of showing up seriously in a race that could have gone uncontested.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">8</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because transparency builds trust.</span>Publishing the rules, the spending, the AI use, and even the possible election-night speeches is either refreshing or deeply strange. Possibly both. Either way, it is memorable.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">9</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because voters can tell when someone actually lives here.</span>Local credibility matters. If residents believe Don understands Bedford as a place rather than a platform, that matters more than party labels for some people.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">10</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because enough people may decide that local office should be earned, not inherited.</span>Even in an uphill race, a meaningful number of independent-minded voters can change the shape of the result.</div>
+                </li>
+              </ol>
+            </div>
           </div>
 
           <!-- LOSE COLUMN -->
           <div class="odds-column odds-column--lose">
-            <h3 class="odds-column__heading">10 reasons Don could lose</h3>
-            <p class="odds-column__intro">If Don loses, it may have less to do with Don than with how modern ballots flatten local judgment into national reflex.</p>
-            <ul class="odds-list" aria-label="Ten reasons Don could lose">
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="lose-1">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">1</span>
-                    <span class="odds-item__label">Because many voters never make it to the bottom of the ballot with fresh eyes.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="lose-1">
-                  <div class="odds-item__answer-inner">By the time they reach Town Supervisor, they may still be voting emotionally about offices much higher up.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="lose-2">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">2</span>
-                    <span class="odds-item__label">Because party labels do a lot of work for busy people.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="lose-2">
-                  <div class="odds-item__answer-inner">Not always thoughtful work, but efficient work.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="lose-3">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">3</span>
-                    <span class="odds-item__label">Because New York made local races more national by design.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="lose-3">
-                  <div class="odds-item__answer-inner">Moving local elections into even years means local offices now compete directly with national noise.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="lose-4">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">4</span>
-                    <span class="odds-item__label">Because some people will vote the line and never look back.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="lose-4">
-                  <div class="odds-item__answer-inner">The candidate could be a saint, a lunatic, or a Labrador retriever. The bubble still gets filled in.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="lose-5">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">5</span>
-                    <span class="odds-item__label">Because &#8220;Republican&#8221; may be the only word some voters notice.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="lose-5">
-                  <div class="odds-item__answer-inner">In a heavily Democratic town, that one letter can erase the rest of the page for some people.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="lose-6">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">6</span>
-                    <span class="odds-item__label">Because local offices are often decided by habit, not scrutiny.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="lose-6">
-                  <div class="odds-item__answer-inner">Most residents are busy. Many are not researching Town Supervisor candidates in detail. That is reality, not an insult.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="lose-7">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">7</span>
-                    <span class="odds-item__label">Because down-ballot races are structurally buried.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="lose-7">
-                  <div class="odds-item__answer-inner">The lower the office, the harder it is to separate substance from straight-ticket momentum.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="lose-8">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">8</span>
-                    <span class="odds-item__label">Because some voters treat every election like a national referendum.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="lose-8">
-                  <div class="odds-item__answer-inner">Which is a very dramatic way to decide who should run Town Hall.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="lose-9">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">9</span>
-                    <span class="odds-item__label">Because unconventional campaigns are easy to dismiss before they are understood.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="lose-9">
-                  <div class="odds-item__answer-inner">No signs, no mailers, no fundraising, no consultants, no events. To some people, that reads as thoughtful. To others, it reads as suspiciously calm.</div>
-                </div>
-              </li>
-
-              <li class="odds-item">
-                <button class="odds-item__question" aria-expanded="false" aria-controls="lose-10">
-                  <span class="odds-item__label-wrap">
-                    <span class="odds-item__num" aria-hidden="true">10</span>
-                    <span class="odds-item__label">Because Bedford may still prefer the familiar, even when the familiar goes unchallenged.</span>
-                  </span>
-                  <i class="odds-item__icon" aria-hidden="true">+</i>
-                </button>
-                <div class="odds-item__answer" id="lose-10">
-                  <div class="odds-item__answer-inner">Incumbency plus party alignment plus ballot structure is a real wall. This campaign is honest enough to admit it.</div>
-                </div>
-              </li>
-
-            </ul>
+            <h3 class="odds-column__heading">
+              <button class="odds-col-toggle" aria-expanded="false" aria-controls="lose-list">
+                10 reasons Don could lose
+                <i class="odds-col-icon" aria-hidden="true">+</i>
+              </button>
+            </h3>
+            <div class="odds-list-wrap" id="lose-list">
+              <p class="odds-column__intro">If Don loses, it may have less to do with Don than with how modern ballots flatten local judgment into national reflex.</p>
+              <ol class="odds-list" aria-label="Ten reasons Don could lose">
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">1</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because many voters never make it to the bottom of the ballot with fresh eyes.</span>By the time they reach Town Supervisor, they may still be voting emotionally about offices much higher up.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">2</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because party labels do a lot of work for busy people.</span>Not always thoughtful work, but efficient work.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">3</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because New York made local races more national by design.</span>Moving local elections into even years means local offices now compete directly with national noise.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">4</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because some people will vote the line and never look back.</span>The candidate could be a saint, a lunatic, or a Labrador retriever. The bubble still gets filled in.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">5</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because &#8220;Republican&#8221; may be the only word some voters notice.</span>In a heavily Democratic town, that one letter can erase the rest of the page for some people.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">6</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because local offices are often decided by habit, not scrutiny.</span>Most residents are busy. Many are not researching Town Supervisor candidates in detail. That is reality, not an insult.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">7</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because down-ballot races are structurally buried.</span>The lower the office, the harder it is to separate substance from straight-ticket momentum.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">8</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because some voters treat every election like a national referendum.</span>Which is a very dramatic way to decide who should run Town Hall.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">9</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because unconventional campaigns are easy to dismiss before they are understood.</span>No signs, no mailers, no fundraising, no consultants, no events. To some people, that reads as thoughtful. To others, it reads as suspiciously calm.</div>
+                </li>
+                <li class="odds-list__item">
+                  <span class="odds-list__num" aria-hidden="true">10</span>
+                  <div class="odds-list__text"><span class="odds-list__reason">Because Bedford may still prefer the familiar, even when the familiar goes unchallenged.</span>Incumbency plus party alignment plus ballot structure is a real wall. This campaign is honest enough to admit it.</div>
+                </li>
+              </ol>
+            </div>
           </div>
 
         </div>
@@ -908,17 +746,17 @@
     </div>
   </footer>
 
-  <!-- Odds accordion: independent toggle per item (win/lose reasons) -->
+  <!-- Odds section: two column-level toggles (win list / lose list) -->
   <script>
   (function () {
     'use strict';
-    document.querySelectorAll('.odds-item__question').forEach(function (btn) {
+    document.querySelectorAll('.odds-col-toggle').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var expanded = this.getAttribute('aria-expanded') === 'true';
-        var answer = document.getElementById(this.getAttribute('aria-controls'));
+        var panel = document.getElementById(this.getAttribute('aria-controls'));
         this.setAttribute('aria-expanded', String(!expanded));
-        if (answer) {
-          answer.style.maxHeight = expanded ? '0' : answer.scrollHeight + 'px';
+        if (panel) {
+          panel.style.maxHeight = expanded ? '0' : panel.scrollHeight + 'px';
         }
       });
     });
