@@ -1,50 +1,362 @@
 {
   "scanDate": "2026-04-27",
-  "scanTime": "12:00",
-  "pagesScanned": 12,
+  "scanTime": "15:30",
+  "pagesScanned": 20,
   "overallScore": 59,
   "grade": "D",
-  "previousScore": null,
-  "scoreChange": null,
-  "status": "initial_stub",
-  "note": "Initial stub data. Run a full scan via the Command Center to update.",
+  "previousScore": 59,
+  "scoreChange": 0,
+  "note": "First real scan replacing stub data. Score matches stub numerically but for accurate reasons. Key improvements since stub: all pages now have schema (was 78→95), all image alt text resolved (was 70→100), llms.txt confirmed present (was 40→90). Key drags: sitemap domain mismatch (was stub-scored 80, now accurate 20), canonical tags missing on 12 pages (was stub-scored 85, now accurate 35), no analytics on any page (4 categories at 0).",
   "categories": {
-    "sitemapCoverage":          { "score": 80, "status": "warn", "notes": "Sitemap present but references old GitHub Pages domain. Some newer pages may be missing." },
-    "metadataQuality":          { "score": 75, "status": "warn", "notes": "Main pages have good titles and descriptions. Issue subpages need review." },
-    "analyticsCoverage":        { "score": 0,  "status": "fail", "notes": "No analytics platform detected on any page." },
-    "ga4Coverage":              { "score": 0,  "status": "fail", "notes": "Google Analytics 4 not installed." },
-    "searchConsoleVerification":{ "score": 0,  "status": "fail", "notes": "No Google Search Console verification tag detected." },
-    "bingVerification":         { "score": 0,  "status": "fail", "notes": "No Bing Webmaster Tools verification tag detected." },
-    "microsoftClarity":         { "score": 0,  "status": "fail", "notes": "Microsoft Clarity not installed." },
-    "robotsNoindex":            { "score": 90, "status": "pass", "notes": "robots.txt configured. Admin disallowed. Public pages accessible." },
-    "canonicalTags":            { "score": 85, "status": "pass", "notes": "Main pages have canonical tags. Issue subpages need review." },
-    "brokenLinks":              { "score": 90, "status": "pass", "notes": "One broken link found: Instagram footer link is a placeholder (#)." },
-    "accessibility":            { "score": 65, "status": "warn", "notes": "Missing ARIA labels on some elements. Heading hierarchy should be reviewed." },
-    "performance":              { "score": 70, "status": "warn", "notes": "Persona PNG images likely unoptimized. No lazy loading on below-fold images." },
-    "mobileUX":                 { "score": 82, "status": "pass", "notes": "Responsive layout works well. Mobile nav functional." },
-    "schema":                   { "score": 78, "status": "warn", "notes": "FAQPage schema on homepage. Issue pages and subpages lack structured data." },
-    "internalLinking":          { "score": 90, "status": "pass", "notes": "All 9 issue subpages verified with back-links to issues overview. Footer nav minimal but functional." },
-    "imageAltText":             { "score": 70, "status": "warn", "notes": "Some persona and social images may have generic or missing alt text." },
-    "llmDiscoverability":       { "score": 40, "status": "fail", "notes": "No llms.txt file. No explicit AI agent guidance. Entity markup minimal." },
-    "securityPrivacy":          { "score": 90, "status": "pass", "notes": "Deployed on Cloudflare Pages (HTTPS). No mixed content. Admin is disallowed and noindexed." },
-    "campaignCompliance":       { "score": 90, "status": "pass", "notes": "Good candidate disclosure. No paid advertising so no disclaimer requirements triggered." },
-    "aiTransparency":           { "score": 88, "status": "pass", "notes": "Dedicated AI transparency page at /pages/ai.html. Clear disclosure language." },
-    "spendingTransparency":     { "score": 82, "status": "pass", "notes": "Spending section on homepage. Budget cap prominently featured." },
-    "contentFreshness":         { "score": 75, "status": "warn", "notes": "Site launched recently. Content freshness should be monitored as campaign progresses." }
+    "sitemapCoverage": {
+      "score": 20,
+      "status": "fail",
+      "notes": "sitemap.xml lists all 20 public pages but 18 of 20 URLs use old domain thebedfordbee.github.io/don-scott/ instead of uncampaign.pages.dev. Only index.html (/) and links.html (/links) use correct domain. Missing from sitemap: pages/template.html (intentional — dev file). Affected: pages/rules.html, pages/ai.html, pages/don-bot.html, pages/ideas.html, pages/issues.html, pages/minutes.html, pages/odds.html, pages/photos.html, pages/press.html, pages/issues/advocacy-government.html, pages/issues/battery-storage.html, pages/issues/bedford-hills.html, pages/issues/cell-service.html, pages/issues/consultants.html, pages/issues/energy-costs.html, pages/issues/growth-character.html, pages/issues/leaf-blower-ban.html, pages/issues/roads-infrastructure.html."
+    },
+    "metadataQuality": {
+      "score": 55,
+      "status": "warn",
+      "notes": "All 20 pages have title and meta description. Missing og:title + og:description (11 pages): pages/ideas.html, pages/photos.html, pages/issues/advocacy-government.html, pages/issues/battery-storage.html, pages/issues/bedford-hills.html, pages/issues/cell-service.html, pages/issues/consultants.html, pages/issues/energy-costs.html, pages/issues/growth-character.html, pages/issues/leaf-blower-ban.html, pages/issues/roads-infrastructure.html. Missing robots meta (13 pages): pages/ideas.html, pages/minutes.html, pages/photos.html, pages/press.html, and all 9 issue subpages."
+    },
+    "analyticsCoverage": {
+      "score": 0,
+      "status": "fail",
+      "notes": "No analytics platform (GA4, Clarity, or any other) detected on any of 20 public pages. No gtag.js, no G-XXXXXXXXXX, no clarity.ms references found."
+    },
+    "ga4Coverage": {
+      "score": 0,
+      "status": "fail",
+      "notes": "Google Analytics 4 not installed on any page. No gtag.js or googletagmanager.com reference found across all 20 public pages."
+    },
+    "searchConsoleVerification": {
+      "score": 0,
+      "status": "fail",
+      "notes": "No meta[name=google-site-verification] tag found in index.html. Google Search Console not verified."
+    },
+    "bingVerification": {
+      "score": 0,
+      "status": "fail",
+      "notes": "No meta[name=msvalidate.01] tag found in index.html. Bing Webmaster Tools not verified."
+    },
+    "microsoftClarity": {
+      "score": 0,
+      "status": "fail",
+      "notes": "Microsoft Clarity not installed on any page. No clarity.ms/tag script found across all 20 public pages."
+    },
+    "robotsNoindex": {
+      "score": 100,
+      "status": "pass",
+      "notes": "robots.txt correctly disallows /admin/ and references sitemap at https://uncampaign.pages.dev/sitemap.xml. admin/index.html confirmed noindex,nofollow. All 20 public pages verified — none have accidental noindex meta tag."
+    },
+    "canonicalTags": {
+      "score": 35,
+      "status": "fail",
+      "notes": "7 pages have correct canonical (index.html, links.html, pages/ai.html, pages/don-bot.html, pages/issues.html, pages/odds.html, pages/rules.html). 1 page has canonical pointing to wrong domain: pages/minutes.html -> thebedfordbee.github.io/don-scott/pages/minutes.html. 12 pages missing canonical entirely: pages/ideas.html, pages/photos.html, pages/press.html, pages/issues/advocacy-government.html, pages/issues/battery-storage.html, pages/issues/bedford-hills.html, pages/issues/cell-service.html, pages/issues/consultants.html, pages/issues/energy-costs.html, pages/issues/growth-character.html, pages/issues/leaf-blower-ban.html, pages/issues/roads-infrastructure.html."
+    },
+    "brokenLinks": {
+      "score": 65,
+      "status": "warn",
+      "notes": "pages/contact.html does not exist in repo but is linked from: index.html (href=pages/contact.html), links.html (href=pages/contact.html), pages/press.html (3 separate links to contact.html). Total: 5 broken link references across 3 source files. All other internal links verified as present."
+    },
+    "accessibility": {
+      "score": 85,
+      "status": "pass",
+      "notes": "All 20 pages have viewport meta. All img tags verified to have alt attributes (fixed 2026-04-27). Heading hierarchy: all checked pages have single h1, appropriate h2 structure. Nav has aria-label on all pages. Mobile nav toggle has aria-expanded. Known remaining issue: multiple touch targets in site.css below 44px minimum (see mobileUX category for detail). No accidental form labels missing found."
+    },
+    "performance": {
+      "score": 50,
+      "status": "warn",
+      "notes": "35 of 44 image assets exceed 200KB threshold. Large examples: assets/img/roundtable-scene.png (2,936KB), assets/img/don-hero.png (2,382KB), assets/img/whiteboard.png (2,348KB). Persona images have .webp versions available (8 files in personas/). Social images (13 files) and hero/scene images have no .webp versions. images flagged without explicit loading= attribute: home-hero-don-scott-bedford.jpg in index.html, roundtable-scene.png in issues.html, 3 img tags in photos.html (hero img, profile avatar, modal placeholder). Note: modal img placeholder has empty src by design."
+    },
+    "mobileUX": {
+      "score": 70,
+      "status": "warn",
+      "notes": "All 20 pages have viewport meta. Mobile nav functional. Sitewide touch target violations in assets/css/site.css: .nav-toggle 40x40px (all 19 main pages, should be 44px min), .btn--subscribe min-height 40px (all 19 pages, should be 44px), .footer-nav a computed height ~33px due to padding-block: 0.3rem (all 19 pages), .footer-social a ~18px tall with no padding wrapping 18px SVGs (all 19 pages). Modal-level violations: .rt-modal__close 2rem=32px (most pages with hero lightbox), .chat-req-modal__close 2rem=32px (don-bot.html). photos.html inline: .photo-modal__nav 2.25rem=36px, .photo-modal__close 2rem=32px, .photo-modal__like-btn ~30px, .photo-modal__btn-row .btn min-height 40px."
+    },
+    "schema": {
+      "score": 95,
+      "status": "pass",
+      "notes": "All 20 public pages now have JSON-LD structured data (schema added 2026-04-27). index.html: WebSite, WebPage, Person, FAQPage. pages/don-bot.html: WebSite, WebPage, BreadcrumbList, Person, FAQPage. pages/issues.html: WebSite, CollectionPage (with hasPart for all 9 subpages), BreadcrumbList, Person. All 9 issue subpages: WebSite, Article, BreadcrumbList, Person. pages/ideas.html + photos.html: WebSite, CollectionPage, BreadcrumbList, Person. Minor: pages/minutes.html JSON-LD URL corrected to uncampaign.pages.dev but <head> canonical still points to old domain."
+    },
+    "internalLinking": {
+      "score": 90,
+      "status": "pass",
+      "notes": "All 9 issue subpages verified to contain back-link to ../issues.html. Footer nav links verified across all pages. Contact.html broken link reported under brokenLinks category. All other internal href targets confirmed to exist. CSS files resolve correctly for all 20 pages (relative paths adjusted per directory depth)."
+    },
+    "imageAltText": {
+      "score": 100,
+      "status": "pass",
+      "notes": "All img tags across all 20 public pages verified to have alt attribute (fixed 2026-04-27). Zero missing alt attributes found. Decorative images correctly use alt='' with aria-hidden=true on same element. JS-generated photo grid images use photo.alt from data array."
+    },
+    "llmDiscoverability": {
+      "score": 90,
+      "status": "pass",
+      "notes": "llms.txt present at repo root with comprehensive content: site identity, campaign description, guidance for AI systems, canonical page list. Content is accurate and helpful for AI agents. Minor: llms.txt does not yet list newer pages (photos, press, don-bot, issue subpages) in canonical pages section."
+    },
+    "securityPrivacy": {
+      "score": 100,
+      "status": "pass",
+      "notes": "No HTTP (non-HTTPS) resource references found across all 20 public pages. No external scripts found on any page. All resources served from same origin or via relative paths. Admin at /admin/ is disallowed in robots.txt and has noindex,nofollow meta. Deployed on Cloudflare Pages (HTTPS enforced). No privacy policy or terms deductions applied per project policy (CFG.ignoreMissingPrivacyPolicy=true, CFG.ignoreMissingTerms=true)."
+    },
+    "campaignCompliance": {
+      "score": 95,
+      "status": "pass",
+      "notes": "Candidate name Don Scott present on all 20 public pages. No paid advertising so no disclaimer requirements triggered. Campaign clearly identified as local Bedford Town Supervisor race. Spending transparency visible on homepage."
+    },
+    "aiTransparency": {
+      "score": 90,
+      "status": "pass",
+      "notes": "pages/ai.html exists and contains comprehensive AI transparency content. Linked from homepage footer as 'AI Transparency'. AI use disclosed across site. Minor: ai.html not linked from main nav (footer only), and pages/ai.html lacks og:title and og:description — wait, verified: pages/ai.html DOES have og tags. Deduction for freshness note not surfaced in page head date meta."
+    },
+    "spendingTransparency": {
+      "score": 90,
+      "status": "pass",
+      "notes": "Spending section present on homepage. $49.99 budget cap referenced. Public spending record section visible. Accordion for itemized expenses confirmed present. No specific itemized expense line items visible from scan — content may be sparse."
+    },
+    "contentFreshness": {
+      "score": 75,
+      "status": "pass",
+      "notes": "Site launched April 2026, recently active. pages/ai.html references 2026 dates. pages/minutes.html has episode content with placeholder indicators (content in development). No stale 2024 or prior dates found in public content. Score reflects that some sections (minutes episodes, ideas voting) appear to be in early population stage."
+    }
   },
+  "findings": [
+    {
+      "id": "FIND-001",
+      "title": "Sitemap domain mismatch — 18 of 20 URLs point to old GitHub Pages domain",
+      "severity": "critical",
+      "category": "sitemapCoverage",
+      "affectedPage": "sitemap.xml",
+      "detectedCondition": "18 of 20 <loc> entries use https://thebedfordbee.github.io/don-scott/ instead of https://uncampaign.pages.dev/. Only the homepage (/) and /links use the correct Cloudflare Pages domain.",
+      "expectedCondition": "All <loc> entries should use https://uncampaign.pages.dev/ as the base URL.",
+      "explanation": "Search engines (Google, Bing) read sitemap.xml to discover and index pages. If the sitemap lists the wrong domain, search engines may crawl and index the old GitHub Pages location rather than the live Cloudflare Pages deployment — splitting crawl authority across two domains.",
+      "suggestedFix": "Update sitemap.xml: replace all instances of https://thebedfordbee.github.io/don-scott with https://uncampaign.pages.dev. Also update lastmod dates to reflect recent changes.",
+      "deduction": 12,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-002",
+      "title": "No web analytics installed on any page",
+      "severity": "critical",
+      "category": "analyticsCoverage",
+      "affectedPage": "all 20 public pages",
+      "detectedCondition": "No GA4 (gtag.js / G-XXXXXXXXXX), no Microsoft Clarity (clarity.ms), and no other analytics script found on any page.",
+      "expectedCondition": "At minimum one analytics platform tracking pageviews, sessions, and top-content performance.",
+      "explanation": "Without analytics, the campaign has no visibility into which pages are being read, where traffic comes from, or which content resonates. This also blocks Pollie Awards evidence collection (traffic spikes, engagement metrics).",
+      "suggestedFix": "Add free Google Analytics 4 (GA4) via a single gtag.js snippet in site.css or template. Alternatively add Microsoft Clarity for heatmaps + sessions at zero cost. Both require creating free accounts and adding a script tag to every page or the shared JS include.",
+      "deduction": 10,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-003",
+      "title": "Broken internal links — pages/contact.html does not exist",
+      "severity": "critical",
+      "category": "brokenLinks",
+      "affectedPage": "index.html, links.html, pages/press.html (5 link references total)",
+      "detectedCondition": "pages/contact.html is referenced 5 times across 3 files but the file does not exist in the repo. index.html and links.html each link once; pages/press.html links three times (Contact Don CTA appears multiple times).",
+      "expectedCondition": "All internal hrefs resolve to an existing file.",
+      "explanation": "Visitors and search engines following Contact links will receive a 404 error. Press page CTAs are especially high-value and a broken contact link undermines credibility.",
+      "suggestedFix": "Either (a) create pages/contact.html with a simple contact form or mailto link, or (b) replace the contact.html href with a mailto: link or an external contact form URL until the page is ready.",
+      "deduction": 8,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-004",
+      "title": "Google Search Console not verified",
+      "severity": "critical",
+      "category": "searchConsoleVerification",
+      "affectedPage": "index.html",
+      "detectedCondition": "No meta[name=google-site-verification] tag found in index.html head.",
+      "expectedCondition": "google-site-verification meta tag present, enabling Google Search Console dashboard access.",
+      "explanation": "Without Search Console verification, there is no way to see which queries drive traffic, check index coverage, submit the sitemap to Google directly, or receive crawl error alerts.",
+      "suggestedFix": "Verify uncampaign.pages.dev in Google Search Console (free). Add the provided <meta name=google-site-verification content=...> to index.html head. Then submit sitemap.xml — but fix FIND-001 first so the sitemap is correct.",
+      "deduction": 8,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-005",
+      "title": "Missing canonical tags on 12 pages; wrong domain canonical on minutes.html",
+      "severity": "important",
+      "category": "canonicalTags",
+      "affectedPage": "pages/ideas.html, pages/photos.html, pages/press.html, pages/minutes.html, pages/issues/advocacy-government.html, pages/issues/battery-storage.html, pages/issues/bedford-hills.html, pages/issues/cell-service.html, pages/issues/consultants.html, pages/issues/energy-costs.html, pages/issues/growth-character.html, pages/issues/leaf-blower-ban.html, pages/issues/roads-infrastructure.html",
+      "detectedCondition": "12 pages have no <link rel=canonical> tag at all. pages/minutes.html has canonical pointing to https://thebedfordbee.github.io/don-scott/pages/minutes.html — wrong domain. 7 pages have correct canonical.",
+      "expectedCondition": "Every public page has a canonical tag pointing to its correct https://uncampaign.pages.dev/ URL.",
+      "explanation": "Missing canonicals allow search engines to select their own preferred URL version. The wrong-domain canonical on minutes.html actively signals to Google that the old GitHub Pages URL is the preferred version.",
+      "suggestedFix": "Add <link rel=canonical href=https://uncampaign.pages.dev/pages/...> to each affected page <head>. For issue subpages, follow the existing pattern from pages/rules.html. Fix pages/minutes.html canonical to point to uncampaign.pages.dev.",
+      "deduction": 8,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-006",
+      "title": "Missing og:title and og:description on 11 pages",
+      "severity": "important",
+      "category": "metadataQuality",
+      "affectedPage": "pages/ideas.html, pages/photos.html, pages/issues/advocacy-government.html, pages/issues/battery-storage.html, pages/issues/bedford-hills.html, pages/issues/cell-service.html, pages/issues/consultants.html, pages/issues/energy-costs.html, pages/issues/growth-character.html, pages/issues/leaf-blower-ban.html, pages/issues/roads-infrastructure.html",
+      "detectedCondition": "11 pages are missing both og:title and og:description Open Graph meta tags. These pages also lack og:image in most cases.",
+      "expectedCondition": "All public pages have og:title, og:description for correct social media preview cards.",
+      "explanation": "When any of these URLs are shared on Facebook, X/Twitter, iMessage, Slack, or other platforms, they will show no preview card or a generic fallback — significantly reducing click-through rates from social sharing.",
+      "suggestedFix": "Add og:title, og:description, og:image, and og:url to the 11 affected pages. For issue subpages, use the page title and meta description as og equivalents. This can be added as a short block in each page <head>.",
+      "deduction": 6,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-007",
+      "title": "Large unoptimized PNG images without WebP alternatives",
+      "severity": "important",
+      "category": "performance",
+      "affectedPage": "assets/img/ (35 of 44 images exceed 200KB; 13 social images and most hero/scene images have no .webp version)",
+      "detectedCondition": "35 image files exceed 200KB. Largest: roundtable-scene.png (2,936KB), don-hero.png (2,382KB), whiteboard.png (2,348KB), social/road.png (2,717KB). Only persona images (8 files) have .webp versions. Social images (13 files) and all hero/scene images have no .webp equivalents. Some hero images also missing explicit loading= attribute.",
+      "expectedCondition": "Images served to browsers in modern format (WebP/AVIF) at appropriate resolution. Below-fold images lazy-loaded.",
+      "explanation": "Large PNGs significantly increase page load time on mobile connections. The social/photo gallery page loads 12 images from social/ directory — all 2MB+ PNGs — even though they display at small grid sizes.",
+      "suggestedFix": "Generate .webp versions for all social/ images and hero images (free: squoosh.app or cwebp CLI). Update img tags to use <picture> element with webp source. Add loading=lazy to below-fold images. Priority: pages/photos.html and pages/issues.html.",
+      "deduction": 6,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-008",
+      "title": "Multiple touch targets below 44px minimum — sitewide",
+      "severity": "important",
+      "category": "mobileUX",
+      "affectedPage": "assets/css/site.css (affects all 19 pages using shared site header and footer)",
+      "detectedCondition": "Verified in CSS: .nav-toggle height=40px (line 247), .btn--subscribe min-height=40px (line 155), .footer-nav a computed height ~33px (padding-block: 0.3rem at line 694), .footer-social a ~18px (18px SVG, no padding, line 711). Additional page-specific: .rt-modal__close 2rem=32px (line 992), .chat-req-modal__close 2rem=32px (line 2685), photos.html .photo-modal__nav 2.25rem=36px, .photo-modal__close 2rem=32px, .photo-modal__like-btn ~30px, .photo-modal__btn-row .btn min-height=40px.",
+      "expectedCondition": "All interactive touch targets at minimum 44×44 CSS pixels per WCAG 2.5.5 and Apple/Google guidelines.",
+      "explanation": "Small tap targets cause accidental taps and usability frustration on mobile devices, especially the hamburger menu (40px), subscribe CTA (40px), and footer social icons (~18px).",
+      "suggestedFix": "In site.css: .nav-toggle → min-width/min-height: 44px; .btn--subscribe → min-height: 44px; .footer-nav a → padding-block: 0.5rem; .footer-social a → min-width: 44px; min-height: 44px; justify-content: center; .rt-modal__close and .chat-req-modal__close → 2.75rem (44px). In photos.html: .photo-modal__nav, .photo-modal__close → 2.75rem; .photo-modal__like-btn → min 44px; .photo-modal__btn-row .btn → min-height 44px.",
+      "deduction": 6,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-009",
+      "title": "Microsoft Clarity not installed",
+      "severity": "enhancement",
+      "category": "microsoftClarity",
+      "affectedPage": "all 20 public pages",
+      "detectedCondition": "No clarity.ms/tag script found on any page.",
+      "expectedCondition": "Clarity installed for session recordings and heatmaps.",
+      "explanation": "Clarity is free and provides heatmaps + session recordings that show exactly how visitors interact with campaign pages. Useful for Pollie Awards evidence and UX improvement.",
+      "suggestedFix": "Create free account at clarity.microsoft.com, add the provided script to every page or the shared JS include. Takes ~5 minutes.",
+      "deduction": 4,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-010",
+      "title": "Bing Webmaster Tools not verified",
+      "severity": "enhancement",
+      "category": "bingVerification",
+      "affectedPage": "index.html",
+      "detectedCondition": "No meta[name=msvalidate.01] found in index.html.",
+      "expectedCondition": "Bing Webmaster verification tag present.",
+      "explanation": "Bing powers DuckDuckGo, Yahoo, and other search engines. Verification enables Bing Search Console for index monitoring and sitemap submission.",
+      "suggestedFix": "Verify at bing.com/webmasters (free). Add <meta name=msvalidate.01 content=...> to index.html <head>.",
+      "deduction": 3,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-011",
+      "title": "13 pages missing robots meta tag",
+      "severity": "enhancement",
+      "category": "metadataQuality",
+      "affectedPage": "pages/ideas.html, pages/minutes.html, pages/photos.html, pages/press.html, pages/issues/advocacy-government.html, pages/issues/battery-storage.html, pages/issues/bedford-hills.html, pages/issues/cell-service.html, pages/issues/consultants.html, pages/issues/energy-costs.html, pages/issues/growth-character.html, pages/issues/leaf-blower-ban.html, pages/issues/roads-infrastructure.html",
+      "detectedCondition": "13 public pages have no meta[name=robots] tag. These pages default to browser/crawler defaults (generally indexable).",
+      "expectedCondition": "Explicit robots meta on all public pages: content=index, follow, max-image-preview:large",
+      "explanation": "Without explicit robots meta, crawlers cannot receive the max-image-preview:large directive which enables richer image previews in Google Search. Not a critical indexing issue but reduces SEO signal quality.",
+      "suggestedFix": "Add <meta name=robots content=index, follow, max-image-preview:large> to the 13 affected pages.",
+      "deduction": 2,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-012",
+      "title": "llms.txt canonical pages list incomplete",
+      "severity": "info",
+      "category": "llmDiscoverability",
+      "affectedPage": "llms.txt",
+      "detectedCondition": "llms.txt canonical pages section lists 7 pages but does not include: photos, press, don-bot, or any of the 9 issue subpages.",
+      "expectedCondition": "llms.txt canonical pages covers all major public sections of the site.",
+      "explanation": "AI agents and LLMs using llms.txt for site discovery may not find all campaign content.",
+      "suggestedFix": "Add entries for pages/photos.html, pages/press.html, pages/don-bot.html, and the 9 issue subpages to the llms.txt Canonical Pages section.",
+      "deduction": 1,
+      "status": "open",
+      "dateFound": "2026-04-27",
+      "dateResolved": null
+    },
+    {
+      "id": "FIND-013",
+      "title": "Image alt text fixed — resolved",
+      "severity": "important",
+      "category": "imageAltText",
+      "affectedPage": "pages/issues/*.html (9 files), plus hero images on bedford-hills, leaf-blower-ban, roads-infrastructure",
+      "detectedCondition": "All img tags verified to have alt attributes in current scan. Prior stub flagged generic/missing alt text.",
+      "expectedCondition": "All img tags have meaningful, descriptive alt attributes.",
+      "explanation": "Resolved 2026-04-27. All alt text updated: hero image alts made visually descriptive, don-chair.webp upgraded from alt=Don Scott to alt=Don Scott, candidate for Bedford Town Supervisor across all 9 issue pages.",
+      "suggestedFix": "No action needed.",
+      "deduction": 0,
+      "status": "resolved",
+      "dateFound": "2026-04-27",
+      "dateResolved": "2026-04-27"
+    },
+    {
+      "id": "FIND-014",
+      "title": "Schema markup added to all pages — resolved",
+      "severity": "important",
+      "category": "schema",
+      "affectedPage": "pages/ideas.html, pages/photos.html, pages/press.html, pages/minutes.html, pages/issues.html, all 9 issue subpages",
+      "detectedCondition": "All 20 public pages now have JSON-LD structured data. Prior stub reported issue pages lacking schema.",
+      "expectedCondition": "Appropriate JSON-LD on every page.",
+      "explanation": "Resolved 2026-04-27. Added schema to ideas.html (CollectionPage), photos.html (CollectionPage), press.html (WebPage), minutes.html (WebPage — URL corrected from old domain), issues.html upgraded to CollectionPage with hasPart for all 9 subpages, all 9 issue subpages upgraded from simple Article to full @graph with WebSite + Article + BreadcrumbList + Person.",
+      "suggestedFix": "No action needed.",
+      "deduction": 0,
+      "status": "resolved",
+      "dateFound": "2026-04-27",
+      "dateResolved": "2026-04-27"
+    }
+  ],
   "criticalCount": 4,
-  "importantCount": 3,
+  "importantCount": 4,
   "enhancementCount": 3,
-  "infoCount": 2,
+  "infoCount": 1,
   "scanHistory": [
     {
       "scanDate": "2026-04-27",
+      "scanTime": "12:00",
       "overallScore": 59,
       "grade": "D",
       "pagesScanned": 12,
       "criticalCount": 4,
       "importantCount": 4,
-      "note": "Initial stub scan"
+      "note": "Initial stub scan — estimated data, no file reads performed"
+    },
+    {
+      "scanDate": "2026-04-27",
+      "scanTime": "15:30",
+      "overallScore": 59,
+      "grade": "D",
+      "pagesScanned": 20,
+      "criticalCount": 4,
+      "importantCount": 4,
+      "enhancementCount": 3,
+      "infoCount": 1,
+      "note": "First real full scan — all 20 public pages read and verified. Score matches stub numerically but reflects accurate findings. Improvements confirmed: all schema added, all alt text fixed, llms.txt verified. Key drags: sitemap domain mismatch on 18/20 URLs, no analytics, 12 pages missing canonical, 5 broken contact links."
     }
   ]
 }
