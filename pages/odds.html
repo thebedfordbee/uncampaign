@@ -337,6 +337,18 @@
       }
     }
 
+    /* Hero image: constrain to 3:2 card with cover crop (image is 5:4) */
+    .odds-hero-visual {
+      aspect-ratio: 3 / 2;
+    }
+    .odds-hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+
     /* Section anchor offset for sticky nav */
     #the-odds, #speeches { scroll-margin-top: 70px; }
   </style>
@@ -395,9 +407,15 @@
           <h1 id="odds-title">How This Could Go</h1>
         </div>
 
-        <!-- Placeholder matches .issues-hero__visual--placeholder pattern -->
-        <div class="issues-hero__visual issues-hero__visual--placeholder" role="img" aria-label="Placeholder image for the How This Could Go page">
-          <span>How This Could Go</span>
+        <div class="issues-hero__visual issues-hero__visual--static odds-hero-visual">
+          <img
+            src="../assets/img/speech.png"
+            alt="Split image of Don Scott giving a victory speech and a concession speech"
+            width="1402"
+            height="1122"
+            loading="eager"
+            decoding="async"
+          >
         </div>
 
         <div class="issues-hero__copy-bot">
