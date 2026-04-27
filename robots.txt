@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
 
-Sitemap: https://thebedfordbee.github.io/don-scott/sitemap.xml
+Sitemap: https://uncampaign.pages.dev/sitemap.xml

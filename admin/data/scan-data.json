@@ -1,0 +1,50 @@
+{
+  "scanDate": "2026-04-27",
+  "scanTime": "12:00",
+  "pagesScanned": 12,
+  "overallScore": 59,
+  "grade": "D",
+  "previousScore": null,
+  "scoreChange": null,
+  "status": "initial_stub",
+  "note": "Initial stub data. Run a full scan via the Command Center to update.",
+  "categories": {
+    "sitemapCoverage":          { "score": 80, "status": "warn", "notes": "Sitemap present but references old GitHub Pages domain. Some newer pages may be missing." },
+    "metadataQuality":          { "score": 75, "status": "warn", "notes": "Main pages have good titles and descriptions. Issue subpages need review." },
+    "analyticsCoverage":        { "score": 0,  "status": "fail", "notes": "No analytics platform detected on any page." },
+    "ga4Coverage":              { "score": 0,  "status": "fail", "notes": "Google Analytics 4 not installed." },
+    "searchConsoleVerification":{ "score": 0,  "status": "fail", "notes": "No Google Search Console verification tag detected." },
+    "bingVerification":         { "score": 0,  "status": "fail", "notes": "No Bing Webmaster Tools verification tag detected." },
+    "microsoftClarity":         { "score": 0,  "status": "fail", "notes": "Microsoft Clarity not installed." },
+    "robotsNoindex":            { "score": 90, "status": "pass", "notes": "robots.txt configured. Admin disallowed. Public pages accessible." },
+    "canonicalTags":            { "score": 85, "status": "pass", "notes": "Main pages have canonical tags. Issue subpages need review." },
+    "brokenLinks":              { "score": 90, "status": "pass", "notes": "One broken link found: Instagram footer link is a placeholder (#)." },
+    "accessibility":            { "score": 65, "status": "warn", "notes": "Missing ARIA labels on some elements. Heading hierarchy should be reviewed." },
+    "performance":              { "score": 70, "status": "warn", "notes": "Persona PNG images likely unoptimized. No lazy loading on below-fold images." },
+    "mobileUX":                 { "score": 82, "status": "pass", "notes": "Responsive layout works well. Mobile nav functional." },
+    "schema":                   { "score": 78, "status": "warn", "notes": "FAQPage schema on homepage. Issue pages and subpages lack structured data." },
+    "internalLinking":          { "score": 65, "status": "warn", "notes": "Some issue subpages lack links back to the issues overview. Footer nav is minimal." },
+    "imageAltText":             { "score": 70, "status": "warn", "notes": "Some persona and social images may have generic or missing alt text." },
+    "llmDiscoverability":       { "score": 40, "status": "fail", "notes": "No llms.txt file. No explicit AI agent guidance. Entity markup minimal." },
+    "securityPrivacy":          { "score": 75, "status": "pass", "notes": "Deployed on Cloudflare Pages (HTTPS). No mixed content. No privacy policy page yet." },
+    "campaignCompliance":       { "score": 90, "status": "pass", "notes": "Good candidate disclosure. No paid advertising so no disclaimer requirements triggered." },
+    "aiTransparency":           { "score": 88, "status": "pass", "notes": "Dedicated AI transparency page at /pages/ai.html. Clear disclosure language." },
+    "spendingTransparency":     { "score": 82, "status": "pass", "notes": "Spending section on homepage. Budget cap prominently featured." },
+    "contentFreshness":         { "score": 75, "status": "warn", "notes": "Site launched recently. Content freshness should be monitored as campaign progresses." }
+  },
+  "criticalCount": 4,
+  "importantCount": 4,
+  "enhancementCount": 5,
+  "infoCount": 2,
+  "scanHistory": [
+    {
+      "scanDate": "2026-04-27",
+      "overallScore": 59,
+      "grade": "D",
+      "pagesScanned": 12,
+      "criticalCount": 4,
+      "importantCount": 4,
+      "note": "Initial stub scan"
+    }
+  ]
+}
