@@ -1,144 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+  <!-- Homepage -->
   <url>
-    <loc>https://uncampaign.pages.dev/</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://donforbedford.com/</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+
+  <!-- Links / linktree page -->
+  <url>
+    <loc>https://donforbedford.com/links</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+
+  <!-- Main pages -->
+  <url>
+    <loc>https://donforbedford.com/pages/rules.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://uncampaign.pages.dev/links</loc>
-    <lastmod>2026-04-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://donforbedford.com/pages/issues.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/rules.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://donforbedford.com/pages/ideas.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/issues.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://donforbedford.com/pages/minutes.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/ideas.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://donforbedford.com/pages/odds.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/minutes.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://donforbedford.com/pages/photos.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/odds.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://donforbedford.com/pages/press.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/press.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://donforbedford.com/pages/don-bot.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/ai.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://donforbedford.com/pages/ai.html</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+
+  <!-- Issue deep-dives -->
+  <url>
+    <loc>https://donforbedford.com/pages/issues/leaf-blower-ban.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/don-bot.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://donforbedford.com/pages/issues/roads-infrastructure.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/photos.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://donforbedford.com/pages/issues/bedford-hills.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/issues/advocacy-government.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://donforbedford.com/pages/issues/battery-storage.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/issues/battery-storage.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://donforbedford.com/pages/issues/cell-service.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/issues/bedford-hills.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://donforbedford.com/pages/issues/energy-costs.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/issues/cell-service.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://donforbedford.com/pages/issues/growth-character.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/issues/consultants.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://donforbedford.com/pages/issues/consultants.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/issues/energy-costs.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/issues/growth-character.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/issues/leaf-blower-ban.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
-  <url>
-    <loc>https://thebedfordbee.github.io/don-scott/pages/issues/roads-infrastructure.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://donforbedford.com/pages/issues/advocacy-government.html</loc>
+    <lastmod>2026-04-28</lastmod>
   </url>
 
 </urlset>
