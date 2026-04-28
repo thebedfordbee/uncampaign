@@ -1,24 +1,37 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Short audio recaps of Bedford Town Board meetings, created to help residents follow local government in about five minutes.">
-  <title>Town Board in Minutes | Don Scott for Bedford</title>
-  <link rel="canonical" href="https://www.donforbedford.com/pages/minutes.html">
+
+  <!-- Primary meta -->
+  <title>The Bedford Brief | Bedford Town Board Meeting Recaps</title>
+  <meta name="description" content="The Bedford Brief turns long Bedford public meetings into short, practical recaps on Spotify and YouTube, starting with the April 21, 2026 Town Board meeting.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.donforbedford.com/minutes">
 
   <!-- Open Graph -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://www.donforbedford.com/pages/minutes.html">
-  <meta property="og:title"       content="Town Board in Minutes | Don Scott for Bedford">
-  <meta property="og:description" content="Short audio recaps of Bedford Town Board meetings, created to help residents follow local government in about five minutes.">
-  <meta property="og:site_name"   content="Don Scott for Bedford">
-  <meta property="og:locale"      content="en_US">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.donforbedford.com/minutes">
+  <meta property="og:title" content="The Bedford Brief | Don Scott">
+  <meta property="og:description" content="Long Bedford public meetings, made shorter. Don Scott turns Town Board replays into practical recaps residents can hear on Spotify or YouTube.">
+  <!-- TODO: Replace with a Bedford Brief-specific OG image once available -->
+  <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The Bedford Brief — Bedford Town Board meeting recaps by Don Scott.">
+  <meta property="og:site_name" content="Don Scott for Bedford">
+  <meta property="og:locale" content="en_US">
 
   <!-- Twitter/X Card -->
-  <meta name="twitter:card"        content="summary_large_image">
-  <meta name="twitter:title"       content="Town Board in Minutes | Don Scott for Bedford">
-  <meta name="twitter:description" content="Short audio recaps of Bedford Town Board meetings, in about five minutes.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.donforbedford.com/minutes">
+  <meta name="twitter:title" content="The Bedford Brief | Bedford Meeting Recaps">
+  <meta name="twitter:description" content="Short, practical recaps of long Bedford public meetings, available on Spotify and YouTube.">
+  <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta name="twitter:image:alt" content="The Bedford Brief — Bedford Town Board meeting recaps by Don Scott.">
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -34,30 +47,24 @@
       },
       {
         "@type": "WebPage",
-        "@id": "https://www.donforbedford.com/pages/minutes.html#webpage",
-        "url": "https://www.donforbedford.com/pages/minutes.html",
-        "name": "Town Board in Minutes | Don Scott for Bedford",
-        "description": "Short audio recaps of Bedford Town Board meetings, created to help residents follow local government in about five minutes.",
+        "@id": "https://www.donforbedford.com/minutes#webpage",
+        "url": "https://www.donforbedford.com/minutes",
+        "name": "The Bedford Brief | Bedford Town Board Meeting Recaps",
+        "description": "The Bedford Brief turns long Bedford public meetings into short, practical recaps on Spotify and YouTube, starting with the April 21, 2026 Town Board meeting.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
-        "about": [
-          { "@id": "https://www.donforbedford.com/#don-scott" },
-          {
-            "@type": "GovernmentOrganization",
-            "name": "Bedford Town Board",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Bedford",
-              "addressRegion": "NY",
-              "addressCountry": "US"
-            }
-          }
-        ]
+        "about": { "@id": "https://www.donforbedford.com/#don-scott" },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://www.donforbedford.com/assets/img/og-image.png",
+          "width": 1200,
+          "height": 630
+        }
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.donforbedford.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Town Board in Minutes", "item": "https://www.donforbedford.com/pages/minutes.html" }
+          { "@type": "ListItem", "position": 2, "name": "The Bedford Brief", "item": "https://www.donforbedford.com/minutes" }
         ]
       },
       {
@@ -72,10 +79,25 @@
           "addressRegion": "NY",
           "addressCountry": "US"
         }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://www.donforbedford.com/minutes#episodes",
+        "name": "The Bedford Brief Episodes",
+        "description": "Short recaps of Bedford Town Board meetings by Don Scott, available on Spotify and YouTube.",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "April 21, 2026 Bedford Town Board Meeting Recap",
+            "url": "https://www.donforbedford.com/minutes"
+          }
+        ]
       }
     ]
   }
   </script>
+
   <!-- Favicons and browser theme -->
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -87,6 +109,80 @@
   <meta name="theme-color" content="#4A5240">
 
   <link rel="stylesheet" href="../assets/css/site.css">
+
+  <style>
+    /* =============================================
+       THE BEDFORD BRIEF — page-specific styles
+       ============================================= */
+
+    /* Justified body copy — hero deck and all brief-prose containers */
+    .issues-hero__deck,
+    .brief-prose p,
+    .callout p { text-align: justify; }
+
+    /* Small note below hero CTAs */
+    .hero-note {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: none;
+      margin-top: 0.375rem;
+    }
+
+    /* Featured episode card */
+    .featured-episode {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      margin-top: 1.5rem;
+    }
+    .featured-episode__meta {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 600;
+      margin-bottom: 0.625rem;
+      max-width: none;
+    }
+    .featured-episode h3 {
+      font-family: var(--serif);
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+    .featured-episode .brief-prose p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .featured-episode__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .featured-episode { padding: 2.25rem; }
+    }
+
+    /* Section prose spacing */
+    .brief-prose { margin-top: 1.25rem; }
+    .brief-prose p + p { margin-top: 0.875rem; }
+    .brief-prose p { color: var(--muted); }
+
+    /* Tagline note — used once for "Minutes, not meetings" */
+    .brief-prose .brief-tagline {
+      font-style: italic;
+      color: var(--sage);
+      font-size: 0.9375rem;
+      margin-top: 1.25rem;
+      max-width: none;
+      text-align: left;
+    }
+  </style>
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7WVQR4MTH"></script>
   <script>
@@ -115,7 +211,7 @@
       </a>
 
       <nav class="site-nav" aria-label="Main navigation">
-                        <ul class="site-nav__links" role="list">
+        <ul class="site-nav__links" role="list">
           <li><a href="../index.html">Home</a></li>
           <li><a href="rules.html">Rules</a></li>
           <li><a href="issues.html">Issues</a></li>
@@ -136,7 +232,7 @@
       </nav>
     </div>
 
-            <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
+    <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
       <a href="../index.html">Home</a>
       <a href="rules.html">Rules</a>
       <a href="issues.html">Issues</a>
@@ -146,44 +242,56 @@
     </nav>
   </header>
 
-  <!-- HERO — mirrors /issues hero pattern -->
+  <!-- HERO -->
   <section class="issues-hero" aria-labelledby="minutes-title">
     <div class="container">
       <div class="issues-hero__inner">
 
         <div class="issues-hero__copy-top">
-          <p class="eyebrow">A civic shortcut, not a campaign speech</p>
-          <h1 id="minutes-title">Town Board meetings, in minutes.</h1>
+          <p class="eyebrow">Bedford Public Meetings, Briefly</p>
+          <h1 id="minutes-title">The Bedford Brief</h1>
         </div>
 
-        <button type="button" class="issues-hero__visual" aria-label="Expand minutes image" aria-haspopup="dialog">
+        <div class="issues-hero__visual issues-hero__visual--static">
           <img
             src="../assets/img/podcast.png"
-            alt="Don Scott recording a short Town Board in Minutes podcast recap"
+            alt="Don Scott recording a Bedford Brief audio recap"
             width="1448"
             height="1086"
             fetchpriority="high"
             decoding="async"
           >
-        </button>
+        </div>
 
         <div class="issues-hero__copy-bot">
-          <p class="issues-hero__deck">Most people cannot sit through every Bedford Town Board meeting. That should not mean they are left out of local government. This page will collect short audio recaps designed to help residents keep up in about five minutes.</p>
+          <p class="issues-hero__deck">Most Bedford residents are not going to watch a full Town Board replay. That does not mean they should miss what happened. The Bedford Brief turns long public meetings into short, practical recaps you can listen to on Spotify or watch on YouTube.</p>
           <div class="hero-cta-row">
+            <!-- TODO: Replace with final Spotify show or episode URL -->
             <a
               href="https://open.spotify.com/"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               class="btn btn--hero-primary"
-              style="font-size:0.8125rem;padding:0.625rem 1.25rem;min-height:40px;gap:0.5rem;"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" style="flex-shrink:0;">
                 <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
               </svg>
               Listen on Spotify
             </a>
-            <a href="#how-built" class="btn btn--ghost" style="font-size:0.8125rem;padding:0.625rem 1.25rem;min-height:40px;">How this was built</a>
+            <!-- TODO: Replace with final YouTube playlist or episode URL -->
+            <a
+              href="https://www.youtube.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--ghost"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" style="flex-shrink:0;">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              Watch on YouTube
+            </a>
           </div>
+          <p class="hero-note">Start with the April 21, 2026 Bedford Town Board meeting recap.</p>
         </div>
 
       </div>
@@ -192,195 +300,83 @@
 
   <main id="main-content">
 
-    <!-- 1. ABOUT THIS PROJECT -->
-    <section class="section section--alt" aria-labelledby="about-headline">
+    <!-- 1. WHAT THE BEDFORD BRIEF IS -->
+    <section class="section section--alt" aria-labelledby="what-headline">
       <div class="container">
-        <div class="issues-explainer">
-
-          <div class="issues-explainer__why">
-            <p class="eyebrow">About this project</p>
-            <h2 id="about-headline">Making Bedford Easier to Follow</h2>
-            <p>Local government asks a lot of residents. Meetings are long. Agendas are dense. Replays are useful, but not always realistic for busy people.</p>
-            <p>Town Board in Minutes is an experiment in making Bedford easier to follow. After each meeting, we will use publicly available meeting materials and replay video to create a short audio recap. The goal is not to replace the official record. It is to help more residents know what happened, what matters, and where to look next.</p>
-          </div>
-
-          <div class="issues-explainer__offers">
-            <p class="eyebrow">What each recap covers</p>
-            <ul class="explainer-points" role="list">
-              <li><strong>What was discussed.</strong> The topics on the agenda, plain and clear</li>
-              <li><strong>What was decided.</strong> Votes, approvals, and resolutions</li>
-              <li><strong>What is still open.</strong> Items deferred, debated, or unresolved</li>
-              <li><strong>What to follow next.</strong> What residents may want to track going forward</li>
-            </ul>
-            <div class="callout" role="note" style="margin-top:1.5rem;margin-bottom:0;">
-              <p>These recaps are unofficial, AI-assisted, and human-reviewed. Residents should rely on the Town's official minutes, agendas, and meeting recordings for the formal record.</p>
-            </div>
-          </div>
-
+        <p class="eyebrow">About this series</p>
+        <h2 id="what-headline">What The Bedford Brief Is</h2>
+        <div class="brief-prose">
+          <p>The Bedford Brief is a simple attempt to make local government easier to follow. Each episode takes a long public meeting and turns it into a shorter recap focused on what was discussed, what actually moved forward, and what residents may want to know.</p>
+          <p>It is not official Town minutes. It is not a substitute for the full record. It is a practical summary layer for people who care about Bedford but do not always have 90 minutes to spare.</p>
+          <p class="brief-tagline">Minutes, not meetings.</p>
         </div>
       </div>
     </section>
 
-    <!-- 2. LATEST RECAP + EPISODES -->
-    <section class="section" aria-labelledby="episodes-headline">
+    <!-- 2. FEATURED EPISODE -->
+    <section class="section" aria-labelledby="featured-headline">
       <div class="container">
-
-        <!-- Latest recap player -->
-        <div class="minutes-player-section">
-          <p class="minutes-section-label">Latest Recap</p>
-          <div class="minutes-player-wrap">
-            <!-- Spotify embed iframe — replace src with real episode URL once published -->
-            <iframe
-              src="https://open.spotify.com/embed/show/placeholder?utm_source=generator"
-              width="100%"
-              height="232"
-              frameborder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              loading="lazy"
-              title="Town Board in Minutes — Bedford Town Board meeting audio recap"
-              style="display:none;"
-              aria-hidden="true"
-            ></iframe>
-            <div class="minutes-placeholder-player">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--sage);flex-shrink:0;">
-                <circle cx="12" cy="12" r="10"/>
-                <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none" style="color:var(--sage);"/>
-              </svg>
-              <p class="minutes-coming-soon">Coming soon: Bedford Town Board Recap</p>
-              <p style="font-size:0.875rem;color:var(--muted);max-width:44ch;">The first short recap will appear here once the next Town Board meeting audio overview is published.</p>
-            </div>
+        <p class="minutes-section-label" id="featured-headline">Featured Recap</p>
+        <div class="featured-episode">
+          <p class="featured-episode__meta">April 21, 2026</p>
+          <h3>April 21, 2026 Bedford Town Board Meeting</h3>
+          <div class="brief-prose" style="margin-top:0;">
+            <p>The first Bedford Brief recap covers the April 21, 2026 Bedford Town Board meeting. The meeting ran roughly 90 minutes. The recap gives residents the practical version: what was discussed, what was procedural, what actually moved, and what mostly sounded like process.</p>
+          </div>
+          <div class="featured-episode__links">
+            <!-- TODO: Replace with final Spotify episode URL -->
+            <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" class="episode-card__link">Listen on Spotify</a>
+            <!-- TODO: Replace with final YouTube episode URL -->
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="episode-card__link">Watch on YouTube</a>
           </div>
         </div>
-
-        <!-- Episode list -->
-        <div class="minutes-episodes">
-          <p class="minutes-section-label" id="episodes-headline">All Episodes</p>
-          <div class="episode-grid" role="list" aria-label="Episode list">
-
-            <div class="episode-card" role="listitem">
-              <p class="episode-card__date">Coming soon</p>
-              <h3 class="episode-card__title">Bedford Town Board Recap</h3>
-              <p class="episode-card__desc">A short, plain-English recap of what was discussed, what was decided, and what residents may want to follow next.</p>
-              <div class="episode-card__meta">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                About 5 minutes
-              </div>
-              <div class="episode-card__links">
-                <a href="#" class="episode-card__link" aria-label="Listen on Spotify — placeholder episode 1">Spotify</a>
-                <a href="#" class="episode-card__link" aria-label="Meeting replay — placeholder episode 1">Meeting replay</a>
-              </div>
-            </div>
-
-            <div class="episode-card" role="listitem">
-              <p class="episode-card__date">Coming soon</p>
-              <h3 class="episode-card__title">Budget, roads, zoning, and other things people meant to follow</h3>
-              <p class="episode-card__desc">A future recap focused on the practical items that affect daily life in Bedford.</p>
-              <div class="episode-card__meta">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                About 5 minutes
-              </div>
-              <div class="episode-card__links">
-                <a href="#" class="episode-card__link" aria-label="Listen on Spotify — placeholder episode 2">Spotify</a>
-                <a href="#" class="episode-card__link" aria-label="Meeting replay — placeholder episode 2">Meeting replay</a>
-              </div>
-            </div>
-
-            <div class="episode-card" role="listitem">
-              <p class="episode-card__date">Coming soon</p>
-              <h3 class="episode-card__title">What happened at the meeting?</h3>
-              <p class="episode-card__desc">A quick audio overview for residents who care about town government but do not have an hour to spare.</p>
-              <div class="episode-card__meta">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-                About 5 minutes
-              </div>
-              <div class="episode-card__links">
-                <a href="#" class="episode-card__link" aria-label="Listen on Spotify — placeholder episode 3">Spotify</a>
-                <a href="#" class="episode-card__link" aria-label="Meeting replay — placeholder episode 3">Meeting replay</a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- 3. THE INSTRUCTION SET -->
-    <section class="section section--alt" aria-labelledby="instr-headline">
+    <!-- 3. WHY DON IS DOING THIS -->
+    <section class="section section--alt" aria-labelledby="why-headline">
       <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">The production prompt</p>
-          <h2 id="instr-headline">The Instruction Set</h2>
-          <p class="section-header__lead section-header__lead--wide">
-            The exact instructions used to produce each recap will be published here in full once the workflow is finalized. The placeholder below reflects the current working approach.
-          </p>
+        <p class="eyebrow">Why this exists</p>
+        <h2 id="why-headline">Why Don Is Doing This</h2>
+        <div class="brief-prose">
+          <p>Local government should be easier to follow. Most people are busy. Meetings are long. Important details are often buried inside process, updates, and procedural discussion.</p>
+          <p>The Bedford Brief is one small way to lower the friction. No mailers. No robocalls. No pressure. Just a shorter way to understand what happened and decide what you think for yourself.</p>
+          <p>Each recap uses publicly available Town Board meeting materials and is reviewed before it is published. AI helps with summarization. The goal is accuracy and usefulness, not speed.</p>
         </div>
-
-        <div class="cta-row cta-row--centered">
-          <div class="howbuilt-cta-group">
-            <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-minutes" aria-expanded="false">Read The Instruction Set</button>
-          </div>
-        </div>
-
-        <div class="instr-panel" id="instr-panel-minutes" hidden>
-          <div class="instr-panel__bar">
-            <span class="instr-panel__title">Production Prompt — Placeholder</span>
-            <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
-              <span class="instr-panel__copy-label">Copy All</span>
-            </button>
-          </div>
-          <div class="instr-panel__body">
-            <pre class="instr-panel__text">Use the public replay video for this Bedford Town Board meeting. Create a short audio overview featuring two hosts who clearly and fairly recap the meeting for residents. Focus on what was discussed, what was decided, what remains unresolved, and what a resident might want to follow next. Keep the tone plainspoken, calm, and useful. Do not add facts that are not supported by the meeting materials.
-
-Note: The exact production instructions will be added once the workflow is finalized.</pre>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- 4. HOW THIS WAS BUILT -->
-    <section class="section" id="how-built" aria-labelledby="howbuilt-headline">
+    <!-- 4. DISCLAIMER -->
+    <section class="section" aria-labelledby="disclaimer-headline">
       <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">How this was built</p>
-          <h2 id="howbuilt-headline">This Campaign Shows Its Work</h2>
-          <p class="section-header__lead section-header__lead--wide">
-            Town Board in Minutes is part of this campaign's open use of low-cost technology. The recaps use publicly available Town Board meeting materials. AI helps turn long meetings into short, accessible audio summaries, and human review remains part of the process.
-          </p>
+        <p class="eyebrow">A quick note</p>
+        <h2 id="disclaimer-headline">A Quick Note</h2>
+        <div class="callout" role="note" style="margin-top:1.5rem;margin-bottom:0;">
+          <p>These are Don Scott's recaps, not official Town of Bedford minutes. For the full public record, residents should refer to the Town's official agendas, videos, and published minutes when available. These recaps are meant to help people keep up — not to replace the record.</p>
         </div>
+      </div>
+    </section>
 
-        <div class="process-steps">
-          <div class="process-step">
-            <div class="process-step__number" aria-hidden="true">1</div>
-            <div class="process-step__content">
-              <h3>Public meeting materials</h3>
-              <p>Each recap is built from publicly available sources: agendas, official minutes, and the Town's own meeting replay video. No private information is used.</p>
+    <!-- 5. MORE BRIEFS / ARCHIVE -->
+    <section class="section section--alt" aria-labelledby="archive-headline">
+      <div class="container">
+        <p class="minutes-section-label" id="archive-headline">More Briefs</p>
+        <p class="section-header__lead" style="margin-bottom:1.5rem;text-align:justify;">More episodes will be added here if residents find them useful. The goal is not to cover everything. It is to make the most relevant public meetings easier to keep up with.</p>
+        <div class="episode-grid" role="list" aria-label="Episode archive">
+
+          <div class="episode-card" role="listitem">
+            <p class="episode-card__date">April 21, 2026</p>
+            <h3 class="episode-card__title">April 21, 2026 Town Board Meeting</h3>
+            <p class="episode-card__desc">A short recap of the April 21 meeting: what was discussed, what was decided, and what residents may want to follow next.</p>
+            <div class="episode-card__links">
+              <!-- TODO: Replace with final Spotify episode URL -->
+              <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" class="episode-card__link" aria-label="Listen on Spotify — April 21, 2026 recap">Spotify</a>
+              <!-- TODO: Replace with final YouTube episode URL -->
+              <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" class="episode-card__link" aria-label="Watch on YouTube — April 21, 2026 recap">YouTube</a>
             </div>
           </div>
-          <div class="process-step">
-            <div class="process-step__number" aria-hidden="true">2</div>
-            <div class="process-step__content">
-              <h3>AI-assisted summarization</h3>
-              <p>A production prompt guides an AI to create a short, balanced overview of the meeting — plain English, no spin, nothing beyond what the materials support.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="process-step__number" aria-hidden="true">3</div>
-            <div class="process-step__content">
-              <h3>Human review</h3>
-              <p>Every recap is reviewed before it is published. The goal is accuracy and fairness, not speed.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="process-step__number" aria-hidden="true">4</div>
-            <div class="process-step__content">
-              <h3>Published and shared</h3>
-              <p>For this project, we used AI to summarize a public meeting replay and produce a short podcast-style recap that residents can listen to in about five minutes.</p>
-            </div>
-          </div>
+
         </div>
-
       </div>
     </section>
 
@@ -407,7 +403,7 @@ Note: The exact production instructions will be added once the workflow is final
           </div>
         </div>
 
-                        <nav class="footer-nav" aria-label="Footer navigation">
+        <nav class="footer-nav" aria-label="Footer navigation">
           <p class="footer-nav__label">Pages</p>
           <a href="ai.html">AI Transparency</a>
         </nav>
