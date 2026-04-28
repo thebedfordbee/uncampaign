@@ -179,3 +179,102 @@
     if (e.key === 'Escape' && overlay.style.display !== 'none') closeLightbox();
   });
 })();
+
+// =============================================
+// BEGIN SUBSTACK MODAL
+// Intercepts all a[href="https://donforbedford.substack.com/"] clicks
+// and opens a free-email-only subscribe modal instead of navigating away.
+// To revert: remove this block and the matching CSS block in site.css.
+// =============================================
+(function () {
+  'use strict';
+
+  // --- Build modal DOM ---
+  var overlay = document.createElement('div');
+  overlay.id = 'subscribe-modal-overlay';
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-labelledby', 'subscribe-modal-headline');
+  overlay.setAttribute('tabindex', '-1');
+
+  overlay.innerHTML =
+    '<div class="subscribe-modal__panel">' +
+      '<button class="subscribe-modal__close" type="button" aria-label="Close subscribe form">&#x2715;</button>' +
+      '<p class="eyebrow subscribe-modal__eyebrow">FREE EMAIL UPDATES</p>' +
+      '<h2 class="subscribe-modal__headline" id="subscribe-modal-headline">Get occasional notes from Don</h2>' +
+      '<p class="subscribe-modal__body">Campaign updates, practical ideas for Bedford, and the occasional civic experiment.</p>' +
+      '<p class="subscribe-modal__reassurance"><strong>Free only. No donations. No paid tier.</strong></p>' +
+      '<div class="subscribe-modal__embed">' +
+        '<iframe src="https://donforbedford.substack.com/embed" width="100%" height="180" style="border:0;background:transparent;" frameborder="0" scrolling="no" title="Subscribe to Don Scott for Bedford email updates"></iframe>' +
+      '</div>' +
+      '<p class="subscribe-modal__fine-print">This is a free email list, not a fundraising list. Unsubscribe anytime.</p>' +
+    '</div>';
+
+  document.body.appendChild(overlay);
+
+  var closeBtn = overlay.querySelector('.subscribe-modal__close');
+  var lastFocused = null;
+
+  function openModal(trigger) {
+    lastFocused = trigger || null;
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if (lastFocused) {
+      try { lastFocused.focus(); } catch (e) {}
+      lastFocused = null;
+    }
+  }
+
+  // Wire all subscribe CTAs by their shared Substack href
+  var ctaTriggers = document.querySelectorAll('a[href="https://donforbedford.substack.com/"]');
+  ctaTriggers.forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      openModal(el);
+    });
+  });
+
+  // Close: backdrop click
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeModal();
+  });
+
+  // Close: close button
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      closeModal();
+    });
+  }
+
+  // Close: Escape key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
+  });
+
+  // Focus trap within modal
+  overlay.addEventListener('keydown', function (e) {
+    if (e.key !== 'Tab') return;
+    var focusable = overlay.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    var first = focusable[0];
+    var last  = focusable[focusable.length - 1];
+    if (!first || !last) return;
+    if (e.shiftKey) {
+      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+    } else {
+      if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+    }
+  });
+
+})();
+// =============================================
+// END SUBSTACK MODAL
+// =============================================
