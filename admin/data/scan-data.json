@@ -1,16 +1,16 @@
 {
   "scanDate": "2026-04-28",
-  "scanTime": "14:15",
+  "scanTime": "17:00",
   "pagesScanned": 20,
-  "overallScore": 76,
-  "grade": "C",
-  "previousScore": 59,
-  "scoreChange": 17,
+  "overallScore": 82,
+  "grade": "B",
+  "previousScore": 76,
+  "scoreChange": 6,
   "categories": {
     "sitemapCoverage": {
-      "score": 90,
+      "score": 100,
       "status": "pass",
-      "notes": "All 20 sitemap entries now use https://donforbedford.com/ — FIND-001 resolved. robots.txt Sitemap directive also uses donforbedford.com. All 20 public pages are covered; pages/template.html intentionally excluded. Note: HTML canonical tags across all pages still reference uncampaign.pages.dev — domain transition inconsistency tracked as FIND-015."
+      "notes": "All 20 sitemap entries use https://www.donforbedford.com/ (production domain, with www). All 20 public pages are present and covered. robots.txt Sitemap directive matches: https://www.donforbedford.com/sitemap.xml. pages/template.html intentionally excluded as dev file. No pages missing from sitemap."
     },
     "metadataQuality": {
       "score": 55,
@@ -20,102 +20,102 @@
     "analyticsCoverage": {
       "score": 100,
       "status": "pass",
-      "notes": "GA4 (G-G7WVQR4MTH via googletagmanager.com) and Microsoft Clarity (tag ID: wis1l4ilnm) both confirmed present on all 20 public pages and pages/template.html. Resolved 2026-04-28."
+      "notes": "GA4 (G-G7WVQR4MTH) and Microsoft Clarity (wis1l4ilnm) both confirmed present on all 20 public pages and pages/template.html. No changes since 2026-04-28 install."
     },
     "ga4Coverage": {
       "score": 100,
       "status": "pass",
-      "notes": "Google Analytics 4 (G-G7WVQR4MTH) confirmed via gtag.js on all 20 public pages including links.html, all pages/ files, and all issue subpages. Resolved 2026-04-28."
+      "notes": "Google Analytics 4 (G-G7WVQR4MTH) via gtag.js confirmed on all 21 files (20 public + template). Unchanged."
     },
     "searchConsoleVerification": {
       "score": 0,
       "status": "fail",
-      "notes": "No meta[name=google-site-verification] tag found in index.html. Google Search Console not verified. Unchanged from previous scan."
+      "notes": "No meta[name=google-site-verification] tag found in index.html. Google Search Console not verified. Verify www.donforbedford.com at search.google.com/search-console."
     },
     "bingVerification": {
       "score": 0,
       "status": "fail",
-      "notes": "No meta[name=msvalidate.01] found in index.html. Bing Webmaster Tools not verified. Unchanged from previous scan."
+      "notes": "No meta[name=msvalidate.01] found in index.html. Bing Webmaster Tools not verified. Verify at bing.com/webmasters."
     },
     "microsoftClarity": {
       "score": 100,
       "status": "pass",
-      "notes": "Microsoft Clarity (tag ID: wis1l4ilnm, clarity.ms/tag) confirmed present on all 20 public pages including links.html, all pages/ files, and all issue subpages. Resolved 2026-04-28."
+      "notes": "Microsoft Clarity (tag ID: wis1l4ilnm, clarity.ms/tag) confirmed present on all 21 files. Unchanged."
     },
     "robotsNoindex": {
       "score": 100,
       "status": "pass",
-      "notes": "robots.txt correctly disallows /admin/ and references Sitemap at https://donforbedford.com/sitemap.xml. admin/index.html confirmed noindex,nofollow and googlebot noindex,nofollow. All 20 public pages verified — none have accidental noindex meta tag."
+      "notes": "robots.txt correctly disallows /admin/ and references Sitemap at https://www.donforbedford.com/sitemap.xml. admin/index.html confirmed noindex,nofollow and googlebot noindex,nofollow. All 20 public pages verified — none have accidental noindex meta tag."
     },
     "canonicalTags": {
-      "score": 28,
-      "status": "fail",
-      "notes": "12 pages still missing canonical entirely: pages/ideas.html, pages/photos.html, pages/press.html, pages/issues/advocacy-government.html, pages/issues/battery-storage.html, pages/issues/bedford-hills.html, pages/issues/cell-service.html, pages/issues/consultants.html, pages/issues/energy-costs.html, pages/issues/growth-character.html, pages/issues/leaf-blower-ban.html, pages/issues/roads-infrastructure.html. pages/minutes.html canonical still points to https://thebedfordbee.github.io/don-scott/pages/minutes.html (wrong domain, unchanged). Additionally, all 7 pages with 'correct' canonicals (index.html, links.html, pages/ai.html, pages/don-bot.html, pages/issues.html, pages/odds.html, pages/rules.html) reference https://uncampaign.pages.dev/ — inconsistent with production domain https://donforbedford.com/ now declared in sitemap.xml and robots.txt (see FIND-015)."
+      "score": 100,
+      "status": "pass",
+      "notes": "All 20 public pages now have exactly one <link rel=canonical> pointing to https://www.donforbedford.com/. Verified via grep across all HTML files. Pages that previously lacked canonical (ideas.html, photos.html, press.html, all 9 issue subpages) now have it. pages/minutes.html canonical corrected from thebedfordbee.github.io to www.donforbedford.com. FIND-005 and FIND-015 resolved."
     },
     "brokenLinks": {
-      "score": 70,
-      "status": "warn",
-      "notes": "pages/contact.html does not exist in repo. Broken link references: index.html href=pages/contact.html (1 ref, in FAQ answer for 'How can I talk to Don?'); pages/press.html href=contact.html (3 refs — 2x Contact Don CTA, 1x Contact Don secondary btn). Total: 4 broken references across 2 files. Note: links.html contact button is href='#' (intentional placeholder, not a 404 — comment in file says 'Update href when contact page is live'). pages/template.html has contact.html but is a dev file. All other internal links verified present."
+      "score": 100,
+      "status": "pass",
+      "notes": "All previously broken contact links resolved. index.html FAQ answer now links to pages/don-bot.html?ask=real-don. pages/press.html three Contact Don buttons now link to don-bot.html?ask=real-don. No active hrefs to pages/contact.html remain in any public file. Template.html has a placeholder contact.html href but is a dev file (not public). links.html contact button is href='#' (intentional placeholder per inline comment). All other internal hrefs verified present. All 9 issue subpages verified to contain back-link to ../issues.html."
     },
     "accessibility": {
       "score": 85,
       "status": "pass",
-      "notes": "All 20 pages have viewport meta. All img tags have alt attributes. Single h1 per page confirmed across all pages. Nav elements have aria-label. Mobile nav toggle has aria-expanded. Remaining issue: multiple touch targets in site.css below 44px minimum — tracked in mobileUX category."
+      "notes": "All 20 pages have viewport meta. All img tags have alt attributes (verified in prior scan). Single h1 per page confirmed. Nav elements have aria-label. Mobile nav toggle has aria-expanded. Remaining issue: multiple touch targets in site.css below 44px minimum — tracked separately in mobileUX."
     },
     "performance": {
       "score": 50,
       "status": "warn",
-      "notes": "35 of 44 image assets exceed 200KB threshold (no image optimization commits since last scan). Largest: assets/img/roundtable-scene.png (2,936KB), assets/img/don-hero.png (2,382KB), assets/img/whiteboard.png (2,348KB), assets/img/social/road.png (2,717KB). Persona images have .webp versions (8 files). Social images (13 files) and hero/scene images have no .webp versions. Images without explicit loading= attribute: home-hero-don-scott-bedford.jpg in index.html, roundtable-scene.png in issues.html, 3 img tags in photos.html."
+      "notes": "35 of 44 image assets exceed 200KB threshold — no image optimization changes since last scan. Largest: assets/img/roundtable-scene.png (2,936KB), assets/img/don-hero.png (2,382KB), assets/img/whiteboard.png (2,348KB), assets/img/social/road.png (2,717KB). Persona images (8 files) have .webp versions; social images (13 files) and hero/scene images do not. Some hero images missing explicit loading= lazy attribute. No code changes affecting performance since last scan."
     },
     "mobileUX": {
       "score": 70,
       "status": "warn",
-      "notes": "All 20 pages have viewport meta. Mobile nav functional. Touch target violations in site.css (affects all 19 main-layout pages): .nav-toggle 40x40px (should be 44px min), .btn--subscribe min-height 40px, .footer-nav a computed ~33px, .footer-social a ~18px. Modal violations: .rt-modal__close 2rem=32px, .chat-req-modal__close 2rem=32px. photos.html inline: .photo-modal__nav 2.25rem=36px, .photo-modal__close 2rem=32px, .photo-modal__like-btn ~30px. No CSS changes since previous scan."
+      "notes": "All 20 pages have viewport meta. Mobile nav functional. Touch target violations in site.css (affects all 19 main-layout pages): .nav-toggle 40x40px, .btn--subscribe min-height 40px, .footer-nav a ~33px, .footer-social a ~18px. Modal violations: .rt-modal__close 2rem=32px, .chat-req-modal__close 2rem=32px. photos.html inline: .photo-modal__nav 2.25rem=36px, .photo-modal__close 2rem=32px, .photo-modal__like-btn ~30px. No CSS changes since previous scan."
     },
     "schema": {
-      "score": 95,
+      "score": 100,
       "status": "pass",
-      "notes": "All 20 public pages have JSON-LD structured data with appropriate @type. Schema @id and url fields reference https://uncampaign.pages.dev/ — will need updating to https://donforbedford.com/ when canonical domain transition is completed (FIND-015). No missing schema issues."
+      "notes": "All 20 public pages have JSON-LD structured data. Schema @id and url fields now all reference https://www.donforbedford.com/ — updated as part of the 2026-04-28 domain normalization commit. No schema issues detected."
     },
     "internalLinking": {
-      "score": 90,
+      "score": 100,
       "status": "pass",
-      "notes": "All 9 issue subpages verified to contain back-link to ../issues.html. Footer nav links verified across all pages. Broken contact.html links reported under brokenLinks. All other internal href targets confirmed to exist."
+      "notes": "All 9 issue subpages verified to contain back-link to ../issues.html. All previously broken contact.html links resolved (now route to don-bot.html?ask=real-don). Footer nav links verified across all pages. No broken internal hrefs remain in any public page."
     },
     "imageAltText": {
       "score": 100,
       "status": "pass",
-      "notes": "All img tags across all 20 public pages verified to have alt attribute. Zero missing alt attributes found. Confirmed unchanged since 2026-04-27 fix."
+      "notes": "All img tags across all 20 public pages have alt attribute. Zero missing alt attributes found. Unchanged since 2026-04-27 fix."
     },
     "llmDiscoverability": {
       "score": 90,
       "status": "pass",
-      "notes": "llms.txt present at repo root. Canonical URL in llms.txt still references https://uncampaign.pages.dev/ — will need updating for donforbedford.com transition (FIND-015). Canonical pages section lists only 7 pages; photos, press, don-bot, and all 9 issue subpages still not included (FIND-012)."
+      "notes": "llms.txt present at repo root. Canonical URL updated to https://www.donforbedford.com/ (domain mismatch resolved). Canonical pages section still lists only 7 pages — photos, press, don-bot, links, and all 9 issue subpages not included (FIND-012). Content guidance for AI systems is accurate and helpful."
     },
     "securityPrivacy": {
       "score": 95,
       "status": "pass",
-      "notes": "No HTTP (non-HTTPS) resource references found. External scripts now present on all pages (added 2026-04-28): Google Tag Manager / GA4 (https://www.googletagmanager.com/gtag/js), Microsoft Clarity (https://www.clarity.ms/tag/) — both industry-standard HTTPS analytics CDNs, no security concern. All other resources served from same origin or relative paths. Admin /admin/ disallowed in robots.txt with noindex,nofollow. No privacy/terms deductions per project policy (CFG.ignoreMissingPrivacyPolicy=true, CFG.ignoreMissingTerms=true)."
+      "notes": "No HTTP (non-HTTPS) resource references found across all 20 public pages. External scripts (both HTTPS): Google Tag Manager/GA4 (googletagmanager.com), Microsoft Clarity (clarity.ms) — industry-standard analytics CDNs, no security concern. All other resources served from same origin or relative paths. Admin /admin/ disallowed in robots.txt with noindex,nofollow. No privacy/terms deductions per project policy (CFG.ignoreMissingPrivacyPolicy=true, CFG.ignoreMissingTerms=true)."
     },
     "campaignCompliance": {
       "score": 95,
       "status": "pass",
-      "notes": "Candidate name Don Scott present on all 20 public pages. No paid advertising so no paid disclaimer requirements triggered. Campaign identified as local Bedford Town Supervisor race. Spending transparency visible on homepage."
+      "notes": "Candidate name Don Scott present on all 20 public pages. No paid advertising so no disclaimer requirements triggered. Campaign identified as local Bedford Town Supervisor race. Spending transparency visible on homepage."
     },
     "aiTransparency": {
       "score": 90,
       "status": "pass",
-      "notes": "pages/ai.html exists with comprehensive AI transparency content. Linked from homepage footer as 'AI Transparency'. AI use openly disclosed across site. AI section present on homepage."
+      "notes": "pages/ai.html exists with comprehensive AI transparency content. Linked from homepage footer as 'AI Transparency'. AI section with explanation present on homepage. AI use openly disclosed across site."
     },
     "spendingTransparency": {
       "score": 90,
       "status": "pass",
-      "notes": "Spending section present on homepage. $9.99 of $49.99 cap displayed. One itemized expense: Domain Name $9.99. Accordion for expense detail confirmed present. Spending comparison bars (typical local campaign vs. this campaign) present."
+      "notes": "Spending section present on homepage. $9.99 of $49.99 cap displayed. One itemized expense: Domain Name $9.99. Accordion for expense detail confirmed present. Spending comparison bars present."
     },
     "contentFreshness": {
       "score": 75,
       "status": "pass",
-      "notes": "Site actively updated 2026-04-28. All pages updated same day per sitemap lastmod dates. pages/minutes.html episode content still appears in early population stage. No stale 2024 or prior dates found in public content."
+      "notes": "Site actively maintained (multiple commits 2026-04-28). Sitemap lastmod dates all 2026-04-28. pages/minutes.html episode content still appears in early population stage. No stale 2024 or prior-year dates found in public content."
     }
   },
   "findings": [
@@ -125,10 +125,10 @@
       "severity": "critical",
       "category": "sitemapCoverage",
       "affectedPage": "sitemap.xml",
-      "detectedCondition": "RESOLVED 2026-04-28: All 20 sitemap entries now use https://donforbedford.com/. The thebedfordbee.github.io/don-scott/ domain no longer appears in sitemap.xml.",
+      "detectedCondition": "RESOLVED 2026-04-28: All 20 sitemap entries now use https://www.donforbedford.com/.",
       "expectedCondition": "All <loc> entries should use the production domain.",
-      "explanation": "Sitemap was updated to donforbedford.com in commit ea3e8d7. New domain inconsistency between sitemap (donforbedford.com) and HTML canonical tags (uncampaign.pages.dev) is tracked separately as FIND-015.",
-      "suggestedFix": "No action needed on this finding. See FIND-015 for the next step: updating HTML canonical tags to match donforbedford.com.",
+      "explanation": "Resolved via domain normalization commit 1dbabb0.",
+      "suggestedFix": "No action needed.",
       "deduction": 0,
       "status": "resolved",
       "dateFound": "2026-04-27",
@@ -142,8 +142,8 @@
       "affectedPage": "all 20 public pages",
       "detectedCondition": "RESOLVED 2026-04-28: GA4 (G-G7WVQR4MTH) and Microsoft Clarity (wis1l4ilnm) confirmed on all 20 public pages.",
       "expectedCondition": "At minimum one analytics platform tracking pageviews and sessions.",
-      "explanation": "GA4 added in commit cb31ce8. Clarity added in commit 3ccf801. Both confirmed via file reads across all pages.",
-      "suggestedFix": "No action needed. Next step: verify Google Search Console (FIND-004) and submit sitemap.",
+      "explanation": "Resolved in commits cb31ce8 and 3ccf801.",
+      "suggestedFix": "No action needed.",
       "deduction": 0,
       "status": "resolved",
       "dateFound": "2026-04-27",
@@ -155,14 +155,14 @@
       "severity": "critical",
       "category": "brokenLinks",
       "affectedPage": "index.html (1 ref), pages/press.html (3 refs)",
-      "detectedCondition": "pages/contact.html not found in repo. index.html line 747: FAQ answer links to pages/contact.html ('Request a Conversation'). pages/press.html lines 417, 561, 659: three Contact Don buttons link to contact.html (resolves to pages/contact.html from pages/ directory). Total: 4 broken link references across 2 files. Note: links.html contact button is now href='#' (intentional placeholder, not a broken 404).",
+      "detectedCondition": "RESOLVED 2026-04-28: Verified — index.html line 747 now links to pages/don-bot.html?ask=real-don. pages/press.html lines 418, 562, 660 now link to don-bot.html?ask=real-don. assets/js/chat-modal.js updated to auto-open the Request a Chat modal when URL contains ?ask=real-don. No active hrefs to contact.html remain in any public page.",
       "expectedCondition": "All internal hrefs resolve to an existing file.",
-      "explanation": "Visitors clicking Contact in the FAQ or on the press page will receive a 404. Press page contact CTAs are especially high-value — broken contact links undermine campaign credibility.",
-      "suggestedFix": "Either (a) create pages/contact.html with a simple contact form or mailto link, or (b) replace the contact.html hrefs with a mailto: link. index.html: update FAQ answer href on line 747. pages/press.html: update 3 button hrefs on lines 417, 561, 659.",
-      "deduction": 8,
-      "status": "open",
+      "explanation": "Resolved in commit 1dbabb0. Contact links now route to the existing Don-Bot modal flow.",
+      "suggestedFix": "No action needed.",
+      "deduction": 0,
+      "status": "resolved",
       "dateFound": "2026-04-27",
-      "dateResolved": null
+      "dateResolved": "2026-04-28"
     },
     {
       "id": "FIND-004",
@@ -170,10 +170,10 @@
       "severity": "critical",
       "category": "searchConsoleVerification",
       "affectedPage": "index.html",
-      "detectedCondition": "No meta[name=google-site-verification] tag found in index.html head. Unchanged from previous scan.",
+      "detectedCondition": "No meta[name=google-site-verification] tag found in index.html head. Confirmed unchanged — grep returned no matches.",
       "expectedCondition": "google-site-verification meta tag present, enabling Google Search Console dashboard access.",
-      "explanation": "Without Search Console verification, the campaign cannot see which search queries drive traffic, check index coverage, submit the sitemap directly, or receive crawl error alerts. Now that GA4 is live, Search Console is the natural next verification step.",
-      "suggestedFix": "Verify donforbedford.com (or uncampaign.pages.dev — decide canonical domain first per FIND-015) in Google Search Console (free). Add the provided <meta name=google-site-verification content=...> to index.html head. Then submit sitemap.xml.",
+      "explanation": "Without Search Console verification, the campaign cannot see which search queries drive traffic, check index coverage, submit the sitemap directly, or receive crawl error alerts. Domain is now fully normalized to www.donforbedford.com — this is the ideal time to verify.",
+      "suggestedFix": "Verify www.donforbedford.com in Google Search Console (free, at search.google.com/search-console). Choose HTML tag method — add the provided <meta name=google-site-verification content=...> to index.html <head>. Then submit sitemap at https://www.donforbedford.com/sitemap.xml.",
       "deduction": 8,
       "status": "open",
       "dateFound": "2026-04-27",
@@ -181,18 +181,18 @@
     },
     {
       "id": "FIND-005",
-      "title": "Missing canonical tags on 12 pages; wrong domain canonical on minutes.html; all existing canonicals use stale domain",
+      "title": "Missing canonical tags on 12 pages; wrong domain canonical on minutes.html; all existing canonicals used stale domain",
       "severity": "important",
       "category": "canonicalTags",
-      "affectedPage": "pages/ideas.html, pages/photos.html, pages/press.html, pages/issues/advocacy-government.html, pages/issues/battery-storage.html, pages/issues/bedford-hills.html, pages/issues/cell-service.html, pages/issues/consultants.html, pages/issues/energy-costs.html, pages/issues/growth-character.html, pages/issues/leaf-blower-ban.html, pages/issues/roads-infrastructure.html (missing); pages/minutes.html (wrong domain)",
-      "detectedCondition": "12 pages have no <link rel=canonical> tag. pages/minutes.html canonical still points to https://thebedfordbee.github.io/don-scott/pages/minutes.html. Additionally, the 7 pages that DO have canonicals (index.html, links.html, pages/ai.html, pages/don-bot.html, pages/issues.html, pages/odds.html, pages/rules.html) all reference https://uncampaign.pages.dev/ — inconsistent with production domain https://donforbedford.com/ now declared in sitemap.xml (see FIND-015).",
-      "expectedCondition": "Every public page has a canonical tag pointing to its correct https://donforbedford.com/ URL.",
-      "explanation": "Missing canonicals allow search engines to select their own preferred URL version. The wrong-domain canonical on minutes.html actively signals to Google that the GitHub Pages URL is the preferred version. The stale uncampaign.pages.dev canonicals conflict with the donforbedford.com production domain in the sitemap.",
-      "suggestedFix": "Part of FIND-015 resolution: update all existing canonicals from uncampaign.pages.dev to donforbedford.com. Fix minutes.html canonical. Add canonical tags to 12 pages that have none. Pattern: <link rel=canonical href=https://donforbedford.com/pages/[slug].html>",
-      "deduction": 8,
-      "status": "open",
+      "affectedPage": "all 20 public pages (resolved)",
+      "detectedCondition": "RESOLVED 2026-04-28: All 20 public pages now have exactly one <link rel=canonical> pointing to https://www.donforbedford.com/. Verified via grep — 20 matches, all correct. pages/minutes.html canonical corrected. 12 pages that had no canonical now have it.",
+      "expectedCondition": "Every public page has a canonical tag pointing to its correct https://www.donforbedford.com/ URL.",
+      "explanation": "Resolved in commit 1dbabb0.",
+      "suggestedFix": "No action needed.",
+      "deduction": 0,
+      "status": "resolved",
       "dateFound": "2026-04-27",
-      "dateResolved": null
+      "dateResolved": "2026-04-28"
     },
     {
       "id": "FIND-006",
@@ -200,10 +200,10 @@
       "severity": "important",
       "category": "metadataQuality",
       "affectedPage": "pages/ideas.html, pages/photos.html, pages/issues/advocacy-government.html, pages/issues/battery-storage.html, pages/issues/bedford-hills.html, pages/issues/cell-service.html, pages/issues/consultants.html, pages/issues/energy-costs.html, pages/issues/growth-character.html, pages/issues/leaf-blower-ban.html, pages/issues/roads-infrastructure.html",
-      "detectedCondition": "11 pages are missing both og:title and og:description. Verified by grep for og:title across all HTML files — confirmed same 11 pages as previous scan. Unchanged.",
-      "expectedCondition": "All public pages have og:title, og:description for correct social media preview cards.",
-      "explanation": "When these URLs are shared on Facebook, X/Twitter, iMessage, Slack, or other platforms, they will show no preview card or a generic fallback — reducing click-through rates from social sharing.",
-      "suggestedFix": "Add og:title, og:description, og:image, and og:url to the 11 affected pages. For issue subpages, use the page title and meta description as og equivalents. Update og:url to use donforbedford.com domain.",
+      "detectedCondition": "11 pages missing og:title and og:description. Verified by grep for og:title across all HTML files — same 11 pages as previous scan. Unchanged.",
+      "expectedCondition": "All public pages have og:title, og:description, og:image, and og:url for correct social media preview cards.",
+      "explanation": "When these URLs are shared on social platforms, they show no preview card or a generic fallback — reducing click-through rates from social sharing.",
+      "suggestedFix": "Add og:title, og:description, og:image, and og:url to all 11 pages. For issue subpages, use the page title and meta description as og equivalents, og:url matching the canonical, og:image the campaign default og-image.png. This can be added as a short 6-tag block in each page <head>.",
       "deduction": 6,
       "status": "open",
       "dateFound": "2026-04-27",
@@ -215,10 +215,10 @@
       "severity": "important",
       "category": "performance",
       "affectedPage": "assets/img/ (35 of 44 images exceed 200KB; social/ and hero/scene images have no .webp version)",
-      "detectedCondition": "35 image files exceed 200KB. Largest: roundtable-scene.png (2,936KB), don-hero.png (2,382KB), whiteboard.png (2,348KB), social/road.png (2,717KB). Only persona images (8 files) have .webp versions. Social images (13 files) and all hero/scene images have no .webp equivalents. Some hero images missing explicit loading= attribute. No image optimization commits since last scan.",
+      "detectedCondition": "35 image files exceed 200KB. Largest: roundtable-scene.png (2,936KB), don-hero.png (2,382KB), whiteboard.png (2,348KB), social/road.png (2,717KB). Only persona images (8 files) have .webp versions. Social images (13 files) and all hero/scene images have no .webp equivalents. No image optimization commits since initial site launch.",
       "expectedCondition": "Images served in modern format (WebP/AVIF) at appropriate resolution. Below-fold images lazy-loaded.",
-      "explanation": "Large PNGs significantly increase page load time on mobile connections. The social/photo gallery page loads 12 images from social/ directory — all 2MB+ PNGs — even though they display at small grid sizes.",
-      "suggestedFix": "Generate .webp versions for all social/ images and hero images (free: squoosh.app or cwebp CLI). Update img tags to use <picture> element with webp source. Add loading=lazy to below-fold images. Priority: pages/photos.html and pages/issues.html.",
+      "explanation": "Large PNGs significantly slow page load on mobile. The photo gallery loads 12 images from social/ directory — all 2MB+ PNGs — even at small grid display sizes.",
+      "suggestedFix": "Generate .webp versions for all social/ and hero images (free: squoosh.app or cwebp CLI). Update img tags to use <picture> element with webp source. Add loading=lazy to below-fold images. Priority: pages/photos.html and pages/issues.html.",
       "deduction": 6,
       "status": "open",
       "dateFound": "2026-04-27",
@@ -230,9 +230,9 @@
       "severity": "important",
       "category": "mobileUX",
       "affectedPage": "assets/css/site.css (affects all 19 pages using shared site header and footer)",
-      "detectedCondition": "Verified in CSS: .nav-toggle height=40px, .btn--subscribe min-height=40px, .footer-nav a computed height ~33px (padding-block: 0.3rem), .footer-social a ~18px (18px SVG, no padding). Additional: .rt-modal__close 2rem=32px, .chat-req-modal__close 2rem=32px. photos.html inline: .photo-modal__nav 2.25rem=36px, .photo-modal__close 2rem=32px, .photo-modal__like-btn ~30px, .photo-modal__btn-row .btn min-height=40px. No CSS changes since previous scan.",
+      "detectedCondition": "Verified in CSS: .nav-toggle height=40px, .btn--subscribe min-height=40px, .footer-nav a computed height ~33px (padding-block: 0.3rem), .footer-social a ~18px (18px SVG, no padding). Modal violations: .rt-modal__close 2rem=32px, .chat-req-modal__close 2rem=32px. photos.html inline: .photo-modal__nav 2.25rem=36px, .photo-modal__close 2rem=32px, .photo-modal__like-btn ~30px. No CSS changes since previous scan.",
       "expectedCondition": "All interactive touch targets at minimum 44×44 CSS pixels per WCAG 2.5.5.",
-      "explanation": "Small tap targets cause accidental taps and usability frustration on mobile. Hamburger menu (40px), subscribe CTA (40px), and footer social icons (~18px) are most impactful.",
+      "explanation": "Small tap targets cause accidental taps and usability frustration on mobile. Hamburger menu (40px), subscribe CTA (40px), and footer social icons (~18px) are most impactful for visitors.",
       "suggestedFix": "In site.css: .nav-toggle → min-width/min-height: 44px; .btn--subscribe → min-height: 44px; .footer-nav a → padding-block: 0.5rem; .footer-social a → min-width: 44px; min-height: 44px; .rt-modal__close and .chat-req-modal__close → 2.75rem. In photos.html: .photo-modal__nav, .photo-modal__close → 2.75rem; .photo-modal__like-btn → min 44px.",
       "deduction": 6,
       "status": "open",
@@ -245,9 +245,9 @@
       "severity": "enhancement",
       "category": "microsoftClarity",
       "affectedPage": "all 20 public pages",
-      "detectedCondition": "RESOLVED 2026-04-28: Microsoft Clarity (tag ID: wis1l4ilnm) confirmed on all 20 public pages via clarity.ms/tag grep.",
+      "detectedCondition": "RESOLVED 2026-04-28: Clarity (wis1l4ilnm) confirmed on all 20 public pages.",
       "expectedCondition": "Clarity installed for session recordings and heatmaps.",
-      "explanation": "Resolved in commit 3ccf801. Clarity now active across all public pages.",
+      "explanation": "Resolved in commit 3ccf801.",
       "suggestedFix": "No action needed.",
       "deduction": 0,
       "status": "resolved",
@@ -260,10 +260,10 @@
       "severity": "enhancement",
       "category": "bingVerification",
       "affectedPage": "index.html",
-      "detectedCondition": "No meta[name=msvalidate.01] found in index.html. Unchanged from previous scan.",
+      "detectedCondition": "No meta[name=msvalidate.01] found in index.html. Confirmed unchanged — grep returned no matches.",
       "expectedCondition": "Bing Webmaster verification tag present.",
       "explanation": "Bing powers DuckDuckGo, Yahoo, and other search engines. Verification enables Bing Search Console for index monitoring and sitemap submission.",
-      "suggestedFix": "Verify at bing.com/webmasters (free). Add <meta name=msvalidate.01 content=...> to index.html <head>. Note: use donforbedford.com when verifying property.",
+      "suggestedFix": "Verify www.donforbedford.com at bing.com/webmasters (free). Add <meta name=msvalidate.01 content=...> to index.html <head>.",
       "deduction": 3,
       "status": "open",
       "dateFound": "2026-04-27",
@@ -275,10 +275,10 @@
       "severity": "enhancement",
       "category": "metadataQuality",
       "affectedPage": "pages/ideas.html, pages/minutes.html, pages/photos.html, pages/press.html, pages/issues/advocacy-government.html, pages/issues/battery-storage.html, pages/issues/bedford-hills.html, pages/issues/cell-service.html, pages/issues/consultants.html, pages/issues/energy-costs.html, pages/issues/growth-character.html, pages/issues/leaf-blower-ban.html, pages/issues/roads-infrastructure.html",
-      "detectedCondition": "Grep for meta[name=robots] across all HTML found 7 public pages with robots meta (index.html, links.html, pages/ai.html, pages/don-bot.html, pages/issues.html, pages/odds.html, pages/rules.html). 13 public pages have no robots meta tag. Unchanged from previous scan.",
-      "expectedCondition": "Explicit robots meta on all public pages: content=index, follow, max-image-preview:large",
-      "explanation": "Without explicit robots meta, crawlers cannot receive the max-image-preview:large directive which enables richer image previews in Google Search.",
-      "suggestedFix": "Add <meta name=robots content=\"index, follow, max-image-preview:large\"> to the 13 affected pages.",
+      "detectedCondition": "Grep for meta[name=robots] across all HTML found 7 public pages with robots meta (index.html, links.html, pages/ai.html, pages/don-bot.html, pages/issues.html, pages/odds.html, pages/rules.html). 13 public pages have no robots meta. Unchanged from previous scan.",
+      "expectedCondition": "Explicit <meta name=robots content='index, follow, max-image-preview:large'> on all public pages.",
+      "explanation": "Without explicit robots meta, crawlers cannot receive the max-image-preview:large directive which enables richer image previews in Google Search results.",
+      "suggestedFix": "Add <meta name=robots content=\"index, follow, max-image-preview:large\"> to the 13 affected pages. Pair with FIND-006 resolution for a single consolidated head cleanup pass.",
       "deduction": 2,
       "status": "open",
       "dateFound": "2026-04-27",
@@ -286,14 +286,14 @@
     },
     {
       "id": "FIND-012",
-      "title": "llms.txt canonical pages list incomplete",
+      "title": "llms.txt canonical pages list incomplete — 13 of 20 pages not listed",
       "severity": "info",
       "category": "llmDiscoverability",
       "affectedPage": "llms.txt",
-      "detectedCondition": "llms.txt Canonical Pages section lists 7 pages only (Homepage, Rules, Issues, Ideas, Minutes, AI Transparency, Odds). Missing: photos, press, don-bot, and all 9 issue subpages. Also: canonical URL in llms.txt still references uncampaign.pages.dev (see FIND-015). Unchanged from previous scan.",
-      "expectedCondition": "llms.txt canonical pages covers all major public sections including issue subpages.",
-      "explanation": "AI agents and LLMs using llms.txt for site discovery may not find all campaign content. Also needs donforbedford.com domain update.",
-      "suggestedFix": "Add entries for pages/photos.html, pages/press.html, pages/don-bot.html, and the 9 issue subpages to the Canonical Pages section. Update canonical URL to https://donforbedford.com/ as part of FIND-015 domain transition.",
+      "detectedCondition": "llms.txt Canonical Pages section lists 7 of 20 pages (Homepage, Rules, Issues, Ideas, Minutes, AI Transparency, Odds). Not listed: links.html, photos.html, press.html, don-bot.html, and all 9 issue subpages. Canonical URL now correctly uses https://www.donforbedford.com/ (domain mismatch from prior scan resolved). Page coverage gap unchanged.",
+      "expectedCondition": "llms.txt Canonical Pages covers all public sections of the site so AI agents can discover all content.",
+      "explanation": "AI agents and LLMs using llms.txt for site discovery will not find the Don-Bot, Press, Photos, Links, or any of the 9 issue deep-dive pages.",
+      "suggestedFix": "Add entries for links.html, pages/photos.html, pages/press.html, pages/don-bot.html, and all 9 pages/issues/*.html to the Canonical Pages section in llms.txt.",
       "deduction": 1,
       "status": "open",
       "dateFound": "2026-04-27",
@@ -304,8 +304,8 @@
       "title": "Image alt text fixed — resolved",
       "severity": "important",
       "category": "imageAltText",
-      "affectedPage": "pages/issues/*.html (9 files), plus hero images on bedford-hills, leaf-blower-ban, roads-infrastructure",
-      "detectedCondition": "All img tags verified to have alt attributes. Confirmed again in current scan.",
+      "affectedPage": "pages/issues/*.html (9 files) and hero images",
+      "detectedCondition": "All img tags verified to have alt attribute. Confirmed unchanged.",
       "expectedCondition": "All img tags have meaningful, descriptive alt attributes.",
       "explanation": "Resolved 2026-04-27.",
       "suggestedFix": "No action needed.",
@@ -319,34 +319,34 @@
       "title": "Schema markup added to all pages — resolved",
       "severity": "important",
       "category": "schema",
-      "affectedPage": "pages/ideas.html, pages/photos.html, pages/press.html, pages/minutes.html, pages/issues.html, all 9 issue subpages",
-      "detectedCondition": "All 20 public pages confirmed to have JSON-LD structured data. Schema URLs reference uncampaign.pages.dev — tracked under FIND-015 for domain transition.",
-      "expectedCondition": "Appropriate JSON-LD on every page.",
-      "explanation": "Resolved 2026-04-27.",
-      "suggestedFix": "No action needed for schema presence. Update schema @id and url fields to donforbedford.com as part of FIND-015.",
+      "affectedPage": "all 20 public pages",
+      "detectedCondition": "All 20 public pages confirmed to have JSON-LD. Schema URLs now reference https://www.donforbedford.com/ — updated in domain normalization commit 1dbabb0.",
+      "expectedCondition": "Appropriate JSON-LD on every page with correct production domain URLs.",
+      "explanation": "Resolved 2026-04-27 (schema added); schema domain updated 2026-04-28.",
+      "suggestedFix": "No action needed.",
       "deduction": 0,
       "status": "resolved",
       "dateFound": "2026-04-27",
-      "dateResolved": "2026-04-27"
+      "dateResolved": "2026-04-28"
     },
     {
       "id": "FIND-015",
-      "title": "Domain transition incomplete — sitemap/robots.txt use donforbedford.com but HTML canonicals, schema, and llms.txt still reference uncampaign.pages.dev",
+      "title": "Domain transition incomplete — sitemap/robots.txt used donforbedford.com but HTML canonicals, schema, and llms.txt referenced uncampaign.pages.dev",
       "severity": "important",
       "category": "canonicalTags",
-      "affectedPage": "sitemap.xml, robots.txt (updated), index.html, links.html, pages/ai.html, pages/don-bot.html, pages/issues.html, pages/odds.html, pages/rules.html (canonical mismatch), plus all schema @id URLs and llms.txt",
-      "detectedCondition": "sitemap.xml and robots.txt were updated (commit ea3e8d7) to use https://donforbedford.com/ as the production domain. However, all 7 pages with canonical tags still point to https://uncampaign.pages.dev/. All JSON-LD schema @id and url fields reference https://uncampaign.pages.dev/. llms.txt Canonical URL is https://uncampaign.pages.dev/. The links.html visible URL was updated to 'www.DonForBedford.com' (commit 3f329b6) but the canonical tag in links.html still reads uncampaign.pages.dev.",
-      "expectedCondition": "All canonical tags, schema URLs, and llms.txt reference https://donforbedford.com/ consistently with the sitemap and robots.txt.",
-      "explanation": "When Google sees a sitemap declaring donforbedford.com as the home and HTML declaring uncampaign.pages.dev as canonical, it receives conflicting domain signals. This can split crawl authority between two domains and slow down proper domain consolidation in search indexes.",
-      "suggestedFix": "Update all 8 existing canonical tags from uncampaign.pages.dev to donforbedford.com. Update JSON-LD schema @id and url fields on all 20 pages. Update llms.txt Canonical URL. Also update og:url and twitter:url fields on pages that have them. This is a batch find-and-replace: change all occurrences of https://uncampaign.pages.dev to https://donforbedford.com across all public HTML files and llms.txt.",
-      "deduction": 7,
-      "status": "open",
+      "affectedPage": "all 20 public HTML pages, sitemap.xml, robots.txt, llms.txt",
+      "detectedCondition": "RESOLVED 2026-04-28: All public HTML files now have canonicals, og:url, twitter:url, og:image, and JSON-LD schema URLs pointing to https://www.donforbedford.com/. Sitemap and robots.txt also use www.donforbedford.com. llms.txt canonical URL updated. Confirmed via full grep scan — zero uncampaign.pages.dev or thebedfordbee.github.io references remain in any public file.",
+      "expectedCondition": "All canonical tags, schema URLs, and llms.txt reference https://www.donforbedford.com/ consistently.",
+      "explanation": "Resolved in commit 1dbabb0. Full domain normalization complete.",
+      "suggestedFix": "No action needed.",
+      "deduction": 0,
+      "status": "resolved",
       "dateFound": "2026-04-28",
-      "dateResolved": null
+      "dateResolved": "2026-04-28"
     }
   ],
-  "criticalCount": 2,
-  "importantCount": 5,
+  "criticalCount": 1,
+  "importantCount": 3,
   "enhancementCount": 2,
   "infoCount": 1,
   "scanHistory": [
@@ -382,7 +382,19 @@
       "importantCount": 5,
       "enhancementCount": 2,
       "infoCount": 1,
-      "note": "Score improved +17 (59→76). Resolved: GA4 on all 20 pages, Microsoft Clarity on all 20 pages, sitemap GitHub Pages domain mismatch. New finding: domain transition incomplete (FIND-015) — sitemap/robots.txt updated to donforbedford.com but HTML canonicals, schema, llms.txt still reference uncampaign.pages.dev. Remaining critical items: contact.html broken links (4 refs, 2 files), Google Search Console not verified."
+      "note": "Score improved +17 (59→76). Resolved: GA4 on all 20 pages, Microsoft Clarity on all 20 pages, sitemap GitHub Pages domain mismatch. New finding FIND-015: domain transition incomplete — sitemap/robots.txt updated to donforbedford.com but HTML canonicals, schema, llms.txt still referenced uncampaign.pages.dev."
+    },
+    {
+      "scanDate": "2026-04-28",
+      "scanTime": "17:00",
+      "overallScore": 82,
+      "grade": "B",
+      "pagesScanned": 20,
+      "criticalCount": 1,
+      "importantCount": 3,
+      "enhancementCount": 2,
+      "infoCount": 1,
+      "note": "Score improved +6 (76→82). Resolved: all 20 pages now have canonical tags on www.donforbedford.com (FIND-005), all broken contact links routed to Don-Bot modal via ?ask=real-don (FIND-003), full domain normalization complete across all HTML/schema/llms.txt/sitemap (FIND-015). Remaining critical: Google Search Console not verified. Remaining important: og:title missing on 11 pages, large images unoptimized, touch targets below 44px."
     }
   ]
 }
