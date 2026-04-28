@@ -38,3 +38,4 @@ Key characteristics:
 - Minutes (campaign meeting logs): https://www.donforbedford.com/pages/minutes.html
 - AI Transparency: https://www.donforbedford.com/pages/ai.html
 - Odds (electoral context and honest expectations): https://www.donforbedford.com/pages/odds.html
+- Photos (AI-generated campaign photo archive, 12 images with captions): https://www.donforbedford.com/photos
