@@ -3,4 +3,10 @@
 # Cloudflare Pages automatically strips .html extensions, so /pages/photos.html
 # is served at /pages/photos. These 301s make the shorter canonical URLs real routes.
 
-/photos     /pages/photos     301
+/photos         /pages/photos       301
+/podcasts       /pages/podcasts     301
+
+# Legacy /minutes and /minute redirects — keep old links working
+/minutes        /podcasts           301
+/minute         /podcasts           301
+/pages/minutes  /podcasts           301

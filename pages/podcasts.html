@@ -12,7 +12,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.donforbedford.com/minutes">
+  <meta property="og:url" content="https://www.donforbedford.com/podcasts">
   <meta property="og:title" content="The Bedford Brief | Don Scott">
   <meta property="og:description" content="Long Bedford public meetings, made shorter. Don Scott turns Town Board replays into practical recaps residents can hear on Spotify or YouTube.">
   <!-- TODO: Replace with a Bedford Brief-specific OG image once available -->
@@ -27,7 +27,7 @@
 
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://www.donforbedford.com/minutes">
+  <meta name="twitter:url" content="https://www.donforbedford.com/podcasts">
   <meta name="twitter:title" content="The Bedford Brief | Bedford Meeting Recaps">
   <meta name="twitter:description" content="Short, practical recaps of long Bedford public meetings, available on Spotify and YouTube.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
@@ -47,8 +47,8 @@
       },
       {
         "@type": "WebPage",
-        "@id": "https://www.donforbedford.com/minutes#webpage",
-        "url": "https://www.donforbedford.com/minutes",
+        "@id": "https://www.donforbedford.com/podcasts#webpage",
+        "url": "https://www.donforbedford.com/podcasts",
         "name": "The Bedford Brief | Bedford Town Board Meeting Recaps",
         "description": "The Bedford Brief turns long Bedford public meetings into short, practical recaps on Spotify and YouTube, starting with the April 21, 2026 Town Board meeting.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
@@ -64,7 +64,7 @@
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.donforbedford.com/" },
-          { "@type": "ListItem", "position": 2, "name": "The Bedford Brief", "item": "https://www.donforbedford.com/minutes" }
+          { "@type": "ListItem", "position": 2, "name": "The Bedford Brief", "item": "https://www.donforbedford.com/podcasts" }
         ]
       },
       {
@@ -82,7 +82,7 @@
       },
       {
         "@type": "ItemList",
-        "@id": "https://www.donforbedford.com/minutes#episodes",
+        "@id": "https://www.donforbedford.com/podcasts#episodes",
         "name": "The Bedford Brief Episodes",
         "description": "Short recaps of Bedford Town Board meetings by Don Scott, available on Spotify and YouTube.",
         "itemListElement": [
@@ -90,7 +90,7 @@
             "@type": "ListItem",
             "position": 1,
             "name": "April 21, 2026 Bedford Town Board Meeting Recap",
-            "url": "https://www.donforbedford.com/minutes"
+            "url": "https://www.donforbedford.com/podcasts"
           }
         ]
       }
@@ -115,18 +115,11 @@
        THE BEDFORD BRIEF — page-specific styles
        ============================================= */
 
-    /* Justified body copy — hero deck and all brief-prose containers */
+    /* Justified body copy */
     .issues-hero__deck,
+    .issues-explainer__why p,
     .brief-prose p,
     .callout p { text-align: justify; }
-
-    /* Small note below hero CTAs */
-    .hero-note {
-      font-size: 0.8125rem;
-      color: rgba(255, 255, 255, 0.55);
-      max-width: none;
-      margin-top: 0.375rem;
-    }
 
     /* Featured episode card */
     .featured-episode {
@@ -171,16 +164,6 @@
     .brief-prose { margin-top: 1.25rem; }
     .brief-prose p + p { margin-top: 0.875rem; }
     .brief-prose p { color: var(--muted); }
-
-    /* Tagline note — used once for "Minutes, not meetings" */
-    .brief-prose .brief-tagline {
-      font-style: italic;
-      color: var(--sage);
-      font-size: 0.9375rem;
-      margin-top: 1.25rem;
-      max-width: none;
-      text-align: left;
-    }
   </style>
 
   <!-- Google tag (gtag.js) -->
@@ -243,13 +226,13 @@
   </header>
 
   <!-- HERO -->
-  <section class="issues-hero" aria-labelledby="minutes-title">
+  <section class="issues-hero" aria-labelledby="podcast-title">
     <div class="container">
       <div class="issues-hero__inner">
 
         <div class="issues-hero__copy-top">
-          <p class="eyebrow">Bedford Public Meetings, Briefly</p>
-          <h1 id="minutes-title">The Bedford Brief</h1>
+          <p class="eyebrow">Don Scott Presents</p>
+          <h1 id="podcast-title">The Bedford Brief</h1>
         </div>
 
         <div class="issues-hero__visual issues-hero__visual--static">
@@ -291,7 +274,6 @@
               Watch on YouTube
             </a>
           </div>
-          <p class="hero-note">Start with the April 21, 2026 Bedford Town Board meeting recap.</p>
         </div>
 
       </div>
@@ -300,15 +282,30 @@
 
   <main id="main-content">
 
-    <!-- 1. WHAT THE BEDFORD BRIEF IS -->
+    <!-- 1. WHAT THE BEDFORD BRIEF IS — two-column -->
     <section class="section section--alt" aria-labelledby="what-headline">
       <div class="container">
-        <p class="eyebrow">About this series</p>
-        <h2 id="what-headline">What The Bedford Brief Is</h2>
-        <div class="brief-prose">
-          <p>The Bedford Brief is a simple attempt to make local government easier to follow. Each episode takes a long public meeting and turns it into a shorter recap focused on what was discussed, what actually moved forward, and what residents may want to know.</p>
-          <p>It is not official Town minutes. It is not a substitute for the full record. It is a practical summary layer for people who care about Bedford but do not always have 90 minutes to spare.</p>
-          <p class="brief-tagline">Minutes, not meetings.</p>
+        <div class="issues-explainer">
+
+          <div class="issues-explainer__why">
+            <p class="eyebrow">About this series</p>
+            <h2 id="what-headline">What The Bedford Brief Is</h2>
+            <p>The Bedford Brief is a simple attempt to make local government easier to follow. Each episode takes a long public meeting and turns it into a shorter recap focused on what was discussed, what actually moved forward, and what residents may want to know.</p>
+            <p>It is not official Town minutes. It is not a substitute for the full record. It is a practical summary layer for people who care about Bedford but do not always have 90 minutes to spare.</p>
+          </div>
+
+          <div class="issues-explainer__offers">
+            <p class="eyebrow">What it covers</p>
+            <ul class="explainer-points" role="list">
+              <li>Turns long public meetings into short, listenable summaries.</li>
+              <li>Helps residents catch up without watching hours of video.</li>
+              <li>Highlights decisions, tradeoffs, and local issues worth knowing.</li>
+              <li>Uses AI as a practical civic tool, with human review.</li>
+              <li>Makes town government easier to follow for busy people.</li>
+              <li>Shows how low-cost technology can improve local participation.</li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </section>
@@ -333,21 +330,8 @@
       </div>
     </section>
 
-    <!-- 3. WHY DON IS DOING THIS -->
-    <section class="section section--alt" aria-labelledby="why-headline">
-      <div class="container">
-        <p class="eyebrow">Why this exists</p>
-        <h2 id="why-headline">Why Don Is Doing This</h2>
-        <div class="brief-prose">
-          <p>Local government should be easier to follow. Most people are busy. Meetings are long. Important details are often buried inside process, updates, and procedural discussion.</p>
-          <p>The Bedford Brief is one small way to lower the friction. No mailers. No robocalls. No pressure. Just a shorter way to understand what happened and decide what you think for yourself.</p>
-          <p>Each recap uses publicly available Town Board meeting materials and is reviewed before it is published. AI helps with summarization. The goal is accuracy and usefulness, not speed.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. DISCLAIMER -->
-    <section class="section" aria-labelledby="disclaimer-headline">
+    <!-- 3. DISCLAIMER -->
+    <section class="section section--alt" aria-labelledby="disclaimer-headline">
       <div class="container">
         <p class="eyebrow">A quick note</p>
         <h2 id="disclaimer-headline">A Quick Note</h2>
@@ -357,8 +341,8 @@
       </div>
     </section>
 
-    <!-- 5. MORE BRIEFS / ARCHIVE -->
-    <section class="section section--alt" aria-labelledby="archive-headline">
+    <!-- 4. MORE BRIEFS / ARCHIVE -->
+    <section class="section" aria-labelledby="archive-headline">
       <div class="container">
         <p class="minutes-section-label" id="archive-headline">More Briefs</p>
         <p class="section-header__lead" style="margin-bottom:1.5rem;text-align:justify;">More episodes will be added here if residents find them useful. The goal is not to cover everything. It is to make the most relevant public meetings easier to keep up with.</p>
@@ -377,6 +361,50 @@
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <!-- 5. HOW THIS WAS BUILT -->
+    <section class="section section--alt" aria-labelledby="howbuilt-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">How this was built</p>
+          <h2 id="howbuilt-headline">This Campaign Shows Its Work</h2>
+          <p class="section-header__lead section-header__lead--wide">
+            These recaps use publicly available meeting materials and an AI-assisted workflow that any resident can replicate. The same approach works for any Town Board meeting, school board video, or public document. The steps are published here in full.
+          </p>
+        </div>
+
+        <div class="cta-row cta-row--centered">
+          <div class="howbuilt-cta-group">
+            <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-podcasts" aria-expanded="false">How to Build Your Own</button>
+          </div>
+        </div>
+
+        <div class="instr-panel" id="instr-panel-podcasts" hidden>
+          <div class="instr-panel__bar">
+            <span class="instr-panel__title">Build your own meeting podcast with NotebookLM</span>
+            <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+              <span class="instr-panel__copy-label">Copy All</span>
+            </button>
+          </div>
+          <div class="instr-panel__body">
+            <pre class="instr-panel__text">You can use the same basic idea for a Town Board meeting, school board video, article, report, or group of documents.
+
+1. Copy the YouTube link, article link, PDF, transcript, or documents you want summarized.
+2. Open NotebookLM and create a new notebook.
+3. Add those materials as sources.
+4. Ask NotebookLM for a plain-English summary of the key decisions, arguments, dates, costs, and unanswered questions.
+5. Ask it to create an Audio Overview.
+6. Listen, check the summary against the original sources, and correct anything important before sharing.
+
+Prompt:
+"Summarize these materials for a local resident who wants to understand what happened without sitting through the whole meeting. Focus on decisions, tradeoffs, costs, dates, resident impact, and questions that still need answers. Keep the tone neutral, clear, and useful. Then create an audio overview that sounds like a calm civic briefing, not a political argument."
+
+AI can make public information easier to follow. It still needs human judgment, source checking, and common sense.</pre>
+          </div>
+        </div>
+
       </div>
     </section>
 
