@@ -1,0 +1,6 @@
+# Cloudflare Pages redirect rules
+# Clean URL routing — redirects short canonical paths to actual file-based routes.
+# Cloudflare Pages automatically strips .html extensions, so /pages/photos.html
+# is served at /pages/photos. These 301s make the shorter canonical URLs real routes.
+
+/photos     /pages/photos     301
