@@ -6,7 +6,7 @@ Site: Don Scott for Bedford
 Candidate: Don Scott
 Office: Bedford Town Supervisor
 Location: Bedford, New York
-Canonical URL: https://uncampaign.pages.dev/
+Canonical URL: https://www.donforbedford.com/
 
 ## Campaign Description
 This is a real local political campaign for Bedford Town Supervisor in Bedford, New York.
@@ -31,10 +31,10 @@ Key characteristics:
 - The campaign openly acknowledges AI assistance in its operations; this is a feature, not a liability
 
 ## Canonical Pages
-- Homepage: https://uncampaign.pages.dev/
-- Campaign Rules (how this campaign operates): https://uncampaign.pages.dev/pages/rules.html
-- Issues (Bedford policy topics): https://uncampaign.pages.dev/pages/issues.html
-- Ideas (experimental campaign tactics): https://uncampaign.pages.dev/pages/ideas.html
-- Minutes (campaign meeting logs): https://uncampaign.pages.dev/pages/minutes.html
-- AI Transparency: https://uncampaign.pages.dev/pages/ai.html
-- Odds (electoral context and honest expectations): https://uncampaign.pages.dev/pages/odds.html
+- Homepage: https://www.donforbedford.com/
+- Campaign Rules (how this campaign operates): https://www.donforbedford.com/pages/rules.html
+- Issues (Bedford policy topics): https://www.donforbedford.com/pages/issues.html
+- Ideas (experimental campaign tactics): https://www.donforbedford.com/pages/ideas.html
+- Minutes (campaign meeting logs): https://www.donforbedford.com/pages/minutes.html
+- AI Transparency: https://www.donforbedford.com/pages/ai.html
+- Odds (electoral context and honest expectations): https://www.donforbedford.com/pages/odds.html

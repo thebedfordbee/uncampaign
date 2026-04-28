@@ -248,4 +248,12 @@
     btn.addEventListener('click', function () { openModal(btn); });
   });
 
+  /* ── Auto-open from URL param (?ask=real-don) ─────────────────────── */
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('ask') === 'real-don') {
+      setTimeout(function () { openModal(null); }, 250);
+    }
+  } catch (e) {}
+
 })();
