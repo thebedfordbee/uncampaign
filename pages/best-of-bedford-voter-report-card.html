@@ -574,6 +574,36 @@
         box-shadow: var(--shadow-sm);
       }
     }
+
+    /* ── Loading / progress state ── */
+    .vrc-loading-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+    }
+    .vrc-loading-card[hidden] { display: none; }
+    .vrc-loading-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-top-color: var(--moss);
+      border-radius: 50%;
+      animation: vrc-spin 0.9s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes vrc-spin { to { transform: rotate(360deg); } }
+    .vrc-loading-status {
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      margin: 0;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
@@ -690,6 +720,12 @@
 
             <div class="vrc-form__msg vrc-form__msg--error" id="vrc-msg-error" role="alert"></div>
             <div class="vrc-form__msg vrc-form__msg--info" id="vrc-msg-info" role="alert"></div>
+
+            <!-- Progress card — shown while lookup is running, hidden on result -->
+            <div class="vrc-loading-card" id="vrc-loading-card" hidden>
+              <span class="vrc-loading-spinner" aria-hidden="true"></span>
+              <p class="vrc-loading-status" id="vrc-loading-status" aria-live="polite" aria-atomic="true">Checking public voter-history records…</p>
+            </div>
 
           </form>
         </div>
@@ -880,7 +916,9 @@
     var submitBtn  = document.getElementById('vrc-submit-btn');
     var msgError   = document.getElementById('vrc-msg-error');
     var msgInfo    = document.getElementById('vrc-msg-info');
-    var resultsDiv = document.getElementById('vrc-results');
+    var resultsDiv    = document.getElementById('vrc-results');
+    var loadingCard   = document.getElementById('vrc-loading-card');
+    var loadingStatus = document.getElementById('vrc-loading-status');
 
     /* ── Utility: clear messages ── */
     function clearMsgs() {
@@ -900,6 +938,33 @@
       clearMsgs();
       msgInfo.textContent = msg;
       msgInfo.classList.add('is-visible');
+    }
+
+    /* ── Loading / progress state ── */
+    var LOADING_MSGS = [
+      'Checking public voter-history records…',
+      'Matching your lookup securely…',
+      'Reviewing turnout history…',
+      'Reading voting method records…',
+      'Finding your polling place…',
+      'Calculating your report card…'
+    ];
+    var loadingTimer   = null;
+    var loadingMsgIdx  = 0;
+
+    function startLoading() {
+      loadingMsgIdx = 0;
+      loadingStatus.textContent = LOADING_MSGS[0];
+      loadingCard.hidden = false;
+      loadingTimer = setInterval(function () {
+        loadingMsgIdx = (loadingMsgIdx + 1) % LOADING_MSGS.length;
+        loadingStatus.textContent = LOADING_MSGS[loadingMsgIdx];
+      }, 2500);
+    }
+
+    function stopLoading() {
+      if (loadingTimer) { clearInterval(loadingTimer); loadingTimer = null; }
+      loadingCard.hidden = true;
     }
 
     /* ── DOB format validation ── */
@@ -947,7 +1012,8 @@
       }
 
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Looking up…';
+      submitBtn.textContent = 'GENERATING REPORT CARD…';
+      startLoading();
 
       try {
         const response = await fetch(VOTER_REPORT_CARD_ENDPOINT, {
@@ -980,6 +1046,7 @@
         showError('Something went wrong with the lookup. Please try again later.');
         console.error('VRC lookup error:', err);
       } finally {
+        stopLoading();
         submitBtn.disabled = false;
         submitBtn.textContent = 'Look Up My Record';
       }
@@ -1133,7 +1200,9 @@
       };
 
       /* Share link hrefs — no personal data in URLs */
-      var shareText    = 'I got a ' + grade + ' on the Bedford Voter Report Card. My recent turnout score was ' + (turnout !== null ? turnout : '—') + '%. Check your own.';
+      var shareText = turnout !== null
+        ? 'I got an ' + grade + ' on the Bedford Voter Report Card with a ' + turnout + '% turnout score. Get yours.'
+        : 'I got an ' + grade + ' on the Bedford Voter Report Card. Get yours.';
       var encodedUrl   = encodeURIComponent(PAGE_URL);
       var encodedShare = encodeURIComponent(shareText);
       /*

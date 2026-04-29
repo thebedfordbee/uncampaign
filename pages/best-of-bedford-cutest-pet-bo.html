@@ -15,15 +15,20 @@
   <meta property="og:title" content="Vote for Bo | Cutest Pet in Bedford">
   <meta property="og:description" content="Vote for Bo in Best of Bedford: Cutest Pet in Bedford.">
   <meta property="og:image" content="https://www.donforbedford.com/assets/img/pets/bo.png">
+  <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/pets/bo.png">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="1600">
   <meta property="og:image:alt" content="Bo — Best of Bedford: Cutest Pet in Bedford">
   <meta property="og:site_name" content="Don Scott for Bedford">
   <meta property="og:locale" content="en_US">
 
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.donforbedford.com/best-of-bedford-cutest-pet-bo">
   <meta name="twitter:title" content="Vote for Bo | Cutest Pet in Bedford">
   <meta name="twitter:description" content="Vote for Bo in Best of Bedford: Cutest Pet in Bedford.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/pets/bo.png">
+  <meta name="twitter:image:alt" content="Bo — Best of Bedford: Cutest Pet in Bedford">
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -33,8 +38,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta name="theme-color" content="#4A5240">
 
-  <!-- Immediate redirect for human visitors; crawlers read OG tags above -->
-  <meta http-equiv="refresh" content="0; url=https://www.donforbedford.com/best-of-bedford-cutest-pet#pet-bo">
+  <!-- Delayed redirect — gives crawlers time to parse OG/Twitter metadata before following.
+       Use Meta Sharing Debugger "Scrape Again" after deploy if Facebook shows a stale preview.
+       X/Twitter may also cache cards; allow time before rechecking. -->
+  <meta http-equiv="refresh" content="2; url=https://www.donforbedford.com/best-of-bedford-cutest-pet#pet-bo">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7WVQR4MTH"></script>
@@ -116,6 +123,6 @@
     <a class="pet-redirect__btn" href="https://www.donforbedford.com/best-of-bedford-cutest-pet#pet-bo">Vote for Bo</a>
     <p class="pet-redirect__note">Redirecting you now…</p>
   </div>
-  <script>window.location.replace('https://www.donforbedford.com/best-of-bedford-cutest-pet#pet-bo');</script>
+  <script>setTimeout(function(){window.location.replace('https://www.donforbedford.com/best-of-bedford-cutest-pet#pet-bo');},1500);</script>
 </body>
 </html>
