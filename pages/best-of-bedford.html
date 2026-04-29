@@ -131,6 +131,7 @@
 
   <style>
     /* ── Justified body copy — paragraphs, card descs, explainer copy ── */
+    .issues-hero__deck,
     .bob-series-body p,
     .bob-series-card__desc,
     .issues-explainer__why p {
@@ -139,6 +140,7 @@
     }
     /* Revert on very narrow screens to avoid ugly spacing gaps */
     @media (max-width: 380px) {
+      .issues-hero__deck,
       .bob-series-body p,
       .bob-series-card__desc,
       .issues-explainer__why p {
@@ -149,6 +151,10 @@
     /* Override max-width cap so explainer paragraphs fill their column */
     .issues-explainer__why p { max-width: none; }
     .bob-series-body p { max-width: none; }
+
+    /* ── Match "Why This Matters" heading/paragraph rhythm ── */
+    .bob-series-body h2 { margin-top: 0.5rem; margin-bottom: 1rem; }
+    .bob-series-body p { color: var(--muted); margin-bottom: 0.875rem; }
 
     /* ── Series card grid ─────────────────────────────────── */
     .bob-series-grid {
