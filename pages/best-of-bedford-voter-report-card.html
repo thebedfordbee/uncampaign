@@ -624,7 +624,7 @@
               </div>
             </div>
 
-            <p class="vrc-form__helper">These fields match how your address appears on your voter registration. If the lookup does not find you, try checking your registration at the Westchester Board of Elections.</p>
+            <p class="vrc-form__helper">Enter the street name only. For example, use "Main" instead of "Main Street."</p>
 
             <button type="submit" class="btn btn--primary vrc-form__submit" id="vrc-submit-btn">Look Up My Record</button>
 
@@ -826,6 +826,26 @@
     function isValidDob(val) {
       return /^\d{2}\/\d{2}\/\d{4}$/.test(val.trim());
     }
+
+    /* ── DOB input mask: digits only, auto-insert slashes MM/DD/YYYY ── */
+    (function () {
+      var dob = document.getElementById('vrc-dob');
+      dob.addEventListener('keydown', function (e) {
+        var nav = ['Backspace','Delete','Tab','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'];
+        if (nav.indexOf(e.key) !== -1) return;
+        if (!e.metaKey && !e.ctrlKey && !/^\d$/.test(e.key)) { e.preventDefault(); }
+      });
+      dob.addEventListener('input', function () {
+        var digits = this.value.replace(/\D/g, '').slice(0, 8);
+        var out = digits;
+        if (digits.length > 4) {
+          out = digits.slice(0, 2) + '/' + digits.slice(2, 4) + '/' + digits.slice(4);
+        } else if (digits.length > 2) {
+          out = digits.slice(0, 2) + '/' + digits.slice(2);
+        }
+        this.value = out;
+      });
+    }());
 
     /* ── Form submit ── */
     form.addEventListener('submit', function (e) {
