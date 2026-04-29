@@ -325,73 +325,97 @@
     }
 
     /* =============================================
-       VBC — compact vertical bar chart (footnote)
+       SPC — inline spend comparator
        ============================================= */
-    .vbc {
+    .spc {
       margin-top: 1.625rem;
-      display: block;
     }
-    .vbc__title {
+    .spc__heading {
       font-size: 0.8125rem;
+      font-weight: 600;
       color: var(--charcoal);
-      font-style: italic;
       margin-bottom: 0.625rem;
       max-width: none;
-      line-height: 1.45;
+      line-height: 1.4;
     }
-    .vbc__bars {
-      display: flex;
-      align-items: flex-end;
-      height: 96px;
-      gap: 5px;
-      border-bottom: 1px solid var(--border);
+    .spc__label {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
     }
-    .vbc__col {
-      flex: 1;
-      display: flex;
-      align-items: flex-end;
-      height: 100%;
-    }
-    .vbc__bar {
+    .spc__select {
       width: 100%;
-      border-radius: 2px 2px 0 0;
-      min-height: 2px;
+      padding: 0.4375rem 0.625rem;
+      font-size: 0.8125rem;
+      font-family: inherit;
+      color: var(--charcoal);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
     }
-    .vbc__bar--a   { background: rgba(62,82,64,0.50); }
-    .vbc__bar--b   { background: rgba(62,82,64,0.25); }
-    .vbc__bar--c   { background: rgba(62,82,64,0.38); }
-    .vbc__bar--don { background: var(--moss); min-height: 3px; }
-    .vbc__lrow {
-      display: flex;
-      gap: 5px;
-      margin-top: 4px;
+    .spc__select:focus-visible {
+      outline: 2px solid var(--moss);
+      outline-offset: 2px;
     }
-    .vbc__lrow span {
-      flex: 1;
-      text-align: center;
-      line-height: 1.25;
-      font-variant-numeric: tabular-nums;
+    .spc__result {
+      margin-top: 1rem;
+    }
+    .spc__row {
+      display: grid;
+      grid-template-columns: 5.5rem 1fr auto;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4375rem;
+    }
+    .spc__row-label {
+      font-size: 0.6875rem;
+      color: var(--muted);
+      line-height: 1.3;
+      white-space: nowrap;
       overflow: hidden;
-      word-break: break-word;
+      text-overflow: ellipsis;
     }
-    .vbc__lrow--amt span {
-      font-size: 0.5625rem;
-      color: var(--muted);
+    .spc__track {
+      height: 0.6875rem;
+      background: rgba(224,219,211,0.6);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .spc__bar {
+      height: 100%;
+      border-radius: 1px;
+      transition: width 0.3s ease;
+    }
+    .spc__bar--other { background: rgba(62,82,64,0.40); }
+    .spc__bar--don   { background: var(--moss); min-width: 3px; }
+    .spc__amount {
+      font-size: 0.6875rem;
       font-weight: 600;
+      color: var(--charcoal);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
     }
-    .vbc__lrow--race span {
-      font-size: 0.5rem;
+    .spc__amount--don { color: var(--moss); }
+    .spc__multiplier {
+      font-size: 0.8125rem;
       color: var(--muted);
-      opacity: 0.65;
+      margin-top: 0.75rem;
+      max-width: none;
+      line-height: 1.5;
     }
-    .vbc__ldon { color: var(--moss) !important; opacity: 1 !important; font-weight: 700 !important; }
-    .vbc__caption {
+    .spc__multiplier strong { color: var(--charcoal); }
+    .spc__caption {
       font-size: 0.6875rem;
       color: var(--muted);
       font-style: italic;
-      margin-top: 0.625rem;
-      display: block;
+      margin-top: 0.5rem;
       max-width: none;
+    }
+    @media (max-width: 360px) {
+      .spc__row { grid-template-columns: 4.5rem 1fr auto; }
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -601,35 +625,39 @@
               paid ads, or a campaign machine.
             </p>
 
-            <!-- Compact footnote chart — log-scale vertical bars -->
-            <figure class="vbc" aria-label="Campaign spending comparison: Mayoral race incumbents spent $57.5M and $22.5M; Congressional race $8.26M and $9.99M; Bedford Supervisor incumbent $15,750; Don Scott less than $49.99">
-              <p class="vbc__title">Other races on the same ballot spend real money.</p>
-              <div class="vbc__bars" aria-hidden="true">
-                <div class="vbc__col"><div class="vbc__bar vbc__bar--a" style="height:96.6%"></div></div>
-                <div class="vbc__col"><div class="vbc__bar vbc__bar--b" style="height:90.7%"></div></div>
-                <div class="vbc__col"><div class="vbc__bar vbc__bar--a" style="height:84.5%"></div></div>
-                <div class="vbc__col"><div class="vbc__bar vbc__bar--b" style="height:85.7%"></div></div>
-                <div class="vbc__col"><div class="vbc__bar vbc__bar--c" style="height:45.7%"></div></div>
-                <div class="vbc__col"><div class="vbc__bar vbc__bar--don" style="height:10%"></div></div>
+            <!-- Interactive spend comparator -->
+            <div class="spc" id="spend-comparator">
+              <p class="spc__heading">Compare Don&#8217;s $49.99 campaign cap to:</p>
+              <div class="spc__control">
+                <label class="spc__label" for="spc-select">Choose a candidate on the same ballot</label>
+                <select class="spc__select" id="spc-select">
+                  <option value="0" selected>Bedford Supervisor Incumbent &#8212; $15,750+</option>
+                  <option value="1">NY Mayoral Incumbent &#8212; $57,500,000</option>
+                  <option value="2">NY Mayoral Challenger &#8212; $22,500,000</option>
+                  <option value="3">Congressional Incumbent &#8212; $8,260,000</option>
+                  <option value="4">Congressional Challenger &#8212; $9,990,000</option>
+                  <option value="5">Don Scott &#8212; $49.99</option>
+                </select>
               </div>
-              <div class="vbc__lrow vbc__lrow--amt" aria-hidden="true">
-                <span>$57.5M</span>
-                <span>$22.5M</span>
-                <span>$8.26M</span>
-                <span>$9.99M</span>
-                <span>$15,750</span>
-                <span class="vbc__ldon">&lt;$49.99</span>
+              <div class="spc__result" aria-live="polite" aria-atomic="true">
+                <div class="spc__row spc__row--other">
+                  <span class="spc__row-label" id="spc-other-name">Supvr. Inc.</span>
+                  <div class="spc__track">
+                    <div class="spc__bar spc__bar--other" id="spc-other-bar" style="width:100%"></div>
+                  </div>
+                  <span class="spc__amount" id="spc-other-amt">$15,750+</span>
+                </div>
+                <div class="spc__row spc__row--don" id="spc-don-row">
+                  <span class="spc__row-label">Don Scott</span>
+                  <div class="spc__track">
+                    <div class="spc__bar spc__bar--don" id="spc-don-bar" style="width:0.32%"></div>
+                  </div>
+                  <span class="spc__amount spc__amount--don">&lt;$49.99</span>
+                </div>
+                <p class="spc__multiplier" id="spc-multiplier">That equals about <strong>315</strong> Don campaigns.</p>
               </div>
-              <div class="vbc__lrow vbc__lrow--race" aria-hidden="true">
-                <span>Mayor</span>
-                <span>Mayor</span>
-                <span>Cong.</span>
-                <span>Cong.</span>
-                <span>Supvr.</span>
-                <span class="vbc__ldon">Don</span>
-              </div>
-              <figcaption class="vbc__caption">Scale is compressed so Don's bar can technically be seen.</figcaption>
-            </figure>
+              <p class="spc__caption">The scale changes by selection. Don&#8217;s cap does not.</p>
+            </div>
 
           </div>
 
@@ -894,6 +922,53 @@
       var d = new Date();
       dateEl.textContent = 'Daily transparency tracker. Current through: ' +
         d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + '.';
+    })();
+
+    (function() {
+      var candidates = [
+        { abbr: 'Supvr. Inc.',  display: '$15,750+',    amount: 15750,    multiplier: 315 },
+        { abbr: 'Mayor Inc.',   display: '$57,500,000', amount: 57500000, multiplier: 1150230 },
+        { abbr: 'Mayor Chl.',   display: '$22,500,000', amount: 22500000, multiplier: 450090 },
+        { abbr: 'Cong. Inc.',   display: '$8,260,000',  amount: 8260000,  multiplier: 165233 },
+        { abbr: 'Cong. Chl.',   display: '$9,990,000',  amount: 9990000,  multiplier: 199840 },
+        { abbr: 'Don Scott',    display: '<$49.99',     amount: 49.99,    multiplier: 1 }
+      ];
+
+      var sel      = document.getElementById('spc-select');
+      var nameEl   = document.getElementById('spc-other-name');
+      var amtEl    = document.getElementById('spc-other-amt');
+      var otherBar = document.getElementById('spc-other-bar');
+      var donRow   = document.getElementById('spc-don-row');
+      var donBar   = document.getElementById('spc-don-bar');
+      var multEl   = document.getElementById('spc-multiplier');
+
+      if (!sel) return;
+
+      function update() {
+        var c = candidates[parseInt(sel.value, 10)];
+        nameEl.textContent = c.abbr;
+        amtEl.textContent  = c.display;
+
+        if (c.multiplier === 1) {
+          donRow.hidden        = true;
+          otherBar.style.width = '100%';
+          otherBar.className   = 'spc__bar spc__bar--don';
+          amtEl.className      = 'spc__amount spc__amount--don';
+          multEl.innerHTML     = "That’s one campaign. This one.";
+        } else {
+          donRow.hidden        = false;
+          otherBar.style.width = '100%';
+          otherBar.className   = 'spc__bar spc__bar--other';
+          amtEl.className      = 'spc__amount';
+          var pct              = (49.99 / c.amount) * 100;
+          donBar.style.width   = pct + '%';
+          multEl.innerHTML     = 'That equals about <strong>' +
+            c.multiplier.toLocaleString() + '</strong> Don campaigns.';
+        }
+      }
+
+      sel.addEventListener('change', update);
+      update();
     })();
   </script>
   <script src="assets/js/site.js"></script>
