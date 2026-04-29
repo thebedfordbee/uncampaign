@@ -1008,7 +1008,7 @@
                   </a>
                   <button id="modal-copy-btn" class="btn btn--secondary btc-share-btn-social" type="button">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                    Copy result
+                    Copy Link
                   </button>
                 </div>
               </div>
@@ -1574,26 +1574,46 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
       renderHamlet();
     }
 
-    function openModalPhase2(wpm, rank, submitted) {
+    function openModalPhase2(wpm, rank, submitted, hamlet) {
       if (modalPhase1) modalPhase1.setAttribute('hidden', '');
       if (modalPhase2) modalPhase2.removeAttribute('hidden');
       if (modalFinalWpmEl) modalFinalWpmEl.textContent = wpm;
       if (modalPhase2Eyebrow) modalPhase2Eyebrow.textContent = submitted ? "You're on the board" : 'Round complete';
+
+      // Derive display town from hamlet (strip privacy-preference values)
+      var displayTown = (hamlet === 'Bedford Village' || hamlet === 'Bedford Hills' || hamlet === 'Katonah')
+        ? hamlet : 'Bedford';
+
       if (modalRankMsg) {
         modalRankMsg.innerHTML = submitted
-          ? 'You are currently <strong>#' + rank + ' in Bedford</strong>.'
+          ? 'You are currently <strong>#' + rank + ' in ' + displayTown + '</strong>.'
           : 'Score not submitted to the public leaderboard.';
       }
 
-      var shareUrl  = 'https://www.donforbedford.com/best-of-bedford';
-      var shareText = 'I scored ' + wpm + ' WPM and ranked #' + rank + ' in the Bedford Typing Challenge. Can you beat me? ' + shareUrl;
-
       if (modalShareRow) {
         if (submitted) {
+          // Build the unique result URL — server-rendered OG tags live here
+          var resultUrl = 'https://www.donforbedford.com/result?wpm=' + wpm +
+            '&rank=' + rank + '&town=' + encodeURIComponent(displayTown);
+
+          // X/Twitter share text (prefilled)
+          var xText = 'I typed ' + wpm + ' WPM, which puts me at #' + rank +
+            ' in ' + displayTown + ' on the Bedford Typing Challenge. Can you beat me?';
+
           modalShareRow.removeAttribute('hidden');
-          if (modalShareFb) modalShareFb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl) + '&quote=' + encodeURIComponent('I scored ' + wpm + ' WPM and ranked #' + rank + ' in the Bedford Typing Challenge. Can you beat me?');
-          if (modalShareX)  modalShareX.href  = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText);
-          if (modalCopyBtn) modalCopyBtn.onclick = function () { copyToClipboard(shareText, modalCopyBtn); };
+
+          // Facebook: URL only — OG tags on the result page supply the preview
+          if (modalShareFb) modalShareFb.href =
+            'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(resultUrl);
+
+          // X/Twitter: text + URL (text is prefilled, URL triggers card)
+          if (modalShareX) modalShareX.href =
+            'https://twitter.com/intent/tweet?text=' + encodeURIComponent(xText) +
+            '&url=' + encodeURIComponent(resultUrl);
+
+          // Copy Link: copy just the result URL
+          if (modalCopyBtn) modalCopyBtn.onclick = function () { copyToClipboard(resultUrl, modalCopyBtn); };
+
         } else {
           modalShareRow.setAttribute('hidden', '');
         }
@@ -1744,7 +1764,7 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
     if (modalSkipBtn) {
       modalSkipBtn.addEventListener('click', function () {
         if (!pendingResult) return;
-        openModalPhase2(pendingResult.wpm, getRank(pendingResult.wpm, pendingResult.accuracy), false);
+        openModalPhase2(pendingResult.wpm, getRank(pendingResult.wpm, pendingResult.accuracy), false, null);
       });
     }
 
@@ -1809,7 +1829,7 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
             fetchLiveScores().then(function (scores) {
               liveScoreCache = scores;
               var rank = getRank(score.wpm, score.accuracy);
-              openModalPhase2(score.wpm, rank, true);
+              openModalPhase2(score.wpm, rank, true, score.hamlet);
             });
           } else {
             onModalSubmitFail('The leaderboard did not update. Your score is saved on this device. (' + raw + ')');
