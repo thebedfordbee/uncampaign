@@ -325,26 +325,34 @@
     }
 
     /* =============================================
-       SPC — inline spend comparator
+       SPEND-SCALE — circle area comparator
        ============================================= */
-    .spc {
+    .spend-scale {
       margin-top: 1.625rem;
     }
-    .spc__heading {
-      font-size: 0.8125rem;
-      font-weight: 600;
+    .spend-scale__title {
+      font-size: 0.6875rem;
+      font-weight: 700;
       color: var(--charcoal);
-      margin-bottom: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 0.375rem;
       max-width: none;
-      line-height: 1.4;
     }
-    .spc__label {
+    .spend-scale__intro {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+      max-width: none;
+    }
+    .spend-scale__label {
       display: block;
       font-size: 0.75rem;
       color: var(--muted);
       margin-bottom: 0.3rem;
     }
-    .spc__select {
+    .spend-scale__select {
       width: 100%;
       padding: 0.4375rem 0.625rem;
       font-size: 0.8125rem;
@@ -355,67 +363,69 @@
       border-radius: var(--radius);
       cursor: pointer;
     }
-    .spc__select:focus-visible {
+    .spend-scale__select:focus-visible {
       outline: 2px solid var(--moss);
       outline-offset: 2px;
     }
-    .spc__result {
-      margin-top: 1rem;
+    .spend-scale__visual {
+      max-width: 260px;
+      margin: 0.625rem 0 0.125rem;
     }
-    .spc__row {
-      display: grid;
-      grid-template-columns: 5.5rem 1fr auto;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.4375rem;
+    .spend-scale__visual svg { display: block; }
+    .ssc-race-fill {
+      fill: rgba(224,219,211,0.65);
+      stroke: rgba(62,82,64,0.20);
+      stroke-width: 0.75;
+      transition: r 0.4s ease;
     }
-    .spc__row-label {
-      font-size: 0.6875rem;
-      color: var(--muted);
-      line-height: 1.3;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .ssc-don-fill {
+      fill: var(--moss);
+      transition: cx 0.4s ease, cy 0.4s ease;
     }
-    .spc__track {
-      height: 0.6875rem;
-      background: rgba(224,219,211,0.6);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      overflow: hidden;
+    .ssc-don-text {
+      font-size: 9px;
+      fill: var(--moss);
+      font-family: var(--sans);
     }
-    .spc__bar {
-      height: 100%;
-      border-radius: 1px;
-      transition: width 0.3s ease;
+    .spend-scale__result {
+      margin-top: 0.25rem;
     }
-    .spc__bar--other { background: rgba(62,82,64,0.40); }
-    .spc__bar--don   { background: var(--moss); min-width: 3px; }
-    .spc__amount {
-      font-size: 0.6875rem;
-      font-weight: 600;
-      color: var(--charcoal);
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-    }
-    .spc__amount--don { color: var(--moss); }
-    .spc__multiplier {
+    .spend-scale__stat {
       font-size: 0.8125rem;
       color: var(--muted);
-      margin-top: 0.75rem;
+      line-height: 1.5;
+      max-width: none;
+    }
+    .spend-scale__stat strong { color: var(--charcoal); }
+    .spend-scale__don-amt    { color: var(--moss); font-weight: 600; }
+    .spend-scale__multiplier {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin-top: 0.375rem;
       max-width: none;
       line-height: 1.5;
     }
-    .spc__multiplier strong { color: var(--charcoal); }
-    .spc__caption {
+    .spend-scale__multiplier strong { color: var(--charcoal); }
+    .spend-scale__note {
       font-size: 0.6875rem;
       color: var(--muted);
       font-style: italic;
-      margin-top: 0.5rem;
+      margin-top: 0.625rem;
       max-width: none;
     }
-    @media (max-width: 360px) {
-      .spc__row { grid-template-columns: 4.5rem 1fr auto; }
+    .spend-scale__caption {
+      font-size: 0.6875rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 0.2rem;
+      max-width: none;
+    }
+
+    /* Transparency date — two-line split */
+    .transparency-date__line2 {
+      display: block;
+      font-style: italic;
+      opacity: 0.75;
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -625,38 +635,35 @@
               paid ads, or a campaign machine.
             </p>
 
-            <!-- Interactive spend comparator -->
-            <div class="spc" id="spend-comparator">
-              <p class="spc__heading">Compare Don&#8217;s $49.99 campaign cap to:</p>
-              <div class="spc__control">
-                <label class="spc__label" for="spc-select">Choose a candidate on the same ballot</label>
-                <select class="spc__select" id="spc-select">
-                  <option value="0" selected>Bedford Supervisor Incumbent &#8212; $15,750+</option>
-                  <option value="1">NY Mayoral Incumbent &#8212; $57,500,000</option>
-                  <option value="2">NY Mayoral Challenger &#8212; $22,500,000</option>
-                  <option value="3">Congressional Incumbent &#8212; $8,260,000</option>
-                  <option value="4">Congressional Challenger &#8212; $9,990,000</option>
-                  <option value="5">Don Scott &#8212; $49.99</option>
+            <!-- Circle-area spending comparator -->
+            <div class="spend-scale" id="spend-scale">
+              <p class="spend-scale__title">See The Scale</p>
+              <p class="spend-scale__intro">Choose a race on the same November ballot and compare typical campaign spending to Don&#8217;s $49.99 cap.</p>
+              <div class="spend-scale__control">
+                <label class="spend-scale__label" for="ssc-select">Select a race</label>
+                <select class="spend-scale__select" id="ssc-select">
+                  <option value="0" selected>Governor</option>
+                  <option value="1">Congressional</option>
+                  <option value="2">State Senate</option>
+                  <option value="3">State Assembly</option>
+                  <option value="4">Judicial</option>
+                  <option value="5">Town Supervisor</option>
                 </select>
               </div>
-              <div class="spc__result" aria-live="polite" aria-atomic="true">
-                <div class="spc__row spc__row--other">
-                  <span class="spc__row-label" id="spc-other-name">Supvr. Inc.</span>
-                  <div class="spc__track">
-                    <div class="spc__bar spc__bar--other" id="spc-other-bar" style="width:100%"></div>
-                  </div>
-                  <span class="spc__amount" id="spc-other-amt">$15,750+</span>
-                </div>
-                <div class="spc__row spc__row--don" id="spc-don-row">
-                  <span class="spc__row-label">Don Scott</span>
-                  <div class="spc__track">
-                    <div class="spc__bar spc__bar--don" id="spc-don-bar" style="width:0.32%"></div>
-                  </div>
-                  <span class="spc__amount spc__amount--don">&lt;$49.99</span>
-                </div>
-                <p class="spc__multiplier" id="spc-multiplier">That equals about <strong>315</strong> Don campaigns.</p>
+              <div class="spend-scale__visual" aria-hidden="true">
+                <svg id="ssc-svg" viewBox="0 0 260 180" width="100%" focusable="false">
+                  <circle id="ssc-race-circle" class="ssc-race-fill" cx="130" cy="90" r="70"/>
+                  <circle id="ssc-don-dot"    class="ssc-don-fill"  cx="179.5" cy="139.5" r="2.5"/>
+                  <text   id="ssc-don-label"  class="ssc-don-text"  x="184" y="142">Don: &lt;$49.99</text>
+                </svg>
               </div>
-              <p class="spc__caption">The scale changes by selection. Don&#8217;s cap does not.</p>
+              <div class="spend-scale__result" aria-live="polite" aria-atomic="true">
+                <p class="spend-scale__stat">Typical <span id="ssc-race-name">Governor</span> spend: <strong id="ssc-race-spend">$8,000,000</strong></p>
+                <p class="spend-scale__stat">Don&#8217;s cap: <strong class="spend-scale__don-amt">&lt;$49.99</strong></p>
+                <p class="spend-scale__multiplier">That is about <strong id="ssc-multiplier">160,032</strong> Don campaigns.</p>
+              </div>
+              <p class="spend-scale__note">Comparison uses rounded historical spending estimates for context.</p>
+              <p class="spend-scale__caption">Circle areas are scaled to spending. Don&#8217;s dot has a minimum visible size.</p>
             </div>
 
           </div>
@@ -920,54 +927,56 @@
       var dateEl = document.getElementById('transparency-date');
       if (!dateEl) return;
       var d = new Date();
-      dateEl.textContent = 'Daily transparency tracker. Current through: ' +
-        d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + '.';
+      var dateStr = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      dateEl.innerHTML = 'Daily transparency tracker.' +
+        '<span class="transparency-date__line2">Current through: ' + dateStr + '.</span>';
     })();
 
     (function() {
-      var candidates = [
-        { abbr: 'Supvr. Inc.',  display: '$15,750+',    amount: 15750,    multiplier: 315 },
-        { abbr: 'Mayor Inc.',   display: '$57,500,000', amount: 57500000, multiplier: 1150230 },
-        { abbr: 'Mayor Chl.',   display: '$22,500,000', amount: 22500000, multiplier: 450090 },
-        { abbr: 'Cong. Inc.',   display: '$8,260,000',  amount: 8260000,  multiplier: 165233 },
-        { abbr: 'Cong. Chl.',   display: '$9,990,000',  amount: 9990000,  multiplier: 199840 },
-        { abbr: 'Don Scott',    display: '<$49.99',     amount: 49.99,    multiplier: 1 }
+      var races = [
+        { label: ‘Governor’,        spend: 8000000, fmt: ‘$8,000,000’, mult: 160032 },
+        { label: ‘Congressional’,   spend: 3500000, fmt: ‘$3,500,000’, mult: 70014  },
+        { label: ‘State Senate’,    spend: 600000,  fmt: ‘$600,000’,   mult: 12002  },
+        { label: ‘State Assembly’,  spend: 175000,  fmt: ‘$175,000’,   mult: 3501   },
+        { label: ‘Judicial’,        spend: 45000,   fmt: ‘$45,000’,    mult: 901    },
+        { label: ‘Town Supervisor’, spend: 15000,   fmt: ‘$15,000’,    mult: 300    }
       ];
 
-      var sel      = document.getElementById('spc-select');
-      var nameEl   = document.getElementById('spc-other-name');
-      var amtEl    = document.getElementById('spc-other-amt');
-      var otherBar = document.getElementById('spc-other-bar');
-      var donRow   = document.getElementById('spc-don-row');
-      var donBar   = document.getElementById('spc-don-bar');
-      var multEl   = document.getElementById('spc-multiplier');
+      var MAX_SPEND = 8000000;
+      var MAX_R     = 70;
+      var DON_R     = 2.5;
+      var CX = 130, CY = 90;
 
-      if (!sel) return;
+      var selEl       = document.getElementById(‘ssc-select’);
+      var raceCircEl  = document.getElementById(‘ssc-race-circle’);
+      var donDotEl    = document.getElementById(‘ssc-don-dot’);
+      var donLblEl    = document.getElementById(‘ssc-don-label’);
+      var raceNameEl  = document.getElementById(‘ssc-race-name’);
+      var raceSpendEl = document.getElementById(‘ssc-race-spend’);
+      var multEl      = document.getElementById(‘ssc-multiplier’);
+
+      if (!selEl) return;
 
       function update() {
-        var c = candidates[parseInt(sel.value, 10)];
-        nameEl.textContent = c.abbr;
-        amtEl.textContent  = c.display;
+        var r   = races[parseInt(selEl.value, 10)];
+        var rr  = Math.sqrt(r.spend / MAX_SPEND) * MAX_R;
+        var ang = Math.PI / 4;
+        var dCx = CX + rr * Math.cos(ang);
+        var dCy = CY + rr * Math.sin(ang);
 
-        if (c.multiplier === 1) {
-          donRow.hidden        = true;
-          otherBar.style.width = '100%';
-          otherBar.className   = 'spc__bar spc__bar--don';
-          amtEl.className      = 'spc__amount spc__amount--don';
-          multEl.innerHTML     = "That’s one campaign. This one.";
-        } else {
-          donRow.hidden        = false;
-          otherBar.style.width = '100%';
-          otherBar.className   = 'spc__bar spc__bar--other';
-          amtEl.className      = 'spc__amount';
-          var pct              = (49.99 / c.amount) * 100;
-          donBar.style.width   = pct + '%';
-          multEl.innerHTML     = 'That equals about <strong>' +
-            c.multiplier.toLocaleString() + '</strong> Don campaigns.';
-        }
+        raceCircEl.style.r = rr.toFixed(2) + ‘px’;
+        donDotEl.style.cx  = dCx.toFixed(2) + ‘px’;
+        donDotEl.style.cy  = dCy.toFixed(2) + ‘px’;
+        donDotEl.style.r   = DON_R + ‘px’;
+        donLblEl.setAttribute(‘x’, (dCx + DON_R + 2).toFixed(2));
+        donLblEl.setAttribute(‘y’, (dCy + DON_R + 3).toFixed(2));
+
+        raceNameEl.textContent  = r.label;
+        raceSpendEl.textContent = r.fmt;
+        multEl.textContent      = r.mult.toLocaleString();
       }
 
-      sel.addEventListener('change', update);
+      selEl.addEventListener(‘change’, update);
       update();
     })();
   </script>
