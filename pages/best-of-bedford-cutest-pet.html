@@ -118,26 +118,28 @@
   <style>
     /* ── Justified body copy ── */
     .issues-hero__deck,
-    .pet-intro-body p,
+    .bob-series-body p,
     .section-header__lead,
     .pet-card__desc,
     .pet-form__note,
-    .pet-submit-section .pet-form-wrap > p,
     .ai-disclosure-body p {
       text-align: justify;
       hyphens: auto;
     }
-    .pet-intro-body p { max-width: none; }
+    .bob-series-body p { max-width: none; }
     @media (max-width: 380px) {
       .issues-hero__deck,
-      .pet-intro-body p,
+      .bob-series-body p,
       .section-header__lead,
       .pet-card__desc,
       .pet-form__note,
-      .pet-submit-section .pet-form-wrap > p,
       .ai-disclosure-body p { text-align: left; hyphens: none; }
     }
     .ai-disclosure-body p { max-width: none; }
+
+    /* ── Intro body rhythm (matches /best-of-bedford reference) ── */
+    .bob-series-body h2 { margin-top: 0.5rem; margin-bottom: 1rem; }
+    .bob-series-body p  { color: var(--muted); margin-bottom: 0.875rem; }
 
     /* ── Category tabs ── */
     .pet-tabs {
@@ -302,10 +304,9 @@
     .pet-share-btn:hover { color: var(--charcoal); background: var(--cream); }
 
     /* ── Submission form ── */
-    .pet-submit-section { background: var(--cream); }
-
     .pet-form-wrap {
       max-width: 640px;
+      margin-inline: auto;
     }
 
     .pet-form {
@@ -521,7 +522,23 @@
       box-shadow: 0 8px 40px rgba(0,0,0,0.3);
       max-width: 540px;
       width: 100%;
-      overflow: hidden;
+      overflow: visible; /* allows share dropdown to escape panel bounds */
+    }
+    .pet-modal__img-wrap {
+      border-radius: 10px 10px 0 0; /* clip top corners since panel no longer does */
+    }
+    .pet-modal__actions {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-top: 1rem;
+      padding-top: 0.875rem;
+      border-top: 1px solid var(--border);
+    }
+    /* In modal, share menu opens downward (upward would exit modal) */
+    .pet-modal__actions .pet-share-menu {
+      bottom: auto;
+      top: calc(100% + 6px);
     }
     .pet-modal__close {
       position: absolute;
@@ -653,13 +670,11 @@
     <!-- INTRO -->
     <section class="section section--alt" aria-labelledby="pet-intro-h2">
       <div class="container">
-        <div>
+        <div class="bob-series-body">
           <p class="eyebrow">A Civic Participation Challenge</p>
           <h2 id="pet-intro-h2">Democracy. Pets. Bedford.</h2>
-          <div class="pet-intro-body">
-            <p>This is a Best of Bedford community challenge built around a simple idea: civic participation does not always have to start with a public hearing. Sometimes it can start with a dog, a cat, a horse, a lizard, or one deeply photogenic gerbil.</p>
-            <p>Submit your pet below. Once reviewed, approved pets will be added to the gallery manually. Visitors can browse by category and vote for their favorites. No downvotes. Bedford has enough of that already.</p>
-          </div>
+          <p>This is a Best of Bedford community challenge built around a simple idea: civic participation does not always have to start with a public hearing. Sometimes it can start with a dog, a cat, a horse, a lizard, or one deeply photogenic gerbil.</p>
+          <p>Submit your pet below. Once reviewed, approved pets will be added to the gallery manually. Visitors can browse by category and vote for their favorites. No downvotes. Bedford has enough of that already.</p>
         </div>
       </div>
     </section>
@@ -694,15 +709,17 @@
     </section>
 
     <!-- SUBMISSION FORM -->
-    <section class="section pet-submit-section" id="submit" aria-labelledby="submit-h2">
+    <section class="section section--alt" id="submit" aria-labelledby="submit-h2">
       <div class="container">
-        <div class="pet-form-wrap">
+        <div class="section-header">
           <p class="eyebrow">Submit Your Pet</p>
           <h2 id="submit-h2">Enter the Contest</h2>
-          <p style="margin-bottom: 1.75rem; color: var(--muted); font-size: 0.9375rem; line-height: 1.7;">
+          <p class="section-header__lead section-header__lead--wide">
             Fill in the form below. Submissions are reviewed before appearing on the site. No login or email required.
           </p>
+        </div>
 
+        <div class="pet-form-wrap">
           <form class="pet-form" id="pet-submit-form" novalidate>
 
             <div class="pet-form__row">
@@ -782,7 +799,7 @@
             </div>
 
           </form>
-        </div>
+        </div><!-- /pet-form-wrap -->
       </div>
     </section>
 
@@ -790,8 +807,8 @@
     <section class="section section--alt" aria-labelledby="ai-built-h2">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">How this was built</p>
-          <h2 id="ai-built-h2">HOW WE BUILT THIS WITH AI</h2>
+          <p class="eyebrow">How This Was Built</p>
+          <h2 id="ai-built-h2">How This Was Built</h2>
           <p class="section-header__lead section-header__lead--wide">
             This campaign is committed to showing its work. When AI helps build something useful, it should be explained and made visible — not hidden.
           </p>
@@ -805,7 +822,7 @@
 
         <div class="instr-panel" id="ai-panel-pet" hidden>
           <div class="instr-panel__bar">
-            <span class="instr-panel__title">HOW WE BUILT THIS WITH AI</span>
+            <span class="instr-panel__title">How This Was Built</span>
           </div>
           <div class="instr-panel__body ai-disclosure-body">
             <p>This page was built as part of a deliberately low-cost local campaign experiment. Instead of buying attention through ads, mailers, or consultant-built campaign tools, we are using AI-assisted workflows to build participatory civic projects ourselves.</p>
@@ -855,6 +872,7 @@
         <h2 class="pet-modal__name" id="pet-modal-name"></h2>
         <p class="pet-modal__meta" id="pet-modal-meta"></p>
         <p class="pet-modal__desc" id="pet-modal-desc"></p>
+        <div class="pet-modal__actions" id="pet-modal-actions"></div>
       </div>
     </div>
   </div>
@@ -1163,6 +1181,61 @@
       petModalName.textContent = pet.name;
       petModalMeta.textContent = (CATEGORY_LABELS[pet.category] || '') + ' · Age ' + pet.age + ' · ' + pet.hamlet;
       petModalDesc.textContent = pet.description;
+
+      /* ── Build Upvote + Share actions inside the expanded card ── */
+      var actionsEl = document.getElementById('pet-modal-actions');
+      if (actionsEl) {
+        var voted   = getVotedSet().has(pet.id);
+        var count   = voteCounts[pet.id] !== undefined ? voteCounts[pet.id] : pet.votes;
+        var petUrl  = pet.shareUrl
+          ? (window.location.origin + pet.shareUrl)
+          : (window.location.origin + window.location.pathname + '#' + pet.id);
+        var shareTxt = 'Vote for ' + pet.name + ' in Best of Bedford: Cutest Pet in Bedford.';
+        var eu       = encodeURIComponent(petUrl);
+        var et       = encodeURIComponent(shareTxt);
+        var mShareId = 'share-menu-' + pet.id + '-modal';
+
+        actionsEl.innerHTML =
+          '<button class="pet-vote-btn' + (voted ? ' is-voted' : '') + '" id="pet-modal-vote-btn" data-pet-id="' + pet.id + '" aria-label="Upvote ' + escHtml(pet.name) + '" ' + (voted ? 'aria-pressed="true"' : 'aria-pressed="false"') + '>' +
+            '<span class="pet-vote-btn__icon" aria-hidden="true">&#9650;</span> ' +
+            '<span class="pet-vote-btn__count">' + count + '</span>' +
+          '</button>' +
+          '<div class="pet-share-wrap">' +
+            '<button class="pet-share-btn" type="button" data-pet-id="' + pet.id + '-modal" aria-label="Share ' + escHtml(pet.name) + '\'s profile" aria-expanded="false" aria-controls="' + mShareId + '">Share</button>' +
+            '<div class="pet-share-menu" id="' + mShareId + '" role="menu">' +
+              '<a class="pet-share-menu__item" href="https://www.facebook.com/sharer/sharer.php?u=' + eu + '&amp;quote=' + et + '" target="_blank" rel="noopener noreferrer" role="menuitem">Facebook</a>' +
+              '<a class="pet-share-menu__item" href="https://twitter.com/intent/tweet?text=' + et + '&amp;url=' + eu + '" target="_blank" rel="noopener noreferrer" role="menuitem">X / Twitter</a>' +
+              '<a class="pet-share-menu__item" href="sms:?&amp;body=' + encodeURIComponent(shareTxt + ' ' + petUrl) + '" role="menuitem">SMS</a>' +
+              '<a class="pet-share-menu__item" href="mailto:?subject=' + encodeURIComponent('Vote for ' + pet.name + ' in Best of Bedford') + '&amp;body=' + encodeURIComponent(shareTxt + '\n\n' + petUrl) + '" role="menuitem">Email</a>' +
+            '</div>' +
+          '</div>';
+
+        document.getElementById('pet-modal-vote-btn').addEventListener('click', function () {
+          var btn = this;
+          if (btn.classList.contains('is-voted')) return;
+          var v = getVotedSet(); v.add(pet.id); saveVotedSet(v);
+          voteCounts[pet.id] = (voteCounts[pet.id] || 0) + 1;
+          var newCount = voteCounts[pet.id];
+          btn.classList.add('is-voted');
+          btn.setAttribute('aria-pressed', 'true');
+          btn.querySelector('.pet-vote-btn__count').textContent = String(newCount);
+          /* Sync the grid card button if it is currently rendered */
+          var cardBtn = grid.querySelector('.pet-vote-btn[data-pet-id="' + pet.id + '"]');
+          if (cardBtn && !cardBtn.classList.contains('is-voted')) {
+            cardBtn.classList.add('is-voted');
+            cardBtn.setAttribute('aria-pressed', 'true');
+            cardBtn.querySelector('.pet-vote-btn__count').textContent = String(newCount);
+          }
+          fetch(PET_SUBMISSION_ENDPOINT, {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'petVote', timestamp: new Date().toISOString(),
+              petId: pet.id, petName: pet.name, category: pet.category,
+              hamlet: pet.hamlet, sessionId: sessionId })
+          }).catch(function () {});
+        });
+      }
+
       petModal.classList.add('is-open');
       document.body.style.overflow = 'hidden';
       petModalClose.focus();

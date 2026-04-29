@@ -117,24 +117,35 @@
 
   <style>
     /* ── Justified body copy ── */
-    .vrc-intro-body p,
+    .bob-series-body p,
+    .section-header__lead,
     .vrc-privacy-note,
     .ai-disclosure-body p {
       text-align: justify;
       hyphens: auto;
     }
-    .vrc-intro-body p { max-width: none; }
+    .bob-series-body p { max-width: none; }
     @media (max-width: 380px) {
-      .vrc-intro-body p,
+      .bob-series-body p,
+      .section-header__lead,
       .vrc-privacy-note,
       .ai-disclosure-body p { text-align: left; hyphens: none; }
     }
     .ai-disclosure-body p { max-width: none; }
 
+    /* ── Intro body rhythm (matches /best-of-bedford reference) ── */
+    .bob-series-body h2 { margin-top: 0.5rem; margin-bottom: 1rem; }
+    .bob-series-body p  { color: var(--muted); margin-bottom: 0.875rem; }
+
     /* ── Lookup form ── */
     .vrc-lookup-section { background: var(--cream); }
 
-    .vrc-form-wrap { max-width: 640px; }
+    .vrc-form-wrap { max-width: 640px; margin-inline: auto; }
+
+    /* ── Collapse results section padding until results populate ── */
+    #vrc-results-section { padding-block: 0; }
+    .vrc-results.is-visible { padding-block: 3rem; }
+    @media (min-width: 768px) { .vrc-results.is-visible { padding-block: 4.5rem; } }
 
     .vrc-form {
       background: var(--white);
@@ -675,13 +686,11 @@
     <!-- INTRO -->
     <section class="section section--alt" aria-labelledby="vrc-intro-h2">
       <div class="container">
-        <div>
+        <div class="bob-series-body">
           <p class="eyebrow">A Civic Participation Tool</p>
           <h2 id="vrc-intro-h2">Your Bedford Voting Record, in Plain English</h2>
-          <div class="vrc-intro-body">
-            <p>This tool uses public voter-history records from the Board of Elections. It does not show who anyone voted for. It only reflects whether a voter participated in past elections and, when available, how the ballot was cast — such as Election Day, early voting, or absentee.</p>
-            <p>To protect privacy, the public voter file is not stored on this website. The lookup runs through a private Google Apps Script connection that returns only the matching voter's own report-card result. No personal lookup data is stored in your browser or passed through the URL.</p>
-          </div>
+          <p>This tool uses public voter-history records from the Board of Elections. It does not show who anyone voted for. It only reflects whether a voter participated in past elections and, when available, how the ballot was cast — such as Election Day, early voting, or absentee.</p>
+          <p>To protect privacy, the public voter file is not stored on this website. The lookup runs through a private Google Apps Script connection that returns only the matching voter's own report-card result. No personal lookup data is stored in your browser or passed through the URL.</p>
         </div>
       </div>
     </section>
@@ -689,13 +698,15 @@
     <!-- LOOKUP FORM -->
     <section class="section vrc-lookup-section" id="lookup" aria-labelledby="lookup-h2">
       <div class="container">
-        <div class="vrc-form-wrap">
+        <div class="section-header">
           <p class="eyebrow">Look Up Your Record</p>
           <h2 id="lookup-h2">Find Your Report Card</h2>
-          <p style="margin-bottom: 1.75rem; color: var(--muted); font-size: 0.9375rem; line-height: 1.7;">
+          <p class="section-header__lead section-header__lead--wide">
             These fields help narrow the lookup so the tool can return the right voter record. Bedford, New York voters only.
           </p>
+        </div>
 
+        <div class="vrc-form-wrap">
           <form class="vrc-form" id="vrc-lookup-form" novalidate>
 
             <div class="vrc-form__row">
@@ -733,7 +744,7 @@
             </div>
 
           </form>
-        </div>
+        </div><!-- /vrc-form-wrap -->
       </div>
     </section>
 
@@ -846,8 +857,8 @@
     <section class="section section--alt" aria-labelledby="ai-built-h2">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">How this was built</p>
-          <h2 id="ai-built-h2">HOW WE BUILT THIS WITH AI</h2>
+          <p class="eyebrow">How This Was Built</p>
+          <h2 id="ai-built-h2">How This Was Built</h2>
           <p class="section-header__lead section-header__lead--wide">
             This campaign is committed to showing its work. When AI helps build something useful, it should be explained and made visible — not hidden.
           </p>
@@ -861,7 +872,7 @@
 
         <div class="instr-panel" id="ai-panel-vrc" hidden>
           <div class="instr-panel__bar">
-            <span class="instr-panel__title">HOW WE BUILT THIS WITH AI</span>
+            <span class="instr-panel__title">How This Was Built</span>
           </div>
           <div class="instr-panel__body ai-disclosure-body">
             <p>This page was built as part of a deliberately low-cost local campaign experiment. Instead of buying campaign tech or hiring consultants, we used AI-assisted workflows to design a civic tool that helps residents understand their own public voter-history record.</p>
