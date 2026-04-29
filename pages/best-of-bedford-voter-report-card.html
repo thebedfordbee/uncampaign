@@ -227,7 +227,6 @@
       border-radius: 10px;
       padding: 2rem;
       box-shadow: var(--shadow-sm);
-      max-width: 640px;
     }
 
     .vrc-score-card__header {
@@ -553,6 +552,27 @@
     .vrc-dropdown__item:last-child { border-bottom: none; }
     .vrc-dropdown__item:hover,
     .vrc-dropdown__item:focus { background: var(--cream); outline: none; }
+
+    /* ── Results two-column layout ── */
+    .vrc-results-layout {
+      display: grid;
+      gap: 2rem;
+      align-items: start;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 860px) {
+      .vrc-results-layout { grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); }
+      .vrc-results-aside .vrc-share-section {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        border-radius: 10px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+      }
+    }
   </style>
 </head>
 <body>
@@ -598,7 +618,7 @@
       <div class="issues-hero__inner">
 
         <div class="issues-hero__copy-top">
-          <p class="eyebrow">Best of Bedford</p>
+          <p class="eyebrow">Don Scott Presents</p>
           <h1 id="vrc-hero-h1">Bedford Voter Report Card</h1>
         </div>
 
@@ -608,7 +628,6 @@
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">A civic participation tool that lets Bedford voters look up their own public voter-history record, see a turnout score, and get a reminder for the next local election.</p>
-          <p class="roundtable-disclosure"><em>Voting is public participation. This just makes the participation easier to understand.</em></p>
         </div>
 
       </div>
@@ -620,7 +639,7 @@
     <!-- INTRO -->
     <section class="section section--alt" aria-labelledby="vrc-intro-h2">
       <div class="container">
-        <div style="max-width: 680px;">
+        <div>
           <p class="eyebrow">A Civic Participation Tool</p>
           <h2 id="vrc-intro-h2">Your Bedford Voting Record, in Plain English</h2>
           <div class="vrc-intro-body">
@@ -686,82 +705,96 @@
             <h2 id="results-h2" style="margin-bottom:0;">Bedford Voter Report Card</h2>
           </div>
 
-          <!-- Score card -->
-          <div class="vrc-score-card" id="vrc-score-card">
-            <div class="vrc-score-card__header">
-              <div class="vrc-grade-badge" id="vrc-grade-badge" aria-label="Grade">—</div>
-              <div class="vrc-score-card__meta">
-                <h3 class="vrc-score-card__name" id="vrc-voter-name">—</h3>
-                <p class="vrc-score-card__hamlet" id="vrc-voter-hamlet">Bedford, New York</p>
-                <p class="vrc-score-card__turnout" id="vrc-turnout-stat">—</p>
-                <p class="vrc-score-card__percentile" id="vrc-percentile-stat"></p>
+          <div class="vrc-results-layout">
+
+            <!-- Main column: score card + history + polling + calendar -->
+            <div class="vrc-results-main">
+
+              <!-- Score card -->
+              <div class="vrc-score-card" id="vrc-score-card">
+                <div class="vrc-score-card__header">
+                  <div class="vrc-grade-badge" id="vrc-grade-badge" aria-label="Grade">—</div>
+                  <div class="vrc-score-card__meta">
+                    <h3 class="vrc-score-card__name" id="vrc-voter-name">—</h3>
+                    <p class="vrc-score-card__hamlet" id="vrc-voter-hamlet">Bedford, New York</p>
+                    <p class="vrc-score-card__turnout" id="vrc-turnout-stat">—</p>
+                    <p class="vrc-score-card__percentile" id="vrc-percentile-stat"></p>
+                  </div>
+                </div>
+                <div class="vrc-score-card__commentary" id="vrc-commentary"></div>
               </div>
-            </div>
-            <div class="vrc-score-card__commentary" id="vrc-commentary"></div>
-          </div>
 
-          <!-- Election record table -->
-          <div class="vrc-election-section" id="vrc-election-section">
-            <h3>Election Participation Record</h3>
-            <table class="vrc-election-table" id="vrc-election-table" aria-label="Election participation history">
-              <thead>
-                <tr>
-                  <th>Election</th>
-                  <th>Date</th>
-                  <th>Result</th>
-                  <th>Method</th>
-                </tr>
-              </thead>
-              <tbody id="vrc-election-tbody"></tbody>
-            </table>
-          </div>
-
-          <!-- Polling place -->
-          <div class="vrc-polling-section" id="vrc-polling-section">
-            <h3>Your Polling Place</h3>
-            <p class="vrc-polling-place" id="vrc-polling-place">—</p>
-            <p class="vrc-polling-address" id="vrc-polling-address"></p>
-          </div>
-
-          <!-- Calendar reminder -->
-          <div class="vrc-calendar-section" id="vrc-calendar-section">
-            <h3>Next Local Election</h3>
-            <p>Add a reminder now, because future you may be busy doing literally anything else.</p>
-            <!-- TODO: Verify next local election date before launch -->
-            <div class="vrc-dropdown" id="vrc-cal-dropdown-wrap">
-              <button type="button" id="vrc-cal-btn" class="btn btn--primary" aria-expanded="false" aria-controls="vrc-cal-menu">Add Election Reminder &#9662;</button>
-              <div class="vrc-dropdown__menu" id="vrc-cal-menu" role="menu">
-                <button type="button" class="vrc-dropdown__item" id="vrc-cal-google" role="menuitem">Google Calendar</button>
-                <button type="button" class="vrc-dropdown__item" id="vrc-cal-apple" role="menuitem">Apple Calendar</button>
-                <button type="button" class="vrc-dropdown__item" id="vrc-cal-outlook" role="menuitem">Outlook Calendar</button>
-                <button type="button" class="vrc-dropdown__item" id="vrc-cal-yahoo" role="menuitem">Yahoo Calendar</button>
+              <!-- Election record table -->
+              <div class="vrc-election-section" id="vrc-election-section">
+                <h3>Election Participation Record</h3>
+                <table class="vrc-election-table" id="vrc-election-table" aria-label="Election participation history">
+                  <thead>
+                    <tr>
+                      <th>Election</th>
+                      <th>Date</th>
+                      <th>Result</th>
+                      <th>Method</th>
+                    </tr>
+                  </thead>
+                  <tbody id="vrc-election-tbody"></tbody>
+                </table>
               </div>
-            </div>
-          </div>
 
-          <!-- Share -->
-          <div class="vrc-share-section" id="vrc-share-section">
-            <h3>Share Your Score</h3>
-
-            <!-- Visual share card — no personal info, screenshot-friendly -->
-            <div class="vrc-share-visual" id="vrc-share-visual" aria-hidden="true">
-              <p class="vrc-share-visual__eyebrow">Bedford Voter Report Card</p>
-              <p class="vrc-share-visual__grade" id="vrc-share-grade">—</p>
-              <p class="vrc-share-visual__label" id="vrc-share-label">Voter Participation Score</p>
-              <p class="vrc-share-visual__site">donforbedford.com/best-of-bedford-voter-report-card</p>
-            </div>
-
-            <div class="vrc-dropdown" id="vrc-share-dropdown-wrap">
-              <button type="button" id="vrc-share-btn" class="btn btn--primary" aria-expanded="false" aria-controls="vrc-share-menu">Share My Score &#9662;</button>
-              <div class="vrc-dropdown__menu" id="vrc-share-menu" role="menu">
-                <a class="vrc-dropdown__item" id="vrc-share-facebook" href="#" target="_blank" rel="noopener noreferrer" role="menuitem">Facebook</a>
-                <a class="vrc-dropdown__item" id="vrc-share-twitter" href="#" target="_blank" rel="noopener noreferrer" role="menuitem">X / Twitter</a>
-                <a class="vrc-dropdown__item" id="vrc-share-linkedin" href="#" target="_blank" rel="noopener noreferrer" role="menuitem">LinkedIn</a>
-                <a class="vrc-dropdown__item" id="vrc-share-sms" href="#" role="menuitem">SMS</a>
-                <a class="vrc-dropdown__item" id="vrc-share-email" href="#" role="menuitem">Email</a>
+              <!-- Polling place -->
+              <div class="vrc-polling-section" id="vrc-polling-section">
+                <h3>Your Polling Place</h3>
+                <p class="vrc-polling-place" id="vrc-polling-place">—</p>
+                <p class="vrc-polling-address" id="vrc-polling-address"></p>
               </div>
-            </div>
-          </div>
+
+              <!-- Calendar reminder -->
+              <div class="vrc-calendar-section" id="vrc-calendar-section">
+                <h3>Next Local Election</h3>
+                <p>Add a reminder now, because future you may be busy doing literally anything else.</p>
+                <!-- TODO: Verify next local election date before launch -->
+                <div class="vrc-dropdown" id="vrc-cal-dropdown-wrap">
+                  <button type="button" id="vrc-cal-btn" class="btn btn--primary" aria-expanded="false" aria-controls="vrc-cal-menu">Add Election Reminder &#9662;</button>
+                  <div class="vrc-dropdown__menu" id="vrc-cal-menu" role="menu">
+                    <button type="button" class="vrc-dropdown__item" id="vrc-cal-google" role="menuitem">Google Calendar</button>
+                    <button type="button" class="vrc-dropdown__item" id="vrc-cal-apple" role="menuitem">Apple Calendar</button>
+                    <button type="button" class="vrc-dropdown__item" id="vrc-cal-outlook" role="menuitem">Outlook Calendar</button>
+                    <button type="button" class="vrc-dropdown__item" id="vrc-cal-yahoo" role="menuitem">Yahoo Calendar</button>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /.vrc-results-main -->
+
+            <!-- Aside column: share score -->
+            <div class="vrc-results-aside">
+
+              <!-- Share -->
+              <div class="vrc-share-section" id="vrc-share-section">
+                <h3>Share Your Score</h3>
+
+                <!-- Visual share card — no personal info, screenshot-friendly -->
+                <div class="vrc-share-visual" id="vrc-share-visual" aria-hidden="true">
+                  <p class="vrc-share-visual__eyebrow">Bedford Voter Report Card</p>
+                  <p class="vrc-share-visual__grade" id="vrc-share-grade">—</p>
+                  <p class="vrc-share-visual__label" id="vrc-share-label">Voter Participation Score</p>
+                  <p class="vrc-share-visual__site">donforbedford.com/best-of-bedford-voter-report-card</p>
+                </div>
+
+                <div class="vrc-dropdown" id="vrc-share-dropdown-wrap">
+                  <button type="button" id="vrc-share-btn" class="btn btn--primary" aria-expanded="false" aria-controls="vrc-share-menu">Share My Score &#9662;</button>
+                  <div class="vrc-dropdown__menu" id="vrc-share-menu" role="menu">
+                    <a class="vrc-dropdown__item" id="vrc-share-facebook" href="#" target="_blank" rel="noopener noreferrer" role="menuitem">Facebook</a>
+                    <a class="vrc-dropdown__item" id="vrc-share-twitter" href="#" target="_blank" rel="noopener noreferrer" role="menuitem">X / Twitter</a>
+                    <a class="vrc-dropdown__item" id="vrc-share-linkedin" href="#" target="_blank" rel="noopener noreferrer" role="menuitem">LinkedIn</a>
+                    <a class="vrc-dropdown__item" id="vrc-share-sms" href="#" role="menuitem">SMS</a>
+                    <a class="vrc-dropdown__item" id="vrc-share-email" href="#" role="menuitem">Email</a>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /.vrc-results-aside -->
+
+          </div><!-- /.vrc-results-layout -->
 
         </div>
       </div>
@@ -975,6 +1008,16 @@
       renderResults(data);
     }
 
+    /* ── Turnout band copy (fallback when turnoutBandCommentary is absent) ── */
+    function getTurnoutBandCopy(rate) {
+      if (rate >= 90) return "You are one of Bedford's most reliable voters.";
+      if (rate >= 80) return "You vote more consistently than most people.";
+      if (rate >= 65) return "A solid Bedford voting record.";
+      if (rate >= 50) return "You have shown up, but there is room to climb.";
+      if (rate >= 25) return "Campaigns usually spend a lot of time trying to find voters like you.";
+      return "Bedford democracy has been checking in on you.";
+    }
+
     /* ── Render results ── */
     function renderResults(d) {
       /* Name + hamlet */
@@ -999,13 +1042,10 @@
           ? 'Turnout: ' + turnout + '% (' + voted + ' of ' + elected + ' elections)'
           : 'Voted in ' + voted + ' of ' + elected + ' tracked elections';
 
-      /* Percentile */
-      var pctEl = document.getElementById('vrc-percentile-stat');
-      if (d.percentile !== undefined && d.percentile !== null) {
-        pctEl.textContent = 'You scored higher than ' + d.percentile + '% of voters in this file.';
-      } else {
-        pctEl.textContent = '';
-      }
+      /* Turnout band commentary */
+      var bandEl = document.getElementById('vrc-percentile-stat');
+      var bandCopy = d.turnoutBandCommentary || (turnout !== null ? getTurnoutBandCopy(turnout) : '');
+      bandEl.textContent = bandCopy;
 
       /* Commentary */
       var commDiv = document.getElementById('vrc-commentary');
@@ -1092,10 +1132,16 @@
       };
 
       /* Share link hrefs — no personal data in URLs */
-      var shareText    = 'I got a ' + grade + ' on the Bedford Voter Report Card. Check your own turnout score.';
+      var shareText    = 'I got a ' + grade + ' on the Bedford Voter Report Card. My recent turnout score was ' + (turnout !== null ? turnout : '—') + '%. Check your own.';
       var encodedUrl   = encodeURIComponent(PAGE_URL);
       var encodedShare = encodeURIComponent(shareText);
-      document.getElementById('vrc-share-facebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl;
+      /*
+        NOTE: Facebook's `quote` parameter is the best lightweight option for passing custom
+        share text from a static site. However, Facebook may ignore it depending on current
+        platform behavior. Truly custom per-user OG previews would require server-side rendering
+        or a CDN-hosted dynamic metadata endpoint — not feasible on a static GitHub Pages site.
+      */
+      document.getElementById('vrc-share-facebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl + '&quote=' + encodedShare;
       document.getElementById('vrc-share-twitter').href  = 'https://twitter.com/intent/tweet?text=' + encodedShare + '&url=' + encodedUrl;
       document.getElementById('vrc-share-linkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodedUrl;
       document.getElementById('vrc-share-sms').href      = 'sms:?&body=' + encodeURIComponent(shareText + ' ' + PAGE_URL);
