@@ -117,15 +117,23 @@
 
   <style>
     /* ── Justified body copy ── */
+    .issues-hero__deck,
     .pet-intro-body p,
-    .pet-form-note,
+    .section-header__lead,
+    .pet-card__desc,
+    .pet-form__note,
+    .pet-submit-section .pet-form-wrap > p,
     .ai-disclosure-body p {
       text-align: justify;
       hyphens: auto;
     }
     @media (max-width: 380px) {
+      .issues-hero__deck,
       .pet-intro-body p,
-      .pet-form-note,
+      .section-header__lead,
+      .pet-card__desc,
+      .pet-form__note,
+      .pet-submit-section .pet-form-wrap > p,
       .ai-disclosure-body p { text-align: left; hyphens: none; }
     }
     .ai-disclosure-body p { max-width: none; }
@@ -499,7 +507,7 @@
       <div class="issues-hero__inner">
 
         <div class="issues-hero__copy-top">
-          <p class="eyebrow">Best of Bedford</p>
+          <p class="eyebrow">Don Scott Presents</p>
           <h1 id="pet-hero-h1">Cutest Pet in Bedford</h1>
         </div>
 
@@ -521,7 +529,7 @@
     <!-- INTRO -->
     <section class="section section--alt" aria-labelledby="pet-intro-h2">
       <div class="container">
-        <div style="max-width: 680px;">
+        <div>
           <p class="eyebrow">A Civic Participation Challenge</p>
           <h2 id="pet-intro-h2">Democracy. Pets. Bedford.</h2>
           <div class="pet-intro-body">
@@ -742,7 +750,7 @@
         age: 5,
         hamlet: 'Katonah',
         description: 'A loyal Bedford-area dog with campaign-level confidence and a strong ground game.',
-        image: null,
+        image: '../assets/img/pets/bo.png',
         votes: 14
       },
       {
@@ -752,7 +760,7 @@
         age: 4,
         hamlet: 'Bedford Hills',
         description: 'A very good dog with excellent constituent services and above-average snack discipline.',
-        image: null,
+        image: '../assets/img/pets/gosa.png',
         votes: 11
       },
       {
@@ -762,7 +770,7 @@
         age: 7,
         hamlet: 'Bedford Village',
         description: 'Proof that beauty standards are complicated and charm still wins elections.',
-        image: null,
+        image: '../assets/img/pets/ugly.png',
         votes: 9
       },
       {
@@ -772,7 +780,7 @@
         age: 3,
         hamlet: 'Katonah',
         description: 'Calm, watchful, and almost certainly aware of more town secrets than anyone realizes.',
-        image: null,
+        image: '../assets/img/pets/pj.png',
         votes: 17
       }
     ];
