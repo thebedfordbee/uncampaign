@@ -250,6 +250,7 @@
     .pet-card__actions {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 0.625rem;
       margin-top: 0.875rem;
       padding-top: 0.75rem;
@@ -286,7 +287,9 @@
 
     .pet-share-btn {
       font-family: var(--sans);
-      font-size: 0.75rem;
+      font-size: 0.6875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: var(--muted);
       background: none;
       border: none;
@@ -883,6 +886,7 @@
         hamlet: 'Katonah',
         description: 'A loyal Bedford-area dog with campaign-level confidence and a strong ground game.',
         image: '../assets/img/pets/bo.png',
+        shareUrl: '/best-of-bedford-cutest-pet-bo',
         votes: 14
       },
       {
@@ -893,6 +897,7 @@
         hamlet: 'Bedford Hills',
         description: 'A very good dog with excellent constituent services and above-average snack discipline.',
         image: '../assets/img/pets/gosa.png',
+        shareUrl: '/best-of-bedford-cutest-pet-gosa',
         votes: 11
       },
       {
@@ -903,6 +908,7 @@
         hamlet: 'Bedford Village',
         description: 'Proof that beauty standards are complicated and charm still wins elections.',
         image: '../assets/img/pets/ugly.png',
+        shareUrl: '/best-of-bedford-cutest-pet-ugly',
         votes: 9
       },
       {
@@ -913,6 +919,7 @@
         hamlet: 'Katonah',
         description: 'Calm, watchful, and almost certainly aware of more town secrets than anyone realizes.',
         image: '../assets/img/pets/pj.png',
+        shareUrl: '/best-of-bedford-cutest-pet-pj',
         votes: 17
       }
     ];
@@ -981,12 +988,10 @@
         ? '<button class="pet-card__img pet-card__img--clickable" type="button" data-open-modal="' + pet.id + '" aria-label="View larger photo of ' + escHtml(pet.name) + '">' + imgHtml + '</button>'
         : '<div class="pet-card__img" aria-hidden="true">' + imgHtml + '</div>';
 
-      /*
-        Pet-specific social previews require separate static pet pages or server-rendered OG
-        metadata. Hash anchors deep-link to the pet card, but social platforms will generally
-        use this page's default OG image rather than a per-pet image.
-      */
-      var petUrl  = window.location.origin + window.location.pathname + '#' + pet.id;
+      /* Use the static pet share page when available; fall back to hash anchor */
+      var petUrl = pet.shareUrl
+        ? (window.location.origin + pet.shareUrl)
+        : (window.location.origin + window.location.pathname + '#' + pet.id);
       var shareText = 'Vote for ' + pet.name + ' in Best of Bedford: Cutest Pet in Bedford.';
       var eu = encodeURIComponent(petUrl);
       var et = encodeURIComponent(shareText);
