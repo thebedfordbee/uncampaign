@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/best-of-bedford-voter-report-card">
   <meta property="og:title" content="Bedford Voter Report Card | Best of Bedford">
-  <meta property="og:description" content="A civic participation tool that helps Bedford voters understand their public voter-history record and remember upcoming local elections.">
+  <meta property="og:description" content="Check your Bedford voter participation report card, see your turnout score, and get a reminder for the next local election.">
   <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -28,7 +28,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/best-of-bedford-voter-report-card">
   <meta name="twitter:title" content="Bedford Voter Report Card | Best of Bedford">
-  <meta name="twitter:description" content="A civic participation tool that helps Bedford voters understand their public voter-history record and remember upcoming local elections.">
+  <meta name="twitter:description" content="Check your Bedford voter participation report card, see your turnout score, and get a reminder for the next local election.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta name="twitter:image:alt" content="Bedford Voter Report Card — Best of Bedford civic participation series.">
 
@@ -513,6 +513,46 @@
       margin: 1rem 0 0.875rem;
     }
     .ai-prompt-block em { color: var(--muted); }
+
+    /* ── Dropdown menus (calendar + share) ── */
+    .vrc-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .vrc-dropdown__menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      min-width: 220px;
+      z-index: 100;
+      overflow: hidden;
+    }
+    .vrc-dropdown__menu.is-open { display: block; }
+    .vrc-dropdown__item {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0.75rem 1.125rem;
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      line-height: 1.4;
+      box-sizing: border-box;
+      transition: background 0.1s;
+    }
+    .vrc-dropdown__item:last-child { border-bottom: none; }
+    .vrc-dropdown__item:hover,
+    .vrc-dropdown__item:focus { background: var(--cream); outline: none; }
   </style>
 </head>
 <body>
@@ -688,9 +728,14 @@
             <h3>Next Local Election</h3>
             <p>Add a reminder now, because future you may be busy doing literally anything else.</p>
             <!-- TODO: Verify next local election date before launch -->
-            <div class="vrc-calendar-btns">
-              <a id="vrc-gcal-btn" href="#" class="btn btn--primary" target="_blank" rel="noopener noreferrer">Add to Google Calendar</a>
-              <button type="button" id="vrc-ics-btn" class="btn btn--ghost">Download Calendar File</button>
+            <div class="vrc-dropdown" id="vrc-cal-dropdown-wrap">
+              <button type="button" id="vrc-cal-btn" class="btn btn--primary" aria-expanded="false" aria-controls="vrc-cal-menu">Add Election Reminder &#9662;</button>
+              <div class="vrc-dropdown__menu" id="vrc-cal-menu" role="menu">
+                <button type="button" class="vrc-dropdown__item" id="vrc-cal-google" role="menuitem">Google Calendar</button>
+                <button type="button" class="vrc-dropdown__item" id="vrc-cal-apple" role="menuitem">Apple Calendar</button>
+                <button type="button" class="vrc-dropdown__item" id="vrc-cal-outlook" role="menuitem">Outlook Calendar</button>
+                <button type="button" class="vrc-dropdown__item" id="vrc-cal-yahoo" role="menuitem">Yahoo Calendar</button>
+              </div>
             </div>
           </div>
 
@@ -706,15 +751,16 @@
               <p class="vrc-share-visual__site">donforbedford.com/best-of-bedford-voter-report-card</p>
             </div>
 
-            <div class="vrc-share-btns">
-              <button type="button" id="vrc-share-btn" class="btn btn--primary">Share My Score</button>
-              <button type="button" id="vrc-copy-btn" class="btn btn--ghost">Copy Link</button>
+            <div class="vrc-dropdown" id="vrc-share-dropdown-wrap">
+              <button type="button" id="vrc-share-btn" class="btn btn--primary" aria-expanded="false" aria-controls="vrc-share-menu">Share My Score &#9662;</button>
+              <div class="vrc-dropdown__menu" id="vrc-share-menu" role="menu">
+                <a class="vrc-dropdown__item" id="vrc-share-facebook" href="#" target="_blank" rel="noopener noreferrer" role="menuitem">Facebook</a>
+                <a class="vrc-dropdown__item" id="vrc-share-twitter" href="#" target="_blank" rel="noopener noreferrer" role="menuitem">X / Twitter</a>
+                <a class="vrc-dropdown__item" id="vrc-share-linkedin" href="#" target="_blank" rel="noopener noreferrer" role="menuitem">LinkedIn</a>
+                <a class="vrc-dropdown__item" id="vrc-share-sms" href="#" role="menuitem">SMS</a>
+                <a class="vrc-dropdown__item" id="vrc-share-email" href="#" role="menuitem">Email</a>
+              </div>
             </div>
-          </div>
-
-          <!-- Look up another -->
-          <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">
-            <button type="button" id="vrc-reset-btn" class="btn btn--ghost">Look Up a Different Record</button>
           </div>
 
         </div>
@@ -1007,22 +1053,53 @@
       document.getElementById('vrc-polling-place').textContent = place || 'Not available';
       document.getElementById('vrc-polling-address').textContent = address;
 
-      /* Google Calendar link */
-      var gcalBase = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
-      var gcalDate = NEXT_ELECTION_DATE.replace(/-/g, '');
-      var gcalDesc = 'Your Bedford voter report card is at: https://www.donforbedford.com/best-of-bedford-voter-report-card';
-      var gcalLoc  = address || 'Bedford, New York';
-      var gcalUrl  = gcalBase +
-        '&text=' + encodeURIComponent(NEXT_ELECTION_TITLE) +
-        '&dates=' + gcalDate + '/' + gcalDate +
-        '&details=' + encodeURIComponent(gcalDesc) +
-        '&location=' + encodeURIComponent(gcalLoc);
-      document.getElementById('vrc-gcal-btn').href = gcalUrl;
+      /* Calendar location — polling place name + address */
+      var calLocation;
+      if (place && address) {
+        calLocation = place + ', ' + address;
+      } else if (address) {
+        calLocation = address;
+      } else if (place) {
+        calLocation = place;
+      } else {
+        calLocation = 'Bedford, New York';
+      }
+      var calDesc    = 'Reminder to vote in the Bedford Town Supervisor election. Confirm polling place and election details before Election Day.';
+      var calDateStr = NEXT_ELECTION_DATE.replace(/-/g, '');
 
-      /* ICS download button */
-      document.getElementById('vrc-ics-btn').onclick = function () {
-        downloadIcs(NEXT_ELECTION_TITLE, NEXT_ELECTION_DATE, gcalLoc);
+      /* Calendar dropdown item handlers */
+      document.getElementById('vrc-cal-google').onclick = function () {
+        var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+          '&text=' + encodeURIComponent(NEXT_ELECTION_TITLE) +
+          '&dates=' + calDateStr + '/' + calDateStr +
+          '&details=' + encodeURIComponent(calDesc) +
+          '&location=' + encodeURIComponent(calLocation);
+        window.open(url, '_blank', 'noopener,noreferrer');
       };
+      document.getElementById('vrc-cal-apple').onclick = function () {
+        downloadIcs(NEXT_ELECTION_TITLE, NEXT_ELECTION_DATE, calLocation, calDesc);
+      };
+      document.getElementById('vrc-cal-outlook').onclick = function () {
+        downloadIcs(NEXT_ELECTION_TITLE, NEXT_ELECTION_DATE, calLocation, calDesc);
+      };
+      document.getElementById('vrc-cal-yahoo').onclick = function () {
+        var url = 'https://calendar.yahoo.com/?v=60&view=d&type=20' +
+          '&title=' + encodeURIComponent(NEXT_ELECTION_TITLE) +
+          '&st=' + calDateStr +
+          '&desc=' + encodeURIComponent(calDesc) +
+          '&in_loc=' + encodeURIComponent(calLocation);
+        window.open(url, '_blank', 'noopener,noreferrer');
+      };
+
+      /* Share link hrefs — no personal data in URLs */
+      var shareText    = 'I got a ' + grade + ' on the Bedford Voter Report Card. Check your own turnout score.';
+      var encodedUrl   = encodeURIComponent(PAGE_URL);
+      var encodedShare = encodeURIComponent(shareText);
+      document.getElementById('vrc-share-facebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl;
+      document.getElementById('vrc-share-twitter').href  = 'https://twitter.com/intent/tweet?text=' + encodedShare + '&url=' + encodedUrl;
+      document.getElementById('vrc-share-linkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodedUrl;
+      document.getElementById('vrc-share-sms').href      = 'sms:?&body=' + encodeURIComponent(shareText + ' ' + PAGE_URL);
+      document.getElementById('vrc-share-email').href    = 'mailto:?subject=' + encodeURIComponent('Bedford Voter Report Card') + '&body=' + encodeURIComponent(shareText + '\n\n' + PAGE_URL);
 
       /* Share card visuals */
       document.getElementById('vrc-share-grade').textContent = grade + (turnout !== null ? ' · ' + turnout + '%' : '');
@@ -1034,8 +1111,10 @@
     }
 
     /* ── ICS generator ── */
-    function downloadIcs(title, dateStr, location) {
+    function downloadIcs(title, dateStr, location, desc) {
       var d = dateStr.replace(/-/g, '');
+      var icsDesc = (desc || 'Reminder to vote in the Bedford Town Supervisor election. Confirm polling place and election details before Election Day.').replace(/,/g, '\\,');
+      var icsLoc  = (location || 'Bedford, New York').replace(/,/g, '\\,');
       var ics = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
@@ -1044,8 +1123,8 @@
         'DTSTART;VALUE=DATE:' + d,
         'DTEND;VALUE=DATE:' + d,
         'SUMMARY:' + title,
-        'DESCRIPTION:Bedford\\, New York voter reminder. Check your report card at https://www.donforbedford.com/best-of-bedford-voter-report-card',
-        'LOCATION:' + (location || 'Bedford\\, New York'),
+        'DESCRIPTION:' + icsDesc,
+        'LOCATION:' + icsLoc,
         'BEGIN:VALARM',
         'TRIGGER:-P7D',
         'ACTION:DISPLAY',
@@ -1066,54 +1145,48 @@
       URL.revokeObjectURL(url);
     }
 
-    /* ── Share button ── */
-    var PAGE_URL  = 'https://www.donforbedford.com/best-of-bedford-voter-report-card';
+    /* ── Page URL constant ── */
+    var PAGE_URL = 'https://www.donforbedford.com/best-of-bedford-voter-report-card';
 
-    document.getElementById('vrc-share-btn').addEventListener('click', function () {
-      var grade = document.getElementById('vrc-share-grade').textContent;
-      var text  = 'I got a ' + grade + ' on the Bedford Voter Report Card. Check your own turnout score.';
+    /* ── Dropdown toggle logic (calendar + share) ── */
+    var calBtn    = document.getElementById('vrc-cal-btn');
+    var calMenu   = document.getElementById('vrc-cal-menu');
+    var shareBtn  = document.getElementById('vrc-share-btn');
+    var shareMenu = document.getElementById('vrc-share-menu');
 
-      if (navigator.share) {
-        navigator.share({ title: 'Bedford Voter Report Card', text: text, url: PAGE_URL })
-          .catch(function () {});
-      } else {
-        copyToClipboard(PAGE_URL, document.getElementById('vrc-share-btn'), 'Copied!');
+    function closeAllDropdowns() {
+      calMenu.classList.remove('is-open');
+      calBtn.setAttribute('aria-expanded', 'false');
+      shareMenu.classList.remove('is-open');
+      shareBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    calBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var opening = !calMenu.classList.contains('is-open');
+      closeAllDropdowns();
+      if (opening) {
+        calMenu.classList.add('is-open');
+        calBtn.setAttribute('aria-expanded', 'true');
       }
     });
 
-    document.getElementById('vrc-copy-btn').addEventListener('click', function () {
-      copyToClipboard(PAGE_URL, document.getElementById('vrc-copy-btn'), 'Copied!');
+    shareBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var opening = !shareMenu.classList.contains('is-open');
+      closeAllDropdowns();
+      if (opening) {
+        shareMenu.classList.add('is-open');
+        shareBtn.setAttribute('aria-expanded', 'true');
+      }
     });
 
-    function copyToClipboard(text, btn, label) {
-      var orig = btn.textContent;
-      function done() {
-        btn.textContent = label;
-        setTimeout(function () { btn.textContent = orig; }, 2000);
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
-      } else {
-        fallbackCopy(text, done);
-      }
-    }
+    document.addEventListener('click', closeAllDropdowns);
 
-    function fallbackCopy(text, cb) {
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
-      document.body.appendChild(ta);
-      ta.focus(); ta.select();
-      try { if (document.execCommand('copy')) cb(); } catch (e) {}
-      document.body.removeChild(ta);
-    }
-
-    /* ── Reset / look up another ── */
-    document.getElementById('vrc-reset-btn').addEventListener('click', function () {
-      resultsDiv.classList.remove('is-visible');
-      clearMsgs();
-      form.reset();
-      document.getElementById('lookup').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    [calMenu, shareMenu].forEach(function (menu) {
+      menu.querySelectorAll('.vrc-dropdown__item').forEach(function (item) {
+        item.addEventListener('click', function () { closeAllDropdowns(); });
+      });
     });
 
     /* ── HTML escape utility ── */
