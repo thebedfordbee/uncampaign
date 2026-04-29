@@ -150,49 +150,26 @@
       --mono: 'DM Mono', 'Courier New', ui-monospace, monospace;
     }
 
-    /* ── Hero section ────────────────────────────────────── */
-    .btc-hero-section {
-      background: var(--moss);
-      padding-block: 4rem 3.5rem;
-    }
-    @media (min-width: 768px) {
-      .btc-hero-section { padding-block: 5.5rem 5rem; }
-    }
-    .btc-hero__inner {
-      display: grid;
-      gap: 2.5rem;
-      align-items: center;
-    }
-    @media (min-width: 768px) {
-      .btc-hero__inner { grid-template-columns: 1fr 360px; gap: 5rem; }
-    }
-    .btc-hero-eyebrow { color: rgba(255,255,255,0.5); margin-bottom: 0.875rem; }
-    .btc-hero-h1 { color: var(--white); margin-bottom: 0.5rem; }
-    .btc-hero-subhead {
-      color: rgba(255,255,255,0.75);
-      font-size: 1.125rem;
-      margin-bottom: 1.75rem;
-      max-width: 46ch;
-    }
-    .btc-hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .btc-hero-ctas .btn--white {
+    /* ── Hero CTA buttons on moss background ─────────────── */
+    .bob-hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.125rem; }
+    .bob-hero-ctas .btn--white {
       background: var(--white);
       color: var(--moss);
       border-color: var(--white);
     }
-    .btc-hero-ctas .btn--white:hover {
+    .bob-hero-ctas .btn--white:hover {
       background: var(--cream);
       border-color: var(--cream);
       color: var(--moss);
     }
-    .btc-hero-microcopy {
-      margin-top: 1.125rem;
+    .bob-hero-microcopy {
+      margin-top: 0.875rem;
       font-size: 0.8125rem;
       color: rgba(255,255,255,0.38);
       letter-spacing: 0.02em;
     }
 
-    /* ── Retro cover art ─────────────────────────────────── */
+    /* ── Retro cover art (retained for AI transparency section only) ── */
     .btc-cover {
       font-family: var(--mono);
       background: #141a14;
@@ -457,9 +434,41 @@
       letter-spacing: 0.05em;
     }
 
+    /* ── Post-game modal overlay ─────────────────────────── */
+    .btc-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .btc-modal[hidden] { display: none; }
+    .btc-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(43,43,43,0.75);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+    .btc-modal-box {
+      position: relative;
+      z-index: 1;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.32);
+      max-height: 90vh;
+      overflow-y: auto;
+      text-align: center;
+    }
+    .btc-modal-box .btc-form-group { text-align: left; }
+    .btc-modal-box .btc-result-actions { justify-content: center; }
+
     /* Results panel */
-    #btc-results { display: none; }
-    #btc-results.is-visible { display: block; }
     .btc-result-card {
       background: var(--white);
       border: 1.5px solid var(--border);
@@ -794,87 +803,29 @@
   </header>
 
   <!-- HERO -->
-  <section class="btc-hero-section" aria-labelledby="bob-hero-h1">
+  <section class="issues-hero" aria-labelledby="bob-hero-h1">
     <div class="container">
-      <div class="btc-hero__inner">
-        <div class="btc-hero__copy">
-          <p class="eyebrow btc-hero-eyebrow">Best of Bedford</p>
-          <h1 id="bob-hero-h1" class="btc-hero-h1">Best of Bedford</h1>
-          <p class="btc-hero-subhead">Small games. Local pride. Zero campaign budget.</p>
-          <div class="btc-hero-ctas">
+      <div class="issues-hero__inner">
+
+        <div class="issues-hero__copy-top">
+          <p class="eyebrow">Don Scott Presents</p>
+          <h1 id="bob-hero-h1">Best of Bedford</h1>
+        </div>
+
+        <!-- Placeholder image — same dimensions and layout as /issues. Replace with final image when ready. -->
+        <div class="issues-hero__visual issues-hero__visual--placeholder" aria-hidden="true">
+          <span>Best of Bedford image placeholder</span>
+        </div>
+
+        <div class="issues-hero__copy-bot">
+          <p class="issues-hero__deck">An ongoing civic participation series celebrating what Bedford residents love, recommend, and compete over. Not because Don said so. Because Bedford residents did.</p>
+          <div class="bob-hero-ctas">
             <a href="#game" class="btn btn--white">Play the Typing Challenge</a>
             <a href="#why" class="btn btn--ghost">Why this exists</a>
           </div>
-          <p class="btc-hero-microcopy">Best played on desktop or laptop.</p>
+          <p class="bob-hero-microcopy">Best played on desktop or laptop.</p>
         </div>
 
-        <!-- Retro cover art panel -->
-        <div class="btc-cover" aria-hidden="true" role="img" aria-label="The Bedford Typing Challenge — retro educational software cover art">
-          <div class="btc-cover__meta">
-            <span>Educational Software</span>
-            <span>Bedford, NY</span>
-          </div>
-          <div class="btc-cover__screen">
-            <div class="btc-cover__scanlines"></div>
-            <div class="btc-cover__glow"></div>
-            <div class="btc-cover__content">
-              <p class="btc-cover__eyebrow">Don for Bedford — Civic Tools</p>
-              <p class="btc-cover__the">The</p>
-              <p class="btc-cover__title">Bedford</p>
-              <p class="btc-cover__subtitle">Typing<br>Challenge</p>
-              <!-- Keyboard SVG -->
-              <div class="btc-cover__keyboard">
-                <svg viewBox="0 0 222 70" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <g stroke="#3dd68c" stroke-width="0.75" fill="#0d1a0d">
-                    <!-- Row 1: 10 keys -->
-                    <rect x="1" y="1" width="18" height="13" rx="2"/>
-                    <rect x="21" y="1" width="18" height="13" rx="2"/>
-                    <rect x="41" y="1" width="18" height="13" rx="2"/>
-                    <rect x="61" y="1" width="18" height="13" rx="2"/>
-                    <rect x="81" y="1" width="18" height="13" rx="2"/>
-                    <rect x="101" y="1" width="18" height="13" rx="2"/>
-                    <rect x="121" y="1" width="18" height="13" rx="2"/>
-                    <rect x="141" y="1" width="18" height="13" rx="2"/>
-                    <rect x="161" y="1" width="18" height="13" rx="2"/>
-                    <rect x="181" y="1" width="18" height="13" rx="2" fill="#163a24" stroke="#3dd68c"/>
-                    <!-- Row 2: offset 10, 10 keys -->
-                    <rect x="10" y="17" width="18" height="13" rx="2"/>
-                    <rect x="30" y="17" width="18" height="13" rx="2"/>
-                    <rect x="50" y="17" width="18" height="13" rx="2"/>
-                    <rect x="70" y="17" width="18" height="13" rx="2"/>
-                    <rect x="90" y="17" width="18" height="13" rx="2"/>
-                    <rect x="110" y="17" width="18" height="13" rx="2"/>
-                    <rect x="130" y="17" width="18" height="13" rx="2"/>
-                    <rect x="150" y="17" width="18" height="13" rx="2"/>
-                    <rect x="170" y="17" width="18" height="13" rx="2"/>
-                    <rect x="190" y="17" width="18" height="13" rx="2"/>
-                    <!-- Row 3: offset 18, 9 keys -->
-                    <rect x="18" y="33" width="18" height="13" rx="2"/>
-                    <rect x="38" y="33" width="18" height="13" rx="2"/>
-                    <rect x="58" y="33" width="18" height="13" rx="2"/>
-                    <rect x="78" y="33" width="18" height="13" rx="2"/>
-                    <rect x="98" y="33" width="18" height="13" rx="2"/>
-                    <rect x="118" y="33" width="18" height="13" rx="2"/>
-                    <rect x="138" y="33" width="18" height="13" rx="2"/>
-                    <rect x="158" y="33" width="18" height="13" rx="2"/>
-                    <rect x="178" y="33" width="18" height="13" rx="2"/>
-                    <!-- Space bar -->
-                    <rect x="55" y="49" width="112" height="13" rx="2"/>
-                  </g>
-                </svg>
-              </div>
-              <div class="btc-cover__features">
-                <p class="btc-cover__feature">60-Second Competition</p>
-                <p class="btc-cover__feature">Three Bedford Hamlets</p>
-                <p class="btc-cover__feature">Live Leaderboard</p>
-              </div>
-            </div>
-          </div>
-          <div class="btc-cover__footer">
-            <span>Don for Bedford</span>
-            <span>Free — 2026</span>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -886,21 +837,21 @@
       <div class="container">
         <div class="issues-explainer">
           <div class="issues-explainer__why">
-            <p class="eyebrow">A different kind of outreach</p>
+            <p class="eyebrow">A civic participation series</p>
             <h2 id="intro-h2">What is Best of Bedford?</h2>
-            <p>Most campaigns spend money to get attention. This campaign is trying to earn it by building things people might actually find useful or interesting.</p>
-            <p>Best of Bedford is an ongoing series of small civic participation projects. The Bedford Typing Challenge is the first one: a 60-second typing game where Bedford residents compete to be the fastest typist in town, using passages about the actual history, geography, and civic life of the community.</p>
-            <p>It is not a gimmick. It is an experiment in what local civic participation can look like when it is more human, more participatory, and less dependent on money and pressure.</p>
+            <p>Don thinks Bedford deserves the best. That is part of why he is running. Best of Bedford is a place to celebrate what residents love, notice, use, recommend, and occasionally compete over.</p>
+            <p>It is an ongoing series of small civic participation projects: interactive games, community surveys, and resident-driven polls on the things that make Bedford worth living in. The Bedford Typing Challenge is the first module — a 60-second game where Bedford residents compete to be the fastest typist in town, using passages drawn from the actual history, geography, and civic life of the community.</p>
+            <p>Not because Don said so. Because Bedford residents did. Participation, diverse thoughts, and collective feedback can guide and inform local priorities. That is what real civic engagement can look like.</p>
           </div>
           <div class="issues-explainer__offers">
-            <span class="eyebrow" style="display:block;margin-bottom:1rem;">This campaign does not</span>
+            <p class="eyebrow" style="display:block;margin-bottom:1rem;">Coming in this series</p>
             <ul class="explainer-points">
-              <li><strong>Buy lawn signs</strong> — no sign saturation</li>
-              <li><strong>Send mailers</strong> — no bulk mail campaigns</li>
-              <li><strong>Run robocalls</strong> — no automated calls</li>
-              <li><strong>Use paid ads</strong> — no purchased reach</li>
-              <li><strong>Hire consultants</strong> — no political class</li>
-              <li><strong>Pressure anyone</strong> — participation only</li>
+              <li><strong>Bedford Typing Challenge</strong> — live now</li>
+              <li><strong>Best place to take a walk</strong> — coming soon</li>
+              <li><strong>Best place to read a book</strong> — coming soon</li>
+              <li><strong>Best road or route to drive</strong> — coming soon</li>
+              <li><strong>Best hidden gem</strong> — coming soon</li>
+              <li><strong>Best place for a child</strong> — coming soon</li>
             </ul>
           </div>
         </div>
@@ -912,11 +863,11 @@
       <div class="container">
         <div style="max-width:680px;">
           <p class="eyebrow">Why this exists</p>
-          <h2 id="why-h2">Local politics defaults to expensive habits. This campaign is trying something else.</h2>
-          <p style="color:var(--muted);margin-bottom:1rem;">The standard playbook for local campaigns is lawn signs, mailers, robocalls, and door knocking. It is expensive, repetitive, and most residents find it annoying rather than engaging. It also assumes the goal is to persuade people — which is not really the goal of an uncontested or lightly contested local race.</p>
-          <p style="color:var(--muted);margin-bottom:1rem;">Bedford deserves a choice. Not because any particular candidate should win, but because uncontested local elections are genuinely bad for civic health. Participation matters more than persuasion here.</p>
-          <p style="color:var(--muted);margin-bottom:1rem;">So instead of spending money and energy on tactics most people tolerate at best, this campaign is trying to build things: a working website, a civic Q&amp;A tool, a meeting recap series, a community idea tracker, and now a small local typing competition. All of it built with free tools, modest AI assistance, and a $49.99 total budget cap.</p>
-          <p style="color:var(--muted);">The Bedford Typing Challenge is part of that experiment. It is civic participation without pressure, technology without pretense, and community without partisanship.</p>
+          <h2 id="why-h2">Participation matters more than persuasion.</h2>
+          <p style="color:var(--muted);margin-bottom:1rem;">Bedford deserves a choice. Not because any particular candidate should win, but because uncontested local elections are genuinely bad for civic health. And a campaign that believes that should act like it — not by pressuring residents, but by building things that are actually useful.</p>
+          <p style="color:var(--muted);margin-bottom:1rem;">Best of Bedford is not a gimmick. It is an experiment in making local civic participation more participatory. The ideas, rankings, and feedback collected here come from Bedford residents — not from a campaign consultant, not from a focus group, and not from an algorithm optimized for outrage.</p>
+          <p style="color:var(--muted);margin-bottom:1rem;">This campaign does not buy lawn signs, send mailers, run robocalls, or hire consultants. The total budget is $49.99. So instead of purchasing attention, it is trying to earn it — by building things people might actually want to engage with.</p>
+          <p style="color:var(--muted);">The Bedford Typing Challenge is module one. Civic participation without pressure, technology without pretense, community without partisanship.</p>
         </div>
       </div>
     </section>
@@ -986,32 +937,40 @@
           </div>
 
           <!-- Post-game panels (hidden until round ends) -->
-          <div id="btc-results" aria-live="polite">
+        </div><!-- /btc-game-desktop -->
 
-            <!-- Phase 1: Submit your score (shown immediately after round) -->
-            <div id="btc-phase-submit" class="btc-result-card" hidden>
-              <p class="eyebrow btc-result-eyebrow">Round complete</p>
-              <div class="btc-step-score">
-                <span class="btc-result-wpm" id="result-wpm">—</span>
-                <span class="btc-result-wpm-label">WPM</span>
-                <span class="btc-step-acc" id="result-acc">—</span>
-                <span class="btc-result-wpm-label">accuracy</span>
+        <!-- Post-game modal — appears automatically when the round ends -->
+        <div id="btc-modal" class="btc-modal" role="dialog" aria-modal="true" aria-labelledby="btc-modal-label" hidden>
+          <div class="btc-modal-backdrop" id="btc-modal-backdrop"></div>
+          <div class="btc-modal-box">
+
+            <!-- Phase 1: Result + optional submission -->
+            <div id="btc-modal-phase1">
+              <p class="eyebrow" style="color:var(--sage);margin-bottom:0.75rem;" id="btc-modal-label">Your Bedford Typing Challenge result</p>
+              <span class="btc-result-wpm" id="modal-wpm">—</span>
+              <span class="btc-result-wpm-label">Words per minute</span>
+              <div class="btc-result-stats">
+                <div class="btc-result-stat">
+                  <span class="btc-result-stat__value" id="modal-acc">—</span>
+                  <span class="btc-result-stat__label">Accuracy</span>
+                </div>
+                <div class="btc-result-stat">
+                  <span class="btc-result-stat__value" id="modal-rank-prov">—</span>
+                  <span class="btc-result-stat__label">Provisional rank</span>
+                </div>
               </div>
-
-              <div class="btc-accuracy-warning" id="btc-acc-warning">
-                Accuracy below 90% — scores need to be at least 90% accurate to appear on the public leaderboard. Try again!
+              <p style="font-size:0.875rem;color:var(--muted);margin-bottom:1rem;max-width:none;">Your score is not added to the public leaderboard unless you submit your initials and hamlet.</p>
+              <div class="btc-accuracy-warning" id="modal-acc-warning">
+                Leaderboard scores require at least 90% accuracy.
               </div>
-
-              <div id="btc-submit-form-body">
-                <h3 style="margin:1.25rem 0 0.375rem;">Add your score to the leaderboard</h3>
-                <p style="color:var(--muted);font-size:0.875rem;max-width:none;margin-bottom:1.25rem;">Your score won't appear publicly until you submit your initials and hamlet. No email or personal information is collected.</p>
+              <div id="modal-form-wrap">
                 <div class="btc-form-group">
-                  <label for="sub-initials">Initials <span style="color:var(--muted);font-weight:400;">(2–3 characters)</span></label>
-                  <input type="text" id="sub-initials" name="initials" maxlength="3" placeholder="e.g. JK or RWS" autocomplete="off" autocapitalize="characters" spellcheck="false">
+                  <label for="modal-initials">Initials <span style="color:var(--muted);font-weight:400;">(2–3 characters)</span></label>
+                  <input type="text" id="modal-initials" name="initials" maxlength="3" placeholder="e.g. JK or RWS" autocomplete="off" autocapitalize="characters" spellcheck="false">
                 </div>
                 <div class="btc-form-group">
-                  <label for="sub-hamlet">Hamlet</label>
-                  <select id="sub-hamlet" name="hamlet">
+                  <label for="modal-hamlet">Hamlet</label>
+                  <select id="modal-hamlet" name="hamlet">
                     <option value="">— select your hamlet —</option>
                     <option value="Bedford Village">Bedford Village</option>
                     <option value="Bedford Hills">Bedford Hills</option>
@@ -1020,55 +979,47 @@
                     <option value="Prefer not to say">Prefer not to say</option>
                   </select>
                 </div>
-                <div class="btc-result-actions" style="margin-top:1rem;">
-                  <button class="btn btn--primary" id="btc-submit-btn" type="button">Submit Score</button>
-                  <button class="btn btn--secondary" id="btc-skip-btn" type="button">Skip — view leaderboard</button>
+                <div id="modal-submit-status" hidden>
+                  <p id="modal-submit-status-msg" style="font-size:0.875rem;color:#8b2a2a;margin:0 0 0.75rem;max-width:none;text-align:left;"></p>
                 </div>
-              </div>
-
-              <!-- Shown after submit attempt -->
-              <div id="btc-submit-status" hidden>
-                <p id="btc-submit-status-msg" style="font-size:0.9375rem;margin:0;max-width:none;"></p>
+                <div class="btc-result-actions">
+                  <button class="btn btn--primary" id="modal-submit-btn" type="button">Add My Score</button>
+                  <button class="btn btn--secondary" id="modal-skip-btn" type="button">Skip and View Leaderboard</button>
+                </div>
               </div>
             </div>
 
-            <!-- Phase 2: After submit — rank + share + play again -->
-            <div id="btc-phase-done" class="btc-result-card" hidden>
-              <p class="eyebrow btc-result-eyebrow" id="phase-done-eyebrow">You're on the board</p>
-              <span class="btc-result-wpm" id="result-final-wpm">—</span>
+            <!-- Phase 2: Done — rank + share + play again -->
+            <div id="btc-modal-phase2" hidden>
+              <p class="eyebrow" style="color:var(--sage);margin-bottom:0.75rem;" id="modal-phase2-eyebrow">You're on the board</p>
+              <span class="btc-result-wpm" id="modal-final-wpm">—</span>
               <span class="btc-result-wpm-label">Words per minute</span>
-              <p class="btc-rank-msg" id="result-rank-msg"></p>
-
-              <!-- Share buttons (shown only after a submitted score) -->
-              <div id="btc-share-row" hidden>
+              <p class="btc-rank-msg" id="modal-rank-msg" style="margin-top:0.75rem;"></p>
+              <div id="modal-share-row" hidden>
                 <p style="font-size:0.8125rem;color:var(--muted);margin:1rem 0 0.75rem;max-width:none;">Share your result:</p>
-                <div class="btc-share-buttons">
-                  <a id="share-facebook" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btc-share-btn-social">
+                <div class="btc-share-buttons" style="justify-content:center;">
+                  <a id="modal-share-facebook" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btc-share-btn-social">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
                     Facebook
                   </a>
-                  <a id="share-x" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btc-share-btn-social">
+                  <a id="modal-share-x" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btc-share-btn-social">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                     Post on X
                   </a>
-                  <button id="btc-copy-btn" class="btn btn--secondary btc-share-btn-social" type="button">
+                  <button id="modal-copy-btn" class="btn btn--secondary btc-share-btn-social" type="button">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
                     Copy result
                   </button>
                 </div>
               </div>
-
-              <div class="btc-result-actions">
-                <button class="btn btn--primary" id="btc-play-again" type="button">Play Again</button>
-                <a href="#leaderboard" class="btn btn--secondary">View Leaderboard</a>
+              <div class="btc-result-actions" style="margin-top:1.25rem;">
+                <button class="btn btn--primary" id="modal-play-again" type="button">Play Again</button>
+                <button class="btn btn--secondary" id="modal-view-lb" type="button">View Leaderboard</button>
               </div>
             </div>
 
           </div>
-
-          <p style="text-align:center;margin-top:1.5rem;font-size:0.875rem;color:var(--muted);">This campaign is not spending money on mailers, robocalls, or lawn sign saturation. So we're trying something else: building things people might actually enjoy. The Bedford Typing Challenge is part of Best of Bedford, a small series of local experiments designed to make a campaign feel a little more human, a little more creative, and a little less predictable.</p>
-
-        </div><!-- /btc-game-desktop -->
+        </div><!-- /btc-modal -->
       </div>
     </section>
 
@@ -1119,14 +1070,14 @@
     <section class="section" aria-labelledby="next-h2">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">Coming soon</p>
+          <p class="eyebrow">The series continues</p>
           <h2 id="next-h2">What comes next in Best of Bedford</h2>
-          <p class="section-header__lead">The Typing Challenge is module one. More are in development.</p>
+          <p class="section-header__lead">The Typing Challenge is module one. Future modules will let Bedford residents weigh in on what they love about their town — not because Don said so, but because residents did.</p>
         </div>
         <div class="btc-next-grid" style="max-width:720px;">
           <div class="btc-next-card">
-            <div class="btc-next-icon" aria-hidden="true">🍕</div>
-            <p class="btc-next-title">Best Pizza</p>
+            <div class="btc-next-icon" aria-hidden="true">🚶</div>
+            <p class="btc-next-title">Best Walk</p>
             <p class="btc-next-status">Coming soon</p>
           </div>
           <div class="btc-next-card">
@@ -1135,8 +1086,8 @@
             <p class="btc-next-status">Coming soon</p>
           </div>
           <div class="btc-next-card">
-            <div class="btc-next-icon" aria-hidden="true">🥾</div>
-            <p class="btc-next-title">Best Walking Loop</p>
+            <div class="btc-next-icon" aria-hidden="true">🚗</div>
+            <p class="btc-next-title">Best Road to Drive</p>
             <p class="btc-next-status">Coming soon</p>
           </div>
           <div class="btc-next-card">
@@ -1278,7 +1229,7 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
             </button>
             <div class="faq-item__answer" id="faq-a5" role="region">
               <div class="faq-item__answer-inner">
-                <p>Best of Bedford is an ongoing series of small civic participation experiments built by this campaign. The Typing Challenge is module one. Future modules will let Bedford residents weigh in on things like best pizza, best place to read a book, best walking loop, and best hidden gem. The goal is to build useful and enjoyable civic tools — not political spin.</p>
+                <p>Best of Bedford is an ongoing civic participation series built by this campaign. Don thinks Bedford deserves the best — and part of doing that is creating space for residents to celebrate, recommend, and weigh in on the things that make this town worth living in. Not because Don said so. Because Bedford residents did. The Typing Challenge is module one. Future modules will let residents name the best walking loop, best place to read, best hidden gem, best road to drive, and more.</p>
               </div>
             </div>
           </div>
@@ -1444,28 +1395,32 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
     var accDisp         = document.getElementById('acc-display');
     var progFill        = document.getElementById('progress-fill');
     var statTimer       = document.getElementById('stat-timer');
-    var resultsEl       = document.getElementById('btc-results');
-    var phaseSubmit     = document.getElementById('btc-phase-submit');
-    var phaseDone       = document.getElementById('btc-phase-done');
-    var resultWpm       = document.getElementById('result-wpm');
-    var resultAcc       = document.getElementById('result-acc');
-    var resultFinalWpm  = document.getElementById('result-final-wpm');
-    var resultRank      = document.getElementById('result-rank-msg');
-    var accWarning      = document.getElementById('btc-acc-warning');
-    var submitFormBody  = document.getElementById('btc-submit-form-body');
-    var submitStatus    = document.getElementById('btc-submit-status');
-    var submitStatusMsg = document.getElementById('btc-submit-status-msg');
-    var initialsIn      = document.getElementById('sub-initials');
-    var hamletSel       = document.getElementById('sub-hamlet');
-    var submitBtn       = document.getElementById('btc-submit-btn');
-    var skipBtn         = document.getElementById('btc-skip-btn');
-    var playAgainBtn    = document.getElementById('btc-play-again');
-    var shareRow        = document.getElementById('btc-share-row');
-    var shareXBtn       = document.getElementById('share-x');
-    var shareFbBtn      = document.getElementById('share-facebook');
-    var copyBtn         = document.getElementById('btc-copy-btn');
-    var phaseDoneEyebrow = document.getElementById('phase-done-eyebrow');
     var arenaStatus     = document.getElementById('arena-status');
+
+    /* ── Modal DOM refs ───────────────────────────────────── */
+    var modal              = document.getElementById('btc-modal');
+    var modalPhase1        = document.getElementById('btc-modal-phase1');
+    var modalPhase2        = document.getElementById('btc-modal-phase2');
+    var modalWpmEl         = document.getElementById('modal-wpm');
+    var modalAccEl         = document.getElementById('modal-acc');
+    var modalRankProv      = document.getElementById('modal-rank-prov');
+    var modalAccWarn       = document.getElementById('modal-acc-warning');
+    var modalFormWrap      = document.getElementById('modal-form-wrap');
+    var modalInitialsIn    = document.getElementById('modal-initials');
+    var modalHamletSel     = document.getElementById('modal-hamlet');
+    var modalSubmitBtn     = document.getElementById('modal-submit-btn');
+    var modalSkipBtn       = document.getElementById('modal-skip-btn');
+    var modalSubmitStatus  = document.getElementById('modal-submit-status');
+    var modalSubmitStatusMsg = document.getElementById('modal-submit-status-msg');
+    var modalFinalWpmEl    = document.getElementById('modal-final-wpm');
+    var modalRankMsg       = document.getElementById('modal-rank-msg');
+    var modalPhase2Eyebrow = document.getElementById('modal-phase2-eyebrow');
+    var modalShareRow      = document.getElementById('modal-share-row');
+    var modalShareFb       = document.getElementById('modal-share-facebook');
+    var modalShareX        = document.getElementById('modal-share-x');
+    var modalCopyBtn       = document.getElementById('modal-copy-btn');
+    var modalPlayAgainBtn  = document.getElementById('modal-play-again');
+    var modalViewLbBtn     = document.getElementById('modal-view-lb');
 
     function escHtml(s) {
       return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -1489,20 +1444,18 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
     function renderPassage() {
       /* typedText is the single source of truth.
          RULE: a character is ONLY marked correct/incorrect when i < typedText.length.
-         When typedText[i] is undefined (i >= typedText.length) the span gets NO color class.
-         This prevents any red characters from appearing before the user types anything. */
+         Characters at or beyond typedText.length get no color class.
+         The cursor char (i === typedText.length) gets only the blinking border.
+         This guarantees zero red characters on fresh load or reset. */
       var curIdx = typedText.length;
       var html = '';
       for (var i = 0; i < targetText.length; i++) {
         var cls = 'pc';
         if (i < typedText.length) {
-          // typed zone: compare only when typedText[i] is defined
           cls += (typedText[i] === targetText[i]) ? ' pc--correct' : ' pc--incorrect';
         } else if (i === curIdx) {
-          // caret position: left-border only, NO color class (not red, not green)
-          cls += ' pc--cursor';
+          cls += ' pc--cursor'; // blinking left-border only — no color class
         }
-        // i > curIdx: untyped, class stays 'pc' — neutral/default color
         html += '<span class="' + cls + '">' + escHtml(targetText[i]) + '</span>';
       }
       passageEl.innerHTML = html;
@@ -1577,65 +1530,89 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
       var wpm = calcWPM();
       var acc = calcAccuracy();
       pendingResult = { wpm: wpm, accuracy: acc, passageId: PASSAGES[passageIdx].id, roundDuration: ROUND_DURATION };
-      renderPassage(); // final render — cursor disappears because typedText.length >= targetText.length
-      showPhaseSubmit(wpm, acc);
+      renderPassage();
+      openModalPhase1(wpm, acc);
     }
 
-    function showPhaseSubmit(wpm, acc) {
-      if (phaseSubmit) phaseSubmit.removeAttribute('hidden');
-      if (phaseDone)   phaseDone.setAttribute('hidden', '');
-      if (resultWpm)   resultWpm.textContent = wpm;
-      if (resultAcc)   resultAcc.textContent = acc + '%';
+    /* ── Modal open / close ───────────────────────────────── */
+    function openModal() {
+      if (modal) {
+        modal.removeAttribute('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeModal() {
+      if (modal) {
+        modal.setAttribute('hidden', '');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function openModalPhase1(wpm, acc) {
+      if (modalPhase1) modalPhase1.removeAttribute('hidden');
+      if (modalPhase2) modalPhase2.setAttribute('hidden', '');
+      if (modalWpmEl)  modalWpmEl.textContent = wpm;
+      if (modalAccEl)  modalAccEl.textContent = acc + '%';
+
+      var provisionalRank = getRank(wpm, acc);
+      if (modalRankProv) modalRankProv.textContent = '#' + provisionalRank;
 
       var qualified = (acc >= MIN_ACCURACY);
-      if (accWarning) {
-        if (qualified) accWarning.classList.remove('is-visible');
-        else            accWarning.classList.add('is-visible');
+      if (modalAccWarn) {
+        if (qualified) modalAccWarn.classList.remove('is-visible');
+        else           modalAccWarn.classList.add('is-visible');
       }
-      if (submitFormBody) submitFormBody.hidden = !qualified;
-      if (submitStatus)   submitStatus.hidden = true;
-      if (initialsIn)     initialsIn.value = '';
-      if (hamletSel)      hamletSel.value  = '';
-      if (submitBtn)      submitBtn.disabled = false;
-      if (submitBtn)      submitBtn.textContent = 'Submit Score';
+      if (modalFormWrap) modalFormWrap.hidden = !qualified;
+      if (modalInitialsIn)  modalInitialsIn.value = '';
+      if (modalHamletSel)   modalHamletSel.value  = '';
+      if (modalSubmitStatus) modalSubmitStatus.hidden = true;
+      if (modalSubmitBtn) { modalSubmitBtn.disabled = false; modalSubmitBtn.textContent = 'Add My Score'; }
 
+      openModal();
       renderLeaderboard();
       renderHamlet();
-      if (phaseSubmit) phaseSubmit.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    function showPhaseDone(wpm, rank, submitted) {
-      if (phaseSubmit) phaseSubmit.setAttribute('hidden', '');
-      if (phaseDone)   phaseDone.removeAttribute('hidden');
-      if (resultFinalWpm) resultFinalWpm.textContent = wpm;
-      if (resultRank) {
-        resultRank.innerHTML = submitted
+    function openModalPhase2(wpm, rank, submitted) {
+      if (modalPhase1) modalPhase1.setAttribute('hidden', '');
+      if (modalPhase2) modalPhase2.removeAttribute('hidden');
+      if (modalFinalWpmEl) modalFinalWpmEl.textContent = wpm;
+      if (modalPhase2Eyebrow) modalPhase2Eyebrow.textContent = submitted ? "You're on the board" : 'Round complete';
+      if (modalRankMsg) {
+        modalRankMsg.innerHTML = submitted
           ? 'You are currently <strong>#' + rank + ' in Bedford</strong>.'
           : 'Score not submitted to the public leaderboard.';
       }
-      if (phaseDoneEyebrow) phaseDoneEyebrow.textContent = submitted ? "You're on the board" : 'Round complete';
 
-      if (shareRow) {
+      var shareUrl  = 'https://www.donforbedford.com/best-of-bedford';
+      var shareText = 'I scored ' + wpm + ' WPM and ranked #' + rank + ' in the Bedford Typing Challenge. Can you beat me? ' + shareUrl;
+
+      if (modalShareRow) {
         if (submitted) {
-          shareRow.removeAttribute('hidden');
-          var shareText = 'I scored ' + wpm + ' WPM and ranked #' + rank + ' in the Bedford Typing Challenge. Can you beat me?';
-          var shareUrl  = 'https://www.donforbedford.com/best-of-bedford';
-          var fullShare = shareText + ' ' + shareUrl;
-          if (shareFbBtn) shareFbBtn.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl) + '&quote=' + encodeURIComponent(shareText);
-          if (shareXBtn)  shareXBtn.href  = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText + ' ' + shareUrl);
-          if (copyBtn)    copyBtn.onclick  = function () { copyToClipboard(fullShare, copyBtn); };
+          modalShareRow.removeAttribute('hidden');
+          if (modalShareFb) modalShareFb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl) + '&quote=' + encodeURIComponent('I scored ' + wpm + ' WPM and ranked #' + rank + ' in the Bedford Typing Challenge. Can you beat me?');
+          if (modalShareX)  modalShareX.href  = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText);
+          if (modalCopyBtn) modalCopyBtn.onclick = function () { copyToClipboard(shareText, modalCopyBtn); };
         } else {
-          shareRow.setAttribute('hidden', '');
+          modalShareRow.setAttribute('hidden', '');
         }
       }
-      if (playAgainBtn) playAgainBtn.onclick = resetGame;
-      if (phaseDone) phaseDone.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      if (modalPlayAgainBtn) modalPlayAgainBtn.onclick = function () { closeModal(); resetGame(); };
+      if (modalViewLbBtn)    modalViewLbBtn.onclick    = function () {
+        closeModal();
+        var lb = document.getElementById('leaderboard');
+        if (lb) lb.scrollIntoView({ behavior: 'smooth' });
+      };
+
       renderLeaderboard();
       renderHamlet();
     }
 
     function resetGame() {
       clearInterval(timerInterval);
+      closeModal();
       gameState  = 'idle';
       typedText  = '';
       startTime  = 0;
@@ -1645,8 +1622,6 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
       wpmDisp.textContent = '—';
       accDisp.textContent = '—';
       progFill.style.width = '0%';
-      if (phaseSubmit) phaseSubmit.setAttribute('hidden', '');
-      if (phaseDone)   phaseDone.setAttribute('hidden', '');
       mySubmission = null;
 
       loadPassage();
@@ -1658,6 +1633,9 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
 
     /* ── Key handling ─────────────────────────────────────── */
     function onKeydown(e) {
+      // Block synthetic/injected events (extensions, autofill, navigation carry-over).
+      // Only process genuine user keystrokes (isTrusted = true).
+      if (!e.isTrusted) return;
       // Ignore all modifier combos (Ctrl, Cmd, Alt)
       if (e.ctrlKey || e.metaKey || e.altKey) return;
 
@@ -1762,27 +1740,25 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
         });
     }
 
-    /* ── Submit + skip handlers ──────────────────────────── */
-    if (skipBtn) {
-      skipBtn.addEventListener('click', function () {
+    /* ── Modal submit + skip handlers ────────────────────── */
+    if (modalSkipBtn) {
+      modalSkipBtn.addEventListener('click', function () {
         if (!pendingResult) return;
-        var wpm = pendingResult.wpm;
-        showPhaseDone(wpm, getRank(wpm, pendingResult.accuracy), false);
+        openModalPhase2(pendingResult.wpm, getRank(pendingResult.wpm, pendingResult.accuracy), false);
       });
     }
 
-    if (submitBtn) {
-      submitBtn.addEventListener('click', function () {
-        var ini    = (initialsIn.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 3);
-        var hamlet = hamletSel.value;
+    if (modalSubmitBtn) {
+      modalSubmitBtn.addEventListener('click', function () {
+        var ini    = (modalInitialsIn ? modalInitialsIn.value : '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 3);
+        var hamlet = modalHamletSel ? modalHamletSel.value : '';
 
-        initialsIn.classList.remove('is-invalid');
-        hamletSel.classList.remove('is-invalid');
+        if (modalInitialsIn) modalInitialsIn.classList.remove('is-invalid');
+        if (modalHamletSel)  modalHamletSel.classList.remove('is-invalid');
         var valid = true;
-        if (ini.length < 2) { initialsIn.classList.add('is-invalid'); valid = false; }
-        if (!hamlet)        { hamletSel.classList.add('is-invalid');  valid = false; }
-        if (!valid) return;
-        if (!pendingResult) return;
+        if (ini.length < 2) { if (modalInitialsIn) modalInitialsIn.classList.add('is-invalid'); valid = false; }
+        if (!hamlet)        { if (modalHamletSel)  modalHamletSel.classList.add('is-invalid');  valid = false; }
+        if (!valid || !pendingResult) return;
 
         var score = {
           initials:      ini,
@@ -1796,12 +1772,10 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
         };
 
         mySubmission = score;
-        saveLocal(score); // persist locally first — always safe
+        saveLocal(score); // always persist locally first
 
-        submitBtn.disabled    = true;
-        submitBtn.textContent = 'Submitting…';
+        if (modalSubmitBtn) { modalSubmitBtn.disabled = true; modalSubmitBtn.textContent = 'Submitting…'; }
 
-        // Build POST payload with all required fields
         var postPayload = {
           action:        'submitTypingScore',
           initials:      score.initials,
@@ -1809,12 +1783,13 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
           wpm:           score.wpm,
           accuracy:      score.accuracy,
           passageId:     score.passageId,
-          roundDuration: score.roundDuration
+          roundDuration: score.roundDuration,
+          antiAbuseHint: window.location.href
         };
         var postBody = JSON.stringify(postPayload);
         console.log('[btc] submitTypingScore payload:', postPayload);
 
-        // POST using text/plain to avoid CORS preflight — same pattern as /ideas and /photos
+        // POST with text/plain to avoid CORS preflight
         fetch(API_URL, {
           method:  'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -1831,26 +1806,24 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
           console.log('[btc] submitTypingScore parsed:', data);
 
           if (data && data.ok) {
-            // Success: score is in the sheet — refetch leaderboard then show share phase
             fetchLiveScores().then(function (scores) {
               liveScoreCache = scores;
               var rank = getRank(score.wpm, score.accuracy);
-              showPhaseDone(score.wpm, rank, true);
+              openModalPhase2(score.wpm, rank, true);
             });
           } else {
-            // API reachable but returned an error
-            onSubmitFail('The leaderboard did not update. Your score is saved on this device. (' + raw + ')');
+            onModalSubmitFail('The leaderboard did not update. Your score is saved on this device. (' + raw + ')');
           }
         })
         .catch(function (err) {
           console.warn('[btc] submitTypingScore fetch failed:', err);
-          onSubmitFail('Could not reach the leaderboard server. Your score is saved on this device and will appear once connectivity is restored.');
+          onModalSubmitFail('Could not reach the leaderboard server. Your score is saved on this device.');
         });
 
-        function onSubmitFail(msg) {
-          if (submitStatus)    submitStatus.hidden = false;
-          if (submitStatusMsg) submitStatusMsg.textContent = msg;
-          if (submitBtn)       { submitBtn.disabled = false; submitBtn.textContent = 'Try Again'; }
+        function onModalSubmitFail(msg) {
+          if (modalSubmitStatus)    modalSubmitStatus.hidden = false;
+          if (modalSubmitStatusMsg) modalSubmitStatusMsg.textContent = msg;
+          if (modalSubmitBtn)       { modalSubmitBtn.disabled = false; modalSubmitBtn.textContent = 'Try Again'; }
         }
       });
     }
