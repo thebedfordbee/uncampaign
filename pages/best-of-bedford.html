@@ -1024,7 +1024,7 @@
     <section class="section" id="leaderboard" aria-labelledby="lb-h2">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">Top 25 in Bedford</p>
+          <p class="eyebrow">Top 10 in Bedford</p>
           <h2 id="lb-h2">Bedford Typing Leaderboard</h2>
           <p class="section-header__lead">Ranked by words per minute. Updated as scores come in.</p>
         </div>
@@ -1381,6 +1381,7 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
     var timeLeft = ROUND_DURATION;
     var pendingResult = null;
     var mySubmission = null;
+    var liveScoreCache = null; // null = not fetched yet, [] = fetched empty, [...] = live scores
 
     /* ── DOM refs ─────────────────────────────────────────── */
     var arena        = document.getElementById('btc-arena');
@@ -1601,35 +1602,32 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
 
     /* ── Key handling ─────────────────────────────────────── */
     function onKeydown(e) {
-      if (!arena) return;
+      // Ignore all modifier combos (Ctrl+C, Cmd+R, Alt+anything, etc.)
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
 
-      // Prevent paste/select
-      if ((e.ctrlKey || e.metaKey) && ['v','c','a','x'].indexOf(e.key) !== -1) {
-        e.preventDefault();
-        return;
-      }
-      // Prevent scroll on space/arrows in game
-      if (gameState === 'playing' && (e.key === ' ' || e.key === 'ArrowUp' || e.key === 'ArrowDown')) {
-        e.preventDefault();
-      }
+      // Pass only Backspace and printable single characters; ignore everything else
+      // (Shift, CapsLock, Tab, Escape, Arrow keys, F-keys, Enter, etc.)
+      var isBackspace = (e.key === 'Backspace');
+      var isPrintable = (e.key.length === 1); // space, letters, digits, punctuation
+      if (!isBackspace && !isPrintable) return;
 
       if (gameState === 'done') return;
 
+      // Prevent browser default (page scroll on space, Back navigation on Backspace)
+      e.preventDefault();
+
       if (gameState === 'idle') {
-        if (e.key.length === 1 || e.key === 'Backspace') {
-          startGame();
-          if (e.key === 'Backspace' || e.key.length !== 1) return;
-          // Fall through to handle the first character
-        } else {
-          return;
-        }
+        // Timer starts only on a printable character, never on Backspace
+        if (isBackspace) return;
+        startGame(); // sets gameState = 'playing'; cursor still at index 0
+        // fall through — process this first character below
       }
 
       if (gameState !== 'playing') return;
 
       var text = PASSAGES[passageIdx].text;
 
-      if (e.key === 'Backspace') {
+      if (isBackspace) {
         if (cursorPos > 0) {
           cursorPos--;
           charStates[cursorPos] = 'pending';
@@ -1640,11 +1638,10 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
         return;
       }
 
-      if (e.key.length !== 1) return;
+      // Printable character: compare to passage, advance cursor
+      // WPM = (correct chars / 5) / elapsed minutes. Accuracy = correct / total typed.
       if (cursorPos >= text.length) return;
-
-      var expected = text[cursorPos];
-      charStates[cursorPos] = (e.key === expected) ? 'correct' : 'incorrect';
+      charStates[cursorPos] = (e.key === text[cursorPos]) ? 'correct' : 'incorrect';
       updateChar(cursorPos);
       cursorPos++;
       updateCursor();
@@ -1663,7 +1660,11 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
     }
 
     function getAllScores() {
-      return [].concat(SEED_SCORES, getStoredScores()).sort(sortFn);
+      // Prefer live server scores when available; fall back to localStorage
+      var realScores = (liveScoreCache !== null && liveScoreCache.length > 0)
+        ? liveScoreCache
+        : getStoredScores();
+      return [].concat(SEED_SCORES, realScores).sort(sortFn);
     }
 
     function sortFn(a, b) {
@@ -1712,6 +1713,17 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
         }).then(function (r) { return r.json(); });
       })
       .catch(function (err) { console.warn('[btc] API post failed:', err); return null; });
+    }
+
+    /* ── Live leaderboard fetch ───────────────────────────── */
+    function fetchLiveScores() {
+      return fetch(API_URL + '?action=getTypingLeaderboard')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data && data.ok && Array.isArray(data.scores)) return data.scores;
+          return [];
+        })
+        .catch(function () { return []; });
     }
 
     /* ── Submit handler ───────────────────────────────────── */
@@ -1808,11 +1820,11 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
         if (!hasMe) all = all.concat([mySubmission]).sort(sortFn);
       }
 
-      var top25 = all.slice(0, 25);
+      var top10 = all.slice(0, 10);
       var html = '';
 
-      for (var r = 0; r < top25.length; r++) {
-        var s = top25[r];
+      for (var r = 0; r < top10.length; r++) {
+        var s = top10[r];
         var rank = r + 1;
         var rowClass = (s === mySubmission) ? ' is-me' : '';
         var rankClass = rank <= 3 ? ' rank-' + rank : '';
@@ -1881,16 +1893,14 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
       renderLeaderboard();
       renderHamlet();
 
-      // Keyboard events when arena is focused
-      arena.addEventListener('keydown', function (e) {
-        if (gameState === 'done') return;
-        onKeydown(e);
-      });
+      // Single keydown handler — no document listener to avoid double-processing
+      arena.addEventListener('keydown', onKeydown);
 
-      // Also catch keys globally when arena has focus
-      document.addEventListener('keydown', function (e) {
-        if (document.activeElement !== arena) return;
-        onKeydown(e);
+      // Fetch live leaderboard scores in background; re-render when available
+      fetchLiveScores().then(function (scores) {
+        liveScoreCache = scores;
+        renderLeaderboard();
+        renderHamlet();
       });
 
       // Click arena to focus it
