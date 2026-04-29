@@ -187,10 +187,10 @@
       background: var(--white);
       border: 1.5px solid var(--border);
       border-radius: 8px;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
       transition: box-shadow 0.15s ease, border-color 0.15s ease;
+      position: relative; /* allows share dropdown to overflow card */
     }
     .pet-card:hover { box-shadow: var(--shadow-md); border-color: var(--sage); }
     .pet-card[hidden] { display: none; }
@@ -204,6 +204,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 8px 8px 0 0;
     }
     .pet-card__img img {
       width: 100%;
@@ -295,7 +296,6 @@
       white-space: nowrap;
     }
     .pet-share-btn:hover { color: var(--charcoal); background: var(--cream); }
-    .pet-share-btn.is-copied { color: var(--moss); }
 
     /* ── Submission form ── */
     .pet-submit-section { background: var(--cream); }
@@ -446,6 +446,122 @@
     }
     .pet-empty[hidden] { display: none; }
 
+    /* ── Clickable image button ── */
+    .pet-card__img--clickable {
+      cursor: zoom-in;
+      border: none;
+      padding: 0;
+      margin: 0;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .pet-card__img--clickable:focus-visible {
+      outline: 2px solid var(--sage);
+      outline-offset: -2px;
+    }
+    .pet-card__img--clickable img { transition: opacity 0.15s, transform 0.25s; }
+    .pet-card__img--clickable:hover img { opacity: 0.88; transform: scale(1.04); }
+
+    /* ── Pet share dropdown ── */
+    .pet-share-wrap { position: relative; display: inline-block; }
+    .pet-share-menu {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 0;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      min-width: 160px;
+      z-index: 200;
+      overflow: hidden;
+    }
+    .pet-share-menu.is-open { display: block; }
+    .pet-share-menu__item {
+      display: block;
+      padding: 0.625rem 1rem;
+      font-family: var(--sans);
+      font-size: 0.875rem;
+      color: var(--charcoal);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+      transition: background 0.1s;
+      box-sizing: border-box;
+    }
+    .pet-share-menu__item:last-child { border-bottom: none; }
+    .pet-share-menu__item:hover { background: var(--cream); }
+
+    /* ── Pet photo modal ── */
+    .pet-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .pet-modal.is-open { display: flex; }
+    .pet-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.72);
+    }
+    .pet-modal__panel {
+      position: relative;
+      z-index: 1;
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+      max-width: 540px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .pet-modal__close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      z-index: 2;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      font-size: 1.0625rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.12s;
+    }
+    .pet-modal__close:hover { background: rgba(0,0,0,0.75); }
+    .pet-modal__img-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #f0ebe6;
+    }
+    .pet-modal__img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .pet-modal__info { padding: 1.25rem 1.5rem 1.5rem; }
+    .pet-modal__name {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--charcoal);
+      margin: 0 0 0.25rem;
+    }
+    .pet-modal__meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0 0 0.625rem;
+    }
+    .pet-modal__desc { font-size: 0.9375rem; color: var(--muted); line-height: 1.65; margin: 0; }
+
     /* ── AI disclosure ── */
     .ai-disclosure-body p {
       font-family: var(--sans);
@@ -517,7 +633,6 @@
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">Bedford has strong opinions about roads, zoning, taxes, and leaf blowers. Surely we can also handle something less controversial: which local pets are objectively adorable.</p>
-          <p class="roundtable-disclosure"><em>Submit your pet, browse the field, and vote for as many favorites as you like.</em></p>
         </div>
 
       </div>
@@ -719,6 +834,22 @@
     </div>
   </footer>
 
+  <!-- Pet photo modal -->
+  <div class="pet-modal" id="pet-modal" role="dialog" aria-modal="true" aria-labelledby="pet-modal-name">
+    <div class="pet-modal__backdrop" id="pet-modal-backdrop"></div>
+    <div class="pet-modal__panel">
+      <button class="pet-modal__close" id="pet-modal-close" aria-label="Close photo">&#10005;</button>
+      <div class="pet-modal__img-wrap">
+        <img class="pet-modal__img" id="pet-modal-img" src="" alt="">
+      </div>
+      <div class="pet-modal__info">
+        <h2 class="pet-modal__name" id="pet-modal-name"></h2>
+        <p class="pet-modal__meta" id="pet-modal-meta"></p>
+        <p class="pet-modal__desc" id="pet-modal-desc"></p>
+      </div>
+    </div>
+  </div>
+
   <script src="../assets/js/site.js"></script>
 
   <script>
@@ -844,8 +975,35 @@
         ? '<img src="' + pet.image + '" alt="' + escHtml(pet.name) + ' the ' + escHtml(CATEGORY_LABELS[pet.category] || 'pet') + ' from ' + escHtml(pet.hamlet) + ', Bedford, New York" loading="lazy">'
         : placeholderSvg(pet);
 
+      /* Clickable button for real images; static div for placeholder SVGs */
+      var imgEl = pet.image
+        ? '<button class="pet-card__img pet-card__img--clickable" type="button" data-open-modal="' + pet.id + '" aria-label="View larger photo of ' + escHtml(pet.name) + '">' + imgHtml + '</button>'
+        : '<div class="pet-card__img" aria-hidden="true">' + imgHtml + '</div>';
+
+      /*
+        Pet-specific social previews require separate static pet pages or server-rendered OG
+        metadata. Hash anchors deep-link to the pet card, but social platforms will generally
+        use this page's default OG image rather than a per-pet image.
+      */
+      var petUrl  = window.location.origin + window.location.pathname + '#' + pet.id;
+      var shareText = 'Vote for ' + pet.name + ' in Best of Bedford: Cutest Pet in Bedford.';
+      var eu = encodeURIComponent(petUrl);
+      var et = encodeURIComponent(shareText);
+
+      var shareMenuHtml =
+        '<div class="pet-share-wrap">' +
+          '<button class="pet-share-btn" type="button" data-pet-id="' + pet.id + '" aria-label="Share ' + escHtml(pet.name) + '\'s profile" aria-expanded="false" aria-controls="share-menu-' + pet.id + '">Share</button>' +
+          '<div class="pet-share-menu" id="share-menu-' + pet.id + '" role="menu">' +
+            '<a class="pet-share-menu__item" href="https://www.facebook.com/sharer/sharer.php?u=' + eu + '&amp;quote=' + et + '" target="_blank" rel="noopener noreferrer" role="menuitem">Facebook</a>' +
+            '<a class="pet-share-menu__item" href="https://twitter.com/intent/tweet?text=' + et + '&amp;url=' + eu + '" target="_blank" rel="noopener noreferrer" role="menuitem">X / Twitter</a>' +
+            '<a class="pet-share-menu__item" href="https://www.linkedin.com/sharing/share-offsite/?url=' + eu + '" target="_blank" rel="noopener noreferrer" role="menuitem">LinkedIn</a>' +
+            '<a class="pet-share-menu__item" href="sms:?&amp;body=' + encodeURIComponent(shareText + ' ' + petUrl) + '" role="menuitem">SMS</a>' +
+            '<a class="pet-share-menu__item" href="mailto:?subject=' + encodeURIComponent('Vote for ' + pet.name + ' in Best of Bedford') + '&amp;body=' + encodeURIComponent(shareText + '\n\n' + petUrl) + '" role="menuitem">Email</a>' +
+          '</div>' +
+        '</div>';
+
       li.innerHTML =
-        '<div class="pet-card__img" aria-hidden="' + (pet.image ? 'false' : 'true') + '">' + imgHtml + '</div>' +
+        imgEl +
         '<div class="pet-card__body">' +
           '<h3 class="pet-card__name">' + escHtml(pet.name) + '</h3>' +
           '<p class="pet-card__meta">' + escHtml(CATEGORY_LABELS[pet.category] || 'Other') + ' &middot; Age ' + escHtml(String(pet.age)) + ' &middot; ' + escHtml(pet.hamlet) + '</p>' +
@@ -855,7 +1013,7 @@
               '<span class="pet-vote-btn__icon" aria-hidden="true">&#9650;</span>' +
               '<span class="pet-vote-btn__count">' + count + '</span>' +
             '</button>' +
-            '<button class="pet-share-btn" data-pet-id="' + pet.id + '" data-pet-name="' + escHtml(pet.name) + '" aria-label="Share ' + escHtml(pet.name) + '\'s profile">Share</button>' +
+            shareMenuHtml +
           '</div>' +
         '</div>';
 
@@ -905,14 +1063,18 @@
       bindCardEvents();
     }
 
-    /* ── Bind vote + share events on rendered cards ── */
+    /* ── Bind vote + image-modal events on rendered cards ── */
     function bindCardEvents() {
       grid.querySelectorAll('.pet-vote-btn').forEach(function (btn) {
         btn.addEventListener('click', handleVote);
       });
-      grid.querySelectorAll('.pet-share-btn').forEach(function (btn) {
-        btn.addEventListener('click', handleShare);
+      grid.querySelectorAll('.pet-card__img--clickable').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var pet = APPROVED_PETS.find(function (p) { return p.id === btn.dataset.openModal; });
+          if (pet) { openModal(pet, btn); }
+        });
       });
+      /* Share menu is handled by delegated document listener */
     }
 
     /* ── Handle upvote ── */
@@ -963,55 +1125,80 @@
       });
     }
 
-    /* ── Handle share ── */
-    function handleShare(e) {
-      var btn = e.currentTarget;
-      var petId = btn.dataset.petId;
-      var petName = btn.dataset.petName;
+    /* ── Share menu: close all open menus ── */
+    function closeAllShareMenus() {
+      document.querySelectorAll('.pet-share-menu.is-open').forEach(function (menu) {
+        menu.classList.remove('is-open');
+        var petId = menu.id.replace('share-menu-', '');
+        var btn = document.querySelector('.pet-share-btn[data-pet-id="' + petId + '"]');
+        if (btn) { btn.setAttribute('aria-expanded', 'false'); }
+      });
+    }
 
-      /*
-        NOTE on individual pet social previews:
-        Static social crawlers (Twitter, Facebook) cannot execute JS, so hash-fragment
-        or query-param routing cannot generate unique per-pet OG images from this single HTML file.
-        Truly unique pet-level social cards would require either:
-          - Separate static pages per pet (e.g., best-of-bedford-cutest-pet/bo.html)
-          - A server-side/edge worker that generates OG metadata dynamically
-          - Pre-rendered social images stored on a CDN with stable URLs
-        For now, all shares use this page's OG image. Pet-specific URLs use #pet-id anchors
-        so the page scrolls to the right card.
-      */
-      var url = window.location.origin + window.location.pathname + '#' + petId;
-      var text = 'Vote for ' + petName + ' in Best of Bedford: Cutest Pet in Bedford.';
+    /* ── Pet photo modal ── */
+    var petModal       = document.getElementById('pet-modal');
+    var petModalImg    = document.getElementById('pet-modal-img');
+    var petModalName   = document.getElementById('pet-modal-name');
+    var petModalMeta   = document.getElementById('pet-modal-meta');
+    var petModalDesc   = document.getElementById('pet-modal-desc');
+    var petModalClose  = document.getElementById('pet-modal-close');
+    var petModalBack   = document.getElementById('pet-modal-backdrop');
+    var modalTrigger   = null;
 
-      if (navigator.share) {
-        navigator.share({ title: petName + ' — Cutest Pet in Bedford', text: text, url: url })
-          .catch(function () {});
-      } else {
-        navigator.clipboard ? navigator.clipboard.writeText(url).then(function () {
-          flashShareBtn(btn);
-        }).catch(function () { fallbackCopy(url, btn); }) : fallbackCopy(url, btn);
+    function openModal(pet, triggerEl) {
+      modalTrigger = triggerEl || null;
+      petModalImg.src = pet.image;
+      petModalImg.alt = pet.name + ' the ' + (CATEGORY_LABELS[pet.category] || 'pet') + ' from ' + pet.hamlet + ', Bedford, New York';
+      petModalName.textContent = pet.name;
+      petModalMeta.textContent = (CATEGORY_LABELS[pet.category] || '') + ' · Age ' + pet.age + ' · ' + pet.hamlet;
+      petModalDesc.textContent = pet.description;
+      petModal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      petModalClose.focus();
+    }
+
+    function closeModal() {
+      petModal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      if (modalTrigger) { modalTrigger.focus(); modalTrigger = null; }
+    }
+
+    petModalClose.addEventListener('click', closeModal);
+    petModalBack.addEventListener('click', closeModal);
+
+    /* ── Share menu: document-level delegation ── */
+    document.addEventListener('click', function (e) {
+      /* Toggle on share button */
+      var shareBtn = e.target.closest('.pet-share-btn');
+      if (shareBtn) {
+        var petId = shareBtn.dataset.petId;
+        var menu  = document.getElementById('share-menu-' + petId);
+        var wasOpen = menu && menu.classList.contains('is-open');
+        closeAllShareMenus();
+        if (!wasOpen && menu) {
+          menu.classList.add('is-open');
+          shareBtn.setAttribute('aria-expanded', 'true');
+        }
+        return;
       }
-    }
+      /* Close after clicking a share menu item */
+      if (e.target.closest('.pet-share-menu__item')) {
+        closeAllShareMenus();
+        return;
+      }
+      /* Close when clicking outside any share wrap */
+      if (!e.target.closest('.pet-share-wrap')) {
+        closeAllShareMenus();
+      }
+    });
 
-    function flashShareBtn(btn) {
-      var orig = btn.textContent;
-      btn.textContent = 'Copied!';
-      btn.classList.add('is-copied');
-      setTimeout(function () {
-        btn.textContent = orig;
-        btn.classList.remove('is-copied');
-      }, 2000);
-    }
-
-    function fallbackCopy(text, btn) {
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); flashShareBtn(btn); } catch (e) {}
-      document.body.removeChild(ta);
-    }
+    /* ── Keyboard: Escape closes modal and share menus ── */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if (petModal.classList.contains('is-open')) { closeModal(); }
+        closeAllShareMenus();
+      }
+    });
 
     /* ── Category tab filtering ── */
     document.querySelectorAll('.pet-tab').forEach(function (tab) {
