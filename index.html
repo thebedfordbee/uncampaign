@@ -325,107 +325,74 @@
     }
 
     /* =============================================
-       SPEND CONTEXT — log-scale grouped bar chart
+       VBC — compact vertical bar chart (footnote)
        ============================================= */
-    .spend-context {
-      margin-top: 2.5rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
+    .vbc {
+      margin-top: 1.625rem;
+      display: block;
     }
-    .spend-context__title {
-      font-family: var(--serif);
-      font-size: 1.0625rem;
-      font-weight: 700;
-      color: var(--charcoal);
-      margin-bottom: 0.25rem;
-    }
-    .spend-context__note {
+    .vbc__title {
       font-size: 0.8125rem;
+      color: var(--charcoal);
+      font-style: italic;
+      margin-bottom: 0.625rem;
+      max-width: none;
+      line-height: 1.45;
+    }
+    .vbc__bars {
+      display: flex;
+      align-items: flex-end;
+      height: 96px;
+      gap: 5px;
+      border-bottom: 1px solid var(--border);
+    }
+    .vbc__col {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      height: 100%;
+    }
+    .vbc__bar {
+      width: 100%;
+      border-radius: 2px 2px 0 0;
+      min-height: 2px;
+    }
+    .vbc__bar--a   { background: rgba(62,82,64,0.50); }
+    .vbc__bar--b   { background: rgba(62,82,64,0.25); }
+    .vbc__bar--c   { background: rgba(62,82,64,0.38); }
+    .vbc__bar--don { background: var(--moss); min-height: 3px; }
+    .vbc__lrow {
+      display: flex;
+      gap: 5px;
+      margin-top: 4px;
+    }
+    .vbc__lrow span {
+      flex: 1;
+      text-align: center;
+      line-height: 1.25;
+      font-variant-numeric: tabular-nums;
+      overflow: hidden;
+      word-break: break-word;
+    }
+    .vbc__lrow--amt span {
+      font-size: 0.5625rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .vbc__lrow--race span {
+      font-size: 0.5rem;
+      color: var(--muted);
+      opacity: 0.65;
+    }
+    .vbc__ldon { color: var(--moss) !important; opacity: 1 !important; font-weight: 700 !important; }
+    .vbc__caption {
+      font-size: 0.6875rem;
       color: var(--muted);
       font-style: italic;
-      margin-bottom: 1.125rem;
+      margin-top: 0.625rem;
+      display: block;
+      max-width: none;
     }
-    .spend-context__legend {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.375rem 1rem;
-      margin-bottom: 1.25rem;
-    }
-    .scc-legend__swatch {
-      display: inline-block;
-      width: 0.75rem;
-      height: 0.75rem;
-      border-radius: 2px;
-      vertical-align: middle;
-      margin-right: 0.3rem;
-    }
-    .scc-legend__swatch--inc { background: rgba(62,82,64,0.4); }
-    .scc-legend__swatch--chl { background: rgba(123,140,121,0.72); }
-    .scc-legend__swatch--don { background: var(--moss); }
-    .scc-legend__label {
-      font-size: 0.75rem;
-      color: var(--muted);
-      vertical-align: middle;
-    }
-    .scc {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-    .scc__group--featured {
-      padding: 0.875rem 1rem;
-      background: rgba(62,82,64,0.04);
-      border-left: 3px solid var(--moss);
-      border-radius: 0 4px 4px 0;
-    }
-    .scc__race-label {
-      font-size: 0.6875rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--charcoal);
-      margin-bottom: 0.5rem;
-    }
-    .scc__bar-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.375rem;
-    }
-    .scc__bar-row:last-child { margin-bottom: 0; }
-    .scc__role {
-      font-size: 0.75rem;
-      color: var(--muted);
-      flex: 0 0 4.75rem;
-      line-height: 1.25;
-    }
-    .scc__track {
-      flex: 1;
-      height: 1.375rem;
-      background: rgba(224,219,211,0.6);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-      min-width: 0;
-    }
-    .scc__fill {
-      height: 100%;
-      border-radius: 1px;
-    }
-    .scc__fill--inc { background: rgba(62,82,64,0.4); }
-    .scc__fill--chl { background: rgba(123,140,121,0.72); }
-    .scc__fill--don { background: var(--moss); }
-    .scc__amount {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--charcoal);
-      white-space: nowrap;
-      flex: 0 0 3.75rem;
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-    }
-    .scc__amount--don { color: var(--moss); font-weight: 700; }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7WVQR4MTH"></script>
@@ -634,6 +601,35 @@
               paid ads, or a campaign machine.
             </p>
 
+            <!-- Compact footnote chart — log-scale vertical bars -->
+            <figure class="vbc" aria-label="Campaign spending comparison: Mayoral race incumbents spent $57.5M and $22.5M; Congressional race $8.26M and $9.99M; Bedford Supervisor incumbent $15,750; Don Scott less than $49.99">
+              <p class="vbc__title">Other races on the same ballot spend real money.</p>
+              <div class="vbc__bars" aria-hidden="true">
+                <div class="vbc__col"><div class="vbc__bar vbc__bar--a" style="height:96.6%"></div></div>
+                <div class="vbc__col"><div class="vbc__bar vbc__bar--b" style="height:90.7%"></div></div>
+                <div class="vbc__col"><div class="vbc__bar vbc__bar--a" style="height:84.5%"></div></div>
+                <div class="vbc__col"><div class="vbc__bar vbc__bar--b" style="height:85.7%"></div></div>
+                <div class="vbc__col"><div class="vbc__bar vbc__bar--c" style="height:45.7%"></div></div>
+                <div class="vbc__col"><div class="vbc__bar vbc__bar--don" style="height:10%"></div></div>
+              </div>
+              <div class="vbc__lrow vbc__lrow--amt" aria-hidden="true">
+                <span>$57.5M</span>
+                <span>$22.5M</span>
+                <span>$8.26M</span>
+                <span>$9.99M</span>
+                <span>$15,750</span>
+                <span class="vbc__ldon">&lt;$49.99</span>
+              </div>
+              <div class="vbc__lrow vbc__lrow--race" aria-hidden="true">
+                <span>Mayor</span>
+                <span>Mayor</span>
+                <span>Cong.</span>
+                <span>Cong.</span>
+                <span>Supvr.</span>
+                <span class="vbc__ldon">Don</span>
+              </div>
+              <figcaption class="vbc__caption">Scale is compressed so Don's bar can technically be seen.</figcaption>
+            </figure>
 
           </div>
 
@@ -697,64 +693,6 @@
             </div>
           </div>
 
-        </div>
-
-        <!-- Campaign Spending In Context — log-scale grouped bar chart -->
-        <div class="spend-context" role="region" aria-labelledby="spend-context-title">
-          <h3 id="spend-context-title" class="spend-context__title">Campaign Spending, In Context</h3>
-          <p class="spend-context__note">Bars use a log scale — each interval represents a tenfold increase in spending.</p>
-
-          <div class="spend-context__legend" aria-hidden="true">
-            <span class="scc-legend__swatch scc-legend__swatch--inc"></span><span class="scc-legend__label">Incumbent</span>
-            <span class="scc-legend__swatch scc-legend__swatch--chl"></span><span class="scc-legend__label">Challenger</span>
-            <span class="scc-legend__swatch scc-legend__swatch--don"></span><span class="scc-legend__label">Don Scott</span>
-          </div>
-
-          <div class="scc">
-
-            <div class="scc__group">
-              <p class="scc__race-label">Mayoral Race</p>
-              <div class="scc__bar-row">
-                <span class="scc__role">Incumbent</span>
-                <div class="scc__track"><div class="scc__fill scc__fill--inc" style="width:96.6%"></div></div>
-                <span class="scc__amount">$57.5M</span>
-              </div>
-              <div class="scc__bar-row">
-                <span class="scc__role">Challenger</span>
-                <div class="scc__track"><div class="scc__fill scc__fill--chl" style="width:90.7%"></div></div>
-                <span class="scc__amount">$22.5M</span>
-              </div>
-            </div>
-
-            <div class="scc__group">
-              <p class="scc__race-label">Congressional Race</p>
-              <div class="scc__bar-row">
-                <span class="scc__role">Incumbent</span>
-                <div class="scc__track"><div class="scc__fill scc__fill--inc" style="width:84.5%"></div></div>
-                <span class="scc__amount">$8.26M</span>
-              </div>
-              <div class="scc__bar-row">
-                <span class="scc__role">Challenger</span>
-                <div class="scc__track"><div class="scc__fill scc__fill--chl" style="width:85.7%"></div></div>
-                <span class="scc__amount">$9.99M</span>
-              </div>
-            </div>
-
-            <div class="scc__group scc__group--featured">
-              <p class="scc__race-label">Town of Bedford Supervisor Race</p>
-              <div class="scc__bar-row">
-                <span class="scc__role">Incumbent</span>
-                <div class="scc__track"><div class="scc__fill scc__fill--inc" style="width:45.7%"></div></div>
-                <span class="scc__amount">$15,750</span>
-              </div>
-              <div class="scc__bar-row">
-                <span class="scc__role">Don Scott</span>
-                <div class="scc__track"><div class="scc__fill scc__fill--don" style="width:10.0%"></div></div>
-                <span class="scc__amount scc__amount--don">&lt;$49.99</span>
-              </div>
-            </div>
-
-          </div>
         </div>
 
       </div>
