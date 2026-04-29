@@ -194,7 +194,7 @@
 
     /* ── Desktop callout ─────────────────────────────────── */
     .btc-desktop-callout {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       gap: 0.625rem;
       background: var(--cream);
@@ -202,8 +202,10 @@
       border-radius: 6px;
       padding: 0.625rem 1rem;
       font-size: 0.875rem;
+      font-weight: 600;
       color: var(--muted);
-      margin-bottom: 1.5rem;
+      margin: 0 auto 1.5rem;
+      width: fit-content;
     }
     .btc-desktop-callout__icon { font-size: 1rem; flex-shrink: 0; line-height: 1; }
 
@@ -487,6 +489,27 @@
       text-align: left;
     }
     .btc-accuracy-warning.is-visible { display: block; }
+
+    /* Modal X close button */
+    .btc-modal-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 1.125rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: background 0.15s, color 0.15s;
+    }
+    .btc-modal-close:hover { background: var(--cream); color: var(--charcoal); }
 
     .btc-share-snippet {
       background: var(--cream);
@@ -897,6 +920,7 @@
         <div id="btc-modal" class="btc-modal" role="dialog" aria-modal="true" aria-labelledby="btc-modal-label" hidden>
           <div class="btc-modal-backdrop" id="btc-modal-backdrop"></div>
           <div class="btc-modal-box">
+            <button type="button" class="btc-modal-close" id="btc-modal-close" aria-label="Close result panel">&#x2715;</button>
 
             <!-- Phase 1: Result + optional submission -->
             <div id="btc-modal-phase1">
@@ -915,7 +939,8 @@
               </div>
               <p style="font-size:0.875rem;color:var(--muted);margin-bottom:1rem;max-width:none;">Your score is not added to the public leaderboard unless you submit your initials and hamlet.</p>
               <div class="btc-accuracy-warning" id="modal-acc-warning">
-                Leaderboard scores require at least 90% accuracy.
+                <p style="margin:0 0 0.875rem;max-width:none;">Your accuracy was below 75%. Scores need at least 75% accuracy to appear on the leaderboard.</p>
+                <button class="btn btn--primary" id="modal-try-again-btn" type="button" aria-label="Close this panel and restart the typing challenge">Try Again</button>
               </div>
               <div id="modal-form-wrap">
                 <div class="btc-form-group">
@@ -1009,7 +1034,7 @@
     <section class="section" aria-labelledby="hamlet-h2">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">By hamlet</p>
+          <p class="eyebrow">By Hamlet</p>
           <h2 id="hamlet-h2">How is your hamlet typing?</h2>
           <p class="section-header__lead">Average speed across all participants, by hamlet.</p>
         </div>
@@ -1036,8 +1061,8 @@
     <section class="section section--alt" aria-labelledby="ai-built-h2">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">How this was built</p>
-          <h2 id="ai-built-h2">HOW WE BUILT THIS WITH AI</h2>
+          <p class="eyebrow">How This Was Built</p>
+          <h2 id="ai-built-h2">How This Was Built</h2>
           <p class="section-header__lead section-header__lead--wide">
             This campaign is committed to showing its work. When AI helps build something useful, it should be explained and made visible — not hidden.
           </p>
@@ -1057,21 +1082,23 @@
             </button>
           </div>
           <div class="instr-panel__body">
-            <pre class="instr-panel__text">Build an interactive typing test module for a local civic participation webpage.
+            <pre class="instr-panel__text">Build a civic typing challenge that turns a simple local participation idea into a lightweight interactive game. The page should explain the purpose first: this is not just a typing test, it is a small experiment in making civic participation more interesting, lower pressure, and easier to share.
 
-The module should include:
-- A short Bedford-specific introduction explaining that the challenge is a lighthearted community participation project.
-- A timed typing test using a fixed passage of copy.
-- Real-time or end-of-test scoring for words per minute and accuracy.
-- A simple submission form where a participant can enter initials and select a Bedford hamlet.
-- A top 10 leaderboard sorted by typing speed.
-- A hamlet comparison view showing which hamlet has the strongest average score.
-- A comparison between the local average and a national average benchmark.
-- Clear copy explaining that the experience is meant to be fun, community-oriented, and lightly civic rather than a serious measure of ability.
-- A responsive layout that works well on desktop and mobile, while noting that typing tests are most accurate on a desktop or laptop.
-- A transparent "built with AI" section explaining how the concept and implementation were developed.
+Create a landing section with a clear title, short explanation, and a hero image. Include a back link to the parent Best of Bedford page. Below that, place the typing game in a focused module with a short note that the game is best played on desktop.
 
-Keep the tone friendly, useful, and locally specific. Avoid making the game feel like clickbait. It should feel like a small civic experiment that helps people participate, compare, and share something about their town.</pre>
+The game should show one Bedford-themed passage at a time. When the player starts typing, begin the timer on the first keystroke. Track elapsed time, words per minute, accuracy, and completion state. WPM should be based on standard typing-test logic: characters typed divided by five, adjusted for elapsed minutes. Accuracy should compare correct characters against total typed characters and should not mark any character wrong before the player begins.
+
+Display the passage with neutral styling at the start. As the player types, mark correct characters subtly and incorrect characters clearly, but only after input occurs. The first character should never appear red on a fresh game. Reset, retry, and new-game states should fully clear character styling, timing, input, score, and modal state.
+
+When the player finishes the passage, calculate final WPM and accuracy. Only allow score submission when accuracy is at least 75 percent. If accuracy is below the threshold, show a dismissible modal explaining that the score was not captured and offer a Try Again button. The modal must include a visible X close button, work on mobile, and never trap the user without an exit. Backdrop click and the Escape key should also dismiss the modal.
+
+For score capture, collect only what is needed for a community leaderboard: display name or initials, hamlet, WPM, accuracy, and timestamp. Do not collect unnecessary personal data. Make the submission flow feel transparent and low pressure.
+
+Create leaderboard views that let residents compare results overall and by hamlet. Hamlet grouping should be simple and readable, using Bedford Village, Bedford Hills, Katonah, and Other or Prefer not to say. Include clear empty states when no scores exist. Seed the leaderboard with realistic-looking placeholder data that reflects the actual distribution of typing speeds across age groups and backgrounds so the board never looks empty on first visit.
+
+Design the module to match a calm local campaign site rather than a flashy gaming app. Use the existing cream, sage, moss, charcoal, and border styles. Keep animations minimal. Make the game usable with keyboard input, readable on mobile, and resilient if JavaScript fails or the leaderboard endpoint is unavailable.
+
+The final experience should feel like a useful civic experiment: easy to understand, fun to try, transparent about how it works, and simple enough that another town could adapt it without a budget.</pre>
           </div>
         </div>
 
@@ -1116,7 +1143,7 @@ Keep the tone friendly, useful, and locally specific. Avoid making the game feel
     /* ── Config ───────────────────────────────────────────── */
     var API_URL = 'https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec';
     var SCORE_KEY = 'btc_real_scores_v1';
-    var MIN_ACCURACY = 90;
+    var MIN_ACCURACY = 75;
     var ROUND_DURATION = 60;
 
     /* ── Passages (30 Bedford fact passages, ~95–110 words each) ── */
@@ -1247,6 +1274,9 @@ Keep the tone friendly, useful, and locally specific. Avoid making the game feel
     var modalCopyBtn       = document.getElementById('modal-copy-btn');
     var modalPlayAgainBtn  = document.getElementById('modal-play-again');
     var modalViewLbBtn     = document.getElementById('modal-view-lb');
+    var modalCloseBtn      = document.getElementById('btc-modal-close');
+    var modalTryAgainBtn   = document.getElementById('modal-try-again-btn');
+    var modalBackdropEl    = document.getElementById('btc-modal-backdrop');
 
     function escHtml(s) {
       return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -1485,6 +1515,7 @@ Keep the tone friendly, useful, and locally specific. Avoid making the game feel
       if (gameState === 'idle') {
         if (isBackspace) return;
         startGame();
+        return; // Don't register the start key as a typed character
       }
 
       if (gameState !== 'playing') return;
@@ -1655,6 +1686,20 @@ Keep the tone friendly, useful, and locally specific. Avoid making the game feel
         }
       });
     }
+
+    /* ── Modal dismiss handlers ──────────────────────────── */
+    if (modalCloseBtn) {
+      modalCloseBtn.addEventListener('click', closeModal);
+    }
+    if (modalTryAgainBtn) {
+      modalTryAgainBtn.addEventListener('click', resetGame);
+    }
+    if (modalBackdropEl) {
+      modalBackdropEl.addEventListener('click', closeModal);
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal && !modal.hasAttribute('hidden')) closeModal();
+    });
 
     /* ── Clipboard helper ─────────────────────────────────── */
     function copyToClipboard(text, btn) {
