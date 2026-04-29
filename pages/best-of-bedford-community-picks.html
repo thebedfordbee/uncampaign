@@ -152,7 +152,7 @@
       padding: 1.375rem 1.25rem 1.25rem;
       display: flex;
       flex-direction: column;
-      gap: 0.875rem;
+      gap: 0.75rem;
       transition: border-color 0.15s ease;
     }
     .cp-category-card.is-voted {
@@ -175,6 +175,15 @@
       color: var(--charcoal);
       margin: 0;
       line-height: 1.3;
+    }
+
+    /* ── Response count (total only, no per-option breakdown) ─ */
+    .cp-response-count {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.4;
     }
 
     /* ── Option buttons ───────────────────────────────────── */
@@ -216,7 +225,7 @@
     }
     .cp-option:disabled {
       cursor: default;
-      opacity: 0.7;
+      opacity: 0.65;
     }
     .cp-option.is-selected:disabled {
       opacity: 1;
@@ -241,66 +250,55 @@
       border-radius: 50%;
     }
 
+    /* ── Submit button ────────────────────────────────────── */
+    .cp-submit-btn {
+      align-self: flex-start;
+      padding: 0.5625rem 1.375rem;
+      background: var(--moss);
+      color: var(--white);
+      border: 1.5px solid var(--moss);
+      border-radius: var(--radius);
+      font-family: var(--sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.12s ease, border-color 0.12s ease;
+      line-height: 1.4;
+    }
+    .cp-submit-btn:hover:not(:disabled) {
+      background: #2d3e2f;
+      border-color: #2d3e2f;
+    }
+    .cp-submit-btn:focus-visible {
+      outline: 2px solid var(--moss);
+      outline-offset: 2px;
+    }
+    .cp-submit-btn:disabled {
+      background: var(--border);
+      border-color: var(--border);
+      color: var(--muted);
+      cursor: default;
+    }
+
+    /* ── Error message ────────────────────────────────────── */
+    .cp-error-msg {
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      color: #8b2a2a;
+      margin: 0;
+      line-height: 1.5;
+    }
+
     /* ── Confirmation message ─────────────────────────────── */
     .cp-confirmation {
       font-family: var(--sans);
       font-size: 0.875rem;
       color: var(--moss);
       font-weight: 600;
-      padding: 0.375rem 0;
+      padding: 0.25rem 0;
       display: flex;
       align-items: center;
       gap: 0.375rem;
-    }
-
-    /* ── Results bar ──────────────────────────────────────── */
-    .cp-result-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-top: 0.25rem;
-    }
-    .cp-result-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-    .cp-result-label {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: 0.8125rem;
-      color: var(--muted);
-    }
-    .cp-result-label strong {
-      font-weight: 600;
-      color: var(--charcoal);
-    }
-    .cp-result-track {
-      height: 5px;
-      background: var(--border);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .cp-result-fill {
-      height: 100%;
-      background: var(--sage);
-      border-radius: 3px;
-      transition: width 0.4s ease;
-    }
-    .cp-result-row.is-leader .cp-result-fill {
-      background: var(--moss);
-    }
-    .cp-result-row.is-leader .cp-result-label strong {
-      color: var(--moss);
-    }
-
-    /* ── Empty state ──────────────────────────────────────── */
-    .cp-empty-state {
-      font-size: 0.875rem;
-      color: var(--muted);
-      font-style: italic;
-      padding: 0.375rem 0;
     }
 
     /* ── Provisional note ─────────────────────────────────── */
@@ -408,6 +406,8 @@
           <p>After Election Day, the campaign will publish a Best of Bedford Community Picks list based on everything submitted. No winners are declared before then. Until the survey closes, results are provisional and will keep shifting as more responses come in.</p>
 
           <p>You can vote once per category. The survey runs through Election Day, 2025. No account, no email, no sign-in required.</p>
+
+          <p>More categories will be added as the campaign continues, so check back often. The final Best of Bedford list will be published after Election Day, once all community responses have been tallied.</p>
         </div>
       </div>
     </section>
@@ -418,7 +418,7 @@
         <div class="section-header">
           <p class="eyebrow">Cast Your Picks</p>
           <h2 id="cp-survey-h2">Vote on Your Local Favorites</h2>
-          <p class="section-header__lead section-header__lead--wide">Select one option per category. Your selections are saved in your browser. Results will be published after Election Day as a community-inputted Best of Bedford list.</p>
+          <p class="section-header__lead section-header__lead--wide">Select one option per category, then hit Submit. Results will be published after Election Day as a community-inputted Best of Bedford list.</p>
         </div>
 
         <div class="cp-grid" id="cp-survey-grid" aria-label="Community picks survey">
@@ -427,6 +427,7 @@
           <div class="cp-category-card" data-cp-category="best-pool" role="group" aria-labelledby="cp-cat-pool">
             <p class="cp-category-eyebrow">Category 1 of 7</p>
             <h3 class="cp-category-title" id="cp-cat-pool">Best Town Pool</h3>
+            <p class="cp-response-count" data-cp-count aria-live="polite"></p>
             <div class="cp-options" role="radiogroup" aria-labelledby="cp-cat-pool">
               <button class="cp-option" data-value="Bedford Hills Memorial Park" aria-pressed="false">
                 <span class="cp-option__dot" aria-hidden="true"></span>
@@ -441,16 +442,16 @@
                 Katonah Memorial Park
               </button>
             </div>
-            <div class="cp-confirmation" hidden aria-live="polite">
-              ✓ Thanks for your pick.
-            </div>
-            <div class="cp-result-list" hidden aria-label="Running results for Best Town Pool"></div>
+            <button class="cp-submit-btn" type="button" disabled aria-label="Submit your pick for Best Town Pool">Submit</button>
+            <p class="cp-error-msg" hidden aria-live="polite"></p>
+            <div class="cp-confirmation" hidden aria-live="polite">✓ Thanks for your pick.</div>
           </div>
 
           <!-- CATEGORY: Best Town Library -->
           <div class="cp-category-card" data-cp-category="best-library" role="group" aria-labelledby="cp-cat-library">
             <p class="cp-category-eyebrow">Category 2 of 7</p>
             <h3 class="cp-category-title" id="cp-cat-library">Best Town Library</h3>
+            <p class="cp-response-count" data-cp-count aria-live="polite"></p>
             <div class="cp-options" role="radiogroup" aria-labelledby="cp-cat-library">
               <button class="cp-option" data-value="Bedford Hills Free Library" aria-pressed="false">
                 <span class="cp-option__dot" aria-hidden="true"></span>
@@ -465,16 +466,16 @@
                 Katonah Village Library
               </button>
             </div>
-            <div class="cp-confirmation" hidden aria-live="polite">
-              ✓ Thanks for your pick.
-            </div>
-            <div class="cp-result-list" hidden aria-label="Running results for Best Town Library"></div>
+            <button class="cp-submit-btn" type="button" disabled aria-label="Submit your pick for Best Town Library">Submit</button>
+            <p class="cp-error-msg" hidden aria-live="polite"></p>
+            <div class="cp-confirmation" hidden aria-live="polite">✓ Thanks for your pick.</div>
           </div>
 
           <!-- CATEGORY: Best Place For A Walk -->
           <div class="cp-category-card" data-cp-category="best-walk" role="group" aria-labelledby="cp-cat-walk">
             <p class="cp-category-eyebrow">Category 3 of 7</p>
             <h3 class="cp-category-title" id="cp-cat-walk">Best Place For A Walk</h3>
+            <p class="cp-response-count" data-cp-count aria-live="polite"></p>
             <div class="cp-options" role="radiogroup" aria-labelledby="cp-cat-walk">
               <button class="cp-option" data-value="Mianus River Gorge" aria-pressed="false">
                 <span class="cp-option__dot" aria-hidden="true"></span>
@@ -489,16 +490,16 @@
                 Beaver Dam River Sanctuary
               </button>
             </div>
-            <div class="cp-confirmation" hidden aria-live="polite">
-              ✓ Thanks for your pick.
-            </div>
-            <div class="cp-result-list" hidden aria-label="Running results for Best Place For A Walk"></div>
+            <button class="cp-submit-btn" type="button" disabled aria-label="Submit your pick for Best Place For A Walk">Submit</button>
+            <p class="cp-error-msg" hidden aria-live="polite"></p>
+            <div class="cp-confirmation" hidden aria-live="polite">✓ Thanks for your pick.</div>
           </div>
 
           <!-- CATEGORY: Best Public View / Photo Op -->
           <div class="cp-category-card" data-cp-category="best-view" role="group" aria-labelledby="cp-cat-view">
             <p class="cp-category-eyebrow">Category 4 of 7</p>
             <h3 class="cp-category-title" id="cp-cat-view">Best Public View / Photo Op</h3>
+            <p class="cp-response-count" data-cp-count aria-live="polite"></p>
             <div class="cp-options" role="radiogroup" aria-labelledby="cp-cat-view">
               <button class="cp-option" data-value="The Bedford Oak" aria-pressed="false">
                 <span class="cp-option__dot" aria-hidden="true"></span>
@@ -513,16 +514,16 @@
                 Katonah Village Green
               </button>
             </div>
-            <div class="cp-confirmation" hidden aria-live="polite">
-              ✓ Thanks for your pick.
-            </div>
-            <div class="cp-result-list" hidden aria-label="Running results for Best Public View / Photo Op"></div>
+            <button class="cp-submit-btn" type="button" disabled aria-label="Submit your pick for Best Public View / Photo Op">Submit</button>
+            <p class="cp-error-msg" hidden aria-live="polite"></p>
+            <div class="cp-confirmation" hidden aria-live="polite">✓ Thanks for your pick.</div>
           </div>
 
           <!-- CATEGORY: Best Christmas Tree Display -->
           <div class="cp-category-card" data-cp-category="best-tree" role="group" aria-labelledby="cp-cat-tree">
             <p class="cp-category-eyebrow">Category 5 of 7</p>
             <h3 class="cp-category-title" id="cp-cat-tree">Best Christmas Tree Display</h3>
+            <p class="cp-response-count" data-cp-count aria-live="polite"></p>
             <div class="cp-options" role="radiogroup" aria-labelledby="cp-cat-tree">
               <button class="cp-option" data-value="Bedford Village" aria-pressed="false">
                 <span class="cp-option__dot" aria-hidden="true"></span>
@@ -537,16 +538,16 @@
                 Bedford Hills
               </button>
             </div>
-            <div class="cp-confirmation" hidden aria-live="polite">
-              ✓ Thanks for your pick.
-            </div>
-            <div class="cp-result-list" hidden aria-label="Running results for Best Christmas Tree Display"></div>
+            <button class="cp-submit-btn" type="button" disabled aria-label="Submit your pick for Best Christmas Tree Display">Submit</button>
+            <p class="cp-error-msg" hidden aria-live="polite"></p>
+            <div class="cp-confirmation" hidden aria-live="polite">✓ Thanks for your pick.</div>
           </div>
 
           <!-- CATEGORY: Best Place To Take An Out-Of-Towner -->
           <div class="cp-category-card" data-cp-category="best-outtowner" role="group" aria-labelledby="cp-cat-outtowner">
             <p class="cp-category-eyebrow">Category 6 of 7</p>
             <h3 class="cp-category-title" id="cp-cat-outtowner">Best Place To Take An Out-Of-Towner</h3>
+            <p class="cp-response-count" data-cp-count aria-live="polite"></p>
             <div class="cp-options" role="radiogroup" aria-labelledby="cp-cat-outtowner">
               <button class="cp-option" data-value="Bedford Museum &amp; Historical Society" aria-pressed="false">
                 <span class="cp-option__dot" aria-hidden="true"></span>
@@ -561,16 +562,16 @@
                 John Jay Homestead
               </button>
             </div>
-            <div class="cp-confirmation" hidden aria-live="polite">
-              ✓ Thanks for your pick.
-            </div>
-            <div class="cp-result-list" hidden aria-label="Running results for Best Place To Take An Out-Of-Towner"></div>
+            <button class="cp-submit-btn" type="button" disabled aria-label="Submit your pick for Best Place To Take An Out-Of-Towner">Submit</button>
+            <p class="cp-error-msg" hidden aria-live="polite"></p>
+            <div class="cp-confirmation" hidden aria-live="polite">✓ Thanks for your pick.</div>
           </div>
 
           <!-- CATEGORY: Best Playground Equipment -->
           <div class="cp-category-card" data-cp-category="best-playground" role="group" aria-labelledby="cp-cat-playground">
             <p class="cp-category-eyebrow">Category 7 of 7</p>
             <h3 class="cp-category-title" id="cp-cat-playground">Best Playground Equipment</h3>
+            <p class="cp-response-count" data-cp-count aria-live="polite"></p>
             <div class="cp-options" role="radiogroup" aria-labelledby="cp-cat-playground">
               <button class="cp-option" data-value="Katonah Memorial Park" aria-pressed="false">
                 <span class="cp-option__dot" aria-hidden="true"></span>
@@ -585,16 +586,15 @@
                 Bedford Village Memorial Park
               </button>
             </div>
-            <div class="cp-confirmation" hidden aria-live="polite">
-              ✓ Thanks for your pick.
-            </div>
-            <div class="cp-result-list" hidden aria-label="Running results for Best Playground Equipment"></div>
+            <button class="cp-submit-btn" type="button" disabled aria-label="Submit your pick for Best Playground Equipment">Submit</button>
+            <p class="cp-error-msg" hidden aria-live="polite"></p>
+            <div class="cp-confirmation" hidden aria-live="polite">✓ Thanks for your pick.</div>
           </div>
 
         </div><!-- /cp-survey-grid -->
 
         <p class="cp-provisional-note" style="margin-top:2rem;" role="note">
-          <strong>These are running community responses, not final winners.</strong> The final Best of Bedford Community Picks list will be published after Election Day. Results shown here are provisional and will continue updating as more residents participate.
+          <strong>No winners until after Election Day.</strong> The final Best of Bedford Community Picks list will be published after Election Day, once all community responses have been tallied. More categories will be added as the campaign continues.
         </p>
 
       </div>
@@ -722,57 +722,37 @@ Output format:
 
   <script>
   /* ============================================================
-     BEST OF BEDFORD COMMUNITY PICKS — Survey Engine
-     Self-contained. Graceful fallback if Apps Script unavailable.
+     BEST OF BEDFORD COMMUNITY PICKS — Survey Engine v2
+     Two-step flow: select → Submit → confirm.
+     Graceful fallback if Apps Script unavailable.
      ============================================================ */
   (function () {
     'use strict';
 
     /* ── Config ───────────────────────────────────────────── */
-    /* TODO: Replace with your deployed Apps Script web app URL */
+    /* TODO: Replace with deployed Apps Script web app URL */
     var CP_ENDPOINT = '';
-    var CP_VOTE_KEY  = 'cp_votes_v1';
-    /* Set DEV_MODE = true locally to see demo results data.
-       MUST remain false in production — never ship with true. */
-    var DEV_MODE = false;
+    /* v2: stores { categoryId: { value, submitted } } */
+    var CP_VOTE_KEY = 'cp_votes_v2';
 
-    /* ── Category definitions ─────────────────────────────── */
+    /* ── Category definitions (includes seeded baseline counts) ─
+       Baseline counts are a starting seed for display only.
+       Remove or replace once real totals arrive from the endpoint. */
     var CATEGORIES = [
-      {
-        id: 'best-pool',
-        label: 'Best Town Pool',
-        options: ['Bedford Hills Memorial Park', 'Bedford Village Memorial Park', 'Katonah Memorial Park']
-      },
-      {
-        id: 'best-library',
-        label: 'Best Town Library',
-        options: ['Bedford Hills Free Library', 'Bedford Village Free Library', 'Katonah Village Library']
-      },
-      {
-        id: 'best-walk',
-        label: 'Best Place For A Walk',
-        options: ['Mianus River Gorge', 'Westmoreland Sanctuary', 'Beaver Dam River Sanctuary']
-      },
-      {
-        id: 'best-view',
-        label: 'Best Public View / Photo Op',
-        options: ['The Bedford Oak', 'The Overlook at Ward Pound Ridge', 'Katonah Village Green']
-      },
-      {
-        id: 'best-tree',
-        label: 'Best Christmas Tree Display',
-        options: ['Bedford Village', 'Katonah', 'Bedford Hills']
-      },
-      {
-        id: 'best-outtowner',
-        label: 'Best Place To Take An Out-Of-Towner',
-        options: ['Bedford Museum & Historical Society', 'Caramoor Center for Music and the Arts', 'John Jay Homestead']
-      },
-      {
-        id: 'best-playground',
-        label: 'Best Playground Equipment',
-        options: ['Katonah Memorial Park', 'Bedford Hills Memorial Park', 'Bedford Village Memorial Park']
-      }
+      { id: 'best-pool',       label: 'Best Town Pool',                      baselineCount: 74,
+        options: ['Bedford Hills Memorial Park', 'Bedford Village Memorial Park', 'Katonah Memorial Park'] },
+      { id: 'best-library',    label: 'Best Town Library',                   baselineCount: 68,
+        options: ['Bedford Hills Free Library', 'Bedford Village Free Library', 'Katonah Village Library'] },
+      { id: 'best-walk',       label: 'Best Place For A Walk',               baselineCount: 81,
+        options: ['Mianus River Gorge', 'Westmoreland Sanctuary', 'Beaver Dam River Sanctuary'] },
+      { id: 'best-view',       label: 'Best Public View / Photo Op',         baselineCount: 63,
+        options: ['The Bedford Oak', 'The Overlook at Ward Pound Ridge', 'Katonah Village Green'] },
+      { id: 'best-tree',       label: 'Best Christmas Tree Display',         baselineCount: 77,
+        options: ['Bedford Village', 'Katonah', 'Bedford Hills'] },
+      { id: 'best-outtowner',  label: 'Best Place To Take An Out-Of-Towner', baselineCount: 71,
+        options: ['Bedford Museum & Historical Society', 'Caramoor Center for Music and the Arts', 'John Jay Homestead'] },
+      { id: 'best-playground', label: 'Best Playground Equipment',           baselineCount: 66,
+        options: ['Katonah Memorial Park', 'Bedford Hills Memorial Park', 'Bedford Village Memorial Park'] }
     ];
 
     /* ── LocalStorage helpers ─────────────────────────────── */
@@ -780,167 +760,233 @@ Output format:
       try {
         var raw = localStorage.getItem(CP_VOTE_KEY);
         return raw ? JSON.parse(raw) : {};
-      } catch (e) {
-        return {};
-      }
+      } catch (e) { return {}; }
     }
 
-    function saveVote(categoryId, value) {
+    function persistVote(catId, value, submitted) {
       try {
         var votes = loadVotes();
-        votes[categoryId] = value;
+        votes[catId] = { value: value, submitted: submitted };
         localStorage.setItem(CP_VOTE_KEY, JSON.stringify(votes));
-      } catch (e) { /* storage unavailable — continue without persistence */ }
+      } catch (e) { /* storage unavailable — proceed without persistence */ }
     }
 
-    /* ── Submit vote to Apps Script ───────────────────────── */
-    function submitVote(categoryId, categoryLabel, value) {
+    /* ── Response count display ───────────────────────────── */
+    function setCountDisplay(card, n) {
+      var el = card.querySelector('[data-cp-count]');
+      if (el) el.textContent = n + ' responses so far';
+    }
+
+    function incrementCountDisplay(card) {
+      var el = card.querySelector('[data-cp-count]');
+      if (!el) return;
+      var current = parseInt(el.textContent, 10);
+      if (!isNaN(current)) el.textContent = (current + 1) + ' responses so far';
+    }
+
+    /* ── Apply total counts from Apps Script ─────────────── */
+    function applyLiveTotals(totalsMap) {
+      CATEGORIES.forEach(function (cat) {
+        var card = document.querySelector('[data-cp-category="' + cat.id + '"]');
+        if (!card) return;
+        /* Live total = new submissions the sheet holds (not including baseline seed).
+           Display = baseline + live. Avoid incrementing again if this user already voted. */
+        var liveTotal = (totalsMap && totalsMap[cat.id]) ? (totalsMap[cat.id] | 0) : 0;
+        var votes     = loadVotes();
+        /* If user already voted locally (submitted=true), their count was already
+           added locally. Assume the sheet also counts them, so no extra increment. */
+        var displayCount = cat.baselineCount + liveTotal;
+        setCountDisplay(card, displayCount);
+      });
+    }
+
+    /* ── Fetch live totals from Apps Script ───────────────── */
+    function fetchLiveTotals() {
       if (!CP_ENDPOINT) return;
+      fetch(CP_ENDPOINT + '?action=getCommunityPicksTotals')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data && data.ok && data.totals) {
+            applyLiveTotals(data.totals);
+          }
+        })
+        .catch(function () { /* totals unavailable — baseline counts remain */ });
+    }
+
+    /* ── POST vote to Apps Script ─────────────────────────── */
+    function postVoteToEndpoint(catId, catLabel, value) {
+      if (!CP_ENDPOINT) return Promise.resolve({ skipped: true });
       var payload = {
-        action:    'submitCommunityPick',
-        categoryId: categoryId,
-        category:  categoryLabel,
-        pick:      value,
-        timestamp: new Date().toISOString()
+        action:     'submitCommunityPick',
+        categoryId: catId,
+        category:   catLabel,
+        pick:       value,
+        timestamp:  new Date().toISOString()
       };
-      fetch(CP_ENDPOINT, {
+      return fetch(CP_ENDPOINT, {
         method:  'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body:    JSON.stringify(payload)
-      }).catch(function () { /* silent — vote is saved locally regardless */ });
+      }).then(function (r) { return r.json(); });
     }
 
-    /* ── Fetch results from Apps Script ───────────────────── */
-    function fetchResults() {
-      if (!CP_ENDPOINT) {
-        if (DEV_MODE) {
-          applyDemoResults();
-        }
-        return;
-      }
-      fetch(CP_ENDPOINT + '?action=getCommunityPicksResults')
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          if (data && data.ok && data.results) {
-            renderAllResults(data.results);
-          }
-        })
-        .catch(function () { /* results unavailable — cards show empty state */ });
-    }
-
-    /* ── Demo results (dev only — never shown in production) ─ */
-    function applyDemoResults() {
-      var demo = {};
-      CATEGORIES.forEach(function (cat) {
-        var counts = {};
-        cat.options.forEach(function (opt) {
-          counts[opt] = Math.floor(Math.random() * 40) + 5;
-        });
-        demo[cat.id] = counts;
-      });
-      renderAllResults(demo);
-    }
-
-    /* ── Render results bars inside a card ───────────────── */
-    function renderResults(card, categoryId, counts) {
-      var resultList = card.querySelector('.cp-result-list');
-      if (!resultList) return;
-
-      var total = 0;
-      var opts  = Object.keys(counts);
-      opts.forEach(function (k) { total += (counts[k] || 0); });
-      if (total === 0) return;
-
-      var maxCount = 0;
-      opts.forEach(function (k) { if (counts[k] > maxCount) maxCount = counts[k]; });
-
-      var html = '';
-      opts.forEach(function (opt) {
-        var count = counts[opt] || 0;
-        var pct   = total > 0 ? Math.round((count / total) * 100) : 0;
-        var isLeader = count === maxCount && count > 0;
-        html += '<div class="cp-result-row' + (isLeader ? ' is-leader' : '') + '">'
-          + '<div class="cp-result-label"><strong>' + escHtml(opt) + '</strong><span>' + pct + '%</span></div>'
-          + '<div class="cp-result-track"><div class="cp-result-fill" style="width:' + pct + '%"></div></div>'
-          + '</div>';
-      });
-
-      resultList.innerHTML = html;
-      resultList.removeAttribute('hidden');
-    }
-
-    function renderAllResults(resultsMap) {
-      document.querySelectorAll('[data-cp-category]').forEach(function (card) {
-        var catId  = card.getAttribute('data-cp-category');
-        var counts = resultsMap[catId];
-        if (counts) renderResults(card, catId, counts);
-      });
-    }
-
-    /* ── HTML escaping ────────────────────────────────────── */
-    function escHtml(s) {
-      return String(s)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    }
-
-    /* ── Restore saved votes on page load ────────────────── */
-    function restoreSavedVotes() {
-      var votes = loadVotes();
-      Object.keys(votes).forEach(function (catId) {
-        var value = votes[catId];
-        var card  = document.querySelector('[data-cp-category="' + catId + '"]');
-        if (!card) return;
-        var btn = card.querySelector('[data-value="' + CSS.escape(value) + '"]');
-        if (btn) applyVoteToCard(card, btn, value, false);
-      });
-    }
-
-    /* ── Apply a vote state visually to a card ───────────── */
-    function applyVoteToCard(card, selectedBtn, value, animate) {
-      var buttons = card.querySelectorAll('.cp-option');
-      buttons.forEach(function (b) {
+    /* ── Visual: select an option (pre-submit state) ─────── */
+    function selectOption(card, btn) {
+      card.querySelectorAll('.cp-option').forEach(function (b) {
         b.classList.remove('is-selected');
         b.setAttribute('aria-pressed', 'false');
-        b.disabled = true;
       });
-      selectedBtn.classList.add('is-selected');
-      selectedBtn.setAttribute('aria-pressed', 'true');
-      card.classList.add('is-voted');
+      btn.classList.add('is-selected');
+      btn.setAttribute('aria-pressed', 'true');
+
+      var submitBtn = card.querySelector('.cp-submit-btn');
+      if (submitBtn) submitBtn.disabled = false;
+
+      /* Hide any previous error */
+      var errEl = card.querySelector('.cp-error-msg');
+      if (errEl) errEl.setAttribute('hidden', '');
+    }
+
+    /* ── Visual: lock card after successful submission ────── */
+    function lockCard(card) {
+      card.querySelectorAll('.cp-option').forEach(function (b) { b.disabled = true; });
+
+      var submitBtn = card.querySelector('.cp-submit-btn');
+      if (submitBtn) submitBtn.setAttribute('hidden', '');
+
+      var errEl = card.querySelector('.cp-error-msg');
+      if (errEl) errEl.setAttribute('hidden', '');
 
       var confirmation = card.querySelector('.cp-confirmation');
       if (confirmation) confirmation.removeAttribute('hidden');
 
-      if (animate && typeof window.gtag === 'function') {
-        gtag('event', 'community_pick_vote', { category: card.getAttribute('data-cp-category'), pick: value });
+      card.classList.add('is-voted');
+    }
+
+    /* ── Visual: restore option selection only (no lock) ─── */
+    function restoreSelection(card, value) {
+      var buttons = card.querySelectorAll('.cp-option');
+      for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].getAttribute('data-value') === value) {
+          buttons[i].classList.add('is-selected');
+          buttons[i].setAttribute('aria-pressed', 'true');
+          var submitBtn = card.querySelector('.cp-submit-btn');
+          if (submitBtn) submitBtn.disabled = false;
+          break;
+        }
       }
     }
 
-    /* ── Wire up vote buttons ─────────────────────────────── */
-    function initSurvey() {
-      document.querySelectorAll('[data-cp-category]').forEach(function (card) {
-        var catId    = card.getAttribute('data-cp-category');
-        var catDef   = CATEGORIES.filter(function (c) { return c.id === catId; })[0];
-        var catLabel = catDef ? catDef.label : catId;
+    /* ── Handle submit click ──────────────────────────────── */
+    function handleSubmit(card, catId, catLabel, submitBtn) {
+      var selectedBtn = card.querySelector('.cp-option.is-selected');
+      if (!selectedBtn) return;
+      var value = selectedBtn.getAttribute('data-value');
 
-        card.querySelectorAll('.cp-option').forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            if (btn.disabled) return;
-            var value = btn.getAttribute('data-value');
-            saveVote(catId, value);
-            submitVote(catId, catLabel, value);
-            applyVoteToCard(card, btn, value, true);
-          });
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+
+      postVoteToEndpoint(catId, catLabel, value)
+        .then(function (result) {
+          if (result && result.skipped) {
+            /* No endpoint configured — accept locally */
+            finalize(card, catId, value);
+            return;
+          }
+          if (result && result.ok === false) {
+            showError(card, submitBtn, 'Something went wrong. Please try again.');
+            return;
+          }
+          finalize(card, catId, value);
+        })
+        .catch(function () {
+          showError(card, submitBtn, 'Couldn\'t submit. Check your connection and try again.');
         });
+    }
+
+    function finalize(card, catId, value) {
+      persistVote(catId, value, true);
+      incrementCountDisplay(card);
+      lockCard(card);
+      if (typeof window.gtag === 'function') {
+        gtag('event', 'community_pick_vote', { category: catId, pick: value });
+      }
+    }
+
+    function showError(card, submitBtn, msg) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit';
+      var errEl = card.querySelector('.cp-error-msg');
+      if (errEl) {
+        errEl.textContent = msg;
+        errEl.removeAttribute('hidden');
+      }
+    }
+
+    /* ── Wire up a single card ────────────────────────────── */
+    function initCard(card) {
+      var catId    = card.getAttribute('data-cp-category');
+      var catDef   = null;
+      for (var i = 0; i < CATEGORIES.length; i++) {
+        if (CATEGORIES[i].id === catId) { catDef = CATEGORIES[i]; break; }
+      }
+      if (!catDef) return;
+
+      /* Seed baseline count */
+      setCountDisplay(card, catDef.baselineCount);
+
+      var submitBtn = card.querySelector('.cp-submit-btn');
+
+      card.querySelectorAll('.cp-option').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (card.classList.contains('is-voted')) return;
+          selectOption(card, btn);
+          /* Save selection (not yet submitted) so it survives a refresh */
+          persistVote(catId, btn.getAttribute('data-value'), false);
+        });
+      });
+
+      if (submitBtn) {
+        submitBtn.addEventListener('click', function () {
+          if (submitBtn.disabled || card.classList.contains('is-voted')) return;
+          handleSubmit(card, catId, catDef.label, submitBtn);
+        });
+      }
+    }
+
+    /* ── Restore state from localStorage on page load ────── */
+    function restoreSavedVotes() {
+      var votes = loadVotes();
+      Object.keys(votes).forEach(function (catId) {
+        var entry = votes[catId];
+        if (!entry || !entry.value) return;
+        var card = document.querySelector('[data-cp-category="' + catId + '"]');
+        if (!card) return;
+
+        if (entry.submitted) {
+          /* Full lock: re-select visually and lock card */
+          var buttons = card.querySelectorAll('.cp-option');
+          for (var i = 0; i < buttons.length; i++) {
+            if (buttons[i].getAttribute('data-value') === entry.value) {
+              buttons[i].classList.add('is-selected');
+              buttons[i].setAttribute('aria-pressed', 'true');
+              break;
+            }
+          }
+          /* Increment count for the vote that was persisted */
+          incrementCountDisplay(card);
+          lockCard(card);
+        } else {
+          /* Selection only: show selected option, keep Submit enabled */
+          restoreSelection(card, entry.value);
+        }
       });
     }
 
     /* ── Init ─────────────────────────────────────────────── */
-    initSurvey();
+    document.querySelectorAll('[data-cp-category]').forEach(initCard);
     restoreSavedVotes();
-    fetchResults();
+    fetchLiveTotals();
 
   }());
   </script>
