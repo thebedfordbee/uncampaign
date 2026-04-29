@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -470,6 +470,34 @@
       box-shadow: var(--shadow-md);
       text-align: center;
     }
+    .btc-step-score {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.25rem;
+    }
+    .btc-step-acc {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--charcoal);
+      line-height: 1;
+    }
+    .btc-share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.625rem;
+    }
+    .btc-share-btn-social {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      padding: 0.5rem 1rem;
+      min-height: 40px;
+    }
+    #btc-results .btc-result-card { margin-bottom: 1rem; }
+    #btc-results .btc-result-card[hidden] { display: none; }
     .btc-result-eyebrow { color: var(--sage); margin-bottom: 0.75rem; }
     .btc-result-wpm {
       font-family: var(--serif);
@@ -957,39 +985,26 @@
             </div>
           </div>
 
-          <!-- Results panel -->
+          <!-- Post-game panels (hidden until round ends) -->
           <div id="btc-results" aria-live="polite">
-            <div class="btc-result-card">
-              <p class="eyebrow btc-result-eyebrow">Round complete</p>
-              <span class="btc-result-wpm" id="result-wpm">—</span>
-              <span class="btc-result-wpm-label">Words per minute</span>
-              <div class="btc-result-stats">
-                <div>
-                  <span class="btc-result-stat__value" id="result-acc">—</span>
-                  <span class="btc-result-stat__label">Accuracy</span>
-                </div>
-                <div>
-                  <span class="btc-result-stat__value" id="result-chars">—</span>
-                  <span class="btc-result-stat__label">Correct chars</span>
-                </div>
-              </div>
-              <p class="btc-rank-msg" id="result-rank-msg"></p>
-              <div class="btc-accuracy-warning" id="btc-acc-warning">
-                Accuracy below 90% — scores must be at least 90% accurate to appear on the leaderboard. Give it another try.
-              </div>
-              <div class="btc-share-snippet" id="btc-share-text"></div>
-              <div class="btc-result-actions">
-                <button class="btn btn--primary" id="btc-share-btn" type="button">Copy &amp; Share</button>
-                <button class="btn btn--secondary" id="btc-play-again" type="button">Play Again</button>
-                <a href="#leaderboard" class="btn btn--secondary">View Full Leaderboard</a>
-              </div>
-            </div>
 
-            <!-- Submission form -->
-            <div class="btc-submit-wrap" id="btc-submit-wrap">
-              <div class="btc-submit-form">
-                <h3>Add your score to the leaderboard</h3>
-                <p>Just your initials and hamlet — nothing else required.</p>
+            <!-- Phase 1: Submit your score (shown immediately after round) -->
+            <div id="btc-phase-submit" class="btc-result-card" hidden>
+              <p class="eyebrow btc-result-eyebrow">Round complete</p>
+              <div class="btc-step-score">
+                <span class="btc-result-wpm" id="result-wpm">—</span>
+                <span class="btc-result-wpm-label">WPM</span>
+                <span class="btc-step-acc" id="result-acc">—</span>
+                <span class="btc-result-wpm-label">accuracy</span>
+              </div>
+
+              <div class="btc-accuracy-warning" id="btc-acc-warning">
+                Accuracy below 90% — scores need to be at least 90% accurate to appear on the public leaderboard. Try again!
+              </div>
+
+              <div id="btc-submit-form-body">
+                <h3 style="margin:1.25rem 0 0.375rem;">Add your score to the leaderboard</h3>
+                <p style="color:var(--muted);font-size:0.875rem;max-width:none;margin-bottom:1.25rem;">Your score won't appear publicly until you submit your initials and hamlet. No email or personal information is collected.</p>
                 <div class="btc-form-group">
                   <label for="sub-initials">Initials <span style="color:var(--muted);font-weight:400;">(2–3 characters)</span></label>
                   <input type="text" id="sub-initials" name="initials" maxlength="3" placeholder="e.g. JK or RWS" autocomplete="off" autocapitalize="characters" spellcheck="false">
@@ -1005,13 +1020,50 @@
                     <option value="Prefer not to say">Prefer not to say</option>
                   </select>
                 </div>
-                <button class="btn btn--primary" id="btc-submit-btn" type="button" style="width:100%;">Submit to Leaderboard</button>
-                <p class="btc-form-privacy">No full name, email, address, or voter information is collected. Ever.</p>
+                <div class="btc-result-actions" style="margin-top:1rem;">
+                  <button class="btn btn--primary" id="btc-submit-btn" type="button">Submit Score</button>
+                  <button class="btn btn--secondary" id="btc-skip-btn" type="button">Skip — view leaderboard</button>
+                </div>
               </div>
-              <div class="btc-submitted-msg" id="btc-submitted-msg">
-                Score submitted. You're on the board. ✓
+
+              <!-- Shown after submit attempt -->
+              <div id="btc-submit-status" hidden>
+                <p id="btc-submit-status-msg" style="font-size:0.9375rem;margin:0;max-width:none;"></p>
               </div>
             </div>
+
+            <!-- Phase 2: After submit — rank + share + play again -->
+            <div id="btc-phase-done" class="btc-result-card" hidden>
+              <p class="eyebrow btc-result-eyebrow" id="phase-done-eyebrow">You're on the board</p>
+              <span class="btc-result-wpm" id="result-final-wpm">—</span>
+              <span class="btc-result-wpm-label">Words per minute</span>
+              <p class="btc-rank-msg" id="result-rank-msg"></p>
+
+              <!-- Share buttons (shown only after a submitted score) -->
+              <div id="btc-share-row" hidden>
+                <p style="font-size:0.8125rem;color:var(--muted);margin:1rem 0 0.75rem;max-width:none;">Share your result:</p>
+                <div class="btc-share-buttons">
+                  <a id="share-facebook" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btc-share-btn-social">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                    Facebook
+                  </a>
+                  <a id="share-x" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--secondary btc-share-btn-social">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    Post on X
+                  </a>
+                  <button id="btc-copy-btn" class="btn btn--secondary btc-share-btn-social" type="button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    Copy result
+                  </button>
+                </div>
+              </div>
+
+              <div class="btc-result-actions">
+                <button class="btn btn--primary" id="btc-play-again" type="button">Play Again</button>
+                <a href="#leaderboard" class="btn btn--secondary">View Leaderboard</a>
+              </div>
+            </div>
+
           </div>
 
           <p style="text-align:center;margin-top:1.5rem;font-size:0.875rem;color:var(--muted);">This campaign is not spending money on mailers, robocalls, or lawn sign saturation. So we're trying something else: building things people might actually enjoy. The Bedford Typing Challenge is part of Best of Bedford, a small series of local experiments designed to make a campaign feel a little more human, a little more creative, and a little less predictable.</p>
@@ -1373,43 +1425,53 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
     var gameState = 'idle'; // idle | playing | done
     var passageIdx = -1;
     var lastPassageIdx = -1;
-    var charStates = [];
-    var cursorPos = 0;
-    var prevCursorPos = -1;
+    var targetText = '';  // passage text for current round
+    var typedText  = '';  // user's input (single source of truth)
     var startTime = 0;
     var timerInterval = null;
     var timeLeft = ROUND_DURATION;
     var pendingResult = null;
     var mySubmission = null;
-    var liveScoreCache = null; // null = not fetched yet, [] = fetched empty, [...] = live scores
+    var liveScoreCache = null; // null=not fetched, []=empty, [...]=live scores
 
     /* ── DOM refs ─────────────────────────────────────────── */
-    var arena        = document.getElementById('btc-arena');
-    var passageWrap  = document.getElementById('btc-passage-wrap');
-    var passageEl    = document.getElementById('btc-passage-text');
-    var readyOverlay = document.getElementById('btc-ready-overlay');
-    var timerDisp    = document.getElementById('timer-display');
-    var wpmDisp      = document.getElementById('wpm-display');
-    var accDisp      = document.getElementById('acc-display');
-    var progFill     = document.getElementById('progress-fill');
-    var statTimer    = document.getElementById('stat-timer');
-    var resultsEl    = document.getElementById('btc-results');
-    var resultWpm    = document.getElementById('result-wpm');
-    var resultAcc    = document.getElementById('result-acc');
-    var resultChars  = document.getElementById('result-chars');
-    var resultRank   = document.getElementById('result-rank-msg');
-    var accWarning   = document.getElementById('btc-acc-warning');
-    var shareText    = document.getElementById('btc-share-text');
-    var shareBtn     = document.getElementById('btc-share-btn');
-    var playAgainBtn = document.getElementById('btc-play-again');
-    var submitWrap   = document.getElementById('btc-submit-wrap');
-    var initialsIn   = document.getElementById('sub-initials');
-    var hamletSel    = document.getElementById('sub-hamlet');
-    var submitBtn    = document.getElementById('btc-submit-btn');
-    var submittedMsg = document.getElementById('btc-submitted-msg');
-    var arenaStatus  = document.getElementById('arena-status');
+    var arena           = document.getElementById('btc-arena');
+    var passageWrap     = document.getElementById('btc-passage-wrap');
+    var passageEl       = document.getElementById('btc-passage-text');
+    var readyOverlay    = document.getElementById('btc-ready-overlay');
+    var timerDisp       = document.getElementById('timer-display');
+    var wpmDisp         = document.getElementById('wpm-display');
+    var accDisp         = document.getElementById('acc-display');
+    var progFill        = document.getElementById('progress-fill');
+    var statTimer       = document.getElementById('stat-timer');
+    var resultsEl       = document.getElementById('btc-results');
+    var phaseSubmit     = document.getElementById('btc-phase-submit');
+    var phaseDone       = document.getElementById('btc-phase-done');
+    var resultWpm       = document.getElementById('result-wpm');
+    var resultAcc       = document.getElementById('result-acc');
+    var resultFinalWpm  = document.getElementById('result-final-wpm');
+    var resultRank      = document.getElementById('result-rank-msg');
+    var accWarning      = document.getElementById('btc-acc-warning');
+    var submitFormBody  = document.getElementById('btc-submit-form-body');
+    var submitStatus    = document.getElementById('btc-submit-status');
+    var submitStatusMsg = document.getElementById('btc-submit-status-msg');
+    var initialsIn      = document.getElementById('sub-initials');
+    var hamletSel       = document.getElementById('sub-hamlet');
+    var submitBtn       = document.getElementById('btc-submit-btn');
+    var skipBtn         = document.getElementById('btc-skip-btn');
+    var playAgainBtn    = document.getElementById('btc-play-again');
+    var shareRow        = document.getElementById('btc-share-row');
+    var shareXBtn       = document.getElementById('share-x');
+    var shareFbBtn      = document.getElementById('share-facebook');
+    var copyBtn         = document.getElementById('btc-copy-btn');
+    var phaseDoneEyebrow = document.getElementById('phase-done-eyebrow');
+    var arenaStatus     = document.getElementById('arena-status');
 
-    /* ── Passage rendering ────────────────────────────────── */
+    function escHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    /* ── Passage load + render ────────────────────────────── */
     function loadPassage() {
       var idx;
       var attempts = 0;
@@ -1417,96 +1479,79 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
         idx = Math.floor(Math.random() * PASSAGES.length);
         attempts++;
       } while (idx === lastPassageIdx && PASSAGES.length > 1 && attempts < 20);
-      passageIdx = idx;
+      passageIdx    = idx;
       lastPassageIdx = idx;
+      targetText    = PASSAGES[idx].text;
+      typedText     = ''; // always start empty — no characters pre-typed
+      renderPassage();
+    }
 
-      var text = PASSAGES[idx].text;
-      charStates = new Array(text.length).fill('pending');
-      cursorPos = 0;
-      prevCursorPos = -1;
-
+    function renderPassage() {
+      /* typedText is the single source of truth.
+         RULE: a character is ONLY marked correct/incorrect when i < typedText.length.
+         When typedText[i] is undefined (i >= typedText.length) the span gets NO color class.
+         This prevents any red characters from appearing before the user types anything. */
+      var curIdx = typedText.length;
       var html = '';
-      for (var i = 0; i < text.length; i++) {
-        var ch = text[i];
-        if (ch === ' ') html += '<span class="pc"> </span>';
-        else html += '<span class="pc">' + escHtml(ch) + '</span>';
+      for (var i = 0; i < targetText.length; i++) {
+        var cls = 'pc';
+        if (i < typedText.length) {
+          // typed zone: compare only when typedText[i] is defined
+          cls += (typedText[i] === targetText[i]) ? ' pc--correct' : ' pc--incorrect';
+        } else if (i === curIdx) {
+          // caret position: left-border only, NO color class (not red, not green)
+          cls += ' pc--cursor';
+        }
+        // i > curIdx: untyped, class stays 'pc' — neutral/default color
+        html += '<span class="' + cls + '">' + escHtml(targetText[i]) + '</span>';
       }
       passageEl.innerHTML = html;
+      scrollToIdx(curIdx);
     }
 
-    function escHtml(s) {
-      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    }
-
-    function updateChar(pos) {
+    function scrollToIdx(idx) {
       var spans = passageEl.children;
-      if (!spans[pos]) return;
-      var s = charStates[pos];
-      spans[pos].className = 'pc' +
-        (s === 'correct' ? ' pc--correct' : '') +
-        (s === 'incorrect' ? ' pc--incorrect' : '');
-    }
-
-    function updateCursor() {
-      var spans = passageEl.children;
-      if (prevCursorPos >= 0 && spans[prevCursorPos]) {
-        spans[prevCursorPos].classList.remove('pc--cursor');
-      }
-      if (cursorPos < spans.length && spans[cursorPos]) {
-        spans[cursorPos].classList.add('pc--cursor');
-      }
-      prevCursorPos = cursorPos;
-    }
-
-    function scrollCursor() {
-      var spans = passageEl.children;
-      if (spans[cursorPos] && passageWrap) {
-        var wrap = passageWrap;
-        var span = spans[cursorPos];
-        var spanBottom = span.offsetTop + span.offsetHeight;
-        var visibleBottom = wrap.scrollTop + wrap.clientHeight;
-        if (spanBottom > visibleBottom - 20) {
-          wrap.scrollTop = spanBottom - wrap.clientHeight + 40;
-        }
+      if (!spans[idx] || !passageWrap) return;
+      var spanBottom = spans[idx].offsetTop + spans[idx].offsetHeight;
+      var visBottom  = passageWrap.scrollTop + passageWrap.clientHeight;
+      if (spanBottom > visBottom - 20) {
+        passageWrap.scrollTop = spanBottom - passageWrap.clientHeight + 40;
       }
     }
 
     /* ── Stats ────────────────────────────────────────────── */
-    function calcWPM() {
-      if (!startTime || cursorPos === 0) return 0;
-      var elapsed = (Date.now() - startTime) / 60000;
-      if (elapsed <= 0) return 0;
-      var correct = 0;
-      for (var i = 0; i < cursorPos; i++) if (charStates[i] === 'correct') correct++;
-      return Math.round((correct / 5) / elapsed);
-    }
-
-    function calcAccuracy() {
-      if (cursorPos === 0) return 100;
-      var correct = 0;
-      for (var i = 0; i < cursorPos; i++) if (charStates[i] === 'correct') correct++;
-      return Math.round((correct / cursorPos) * 100);
-    }
-
-    function calcCorrectChars() {
+    function countCorrect() {
       var n = 0;
-      for (var i = 0; i < charStates.length; i++) if (charStates[i] === 'correct') n++;
+      for (var i = 0; i < typedText.length; i++) {
+        if (typedText[i] === targetText[i]) n++;
+      }
       return n;
     }
 
+    function calcWPM() {
+      if (!startTime || typedText.length === 0) return 0;
+      var elapsed = (Date.now() - startTime) / 60000;
+      if (elapsed <= 0) return 0;
+      // WPM = correct chars / 5 (standard word) / elapsed minutes
+      return Math.round((countCorrect() / 5) / elapsed);
+    }
+
+    function calcAccuracy() {
+      // Accuracy = correct typed / total typed
+      if (typedText.length === 0) return 100;
+      return Math.round((countCorrect() / typedText.length) * 100);
+    }
+
     function updateStats() {
-      var wpm = calcWPM();
-      var acc = calcAccuracy();
-      var pct = (cursorPos / PASSAGES[passageIdx].text.length) * 100;
-      wpmDisp.textContent = gameState === 'playing' ? (wpm || '0') : '—';
-      accDisp.textContent = gameState === 'playing' ? (acc + '%') : '—';
+      var pct = targetText.length > 0 ? (typedText.length / targetText.length) * 100 : 0;
+      wpmDisp.textContent = gameState === 'playing' ? String(calcWPM() || 0) : '—';
+      accDisp.textContent = gameState === 'playing' ? (calcAccuracy() + '%') : '—';
       progFill.style.width = pct.toFixed(1) + '%';
     }
 
     function updateTimer() {
-      var secs = timeLeft;
-      var m = Math.floor(secs / 60);
-      var s = secs % 60;
+      var m = Math.floor(timeLeft / 60);
+      var s = timeLeft % 60;
       timerDisp.textContent = m + ':' + (s < 10 ? '0' : '') + s;
       statTimer.classList.toggle('is-urgent', timeLeft <= 10);
     }
@@ -1515,145 +1560,146 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
     function startGame() {
       gameState = 'playing';
       startTime = Date.now();
-      timeLeft = ROUND_DURATION;
+      timeLeft  = ROUND_DURATION;
       updateTimer();
       readyOverlay.style.display = 'none';
-      resultsEl.classList.remove('is-visible');
       arenaStatus.textContent = 'Typing challenge started. 60 seconds.';
-
       timerInterval = setInterval(function () {
         timeLeft--;
         updateTimer();
-        if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          endGame();
-        }
+        if (timeLeft <= 0) { clearInterval(timerInterval); endGame(); }
       }, 1000);
     }
 
     function endGame() {
       clearInterval(timerInterval);
       gameState = 'done';
-
       var wpm = calcWPM();
       var acc = calcAccuracy();
-      var correctChars = calcCorrectChars();
-
-      // Remove cursor
-      var spans = passageEl.children;
-      if (spans[cursorPos]) spans[cursorPos].classList.remove('pc--cursor');
-
       pendingResult = { wpm: wpm, accuracy: acc, passageId: PASSAGES[passageIdx].id, roundDuration: ROUND_DURATION };
-
-      showResults(wpm, acc, correctChars);
+      renderPassage(); // final render — cursor disappears because typedText.length >= targetText.length
+      showPhaseSubmit(wpm, acc);
     }
 
-    function showResults(wpm, acc, correctChars) {
-      resultsEl.classList.add('is-visible');
+    function showPhaseSubmit(wpm, acc) {
+      if (phaseSubmit) phaseSubmit.removeAttribute('hidden');
+      if (phaseDone)   phaseDone.setAttribute('hidden', '');
+      if (resultWpm)   resultWpm.textContent = wpm;
+      if (resultAcc)   resultAcc.textContent = acc + '%';
 
-      resultWpm.textContent = wpm;
-      resultAcc.textContent = acc + '%';
-      resultChars.textContent = correctChars;
-
-      var rank = getRank(wpm, acc);
-      resultRank.innerHTML = 'You are currently <strong>#' + rank + ' in Bedford</strong>.';
-
-      var shareSnippet = 'I scored ' + wpm + ' WPM in the Bedford Typing Challenge and I\'m currently #' + rank + ' in Bedford. Built by the Don for Bedford campaign because local politics can be more interesting than lawn signs. donforbedford.com/best-of-bedford';
-      shareText.textContent = shareSnippet;
-
-      shareBtn.onclick = function () { doShare(shareSnippet); };
-      playAgainBtn.onclick = resetGame;
-
-      if (acc >= MIN_ACCURACY) {
-        accWarning.classList.remove('is-visible');
-        submitWrap.classList.add('is-visible');
-        submittedMsg.classList.remove('is-visible');
-        submitWrap.querySelector('.btc-submit-form').style.display = '';
-      } else {
-        accWarning.classList.add('is-visible');
-        submitWrap.classList.remove('is-visible');
+      var qualified = (acc >= MIN_ACCURACY);
+      if (accWarning) {
+        if (qualified) accWarning.classList.remove('is-visible');
+        else            accWarning.classList.add('is-visible');
       }
+      if (submitFormBody) submitFormBody.hidden = !qualified;
+      if (submitStatus)   submitStatus.hidden = true;
+      if (initialsIn)     initialsIn.value = '';
+      if (hamletSel)      hamletSel.value  = '';
+      if (submitBtn)      submitBtn.disabled = false;
+      if (submitBtn)      submitBtn.textContent = 'Submit Score';
 
-      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      renderLeaderboard();
+      renderHamlet();
+      if (phaseSubmit) phaseSubmit.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function showPhaseDone(wpm, rank, submitted) {
+      if (phaseSubmit) phaseSubmit.setAttribute('hidden', '');
+      if (phaseDone)   phaseDone.removeAttribute('hidden');
+      if (resultFinalWpm) resultFinalWpm.textContent = wpm;
+      if (resultRank) {
+        resultRank.innerHTML = submitted
+          ? 'You are currently <strong>#' + rank + ' in Bedford</strong>.'
+          : 'Score not submitted to the public leaderboard.';
+      }
+      if (phaseDoneEyebrow) phaseDoneEyebrow.textContent = submitted ? "You're on the board" : 'Round complete';
+
+      if (shareRow) {
+        if (submitted) {
+          shareRow.removeAttribute('hidden');
+          var shareText = 'I scored ' + wpm + ' WPM and ranked #' + rank + ' in the Bedford Typing Challenge. Can you beat me?';
+          var shareUrl  = 'https://www.donforbedford.com/best-of-bedford';
+          var fullShare = shareText + ' ' + shareUrl;
+          if (shareFbBtn) shareFbBtn.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl) + '&quote=' + encodeURIComponent(shareText);
+          if (shareXBtn)  shareXBtn.href  = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText + ' ' + shareUrl);
+          if (copyBtn)    copyBtn.onclick  = function () { copyToClipboard(fullShare, copyBtn); };
+        } else {
+          shareRow.setAttribute('hidden', '');
+        }
+      }
+      if (playAgainBtn) playAgainBtn.onclick = resetGame;
+      if (phaseDone) phaseDone.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       renderLeaderboard();
       renderHamlet();
     }
 
     function resetGame() {
       clearInterval(timerInterval);
-      gameState = 'idle';
-      timeLeft = ROUND_DURATION;
+      gameState  = 'idle';
+      typedText  = '';
+      startTime  = 0;
+      timeLeft   = ROUND_DURATION;
       updateTimer();
       statTimer.classList.remove('is-urgent');
       wpmDisp.textContent = '—';
       accDisp.textContent = '—';
       progFill.style.width = '0%';
-      resultsEl.classList.remove('is-visible');
-      submitWrap.classList.remove('is-visible');
-      submittedMsg.classList.remove('is-visible');
+      if (phaseSubmit) phaseSubmit.setAttribute('hidden', '');
+      if (phaseDone)   phaseDone.setAttribute('hidden', '');
       mySubmission = null;
 
       loadPassage();
       readyOverlay.style.display = '';
       passageWrap.scrollTop = 0;
-      arena.focus();
+      arena.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       arenaStatus.textContent = 'New passage loaded. Press any key to begin.';
     }
 
     /* ── Key handling ─────────────────────────────────────── */
     function onKeydown(e) {
-      // Ignore all modifier combos (Ctrl+C, Cmd+R, Alt+anything, etc.)
+      // Ignore all modifier combos (Ctrl, Cmd, Alt)
       if (e.ctrlKey || e.metaKey || e.altKey) return;
 
-      // Pass only Backspace and printable single characters; ignore everything else
-      // (Shift, CapsLock, Tab, Escape, Arrow keys, F-keys, Enter, etc.)
+      // Only handle Backspace and single printable characters
       var isBackspace = (e.key === 'Backspace');
-      var isPrintable = (e.key.length === 1); // space, letters, digits, punctuation
+      var isPrintable = (e.key.length === 1); // letters, digits, space, punctuation
       if (!isBackspace && !isPrintable) return;
 
       if (gameState === 'done') return;
 
-      // Prevent browser default (page scroll on space, Back navigation on Backspace)
+      // Prevent page scroll (space) and browser back-nav (Backspace)
       e.preventDefault();
 
       if (gameState === 'idle') {
-        // Timer starts only on a printable character, never on Backspace
+        // Start timer only on a printable character, never on Backspace
         if (isBackspace) return;
-        startGame(); // sets gameState = 'playing'; cursor still at index 0
-        // fall through — process this first character below
+        startGame(); // gameState = 'playing'; typedText still ''
+        // fall through to process this first character
       }
 
       if (gameState !== 'playing') return;
 
-      var text = PASSAGES[passageIdx].text;
-
       if (isBackspace) {
-        if (cursorPos > 0) {
-          cursorPos--;
-          charStates[cursorPos] = 'pending';
-          updateChar(cursorPos);
-          updateCursor();
+        if (typedText.length > 0) {
+          typedText = typedText.slice(0, -1);
+          renderPassage();
           updateStats();
         }
         return;
       }
 
-      // Printable character: compare to passage, advance cursor
-      // WPM = (correct chars / 5) / elapsed minutes. Accuracy = correct / total typed.
-      if (cursorPos >= text.length) return;
-      charStates[cursorPos] = (e.key === text[cursorPos]) ? 'correct' : 'incorrect';
-      updateChar(cursorPos);
-      cursorPos++;
-      updateCursor();
+      // Append printable character
+      if (typedText.length >= targetText.length) return;
+      typedText += e.key;
+      renderPassage();
       updateStats();
-      scrollCursor();
 
-      if (cursorPos >= text.length) {
+      if (typedText.length >= targetText.length) {
         clearInterval(timerInterval);
         endGame();
       }
     }
-
     /* ── Score storage + rank ─────────────────────────────── */
     function getStoredScores() {
       try { return JSON.parse(localStorage.getItem(SCORE_KEY) || '[]'); } catch (e) { return []; }
@@ -1698,24 +1744,7 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
     }
 
     /* ── Apps Script submission ───────────────────────────── */
-    function apiPost(payload) {
-      return fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
-      })
-      .then(function (r) { return r.json(); })
-      .catch(function () {
-        return fetch(API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-          body: new URLSearchParams({ payload: JSON.stringify(payload) }).toString()
-        }).then(function (r) { return r.json(); });
-      })
-      .catch(function (err) { console.warn('[btc] API post failed:', err); return null; });
-    }
-
-    /* ── Live leaderboard fetch ───────────────────────────── */
+    /* ── Apps Script helpers ─────────────────────────────── */
     function fetchLiveScores() {
       return fetch(API_URL + '?action=getTypingLeaderboard')
         .then(function (r) { return r.json(); })
@@ -1733,101 +1762,123 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
         });
     }
 
-    /* ── Submit handler ───────────────────────────────────── */
+    /* ── Submit + skip handlers ──────────────────────────── */
+    if (skipBtn) {
+      skipBtn.addEventListener('click', function () {
+        if (!pendingResult) return;
+        var wpm = pendingResult.wpm;
+        showPhaseDone(wpm, getRank(wpm, pendingResult.accuracy), false);
+      });
+    }
+
     if (submitBtn) {
       submitBtn.addEventListener('click', function () {
-        var ini = (initialsIn.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 3);
+        var ini    = (initialsIn.value || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 3);
         var hamlet = hamletSel.value;
 
         initialsIn.classList.remove('is-invalid');
         hamletSel.classList.remove('is-invalid');
         var valid = true;
-
         if (ini.length < 2) { initialsIn.classList.add('is-invalid'); valid = false; }
-        if (!hamlet) { hamletSel.classList.add('is-invalid'); valid = false; }
+        if (!hamlet)        { hamletSel.classList.add('is-invalid');  valid = false; }
         if (!valid) return;
-
         if (!pendingResult) return;
 
         var score = {
-          initials: ini,
-          hamlet: hamlet,
-          wpm: pendingResult.wpm,
-          accuracy: pendingResult.accuracy,
-          passageId: pendingResult.passageId,
+          initials:      ini,
+          hamlet:        hamlet,
+          wpm:           pendingResult.wpm,
+          accuracy:      pendingResult.accuracy,
+          passageId:     pendingResult.passageId,
           roundDuration: pendingResult.roundDuration,
-          timestamp: new Date().toISOString(),
-          source: 'real'
+          timestamp:     new Date().toISOString(),
+          source:        'real'
         };
 
         mySubmission = score;
-        saveLocal(score); // always save locally first
+        saveLocal(score); // persist locally first — always safe
 
-        submitBtn.disabled = true;
+        submitBtn.disabled    = true;
         submitBtn.textContent = 'Submitting…';
 
-        // Show success and re-render regardless of API outcome
-        function onSubmitComplete() {
-          submitWrap.querySelector('.btc-submit-form').style.display = 'none';
-          submittedMsg.classList.add('is-visible');
-          renderLeaderboard();
-          renderHamlet();
-          var rank = getRank(score.wpm, score.accuracy);
-          resultRank.innerHTML = 'You are currently <strong>#' + rank + ' in Bedford</strong>.';
-        }
+        // Build POST payload with all required fields
+        var postPayload = {
+          action:        'submitTypingScore',
+          initials:      score.initials,
+          hamlet:        score.hamlet,
+          wpm:           score.wpm,
+          accuracy:      score.accuracy,
+          passageId:     score.passageId,
+          roundDuration: score.roundDuration
+        };
+        var postBody = JSON.stringify(postPayload);
+        console.log('[btc] submitTypingScore payload:', postPayload);
 
-        // POST directly so we can log the response and distinguish success from failure
-        var postBody = JSON.stringify(Object.assign({ action: 'submitTypingScore' }, score));
+        // POST using text/plain to avoid CORS preflight — same pattern as /ideas and /photos
         fetch(API_URL, {
-          method: 'POST',
+          method:  'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: postBody
+          body:    postBody
         })
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          console.log('[btc] submitTypingScore response:', data);
-          onSubmitComplete();
+        .then(function (r) {
+          console.log('[btc] submitTypingScore status:', r.status, r.statusText);
+          return r.text();
+        })
+        .then(function (raw) {
+          console.log('[btc] submitTypingScore raw response:', raw);
+          var data;
+          try { data = JSON.parse(raw); } catch (e) { data = null; }
+          console.log('[btc] submitTypingScore parsed:', data);
+
+          if (data && data.ok) {
+            // Success: score is in the sheet — refetch leaderboard then show share phase
+            fetchLiveScores().then(function (scores) {
+              liveScoreCache = scores;
+              var rank = getRank(score.wpm, score.accuracy);
+              showPhaseDone(score.wpm, rank, true);
+            });
+          } else {
+            // API reachable but returned an error
+            onSubmitFail('The leaderboard did not update. Your score is saved on this device. (' + raw + ')');
+          }
         })
         .catch(function (err) {
-          console.warn('[btc] submitTypingScore failed:', err);
-          onSubmitComplete(); // still show success — score is in localStorage
+          console.warn('[btc] submitTypingScore fetch failed:', err);
+          onSubmitFail('Could not reach the leaderboard server. Your score is saved on this device and will appear once connectivity is restored.');
         });
+
+        function onSubmitFail(msg) {
+          if (submitStatus)    submitStatus.hidden = false;
+          if (submitStatusMsg) submitStatusMsg.textContent = msg;
+          if (submitBtn)       { submitBtn.disabled = false; submitBtn.textContent = 'Try Again'; }
+        }
       });
     }
 
-    /* ── Share ────────────────────────────────────────────── */
-    function doShare(text) {
-      if (navigator.share) {
-        navigator.share({ text: text, url: 'https://www.donforbedford.com/best-of-bedford', title: 'Bedford Typing Challenge' }).catch(function () { copyText(text); });
-      } else {
-        copyText(text);
+    /* ── Clipboard helper (used by copy button in share row) ─ */
+    function copyToClipboard(text, btn) {
+      function confirm() {
+        if (!btn) return;
+        var orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(function () { btn.textContent = orig; }, 2000);
       }
-    }
-
-    function copyText(text) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () { flashBtn(shareBtn, 'Copied!'); }).catch(function () { fallbackCopy(text); });
+        navigator.clipboard.writeText(text).then(confirm).catch(function () { fallback(text, confirm); });
       } else {
-        fallbackCopy(text);
+        fallback(text, confirm);
       }
     }
 
-    function fallbackCopy(text) {
+    function fallback(text, cb) {
       var ta = document.createElement('textarea');
       ta.value = text;
       ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
       document.body.appendChild(ta);
       ta.focus(); ta.select();
-      try { document.execCommand('copy'); flashBtn(shareBtn, 'Copied!'); } catch (e) {}
+      try { if (document.execCommand('copy')) cb(); } catch (e) {}
       document.body.removeChild(ta);
     }
-
-    function flashBtn(btn, msg) {
-      var orig = btn.textContent;
-      btn.textContent = msg;
-      setTimeout(function () { btn.textContent = orig; }, 2000);
-    }
-
     /* ── Leaderboard rendering ────────────────────────────── */
     function renderLeaderboard() {
       var lbBody = document.getElementById('lb-body');
