@@ -192,8 +192,26 @@
       .btc-game-desktop { display: none; }
     }
 
+    /* ── Desktop callout ─────────────────────────────────── */
+    .btc-desktop-callout {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      padding: 0.625rem 1rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .btc-desktop-callout__icon { font-size: 1rem; flex-shrink: 0; line-height: 1; }
+
     /* ── Game arena ──────────────────────────────────────── */
     .btc-game-desktop { max-width: 800px; margin-inline: auto; }
+    @media (min-width: 900px) {
+      .btc-game-desktop { max-width: 960px; }
+    }
 
     .btc-arena {
       background: var(--white);
@@ -270,6 +288,13 @@
       max-height: 220px;
       overflow-y: auto;
       scroll-behavior: smooth;
+    }
+    @media (min-width: 768px) {
+      .btc-passage-wrap {
+        min-height: 240px;
+        max-height: 320px;
+        padding: 2.5rem 2.5rem 2.75rem;
+      }
     }
     .btc-passage-text {
       font-family: var(--mono);
@@ -596,13 +621,21 @@
       text-align: right;
     }
 
-    /* Hamlet summary */
-    .btc-hamlet-grid {
+    /* Hamlet podium */
+    .btc-hamlet-podium {
       display: grid;
       gap: 1rem;
       grid-template-columns: 1fr;
+      max-width: 720px;
+      margin-inline: auto;
     }
-    @media (min-width: 480px) { .btc-hamlet-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 480px) {
+      .btc-hamlet-podium {
+        grid-template-columns: repeat(3, 1fr);
+        align-items: end;
+      }
+      .btc-hamlet-card--gold { transform: translateY(-1.25rem); }
+    }
     .btc-hamlet-card {
       background: var(--white);
       border: 1.5px solid var(--border);
@@ -610,7 +643,27 @@
       padding: 1.5rem;
       text-align: center;
       box-shadow: var(--shadow-sm);
+      position: relative;
     }
+    .btc-hamlet-card--gold  { border-color: #b5860d; box-shadow: 0 4px 20px rgba(181,134,13,0.15); }
+    .btc-hamlet-card--silver { border-color: #8a9ea0; }
+    .btc-hamlet-card--bronze { border-color: #a0745a; }
+    .btc-hamlet-medal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #fff;
+      font-family: var(--sans);
+    }
+    .btc-hamlet-medal--gold   { background: #b5860d; }
+    .btc-hamlet-medal--silver { background: #6e8080; }
+    .btc-hamlet-medal--bronze { background: #8b5c33; }
     .btc-hamlet-name {
       font-size: 0.625rem;
       letter-spacing: 0.14em;
@@ -644,10 +697,14 @@
       flex-wrap: wrap;
       gap: 1.5rem;
       align-items: center;
+      justify-content: center;
       background: var(--white);
       border: 1.5px solid var(--border);
       border-radius: 8px;
       padding: 1.25rem 1.75rem;
+      margin-top: 1.5rem;
+      max-width: 480px;
+      margin-inline: auto;
       margin-top: 1.5rem;
     }
     .btc-avg-compare__stat { text-align: center; }
@@ -741,7 +798,7 @@
       <div class="issues-hero__inner">
 
         <div class="issues-hero__copy-top">
-          <p class="eyebrow">Best of Bedford</p>
+          <p class="eyebrow">DON SCOTT PRESENTS</p>
           <h1 id="btc-hero-h1">Fastest Typist in Bedford</h1>
         </div>
 
@@ -751,7 +808,6 @@
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">A local typing challenge to see who types fastest in Bedford, which hamlet leads the leaderboard, and whether our town is quicker than the national average.</p>
-          <p class="roundtable-disclosure"><em>This is mostly a game. It is also a small reminder that local systems do not always need to move this slowly.</em></p>
         </div>
 
       </div>
@@ -760,20 +816,6 @@
 
   <main id="main-content">
 
-    <!-- INTRO FRAMING -->
-    <section class="section section--alt" aria-labelledby="btc-intro-h2">
-      <div class="container">
-        <div style="max-width: 680px;">
-          <p class="eyebrow">First in the Series</p>
-          <h2 id="btc-intro-h2">What This Is</h2>
-          <div class="btc-intro-body">
-            <p>This is the first installment in Best of Bedford, an ongoing civic participation series built by a campaign that cannot afford to behave like a normal campaign. Instead of spending money to interrupt people, we're building things Bedford residents might actually want to use.</p>
-            <p>No, typing speed does not qualify anyone for office. But responsiveness still matters. If Bedford can compare typing speeds by hamlet, it can probably do a few other things faster too.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- GAME SECTION -->
     <section class="section" id="game" aria-labelledby="game-h2">
       <div class="container">
@@ -781,9 +823,13 @@
           <p class="eyebrow">The Bedford Typing Challenge</p>
           <h2 id="game-h2">Compete to be Bedford's fastest typist.</h2>
           <p class="section-header__lead">A deliberately old-school challenge, built for a real keyboard. 60 seconds. Bedford facts. One leaderboard.</p>
+          <p class="section-header__lead">The Bedford Typing Challenge is a lighthearted way to compete across town, compare results by hamlet, and turn a simple game into a small act of community participation. Not every civic project has to begin with a meeting, a mailer, or a clipboard. Sometimes participation starts with seeing whether Katonah, Bedford Hills, or Bedford Village has the fastest fingers.</p>
         </div>
 
-        <p style="font-size: 0.875rem; color: var(--muted); font-style: italic; margin-bottom: 1.5rem; max-width: none;">Best played on a desktop or laptop for the most accurate results.</p>
+        <div class="btc-desktop-callout" role="note">
+          <span class="btc-desktop-callout__icon" aria-hidden="true">⌨</span>
+          <span class="btc-desktop-callout__text">Best played on a desktop or laptop for the most accurate results.</span>
+        </div>
 
         <!-- Mobile notice -->
         <div class="btc-mobile-notice" role="note" aria-label="Desktop recommended">
@@ -934,7 +980,7 @@
           <h2 id="lb-h2">Bedford Typing Leaderboard</h2>
           <p class="section-header__lead">Ranked by words per minute. Updated as scores come in.</p>
         </div>
-        <div class="btc-lb-wrap" style="max-width:720px;">
+        <div class="btc-lb-wrap" style="max-width:720px;margin-inline:auto;">
           <table class="btc-lb-table" aria-label="Bedford Typing Challenge leaderboard">
             <thead>
               <tr>
@@ -951,7 +997,6 @@
             </tbody>
           </table>
         </div>
-        <p class="btc-lb-seed-note" style="max-width:720px;">Includes launch entries from Bedford residents who played during the first two weeks.</p>
       </div>
     </section>
 
@@ -963,27 +1008,22 @@
           <h2 id="hamlet-h2">How is your hamlet typing?</h2>
           <p class="section-header__lead">Average speed across all participants, by hamlet.</p>
         </div>
-        <div class="btc-hamlet-grid" id="btc-hamlet-grid" style="max-width:720px;">
+        <div class="btc-hamlet-podium" id="btc-hamlet-grid">
           <!-- filled by JS -->
         </div>
 
         <!-- Bedford vs. national average comparison -->
-        <!-- SOURCE NOTE: Replace the national average placeholder below with a sourced benchmark
-             from a reputable typing speed study before publishing. Typical reported averages
-             range from 40–65 WPM depending on methodology and population. -->
-        <div class="btc-avg-compare" style="max-width:720px;" id="btc-avg-compare">
+        <div class="btc-avg-compare" id="btc-avg-compare">
           <div class="btc-avg-compare__stat">
             <span class="btc-avg-compare__value" id="bedford-avg-display">—</span>
             <span class="btc-avg-compare__label">Bedford avg WPM</span>
           </div>
           <span class="btc-avg-compare__vs">vs.</span>
           <div class="btc-avg-compare__stat">
-            <!-- SOURCE: Replace with an authoritative national typing benchmark when one is confirmed. -->
             <span class="btc-avg-compare__value btc-avg-compare__value--national">~44</span>
-            <span class="btc-avg-compare__label">national avg WPM*</span>
+            <span class="btc-avg-compare__label">national avg WPM</span>
           </div>
         </div>
-        <p class="btc-avg-compare__note" style="max-width:720px;">* National average is a commonly cited reference figure. A sourced benchmark will be linked here when confirmed.</p>
       </div>
     </section>
 
@@ -1000,19 +1040,33 @@
 
         <div class="cta-row cta-row--centered">
           <div class="howbuilt-cta-group">
-            <button type="button" class="btn btn--primary" data-instr-toggle="ai-panel-typing" aria-expanded="false">Show How We Built This</button>
+            <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-typing" aria-expanded="false">View The Instruction Set</button>
           </div>
         </div>
 
-        <div class="instr-panel" id="ai-panel-typing" hidden>
+        <div class="instr-panel" id="instr-panel-typing" hidden>
           <div class="instr-panel__bar">
-            <span class="instr-panel__title">HOW WE BUILT THIS WITH AI</span>
+            <span class="instr-panel__title">INSTRUCTION SET</span>
+            <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+              <span class="instr-panel__copy-label">Copy All</span>
+            </button>
           </div>
-          <div class="instr-panel__body ai-disclosure-body">
-            <p>This page was built as part of a deliberately low-cost local campaign experiment. Instead of spending money on consultants, paid media, or campaign tech, we're using modern AI tools to build things ourselves and show our work in public.</p>
-            <p>The concept, copy, structure, and implementation were developed with AI assistance, then reviewed and refined by a human before publication. That is true here on purpose, not by accident.</p>
-            <p>If local campaigns can use AI to build useful civic tools at almost no cost, local government should probably be thinking harder about where it can do the same.</p>
-            <p class="ai-disclosure-note">Human reviewed before publication.</p>
+          <div class="instr-panel__body">
+            <pre class="instr-panel__text">Build an interactive typing test module for a local civic participation webpage.
+
+The module should include:
+- A short Bedford-specific introduction explaining that the challenge is a lighthearted community participation project.
+- A timed typing test using a fixed passage of copy.
+- Real-time or end-of-test scoring for words per minute and accuracy.
+- A simple submission form where a participant can enter initials and select a Bedford hamlet.
+- A top 10 leaderboard sorted by typing speed.
+- A hamlet comparison view showing which hamlet has the strongest average score.
+- A comparison between the local average and a national average benchmark.
+- Clear copy explaining that the experience is meant to be fun, community-oriented, and lightly civic rather than a serious measure of ability.
+- A responsive layout that works well on desktop and mobile, while noting that typing tests are most accurate on a desktop or laptop.
+- A transparent "built with AI" section explaining how the concept and implementation were developed.
+
+Keep the tone friendly, useful, and locally specific. Avoid making the game feel like clickbait. It should feel like a small civic experiment that helps people participate, compare, and share something about their town.</pre>
           </div>
         </div>
 
@@ -1663,7 +1717,7 @@
       } catch (e) { return ''; }
     }
 
-    /* ── Hamlet summary ───────────────────────────────────── */
+    /* ── Hamlet summary (podium) ──────────────────────────── */
     function renderHamlet() {
       var grid = document.getElementById('btc-hamlet-grid');
       if (!grid) return;
@@ -1684,15 +1738,29 @@
         if (hamletData[h]) { hamletData[h].total += s.wpm; hamletData[h].count++; }
       });
 
-      var html = '';
-      hamletOrder.forEach(function (h) {
+      /* Sort hamlets by average WPM descending */
+      var ranked = hamletOrder.map(function (h) {
         var d = hamletData[h];
-        var avg = d.count > 0 ? Math.round(d.total / d.count) : 0;
-        html += '<div class="btc-hamlet-card">' +
-          '<span class="btc-hamlet-name">' + escHtml(h) + '</span>' +
-          '<span class="btc-hamlet-wpm">' + avg + '</span>' +
+        return { name: h, avg: d.count > 0 ? Math.round(d.total / d.count) : 0, count: d.count };
+      }).sort(function (a, b) { return b.avg - a.avg; });
+
+      var medals    = ['gold', 'silver', 'bronze'];
+      var medLabels = ['1', '2', '3'];
+      /* Podium display order: silver (index 1) left, gold (index 0) center, bronze (index 2) right */
+      var podiumOrder = [ranked[1], ranked[0], ranked[2]];
+      var podiumClasses = ['silver', 'gold', 'bronze'];
+
+      var html = '';
+      podiumOrder.forEach(function (item, i) {
+        if (!item) return;
+        var cls = podiumClasses[i];
+        var medalNum = cls === 'gold' ? '1' : cls === 'silver' ? '2' : '3';
+        html += '<div class="btc-hamlet-card btc-hamlet-card--' + cls + '">' +
+          '<div><span class="btc-hamlet-medal btc-hamlet-medal--' + cls + '">' + medalNum + '</span></div>' +
+          '<span class="btc-hamlet-name">' + escHtml(item.name) + '</span>' +
+          '<span class="btc-hamlet-wpm">' + item.avg + '</span>' +
           '<span class="btc-hamlet-wpm-label">avg WPM</span>' +
-          '<p class="btc-hamlet-count">' + d.count + ' participant' + (d.count !== 1 ? 's' : '') + '</p>' +
+          '<p class="btc-hamlet-count">' + item.count + ' participant' + (item.count !== 1 ? 's' : '') + '</p>' +
           '</div>';
       });
       grid.innerHTML = html;
