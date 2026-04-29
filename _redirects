@@ -5,7 +5,8 @@
 
 /photos             /pages/photos           301
 /podcasts           /pages/podcasts         301
-/best-of-bedford    /pages/best-of-bedford  301
+/best-of-bedford                  /pages/best-of-bedford                  301
+/best-of-bedford-fastest-typist   /pages/best-of-bedford-fastest-typist   301
 
 # Legacy /minutes and /minute redirects — keep old links working
 /minutes        /podcasts           301
