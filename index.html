@@ -325,100 +325,89 @@
     }
 
     /* =============================================
-       SPEND-SCALE — circle area comparator
+       HSCALE — horizontal $0–$60M spending scale
        ============================================= */
-    .spend-scale {
+    .hscale {
       margin-top: 1.625rem;
     }
-    .spend-scale__title {
-      font-size: 0.6875rem;
-      font-weight: 700;
-      color: var(--charcoal);
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      margin-bottom: 0.375rem;
-      max-width: none;
-    }
-    .spend-scale__intro {
-      font-size: 0.8125rem;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 0.75rem;
-      max-width: none;
-    }
-    .spend-scale__label {
-      display: block;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 0.3rem;
-    }
-    .spend-scale__select {
+    .hscale__svg-wrap {
       width: 100%;
-      padding: 0.4375rem 0.625rem;
-      font-size: 0.8125rem;
-      font-family: inherit;
-      color: var(--charcoal);
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      cursor: pointer;
     }
-    .spend-scale__select:focus-visible {
-      outline: 2px solid var(--moss);
-      outline-offset: 2px;
+    .hscale__svg-wrap svg { display: block; overflow: visible; }
+    .hscale__track-rect {
+      fill: rgba(224,219,211,0.72);
+      stroke: rgba(62,82,64,0.18);
+      stroke-width: 0.5;
     }
-    .spend-scale__visual {
-      max-width: 260px;
-      margin: 0.625rem 0 0.125rem;
+    .hscale__tick-line {
+      stroke: rgba(62,82,64,0.50);
+      stroke-width: 1;
     }
-    .spend-scale__visual svg { display: block; }
-    .ssc-race-fill {
-      fill: rgba(224,219,211,0.65);
-      stroke: rgba(62,82,64,0.20);
-      stroke-width: 0.75;
-      transition: r 0.4s ease;
+    .hscale__tick-text {
+      font-size: 8px;
+      fill: var(--charcoal);
+      font-family: var(--sans);
     }
-    .ssc-don-fill {
-      fill: var(--moss);
-      transition: cx 0.4s ease, cy 0.4s ease;
-    }
-    .ssc-don-text {
-      font-size: 9px;
+    .hscale__don-dot  { fill: var(--moss); }
+    .hscale__don-text {
+      font-size: 7.5px;
       fill: var(--moss);
       font-family: var(--sans);
     }
-    .spend-scale__result {
-      margin-top: 0.25rem;
+    .hscale__axis-text {
+      font-size: 7px;
+      fill: var(--muted);
+      font-family: var(--sans);
     }
-    .spend-scale__stat {
-      font-size: 0.8125rem;
+    .hscale__local {
+      margin-top: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(224,219,211,0.35);
+      border-left: 2px solid var(--border);
+      border-radius: 0 3px 3px 0;
+    }
+    .hscale__local-head {
+      font-size: 0.6875rem;
       color: var(--muted);
-      line-height: 1.5;
+      font-style: italic;
+      margin-bottom: 0.3rem;
       max-width: none;
     }
-    .spend-scale__stat strong { color: var(--charcoal); }
-    .spend-scale__don-amt    { color: var(--moss); font-weight: 600; }
-    .spend-scale__multiplier {
-      font-size: 0.8125rem;
-      color: var(--muted);
-      margin-top: 0.375rem;
-      max-width: none;
-      line-height: 1.5;
+    .hscale__local-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.175rem;
     }
-    .spend-scale__multiplier strong { color: var(--charcoal); }
-    .spend-scale__note {
+    .hscale__local-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .hscale__local-name {
+      font-size: 0.75rem;
+      color: var(--muted);
+      flex: 1;
+    }
+    .hscale__local-amt {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .hscale__local-row--don .hscale__local-name,
+    .hscale__local-row--don .hscale__local-amt { color: var(--moss); }
+    .hscale__caption {
       font-size: 0.6875rem;
       color: var(--muted);
       font-style: italic;
       margin-top: 0.625rem;
       max-width: none;
-    }
-    .spend-scale__caption {
-      font-size: 0.6875rem;
-      color: var(--muted);
-      font-style: italic;
-      margin-top: 0.2rem;
-      max-width: none;
+      line-height: 1.45;
     }
 
     /* Transparency date — two-line split */
@@ -635,35 +624,54 @@
               paid ads, or a campaign machine.
             </p>
 
-            <!-- Circle-area spending comparator -->
-            <div class="spend-scale" id="spend-scale">
-              <p class="spend-scale__title">See The Scale</p>
-              <p class="spend-scale__intro">Choose a race on the same November ballot and compare typical campaign spending to Don&#8217;s $49.99 cap.</p>
-              <div class="spend-scale__control">
-                <label class="spend-scale__label" for="ssc-select">Select a race</label>
-                <select class="spend-scale__select" id="ssc-select">
-                  <option value="0" selected>Governor</option>
-                  <option value="1">Congressional</option>
-                  <option value="2">State Senate</option>
-                  <option value="3">State Assembly</option>
-                  <option value="4">Judicial</option>
-                  <option value="5">Town Supervisor</option>
-                </select>
-              </div>
-              <div class="spend-scale__visual" aria-hidden="true">
-                <svg id="ssc-svg" viewBox="0 0 260 180" width="100%" focusable="false">
-                  <circle id="ssc-race-circle" class="ssc-race-fill" cx="130" cy="90" r="70"/>
-                  <circle id="ssc-don-dot"    class="ssc-don-fill"  cx="179.5" cy="139.5" r="2.5"/>
-                  <text   id="ssc-don-label"  class="ssc-don-text"  x="184" y="142">Don: &lt;$49.99</text>
+            <!-- Horizontal $0–$60M spending scale -->
+            <div class="hscale" aria-label="Campaign spending plotted on a scale from zero to sixty million dollars">
+              <!-- Main track: Congressional at 16.65%, Mayoral at 95.83%, Don at left edge -->
+              <div class="hscale__svg-wrap" aria-hidden="true">
+                <svg viewBox="0 0 380 56" width="100%" focusable="false">
+                  <!-- Track bar -->
+                  <rect class="hscale__track-rect" x="10" y="23" width="360" height="5"/>
+                  <!-- Congressional tick: $9.99M = 16.65% → x=70 -->
+                  <line class="hscale__tick-line" x1="70" y1="16" x2="70" y2="32"/>
+                  <text class="hscale__tick-text" x="70" y="11" text-anchor="middle">Cong. $9.99M</text>
+                  <!-- Mayoral tick: $57.5M = 95.83% → x=355 -->
+                  <line class="hscale__tick-line" x1="355" y1="16" x2="355" y2="32"/>
+                  <text class="hscale__tick-text" x="353" y="11" text-anchor="end">Mayor $57.5M</text>
+                  <!-- Don dot at left edge (essentially $0 on this scale) -->
+                  <circle class="hscale__don-dot" cx="10" cy="25.5" r="2.5"/>
+                  <text class="hscale__don-text" x="15" y="40">Don: &lt;$49.99</text>
+                  <!-- Axis labels -->
+                  <text class="hscale__axis-text" x="10" y="53" text-anchor="start">$0</text>
+                  <text class="hscale__axis-text" x="370" y="53" text-anchor="end">$60M</text>
                 </svg>
               </div>
-              <div class="spend-scale__result" aria-live="polite" aria-atomic="true">
-                <p class="spend-scale__stat">Typical <span id="ssc-race-name">Governor</span> spend: <strong id="ssc-race-spend">$8,000,000</strong></p>
-                <p class="spend-scale__stat">Don&#8217;s cap: <strong class="spend-scale__don-amt">&lt;$49.99</strong></p>
-                <p class="spend-scale__multiplier">That is about <strong id="ssc-multiplier">160,032</strong> Don campaigns.</p>
+              <!-- Callout list for races that cluster at the left edge -->
+              <div class="hscale__local" aria-label="Local races: all cluster near zero on the main scale">
+                <p class="hscale__local-head">Near $0 on this scale:</p>
+                <ul class="hscale__local-list" role="list">
+                  <li class="hscale__local-row">
+                    <span class="hscale__local-name">State Senate</span>
+                    <span class="hscale__local-amt">$687,500</span>
+                  </li>
+                  <li class="hscale__local-row">
+                    <span class="hscale__local-name">Assembly</span>
+                    <span class="hscale__local-amt">$287,500</span>
+                  </li>
+                  <li class="hscale__local-row">
+                    <span class="hscale__local-name">Judicial</span>
+                    <span class="hscale__local-amt">$50,000</span>
+                  </li>
+                  <li class="hscale__local-row">
+                    <span class="hscale__local-name">Town Supervisor</span>
+                    <span class="hscale__local-amt">$15,750</span>
+                  </li>
+                  <li class="hscale__local-row hscale__local-row--don">
+                    <span class="hscale__local-name">Don Scott</span>
+                    <span class="hscale__local-amt">&lt;$49.99</span>
+                  </li>
+                </ul>
               </div>
-              <p class="spend-scale__note">Comparison uses rounded historical spending estimates for context.</p>
-              <p class="spend-scale__caption">Circle areas are scaled to spending. Don&#8217;s dot has a minimum visible size.</p>
+              <p class="hscale__caption">Plotted on a $0 to $60M scale. The local races are not missing. They are just very close to zero.</p>
             </div>
 
           </div>
@@ -932,53 +940,6 @@
         '<span class="transparency-date__line2">Current through: ' + dateStr + '.</span>';
     })();
 
-    (function() {
-      var races = [
-        { label: ‘Governor’,        spend: 8000000, fmt: ‘$8,000,000’, mult: 160032 },
-        { label: ‘Congressional’,   spend: 3500000, fmt: ‘$3,500,000’, mult: 70014  },
-        { label: ‘State Senate’,    spend: 600000,  fmt: ‘$600,000’,   mult: 12002  },
-        { label: ‘State Assembly’,  spend: 175000,  fmt: ‘$175,000’,   mult: 3501   },
-        { label: ‘Judicial’,        spend: 45000,   fmt: ‘$45,000’,    mult: 901    },
-        { label: ‘Town Supervisor’, spend: 15000,   fmt: ‘$15,000’,    mult: 300    }
-      ];
-
-      var MAX_SPEND = 8000000;
-      var MAX_R     = 70;
-      var DON_R     = 2.5;
-      var CX = 130, CY = 90;
-
-      var selEl       = document.getElementById(‘ssc-select’);
-      var raceCircEl  = document.getElementById(‘ssc-race-circle’);
-      var donDotEl    = document.getElementById(‘ssc-don-dot’);
-      var donLblEl    = document.getElementById(‘ssc-don-label’);
-      var raceNameEl  = document.getElementById(‘ssc-race-name’);
-      var raceSpendEl = document.getElementById(‘ssc-race-spend’);
-      var multEl      = document.getElementById(‘ssc-multiplier’);
-
-      if (!selEl) return;
-
-      function update() {
-        var r   = races[parseInt(selEl.value, 10)];
-        var rr  = Math.sqrt(r.spend / MAX_SPEND) * MAX_R;
-        var ang = Math.PI / 4;
-        var dCx = CX + rr * Math.cos(ang);
-        var dCy = CY + rr * Math.sin(ang);
-
-        raceCircEl.style.r = rr.toFixed(2) + ‘px’;
-        donDotEl.style.cx  = dCx.toFixed(2) + ‘px’;
-        donDotEl.style.cy  = dCy.toFixed(2) + ‘px’;
-        donDotEl.style.r   = DON_R + ‘px’;
-        donLblEl.setAttribute(‘x’, (dCx + DON_R + 2).toFixed(2));
-        donLblEl.setAttribute(‘y’, (dCy + DON_R + 3).toFixed(2));
-
-        raceNameEl.textContent  = r.label;
-        raceSpendEl.textContent = r.fmt;
-        multEl.textContent      = r.mult.toLocaleString();
-      }
-
-      selEl.addEventListener(‘change’, update);
-      update();
-    })();
   </script>
   <script src="assets/js/site.js"></script>
 </body>
