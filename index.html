@@ -325,70 +325,50 @@
     }
 
     /* =============================================
-       SAME-SCALE — seven-row $60M uniform scale
+       LOCAL-SPEND-BARS — two-row $20K comparison
        ============================================= */
-    .same-scale {
+    .local-spend-bars {
       margin-top: 1.625rem;
-    }
-    .same-scale__title {
-      font-size: 0.6875rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: var(--charcoal);
-      margin-bottom: 0.25rem;
-      max-width: none;
-    }
-    .same-scale__intro {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 0.875rem;
-      max-width: none;
-    }
-    .same-scale__rows {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 1rem;
     }
-    .same-scale__meta {
-      display: flex;
-      justify-content: space-between;
+    .local-spend-bars__meta {
+      display: grid;
+      grid-template-columns: 1fr auto;
       align-items: baseline;
-      gap: 0.5rem;
-      margin-bottom: 0.2rem;
+      gap: 0.2rem 0.625rem;
+      margin-bottom: 0.35rem;
     }
-    .same-scale__name {
-      font-size: 0.6875rem;
-      color: var(--muted);
-    }
-    .same-scale__amt {
-      font-size: 0.6875rem;
-      font-weight: 600;
+    .local-spend-bars__name {
+      font-size: 0.875rem;
       color: var(--charcoal);
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
+      font-weight: 500;
     }
-    .same-scale__track {
-      height: 6px;
+    .local-spend-bars__label {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      white-space: nowrap;
+      text-align: right;
+    }
+    .local-spend-bars__track {
+      height: 8px;
       background: rgba(224,219,211,0.72);
-      border-radius: 2px;
+      border-radius: 4px;
       overflow: hidden;
     }
-    .same-scale__fill {
+    .local-spend-bars__fill {
       height: 100%;
-      background: rgba(62,82,64,0.38);
+      border-radius: 4px;
       min-width: 1px;
     }
-    .same-scale__row--don .same-scale__name { color: var(--moss); font-weight: 600; }
-    .same-scale__row--don .same-scale__amt  { color: var(--moss); }
-    .same-scale__row--don .same-scale__fill { background: var(--moss); }
-    .same-scale__note {
+    .local-spend-bars__fill--incumbent { background: rgba(62,82,64,0.45); }
+    .local-spend-bars__fill--don       { background: var(--moss); }
+    .local-spend-bars__caption {
       font-size: 0.6875rem;
       color: var(--muted);
       font-style: italic;
-      margin-top: 0.75rem;
       max-width: none;
-      line-height: 1.45;
     }
 
     /* Transparency date — two-line split */
@@ -605,84 +585,27 @@
               paid ads, or a campaign machine.
             </p>
 
-            <!-- Same-scale spending comparison -->
-            <div class="same-scale">
-              <p class="same-scale__title">Same Ballot. Same Scale.</p>
-              <p class="same-scale__intro">Each line uses the same $60M scale.</p>
-              <div class="same-scale__rows" role="list" aria-label="Campaign spending by race on a uniform sixty million dollar scale">
-
-                <div class="same-scale__row" role="listitem">
-                  <div class="same-scale__meta">
-                    <span class="same-scale__name">Gubernatorial</span>
-                    <span class="same-scale__amt">$57,500,000</span>
-                  </div>
-                  <div class="same-scale__track" aria-hidden="true">
-                    <div class="same-scale__fill" style="width:95.83%"></div>
-                  </div>
+            <!-- Local spending bar comparison -->
+            <div class="local-spend-bars" aria-label="Local campaign spending comparison">
+              <div class="local-spend-bars__row">
+                <div class="local-spend-bars__meta">
+                  <span class="local-spend-bars__name">Incumbent Town Supervisor</span>
+                  <span class="local-spend-bars__label">$15,750 average spend</span>
                 </div>
-
-                <div class="same-scale__row" role="listitem">
-                  <div class="same-scale__meta">
-                    <span class="same-scale__name">Congressional</span>
-                    <span class="same-scale__amt">$10,000,000</span>
-                  </div>
-                  <div class="same-scale__track" aria-hidden="true">
-                    <div class="same-scale__fill" style="width:16.67%"></div>
-                  </div>
+                <div class="local-spend-bars__track">
+                  <div class="local-spend-bars__fill local-spend-bars__fill--incumbent" style="width:78.75%"></div>
                 </div>
-
-                <div class="same-scale__row" role="listitem">
-                  <div class="same-scale__meta">
-                    <span class="same-scale__name">State Senate</span>
-                    <span class="same-scale__amt">$700,000</span>
-                  </div>
-                  <div class="same-scale__track" aria-hidden="true">
-                    <div class="same-scale__fill" style="width:1.17%"></div>
-                  </div>
-                </div>
-
-                <div class="same-scale__row" role="listitem">
-                  <div class="same-scale__meta">
-                    <span class="same-scale__name">Assembly</span>
-                    <span class="same-scale__amt">$300,000</span>
-                  </div>
-                  <div class="same-scale__track" aria-hidden="true">
-                    <div class="same-scale__fill" style="width:0.50%"></div>
-                  </div>
-                </div>
-
-                <div class="same-scale__row" role="listitem">
-                  <div class="same-scale__meta">
-                    <span class="same-scale__name">Judicial</span>
-                    <span class="same-scale__amt">$50,000</span>
-                  </div>
-                  <div class="same-scale__track" aria-hidden="true">
-                    <div class="same-scale__fill" style="width:0.083%"></div>
-                  </div>
-                </div>
-
-                <div class="same-scale__row" role="listitem">
-                  <div class="same-scale__meta">
-                    <span class="same-scale__name">Town Supervisor</span>
-                    <span class="same-scale__amt">$20,000</span>
-                  </div>
-                  <div class="same-scale__track" aria-hidden="true">
-                    <div class="same-scale__fill" style="width:0.033%"></div>
-                  </div>
-                </div>
-
-                <div class="same-scale__row same-scale__row--don" role="listitem">
-                  <div class="same-scale__meta">
-                    <span class="same-scale__name">Don Scott</span>
-                    <span class="same-scale__amt">&lt;$50</span>
-                  </div>
-                  <div class="same-scale__track" aria-hidden="true">
-                    <div class="same-scale__fill" style="width:0.000083%"></div>
-                  </div>
-                </div>
-
               </div>
-              <p class="same-scale__note">Below local-office scale, the bars are not missing. They are just very close to zero.</p>
+              <div class="local-spend-bars__row">
+                <div class="local-spend-bars__meta">
+                  <span class="local-spend-bars__name">Don Scott</span>
+                  <span class="local-spend-bars__label">&lt;$49.99 campaign cap</span>
+                </div>
+                <div class="local-spend-bars__track">
+                  <div class="local-spend-bars__fill local-spend-bars__fill--don" style="width:0.24995%"></div>
+                </div>
+              </div>
+              <p class="local-spend-bars__caption">Both bars use the same $20,000 scale.</p>
             </div>
 
           </div>
