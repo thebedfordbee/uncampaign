@@ -1720,10 +1720,17 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
       return fetch(API_URL + '?action=getTypingLeaderboard')
         .then(function (r) { return r.json(); })
         .then(function (data) {
-          if (data && data.ok && Array.isArray(data.scores)) return data.scores;
+          if (data && data.ok && Array.isArray(data.scores)) {
+            console.log('[btc] getTypingLeaderboard: ' + data.scores.length + ' live scores');
+            return data.scores;
+          }
+          console.warn('[btc] getTypingLeaderboard unexpected response:', data);
           return [];
         })
-        .catch(function () { return []; });
+        .catch(function (err) {
+          console.warn('[btc] getTypingLeaderboard failed:', err);
+          return [];
+        });
     }
 
     /* ── Submit handler ───────────────────────────────────── */
@@ -1754,23 +1761,36 @@ Backend (optional): If you have a Google Apps Script endpoint, submit scores wit
         };
 
         mySubmission = score;
-        saveLocal(score);
+        saveLocal(score); // always save locally first
 
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting…';
 
-        apiPost(Object.assign({ action: 'submitTypingScore' }, score)).then(function () {
+        // Show success and re-render regardless of API outcome
+        function onSubmitComplete() {
           submitWrap.querySelector('.btc-submit-form').style.display = 'none';
           submittedMsg.classList.add('is-visible');
           renderLeaderboard();
           renderHamlet();
           var rank = getRank(score.wpm, score.accuracy);
           resultRank.innerHTML = 'You are currently <strong>#' + rank + ' in Bedford</strong>.';
-        }).catch(function () {
-          submitWrap.querySelector('.btc-submit-form').style.display = 'none';
-          submittedMsg.classList.add('is-visible');
-          renderLeaderboard();
-          renderHamlet();
+        }
+
+        // POST directly so we can log the response and distinguish success from failure
+        var postBody = JSON.stringify(Object.assign({ action: 'submitTypingScore' }, score));
+        fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: postBody
+        })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          console.log('[btc] submitTypingScore response:', data);
+          onSubmitComplete();
+        })
+        .catch(function (err) {
+          console.warn('[btc] submitTypingScore failed:', err);
+          onSubmitComplete(); // still show success — score is in localStorage
         });
       });
     }
