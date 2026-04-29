@@ -1076,29 +1076,68 @@
 
         <div class="instr-panel" id="instr-panel-typing" hidden>
           <div class="instr-panel__bar">
-            <span class="instr-panel__title">INSTRUCTION SET</span>
-            <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
-              <span class="instr-panel__copy-label">Copy All</span>
-            </button>
+            <span class="instr-panel__title">Public Instruction Set</span>
+            <div class="instr-panel__controls">
+              <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+                <span class="instr-panel__copy-label">Copy All</span>
+              </button>
+              <button class="instr-panel__close" aria-label="Close public instruction set">&#10005;</button>
+            </div>
           </div>
           <div class="instr-panel__body">
-            <pre class="instr-panel__text">Build a civic typing challenge that turns a simple local participation idea into a lightweight interactive game. The page should explain the purpose first: this is not just a typing test, it is a small experiment in making civic participation more interesting, lower pressure, and easier to share.
+            <pre class="instr-panel__text">Act as a civic game designer, product strategist, and front-end builder tasked with creating a lightweight public typing challenge for a local civic campaign.
 
-Create a landing section with a clear title, short explanation, and a hero image. Include a back link to the parent Best of Bedford page. Below that, place the typing game in a focused module with a short note that the game is best played on desktop.
+The tool to build is:
+A Bedford-themed typing challenge that turns a simple typing test into a playful civic participation experience.
 
-The game should show one Bedford-themed passage at a time. When the player starts typing, begin the timer on the first keystroke. Track elapsed time, words per minute, accuracy, and completion state. WPM should be based on standard typing-test logic: characters typed divided by five, adjusted for elapsed minutes. Accuracy should compare correct characters against total typed characters and should not mark any character wrong before the player begins.
+Objective:
+Create a self-contained interactive page that feels like a local public-interest experiment, not a generic typing game. The experience should be visually aligned with the campaign site, simple to understand, easy to replay, and transparent enough that another town could adapt it without a budget.
 
-Display the passage with neutral styling at the start. As the player types, mark correct characters subtly and incorrect characters clearly, but only after input occurs. The first character should never appear red on a fresh game. Reset, retry, and new-game states should fully clear character styling, timing, input, score, and modal state.
+Design and maintain these priorities throughout the build:
 
-When the player finishes the passage, calculate final WPM and accuracy. Only allow score submission when accuracy is at least 75 percent. If accuracy is below the threshold, show a dismissible modal explaining that the score was not captured and offer a Try Again button. The modal must include a visible X close button, work on mobile, and never trap the user without an exit. Backdrop click and the Escape key should also dismiss the modal.
+1. Civic Framing
+The experience should begin by making clear that this is not just a typing test. It is a small experiment in making civic participation more approachable, lower pressure, and more shareable. The copy should explain that playful tools can still serve a civic purpose.
 
-For score capture, collect only what is needed for a community leaderboard: display name or initials, hamlet, WPM, accuracy, and timestamp. Do not collect unnecessary personal data. Make the submission flow feel transparent and low pressure.
+2. Familiar Game Logic
+The core mechanic should feel immediately understandable. Show one Bedford-themed passage at a time. Start the timer on the first keystroke. Track elapsed time, words per minute, accuracy, and completion state. The interface should feel clean, calm, and confidence-building rather than intimidating.
 
-Create leaderboard views that let residents compare results overall and by hamlet. Hamlet grouping should be simple and readable, using Bedford Village, Bedford Hills, Katonah, and Other or Prefer not to say. Include clear empty states when no scores exist. Seed the leaderboard with realistic-looking placeholder data that reflects the actual distribution of typing speeds across age groups and backgrounds so the board never looks empty on first visit.
+3. Fair Scoring
+Use standard typing-test logic. Words per minute should be based on total typed characters divided by five, adjusted for elapsed minutes. Accuracy should be based on correct characters divided by total typed characters. No character should appear incorrect before the player begins typing. Fresh starts, retries, and resets must always begin with neutral styling.
 
-Design the module to match a calm local campaign site rather than a flashy gaming app. Use the existing cream, sage, moss, charcoal, and border styles. Keep animations minimal. Make the game usable with keyboard input, readable on mobile, and resilient if JavaScript fails or the leaderboard endpoint is unavailable.
+4. Submission Rules
+Only allow score capture if the player completes the passage with at least 75 percent accuracy. If the score is below threshold, show a dismissible modal that clearly explains why the score was not captured. The modal must include both a visible close control and a clear Try Again action.
 
-The final experience should feel like a useful civic experiment: easy to understand, fun to try, transparent about how it works, and simple enough that another town could adapt it without a budget.</pre>
+5. Lightweight Community Leaderboard
+If scores are submitted, collect only minimal community-friendly fields such as display name, hamlet, WPM, accuracy, and timestamp. Avoid unnecessary personal data. The leaderboard should support both overall ranking and grouping by hamlet.
+
+6. Transparent UX
+The interface should visibly explain what is happening. Show the current text, the input state, live or final performance stats, retry behavior, and submission outcomes. If any modal appears, it should never trap the user. Every state should be recoverable.
+
+7. Design System Discipline
+Match the visual language of the Uncampaign site. Use the same restrained palette, spacing rhythm, typography, and card treatment. This should feel like a civic prototype built with care, not a startup game or flashy arcade module.
+
+8. Accessibility and Resilience
+The game must work with keyboard-first input, scale on mobile even if desktop is preferred, and fail gracefully if score submission or leaderboard retrieval is unavailable. Do not let a network failure break the local play experience.
+
+Build instructions:
+- Start with a clear hero and explanatory section.
+- Include a back link to /best-of-bedford.
+- Present the game in a single primary module.
+- Use Bedford-specific prompt text or passages.
+- Make the "best played on desktop" note visible but unobtrusive.
+- Keep the score flow transparent and low pressure.
+- Let the user retry instantly.
+- Keep the leaderboard readable and community-oriented.
+- Treat the entire experience as a civic participation artifact, not a gimmick.
+
+Output format:
+1. Civic framing
+2. Core game architecture
+3. Scoring and accuracy rules
+4. Submission and leaderboard rules
+5. Accessibility and failure-state handling
+6. Visual design requirements
+7. Final implementation checklist</pre>
           </div>
         </div>
 

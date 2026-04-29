@@ -1934,6 +1934,41 @@ p { max-width: 68ch; }
   outline-offset: 2px;
 }
 
+.instr-panel__controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.instr-panel__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.3125rem 0.625rem;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--moss);
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.instr-panel__close:hover {
+  background: var(--moss);
+  color: var(--white);
+  border-color: var(--moss);
+}
+.instr-panel__close:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 2px;
+}
+
 .instr-panel__body {
   padding: 1.5rem 1.25rem;
   overflow-x: hidden;

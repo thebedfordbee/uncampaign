@@ -816,19 +816,76 @@
 
         <div class="cta-row cta-row--centered">
           <div class="howbuilt-cta-group">
-            <button type="button" class="btn btn--primary" data-instr-toggle="ai-panel-pet" aria-expanded="false">Show How We Built This</button>
+            <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-pet" aria-expanded="false">View The Instruction Set</button>
           </div>
         </div>
 
-        <div class="instr-panel" id="ai-panel-pet" hidden>
+        <div class="instr-panel" id="instr-panel-pet" hidden>
           <div class="instr-panel__bar">
-            <span class="instr-panel__title">How This Was Built</span>
+            <span class="instr-panel__title">Public Instruction Set</span>
+            <div class="instr-panel__controls">
+              <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+                <span class="instr-panel__copy-label">Copy All</span>
+              </button>
+              <button class="instr-panel__close" aria-label="Close public instruction set">&#10005;</button>
+            </div>
           </div>
-          <div class="instr-panel__body ai-disclosure-body">
-            <p>This page was built as part of a deliberately low-cost local campaign experiment. Instead of buying attention through ads, mailers, or consultant-built campaign tools, we are using AI-assisted workflows to build participatory civic projects ourselves.</p>
-            <p>The concept, copy, structure, and implementation were developed with AI assistance, then reviewed and refined by a human before publication. Pet submissions are also reviewed before they appear publicly.</p>
-            <p>If a local campaign can use modern tools to build a community pet contest at almost no cost, local government should probably be looking for more ways to make civic participation easier, lighter, and more useful too.</p>
-            <p class="ai-disclosure-note">Human reviewed before publication.</p>
+          <div class="instr-panel__body">
+            <pre class="instr-panel__text">Act as a civic contest designer, community product strategist, and front-end builder tasked with creating a playful public voting experience that still feels transparent, fair, and local.
+
+The tool to build is:
+A "Best of Bedford" cutest pet contest page that encourages light participation, easy sharing, and neighborhood pride without becoming spammy, manipulative, or chaotic.
+
+Objective:
+Build a public-facing contest page that feels whimsical on the surface but is structurally disciplined underneath. It should be fun enough to invite participation, simple enough to understand instantly, and transparent enough that people can see it as a legitimate civic engagement experiment rather than just another social contest.
+
+Design and maintain these priorities throughout the build:
+
+1. Civic Framing
+Frame the contest as a participation challenge, not just a popularity contest. The point is to create a lightweight local ritual that gets residents interacting with the campaign in a friendly, low-pressure way.
+
+2. Browse First
+The page should allow residents to browse featured pets in a clean gallery or card layout before they ever submit anything. The browsing experience should feel curated, visual, and easy to scan.
+
+3. Expandable Card Detail
+Each pet card should be expandable. In expanded state, the resident should see the fuller pet story, image, metadata if used, and the action controls. The expanded state must include both Upvote and Share buttons directly within the card.
+
+4. Submission Simplicity
+The "Submit Your Pet" flow should be easy, friendly, and low-friction. Ask only for the minimum needed to run the contest fairly: pet name, owner first name or display name, hamlet, image, short blurb, and any lightweight category or optional fun fact if already part of the design. Avoid unnecessary personal data.
+
+5. Fairness and Guardrails
+The contest should feel playful, but the interaction model should discourage abuse. Make voting feel simple and transparent. Avoid dark patterns, fake scarcity, or manipulative pressure. If limits exist, explain them clearly.
+
+6. Shareability
+Make it easy for residents to share a pet card or contest entry in a way that feels fun and neighborly. Sharing should feel like community participation, not a growth hack.
+
+7. Visual Separation of Functions
+"Browse And Vote" and "Submit Your Pet" should feel like distinct sections with clear visual separation. They should not blend into one continuous block. The submission form should feel intentionally framed and centered, especially on desktop.
+
+8. Design System Discipline
+Match the broader campaign site. Keep the same typography, spacing, calm color palette, border treatments, and restrained animation. This should feel like a polished local campaign experiment, not a generic contest SaaS page.
+
+9. Accessibility and Mobile
+Ensure card expansion, voting actions, share actions, and submission flow all work on mobile and desktop. Expanded cards must remain readable. Buttons must remain visible and usable.
+
+Build instructions:
+- Start with a hero and civic framing.
+- Include a back link to /best-of-bedford.
+- Present a browse-and-vote section first.
+- Make pet cards expandable.
+- Include Upvote and Share in expanded card state.
+- Visually separate the submission section.
+- Center the submission form on desktop.
+- Keep the experience light, warm, and structured.
+
+Output format:
+1. Civic framing
+2. Contest architecture
+3. Card expansion and voting behavior
+4. Submission requirements and fairness rules
+5. Sharing behavior
+6. Visual design requirements
+7. Final implementation checklist</pre>
           </div>
         </div>
 

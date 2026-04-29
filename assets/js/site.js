@@ -118,6 +118,24 @@
 
 })();
 
+// --- Instruction set close (X) buttons ---
+(function () {
+  'use strict';
+  document.querySelectorAll('.instr-panel__close').forEach(function (closeBtn) {
+    closeBtn.addEventListener('click', function () {
+      var panel = closeBtn.closest('.instr-panel');
+      if (!panel) return;
+      panel.setAttribute('hidden', '');
+      var panelId = panel.id;
+      var toggleBtn = panelId ? document.querySelector('[data-instr-toggle="' + panelId + '"]') : null;
+      if (toggleBtn) {
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        toggleBtn.focus();
+      }
+    });
+  });
+})();
+
 // --- Hero image lightbox ---
 // Handles any .issues-hero__visual[aria-haspopup="dialog"] button on any page.
 (function () {
