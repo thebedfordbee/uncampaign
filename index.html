@@ -323,6 +323,109 @@
     .cards-grid > li:nth-child(even) .card {
       background: var(--cream);
     }
+
+    /* =============================================
+       SPEND CONTEXT — log-scale grouped bar chart
+       ============================================= */
+    .spend-context {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .spend-context__title {
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+    .spend-context__note {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 1.125rem;
+    }
+    .spend-context__legend {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.375rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .scc-legend__swatch {
+      display: inline-block;
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-right: 0.3rem;
+    }
+    .scc-legend__swatch--inc { background: rgba(62,82,64,0.4); }
+    .scc-legend__swatch--chl { background: rgba(123,140,121,0.72); }
+    .scc-legend__swatch--don { background: var(--moss); }
+    .scc-legend__label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      vertical-align: middle;
+    }
+    .scc {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .scc__group--featured {
+      padding: 0.875rem 1rem;
+      background: rgba(62,82,64,0.04);
+      border-left: 3px solid var(--moss);
+      border-radius: 0 4px 4px 0;
+    }
+    .scc__race-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+    .scc__bar-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.375rem;
+    }
+    .scc__bar-row:last-child { margin-bottom: 0; }
+    .scc__role {
+      font-size: 0.75rem;
+      color: var(--muted);
+      flex: 0 0 4.75rem;
+      line-height: 1.25;
+    }
+    .scc__track {
+      flex: 1;
+      height: 1.375rem;
+      background: rgba(224,219,211,0.6);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      min-width: 0;
+    }
+    .scc__fill {
+      height: 100%;
+      border-radius: 1px;
+    }
+    .scc__fill--inc { background: rgba(62,82,64,0.4); }
+    .scc__fill--chl { background: rgba(123,140,121,0.72); }
+    .scc__fill--don { background: var(--moss); }
+    .scc__amount {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      white-space: nowrap;
+      flex: 0 0 3.75rem;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    .scc__amount--don { color: var(--moss); font-weight: 700; }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7WVQR4MTH"></script>
@@ -531,26 +634,6 @@
               paid ads, or a campaign machine.
             </p>
 
-            <div class="spend-compare" aria-label="Campaign spending comparison">
-              <div class="spend-compare-item spend-compare-item--typical">
-                <div class="spend-compare-item__label">
-                  <span class="spend-compare-item__name">Typical local campaign</span>
-                  <span class="spend-compare-item__amount">$5,000 – $20,000+</span>
-                </div>
-                <div class="spend-compare-item__bar" aria-hidden="true">
-                  <div class="spend-compare-item__fill"></div>
-                </div>
-              </div>
-              <div class="spend-compare-item spend-compare-item--this">
-                <div class="spend-compare-item__label">
-                  <span class="spend-compare-item__name">This campaign (hard cap)</span>
-                  <span class="spend-compare-item__amount">$49.99</span>
-                </div>
-                <div class="spend-compare-item__bar" aria-hidden="true">
-                  <div class="spend-compare-item__fill"></div>
-                </div>
-              </div>
-            </div>
 
           </div>
 
@@ -558,7 +641,7 @@
           <div class="spending__right">
             <div class="spending__meter-card" role="region" aria-label="Campaign spending tracker">
               <p class="eyebrow spending__meter-eyebrow">Current total</p>
-              <span class="spending__current-amount">$9.99</span>
+              <span class="spending__current-amount">$13.12</span>
               <span class="spending__current-label">of $49.99 cap</span>
               <p id="transparency-date"
                  title="Daily transparency tracker current through today's date"
@@ -569,14 +652,14 @@
                   <div
                     class="thermometer__fill"
                     role="progressbar"
-                    aria-valuenow="9.99"
+                    aria-valuenow="13.12"
                     aria-valuemin="0"
                     aria-valuemax="49.99"
-                    aria-label="$9.99 of $49.99 spending cap used"
+                    aria-label="$13.12 of $49.99 spending cap used"
                   ></div>
                 </div>
                 <div class="thermometer__labels" aria-hidden="true">
-                  <span>$9.99 Spent</span>
+                  <span>$13.12 Spent</span>
                   <span>$49.99 cap</span>
                 </div>
               </div>
@@ -600,13 +683,13 @@
                   <div class="expense-accordion__panel-inner">
                     <ul class="expense-list" role="list">
                       <li class="expense-item">
-                        <span class="expense-item__name">Domain Name</span>
-                        <span class="expense-item__amount">$9.99</span>
+                        <span class="expense-item__name">Domain Registration</span>
+                        <span class="expense-item__amount">$13.12</span>
                       </li>
                     </ul>
                     <div class="expense-total">
                       <span class="expense-total__label">Total</span>
-                      <span class="expense-total__value">$9.99</span>
+                      <span class="expense-total__value">$13.12</span>
                     </div>
                   </div>
                 </div>
@@ -615,6 +698,65 @@
           </div>
 
         </div>
+
+        <!-- Campaign Spending In Context — log-scale grouped bar chart -->
+        <div class="spend-context" role="region" aria-labelledby="spend-context-title">
+          <h3 id="spend-context-title" class="spend-context__title">Campaign Spending, In Context</h3>
+          <p class="spend-context__note">Bars use a log scale — each interval represents a tenfold increase in spending.</p>
+
+          <div class="spend-context__legend" aria-hidden="true">
+            <span class="scc-legend__swatch scc-legend__swatch--inc"></span><span class="scc-legend__label">Incumbent</span>
+            <span class="scc-legend__swatch scc-legend__swatch--chl"></span><span class="scc-legend__label">Challenger</span>
+            <span class="scc-legend__swatch scc-legend__swatch--don"></span><span class="scc-legend__label">Don Scott</span>
+          </div>
+
+          <div class="scc">
+
+            <div class="scc__group">
+              <p class="scc__race-label">Mayoral Race</p>
+              <div class="scc__bar-row">
+                <span class="scc__role">Incumbent</span>
+                <div class="scc__track"><div class="scc__fill scc__fill--inc" style="width:96.6%"></div></div>
+                <span class="scc__amount">$57.5M</span>
+              </div>
+              <div class="scc__bar-row">
+                <span class="scc__role">Challenger</span>
+                <div class="scc__track"><div class="scc__fill scc__fill--chl" style="width:90.7%"></div></div>
+                <span class="scc__amount">$22.5M</span>
+              </div>
+            </div>
+
+            <div class="scc__group">
+              <p class="scc__race-label">Congressional Race</p>
+              <div class="scc__bar-row">
+                <span class="scc__role">Incumbent</span>
+                <div class="scc__track"><div class="scc__fill scc__fill--inc" style="width:84.5%"></div></div>
+                <span class="scc__amount">$8.26M</span>
+              </div>
+              <div class="scc__bar-row">
+                <span class="scc__role">Challenger</span>
+                <div class="scc__track"><div class="scc__fill scc__fill--chl" style="width:85.7%"></div></div>
+                <span class="scc__amount">$9.99M</span>
+              </div>
+            </div>
+
+            <div class="scc__group scc__group--featured">
+              <p class="scc__race-label">Town of Bedford Supervisor Race</p>
+              <div class="scc__bar-row">
+                <span class="scc__role">Incumbent</span>
+                <div class="scc__track"><div class="scc__fill scc__fill--inc" style="width:45.7%"></div></div>
+                <span class="scc__amount">$15,750</span>
+              </div>
+              <div class="scc__bar-row">
+                <span class="scc__role">Don Scott</span>
+                <div class="scc__track"><div class="scc__fill scc__fill--don" style="width:10.0%"></div></div>
+                <span class="scc__amount scc__amount--don">&lt;$49.99</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
 
