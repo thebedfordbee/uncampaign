@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary meta -->
-  <title>Cutest Pet in Bedford | Best of Bedford</title>
-  <meta name="description" content="Submit and vote for Bedford's cutest pets in the Best of Bedford civic participation series. Browse dogs, cats, and other local pets from Bedford, Katonah, Bedford Hills, and Bedford Village.">
+  <title>Cutest Pet in Bedford | Pet Contest &amp; Voting | Don Scott</title>
+  <meta name="description" content="Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, and other beloved pets.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.donforbedford.com/best-of-bedford-cutest-pet">
 
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/best-of-bedford-cutest-pet">
   <meta property="og:title" content="Cutest Pet in Bedford | Best of Bedford">
-  <meta property="og:description" content="Submit your pet, browse Bedford's dogs, cats, and other beloved animals, and vote for your favorites.">
+  <meta property="og:description" content="Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, and other beloved pets.">
   <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -28,7 +28,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/best-of-bedford-cutest-pet">
   <meta name="twitter:title" content="Cutest Pet in Bedford | Best of Bedford">
-  <meta name="twitter:description" content="Submit your pet, browse Bedford's dogs, cats, and other beloved animals, and vote for your favorites.">
+  <meta name="twitter:description" content="Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, and other beloved pets.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta name="twitter:image:alt" content="Cutest Pet in Bedford — Best of Bedford civic participation series.">
 
@@ -58,15 +58,15 @@
         "@type": "WebPage",
         "@id": "https://www.donforbedford.com/best-of-bedford-cutest-pet#webpage",
         "url": "https://www.donforbedford.com/best-of-bedford-cutest-pet",
-        "name": "Cutest Pet in Bedford | Best of Bedford",
-        "description": "Submit and vote for Bedford's cutest pets in the Best of Bedford civic participation series. Browse dogs, cats, and other local pets from Bedford, Katonah, Bedford Hills, and Bedford Village.",
+        "name": "Cutest Pet in Bedford | Pet Contest & Voting | Don Scott",
+        "description": "Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, and other beloved pets.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
         "about": [
           { "@id": "https://www.donforbedford.com/#don-scott" },
           {
             "@type": "Thing",
             "name": "Cutest Pet in Bedford",
-            "description": "A community pet contest and vote for Bedford, New York — dogs, cats, horses, and other pets from Bedford Village, Bedford Hills, Katonah, and surrounding hamlets."
+            "description": "Cutest Pet in Bedford is a Best of Bedford community challenge where residents can submit pets, browse approved entries, and vote for local favorites."
           }
         ]
       },
@@ -659,7 +659,7 @@
         </button>
 
         <div class="issues-hero__copy-bot">
-          <p class="issues-hero__deck">Bedford has strong opinions about roads, zoning, taxes, and leaf blowers. Surely we can also handle something less controversial: which local pets are objectively adorable.</p>
+          <p class="issues-hero__deck">A lighthearted Best of Bedford challenge where residents can submit their pets, browse local favorites, and vote for the animals that make Bedford smile.</p>
         </div>
 
       </div>
@@ -672,10 +672,10 @@
     <section class="section section--alt" aria-labelledby="pet-intro-h2">
       <div class="container">
         <div class="bob-series-body">
-          <p class="eyebrow">A Civic Participation Challenge</p>
-          <h2 id="pet-intro-h2">Democracy. Pets. Bedford.</h2>
-          <p>This is a Best of Bedford community challenge built around a simple idea: civic participation does not always have to start with a public hearing. Sometimes it can start with a dog, a cat, a horse, a lizard, or one deeply photogenic gerbil.</p>
-          <p>Submit your pet below. Once reviewed, approved pets will be added to the gallery manually. Visitors can browse by category and vote for their favorites. No downvotes. Bedford has enough of that already.</p>
+          <p class="eyebrow">Lightweight Civic Participation</p>
+          <h2 id="pet-intro-h2">Participation, With Pets</h2>
+          <p>Not every civic project needs to begin with a public hearing. Sometimes participation can start with a dog, a cat, a horse, a lizard, or one deeply photogenic gerbil.</p>
+          <p>Submit your pet below. Approved entries will be added to the gallery, where residents can browse by category and vote for their favorites. No downvotes. Bedford has enough of those already.</p>
         </div>
       </div>
     </section>
@@ -685,7 +685,7 @@
       <div class="container">
         <div class="section-header">
           <p class="eyebrow">Browse and Vote</p>
-          <h2 id="gallery-h2">Bedford's Finest</h2>
+          <h2 id="gallery-h2">Meet the Local Favorites</h2>
           <p class="section-header__lead section-header__lead--wide">
             Approved pets are shown below. Upvote your favorites. Browse by category. Share your picks.
           </p>
@@ -706,17 +706,21 @@
 
         <p class="pet-empty" id="pet-empty" hidden>No pets in this category yet. Be the first to submit one.</p>
 
+        <div style="margin-top:2rem;">
+          <button type="button" class="btn btn--primary" id="pet-submit-toggle" aria-expanded="false" aria-controls="submit">Submit Your Pet</button>
+        </div>
+
       </div>
     </section>
 
     <!-- SUBMISSION FORM -->
-    <section class="section section--alt" id="submit" aria-labelledby="submit-h2">
+    <section class="section section--alt" id="submit" aria-labelledby="submit-h2" hidden>
       <div class="container">
         <div class="section-header">
           <p class="eyebrow">Submit Your Pet</p>
           <h2 id="submit-h2">Enter the Contest</h2>
           <p class="section-header__lead section-header__lead--wide">
-            Fill in the form below. Submissions are reviewed before appearing on the site. No login or email required.
+            Share a photo and a short description. Submissions are reviewed before appearing on the site. No login or email required.
           </p>
         </div>
 
@@ -809,13 +813,13 @@
       <div class="container">
         <div class="section-header">
           <p class="eyebrow">How This Was Built</p>
-          <h2 id="ai-built-h2">How This Was Built</h2>
+          <h2 id="ai-built-h2">This Campaign Shows Its Work</h2>
           <p class="section-header__lead section-header__lead--wide">
-            This campaign is committed to showing its work. When AI helps build something useful, it should be explained and made visible — not hidden.
+            This campaign is committed to showing its work, not just stating positions. When a tool or workflow helps clarify a local issue, it should be explained, shared, and made useful beyond the campaign. The instruction set used to build a playful public voting experience is published here in full.
           </p>
         </div>
 
-        <div class="cta-row cta-row--centered">
+        <div class="cta-row">
           <div class="howbuilt-cta-group">
             <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-pet" aria-expanded="false">View The Instruction Set</button>
           </div>
@@ -974,7 +978,7 @@ Output format:
         id: 'pet-gosa',
         name: 'Gosa',
         category: 'dog',
-        age: 4,
+        age: 7,
         hamlet: 'Bedford Hills',
         description: 'A very good dog with excellent constituent services and above-average snack discipline.',
         image: '../assets/img/pets/gosa.png',
@@ -984,11 +988,12 @@ Output format:
       {
         id: 'pet-ugly',
         name: 'Ugly',
-        category: 'dog',
+        category: 'hamster',
         age: 7,
         hamlet: 'Bedford Village',
         description: 'Proof that beauty standards are complicated and charm still wins elections.',
-        image: '../assets/img/pets/ugly.png',
+        // TODO: Add royalty-free hamster image → save to ../assets/img/pets/ugly-hamster.png and set image to that path
+        image: null,
         shareUrl: '/best-of-bedford-cutest-pet-ugly',
         votes: 9
       },
@@ -996,8 +1001,8 @@ Output format:
         id: 'pet-pj',
         name: 'PJ',
         category: 'cat',
-        age: 3,
-        hamlet: 'Katonah',
+        age: 12,
+        hamlet: 'Bedford Hills',
         description: 'Calm, watchful, and almost certainly aware of more town secrets than anyone realizes.',
         image: '../assets/img/pets/pj.png',
         shareUrl: '/best-of-bedford-cutest-pet-pj',
@@ -1006,7 +1011,7 @@ Output format:
     ];
 
     /* ── Category label map ── */
-    var CATEGORY_LABELS = { dog: 'Dog', cat: 'Cat', other: 'Other' };
+    var CATEGORY_LABELS = { dog: 'Dog', cat: 'Cat', hamster: 'Hamster', other: 'Other' };
 
     /* ── Session ID (anonymous, no PII) ── */
     var sessionId = (function () {
@@ -1134,7 +1139,7 @@ Output format:
       while (grid.firstChild) { grid.removeChild(grid.firstChild); }
 
       var filtered = sortedPets(APPROVED_PETS).filter(function (p) {
-        return activeFilter === 'all' || p.category === activeFilter;
+        return activeFilter === 'all' || p.category === activeFilter || (activeFilter === 'other' && p.category !== 'dog' && p.category !== 'cat');
       });
 
       if (filtered.length === 0) {
@@ -1493,6 +1498,23 @@ Output format:
           setTimeout(function () { card.style.outline = ''; }, 2500);
         }, 300);
       }
+    }
+
+    /* ── Submit form toggle ── */
+    var submitToggle = document.getElementById('pet-submit-toggle');
+    var submitSection = document.getElementById('submit');
+    if (submitToggle && submitSection) {
+      submitToggle.addEventListener('click', function () {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        if (!expanded) {
+          submitSection.hidden = false;
+          this.setAttribute('aria-expanded', 'true');
+          submitSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          submitSection.hidden = true;
+          this.setAttribute('aria-expanded', 'false');
+        }
+      });
     }
 
     /* ── Init ── */
