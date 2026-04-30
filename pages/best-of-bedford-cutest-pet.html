@@ -6,15 +6,16 @@
 
   <!-- Primary meta -->
   <title>Cutest Pet in Bedford | Pet Contest &amp; Voting | Don Scott</title>
-  <meta name="description" content="Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, and other beloved pets.">
+  <meta name="description" content="Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, hamsters, and other beloved pets.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.donforbedford.com/best-of-bedford-cutest-pet">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/best-of-bedford-cutest-pet">
-  <meta property="og:title" content="Cutest Pet in Bedford | Best of Bedford">
-  <meta property="og:description" content="Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, and other beloved pets.">
+  <meta property="og:title" content="Cutest Pet in Bedford | Pet Contest &amp; Voting | Don Scott">
+  <meta property="og:description" content="Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, hamsters, and other beloved pets.">
+  <!-- TODO: Replace with page-specific cutest-pet-og.png (1200x630) based on the dogshow hero visual -->
   <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -27,8 +28,8 @@
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/best-of-bedford-cutest-pet">
-  <meta name="twitter:title" content="Cutest Pet in Bedford | Best of Bedford">
-  <meta name="twitter:description" content="Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, and other beloved pets.">
+  <meta name="twitter:title" content="Cutest Pet in Bedford | Pet Contest &amp; Voting | Don Scott">
+  <meta name="twitter:description" content="Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, hamsters, and other beloved pets.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta name="twitter:image:alt" content="Cutest Pet in Bedford — Best of Bedford civic participation series.">
 
@@ -59,7 +60,7 @@
         "@id": "https://www.donforbedford.com/best-of-bedford-cutest-pet#webpage",
         "url": "https://www.donforbedford.com/best-of-bedford-cutest-pet",
         "name": "Cutest Pet in Bedford | Pet Contest & Voting | Don Scott",
-        "description": "Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, and other beloved pets.",
+        "description": "Submit and vote for Cutest Pet in Bedford, a Best of Bedford community challenge featuring local dogs, cats, horses, lizards, birds, gerbils, hamsters, and other beloved pets.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
         "about": [
           { "@id": "https://www.donforbedford.com/#don-scott" },
@@ -600,6 +601,27 @@
       font-style: italic;
       margin-top: 1rem;
     }
+
+    /* ── Form minimize button ── */
+    .pet-form-minimize {
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      transition: color 0.12s;
+    }
+    .pet-form-minimize:hover { color: var(--charcoal); }
+    .pet-form-minimize:focus-visible { outline: 2px solid var(--sage); outline-offset: 2px; border-radius: 2px; }
   </style>
 </head>
 <body>
@@ -714,10 +736,10 @@
     </section>
 
     <!-- SUBMISSION FORM -->
-    <section class="section section--alt" id="submit" aria-labelledby="submit-h2" hidden>
+    <section class="section" id="submit" aria-labelledby="submit-h2" hidden>
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">Submit Your Pet</p>
+          <button type="button" class="pet-form-minimize" id="pet-form-minimize" aria-label="Minimize submission form">↑ Minimize</button>
           <h2 id="submit-h2">Enter the Contest</h2>
           <p class="section-header__lead section-header__lead--wide">
             Share a photo and a short description. Submissions are reviewed before appearing on the site. No login or email required.
@@ -987,13 +1009,12 @@ Output format:
       },
       {
         id: 'pet-ugly',
-        name: 'Ugly',
+        name: 'Ham Solo',
         category: 'hamster',
-        age: 7,
-        hamlet: 'Bedford Village',
-        description: 'Proof that beauty standards are complicated and charm still wins elections.',
-        // TODO: Add royalty-free hamster image → save to ../assets/img/pets/ugly-hamster.png and set image to that path
-        image: null,
+        age: 1,
+        hamlet: 'Katonah',
+        description: 'A small but fearless hamster from Katonah with a strong independent streak, a suspiciously fast escape speed, and no plans to join the Empire.',
+        image: '../assets/img/pets/hamster.png',
         shareUrl: '/best-of-bedford-cutest-pet-ugly',
         votes: 9
       },
@@ -1503,6 +1524,13 @@ Output format:
     /* ── Submit form toggle ── */
     var submitToggle = document.getElementById('pet-submit-toggle');
     var submitSection = document.getElementById('submit');
+
+    function collapseSubmitForm() {
+      submitSection.hidden = true;
+      submitToggle.setAttribute('aria-expanded', 'false');
+      submitToggle.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
     if (submitToggle && submitSection) {
       submitToggle.addEventListener('click', function () {
         var expanded = this.getAttribute('aria-expanded') === 'true';
@@ -1511,10 +1539,14 @@ Output format:
           this.setAttribute('aria-expanded', 'true');
           submitSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
-          submitSection.hidden = true;
-          this.setAttribute('aria-expanded', 'false');
+          collapseSubmitForm();
         }
       });
+
+      var submitMinimize = document.getElementById('pet-form-minimize');
+      if (submitMinimize) {
+        submitMinimize.addEventListener('click', collapseSubmitForm);
+      }
     }
 
     /* ── Init ── */
