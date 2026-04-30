@@ -275,6 +275,17 @@
       .matchup-card__confirm { transition: none; }
     }
 
+    /* Exhausted state — fewer than 2 unvoted ideas remain */
+    .matchup-exhausted {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: 1rem;
+      color: var(--muted);
+      font-style: italic;
+      font-family: var(--serif);
+    }
+
     /* =============================================
        IDEA ACCORDION CATEGORIES
        ============================================= */
@@ -1179,25 +1190,54 @@
     var matchupCurrentB = null;
 
     function pickMatchupPair() {
-      var pool = IDEAS.slice();
+      /* Only consider ideas not yet voted on in this session */
+      var pool = IDEAS.filter(function(idea) {
+        return !sessionVotes[idea.id];
+      });
+      if (pool.length < 2) return [null, null];
+
+      /* Fisher-Yates shuffle */
       for (var i = pool.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
         var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
       }
-      var a = null, b = null;
-      for (var k = 0; k < pool.length; k++) {
-        if (!a) { a = pool[k]; continue; }
-        if (pool[k].id !== a.id &&
-            pool[k].id !== (matchupCurrentA && matchupCurrentA.id) &&
-            pool[k].id !== (matchupCurrentB && matchupCurrentB.id)) {
-          b = pool[k]; break;
+
+      /* Pick A, then find B that avoids repeating the previous pair */
+      var prevA = matchupCurrentA && matchupCurrentA.id;
+      var prevB = matchupCurrentB && matchupCurrentB.id;
+      var a = pool[0];
+      var b = null;
+      for (var k = 1; k < pool.length; k++) {
+        if (pool[k].id !== prevA && pool[k].id !== prevB) {
+          b = pool[k];
+          break;
         }
       }
+      /* Fallback: anti-repeat couldn't find a distinct B — use pool[1] */
+      if (!b) b = pool[1];
+
       return [a, b];
+    }
+
+    function showMatchupExhausted() {
+      matchupCurrentA = null;
+      matchupCurrentB = null;
+      var arena = document.querySelector(".matchup-arena");
+      arena.setAttribute("aria-label", "Idea matchup complete");
+      var p = document.createElement("p");
+      p.className = "matchup-exhausted";
+      p.textContent = "You’ve voted on everything";
+      while (arena.firstChild) arena.removeChild(arena.firstChild);
+      arena.appendChild(p);
     }
 
     function renderMatchup() {
       var pair = pickMatchupPair();
+      if (!pair[0] || !pair[1]) {
+        showMatchupExhausted();
+        return;
+      }
+
       matchupCurrentA = pair[0];
       matchupCurrentB = pair[1];
 
