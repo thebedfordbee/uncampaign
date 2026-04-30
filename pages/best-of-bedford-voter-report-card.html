@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary meta -->
-  <title>Bedford Voter Report Card | Best of Bedford</title>
-  <meta name="description" content="Check your Bedford voter participation report card using public voter-history records and see your turnout score, voting method history, polling place, and election reminder options.">
+  <title>Bedford Voter Report Card | Check Your Voter History | Don Scott</title>
+  <meta name="description" content="Check your Bedford voter-history record, see your turnout score, and get a reminder for Bedford's next local election.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.donforbedford.com/best-of-bedford-voter-report-card">
 
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/best-of-bedford-voter-report-card">
   <meta property="og:title" content="Bedford Voter Report Card | Best of Bedford">
-  <meta property="og:description" content="Check your Bedford voter participation report card, see your turnout score, and get a reminder for the next local election.">
+  <meta property="og:description" content="Check your Bedford voter-history record, see your turnout score, and get a reminder for Bedford's next local election.">
   <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -28,7 +28,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/best-of-bedford-voter-report-card">
   <meta name="twitter:title" content="Bedford Voter Report Card | Best of Bedford">
-  <meta name="twitter:description" content="Check your Bedford voter participation report card, see your turnout score, and get a reminder for the next local election.">
+  <meta name="twitter:description" content="Check your Bedford voter-history record, see your turnout score, and get a reminder for Bedford's next local election.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta name="twitter:image:alt" content="Bedford Voter Report Card — Best of Bedford civic participation series.">
 
@@ -59,14 +59,14 @@
         "@id": "https://www.donforbedford.com/best-of-bedford-voter-report-card#webpage",
         "url": "https://www.donforbedford.com/best-of-bedford-voter-report-card",
         "name": "Bedford Voter Report Card | Best of Bedford",
-        "description": "Check your Bedford voter participation report card using public voter-history records and see your turnout score, voting method history, polling place, and election reminder options.",
+        "description": "Check your Bedford voter-history record, see your turnout score, and get a reminder for Bedford's next local election.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
         "about": [
           { "@id": "https://www.donforbedford.com/#don-scott" },
           {
             "@type": "Thing",
             "name": "Bedford Voter Report Card",
-            "description": "A civic participation tool that helps Bedford, New York voters understand their public voter-history record from the Board of Elections, including turnout rate, voting method, polling place, and local election reminders."
+            "description": "A civic participation tool that helps Bedford voters understand their public voter-history record, including turnout rate, voting method history, polling place, and local election reminders."
           }
         ]
       },
@@ -204,6 +204,7 @@
       font-style: italic;
       margin-top: 1rem;
       line-height: 1.65;
+      text-align: center;
     }
 
     .vrc-form__submit { width: 100%; margin-top: 1.5rem; }
@@ -308,7 +309,7 @@
       padding-top: 1.25rem;
       border-top: 1px solid var(--border);
     }
-    .vrc-score-card__commentary p { margin: 0 0 0.75rem; }
+    .vrc-score-card__commentary p { margin: 0 0 0.75rem; max-width: none; width: 100%; }
     .vrc-score-card__commentary p:last-child { margin-bottom: 0; }
 
     /* Election table */
@@ -674,7 +675,7 @@
         </button>
 
         <div class="issues-hero__copy-bot">
-          <p class="issues-hero__deck">A civic participation tool that lets Bedford voters look up their own public voter-history record, see a turnout score, and get a reminder for the next local election.</p>
+          <p class="issues-hero__deck">A civic participation tool that lets Bedford voters look up their public voter-history record, see a turnout score, and get a reminder for the next local election.</p>
         </div>
 
       </div>
@@ -687,10 +688,10 @@
     <section class="section section--alt" aria-labelledby="vrc-intro-h2">
       <div class="container">
         <div class="bob-series-body">
-          <p class="eyebrow">A Civic Participation Tool</p>
-          <h2 id="vrc-intro-h2">Your Bedford Voting Record, in Plain English</h2>
+          <p class="eyebrow">Public Records, Plain English</p>
+          <h2 id="vrc-intro-h2">Your Bedford Voter Record, In Plain English</h2>
           <p>This tool uses public voter-history records from the Board of Elections. It does not show who anyone voted for. It only reflects whether a voter participated in past elections and, when available, how the ballot was cast — such as Election Day, early voting, or absentee.</p>
-          <p>To protect privacy, the public voter file is not stored on this website. The lookup runs through a private Google Apps Script connection that returns only the matching voter's own report-card result. No personal lookup data is stored in your browser or passed through the URL.</p>
+          <p>To protect privacy, the public voter file is not stored on this website. The lookup runs through a private Google Apps Script connection that returns only the matching report-card result. No personal lookup data is stored in your browser or passed through the URL.</p>
         </div>
       </div>
     </section>
@@ -702,7 +703,7 @@
           <p class="eyebrow">Look Up Your Record</p>
           <h2 id="lookup-h2">Find Your Report Card</h2>
           <p class="section-header__lead section-header__lead--wide">
-            These fields help narrow the lookup so the tool can return the right voter record. Bedford, New York voters only.
+            These fields help narrow the lookup so the tool can return the right record. Bedford voters only.
           </p>
         </div>
 
@@ -726,7 +727,7 @@
               </div>
               <div>
                 <label for="vrc-street-name">Street name <span class="req">*</span></label>
-                <input type="text" id="vrc-street-name" name="streetName" placeholder="Village Green" required maxlength="80">
+                <input type="text" id="vrc-street-name" name="streetName" placeholder="Cherry" required maxlength="80">
               </div>
             </div>
 
@@ -802,7 +803,7 @@
 
               <!-- Calendar reminder -->
               <div class="vrc-calendar-section" id="vrc-calendar-section">
-                <h3>Next Local Election</h3>
+                <h3>Save The Date</h3>
                 <p>Add a reminder now, because future you may be busy doing literally anything else.</p>
                 <!-- TODO: Verify next local election date before launch -->
                 <div class="vrc-dropdown" id="vrc-cal-dropdown-wrap">
@@ -857,14 +858,14 @@
     <section class="section section--alt" aria-labelledby="ai-built-h2">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">How This Was Built</p>
-          <h2 id="ai-built-h2">How This Was Built</h2>
+          <p class="eyebrow">AI Transparency</p>
+          <h2 id="ai-built-h2">This Campaign Shows Its Work</h2>
           <p class="section-header__lead section-header__lead--wide">
-            This campaign is committed to showing its work. When AI helps build something useful, it should be explained and made visible — not hidden.
+            This campaign is committed to showing its work, not just stating positions. When a tool or workflow helps clarify a local issue, it should be explained, shared, and made useful beyond the campaign. The instruction set used to create a public-facing voter engagement page is published here in full.
           </p>
         </div>
 
-        <div class="cta-row cta-row--centered">
+        <div class="cta-row">
           <div class="howbuilt-cta-group">
             <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-vrc" aria-expanded="false">View The Instruction Set</button>
           </div>
@@ -1010,10 +1011,17 @@ Output format:
     var LOADING_MSGS = [
       'Checking public voter-history records…',
       'Matching your lookup securely…',
+      'Normalizing Bedford address fields…',
       'Reviewing turnout history…',
       'Reading voting method records…',
+      'Checking local election participation…',
       'Finding your polling place…',
-      'Calculating your report card…'
+      'Calculating your report card…',
+      'Double-checking the match confidence…',
+      'Making sure this is the right record…',
+      'Preparing your turnout summary…',
+      'Formatting your report card…',
+      'Almost there. Democracy is doing paperwork…'
     ];
     var loadingTimer   = null;
     var loadingMsgIdx  = 0;
@@ -1157,7 +1165,7 @@ Output format:
       /* Name + hamlet */
       var displayName = (d.firstName || 'Voter') + (d.lastInitial ? ' ' + d.lastInitial + '.' : '');
       document.getElementById('vrc-voter-name').textContent = displayName;
-      document.getElementById('vrc-voter-hamlet').textContent = (d.hamlet || 'Bedford') + ', New York';
+      document.getElementById('vrc-voter-hamlet').textContent = (d.hamlet || 'Bedford');
 
       /* Grade badge */
       var grade = (d.grade || '?').toUpperCase();
@@ -1189,14 +1197,14 @@ Output format:
         p1.textContent = d.gradeCommentary;
         commDiv.appendChild(p1);
       }
-      if (d.methodCommentary) {
+      if (d.mostCommonMethod) {
         var p2 = document.createElement('p');
-        p2.textContent = d.methodCommentary;
+        p2.textContent = 'Most common voting method: ' + d.mostCommonMethod + '.';
         commDiv.appendChild(p2);
       }
-      if (d.mostCommonMethod) {
+      if (d.methodCommentary) {
         var p3 = document.createElement('p');
-        p3.textContent = 'Most common voting method: ' + d.mostCommonMethod + '.';
+        p3.textContent = d.methodCommentary;
         commDiv.appendChild(p3);
       }
 
@@ -1238,14 +1246,16 @@ Output format:
       } else {
         calLocation = 'Bedford, New York';
       }
-      var calDesc    = 'Reminder to vote in the Bedford Town Supervisor election. Confirm polling place and election details before Election Day.';
-      var calDateStr = NEXT_ELECTION_DATE.replace(/-/g, '');
+      var calDesc      = 'Your polling place has been added as the location for this reminder. The 6:00 AM to 9:00 PM time block reflects Bedford polling hours.';
+      var calDateBase  = NEXT_ELECTION_DATE.replace(/-/g, '');
+      var calDateStart = calDateBase + 'T060000';
+      var calDateEnd   = calDateBase + 'T210000';
 
       /* Calendar dropdown item handlers */
       document.getElementById('vrc-cal-google').onclick = function () {
         var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
           '&text=' + encodeURIComponent(NEXT_ELECTION_TITLE) +
-          '&dates=' + calDateStr + '/' + calDateStr +
+          '&dates=' + calDateStart + '/' + calDateEnd +
           '&details=' + encodeURIComponent(calDesc) +
           '&location=' + encodeURIComponent(calLocation);
         window.open(url, '_blank', 'noopener,noreferrer');
@@ -1259,7 +1269,8 @@ Output format:
       document.getElementById('vrc-cal-yahoo').onclick = function () {
         var url = 'https://calendar.yahoo.com/?v=60&view=d&type=20' +
           '&title=' + encodeURIComponent(NEXT_ELECTION_TITLE) +
-          '&st=' + calDateStr +
+          '&st=' + calDateStart +
+          '&et=' + calDateEnd +
           '&desc=' + encodeURIComponent(calDesc) +
           '&in_loc=' + encodeURIComponent(calLocation);
         window.open(url, '_blank', 'noopener,noreferrer');
@@ -1295,15 +1306,15 @@ Output format:
     /* ── ICS generator ── */
     function downloadIcs(title, dateStr, location, desc) {
       var d = dateStr.replace(/-/g, '');
-      var icsDesc = (desc || 'Reminder to vote in the Bedford Town Supervisor election. Confirm polling place and election details before Election Day.').replace(/,/g, '\\,');
+      var icsDesc = (desc || 'Your polling place has been added as the location for this reminder. The 6:00 AM to 9:00 PM time block reflects Bedford polling hours.').replace(/,/g, '\\,');
       var icsLoc  = (location || 'Bedford, New York').replace(/,/g, '\\,');
       var ics = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
         'PRODID:-//DonForBedford//VoterReminderTool//EN',
         'BEGIN:VEVENT',
-        'DTSTART;VALUE=DATE:' + d,
-        'DTEND;VALUE=DATE:' + d,
+        'DTSTART:' + d + 'T060000',
+        'DTEND:' + d + 'T210000',
         'SUMMARY:' + title,
         'DESCRIPTION:' + icsDesc,
         'LOCATION:' + icsLoc,
