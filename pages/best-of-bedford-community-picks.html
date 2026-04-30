@@ -646,6 +646,8 @@ Output format:
     var isSubmitted   = false;
 
     /* ── DOM refs ─────────────────────────────────────────── */
+    var launch      = document.getElementById('cp-launch');
+    var startBtn    = document.getElementById('cp-start');
     var flowWrap    = document.getElementById('cp-flow');
     var flowLabel   = document.getElementById('cp-flow-label');
     var flowFill    = document.getElementById('cp-flow-fill');
@@ -837,41 +839,56 @@ Output format:
     /* ── Wire submit button ───────────────────────────────── */
     if (submitBtn) submitBtn.addEventListener('click', doSubmit);
 
-    /* ── Launch cover + Init ─────────────────────────────── */
-    (function () {
-      var launch   = document.getElementById('cp-launch');
-      var startBtn = document.getElementById('cp-start');
+    /* ── Show survey flow (called on Start click) ─────────── */
+    function showSurveyStart() {
+      if (launch) { launch.hidden = true; launch.style.display = 'none'; }
+      if (flowWrap) { flowWrap.hidden = false; flowWrap.style.display = 'block'; }
 
-      /* Keep flow hidden behind launch cover on load */
-      if (flowWrap) { flowWrap.style.display = 'none'; flowWrap.hidden = true; }
+      var idx = firstUnsubmittedIndex();
+      if (idx === -1) { showCompletion(); return; }
 
-      var startIdx = firstUnsubmittedIndex();
+      renderCategory(idx);
 
-      if (startIdx === -1) {
-        /* Already complete — bypass cover, show done state */
-        if (launch) { launch.style.display = 'none'; launch.hidden = true; }
+      var title = document.getElementById('cp-flow-cat-title');
+      var focusTarget = title || flowCard || flowWrap;
+      if (focusTarget && typeof focusTarget.focus === 'function') {
+        focusTarget.setAttribute('tabindex', '-1');
+        focusTarget.focus({ preventScroll: false });
+      }
+    }
+
+    /* ── Init ─────────────────────────────────────────────── */
+    function init() {
+      if (!flowWrap || !flowCard) return;
+
+      /* Completion panel hidden until earned */
+      if (completeDiv) { completeDiv.hidden = true; completeDiv.style.display = 'none'; }
+
+      /* If every category already submitted, skip cover and show done */
+      if (firstUnsubmittedIndex() === -1) {
+        if (launch) { launch.hidden = true; launch.style.display = 'none'; }
+        flowWrap.hidden = true; flowWrap.style.display = 'none';
         showCompletion();
         return;
       }
 
-      if (!startBtn) return;
+      /* Show launch cover, keep flow hidden */
+      if (launch) { launch.hidden = false; launch.style.display = 'block'; }
+      flowWrap.hidden = true;
+      flowWrap.style.display = 'none';
 
-      startBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        if (launch) { launch.style.display = 'none'; launch.hidden = true; }
+      if (startBtn) {
+        startBtn.addEventListener('click', function (event) {
+          event.preventDefault();
+          showSurveyStart();
+        }, { once: true });
+      } else {
+        /* No cover button — render survey directly */
+        showSurveyStart();
+      }
+    }
 
-        /* Render the first unsubmitted category now (inside IIFE — renderCategory is in scope) */
-        renderCategory(startIdx);
-
-        if (flowWrap) { flowWrap.hidden = false; flowWrap.style.display = 'block'; }
-
-        var title = document.getElementById('cp-flow-cat-title');
-        if (title) {
-          title.setAttribute('tabindex', '-1');
-          title.focus({ preventScroll: false });
-        }
-      });
-    }());
+    init();
 
   }());
   </script>
