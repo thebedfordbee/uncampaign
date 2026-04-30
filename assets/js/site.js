@@ -200,232 +200,327 @@
 
 // =============================================
 // BEGIN SUBSCRIBE MODAL
-// Intercepts all [data-subscribe-trigger] clicks via event delegation
-// and opens a custom email capture modal backed by the Apps Script endpoint.
+// Opens a custom email capture modal on any [data-subscribe-trigger] click.
+// Modal DOM is injected by this script; no per-page HTML changes required.
 // To revert: remove this block and the matching CSS block in site.css.
 // =============================================
 (function () {
-  'use strict';
+  "use strict";
 
-  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec';
+  var API_URL = "https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec";
 
-  // --- Build modal DOM ---
-  var overlay = document.createElement('div');
-  overlay.id = 'subscribe-modal-overlay';
-  overlay.setAttribute('role', 'dialog');
-  overlay.setAttribute('aria-modal', 'true');
-  overlay.setAttribute('aria-labelledby', 'subscribe-modal-headline');
-  overlay.setAttribute('tabindex', '-1');
+  function init() {
+    /* ---------- Build modal DOM ---------- */
+    var overlay = document.createElement("div");
+    overlay.id = "subscribe-modal-overlay";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-labelledby", "subscribe-modal-headline");
+    overlay.setAttribute("tabindex", "-1");
 
-  overlay.innerHTML =
-    '<div class="subscribe-modal__panel">' +
-      '<button class="subscribe-modal__close" type="button" aria-label="Close subscribe form">&#x2715;</button>' +
+    var panel = document.createElement("div");
+    panel.className = "subscribe-modal__panel";
+    overlay.appendChild(panel);
 
-      '<div class="subscribe-modal__form-view">' +
-        '<p class="eyebrow subscribe-modal__eyebrow">Uncampaign Updates</p>' +
-        '<h2 class="subscribe-modal__headline" id="subscribe-modal-headline">Receive Uncampaign Updates</h2>' +
-        '<p class="subscribe-modal__body">Useful, occasional emails from Don during the campaign. Bedford updates, campaign experiments, local questions, and the occasional useful thing that would never survive a normal campaign newsletter.</p>' +
-        '<form class="subscribe-modal__form" novalidate>' +
-          '<div class="subscribe-modal__field">' +
-            '<label class="subscribe-modal__label" for="subscribe-email">Email address</label>' +
-            '<input class="subscribe-modal__input" type="email" id="subscribe-email" name="email" autocomplete="email" required placeholder="you@example.com">' +
-          '</div>' +
-          '<div class="subscribe-modal__field">' +
-            '<label class="subscribe-modal__label" for="subscribe-name">Name <span class="subscribe-modal__optional">(optional)</span></label>' +
-            '<input class="subscribe-modal__input" type="text" id="subscribe-name" name="name" autocomplete="given-name" placeholder="Your name">' +
-          '</div>' +
-          '<p class="subscribe-modal__error" role="alert" aria-live="polite" hidden></p>' +
-          '<button class="btn btn--primary subscribe-modal__submit" type="submit">' +
-            '<span class="subscribe-modal__btn-label">Subscribe</span>' +
-            '<span class="subscribe-modal__btn-loading" hidden aria-hidden="true">Subscribing…</span>' +
-          '</button>' +
-        '</form>' +
-        '<p class="subscribe-modal__fine-print">No fundraising blasts. No spam. Just campaign updates and useful Bedford notes. You can unsubscribe anytime.</p>' +
-      '</div>' +
+    var closeBtn = document.createElement("button");
+    closeBtn.className = "subscribe-modal__close";
+    closeBtn.type = "button";
+    closeBtn.setAttribute("aria-label", "Close subscribe form");
+    closeBtn.innerHTML = "&#x2715;";
+    panel.appendChild(closeBtn);
 
-      '<div class="subscribe-modal__success-view" hidden>' +
-        '<p class="subscribe-modal__success-icon" aria-hidden="true">&#x2713;</p>' +
-        ‘<h2 class="subscribe-modal__headline subscribe-modal__success-headline">You’re on the list.</h2>’ +
-        '<p class="subscribe-modal__body">Thanks for keeping an eye on this very abnormal campaign.</p>' +
-        '<button class="btn btn--secondary subscribe-modal__done" type="button">Close</button>' +
-      '</div>' +
+    /* Form view */
+    var formView = document.createElement("div");
+    formView.className = "subscribe-modal__form-view";
+    panel.appendChild(formView);
 
-    '</div>';
+    var eyebrow = document.createElement("p");
+    eyebrow.className = "eyebrow subscribe-modal__eyebrow";
+    eyebrow.textContent = "Uncampaign Updates";
+    formView.appendChild(eyebrow);
 
-  document.body.appendChild(overlay);
+    var headline = document.createElement("h2");
+    headline.className = "subscribe-modal__headline";
+    headline.id = "subscribe-modal-headline";
+    headline.textContent = "Receive Uncampaign Updates";
+    formView.appendChild(headline);
 
-  var closeBtn    = overlay.querySelector('.subscribe-modal__close');
-  var form        = overlay.querySelector('.subscribe-modal__form');
-  var emailInput  = overlay.querySelector('#subscribe-email');
-  var nameInput   = overlay.querySelector('#subscribe-name');
-  var errorEl     = overlay.querySelector('.subscribe-modal__error');
-  var submitBtn   = overlay.querySelector('.subscribe-modal__submit');
-  var btnLabel    = overlay.querySelector('.subscribe-modal__btn-label');
-  var btnLoading  = overlay.querySelector('.subscribe-modal__btn-loading');
-  var formView    = overlay.querySelector('.subscribe-modal__form-view');
-  var successView = overlay.querySelector('.subscribe-modal__success-view');
-  var doneBtn     = overlay.querySelector('.subscribe-modal__done');
-  var lastFocused = null;
-  var submitting  = false;
+    var bodyP = document.createElement("p");
+    bodyP.className = "subscribe-modal__body";
+    bodyP.textContent = "Useful, occasional emails from Don during the campaign."
+      + " Bedford updates, campaign experiments, local questions, and the occasional"
+      + " useful thing that would never survive a normal campaign newsletter.";
+    formView.appendChild(bodyP);
 
-  function openModal(trigger) {
-    lastFocused = trigger || null;
-    overlay.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
-    if (emailInput) emailInput.focus();
-  }
+    var form = document.createElement("form");
+    form.className = "subscribe-modal__form";
+    form.noValidate = true;
+    formView.appendChild(form);
 
-  function closeModal() {
-    overlay.classList.remove('is-open');
-    document.body.style.overflow = '';
-    if (lastFocused) {
-      try { lastFocused.focus(); } catch (e) {}
-      lastFocused = null;
+    /* Email field */
+    var emailField = document.createElement("div");
+    emailField.className = "subscribe-modal__field";
+    form.appendChild(emailField);
+
+    var emailLabel = document.createElement("label");
+    emailLabel.className = "subscribe-modal__label";
+    emailLabel.setAttribute("for", "subscribe-email");
+    emailLabel.textContent = "Email address";
+    emailField.appendChild(emailLabel);
+
+    var emailInput = document.createElement("input");
+    emailInput.className = "subscribe-modal__input";
+    emailInput.type = "email";
+    emailInput.id = "subscribe-email";
+    emailInput.name = "email";
+    emailInput.autocomplete = "email";
+    emailInput.required = true;
+    emailInput.placeholder = "you@example.com";
+    emailField.appendChild(emailInput);
+
+    /* Name field */
+    var nameField = document.createElement("div");
+    nameField.className = "subscribe-modal__field";
+    form.appendChild(nameField);
+
+    var nameLabel = document.createElement("label");
+    nameLabel.className = "subscribe-modal__label";
+    nameLabel.setAttribute("for", "subscribe-name");
+    nameLabel.appendChild(document.createTextNode("Name "));
+    var optSpan = document.createElement("span");
+    optSpan.className = "subscribe-modal__optional";
+    optSpan.textContent = "(optional)";
+    nameLabel.appendChild(optSpan);
+    nameField.appendChild(nameLabel);
+
+    var nameInput = document.createElement("input");
+    nameInput.className = "subscribe-modal__input";
+    nameInput.type = "text";
+    nameInput.id = "subscribe-name";
+    nameInput.name = "name";
+    nameInput.autocomplete = "given-name";
+    nameInput.placeholder = "Your name";
+    nameField.appendChild(nameInput);
+
+    /* Error */
+    var errorEl = document.createElement("p");
+    errorEl.className = "subscribe-modal__error";
+    errorEl.setAttribute("role", "alert");
+    errorEl.setAttribute("aria-live", "polite");
+    errorEl.hidden = true;
+    form.appendChild(errorEl);
+
+    /* Submit button */
+    var submitBtn = document.createElement("button");
+    submitBtn.className = "btn btn--primary subscribe-modal__submit";
+    submitBtn.type = "submit";
+    form.appendChild(submitBtn);
+
+    var btnLabel = document.createElement("span");
+    btnLabel.className = "subscribe-modal__btn-label";
+    btnLabel.textContent = "Subscribe";
+    submitBtn.appendChild(btnLabel);
+
+    var btnLoading = document.createElement("span");
+    btnLoading.className = "subscribe-modal__btn-loading";
+    btnLoading.hidden = true;
+    btnLoading.setAttribute("aria-hidden", "true");
+    btnLoading.textContent = "Subscribing…";
+    submitBtn.appendChild(btnLoading);
+
+    /* Fine print */
+    var finePrint = document.createElement("p");
+    finePrint.className = "subscribe-modal__fine-print";
+    finePrint.textContent = "No fundraising blasts. No spam."
+      + " Just campaign updates and useful Bedford notes. You can unsubscribe anytime.";
+    formView.appendChild(finePrint);
+
+    /* Success view */
+    var successView = document.createElement("div");
+    successView.className = "subscribe-modal__success-view";
+    successView.hidden = true;
+    panel.appendChild(successView);
+
+    var successIcon = document.createElement("p");
+    successIcon.className = "subscribe-modal__success-icon";
+    successIcon.setAttribute("aria-hidden", "true");
+    successIcon.innerHTML = "&#x2713;";
+    successView.appendChild(successIcon);
+
+    var successHeadline = document.createElement("h2");
+    successHeadline.className = "subscribe-modal__headline subscribe-modal__success-headline";
+    successHeadline.textContent = "You’re on the list.";
+    successView.appendChild(successHeadline);
+
+    var successBody = document.createElement("p");
+    successBody.className = "subscribe-modal__body";
+    successBody.textContent = "Thanks for keeping an eye on this very abnormal campaign.";
+    successView.appendChild(successBody);
+
+    var doneBtn = document.createElement("button");
+    doneBtn.className = "btn btn--secondary subscribe-modal__done";
+    doneBtn.type = "button";
+    doneBtn.textContent = "Close";
+    successView.appendChild(doneBtn);
+
+    document.body.appendChild(overlay);
+
+    /* ---------- State ---------- */
+    var lastFocused = null;
+    var submitting  = false;
+
+    function openModal(trigger) {
+      lastFocused = trigger || null;
+      overlay.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      emailInput.focus();
     }
-  }
 
-  function resetModal() {
-    formView.removeAttribute('hidden');
-    successView.setAttribute('hidden', '');
-    if (form) form.reset();
-    clearError();
-    setLoading(false);
-  }
-
-  function showError(msg) {
-    errorEl.textContent = msg;
-    errorEl.removeAttribute('hidden');
-    if (emailInput) emailInput.classList.add('is-invalid');
-  }
-
-  function clearError() {
-    errorEl.setAttribute('hidden', '');
-    errorEl.textContent = '';
-    if (emailInput) emailInput.classList.remove('is-invalid');
-  }
-
-  function setLoading(loading) {
-    submitting = loading;
-    submitBtn.disabled = loading;
-    if (loading) {
-      btnLabel.setAttribute('hidden', '');
-      btnLoading.removeAttribute('hidden');
-      btnLoading.removeAttribute('aria-hidden');
-    } else {
-      btnLabel.removeAttribute('hidden');
-      btnLoading.setAttribute('hidden', '');
-      btnLoading.setAttribute('aria-hidden', 'true');
+    function closeModal() {
+      overlay.classList.remove("is-open");
+      document.body.style.overflow = "";
+      if (lastFocused) {
+        try { lastFocused.focus(); } catch (ignore) {}
+        lastFocused = null;
+      }
     }
-  }
 
-  function isValidEmail(val) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
-  }
+    function resetModal() {
+      formView.removeAttribute("hidden");
+      successView.setAttribute("hidden", "");
+      form.reset();
+      clearError();
+      setLoading(false);
+    }
 
-  function apiPost(payload) {
-    var body = JSON.stringify(payload);
-    return fetch(APPS_SCRIPT_URL, {
-      method:  'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body:    body
-    }).catch(function () {
-      return fetch(APPS_SCRIPT_URL, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-        body:    new URLSearchParams({ payload: body }).toString()
+    function showError(msg) {
+      errorEl.textContent = msg;
+      errorEl.removeAttribute("hidden");
+      emailInput.classList.add("is-invalid");
+    }
+
+    function clearError() {
+      errorEl.setAttribute("hidden", "");
+      errorEl.textContent = "";
+      emailInput.classList.remove("is-invalid");
+    }
+
+    function setLoading(loading) {
+      submitting = loading;
+      submitBtn.disabled = loading;
+      if (loading) {
+        btnLabel.setAttribute("hidden", "");
+        btnLoading.removeAttribute("hidden");
+        btnLoading.removeAttribute("aria-hidden");
+      } else {
+        btnLabel.removeAttribute("hidden");
+        btnLoading.setAttribute("hidden", "");
+        btnLoading.setAttribute("aria-hidden", "true");
+      }
+    }
+
+    function isValidEmail(val) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+    }
+
+    function apiPost(payload) {
+      var body = JSON.stringify(payload);
+      return fetch(API_URL, {
+        method:  "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body:    body
+      }).catch(function () {
+        return fetch(API_URL, {
+          method:  "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body:    new URLSearchParams({ payload: body }).toString()
+        });
       });
-    });
-  }
+    }
 
-  if (form) {
-    form.addEventListener('submit', function (e) {
+    /* ---------- Event wiring ---------- */
+
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (submitting) return;
-
       clearError();
-
-      var email = emailInput ? emailInput.value.trim() : '';
-      var name  = nameInput  ? nameInput.value.trim()  : '';
-
+      var email = emailInput.value.trim();
+      var name  = nameInput.value.trim();
       if (!email || !isValidEmail(email)) {
-        showError('Please enter a valid email address.');
-        if (emailInput) emailInput.focus();
+        showError("Please enter a valid email address.");
+        emailInput.focus();
         return;
       }
-
       setLoading(true);
-
       apiPost({
-        action:     'subscribe',
+        action:     "subscribe",
         email:      email,
         name:       name,
-        source:     'subscribe_modal',
+        source:     "subscribe_modal",
         page:       window.location.pathname,
         user_agent: navigator.userAgent
       })
       .then(function () {
         setLoading(false);
-        formView.setAttribute('hidden', '');
-        successView.removeAttribute('hidden');
-        if (doneBtn) doneBtn.focus();
+        formView.setAttribute("hidden", "");
+        successView.removeAttribute("hidden");
+        doneBtn.focus();
       })
       .catch(function () {
         setLoading(false);
-        showError('Something went wrong. Please try again, or email Don directly.');
+        showError("Something went wrong. Please try again, or email Don directly.");
       });
     });
-  }
 
-  // Wire all subscribe CTAs via event delegation — catches any element with data-subscribe-trigger
-  document.addEventListener('click', function (e) {
-    var trigger = e.target.closest('[data-subscribe-trigger]');
-    if (!trigger) return;
-    e.preventDefault();
-    resetModal();
-    openModal(trigger);
-  });
+    /* Open: event delegation -- catches clicks on any [data-subscribe-trigger] */
+    document.addEventListener("click", function (e) {
+      var trigger = e.target.closest("[data-subscribe-trigger]");
+      if (!trigger) return;
+      e.preventDefault();
+      e.stopPropagation();
+      resetModal();
+      openModal(trigger);
+    });
 
-  // Close: backdrop click
-  overlay.addEventListener('click', function (e) {
-    if (e.target === overlay) closeModal();
-  });
+    overlay.addEventListener("click", function (e) {
+      if (e.target === overlay) closeModal();
+    });
 
-  // Close: close button
-  if (closeBtn) {
-    closeBtn.addEventListener('click', function (e) {
+    closeBtn.addEventListener("click", function (e) {
       e.stopPropagation();
       closeModal();
     });
-  }
 
-  // Close: done button in success view
-  if (doneBtn) {
-    doneBtn.addEventListener('click', closeModal);
-  }
+    doneBtn.addEventListener("click", closeModal);
 
-  // Close: Escape key
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
-  });
-
-  // Focus trap — only considers elements not inside a [hidden] ancestor
-  overlay.addEventListener('keydown', function (e) {
-    if (e.key !== 'Tab') return;
-    var candidates = overlay.querySelectorAll(
-      'button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
-    );
-    var focusable = Array.prototype.filter.call(candidates, function (el) {
-      return !el.closest('[hidden]');
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && overlay.classList.contains("is-open")) closeModal();
     });
-    var first = focusable[0];
-    var last  = focusable[focusable.length - 1];
-    if (!first || !last) return;
-    if (e.shiftKey) {
-      if (document.activeElement === first) { e.preventDefault(); last.focus(); }
-    } else {
-      if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
-    }
-  });
+
+    /* Focus trap */
+    overlay.addEventListener("keydown", function (e) {
+      if (e.key !== "Tab") return;
+      var focusable = Array.prototype.filter.call(
+        overlay.querySelectorAll("button:not([disabled]), input:not([disabled])"),
+        function (el) { return !el.closest("[hidden]"); }
+      );
+      var first = focusable[0];
+      var last  = focusable[focusable.length - 1];
+      if (!first || !last) return;
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+
+  /* Run after DOM is ready */
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 
 })();
 // =============================================
