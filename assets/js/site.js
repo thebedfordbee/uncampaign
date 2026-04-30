@@ -199,13 +199,15 @@
 })();
 
 // =============================================
-// BEGIN SUBSTACK MODAL
+// BEGIN SUBSCRIBE MODAL
 // Intercepts all a[href="https://donforbedford.substack.com/"] clicks
-// and opens a free-email-only subscribe modal instead of navigating away.
+// and opens a custom email capture modal backed by the Apps Script endpoint.
 // To revert: remove this block and the matching CSS block in site.css.
 // =============================================
 (function () {
   'use strict';
+
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec';
 
   // --- Build modal DOM ---
   var overlay = document.createElement('div');
@@ -218,26 +220,59 @@
   overlay.innerHTML =
     '<div class="subscribe-modal__panel">' +
       '<button class="subscribe-modal__close" type="button" aria-label="Close subscribe form">&#x2715;</button>' +
-      '<p class="eyebrow subscribe-modal__eyebrow">FREE EMAIL UPDATES</p>' +
-      '<h2 class="subscribe-modal__headline" id="subscribe-modal-headline">Get occasional notes from Don</h2>' +
-      '<p class="subscribe-modal__body">Campaign updates, practical ideas for Bedford, and the occasional civic experiment.</p>' +
-      '<p class="subscribe-modal__reassurance"><strong>Free only. No donations. No paid tier.</strong></p>' +
-      '<div class="subscribe-modal__embed">' +
-        '<iframe src="https://donforbedford.substack.com/embed" width="100%" height="180" style="border:0;background:transparent;" frameborder="0" scrolling="no" title="Subscribe to Don Scott for Bedford email updates"></iframe>' +
+
+      '<div class="subscribe-modal__form-view">' +
+        '<p class="eyebrow subscribe-modal__eyebrow">Uncampaign Updates</p>' +
+        '<h2 class="subscribe-modal__headline" id="subscribe-modal-headline">Receive Uncampaign Updates</h2>' +
+        '<p class="subscribe-modal__body">Useful, occasional emails from Don during the campaign. Bedford updates, campaign experiments, local questions, and the occasional useful thing that would never survive a normal campaign newsletter.</p>' +
+        '<form class="subscribe-modal__form" novalidate>' +
+          '<div class="subscribe-modal__field">' +
+            '<label class="subscribe-modal__label" for="subscribe-email">Email address</label>' +
+            '<input class="subscribe-modal__input" type="email" id="subscribe-email" name="email" autocomplete="email" required placeholder="you@example.com">' +
+          '</div>' +
+          '<div class="subscribe-modal__field">' +
+            '<label class="subscribe-modal__label" for="subscribe-name">Name <span class="subscribe-modal__optional">(optional)</span></label>' +
+            '<input class="subscribe-modal__input" type="text" id="subscribe-name" name="name" autocomplete="given-name" placeholder="Your name">' +
+          '</div>' +
+          '<p class="subscribe-modal__error" role="alert" aria-live="polite" hidden></p>' +
+          '<button class="btn btn--primary subscribe-modal__submit" type="submit">' +
+            '<span class="subscribe-modal__btn-label">Subscribe</span>' +
+            '<span class="subscribe-modal__btn-loading" hidden aria-hidden="true">Subscribing…</span>' +
+          '</button>' +
+        '</form>' +
+        '<p class="subscribe-modal__fine-print">No fundraising blasts. No spam. Just campaign updates and useful Bedford notes. You can unsubscribe anytime.</p>' +
       '</div>' +
-      '<p class="subscribe-modal__fine-print">This is a free email list, not a fundraising list. Unsubscribe anytime.</p>' +
+
+      '<div class="subscribe-modal__success-view" hidden>' +
+        '<p class="subscribe-modal__success-icon" aria-hidden="true">&#x2713;</p>' +
+        ‘<h2 class="subscribe-modal__headline subscribe-modal__success-headline">You’re on the list.</h2>’ +
+        '<p class="subscribe-modal__body">Thanks for keeping an eye on this very abnormal campaign.</p>' +
+        '<button class="btn btn--secondary subscribe-modal__done" type="button">Close</button>' +
+      '</div>' +
+
     '</div>';
 
   document.body.appendChild(overlay);
 
-  var closeBtn = overlay.querySelector('.subscribe-modal__close');
+  var closeBtn    = overlay.querySelector('.subscribe-modal__close');
+  var form        = overlay.querySelector('.subscribe-modal__form');
+  var emailInput  = overlay.querySelector('#subscribe-email');
+  var nameInput   = overlay.querySelector('#subscribe-name');
+  var errorEl     = overlay.querySelector('.subscribe-modal__error');
+  var submitBtn   = overlay.querySelector('.subscribe-modal__submit');
+  var btnLabel    = overlay.querySelector('.subscribe-modal__btn-label');
+  var btnLoading  = overlay.querySelector('.subscribe-modal__btn-loading');
+  var formView    = overlay.querySelector('.subscribe-modal__form-view');
+  var successView = overlay.querySelector('.subscribe-modal__success-view');
+  var doneBtn     = overlay.querySelector('.subscribe-modal__done');
   var lastFocused = null;
+  var submitting  = false;
 
   function openModal(trigger) {
     lastFocused = trigger || null;
     overlay.classList.add('is-open');
     document.body.style.overflow = 'hidden';
-    if (closeBtn) closeBtn.focus();
+    if (emailInput) emailInput.focus();
   }
 
   function closeModal() {
@@ -249,11 +284,104 @@
     }
   }
 
+  function resetModal() {
+    formView.removeAttribute('hidden');
+    successView.setAttribute('hidden', '');
+    if (form) form.reset();
+    clearError();
+    setLoading(false);
+  }
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.removeAttribute('hidden');
+    if (emailInput) emailInput.classList.add('is-invalid');
+  }
+
+  function clearError() {
+    errorEl.setAttribute('hidden', '');
+    errorEl.textContent = '';
+    if (emailInput) emailInput.classList.remove('is-invalid');
+  }
+
+  function setLoading(loading) {
+    submitting = loading;
+    submitBtn.disabled = loading;
+    if (loading) {
+      btnLabel.setAttribute('hidden', '');
+      btnLoading.removeAttribute('hidden');
+      btnLoading.removeAttribute('aria-hidden');
+    } else {
+      btnLabel.removeAttribute('hidden');
+      btnLoading.setAttribute('hidden', '');
+      btnLoading.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  function isValidEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+  }
+
+  function apiPost(payload) {
+    var body = JSON.stringify(payload);
+    return fetch(APPS_SCRIPT_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body:    body
+    }).catch(function () {
+      return fetch(APPS_SCRIPT_URL, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+        body:    new URLSearchParams({ payload: body }).toString()
+      });
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (submitting) return;
+
+      clearError();
+
+      var email = emailInput ? emailInput.value.trim() : '';
+      var name  = nameInput  ? nameInput.value.trim()  : '';
+
+      if (!email || !isValidEmail(email)) {
+        showError('Please enter a valid email address.');
+        if (emailInput) emailInput.focus();
+        return;
+      }
+
+      setLoading(true);
+
+      apiPost({
+        action:     'subscribe',
+        email:      email,
+        name:       name,
+        source:     'subscribe_modal',
+        page:       window.location.pathname,
+        user_agent: navigator.userAgent
+      })
+      .then(function () {
+        setLoading(false);
+        formView.setAttribute('hidden', '');
+        successView.removeAttribute('hidden');
+        if (doneBtn) doneBtn.focus();
+      })
+      .catch(function () {
+        setLoading(false);
+        showError('Something went wrong. Please try again, or email Don directly.');
+      });
+    });
+  }
+
   // Wire all subscribe CTAs by their shared Substack href
   var ctaTriggers = document.querySelectorAll('a[href="https://donforbedford.substack.com/"]');
   ctaTriggers.forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
+      resetModal();
       openModal(el);
     });
   });
@@ -271,17 +399,25 @@
     });
   }
 
+  // Close: done button in success view
+  if (doneBtn) {
+    doneBtn.addEventListener('click', closeModal);
+  }
+
   // Close: Escape key
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeModal();
   });
 
-  // Focus trap within modal
+  // Focus trap — only considers elements not inside a [hidden] ancestor
   overlay.addEventListener('keydown', function (e) {
     if (e.key !== 'Tab') return;
-    var focusable = overlay.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    var candidates = overlay.querySelectorAll(
+      'button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
     );
+    var focusable = Array.prototype.filter.call(candidates, function (el) {
+      return !el.closest('[hidden]');
+    });
     var first = focusable[0];
     var last  = focusable[focusable.length - 1];
     if (!first || !last) return;
@@ -294,5 +430,5 @@
 
 })();
 // =============================================
-// END SUBSTACK MODAL
+// END SUBSCRIBE MODAL
 // =============================================

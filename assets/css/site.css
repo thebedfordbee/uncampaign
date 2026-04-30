@@ -2895,7 +2895,7 @@ div.issues-hero__visual--static:hover {
 }
 
 /* =============================================
-   BEGIN SUBSTACK MODAL
+   BEGIN SUBSCRIBE MODAL
    ============================================= */
 
 /* Backdrop overlay */
@@ -2971,7 +2971,7 @@ div.issues-hero__visual--static:hover {
 .subscribe-modal__headline {
   font-size: clamp(1.25rem, 3vw, 1.625rem);
   margin-bottom: 0.875rem;
-  padding-right: 2.5rem; /* clear the close button */
+  padding-right: 2.5rem;
 }
 
 /* Body copy */
@@ -2980,26 +2980,68 @@ div.issues-hero__visual--static:hover {
   font-size: 0.9375rem;
   line-height: 1.7;
   max-width: none;
-  margin-bottom: 0.875rem;
-}
-
-/* Bold reassurance line */
-.subscribe-modal__reassurance {
-  font-size: 0.9375rem;
-  color: var(--moss);
-  max-width: none;
   margin-bottom: 1.25rem;
 }
 
-/* iframe wrapper */
-.subscribe-modal__embed {
+/* Form layout */
+.subscribe-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   margin-bottom: 1rem;
-  border-radius: 4px;
-  overflow: hidden;
 }
-.subscribe-modal__embed iframe {
-  display: block;
+
+.subscribe-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.subscribe-modal__label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.subscribe-modal__optional {
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.subscribe-modal__input {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--charcoal);
+  font-size: 0.9375rem;
+  font-family: var(--sans);
+  padding: 0.625rem 0.875rem;
   width: 100%;
+  min-height: 44px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.subscribe-modal__input:focus {
+  outline: none;
+  border-color: var(--moss);
+  box-shadow: 0 0 0 3px rgba(62, 82, 64, 0.15);
+}
+.subscribe-modal__input.is-invalid {
+  border-color: #b84040;
+  background: #fef2f2;
+}
+
+/* Inline error */
+.subscribe-modal__error {
+  font-size: 0.875rem;
+  color: #b84040;
+  margin: 0;
+  margin-top: -0.25rem;
+}
+
+/* Submit button */
+.subscribe-modal__submit {
+  width: 100%;
+  margin-top: 0.25rem;
 }
 
 /* Fine print */
@@ -3008,13 +3050,34 @@ div.issues-hero__visual--static:hover {
   color: var(--muted);
   max-width: none;
   opacity: 0.8;
+  line-height: 1.6;
+  margin-top: 0.75rem;
+}
+
+/* Success state */
+.subscribe-modal__success-view {
+  text-align: center;
+  padding: 0.5rem 0 0.25rem;
+}
+.subscribe-modal__success-icon {
+  font-size: 2.5rem;
+  color: var(--moss);
+  margin: 0 0 0.75rem;
+  line-height: 1;
+}
+.subscribe-modal__success-headline {
+  padding-right: 0;
+}
+.subscribe-modal__done {
+  margin-top: 1.25rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .subscribe-modal__close { transition: none; }
+  .subscribe-modal__close,
+  .subscribe-modal__input { transition: none; }
 }
 
 /* =============================================
-   END SUBSTACK MODAL
+   END SUBSCRIBE MODAL
    ============================================= */
 
