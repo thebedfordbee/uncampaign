@@ -175,23 +175,17 @@
 
       var rawBody = JSON.stringify(payload);
 
-      function doPost(contentType, body) {
+      fetch(CHAT_API_URL, {
+        method:  'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body:    rawBody
+      })
+      .catch(function () {
         return fetch(CHAT_API_URL, {
           method:  'POST',
-          headers: { 'Content-Type': contentType },
-          body:    body
-        }).then(function (res) {
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          return res;
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body:    new URLSearchParams({ payload: rawBody }).toString()
         });
-      }
-
-      doPost('text/plain;charset=utf-8', rawBody)
-      .catch(function () {
-        return doPost(
-          'application/x-www-form-urlencoded;charset=UTF-8',
-          new URLSearchParams({ payload: rawBody }).toString()
-        );
       })
       .then(function () {
         submitting = false;
