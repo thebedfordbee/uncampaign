@@ -169,6 +169,83 @@
       hyphens: auto;
     }
 
+    /* ── Launch module (pre-game start screen) ───────────────── */
+    /* Drop codered-game-bg.png into assets/img/ to activate image layer */
+    .crtq-launch-module {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-color: #2a3328;
+      background-image:
+        url('../assets/img/codered-game-bg.png'),
+        linear-gradient(145deg, #1a271a 0%, #2a3d2a 50%, #3e5240 100%);
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow-md);
+    }
+    .crtq-launch-module::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(16, 24, 16, 0.62);
+    }
+    .crtq-launch-inner {
+      position: relative;
+      z-index: 1;
+      padding: 3rem 2rem;
+      max-width: 480px;
+      width: 100%;
+    }
+    .crtq-launch-label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.625rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.58);
+      margin-bottom: 1rem;
+    }
+    .crtq-launch-headline {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 4vw, 2.125rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin: 0 0 0.75rem;
+    }
+    .crtq-launch-support {
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.62);
+      margin: 0 0 2rem;
+      line-height: 1.5;
+    }
+    .crtq-launch-inner .btn {
+      background: #fff;
+      color: var(--moss);
+      border-color: #fff;
+      font-weight: 700;
+      min-height: 48px;
+      font-size: 1rem;
+      padding-inline: 2.25rem;
+    }
+    .crtq-launch-inner .btn:hover,
+    .crtq-launch-inner .btn:focus-visible {
+      background: #f0ece4;
+      border-color: #f0ece4;
+      color: var(--moss);
+    }
+    @media (max-width: 480px) {
+      .crtq-launch-module  { min-height: 280px; }
+      .crtq-launch-inner   { padding: 2.5rem 1.5rem; }
+      .crtq-launch-headline { font-size: 1.5rem; }
+    }
+
     /* ── Progress bar ─────────────────────────────────────────── */
     .crtq-progress {
       display: flex;
@@ -706,18 +783,20 @@
           <p class="eyebrow">Code Red: The Quiz</p>
           <h2 id="quiz-h2">Can You Spot the Real Rule?</h2>
           <p class="section-header__lead section-header__lead--wide">
-            Each question gives you three options. One is real, pulled directly from the Bedford Town Code. Two are invented. Answer each one to see the real rule and move to the next.
+            Each question gives you three options. One is real, pulled directly from the Bedford Town Code. Two are invented. Five questions. Answer each one to reveal the real rule and move to the next.
           </p>
         </div>
 
         <!-- INTRO PANEL -->
         <div id="crtq-intro">
           <div class="crtq-wrap">
-            <div class="crtq-intro-card">
-              <p class="eyebrow" style="color:var(--sage);margin-bottom:0.75rem;">Ready to play?</p>
-              <h3>The Bedford Town Code is 762 pages long. Buried inside are some remarkable sentences.</h3>
-              <p>For each question, one of the three options is a real provision from the Bedford Town Code. The other two are invented. Find the real one. Five questions. Answer each before moving on.</p>
-              <button type="button" class="btn btn--primary" id="crtq-start" style="min-height:48px;font-size:1rem;padding-inline:2rem;">Start Code Red</button>
+            <div class="crtq-launch-module">
+              <div class="crtq-launch-inner">
+                <span class="crtq-launch-label">Ready to Play?</span>
+                <h3 class="crtq-launch-headline">Five questions. One real rule each time.</h3>
+                <p class="crtq-launch-support">Built from Bedford's 762-page Town Code.</p>
+                <button type="button" class="btn btn--primary" id="crtq-start">Start Code Red</button>
+              </div>
             </div>
           </div>
         </div>
