@@ -89,60 +89,6 @@
         "sameAs": [
           "https://www.facebook.com/DonScottBedfordNY/"
         ]
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://www.donforbedford.com/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Why are you running?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Because local elections should not go uncontested. If no one runs, voters never get a real choice, and that is not healthy for Bedford. I'm running because this office matters, and because making an alternative available is sometimes the most important thing a campaign can do."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is this a real campaign?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. It is a real campaign. It is just being run differently on purpose. No fundraising. No consultant class. No pressure tactics. No pretending this has to look like every other campaign in order to count."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Are you really spending less than $50?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "That's the commitment. The cap is $49.99 total for the entire campaign. Every expense is posted publicly. The constraint is intentional. It forces creativity and proves that local civic participation does not require a war chest."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Are you using AI to run this campaign?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, openly. AI helped build parts of this site, draft copy, and support strategy. Every public-facing output was reviewed by a human before it went live. We're being transparent about it because that's the honest thing to do, and because it shows what a small local campaign can now build without a staff or consultant class."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Haven't you run before?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. And if I did not run this year, the Bedford Town Supervisor election would have been uncontested. Bedford deserves better than that. This campaign is not built around pretending the odds are easy. It is built around the idea that local democracy works better when voters have a choice."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How can I talk to Don?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Use the Request a Conversation page if you want to reach Don directly. You can also use Ask Don-Bot to submit a question. If you want a real conversation, Don is available."
-            }
-          }
-        ]
       }
     ]
   }
@@ -210,68 +156,18 @@
     a.card .card__icon { color: var(--sage); }
     a.card .card__title { color: var(--charcoal); }
 
-    /* =============================================
-       FAQ — restyled to match /ideas category rows
-       ============================================= */
-
-    /* Accordion container */
-    .faq-list {
-      max-width: none;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
+    /* Homepage contact section */
+    .homepage-contact__header {
+      text-align: center;
+      max-width: 52ch;
+      margin-inline: auto;
+      margin-bottom: 2rem;
     }
-
-    /* Row borders */
-    .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-item:first-child { border-top: none; }
-    .faq-item:last-child  { border-bottom: none; }
-
-    /* Alternating row backgrounds — 5-color cycle matching /ideas */
-    .faq-item:nth-child(5n+1) .faq-item__question { background: var(--white); }
-    .faq-item:nth-child(5n+2) .faq-item__question { background: var(--cream); }
-    .faq-item:nth-child(5n+3) .faq-item__question { background: rgba(123,140,121,0.07); }
-    .faq-item:nth-child(5n+4) .faq-item__question { background: rgba(224,219,211,0.55); }
-    .faq-item:nth-child(5n+5) .faq-item__question { background: rgba(62,82,64,0.05); }
-
-    /* Row trigger — matches /ideas trigger sizing */
-    .faq-item__question {
-      padding: 1.125rem 1.25rem;
-      min-height: 60px;
-      font-size: 1rem;
-      transition: background 0.15s, filter 0.15s, color 0.15s;
-    }
-    .faq-item__question:hover {
-      filter: brightness(0.965);
-      color: var(--charcoal);
-    }
-    .faq-item__question[aria-expanded="true"] {
-      filter: brightness(0.955);
-    }
-
-    /* Answer panel interior — cream bg + separator, full-width text */
-    .faq-item__answer-inner {
-      padding: 1.25rem;
-      background: var(--cream);
-      border-top: 1px solid var(--border);
-      padding-bottom: 1.25rem; /* explicit, overrides site.css default */
-    }
-    .faq-item__answer-inner p {
-      max-width: none;
-      font-size: 0.9375rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-    .faq-item__answer-inner p + p { margin-top: 0.75rem; }
-    .faq-item__answer-inner a { color: var(--moss); }
-
-    /* Center the bottom CTA */
-    .faq__more { text-align: center; }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .faq-item__question { transition: none; }
+    .homepage-contact__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
     }
 
     /* Homepage: modestly tighter section spacing */
@@ -715,93 +611,17 @@
       </div>
     </section>
 
-    <!-- COMMON QUESTIONS -->
-    <section class="section section--alt" aria-labelledby="faq-headline">
+    <!-- COMMON QUESTIONS / CONTACT -->
+    <section class="section section--alt homepage-contact" aria-labelledby="contact-headline">
       <div class="container">
-        <div class="faq__header">
-          <p class="eyebrow">Common questions</p>
-          <h2 id="faq-headline">Frequently Asked Questions</h2>
-          <p>You've got questions. Don's got answers.</p>
+        <div class="homepage-contact__header">
+          <p class="eyebrow">Common Questions</p>
+          <h2 id="contact-headline">Confused? Ask Don.</h2>
+          <p>This campaign puts a high value on availability. If you have a question, there are two easy ways to get an answer: one version of Don never sleeps, and the other is real, human, and available with a few more guardrails.</p>
         </div>
-
-        <div class="faq-list">
-
-          <div class="faq-item">
-            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-1">
-              Why are you running?
-              <i class="faq-item__icon" aria-hidden="true">+</i>
-            </button>
-            <div class="faq-item__answer" id="faq-1">
-              <div class="faq-item__answer-inner">
-                <p>Because local elections should not go uncontested. If no one runs, voters never get a real choice, and that is not healthy for Bedford. I'm running because this office matters, and because making an alternative available is sometimes the most important thing a campaign can do.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-2">
-              Is this a real campaign?
-              <i class="faq-item__icon" aria-hidden="true">+</i>
-            </button>
-            <div class="faq-item__answer" id="faq-2">
-              <div class="faq-item__answer-inner">
-                <p>Yes. It is a real campaign. It is just being run differently on purpose. No fundraising. No consultant class. No pressure tactics. No pretending this has to look like every other campaign in order to count.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-3">
-              Are you really spending less than $50?
-              <i class="faq-item__icon" aria-hidden="true">+</i>
-            </button>
-            <div class="faq-item__answer" id="faq-3">
-              <div class="faq-item__answer-inner">
-                <p>That's the commitment. The cap is $49.99 total for the entire campaign. Every expense is posted publicly. The constraint is intentional. It forces creativity and proves that local civic participation does not require a war chest.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-4">
-              Are you using AI to run this campaign?
-              <i class="faq-item__icon" aria-hidden="true">+</i>
-            </button>
-            <div class="faq-item__answer" id="faq-4">
-              <div class="faq-item__answer-inner">
-                <p>Yes, openly. AI helped build this site and refine the approach. We're being transparent about it because that's the honest thing to do, and because it shows what a small local campaign can now build without a staff or a consultant class.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-5">
-              Haven't you run before?
-              <i class="faq-item__icon" aria-hidden="true">+</i>
-            </button>
-            <div class="faq-item__answer" id="faq-5">
-              <div class="faq-item__answer-inner">
-                <p>Yes. And if I did not run this year, the Bedford Town Supervisor election would have been uncontested. Bedford deserves better than that. This campaign is not built around pretending the odds are easy. It is built around the idea that local democracy works better when voters have a choice.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-item__question" aria-expanded="false" aria-controls="faq-6">
-              How can I talk to Don?
-              <i class="faq-item__icon" aria-hidden="true">+</i>
-            </button>
-            <div class="faq-item__answer" id="faq-6">
-              <div class="faq-item__answer-inner">
-                <p>Use the <a href="pages/don-bot.html?ask=real-don">Request a Conversation</a> page if you want to reach Don directly. You can also use <a href="pages/don-bot.html">Ask Don-Bot</a> to submit a question. If you want a real conversation, Don is available.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="faq__more">
-          <a href="pages/don-bot.html" class="btn btn--primary">Ask Don-Bot</a>
+        <div class="homepage-contact__actions">
+          <button type="button" class="btn btn--primary" data-chat-req-open>Contact Don Scott</button>
+          <a href="pages/don-bot.html" class="btn btn--secondary">Contact Don Bot</a>
         </div>
       </div>
     </section>
@@ -865,6 +685,83 @@
     })();
 
   </script>
+  <!-- CHAT REQUEST MODAL -->
+  <div class="chat-req-modal" id="chat-req-modal" role="dialog" aria-labelledby="chat-req-title" aria-modal="true" hidden>
+    <div class="chat-req-modal__backdrop" id="chat-req-backdrop" aria-hidden="true"></div>
+    <div class="chat-req-modal__frame">
+      <div class="chat-req-modal__header">
+        <span class="chat-req-modal__title" id="chat-req-title">Request a Chat with Don</span>
+        <button class="chat-req-modal__close" id="chat-req-close" aria-label="Close">&#x2715;</button>
+      </div>
+      <div class="chat-req-modal__body">
+
+        <!-- Step 1: Meeting format -->
+        <div class="chat-step" id="chat-step-1">
+          <p class="chat-step__label">Step 1 of 3</p>
+          <p class="chat-step__prompt">Would you prefer to meet virtually or in person?</p>
+          <div class="chat-choice-group" role="group" aria-label="Preferred meeting format">
+            <button type="button" class="chat-choice-btn" data-value="virtual" aria-pressed="false">Virtually</button>
+            <button type="button" class="chat-choice-btn" data-value="in-person" aria-pressed="false">In Person</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Preferred time -->
+        <div class="chat-step" id="chat-step-2" hidden>
+          <p class="chat-step__label">Step 2 of 3</p>
+          <p class="chat-step__prompt">What time of day works best for you?</p>
+          <div class="chat-choice-group" role="group" aria-label="Preferred time of day">
+            <button type="button" class="chat-choice-btn" data-value="morning" aria-pressed="false">Morning</button>
+            <button type="button" class="chat-choice-btn" data-value="afternoon" aria-pressed="false">Afternoon</button>
+            <button type="button" class="chat-choice-btn" data-value="evening" aria-pressed="false">Evening</button>
+          </div>
+          <div class="chat-step__nav">
+            <button type="button" class="btn btn--secondary" id="chat-back-1">Back</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Contact info -->
+        <div class="chat-step" id="chat-step-3" hidden>
+          <p class="chat-step__label">Step 3 of 3</p>
+          <form class="chat-req-form" id="chat-req-form" novalidate>
+            <div>
+              <label for="chat-name">Your Name <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="text" id="chat-name" name="name" placeholder="Full name" autocomplete="name">
+            </div>
+            <div>
+              <label for="chat-street">Street Address <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="text" id="chat-street" name="street" placeholder="e.g. 123 Main St, Katonah" autocomplete="street-address">
+            </div>
+            <div>
+              <label for="chat-email">Email Address <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="email" id="chat-email" name="email" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div id="chat-phone-field">
+              <label for="chat-phone">Cell Phone <span class="chat-req-form__optional">(Required)</span></label>
+              <input type="tel" id="chat-phone" name="phone" placeholder="(914) 555-0100" autocomplete="tel">
+            </div>
+            <div>
+              <label for="chat-note">Anything else? <span class="chat-req-form__optional">(Optional)</span></label>
+              <textarea id="chat-note" name="note" rows="2" placeholder="Topics, questions, or anything you&#8217;d like Don to know before the chat."></textarea>
+            </div>
+            <div class="chat-req-form__error" id="chat-req-error" role="alert" hidden></div>
+            <div class="chat-req-form__actions">
+              <button type="button" class="btn btn--secondary" id="chat-back-2">Back</button>
+              <button type="submit" class="btn btn--primary" id="chat-req-submit">Send Request</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Confirmation -->
+        <div class="chat-req-modal__confirm" id="chat-req-confirm" role="status" hidden>
+          <p>Thanks. Don will reach back out shortly to schedule.</p>
+          <button type="button" class="btn btn--secondary" id="chat-req-done">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <script src="assets/js/site.js"></script>
+  <script src="assets/js/chat-modal.js"></script>
 </body>
 </html>
