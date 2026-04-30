@@ -157,6 +157,36 @@
         hyphens: none;
       }
     }
+
+    /* ── Explore The Issues — Coming Soon state ──────────────────── */
+    .issue-grid .issue-card {
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+    }
+    .issue-grid .issue-card:hover {
+      box-shadow: var(--shadow-sm);
+      transform: none;
+      border-color: var(--border);
+    }
+    .issue-grid .issue-card .issue-card__explore { display: none; }
+    .issue-card__coming-soon {
+      position: absolute;
+      top: 0.875rem;
+      right: -1.75rem;
+      width: 6.25rem;
+      text-align: center;
+      background: var(--moss);
+      color: var(--cream);
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0;
+      transform: rotate(45deg);
+      line-height: 1.5;
+      z-index: 1;
+    }
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7WVQR4MTH"></script>
@@ -682,19 +712,21 @@
         <ul class="issue-grid" role="list" aria-label="Bedford issue areas">
 
           <li>
-            <a href="issues/roads-infrastructure.html" class="issue-card">
+            <div class="issue-card">
+              <span class="issue-card__coming-soon">Coming Soon</span>
               <span class="issue-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M3 7h18M3 17h18M8 12l2-2 2 2 2-2 2 2"/>
                 </svg>
               </span>
               <span class="issue-card__title">Road Conditions</span>
-              <span class="issue-card__explore">Explore &#8594;</span>
-            </a>
+              <span class="issue-card__explore" aria-hidden="true">Explore &#8594;</span>
+            </div>
           </li>
 
           <li>
-            <a href="issues/growth-character.html" class="issue-card">
+            <div class="issue-card">
+              <span class="issue-card__coming-soon">Coming Soon</span>
               <span class="issue-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M3 21h18M3 11l9-7 9 7M5 11v10h4v-4h4v4h4V11"/>
@@ -702,12 +734,13 @@
                 </svg>
               </span>
               <span class="issue-card__title">Growth vs Character</span>
-              <span class="issue-card__explore">Explore &#8594;</span>
-            </a>
+              <span class="issue-card__explore" aria-hidden="true">Explore &#8594;</span>
+            </div>
           </li>
 
           <li>
-            <a href="issues/bedford-hills.html" class="issue-card">
+            <div class="issue-card">
+              <span class="issue-card__coming-soon">Coming Soon</span>
               <span class="issue-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M2 21h20M3 11l4-6h10l4 6H3z"/>
@@ -716,12 +749,13 @@
                 </svg>
               </span>
               <span class="issue-card__title">Bedford Hills</span>
-              <span class="issue-card__explore">Explore &#8594;</span>
-            </a>
+              <span class="issue-card__explore" aria-hidden="true">Explore &#8594;</span>
+            </div>
           </li>
 
           <li>
-            <a href="issues/leaf-blower-ban.html" class="issue-card">
+            <div class="issue-card">
+              <span class="issue-card__coming-soon">Coming Soon</span>
               <span class="issue-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 22C8 20 4 16 4 11a8 8 0 0 1 16 0c0 5-4 9-8 11z"/>
@@ -730,12 +764,13 @@
                 </svg>
               </span>
               <span class="issue-card__title">Leaf Blower Ban</span>
-              <span class="issue-card__explore">Explore &#8594;</span>
-            </a>
+              <span class="issue-card__explore" aria-hidden="true">Explore &#8594;</span>
+            </div>
           </li>
 
           <li>
-            <a href="issues/consultants.html" class="issue-card">
+            <div class="issue-card">
+              <span class="issue-card__coming-soon">Coming Soon</span>
               <span class="issue-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M8 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1h-2"/>
@@ -744,36 +779,39 @@
                 </svg>
               </span>
               <span class="issue-card__title">Consultants</span>
-              <span class="issue-card__explore">Explore &#8594;</span>
-            </a>
+              <span class="issue-card__explore" aria-hidden="true">Explore &#8594;</span>
+            </div>
           </li>
 
           <li>
-            <a href="issues/energy-costs.html" class="issue-card">
+            <div class="issue-card">
+              <span class="issue-card__coming-soon">Coming Soon</span>
               <span class="issue-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M13 2L5 13h7l-1 9 9-11h-7l1-9z"/>
                 </svg>
               </span>
               <span class="issue-card__title">Energy Costs</span>
-              <span class="issue-card__explore">Explore &#8594;</span>
-            </a>
+              <span class="issue-card__explore" aria-hidden="true">Explore &#8594;</span>
+            </div>
           </li>
 
           <li>
-            <a href="issues/cell-service.html" class="issue-card">
+            <div class="issue-card">
+              <span class="issue-card__coming-soon">Coming Soon</span>
               <span class="issue-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
                   <path d="M3 20v1M8 15v6M13 11v10M18 7v14"/>
                 </svg>
               </span>
               <span class="issue-card__title">Cell Service</span>
-              <span class="issue-card__explore">Explore &#8594;</span>
-            </a>
+              <span class="issue-card__explore" aria-hidden="true">Explore &#8594;</span>
+            </div>
           </li>
 
           <li>
-            <a href="issues/battery-storage.html" class="issue-card">
+            <div class="issue-card">
+              <span class="issue-card__coming-soon">Coming Soon</span>
               <span class="issue-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <rect x="2" y="8" width="17" height="8" rx="1"/>
@@ -782,20 +820,21 @@
                 </svg>
               </span>
               <span class="issue-card__title">Battery Storage</span>
-              <span class="issue-card__explore">Explore &#8594;</span>
-            </a>
+              <span class="issue-card__explore" aria-hidden="true">Explore &#8594;</span>
+            </div>
           </li>
 
           <li>
-            <a href="issues/advocacy-government.html" class="issue-card">
+            <div class="issue-card">
+              <span class="issue-card__coming-soon">Coming Soon</span>
               <span class="issue-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M2 22h20M3 10h18M4 10V6l8-4 8 4v4M6 10v12M10 10v12M14 10v12M18 10v12"/>
                 </svg>
               </span>
               <span class="issue-card__title">Advocacy &amp; Government</span>
-              <span class="issue-card__explore">Explore &#8594;</span>
-            </a>
+              <span class="issue-card__explore" aria-hidden="true">Explore &#8594;</span>
+            </div>
           </li>
 
         </ul>
