@@ -312,9 +312,9 @@
     }
     .cp-option:hover:not(:disabled) { border-color: var(--sage); background: var(--white); }
     .cp-option:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
-    .cp-option.is-selected { background: var(--moss); border-color: var(--moss); color: var(--white); }
+    .cp-option.is-selected { background: var(--moss); border-color: var(--moss); color: var(--white); transition: none; }
     .cp-option:disabled { cursor: default; opacity: 0.65; }
-    .cp-option.is-selected:disabled { opacity: 1; }
+    .cp-option.is-selected:disabled { opacity: 1; transition: none; }
     .cp-option__dot {
       flex-shrink: 0;
       width: 0.875rem;
@@ -472,7 +472,6 @@
           </div>
           <div class="cp-flow-actions">
             <button type="button" class="btn btn--primary" id="cp-flow-submit" disabled>Submit</button>
-            <button type="button" class="btn btn--primary" id="cp-flow-next" style="display:none;">Next Category &#8594;</button>
           </div>
         </div>
 
@@ -650,7 +649,6 @@ Output format:
     var flowFill    = document.getElementById('cp-flow-fill');
     var flowCard    = document.getElementById('cp-flow-card');
     var submitBtn   = document.getElementById('cp-flow-submit');
-    var nextBtn     = document.getElementById('cp-flow-next');
     var completeDiv = document.getElementById('cp-complete');
 
     /* ── LocalStorage helpers ─────────────────────────────── */
@@ -755,72 +753,50 @@ Output format:
       submitBtn.disabled    = (selectedValue === null);
       submitBtn.textContent = 'Submit';
       submitBtn.style.display = '';
-      nextBtn.style.display   = 'none';
-    }
-
-    /* ── Lock card and show confirmation ──────────────────── */
-    function lockCard(value) {
-      isSubmitted = true;
-
-      flowCard.querySelectorAll('.cp-option').forEach(function (btn) {
-        btn.disabled = true;
-        var active = (btn.getAttribute('data-value') === value);
-        btn.classList.toggle('is-selected', active);
-        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-      });
-
-      /* Confirmation — no period per spec */
-      var conf = document.createElement('div');
-      conf.className = 'cp-confirmation';
-      conf.setAttribute('aria-live', 'polite');
-      conf.textContent = '✓ Thanks for your pick';
-      flowCard.appendChild(conf);
-
-      submitBtn.style.display = 'none';
-      hideError();
-
-      var nextIdx = nextUnsubmittedAfter(currentIdx);
-      if (nextIdx === -1) {
-        setTimeout(showCompletion, 700);
-      } else {
-        nextBtn.textContent   = 'Next Category →';
-        nextBtn.style.display = '';
-      }
     }
 
     /* ── Submit handler ───────────────────────────────────── */
     function doSubmit() {
       if (!selectedValue || isSubmitted) return;
+      isSubmitted = true;
       var cat = CATEGORIES[currentIdx];
 
       submitBtn.disabled    = true;
-      submitBtn.textContent = 'Submitting…';
+      submitBtn.textContent = ‘Submitting…’;
       hideError();
 
       postVote(cat.id, cat.label, selectedValue)
         .then(function (result) {
           if (result && result.ok === false) {
-            onSubmitError('Something went wrong. Please try again.');
+            onSubmitError(‘Something went wrong. Please try again.’);
             return;
           }
           finalize(cat.id, selectedValue);
         })
         .catch(function () {
-          onSubmitError('Couldn’t submit. Check your connection and try again.');
+          onSubmitError(‘Couldn\’t submit. Check your connection and try again.’);
         });
     }
 
     function finalize(catId, value) {
       persistVote(catId, value, true);
-      lockCard(value);
-      if (typeof window.gtag === 'function') {
-        gtag('event', 'community_pick_vote', { category: catId, pick: value });
+      if (typeof window.gtag === ‘function’) {
+        gtag(‘event’, ‘community_pick_vote’, { category: catId, pick: value });
+      }
+      var nextIdx = nextUnsubmittedAfter(currentIdx);
+      if (nextIdx === -1) {
+        showCompletion();
+      } else {
+        renderCategory(nextIdx);
+        var firstOpt = flowCard.querySelector(‘.cp-option’);
+        if (firstOpt) firstOpt.focus();
       }
     }
 
     function onSubmitError(msg) {
+      isSubmitted = false;
       submitBtn.disabled    = false;
-      submitBtn.textContent = 'Submit';
+      submitBtn.textContent = ‘Submit’;
       showError(msg);
     }
 
@@ -850,13 +826,7 @@ Output format:
       if (el) { el.style.display = 'none'; el.textContent = ''; }
     }
 
-    /* ── Next / completion handlers ───────────────────────── */
-    function goNext() {
-      var nextIdx = nextUnsubmittedAfter(currentIdx);
-      if (nextIdx === -1) { showCompletion(); return; }
-      renderCategory(nextIdx);
-    }
-
+    /* ── Completion handler ───────────────────────────────── */
     function showCompletion() {
       if (flowWrap)    flowWrap.style.display    = 'none';
       if (completeDiv) completeDiv.style.display = '';
@@ -864,7 +834,6 @@ Output format:
 
     /* ── Wire global buttons ──────────────────────────────── */
     submitBtn.addEventListener('click', doSubmit);
-    nextBtn.addEventListener('click', goNext);
 
     /* ── Launch cover ─────────────────────────────────────── */
     var launchDiv = document.getElementById('cp-intro');
