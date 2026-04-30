@@ -76,7 +76,7 @@
     else if (n === 'ok') target = confirmEl;
 
     if (n === 3 && phoneField) {
-      phoneField.hidden = (meetingType !== 'in-person');
+      phoneField.hidden = false;
     }
 
     if (target) {
