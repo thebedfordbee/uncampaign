@@ -959,10 +959,10 @@
     <section class="section" aria-labelledby="ai-built-h2">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">How This Was Built</p>
-          <h2 id="ai-built-h2">How This Was Built</h2>
+          <p class="eyebrow">Public Instruction Set</p>
+          <h2 id="ai-built-h2">The Prompt Used to Turn a 762-Page Town Code Into a Civic Trivia Game</h2>
           <p class="section-header__lead section-header__lead--wide">
-            This campaign is committed to showing its work, not just stating positions. When a tool or workflow helps clarify a local issue, it should be explained, shared, and made useful beyond the campaign. The instruction set used to build a short trivia game built from the Bedford Town Code is published here in full.
+            This is the public instruction set used to help build Code Red. The goal was not to make fun of local government. It was to use AI to make a long public document more interesting, more understandable, and more likely to actually be read.
           </p>
         </div>
 
@@ -983,36 +983,156 @@
             </div>
           </div>
           <div class="instr-panel__body">
-            <pre class="instr-panel__text">Act as a civic game designer, municipal law researcher, and front-end builder tasked with creating a short trivia game built from the Bedford Town Code for a local civic campaign.
+            <pre class="instr-panel__text">1. Source Integrity
+Use the actual Bedford Town Code as the sole source of every "real" answer. The code is a 762-page public document that is legally available to anyone, but almost never read by ordinary residents.
 
-The tool to build is:
-A Bedford Town Code trivia game that turns a 762-page municipal document into a playful civic literacy experience.
+Ask AI to analyze the full document and identify provisions that are real, surprising, obscure, oddly specific, or genuinely hard to believe. Prioritize rules that would make a resident say, "Wait, that's actually in there?"
 
-Context:
-The Bedford Town Code is publicly available but almost never read by residents. It contains specific, surprising, and sometimes genuinely unbelievable provisions that most people would not expect to find in a local law. The goal of this game is to surface those provisions in a format that is approachable, entertaining, and honest — not mocking.
+Every "real" answer must be pulled directly from the code itself. Do not paraphrase in a way that changes legal meaning.
 
-Design and maintain these priorities throughout the build:
+For each real answer:
+- preserve the actual code language
+- include the code section or citation where possible
+- provide a short plain-English explanation that helps a normal resident understand what the rule means in practice
 
-1. Source Integrity
-Every "real" answer must be pulled directly from the actual Bedford Town Code. No paraphrasing that changes legal meaning. Provide both the actual code language and a plain-English context explanation. Make the distinction between "real" and "invented" options as clear as possible without giving the answer away.
+The goal is not just trivia. The goal is to make a long public legal document legible and interesting.
 
-2. Tone
-The tone should be: curious, civic-minded, lightly amused, never mean. These rules are real. The point is not to mock local government — it is to invite residents to actually look at it. A raised eyebrow is appropriate. Contempt is not.
+2. AI Research Task
+The core AI job is not to invent jokes. It is to act like a curious civic researcher reading a very long municipal document that almost nobody has time to read.
 
-3. Question Design
-Each question should present one real provision and two invented options. The invented options should be plausible enough to be confusing but not so outlandish that they are obviously fake. The real answer should be surprising enough that it earns a reaction. Avoid options that are easy to guess through elimination.
+Prompt the AI to:
+- review the full Bedford Town Code
+- scan for unusual, unexpected, highly specific, or unintentionally delightful provisions
+- surface rules that feel surprising without being misleading
+- distinguish between rules that are merely technical and rules that are genuinely interesting to residents
+- extract the strongest candidates for a public-facing civic trivia experience
 
-4. Game Mechanics
-One question at a time. Player selects an option and submits. Immediate right/wrong feedback. Reveal the actual code language and a short plain-English explanation for every question, regardless of outcome. Track score. Show final score. Allow leaderboard submission with initials and hamlet only — no email, no name.
+The best material should be:
+- true
+- surprising
+- understandable
+- shareable
+- rooted in the actual document
 
-5. AI Transparency
-The page should clearly explain that AI was used to analyze the town code and identify surprising provisions. This is a feature, not something to hide. Show the instruction set. Make the process visible.
+The AI should help residents discover what is already public, not create a fake version of local government.
 
-6. Design System Discipline
-Match the visual language of the UNCAMPAIGN site. Same palette, spacing, card treatment, typography, and tone. This should feel like civic infrastructure, not a game show.
+3. Tone
+The tone should be curious, civic-minded, lightly amused, and respectful.
 
-7. Leaderboard
-Mirror the leaderboard architecture of the Bedford Typing Challenge. Use the same Google Apps Script endpoint with different action names. Seed with plausible community scores so the board is not empty at launch. Provide graceful fallback if the endpoint is unavailable.</pre>
+These rules are real. The point is not to mock local government, the Town Code, or the people who wrote it.
+
+The point is to say:
+"This is public. This affects your town. And it's a lot stranger than most people realize."
+
+A raised eyebrow is welcome. Contempt is not.
+
+This should feel:
+- approachable
+- intelligent
+- honest
+- neighborly
+- lightly self-aware
+
+Never cynical. Never snarky for its own sake.
+
+4. Question Design
+Each question should present:
+- 1 real provision pulled directly from the Bedford Town Code
+- 2 invented options written specifically for the game
+
+The invented options should be:
+- plausible enough to create uncertainty
+- similar in tone and specificity to real municipal code language
+- not so absurd that they are obviously fake
+- not so generic that they are easy to eliminate
+
+The real answer should be:
+- surprising enough to earn a reaction
+- legally accurate
+- interesting enough to justify inclusion
+
+Avoid:
+- giveaway wording
+- obvious joke answers
+- options that can be solved through tone mismatch alone
+
+This should feel like:
+"Which of these strange things is actually in the code?"
+—not—
+"Which of these is the joke?"
+
+5. Game Mechanics
+Keep the experience simple and disciplined:
+- one question at a time
+- player selects one answer
+- player clicks Submit
+- immediate right/wrong feedback
+- reveal which option was real
+- reveal the actual Town Code language
+- reveal a short plain-English explanation of what it means
+- track score across the game
+- show final score at the end
+- allow leaderboard submission using initials only and hamlet only
+- no email
+- no name
+- no pressure
+
+The reveal matters. The educational value is not just in guessing correctly. It is in seeing the actual code after each question.
+
+6. AI Transparency
+Be explicit that AI was used.
+
+The page should clearly explain that:
+- AI was asked to analyze a 762-page public Town Code PDF
+- AI helped identify the most surprising and resident-relevant provisions
+- a human reviewed the outputs before publication
+- the final game is built from real public material, not invented "gotcha" content
+
+This is not something to hide. It is part of the point.
+
+The game should show that AI can help residents:
+- navigate long public documents
+- find what matters
+- make local government more approachable
+- turn inaccessible civic material into something people will actually engage with
+
+Show the instruction set publicly. Make the process visible.
+
+7. Design System Discipline
+Match the visual language of the UNCAMPAIGN site.
+
+Use:
+- the same palette
+- the same typography
+- the same spacing system
+- the same card treatment
+- the same restrained editorial tone
+- the same calm, civic feel
+
+This should look like civic infrastructure with personality.
+
+Not:
+- a game show
+- a novelty microsite
+- a meme page
+
+The design should make the unusual content feel credible.
+
+8. Leaderboard
+Mirror the leaderboard architecture of the Bedford Typing Challenge.
+
+Use:
+- the same Google Apps Script endpoint
+- different action names specific to Code Red
+- the same fallback behavior if the endpoint is unavailable
+
+Requirements:
+- leaderboard submissions use initials + hamlet only
+- no personal information
+- seed the board with plausible community scores so it does not launch empty
+- preserve graceful degradation if the endpoint fails
+
+The leaderboard should feel like light civic competition, not surveillance.</pre>
           </div>
         </div>
 
