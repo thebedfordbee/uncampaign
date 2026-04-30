@@ -118,11 +118,14 @@
     .ai-section__header { margin-bottom: 2.5rem; }
     .ai-section__header h2 { margin-bottom: 0; }
 
-    /* AI section: centered section-level CTA below columns */
+    /* AI section: section-level CTA — centered on mobile, left on desktop */
     .ai-section__cta-row {
       display: flex;
       justify-content: center;
       margin-top: 2.5rem;
+    }
+    @media (min-width: 768px) {
+      .ai-section__cta-row { justify-content: flex-start; }
     }
 
     /* AI section CTA button — cream fill on dark moss background */
@@ -168,6 +171,14 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
+      justify-content: center;
+    }
+    @media (min-width: 768px) {
+      .homepage-contact__actions { justify-content: flex-start; }
+    }
+    .homepage-contact__actions .btn {
+      min-width: 11rem;
+      text-align: center;
     }
 
     /* Homepage: modestly tighter section spacing */
