@@ -832,17 +832,14 @@ Output format:
       if (completeDiv) completeDiv.style.display = '';
     }
 
-    /* ── Wire global buttons ──────────────────────────────── */
-    submitBtn.addEventListener('click', doSubmit);
-
-    /* ── Launch cover ─────────────────────────────────────── */
+    /* ── Launch cover — wired before anything that can throw,
+          so the start button always works ─────────────────── */
     var launchDiv = document.getElementById('cp-intro');
     var startBtn  = document.getElementById('cp-start');
 
     function startSurvey() {
       if (launchDiv) launchDiv.style.display = 'none';
       if (flowWrap)  flowWrap.style.display  = '';
-      /* Move focus to first option for keyboard/screen reader users */
       if (flowCard) {
         var firstOpt = flowCard.querySelector('.cp-option');
         if (firstOpt) firstOpt.focus();
@@ -850,6 +847,9 @@ Output format:
     }
 
     if (startBtn) startBtn.addEventListener('click', startSurvey);
+
+    /* ── Wire submit button ───────────────────────────────── */
+    if (submitBtn) submitBtn.addEventListener('click', doSubmit);
 
     /* ── Init ─────────────────────────────────────────────── */
     (function init() {
