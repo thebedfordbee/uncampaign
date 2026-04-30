@@ -160,29 +160,38 @@
 
       var payload = {
         action:         'chatRequest',
-        meeting_type:   meetingType,
+        type:           'chat_request',
+        meeting_format: meetingType,
         preferred_time: preferredTime,
         name:           name,
-        street_address: street,
+        street:         street,
         email:          email,
         phone:          phone,
         note:           note,
-        source:         window.location.pathname,
-        page:           window.location.href,
+        submitted_at:   new Date().toISOString(),
+        page_url:       window.location.href,
         user_agent:     navigator.userAgent
       };
 
-      fetch(CHAT_API_URL, {
-        method:  'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body:    JSON.stringify(payload)
-      })
-      .catch(function () {
+      var rawBody = JSON.stringify(payload);
+
+      function doPost(contentType, body) {
         return fetch(CHAT_API_URL, {
           method:  'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-          body:    new URLSearchParams({ payload: JSON.stringify(payload) }).toString()
+          headers: { 'Content-Type': contentType },
+          body:    body
+        }).then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res;
         });
+      }
+
+      doPost('text/plain;charset=utf-8', rawBody)
+      .catch(function () {
+        return doPost(
+          'application/x-www-form-urlencoded;charset=UTF-8',
+          new URLSearchParams({ payload: rawBody }).toString()
+        );
       })
       .then(function () {
         submitting = false;
