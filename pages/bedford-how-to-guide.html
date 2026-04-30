@@ -347,11 +347,6 @@
       .guide-answer-col { display: none; }
     }
 
-    /* ── Suggest CTA left-aligned layout ── */
-    .guide-cta-left { text-align: left; max-width: 560px; }
-    .guide-cta-left h2 { margin-top: 0.5rem; margin-bottom: 0.875rem; }
-    .guide-cta-left p { color: var(--muted); margin-bottom: 1.5rem; max-width: none; }
-
     /* ── Reduced motion ── */
     @media (prefers-reduced-motion: reduce) {
       .guide-category__panel, .guide-category__icon, .guide-q-btn,
@@ -469,7 +464,10 @@
             </div>
             <div class="guide-accordion" id="guide-accordion" role="list" aria-label="Guide topic categories"></div>
             <div id="guide-no-results" class="guide-no-results" hidden>
-              <p>No exact match yet. Try another phrase &#8212; or suggest a topic at the bottom and we may add it.</p>
+              <p>No exact match yet. Try another phrase &#8212; or suggest a topic below and we may add it.</p>
+            </div>
+            <div id="guide-suggest" style="margin-top: 1.25rem;">
+              <button type="button" class="btn btn--primary" data-chat-req-open>Suggest a Topic</button>
             </div>
           </div>
 
@@ -493,17 +491,6 @@
             <button type="button" class="guide-browse-more" id="guide-browse-more" aria-label="Scroll back to topic categories">Browse more topics</button>
           </div>
 
-        </div>
-      </div>
-    </section>
-
-    <!-- SUGGEST A TOPIC CTA -->
-    <section class="section section--alt" id="guide-suggest" aria-labelledby="guide-suggest-h2">
-      <div class="container">
-        <div class="guide-cta-left">
-          <h2 id="guide-suggest-h2">Want something added?</h2>
-          <p>If there&#8217;s a Bedford question you wish were easier to answer, send it in. We may add it to the guide in a future update.</p>
-          <button type="button" class="btn btn--primary" data-chat-req-open>Suggest a Topic</button>
         </div>
       </div>
     </section>
@@ -680,1044 +667,602 @@ The goal is to make local government information easier to use without replacing
     /* ── Guide data ─────────────────────────────────────────────────────── */
     var GUIDE_CATEGORIES = [
 
-      /* 1. Accessory Apartments & Cottages */
+      /* 1. Accessory Apartments & Home Businesses */
       {
-        id: "accessory-apartments",
-        title: "Accessory Apartments & Cottages",
-        description: "Rules for adding a second unit or cottage to your property.",
+        id: "accessory-homes",
+        title: "Accessory Apartments & Home Businesses",
+        description: "Using your home for extra living space, rental space, or low-impact work.",
         questions: [
           {
-            id: "accessory-apartment",
+            id: "accessory-apartment-process",
             question: "Can I create an accessory apartment in my house?",
-            quickAnswer: "Possibly, but it is a formal process. In residence districts, the Planning Board may grant a special permit to create an accessory apartment in an existing single-family dwelling — not an accessory structure — subject to conditions.",
-            plainEnglish: "This is not a 'just renovate the basement and list it' situation. Bedford treats this as a regulated use with specific standards.",
+            quickAnswer: "Possibly, but it requires a formal process. In residential districts, the Planning Board may grant a special permit for an accessory apartment in an existing single-family dwelling, subject to conditions.",
+            plainEnglish: "This is not a casual basement conversion. Bedford treats accessory apartments as regulated uses with owner-occupancy, size, parking, health, and inspection requirements.",
             involves: "Planning Board; Building Inspector; Westchester County Department of Health",
             codeExcerpt: "In all residence districts, the Planning Board may grant a special permit to create an accessory apartment in an existing single-family dwelling, but not in an accessory structure, subject to listed conditions.",
             codeReference: "Town Code § 125-79",
-            tags: ["accessory apartment", "in-law apartment", "legal apartment", "basement apartment"],
-            related: ["Does the owner have to live there?", "How much parking is required for an accessory apartment?"]
+            tags: ["accessory apartment", "in-law apartment", "basement apartment", "rental apartment", "mother-in-law suite", "apartment over garage"],
+            related: ["Does the owner have to live on the property?", "How big can an accessory apartment be?"]
           },
           {
-            id: "accessory-owner-occupancy",
-            question: "Does the owner have to live there?",
+            id: "accessory-owner-must-live",
+            question: "Does the owner have to live on the property?",
             quickAnswer: "Yes. The owner must occupy at least one dwelling unit on the premises.",
-            plainEnglish: "Bedford's accessory apartment and cottage rules are built around owner occupancy, not absentee ownership.",
+            plainEnglish: "Bedford's accessory apartment and cottage rules are designed around owner-occupied properties, not absentee-owned rentals.",
             involves: "Planning Board",
             codeExcerpt: "The owner of the lot on which the accessory apartment is located shall occupy at least one of the dwelling units on the premises.",
             codeReference: "Town Code § 125-79(B)(2)",
-            tags: ["owner occupied", "owner must live there", "accessory apartment"],
+            tags: ["owner occupied", "rental", "landlord", "accessory apartment"],
             related: ["Can I create an accessory apartment in my house?"]
           },
           {
-            id: "accessory-parking",
-            question: "How much parking is required for an accessory apartment?",
-            quickAnswer: "At least two off-street parking spaces suitable for year-round use.",
-            plainEnglish: "The Town does not want accessory apartments creating a street-parking problem.",
-            involves: "Planning Board",
-            codeExcerpt: "No fewer than two off-street parking spaces suitable for year-round use shall be provided on the lot. No new driveway access to the street shall be permitted.",
-            codeReference: "Town Code § 125-79(B)(6)",
-            tags: ["parking", "accessory apartment parking", "off-street parking"],
-            related: ["Can I create an accessory apartment in my house?"]
-          },
-          {
-            id: "accessory-size",
+            id: "accessory-apt-size",
             question: "How big can an accessory apartment be?",
-            quickAnswer: "Generally at least 400 square feet, not more than 800 square feet, and usually no more than 25% of the total floor area of the principal residence.",
-            plainEnglish: "The code is trying to allow a small secondary living space without changing the character of a single-family home.",
+            quickAnswer: "Generally between 400 and 800 square feet, and usually not more than 25% of the principal residence floor area unless the Planning Board determines otherwise.",
+            plainEnglish: "The code allows small secondary living space while trying to preserve single-family character.",
             involves: "Planning Board; Building Inspector",
-            codeExcerpt: "The accessory apartment must contain at least 400 square feet and not more than 800 square feet of gross floor area, and must not exceed 25% of the total floor area of the principal residence unless otherwise warranted by the Planning Board.",
+            codeExcerpt: "The accessory apartment shall contain at least 400 square feet and not more than 800 square feet of gross floor area and shall not exceed 25% of the principal residence floor area unless otherwise warranted by the Planning Board.",
             codeReference: "Town Code § 125-79(B)(7)",
-            tags: ["square feet", "apartment size", "accessory apartment dimensions"],
+            tags: ["apartment size", "square feet", "accessory apartment", "basement apartment"],
             related: ["Can I create an accessory apartment in my house?"]
           },
           {
-            id: "accessory-requirements",
-            question: "What else is required before an accessory apartment is approved?",
-            quickAnswer: "Expect a floor plan, Health Department approval, and a Building Inspector review.",
-            plainEnglish: "Bedford specifically requires an informal dimensional floor plan, Health Department approval for water and sewage, and a Building Inspector inspection before the special permit is granted.",
-            involves: "Planning Board; Building Inspector; Westchester County Department of Health",
-            codeExcerpt: "The applicant must provide enough data to show existing building and lot conditions, including an informal dimensional floor plan. Westchester County Department of Health approval must be obtained for water supply and sewage disposal, and the Building Inspector must inspect and report any deficiencies before the special use permit is granted.",
-            codeReference: "Town Code § 125-79(B)(8)–(10)",
-            tags: ["floor plan", "health department", "inspection", "sewage", "water"],
-            related: ["How long does an accessory apartment permit last?"]
-          },
-          {
-            id: "accessory-permit-term",
-            question: "How long does an accessory apartment permit last?",
-            quickAnswer: "Five years, and it can be renewed.",
-            plainEnglish: "This is not necessarily a one-and-done approval. The permit term is limited and renewal involves another inspection.",
-            involves: "Building Inspector; Town Clerk",
-            codeExcerpt: "The duration of the permit shall be limited to five years and may be renewed by application to the Building Inspector. Prior to renewal, the Building Inspector shall inspect the building and determine that the criteria continue to be met.",
-            codeReference: "Town Code § 125-79(B)(11)",
-            tags: ["renewal", "five years", "accessory apartment permit term"],
-            related: ["What else is required before an accessory apartment is approved?"]
-          },
-          {
-            id: "cottage-creation",
+            id: "accessory-cottage-conversion",
             question: "Can I create a cottage in an existing accessory building?",
             quickAnswer: "Possibly, in R-2A and R-4A districts, by special permit.",
-            plainEnglish: "This is one of the more interesting Bedford-specific housing rules and worth checking if your property has an older accessory structure.",
+            plainEnglish: "This is one of Bedford's more specific housing rules. It may apply if your property has an older accessory structure, but it is not a blanket permission to convert any outbuilding into a rental.",
             involves: "Planning Board; Building Inspector; Westchester County Department of Health",
             codeExcerpt: "In the R-2A and R-4A Districts, the Planning Board may grant a special permit to create a cottage in an existing accessory building, subject to listed conditions.",
             codeReference: "Town Code § 125-79.1",
-            tags: ["cottage", "guest cottage", "detached accessory building", "accessory structure"],
-            related: ["What are the main cottage rules?"]
+            tags: ["cottage", "guest cottage", "accessory building", "rental", "detached unit"],
+            related: ["Can I create an accessory apartment in my house?"]
           },
           {
-            id: "cottage-rules",
-            question: "What are the main cottage rules?",
-            quickAnswer: "Owner must live in one unit, only one cottage or accessory apartment per lot, two off-street parking spaces required, a single driveway serves both, 400 to 800 square feet, and Health Department approval required.",
-            plainEnglish: "Bedford allows cottages only under a fairly narrow framework. This is not a general permission to convert any outbuilding into a rental.",
-            involves: "Planning Board; Building Inspector; Westchester County Department of Health",
-            codeExcerpt: "The cottage section includes owner-occupancy, one-unit-per-lot, parking, size, floor plan, and Health Department requirements.",
-            codeReference: "Town Code § 125-79.1",
-            tags: ["cottage rules", "parking", "size", "owner occupied", "health department"],
-            related: ["Can I create a cottage in an existing accessory building?"]
+            id: "home-business-permit",
+            question: "Can I run a business from home?",
+            quickAnswer: "Sometimes. A customary home occupation is generally handled through a special use permit in residential districts unless a narrow exemption applies.",
+            plainEnglish: "Bedford allows certain low-impact home work, but it is not a free-for-all. Client visits, employees, signage, parking, deliveries, and neighborhood impacts matter.",
+            involves: "Planning Board; Building Inspector; Code Enforcement Officer",
+            codeExcerpt: "A customary home occupation is a special use permit for which the Planning Board is authorized to grant a special use permit in all residential zoning districts, subject to conditions.",
+            codeReference: "Town Code § 125-28",
+            tags: ["home business", "home occupation", "work from home", "clients", "tutoring", "therapist", "consultant"],
+            related: ["Is there an exemption for very small home businesses?"]
+          },
+          {
+            id: "home-business-exemption",
+            question: "Is there an exemption for very small home businesses?",
+            quickAnswer: "There appears to be a narrow exemption for a single individual with limited visitors and deliveries, if all building and zoning criteria are still met.",
+            plainEnglish: "The code references occupations by a single individual with no more than five visitors and three deliveries per day. This should be confirmed with the Town before relying on it.",
+            involves: "Building Department; Planning Board",
+            codeExcerpt: "Occupations carried on by a single individual involving no more than five visitors and three deliveries per day to the lot are exempt from § 125-28, provided they meet all Town building and zoning criteria.",
+            codeReference: "Town Code § 125-3",
+            tags: ["small home business", "exemption", "deliveries", "visitors"],
+            related: ["Can I run a business from home?"]
           }
         ]
       },
 
-      /* 2. Building Permits & Certificates */
+      /* 2. Animals & Dogs */
       {
-        id: "building-permits",
-        title: "Building Permits & Certificates",
+        id: "animals-dogs",
+        title: "Animals & Dogs",
+        description: "Dog licenses, dog control, cleanup, barking, and dangerous dog rules.",
+        questions: [
+          {
+            id: "dog-license",
+            question: "Does my dog need to be licensed?",
+            quickAnswer: "Yes. Dogs in Bedford four months of age or older must be licensed.",
+            plainEnglish: "If your dog lives in Bedford and is old enough, licensing is not optional.",
+            involves: "Town Clerk",
+            codeExcerpt: "All dogs within the Town of Bedford four months of age or older shall be licensed.",
+            codeReference: "Town Code § 48-4",
+            tags: ["dog license", "dog registration", "dog tag", "puppy", "Town Clerk"],
+            related: ["Can my dog be off my property without a leash?"]
+          },
+          {
+            id: "dog-off-leash",
+            question: "Can my dog be off my property without a leash?",
+            quickAnswer: "The code requires dogs off the owner's premises to be under visual, voice, or sound control by someone able to control the dog.",
+            plainEnglish: "The rule is not just 'is there a leash?' The practical question is whether the dog is actually under control.",
+            involves: "Dog Control Officer; Police Department",
+            codeExcerpt: "A dog may not be off the premises owned or leased by the owner or harborer unless under the visual, voice or sound control of its owner or a responsible person able to control the dog.",
+            codeReference: "Town Code § 48-5",
+            tags: ["dog leash", "off leash", "dog control", "running at large"],
+            related: ["What dog behavior is prohibited?"]
+          },
+          {
+            id: "dog-prohibited-behavior",
+            question: "What dog behavior is prohibited?",
+            quickAnswer: "Dogs may not create noise disturbances, damage property, harass people, habitually chase vehicles/bicycles/animals, or run at large when in heat.",
+            plainEnglish: "Bedford's dog rules focus on neighborhood peace, safety, and property protection.",
+            involves: "Dog Control Officer; Police Department",
+            codeExcerpt: "The code prohibits dogs from barking or howling in a way that creates a noise disturbance, damaging property, harassing people, habitually chasing vehicles or animals, running at large when in heat, or being off-premises without control.",
+            codeReference: "Town Code § 48-5",
+            tags: ["barking dog", "nuisance dog", "dog chase", "dog complaint", "dog control"],
+            related: ["Are there special rules for dangerous dogs?"]
+          },
+          {
+            id: "dog-waste",
+            question: "Do I have to pick up after my dog?",
+            quickAnswer: "Yes. Dog waste must be removed immediately in covered public areas and on private property without permission.",
+            plainEnglish: "Bedford's canine waste rules are direct: pick it up and dispose of it properly. Do not put feces in storm or sanitary drains.",
+            involves: "Dog Control Officer; Police Department",
+            codeExcerpt: "A person who curbs a dog must immediately remove all feces with a scoop, shovel, broom, tong or similar implement and place it in a refuse container. Feces may not be deposited in storm or sanitary sewers or drains.",
+            codeReference: "Town Code §§ 48-20, 48-21",
+            tags: ["dog poop", "dog waste", "sidewalk", "park", "cleanup", "storm drain"],
+            related: ["What dog behavior is prohibited?"]
+          },
+          {
+            id: "dangerous-dog",
+            question: "Are there special rules for dangerous dogs?",
+            quickAnswer: "Yes. Dangerous dogs face additional restrictions, including insurance requirements and limits on access to public places and dog park privileges.",
+            plainEnglish: "Once a dog is legally determined to be dangerous, the owner's responsibilities become much stricter.",
+            involves: "Town Clerk; Dog Control Officer; Police Department; Town Justice",
+            codeExcerpt: "Owners of dogs previously determined to be dangerous must provide proof of a minimum $100,000 liability insurance policy for personal injury or death resulting from an attack by such dog.",
+            codeReference: "Town Code Article III, Chapter 48",
+            tags: ["dangerous dog", "dog bite", "liability insurance", "dog park"],
+            related: ["What dog behavior is prohibited?"]
+          }
+        ]
+      },
+
+      /* 3. Building Permits & COs */
+      {
+        id: "building-permits-cos",
+        title: "Building Permits & COs",
         description: "Permits, inspections, certificates of occupancy, and stop-work basics.",
         questions: [
           {
             id: "building-permit-need",
             question: "Do I need a building permit for more than routine work?",
-            quickAnswer: "Usually, yes. If you are doing real construction or structural work, do not assume it is exempt. Check first.",
-            plainEnglish: "If your project changes a structure, use, occupancy, systems, or layout, confirm with the Building Department before work begins.",
+            quickAnswer: "Usually, yes. If you are doing real construction, structural work, alterations, additions, or changes in use, check with the Building Department first.",
+            plainEnglish: "A small maintenance task may be different from work that changes a structure, system, layout, or occupancy. When in doubt, verify before work starts.",
             involves: "Building Department; Building Inspector",
-            codeExcerpt: "The Building Inspector administers and enforces the Uniform Code and related laws, receives and approves or denies building permit applications, issues permits and certificates, conducts inspections, and may issue stop-work orders.",
+            codeExcerpt: "The Building Inspector administers and enforces building permits, certificates of occupancy, temporary certificates, operating permits, construction inspections, complaint investigations, and stop-work orders.",
             codeReference: "Town Code Chapter 59",
-            tags: ["building permit", "renovation", "remodel", "addition", "construction"],
+            tags: ["building permit", "renovation", "remodel", "addition", "contractor", "construction"],
             related: ["What is a certificate of occupancy?", "Can the Town stop work mid-project?"]
           },
           {
             id: "co-what-is",
             question: "What is a certificate of occupancy?",
-            quickAnswer: "A certificate of occupancy is what allows you to use or occupy a building or part of a building after permitted work or certain use changes.",
-            plainEnglish: "A permit lets work happen. A CO is about use or occupancy after the work or change is complete.",
+            quickAnswer: "A certificate of occupancy is what allows use or occupancy after permitted work or certain use changes.",
+            plainEnglish: "A permit lets work happen. A CO is about whether the space can be used or occupied after the work is done.",
             involves: "Building Inspector",
             codeExcerpt: "A certificate of occupancy is required for any work that is the subject of a building permit and for structures, buildings, or portions thereof converted from one use or occupancy classification to another.",
             codeReference: "Town Code § 59-9",
-            tags: ["CO", "certificate of occupancy", "final approval"],
-            related: ["Can the Town inspect before issuing a CO?", "Can the Town stop work mid-project?"]
-          },
-          {
-            id: "co-inspection",
-            question: "Can the Town inspect before issuing a CO?",
-            quickAnswer: "Yes.",
-            plainEnglish: "Inspection is part of the closeout process, not an optional extra.",
-            involves: "Building Inspector",
-            codeExcerpt: "The Building Inspector shall inspect the building, structure, or work prior to issuance of a certificate of occupancy.",
-            codeReference: "Town Code § 59-9",
-            tags: ["CO inspection", "final inspection"],
-            related: ["What is a certificate of occupancy?"]
-          },
-          {
-            id: "co-revoked",
-            question: "Can a CO be revoked or suspended?",
-            quickAnswer: "Yes, if it was issued based on incorrect, inaccurate, or incomplete information.",
-            plainEnglish: "The Town can unwind a certificate if the foundation for issuing it turns out to be wrong.",
-            involves: "Building Inspector",
-            codeExcerpt: "If the Building Inspector determines that a certificate of occupancy or temporary certificate was issued in error because of incorrect, inaccurate or incomplete information, and deficiencies are not corrected, the certificate may be revoked or suspended.",
-            codeReference: "Town Code § 59-9(F)",
-            tags: ["CO revoked", "temporary certificate", "incorrect information"],
-            related: ["What is a certificate of occupancy?"]
-          },
-          {
-            id: "stop-work",
-            question: "Can the Town stop work mid-project?",
-            quickAnswer: "Yes.",
-            plainEnglish: "Work must remain accessible and exposed until inspected and approved. If there is a problem, the Town has stop-work authority.",
-            involves: "Building Inspector; Assistant Inspector",
-            codeExcerpt: "Work for which a building permit has been issued must remain accessible and exposed until inspected and approved. Chapter 59 also includes stop-work order authority.",
-            codeReference: "Town Code §§ 59-10, 59-11",
-            tags: ["stop work order", "inspection", "open walls", "exposed work"],
-            related: ["Do I need a building permit for more than routine work?"]
-          }
-        ]
-      },
-
-      /* 3. Fences & Gates */
-      {
-        id: "fences-gates",
-        title: "Fences & Gates",
-        description: "Fence height, permits, inspections, and easy-to-miss placement rules.",
-        questions: [
-          {
-            id: "fence-without-permit",
-            question: "Do I need a permit for a fence?",
-            quickAnswer: "It depends on location. Fences 20 feet or more from the front lot line and up to 6 feet high generally do not require a permit. Fences closer than 20 feet to the front lot line may only be 4 feet high and require a permit.",
-            plainEnglish: "The issue is not just the height — it is where the fence sits relative to your front lot line. A backyard fence may be treated very differently from something closer to the street.",
-            involves: "Building Department; Building Inspector",
-            codeExcerpt: "A fence or gate may be erected in a residential district if it is located 20 feet or more from the front lot line and does not exceed six feet in height. If it is located less than 20 feet from the front lot line, it may not exceed four feet in height and must have a permit issued by the Building Inspector.",
-            codeReference: "Town Code § 125-15",
-            tags: ["fence", "fence permit", "gate", "privacy fence", "front yard fence", "backyard fence", "fence height", "lot line"],
-            related: ["What do I need to submit for a fence permit?", "Do I need a final inspection after the fence is installed?", "What fence rules do people miss?"]
-          },
-          {
-            id: "fence-permit-submit",
-            question: "What do I need to submit for a fence permit?",
-            quickAnswer: "A Town application form, plus a sketch or plan showing the fence's location and height, the materials, and the required fee.",
-            plainEnglish: "For a simple fence, Bedford still wants enough detail to know where it is going and whether it complies. In some cases, the Building Inspector may also ask for an as-built survey.",
-            involves: "Building Department; Building Inspector",
-            codeExcerpt: "The application must be made on a Town form and accompanied by a plan or sketch clearly showing the location and height of the proposed fence or gate, the material to be used, and the appropriate fee. The Building Inspector may require an as-built survey.",
-            codeReference: "Town Code § 125-15",
-            tags: ["fence application", "fence sketch", "fence plan", "materials", "as-built survey"],
-            related: ["Do I need a permit for a fence?", "How long does a fence permit last?"]
-          },
-          {
-            id: "fence-permit-duration",
-            question: "How long does a fence permit last?",
-            quickAnswer: "Six months from issuance.",
-            plainEnglish: "If the fence is not built in time, do not assume the permit stays alive indefinitely.",
-            involves: "Building Department; Building Inspector",
-            codeExcerpt: "A permit to construct a fence or gate shall be in effect for six months from issuance.",
-            codeReference: "Town Code § 125-15",
-            tags: ["fence permit expiration", "fence permit timeline", "six months"],
-            related: ["What do I need to submit for a fence permit?", "Do I need a final inspection after the fence is installed?"]
-          },
-          {
-            id: "fence-final-inspection",
-            question: "Do I need a final inspection after the fence is installed?",
-            quickAnswer: "Yes. The Building Department must do a final inspection after installation.",
-            plainEnglish: "Even a fence permit is not finished when the fence is built. The Town wants to confirm it matches what was approved.",
-            involves: "Building Department",
-            codeExcerpt: "A final inspection must be conducted by the Building Department after completion of the installation to check for compliance.",
-            codeReference: "Town Code § 125-15",
-            tags: ["fence inspection", "final inspection", "completed fence"],
-            related: ["Do I need a permit for a fence?", "How long does a fence permit last?"]
-          },
-          {
-            id: "fence-rules-miss",
-            question: "What fence rules do people miss?",
-            quickAnswer: "Bedford has several easy-to-miss fence rules beyond height and permits.",
-            plainEnglish: "The finished side should face outward. Posts should be on the inside, except for livestock fences. Fences cannot block natural drainage, cross property lines, or create a traffic safety issue near a public street. Driveway gates that block fire access need an approved emergency hold-open device.",
-            involves: "Building Department; Superintendent of Highways; Fire Department",
-            codeExcerpt: "The code requires the smooth or finished side to face outward, posts to be placed inside the fence except for livestock fences, drainage not to be obstructed, fences and gates to remain within property lines, and driveway gates that obstruct fire access to have an approved emergency hold-open device.",
-            codeReference: "Town Code § 125-15",
-            tags: ["driveway gate", "emergency access", "fence near road", "drainage", "finished side", "fence posts"],
-            related: ["Do I need a permit for a fence?", "What do I need to submit for a fence permit?"]
-          }
-        ]
-      },
-
-      /* 4. Garbage, Recycling & Pickup Rules */
-      {
-        id: "garbage-recycling",
-        title: "Garbage, Recycling & Pickup Rules",
-        description: "Pickup timing, recycling separation, yard waste, leaves, and hauler rules.",
-        questions: [
-          {
-            id: "trash-hours",
-            question: "What hours can trash be collected in residential areas?",
-            quickAnswer: "Only Monday through Saturday, 7:00 a.m. to 7:00 p.m. in residential-zoned areas.",
-            plainEnglish: "This is one of the most useful quality-of-life rules in the code. If a truck is coming too early or too late, that is a code issue.",
-            involves: "Private collector; Town",
-            codeExcerpt: "Refuse pickup in residential-zoned areas is permitted only Monday through Saturday between 7:00 a.m. and 7:00 p.m.",
-            codeReference: "Town Code § 67-5",
-            tags: ["trash hours", "garbage truck too early", "garbage truck too late", "7am", "7pm"],
-            related: ["Can trash be picked up on Sundays or federal holidays?", "How often can residential trash be picked up?"]
-          },
-          {
-            id: "trash-sundays-holidays",
-            question: "Can trash be picked up on Sundays or federal holidays?",
-            quickAnswer: "No.",
-            plainEnglish: "If a truck shows up Sunday for regular refuse pickup, that is not what the code contemplates.",
-            involves: "Private collector; Town",
-            codeExcerpt: "No pickup of refuse is permitted on Sundays or any federal holiday.",
-            codeReference: "Town Code § 67-5",
-            tags: ["Sunday trash", "holiday trash", "federal holiday pickup"],
-            related: ["What hours can trash be collected in residential areas?"]
-          },
-          {
-            id: "trash-pickup-frequency",
-            question: "How often can residential trash be picked up?",
-            quickAnswer: "Usually once or twice a week, unless you and your collector have another arrangement.",
-            plainEnglish: "The code allows some flexibility between residents and private haulers, but still sets the baseline.",
-            involves: "Private collector; Town Board",
-            codeExcerpt: "Residential refuse shall be collected either once or twice a week, except where other agreements have been made between the collector and the resident.",
-            codeReference: "Town Code § 67-5",
-            tags: ["trash pickup", "garbage pickup", "pickup frequency", "refuse"],
-            related: ["What hours can trash be collected in residential areas?", "Can trash be picked up on Sundays or federal holidays?"]
-          },
-          {
-            id: "curb-placement",
-            question: "Where should I put trash and recycling at the curb?",
-            quickAnswer: "For curbside service, containers should be placed at a single collection point within four feet of the curb on collection day.",
-            plainEnglish: "The code is surprisingly specific here. It is not just somewhere near the street.",
-            involves: "Resident; Private collector",
-            codeExcerpt: "For curbside collection, containers for each service unit shall be placed at a single collection point within four feet of the curb on scheduled household garbage collection days.",
-            codeReference: "Town Code § 67-5",
-            tags: ["curbside", "trash can placement", "how close to curb", "collection point"],
-            related: ["When can I put recycling out?", "Do I have to separate recyclables from regular trash?"]
-          },
-          {
-            id: "recycling-timing",
-            question: "When can I put recycling out?",
-            quickAnswer: "Recyclables can go out the day before scheduled pickup, but not sooner.",
-            plainEnglish: "This is a useful small rule to know, especially if bins tend to linger roadside.",
-            involves: "Resident; Private collector",
-            codeExcerpt: "Recyclables may be placed at curbside for pickup on the day before a scheduled collection, but not sooner.",
-            codeReference: "Town Code § 67-5",
-            tags: ["recycling out", "night before recycling", "curb timing", "recycling pickup"],
-            related: ["Where should I put trash and recycling at the curb?"]
-          },
-          {
-            id: "recycling-separation",
-            question: "Do I have to separate recyclables from regular trash?",
-            quickAnswer: "Yes.",
-            plainEnglish: "If recyclables are mixed into household garbage, the collector can refuse to pick it up until they are removed.",
-            involves: "Resident; Private collector; Building Inspector",
-            codeExcerpt: "Paper and fiber recyclables, yard waste, and mixed recyclables shall not be intermingled with household refuse. Household garbage containing recyclables is not the collector's responsibility to collect until those materials are removed by the resident.",
-            codeReference: "Town Code §§ 67-5, 67-12",
-            tags: ["mixed trash", "recyclables in garbage", "refused pickup", "recycling separation"],
-            related: ["Does Bedford require single-stream recycling?", "Can collectors stop service if someone keeps mixing recyclables into trash?"]
-          },
-          {
-            id: "single-stream",
-            question: "Does Bedford require single-stream recycling?",
-            quickAnswer: "Yes. Residential collectors must provide it.",
-            plainEnglish: "This is one of the clearer modernized service rules in the code.",
-            involves: "Private collector; Town Board",
-            codeExcerpt: "All collectors providing residential refuse and recycling collection services in the Town shall provide single-stream recycling pickup as part of their service.",
-            codeReference: "Town Code § 67-5",
-            tags: ["single stream", "one bin recycling", "residential recycling"],
-            related: ["Do I have to separate recyclables from regular trash?"]
-          },
-          {
-            id: "yard-waste-leaves",
-            question: "What are the yard waste and leaf pickup rules?",
-            quickAnswer: "Yard waste picked up by the Highway Department must be in tied bundles or compostable bags. Loose leaf pickup in designated hamlet areas runs October 1 to November 15. Outside that window, leaves must be bagged.",
-            plainEnglish: "This is exactly the kind of thing people search town sites for every fall.",
-            involves: "Highway Department",
-            codeExcerpt: "Yard waste picked up by the Highway Department must be placed curbside on scheduled yard waste collection days in tied bundles or compostable bags. Loose leaves are picked up in designated hamlet areas between October 1 and November 15; at all other times, leaves must be bagged.",
-            codeReference: "Town Code § 67-5",
-            tags: ["leaf pickup", "yard waste", "leaves", "compostable bags", "bundles", "Highway Department"],
-            related: ["Where should I put trash and recycling at the curb?"]
-          },
-          {
-            id: "self-haul-recycling",
-            question: "Can I bring recyclables to the Recycling Center myself?",
-            quickAnswer: "Yes.",
-            plainEnglish: "The code expressly preserves that option.",
-            involves: "Resident; Recycling Center",
-            codeExcerpt: "Nothing in this chapter prevents residents who wish to self-haul recyclables from bringing their recyclables to the Town of Bedford Recycling Center.",
-            codeReference: "Town Code § 67-5",
-            tags: ["recycling center", "self haul", "bring recyclables myself"],
-            related: ["Does Bedford require single-stream recycling?"]
-          },
-          {
-            id: "collector-permit",
-            question: "Do private garbage or recycling collectors need a Town permit?",
-            quickAnswer: "Yes.",
-            plainEnglish: "A hauler cannot simply operate in Bedford without Town collector permitting unless it is collecting from its own residence or business property.",
-            involves: "Town Clerk; Town Board; Private collector",
-            codeExcerpt: "It is unlawful to engage in the business of refuse or recyclables collection services within the Town without first obtaining or renewing a Town collector permit from the Town Clerk.",
-            codeReference: "Town Code § 67-6",
-            tags: ["garbage hauler permit", "collector permit", "approved vendor"],
-            related: ["Can collectors stop service if someone mixes recyclables into trash?"]
-          },
-          {
-            id: "collector-service-stop",
-            question: "Can collectors stop service if someone keeps mixing recyclables into trash?",
-            quickAnswer: "Yes, the code contemplates that.",
-            plainEnglish: "Repeatedly mixing recyclables into trash can create consequences beyond a missed pickup.",
-            involves: "Private collector; Town Clerk",
-            codeExcerpt: "Collectors must provide written notice to customers who repeatedly violate separation rules and explain that collection services shall be discontinued without refund or proration if required separation is not maintained.",
-            codeReference: "Town Code § 67-12(C)",
-            tags: ["service discontinued", "repeat violator", "recyclables mixed"],
-            related: ["Do I have to separate recyclables from regular trash?"]
-          }
-        ]
-      },
-
-      /* 5. Home Businesses */
-      {
-        id: "home-businesses",
-        title: "Home Businesses",
-        description: "Rules and permits for running a business from your home in Bedford.",
-        questions: [
-          {
-            id: "home-business",
-            question: "Can I run a business from home in Bedford?",
-            quickAnswer: "Sometimes, but a customary home occupation is generally a special use permit in residential districts unless you fall within a limited exemption.",
-            plainEnglish: "This is one of the most misunderstood parts of local zoning. The code is more detailed than most people expect.",
-            involves: "Planning Board; Building Inspector; Code Enforcement Officer",
-            codeExcerpt: "A customary home occupation is a special use permit for which the Planning Board is authorized to grant a special use permit in all residential zoning districts, subject to conditions.",
-            codeReference: "Town Code § 125-28",
-            tags: ["home business", "home occupation", "work from home business", "zoning"],
-            related: ["Is there any exemption for very small home businesses?", "What are the main limits on a customary home occupation?"]
-          },
-          {
-            id: "home-business-exemption",
-            question: "Is there any exemption for very small home businesses?",
-            quickAnswer: "Yes, there appears to be a narrow exemption for a single individual with limited visitors and deliveries.",
-            plainEnglish: "The code definition section says occupations by a single individual with no more than five visitors and three deliveries per day may be exempt from § 125-28, provided they still meet Town building and zoning criteria. Confirm before relying on this.",
-            involves: "Building Department; Planning Board",
-            codeExcerpt: "Occupations carried on by a single individual involving no more than five visitors and three deliveries per day to the lot are exempt from § 125-28, provided they meet all Town building and zoning criteria.",
-            codeReference: "Town Code § 125-3",
-            tags: ["small home business", "exempt home business", "five visitors", "three deliveries"],
-            related: ["Can I run a business from home in Bedford?"]
-          },
-          {
-            id: "home-business-limits",
-            question: "What are the main limits on a customary home occupation?",
-            quickAnswer: "It must stay secondary to residential use, avoid obvious exterior commercial appearance, stay within size limits, avoid neighborhood impacts, generally have no non-family employees, avoid outside storage, and comply with parking limits.",
-            plainEnglish: "Bedford's code is trying to allow certain low-impact home work without turning a residential lot into a commercial site.",
-            involves: "Planning Board; Building Inspector",
-            codeExcerpt: "The code limits the use to residents, restricts exterior evidence, caps floor area, bars non-family employees, bars outside storage, limits client service, and gives the Planning Board authority over parking and conditions.",
-            codeReference: "Town Code §§ 125-27, 125-28",
-            tags: ["clients", "deliveries", "employees", "parking", "signage", "outside storage"],
-            related: ["Can I run a business from home in Bedford?"]
-          },
-          {
-            id: "home-business-inspection",
-            question: "Can the Town inspect a home occupation?",
-            quickAnswer: "Yes, with 30 days' written notice.",
-            plainEnglish: "The Town expressly reserves inspection rights for existing and specially permitted home occupations.",
-            involves: "Building Inspector; Code Enforcement Officer",
-            codeExcerpt: "Residents engaging in existing home occupations, as well as those receiving special permits, are subject to inspection of their premises by the Building Inspector or Code Enforcement Officer upon 30 days' written notice.",
-            codeReference: "Town Code § 125-28(C)(1)",
-            tags: ["inspection", "30 days notice", "home occupation inspection"],
-            related: ["What happens if I refuse the inspection?"]
-          },
-          {
-            id: "home-business-refuse-inspection",
-            question: "What happens if I refuse the inspection?",
-            quickAnswer: "Immediate revocation of the permitted home occupation.",
-            plainEnglish: "If the business depends on a special permit, inspection refusal is not a small paperwork issue.",
-            involves: "Building Inspector; Code Enforcement Officer",
-            codeExcerpt: "Failure to permit an annual inspection constitutes a violation and results in immediate revocation of the lawfully permitted home occupation.",
-            codeReference: "Town Code § 125-28(C)(2)",
-            tags: ["revocation", "refused inspection", "annual inspection"],
-            related: ["Can the Town inspect a home occupation?"]
-          },
-          {
-            id: "home-business-penalties",
-            question: "What happens if I run a home occupation without the required permit?",
-            quickAnswer: "There are escalating penalties, and each week can count as a separate violation.",
-            plainEnglish: "This is not just 'please stop.' It can become a recurring violation.",
-            involves: "Planning Board; Building Inspector; Code Enforcement Officer; Town Justice",
-            codeExcerpt: "Failure to secure a required special permit or otherwise violating the section may be punishable by a fine of up to $250 or up to 15 days imprisonment for a first offense; later offenses may carry fines from $500 to $1,000 or up to 15 days imprisonment. Each week of continued violation is a separate additional violation.",
-            codeReference: "Town Code § 125-28(D)",
-            tags: ["fine", "violation", "penalties", "unpermitted home business"],
-            related: ["Can I run a business from home in Bedford?"]
-          }
-        ]
-      },
-
-      /* 6. Pools, Outdoor Showers & Accessory Structures */
-      {
-        id: "pools-structures",
-        title: "Pools, Outdoor Showers & Accessory Structures",
-        description: "Common questions about pools, outdoor showers, and standalone structures on residential property.",
-        questions: [
-          {
-            id: "pool-permit",
-            question: "Do I need a permit to build a pool in Bedford?",
-            quickAnswer: "Yes. A building permit is required for pool installation, and setback and site requirements apply.",
-            plainEnglish: "Pool installations are treated as construction projects in Bedford and require a permit through the Building Department before work begins. Setbacks from property lines, fencing requirements, and other site conditions will apply.",
-            involves: "Building Department; Building Inspector",
-            codeExcerpt: "Needs final Town Code verification before publication.",
-            codeReference: "Town Code Chapter 59 (Building Administration); Zoning Code setback provisions",
-            tags: ["pool", "swimming pool", "in-ground pool", "pool permit"],
-            related: ["Are there setback rules for pools?", "Do I need a permit to build an accessory structure?"]
-          },
-          {
-            id: "pool-setback",
-            question: "Are there setback rules for pools?",
-            quickAnswer: "Yes. Pools must meet setback requirements from property lines. Specific distances depend on your zoning district.",
-            plainEnglish: "Like most permanent structures, pools cannot be placed anywhere on the lot. Required distances from property lines vary by zoning district. Confirm placement with the Building Department before finalizing plans.",
-            involves: "Building Department; Building Inspector",
-            codeExcerpt: "Needs final Town Code verification before publication.",
-            codeReference: "Bedford Town Zoning Code (setback requirements by district)",
-            tags: ["pool setback", "property line pool", "pool location"],
-            related: ["Do I need a permit to build a pool in Bedford?"]
-          },
-          {
-            id: "outdoor-shower-permit",
-            question: "Do I need a permit for an outdoor shower?",
-            quickAnswer: "Generally, yes — if it involves plumbing or drainage connections to your home system.",
-            plainEnglish: "An outdoor shower that connects to your home's plumbing or drainage involves both building and possibly health department review. Confirm with the Building Department first.",
-            involves: "Building Department; Westchester County Department of Health",
-            codeExcerpt: "Needs final Town Code verification before publication.",
-            codeReference: "Town Code Chapter 59; Westchester County Health Code",
-            tags: ["outdoor shower", "outdoor shower permit", "plumbing permit"],
-            related: ["Do I need a permit to build a pool in Bedford?"]
-          },
-          {
-            id: "accessory-structure-permit",
-            question: "Do I need a permit to build an accessory structure like a shed or garage?",
-            quickAnswer: "Usually yes, depending on size and placement. Most permanent accessory structures require a building permit.",
-            plainEnglish: "Bedford's building code applies to permanent structures regardless of purpose. A garage, barn, or substantial storage building will typically require a permit. Check with the Building Department before construction.",
-            involves: "Building Department; Building Inspector",
-            codeExcerpt: "Needs final Town Code verification before publication.",
-            codeReference: "Town Code Chapter 59 (Building Administration)",
-            tags: ["shed permit", "garage permit", "detached garage", "accessory structure", "barn permit"],
-            related: ["Do I need a building permit for more than routine work?"]
-          }
-        ]
-      },
-
-      /* 7. Property Taxes & Exemptions */
-      {
-        id: "property-taxes",
-        title: "Property Taxes & Exemptions",
-        description: "Property tax basics and exemption programs available to Bedford residents.",
-        questions: [
-          {
-            id: "property-tax-exemptions",
-            question: "Do property tax exemptions exist for Bedford homeowners?",
-            quickAnswer: "Yes. Bedford participates in several New York State property tax exemption programs, including programs for senior citizens, veterans, and persons with disabilities.",
-            plainEnglish: "New York State offers several property tax exemption programs that apply to qualifying residents. These include STAR (School Tax Relief), Enhanced STAR for seniors, the Basic STAR exemption, veteran exemptions, and exemptions for persons with disabilities. Applications are generally filed with the Town Assessor.",
-            involves: "Town Assessor; New York State Department of Taxation and Finance",
-            codeExcerpt: "Needs final Town Code verification before publication. Exemptions are governed by New York State Real Property Tax Law and local resolutions.",
-            codeReference: "New York State Real Property Tax Law; Bedford Assessor's Office",
-            tags: ["property tax", "tax exemption", "STAR", "senior exemption", "veteran exemption"],
-            related: ["Are there senior or veteran property tax exemptions?"]
-          },
-          {
-            id: "senior-veteran-exemptions",
-            question: "Are there senior or veteran property tax exemptions?",
-            quickAnswer: "Yes. Qualifying senior residents and veterans may be eligible for exemptions that reduce the taxable value of their property.",
-            plainEnglish: "Senior citizens who meet age and income requirements may qualify for the Enhanced STAR or Senior Citizens Exemption. Veterans may be eligible for a veterans' exemption. Contact the Bedford Assessor's Office to confirm current requirements and deadlines — exemption applications often have annual filing dates.",
-            involves: "Town Assessor; New York State Department of Taxation and Finance",
-            codeExcerpt: "Needs final Town Code verification before publication.",
-            codeReference: "New York State Real Property Tax Law §§ 425, 458, 467",
-            tags: ["senior exemption", "veteran exemption", "Enhanced STAR", "income limit", "tax break"],
-            related: ["Do property tax exemptions exist for Bedford homeowners?"]
-          }
-        ]
-      },
-
-      /* 8. Trees & Yard Work */
-      {
-        id: "trees",
-        title: "Trees & Yard Work",
-        description: "Tree removal permits, exemptions, thresholds, timelines, and mitigation.",
-        questions: [
-          {
-            id: "tree-permit",
-            question: "Do I need a permit to remove a tree?",
-            quickAnswer: "Often, yes. Bedford's tree rules are broader than many residents would expect.",
-            plainEnglish: "A permit may be required not just for very large trees, but also for trees in certain locations or situations, including scenic roads, historic districts, wetlands, steep slopes, or if you are removing more than a certain number in a year.",
-            involves: "Enforcement Officer; Tree Advisory Board; Planning Board; Wetlands Control Commission",
-            codeExcerpt: "A tree removal permit is required before removing several categories of trees, including any tree 18 inches or more dbh, protected native plant trees, landmark or special trees, trees over 8 inches dbh within 150 feet of a designated scenic road, trees in historic districts, wetlands, steep slopes, and significant vegetation areas.",
-            codeReference: "Town Code § 112-4",
-            tags: ["tree permit", "cut tree", "remove tree", "scenic road", "historic district tree", "wetland tree", "steep slope"],
-            related: ["How many trees can I remove in a year before it triggers a permit?", "Are dead or dangerous trees exempt?"]
-          },
-          {
-            id: "tree-count-threshold",
-            question: "How many trees can I remove in a year before it triggers a permit?",
-            quickAnswer: "It depends on lot size.",
-            plainEnglish: "Even if no single tree is huge, Bedford can still require a permit if the total number removed in a year exceeds the threshold for your parcel size.",
-            involves: "Enforcement Officer",
-            codeExcerpt: "A permit is required for removing more than 10 trees on properties of four acres or less; more than 20 trees on properties over four and up to six acres; more than 30 trees on properties over six and up to eight acres; more than 40 trees on properties over eight and up to 10 acres; and more than 50 trees on properties over 10 acres.",
-            codeReference: "Town Code § 112-4A(7)",
-            tags: ["how many trees", "tree count", "clearing land", "tree threshold"],
-            related: ["Do I need a permit to remove a tree?"]
-          },
-          {
-            id: "tree-exemptions",
-            question: "Are dead or dangerous trees exempt?",
-            quickAnswer: "Yes, in several situations.",
-            plainEnglish: "Not every tree removal needs a permit. Dead trees and certain immediate safety hazards are explicitly exempt.",
-            involves: "Enforcement Officer",
-            codeExcerpt: "No permit is required for dead trees, trees posing danger to a structure or to vehicle or pedestrian traffic, trees removed for forest-fire control, or certain utility right-of-way work.",
-            codeReference: "Town Code § 112-4B",
-            tags: ["dead tree", "dangerous tree", "hazardous tree", "emergency removal"],
-            related: ["Do I need a permit to remove a tree?"]
-          },
-          {
-            id: "tree-permit-process",
-            question: "What happens after I apply for a tree removal permit?",
-            quickAnswer: "The Town can inspect, and the Enforcement Officer generally has 21 days to act on a complete application. If no action is taken within that period, it is deemed approved. The permit lasts 24 months.",
-            plainEnglish: "This is one of the most useful procedural answers on the page. It gives residents an actual timeline.",
-            involves: "Enforcement Officer",
-            codeExcerpt: "Submission of a tree removal application constitutes permission for inspection. The Enforcement Officer shall approve, approve with conditions, or deny a complete application within 21 days. If no action is taken within 21 days, it is deemed approved. A tree removal permit expires 24 months after it is granted.",
-            codeReference: "Town Code § 112-5",
-            tags: ["tree permit timeline", "deemed approved", "inspection", "21 days", "24 months"],
-            related: ["Can the Town require replanting or other conditions?"]
-          },
-          {
-            id: "tree-conditions",
-            question: "Can the Town require replanting or other conditions?",
-            quickAnswer: "Yes.",
-            plainEnglish: "Bedford can attach conditions like replanting, mitigation, erosion controls, truck route limits, tree marking, expert reports, or a performance bond in larger removals.",
-            involves: "Enforcement Officer; Tree Advisory Board; Planning Board; Wetlands Control Commission",
-            codeExcerpt: "Conditions may include limits on days and hours of removal, truck routes, replanting or mitigation, relocation of improvements, marking trees, performance bonds, expert reports, and other safeguards to mitigate environmental impacts.",
-            codeReference: "Town Code § 112-6",
-            tags: ["replanting", "mitigation", "bond", "arborist", "forester", "tree conditions"],
-            related: ["What happens after I apply for a tree removal permit?"]
-          }
-        ]
-      },
-      /* 9. Wetlands, Steep Slopes & Historic Districts */
-      {
-        id: "wetlands-slopes-historic",
-        title: "Wetlands, Steep Slopes & Historic Districts",
-        description: "Why some simple projects stop being simple.",
-        questions: [
-          {
-            id: "location-triggers",
-            question: "Could wetlands, steep slopes, or a historic district affect my project?",
-            quickAnswer: "Yes. Some routine approvals are treated differently if your property is in a wetland, flood hazard area, or the Bedford Historic District.",
-            plainEnglish: "This is the kind of hidden trigger that catches people off guard. A project can be simple in one location and more complicated somewhere else.",
-            involves: "Building Department; Planning Board; Wetlands Control Commission",
-            codeExcerpt: "The code treats the granting of permits and certificates for one-family residential buildings or accessory buildings as additional Type II actions only when they are not located in a town or state wetland, flood hazard area, or the Bedford Historic District.",
-            codeReference: "Town Code § 53-3(A)",
-            tags: ["simple project", "wetland", "flood hazard", "historic district", "environmental review"],
-            related: ["Could steep slopes affect my project?", "Can tree removal rules change if I'm in a historic district or wetland?"]
-          },
-          {
-            id: "steep-slopes",
-            question: "Could steep slopes affect my project?",
-            quickAnswer: "Yes.",
-            plainEnglish: "Steep slopes are separately regulated, and disturbance on them is not something Bedford treats casually.",
-            involves: "Planning Board",
-            codeExcerpt: "Steep slopes are defined as ground areas with a minimum slope of 25% or greater, with minimum area and horizontal distance thresholds. The chapter regulates disturbance on steep slopes and ridgelines.",
-            codeReference: "Town Code Chapter 102",
-            tags: ["steep slope", "25% slope", "disturbance", "grading", "driveway"],
-            related: ["Could wetlands, steep slopes, or a historic district affect my project?"]
-          },
-          {
-            id: "overlay-tree-rules",
-            question: "Can tree removal rules change if I'm in a historic district or wetland?",
-            quickAnswer: "Yes.",
-            plainEnglish: "Those overlay conditions can independently trigger tree removal permitting.",
-            involves: "Enforcement Officer; Planning Board; Wetlands Control Commission",
-            codeExcerpt: "Tree removal permits are required for trees in a Town historic district, in wetlands unless specifically permitted by the Wetlands Control Commission, and on steep slopes unless specifically permitted by the Planning Board.",
-            codeReference: "Town Code § 112-4",
-            tags: ["historic district tree", "wetland tree", "steep slope tree"],
-            related: ["Do I need a permit to remove a tree?"]
-          }
-        ]
-      },
-
-      /* 10. Zoning Boards & Variances */
-      {
-        id: "zoning-boards",
-        title: "Zoning Boards & Variances",
-        description: "When you would need the Zoning Board of Appeals, Planning Board, or a variance.",
-        questions: [
-          {
-            id: "when-zoning-board",
-            question: "When would I need to go before the Zoning Board of Appeals?",
-            quickAnswer: "The Zoning Board of Appeals handles requests for variances — exceptions to the zoning rules — and certain interpretations of the code. If what you want to do does not conform to existing zoning requirements, you typically need a variance from the ZBA.",
-            plainEnglish: "Most home projects that meet zoning requirements go directly to the Building Department. But if you need an exception — for example, building closer to a property line than the code normally allows — you apply to the ZBA for a variance. The ZBA can grant relief from the literal requirements of the code if it finds hardship.",
-            involves: "Zoning Board of Appeals (ZBA); Building Inspector",
-            codeExcerpt: "Needs final Town Code verification before publication.",
-            codeReference: "Town Code Chapter 125; New York State Town Law § 267",
-            tags: ["zoning board", "ZBA", "variance", "exception to zoning", "area variance", "use variance"],
-            related: ["When would I need the Planning Board?", "What is a variance and what does the process involve?"]
-          },
-          {
-            id: "when-planning-board",
-            question: "When would I need the Planning Board?",
-            quickAnswer: "The Planning Board handles subdivision approvals, site plans, and special use permits. If you are adding an accessory apartment, cottage, certain home business uses, or subdividing property, you will likely need Planning Board approval.",
-            plainEnglish: "The Planning Board is involved in more significant land use decisions than the day-to-day permit process. Special use permits (like accessory apartments, cottages, or home occupations), subdivision proposals, and site plans are typical Planning Board matters.",
-            involves: "Planning Board; Town Clerk",
-            codeExcerpt: "Needs final Town Code verification before publication.",
-            codeReference: "Town Code Chapter 125; New York State Town Law § 274",
-            tags: ["planning board", "special permit", "subdivision", "site plan"],
-            related: ["When would I need to go before the Zoning Board of Appeals?"]
-          },
-          {
-            id: "what-is-variance",
-            question: "What is a variance and what does the process involve?",
-            quickAnswer: "A variance is a formal exception to a zoning rule. Area variances (exceptions to dimensional requirements like setbacks or height) are more common for residential projects than use variances.",
-            plainEnglish: "To get a variance, you apply to the ZBA and make a case for why strict enforcement of the code would create an unnecessary hardship. The Board considers factors like the character of the neighborhood, whether the hardship is self-created, and the benefit to the community. The process typically involves a public hearing.",
-            involves: "Zoning Board of Appeals (ZBA); Town Clerk",
-            codeExcerpt: "Needs final Town Code verification before publication.",
-            codeReference: "New York State Town Law § 267-b",
-            tags: ["variance", "area variance", "use variance", "hardship", "ZBA hearing", "public hearing"],
-            related: ["When would I need to go before the Zoning Board of Appeals?"]
-          },
-          {
-            id: "wetland-lot-area",
-            question: "Can wetlands count toward minimum lot area?",
-            quickAnswer: "Only partly.",
-            plainEnglish: "In most districts, no more than 25% of the required minimum lot area can be satisfied by land under water or mapped as wetland. In R-4A, it can be 50%.",
-            involves: "Planning Board; Wetlands Control Commission",
-            codeExcerpt: "No more than 25% of the minimum lot area may be satisfied by land under water or mapped as wetland, except that in an R-4A District no more than 50% may be so satisfied.",
-            codeReference: "Town Code § 125-14",
-            tags: ["wetland lot area", "lot size", "mapped wetland"],
-            related: ["When would I need the Planning Board?"]
-          }
-        ]
-      }
-    ];
-
-      /* END — old legacy content follows (JS comment block — do not remove closing marker below)
-
-        description: "Accessory apartments, cottages, and home occupation rules.",
-        questions: [
-          {
-            id: "accessory-apartment",
-            question: "Can I create an accessory apartment in my house?",
-            quickAnswer: "Possibly, but it is a formal process. In residence districts, the Planning Board may grant a special permit to create an accessory apartment in an existing single-family dwelling, not an accessory structure, subject to conditions.",
-            plainEnglish: "This is not a 'just renovate the basement and list it' situation. Bedford treats this as a regulated use with specific standards.",
-            involves: "Planning Board; Building Inspector; Westchester County Department of Health",
-            codeExcerpt: "In all residence districts, the Planning Board may grant a special permit to create an accessory apartment in an existing single-family dwelling, but not in an accessory structure, subject to listed conditions.",
-            codeReference: "Town Code § 125-79",
-            tags: ["accessory apartment", "in-law apartment", "legal apartment", "basement apartment"],
-            related: ["Does the owner have to live there?", "How much parking is required for an accessory apartment?"]
-          },
-          {
-            id: "accessory-owner-occupancy",
-            question: "Does the owner have to live there?",
-            quickAnswer: "Yes. The owner must occupy at least one dwelling unit on the premises.",
-            plainEnglish: "Bedford's accessory apartment and cottage rules are built around owner occupancy, not absentee ownership.",
-            involves: "Planning Board",
-            codeExcerpt: "The owner of the lot on which the accessory apartment is located shall occupy at least one of the dwelling units on the premises.",
-            codeReference: "Town Code § 125-79(B)(2)",
-            tags: ["owner occupied", "owner must live there", "accessory apartment"],
-            related: ["Can I create an accessory apartment in my house?"]
-          },
-          {
-            id: "accessory-parking",
-            question: "How much parking is required for an accessory apartment?",
-            quickAnswer: "At least two off-street parking spaces suitable for year-round use.",
-            plainEnglish: "The Town does not want accessory apartments creating a street-parking problem.",
-            involves: "Planning Board",
-            codeExcerpt: "No fewer than two off-street parking spaces suitable for year-round use shall be provided on the lot. No new driveway access to the street shall be permitted.",
-            codeReference: "Town Code § 125-79(B)(6)",
-            tags: ["parking", "accessory apartment parking", "off-street parking"],
-            related: ["Can I create an accessory apartment in my house?"]
-          },
-          {
-            id: "accessory-size",
-            question: "How big can an accessory apartment be?",
-            quickAnswer: "Generally at least 400 square feet, not more than 800 square feet, and usually no more than 25% of the total floor area of the principal residence unless the Planning Board decides otherwise.",
-            plainEnglish: "The code is trying to allow a small secondary living space without changing the character of a single-family home.",
-            involves: "Planning Board; Building Inspector",
-            codeExcerpt: "The accessory apartment must contain at least 400 square feet and not more than 800 square feet of gross floor area, and must not exceed 25% of the total floor area of the principal residence unless otherwise warranted by the Planning Board.",
-            codeReference: "Town Code § 125-79(B)(7)",
-            tags: ["square feet", "apartment size", "accessory apartment dimensions"],
-            related: ["Can I create an accessory apartment in my house?"]
-          },
-          {
-            id: "accessory-requirements",
-            question: "What else is required before an accessory apartment is approved?",
-            quickAnswer: "Expect a floor plan, Health Department approval, and a Building Inspector review.",
-            plainEnglish: "Bedford specifically requires an informal dimensional floor plan, Health Department approval for water and sewage, and a Building Inspector inspection/report before the special permit is granted.",
-            involves: "Planning Board; Building Inspector; Westchester County Department of Health",
-            codeExcerpt: "The applicant must provide enough data to show existing building and lot conditions, including an informal dimensional floor plan. Westchester County Department of Health approval must be obtained for water supply and sewage disposal, and the Building Inspector must inspect and report any deficiencies before the special use permit is granted.",
-            codeReference: "Town Code § 125-79(B)(8)–(10)",
-            tags: ["floor plan", "health department", "inspection", "sewage", "water"],
-            related: ["How long does an accessory apartment permit last?"]
-          },
-          {
-            id: "accessory-permit-term",
-            question: "How long does an accessory apartment permit last?",
-            quickAnswer: "Five years, and it can be renewed.",
-            plainEnglish: "This is not necessarily a one-and-done approval. The permit term is limited and renewal involves another inspection.",
-            involves: "Building Inspector; Town Clerk",
-            codeExcerpt: "The duration of the permit shall be limited to five years and may be renewed by application to the Building Inspector. Prior to renewal, the Building Inspector shall inspect the building and determine that the criteria continue to be met.",
-            codeReference: "Town Code § 125-79(B)(11)",
-            tags: ["renewal", "five years", "accessory apartment permit term"],
-            related: ["What else is required before an accessory apartment is approved?"]
-          },
-          {
-            id: "cottage-creation",
-            question: "Can I create a cottage in an existing accessory building?",
-            quickAnswer: "Possibly, in R-2A and R-4A districts, by special permit.",
-            plainEnglish: "This is one of the more interesting Bedford-specific housing rules and worth checking if your property has an older accessory structure.",
-            involves: "Planning Board; Building Inspector; Westchester County Department of Health",
-            codeExcerpt: "In the R-2A and R-4A Districts, the Planning Board may grant a special permit to create a cottage in an existing accessory building, subject to listed conditions.",
-            codeReference: "Town Code § 125-79.1",
-            tags: ["cottage", "guest cottage", "detached accessory building", "accessory structure"],
-            related: ["What are the main cottage rules?"]
-          },
-          {
-            id: "cottage-rules",
-            question: "What are the main cottage rules?",
-            quickAnswer: "The big ones: the building must meet timing rules, the owner must live in one of the units, only one cottage or accessory apartment is allowed per lot, two off-street spaces are required, a single driveway serves the main house and cottage, the cottage is generally 400 to 800 square feet, and Health Department approval is required.",
-            plainEnglish: "Bedford allows cottages only under a fairly narrow framework. This is not a general permission to convert any outbuilding into a rental.",
-            involves: "Planning Board; Building Inspector; Westchester County Department of Health",
-            codeExcerpt: "The cottage section includes owner-occupancy, one-unit-per-lot, parking, size, floor plan, and Health Department requirements.",
-            codeReference: "Town Code § 125-79.1",
-            tags: ["cottage rules", "parking", "size", "owner occupied", "health department"],
-            related: ["Can I create a cottage in an existing accessory building?"]
-          },
-          {
-            id: "home-business",
-            question: "Can I run a business from home in Bedford?",
-            quickAnswer: "Sometimes, but a customary home occupation is generally a special use permit in residential districts unless you fall within a limited exemption.",
-            plainEnglish: "This is one of the most misunderstood parts of local zoning. The code is more detailed than most people expect.",
-            involves: "Planning Board; Building Inspector; Code Enforcement Officer",
-            codeExcerpt: "A customary home occupation is a special use permit for which the Planning Board is authorized to grant a special use permit in all residential zoning districts, subject to conditions.",
-            codeReference: "Town Code § 125-28",
-            tags: ["home business", "home occupation", "work from home business", "zoning"],
-            related: ["Is there any exemption for very small home businesses?", "What are the main limits on a customary home occupation?"]
-          },
-          {
-            id: "home-business-exemption",
-            question: "Is there any exemption for very small home businesses?",
-            quickAnswer: "Yes, there appears to be a narrow exemption for a single individual with limited visitors and deliveries, if all Town building and zoning criteria are still met.",
-            plainEnglish: "The code definition section says occupations by a single individual with no more than five visitors and three deliveries per day may be exempt from § 125-28, provided they still meet Town building and zoning criteria. Confirm before relying on this.",
-            involves: "Building Department; Planning Board",
-            codeExcerpt: "Occupations carried on by a single individual involving no more than five visitors and three deliveries per day to the lot are exempt from § 125-28, provided they meet all Town building and zoning criteria.",
-            codeReference: "Town Code § 125-3",
-            tags: ["small home business", "exempt home business", "five visitors", "three deliveries"],
-            related: ["Can I run a business from home in Bedford?"]
-          },
-          {
-            id: "home-business-limits",
-            question: "What are the main limits on a customary home occupation?",
-            quickAnswer: "It must stay secondary to residential use, avoid obvious exterior commercial appearance, stay within size limits, avoid neighborhood impacts, generally have no non-family employees, avoid outside storage, and comply with parking limits.",
-            plainEnglish: "Bedford's code is trying to allow certain low-impact home work without turning a residential lot into a commercial site.",
-            involves: "Planning Board; Building Inspector",
-            codeExcerpt: "The code limits the use to residents, restricts exterior evidence, caps floor area, bars non-family employees, bars outside storage, limits client service, and gives the Planning Board authority over parking and conditions.",
-            codeReference: "Town Code §§ 125-27, 125-28",
-            tags: ["clients", "deliveries", "employees", "parking", "signage", "outside storage"],
-            related: ["Can I run a business from home in Bedford?"]
-          },
-          {
-            id: "home-business-inspection",
-            question: "Can the Town inspect a home occupation?",
-            quickAnswer: "Yes, with 30 days' written notice.",
-            plainEnglish: "The Town expressly reserves inspection rights for existing and specially permitted home occupations.",
-            involves: "Building Inspector; Code Enforcement Officer",
-            codeExcerpt: "Residents engaging in existing home occupations, as well as those receiving special permits, are subject to inspection of their premises by the Building Inspector or Code Enforcement Officer upon 30 days' written notice.",
-            codeReference: "Town Code § 125-28(C)(1)",
-            tags: ["inspection", "30 days notice", "home occupation inspection"],
-            related: ["What happens if I refuse the inspection?"]
-          },
-          {
-            id: "home-business-refuse-inspection",
-            question: "What happens if I refuse the inspection?",
-            quickAnswer: "Immediate revocation of the permitted home occupation.",
-            plainEnglish: "If the business depends on a special permit, inspection refusal is not a small paperwork issue.",
-            involves: "Building Inspector; Code Enforcement Officer",
-            codeExcerpt: "Failure to permit an annual inspection constitutes a violation and results in immediate revocation of the lawfully permitted home occupation.",
-            codeReference: "Town Code § 125-28(C)(2)",
-            tags: ["revocation", "refused inspection", "annual inspection"],
-            related: ["Can the Town inspect a home occupation?"]
-          },
-          {
-            id: "home-business-penalties",
-            question: "What happens if I run a home occupation without the required permit?",
-            quickAnswer: "There are escalating penalties, and each week can count as a separate violation.",
-            plainEnglish: "This is not just "please stop." It can become a recurring violation.",
-            involves: "Planning Board; Building Inspector; Code Enforcement Officer; Town Justice",
-            codeExcerpt: "Failure to secure a required special permit or otherwise violating the section may be punishable by a fine of up to $250 or up to 15 days imprisonment for a first offense; later offenses may carry fines from $500 to $1,000 or up to 15 days imprisonment. Each week of continued violation is a separate additional violation.",
-            codeReference: "Town Code § 125-28(D)",
-            tags: ["fine", "violation", "penalties", "unpermitted home business"],
-            related: ["Can I run a business from home in Bedford?"]
-          }
-        ]
-      },
-      {
-        id: "building-permits",
-        title: "Building Permits & Certificates",
-        description: "Permits, inspections, certificates of occupancy, and stop-work basics.",
-        questions: [
-          {
-            id: "building-permit-need",
-            question: "Do I need a building permit for more than routine work?",
-            quickAnswer: "Usually, yes. If you are doing real construction or structural work, do not assume it is exempt. Check first.",
-            plainEnglish: "This guide should not replace the Building Department. Treat this as a signal that if your project changes a structure, use, occupancy, systems, or layout, it is worth confirming before work begins.",
-            involves: "Building Department; Building Inspector",
-            codeExcerpt: "The Building Inspector administers and enforces the Uniform Code and related laws, receives and approves or denies building permit applications, issues permits and certificates, conducts inspections, and may issue stop-work orders.",
-            codeReference: "Town Code Chapter 59",
-            tags: ["building permit", "renovation", "remodel", "addition", "construction"],
-            related: ["What is a certificate of occupancy?", "Can the Town stop work mid-project?"]
-          },
-          {
-            id: "co-what-is",
-            question: "What is a certificate of occupancy?",
-            quickAnswer: "A certificate of occupancy is what allows you to use or occupy a building or part of a building after permitted work or certain use changes.",
-            plainEnglish: "A permit lets work happen. A CO is about use or occupancy after the work or change is complete.",
-            involves: "Building Inspector",
-            codeExcerpt: "A certificate of occupancy is required for any work that is the subject of a building permit and for structures, buildings, or portions thereof converted from one use or occupancy classification to another.",
-            codeReference: "Town Code § 59-9",
-            tags: ["CO", "certificate of occupancy", "final approval"],
+            tags: ["CO", "certificate of occupancy", "closing", "final approval", "inspection"],
             related: ["Can the Town inspect before issuing a CO?"]
           },
           {
             id: "co-inspection",
             question: "Can the Town inspect before issuing a CO?",
             quickAnswer: "Yes.",
-            plainEnglish: "Inspection is part of the closeout process, not an optional extra.",
+            plainEnglish: "Inspection is part of the closeout process.",
             involves: "Building Inspector",
             codeExcerpt: "The Building Inspector shall inspect the building, structure, or work prior to issuance of a certificate of occupancy.",
             codeReference: "Town Code § 59-9",
-            tags: ["CO inspection", "final inspection"],
+            tags: ["CO inspection", "final inspection", "close permit"],
             related: ["What is a certificate of occupancy?"]
           },
           {
-            id: "co-revoked",
-            question: "Can a CO be revoked or suspended?",
-            quickAnswer: "Yes, if it was issued in error based on incorrect, inaccurate, or incomplete information and the problem is not corrected.",
-            plainEnglish: "The Town can unwind a certificate if the foundation for issuing it turns out to be wrong.",
-            involves: "Building Inspector",
-            codeExcerpt: "If the Building Inspector determines that a certificate of occupancy or temporary certificate was issued in error because of incorrect, inaccurate or incomplete information, and deficiencies are not corrected, the certificate may be revoked or suspended.",
-            codeReference: "Town Code § 59-9(F)",
-            tags: ["CO revoked", "temporary certificate", "incorrect information"],
-            related: ["What is a certificate of occupancy?"]
-          },
-          {
-            id: "stop-work",
+            id: "stop-work-order",
             question: "Can the Town stop work mid-project?",
             quickAnswer: "Yes.",
-            plainEnglish: "Work must remain accessible and exposed until inspected and approved. If there is a problem, the Town has stop-work authority.",
+            plainEnglish: "Work must remain accessible and exposed until inspected and approved. The Town also has stop-work authority.",
             involves: "Building Inspector; Assistant Inspector",
             codeExcerpt: "Work for which a building permit has been issued must remain accessible and exposed until inspected and approved. Chapter 59 also includes stop-work order authority.",
             codeReference: "Town Code §§ 59-10, 59-11",
-            tags: ["stop work order", "inspection", "open walls", "exposed work"],
+            tags: ["stop work order", "inspection", "open walls", "contractor"],
             related: ["Do I need a building permit for more than routine work?"]
           }
         ]
       },
+
+      /* 4. Fences, Signs & Property Lines */
       {
-        id: "zoning-frontage",
-        title: "Zoning, Frontage & Property Access",
-        description: "Road frontage, access strips, wetlands and lot area.",
+        id: "fences-signs",
+        title: "Fences, Signs & Property Lines",
+        description: "Fence height, permits, inspections, political signs, temporary signs, and property-line basics.",
         questions: [
           {
-            id: "frontage-permit",
-            question: "Can lack of frontage stop me from getting a permit?",
+            id: "fence-permit-when",
+            question: "Do I need a permit for a fence?",
+            quickAnswer: "Sometimes. In a residential district, a fence 20 feet or more from the front lot line can generally be up to six feet high. A fence less than 20 feet from the front lot line can generally be up to four feet high, but requires a permit.",
+            plainEnglish: "The key issue is not just the fence height. It is where the fence sits relative to the front lot line.",
+            involves: "Building Inspector",
+            codeExcerpt: "A residential fence or gate may be erected within lot lines if located 20 feet or more from the front lot line and not over six feet high, or less than 20 feet from the front lot line and not over four feet high with a permit from the Building Inspector.",
+            codeReference: "Town Code § 125-15",
+            tags: ["fence", "fence permit", "front yard fence", "backyard fence", "privacy fence", "gate"],
+            related: ["What do I need for a fence permit?", "Do I need a final inspection after installing a fence?"]
+          },
+          {
+            id: "fence-permit-requirements",
+            question: "What do I need for a fence permit?",
+            quickAnswer: "A Town form, a plan or sketch showing location and height, the material, and the required fee.",
+            plainEnglish: "Bedford wants enough detail to know where the fence will go, how tall it will be, and what it will be made of.",
+            involves: "Building Inspector",
+            codeExcerpt: "A fence or gate application must include a plan or sketch clearly showing location and height and state the material of construction. The Building Inspector may require an as-built survey.",
+            codeReference: "Town Code § 125-15",
+            tags: ["fence sketch", "fence application", "as-built survey", "fence material"],
+            related: ["Do I need a permit for a fence?"]
+          },
+          {
+            id: "fence-inspection",
+            question: "Do I need a final inspection after installing a fence?",
             quickAnswer: "Yes.",
-            plainEnglish: "If your lot does not have proper frontage and access, Bedford can refuse to issue a permit for a land use or structure.",
+            plainEnglish: "The fence permit process does not necessarily end when the fence is installed. The Building Department must inspect it.",
+            involves: "Building Department",
+            codeExcerpt: "A final inspection must be conducted by the Building Department after completion of fence or gate installation to check compliance.",
+            codeReference: "Town Code § 125-15",
+            tags: ["fence inspection", "final inspection", "completed fence"],
+            related: ["Do I need a permit for a fence?"]
+          },
+          {
+            id: "signs-permit",
+            question: "Do signs need permits?",
+            quickAnswer: "Many signs do. The code generally requires a sign permit before a sign is erected, installed, or changed, unless an exception applies.",
+            plainEnglish: "Don't assume a sign is exempt just because it is small or temporary. The code has separate rules and exceptions.",
+            involves: "Building Inspector; Planning Board in some cases",
+            codeExcerpt: "No sign shall be erected or installed upon or within any structure or upon any land, nor shall any existing sign be changed, until a sign permit has been obtained from the Building Inspector, unless an exception applies.",
+            codeReference: "Town Code § 125-117",
+            tags: ["sign permit", "lawn sign", "yard sign", "business sign", "temporary sign"],
+            related: ["What are the rules for temporary or political signs?"]
+          },
+          {
+            id: "temporary-political-signs",
+            question: "What are the rules for temporary or political signs?",
+            quickAnswer: "Temporary signs are generally limited to 30 consecutive days before an event. Political signs related to an election are permitted for a maximum of 30 consecutive days before Election Day, not including early voting dates, and must be removed within three days after the event.",
+            plainEnglish: "Temporary signs are allowed, but they are time-limited and cannot create traffic hazards or be attached to trees, fences, utility poles, bridges, or traffic signs.",
+            involves: "Code Enforcement Officer",
+            codeExcerpt: "Temporary signs are limited to a maximum of 30 consecutive days before the event date unless otherwise specified. Political signs are permitted for a maximum of 30 consecutive days prior to the election date, not including early voting dates. Temporary signs must be removed within three days after the event.",
+            codeReference: "Town Code § 125-119",
+            tags: ["political sign", "campaign sign", "temporary sign", "lawn sign", "yard sign", "right of way"],
+            related: ["Do signs need permits?"]
+          }
+        ]
+      },
+
+      /* 5. Garbage, Recycling & Yard Waste */
+      {
+        id: "garbage-recycling",
+        title: "Garbage, Recycling & Yard Waste",
+        description: "Trash pickup, recycling, leaves, yard waste, and curb timing.",
+        questions: [
+          {
+            id: "trash-pickup-hours",
+            question: "What time can trash be collected in residential areas?",
+            quickAnswer: "Monday through Saturday, 7:00 a.m. to 7:00 p.m.",
+            plainEnglish: "This is one of the most useful quality-of-life rules in the code.",
+            involves: "Private collector; Town",
+            codeExcerpt: "Refuse pickup in residential-zoned areas is permitted only Monday through Saturday between 7:00 a.m. and 7:00 p.m.",
+            codeReference: "Town Code § 67-5",
+            tags: ["trash hours", "garbage truck", "early pickup", "7am", "7pm"],
+            related: ["Can trash be picked up Sundays or federal holidays?"]
+          },
+          {
+            id: "trash-sunday-holiday",
+            question: "Can trash be picked up Sundays or federal holidays?",
+            quickAnswer: "No.",
+            plainEnglish: "Regular refuse pickup is not allowed on Sundays or federal holidays.",
+            involves: "Private collector",
+            codeExcerpt: "No pickup of refuse is permitted on Sundays or any federal holiday.",
+            codeReference: "Town Code § 67-5",
+            tags: ["Sunday trash", "holiday pickup", "garbage collection"],
+            related: ["What time can trash be collected in residential areas?"]
+          },
+          {
+            id: "recycling-curb-timing",
+            question: "When can recycling go out?",
+            quickAnswer: "Recyclables can go out the day before scheduled pickup, but not sooner.",
+            plainEnglish: "The code gives residents a clear timing rule.",
+            involves: "Resident; Private collector",
+            codeExcerpt: "Recyclables may be placed at curbside for pickup on the day before a scheduled collection, but not sooner.",
+            codeReference: "Town Code § 67-5",
+            tags: ["recycling", "curb", "night before", "pickup day"],
+            related: ["Do recyclables have to be separated from trash?"]
+          },
+          {
+            id: "recyclables-separation",
+            question: "Do recyclables have to be separated from trash?",
+            quickAnswer: "Yes.",
+            plainEnglish: "If recyclables are mixed with household garbage, the collector may not be responsible for picking it up until the recyclables are removed.",
+            involves: "Resident; Private collector; Building Inspector",
+            codeExcerpt: "Paper/fiber recyclables, yard waste and mixed recyclables shall not be intermingled with household refuse.",
+            codeReference: "Town Code §§ 67-5, 67-12",
+            tags: ["recycling", "trash separation", "refused pickup", "garbage"],
+            related: ["When can recycling go out?"]
+          },
+          {
+            id: "leaf-yard-waste",
+            question: "What are the leaf and yard waste rules?",
+            quickAnswer: "Yard waste picked up by the Highway Department must be in tied bundles or compostable bags. Loose leaf pickup in designated hamlet areas runs October 1 through November 15. At other times, leaves must be bagged.",
+            plainEnglish: "This is one of the most useful seasonal rules for residents.",
+            involves: "Highway Department",
+            codeExcerpt: "Yard waste must be placed curbside on scheduled collection days in tied bundles or compostable bags. The Highway Department picks up loose leaves in designated hamlet areas between October 1 and November 15; at all other times, leaves must be bagged.",
+            codeReference: "Town Code § 67-5",
+            tags: ["leaves", "leaf pickup", "yard waste", "compostable bags", "bundles"],
+            related: ["Do recyclables have to be separated from trash?"]
+          }
+        ]
+      },
+
+      /* 6. Noise & Leaf Blowers */
+      {
+        id: "noise-leaf-blowers",
+        title: "Noise & Leaf Blowers",
+        description: "Quiet hours, construction noise, domestic equipment, and leaf blower rules.",
+        questions: [
+          {
+            id: "gas-leaf-blower-season",
+            question: "When are gas-powered leaf blowers allowed?",
+            quickAnswer: "Internal combustion leaf blowers are allowed during Bedford's clean-up season, which runs October 26 through December 7, subject to specific hours.",
+            plainEnglish: "This is the six-week-ish window people often talk about. Outside that clean-up season, gas-powered leaf blowers are generally restricted except for listed exemptions.",
+            involves: "Police Department; Code Enforcement Officer",
+            codeExcerpt: "Clean-up season is the period between October 26 and December 7. Internal combustion leaf blowers may be used during clean-up season during listed hours.",
+            codeReference: "Town Code § 83-3 and § 83-5",
+            tags: ["leaf blower", "gas blower", "clean-up season", "fall cleanup", "leaves"],
+            related: ["What hours can gas-powered leaf blowers be used during clean-up season?"]
+          },
+          {
+            id: "gas-leaf-blower-hours",
+            question: "What hours can gas-powered leaf blowers be used during clean-up season?",
+            quickAnswer: "Nonholiday weekdays 8:00 a.m. to 5:00 p.m.; Saturdays 10:00 a.m. to 4:00 p.m.; Sundays 12:00 p.m. to 4:00 p.m.",
+            plainEnglish: "The rule is not just about dates. It also limits days and hours.",
+            involves: "Police Department; Code Enforcement Officer",
+            codeExcerpt: "Internal combustion leaf blowers are permitted during clean-up season on nonholiday weekdays from 8:00 a.m. to 5:00 p.m., Saturdays from 10:00 a.m. to 4:00 p.m., and Sundays from 12:00 p.m. to 4:00 p.m.",
+            codeReference: "Town Code § 83-5",
+            tags: ["leaf blower hours", "Sunday leaf blower", "Saturday leaf blower", "gas blower"],
+            related: ["When are gas-powered leaf blowers allowed?"]
+          },
+          {
+            id: "construction-noise-hours",
+            question: "What are the construction or equipment noise hours?",
+            quickAnswer: "Many construction, heavy equipment, and domestic equipment noises are limited to daytime hours, generally 8:00 a.m. to 6:00 p.m., excluding holidays.",
+            plainEnglish: "If equipment is loud enough to bother neighbors, timing matters.",
+            involves: "Police Department; Code Enforcement Officer",
+            codeExcerpt: "The Noise Control Law regulates construction, heavy equipment, domestic tools and equipment, and other noise sources, with time limits and exemptions.",
+            codeReference: "Town Code Chapter 83",
+            tags: ["noise ordinance", "construction noise", "equipment noise", "quiet hours", "tools"],
+            related: ["Are emergency sounds exempt?"]
+          },
+          {
+            id: "emergency-noise-exemption",
+            question: "Are emergency sounds exempt?",
+            quickAnswer: "Yes. The code has exemptions for emergency work and certain public-safety sounds.",
+            plainEnglish: "The rules are aimed at ordinary noise disturbances, not emergency repair or safety response.",
+            involves: "Police Department; Code Enforcement Officer; Town Supervisor",
+            codeExcerpt: "Emergency work includes work necessary to deliver essential services, repair utilities, remove fallen trees on public rights-of-way, abate life-threatening conditions, or clean up after major storms or emergencies.",
+            codeReference: "Town Code § 83-3 and § 83-7",
+            tags: ["emergency work", "storm cleanup", "chainsaw", "generator", "noise exemption"],
+            related: ["What are the construction or equipment noise hours?"]
+          }
+        ]
+      },
+
+      /* 7. Parking, Vehicles & Snow Rules */
+      {
+        id: "parking-vehicles-snow",
+        title: "Parking, Vehicles & Snow Rules",
+        description: "Winter parking, commercial vehicles, dead vehicles, boats, RVs, and snow removal basics.",
+        questions: [
+          {
+            id: "snow-street-parking",
+            question: "Can I park on the street during a snowstorm?",
+            quickAnswer: "Not once snow accumulates to two or more inches. Vehicles may not remain on streets or public highways until the snow has stopped and the road is cleared.",
+            plainEnglish: "This rule exists so roads can be plowed. Vehicles that violate it can be towed.",
+            involves: "Police Department; Highway Department",
+            codeExcerpt: "Once snow accumulates to two or more inches, no vehicle may remain on any street or public highway until the snow has ended and the street or highway has been cleared of snow.",
+            codeReference: "Town Code parking/snow provisions",
+            tags: ["snow parking", "winter parking", "street parking", "plow", "towing"],
+            related: ["Do I have to clear snow from the sidewalk in front of my property?"]
+          },
+          {
+            id: "snow-sidewalk-clearing",
+            question: "Do I have to clear snow from the sidewalk in front of my property?",
+            quickAnswer: "In specified business, office, and light industrial districts, owners or occupants abutting paved sidewalks must clear snow and ice or sand frozen ice within 12 hours.",
+            plainEnglish: "This is not necessarily every sidewalk in town, so the district/location matters.",
+            involves: "Property owner; occupant; Town",
+            codeExcerpt: "Owners or occupants of premises abutting paved sidewalks in specified districts must keep sidewalks free from snow and ice, or sand frozen ice, within 12 hours after snow or ice falls or forms.",
+            codeReference: "Town Code sidewalk/snow provisions",
+            tags: ["sidewalk snow", "shovel sidewalk", "ice", "sand", "12 hours"],
+            related: ["Can I push snow into the street?"]
+          },
+          {
+            id: "snow-pushing-street",
+            question: "Can I push snow into the street?",
+            quickAnswer: "Generally no, except limited gutter placement if there is no place on the premises.",
+            plainEnglish: "Snow from private property should not become a public road problem.",
+            involves: "Property owner; Highway Department",
+            codeExcerpt: "The code prohibits depositing snow or ice into Town streets except into the gutter where no place exists on the premises.",
+            codeReference: "Town Code sidewalk/snow provisions",
+            tags: ["snow in street", "plow driveway", "snow removal"],
+            related: ["Can I park on the street during a snowstorm?"]
+          },
+          {
+            id: "commercial-vehicles-home",
+            question: "Can I park commercial vehicles or equipment at home?",
+            quickAnswer: "Bedford regulates commercial vehicles, vehicle accessories, and certain equipment on residential properties.",
+            plainEnglish: "Work vehicles, equipment, trailers, boats, RVs, unregistered vehicles, and similar items can raise zoning or property-use issues. Confirm details before assuming they are allowed.",
+            involves: "Building Inspector; Code Enforcement Officer",
+            codeExcerpt: "The code regulates parking of commercial vehicles and accessories on private property in residential zones, including limits in one-family districts and rules for unimproved lots.",
+            codeReference: "Town Code Chapter 125 vehicle parking provisions",
+            tags: ["commercial vehicle", "work truck", "trailer", "RV", "boat", "equipment", "unregistered vehicle", "driveway"],
+            related: ["Can I park on the street during a snowstorm?"]
+          }
+        ]
+      },
+
+      /* 8. Pools, Sheds & Accessory Structures */
+      {
+        id: "pools-sheds",
+        title: "Pools, Sheds & Accessory Structures",
+        description: "Sheds, pool houses, outdoor showers, generators, tanks, and similar property additions.",
+        questions: [
+          {
+            id: "accessory-structure-what-counts",
+            question: "What counts as an accessory structure?",
+            quickAnswer: "The code lists many common property features, including swimming pools, garages, studios, greenhouses, treehouses/playhouses, sheds, pool houses/cabanas, barns, solar collectors, storage tanks, generators, AC condensers, pool pumps, filters, and heaters.",
+            plainEnglish: "Many things homeowners think of as 'just yard stuff' are actually treated as accessory buildings or structures.",
             involves: "Building Inspector; Planning Board",
-            codeExcerpt: "No permit shall be issued for any land use or structure unless the lot has frontage suitably improved to Town road standards or a bond posted, and unless the actual access to the use or structure will be over that frontage.",
-            codeReference: "Town Code § 125-13",
-            tags: ["frontage", "legal access", "landlocked", "permit denied"],
-            related: ["What is the minimum frontage for a new lot?"]
+            codeExcerpt: "Accessory buildings and structures include tennis courts, swimming pools, garages, studios, greenhouses, treehouses/playhouses, garden houses, sheds/tool houses, pool houses/cabanas, barns, solar collectors, aboveground storage tanks, generators, air-conditioning condensers, pool pumps, pool filters, and pool heaters.",
+            codeReference: "Town Code § 125-27",
+            tags: ["shed", "pool", "garage", "generator", "AC condenser", "pool house", "cabana", "treehouse"],
+            related: ["Do small sheds have setback rules?"]
           },
           {
-            id: "frontage-minimum",
-            question: "What is the minimum frontage for a new lot?",
-            quickAnswer: "25 feet.",
-            plainEnglish: "That is the baseline number the code states for creating new lots.",
-            involves: "Planning Board",
-            codeExcerpt: "A minimum frontage of 25 feet shall be required.",
-            codeReference: "Town Code § 125-13(B)(1)",
-            tags: ["minimum frontage", "new lot"],
-            related: ["How wide does an access strip have to be?"]
+            id: "small-shed-setbacks",
+            question: "Do small sheds have setback rules?",
+            quickAnswer: "Yes. Accessory structures not greater than 100 square feet and not more than 10 feet high have specific yard-location rules and still must comply with front yard setbacks.",
+            plainEnglish: "'Small' does not mean 'put it anywhere.'",
+            involves: "Building Inspector",
+            codeExcerpt: "Accessory buildings and structures not greater than 100 square feet and not more than 10 feet high must be located not closer than one-third of the side and rear yard dimensions and must comply with front yard setbacks.",
+            codeReference: "Town Code § 125-27",
+            tags: ["shed", "small shed", "setback", "yard", "accessory structure"],
+            related: ["What if an accessory structure is larger than 100 square feet or taller than 10 feet?"]
           },
           {
-            id: "access-strip-width",
-            question: "How wide does an access strip have to be?",
-            quickAnswer: "At least 25 feet.",
-            plainEnglish: "Access strips are not just informal driveways. The code sets a minimum width.",
-            involves: "Planning Board",
-            codeExcerpt: "Access strips shall be not less than 25 feet in width, measured along a line perpendicular to the center line of the access strip.",
-            codeReference: "Town Code § 125-13(B)(2)",
-            tags: ["access strip", "flag lot", "driveway strip"],
-            related: ["What is the minimum frontage for a new lot?"]
+            id: "large-shed-requirements",
+            question: "What if an accessory structure is larger than 100 square feet or taller than 10 feet?",
+            quickAnswer: "Larger or taller accessory structures must meet fuller front, rear, and side yard requirements and are generally limited to 20 feet in height.",
+            plainEnglish: "The bigger the structure, the more it starts to look like a real zoning issue.",
+            involves: "Building Inspector; Planning Board",
+            codeExcerpt: "Accessory buildings and structures greater than 100 square feet in ground floor area or greater than 10 feet high must comply with front, rear, and side yard requirements and are limited to 20 feet in height.",
+            codeReference: "Town Code § 125-27",
+            tags: ["large shed", "garage", "accessory building", "height", "setback"],
+            related: ["Do small sheds have setback rules?"]
           },
           {
-            id: "wetland-lot-area",
-            question: "Can wetlands count toward minimum lot area?",
-            quickAnswer: "Only partly.",
-            plainEnglish: "In most districts, no more than 25% of the required minimum lot area can be satisfied by land under water or mapped as wetland. In R-4A, it can be 50%.",
-            involves: "Planning Board; Wetlands Control Commission",
-            codeExcerpt: "No more than 25% of the minimum lot area may be satisfied by land under water or mapped as wetland, except that in an R-4A District no more than 50% may be so satisfied.",
-            codeReference: "Town Code § 125-14",
-            tags: ["wetland lot area", "lot size", "mapped wetland"],
-            related: ["Can lack of frontage stop me from getting a permit?"]
+            id: "pool-house-shower",
+            question: "Can a pool house or cabana have an outdoor shower?",
+            quickAnswer: "Yes, but installing a half bath, bathtub, or indoor/outdoor shower in a pool house or cabana requires a building permit.",
+            plainEnglish: "The code allows these features, but it does not treat plumbing additions casually.",
+            involves: "Building Inspector",
+            codeExcerpt: "Pool houses/cabanas may have sinks, a half bath, washer and dryer, bathtub, indoor and/or outdoor shower, and kitchen facilities; however, a building permit is required for the installation of a half bath, bathtub, or indoor/outdoor shower.",
+            codeReference: "Town Code § 125-27(H)",
+            tags: ["outdoor shower", "pool house", "cabana", "half bath", "plumbing", "building permit"],
+            related: ["What counts as an accessory structure?"]
           }
         ]
       },
+
+      /* 9. Property Taxes & Exemptions */
       {
-        id: "wetlands-slopes-historic",
-        title: "Wetlands, Steep Slopes & Historic District Triggers",
-        description: "Why some simple projects stop being simple.",
+        id: "property-taxes",
+        title: "Property Taxes & Exemptions",
+        description: "Code-backed property tax exemptions residents may want to know exist.",
         questions: [
           {
-            id: "location-triggers",
-            question: "Why does location matter even for a small project?",
-            quickAnswer: "Because some routine approvals are treated differently if your property is in a wetland, flood hazard area, or the Bedford Historic District.",
-            plainEnglish: "This is the kind of hidden trigger that catches people off guard. A project can be simple in one location and more complicated somewhere else.",
-            involves: "Building Department; Planning Board; Wetlands Control Commission",
-            codeExcerpt: "The code treats the granting of permits and certificates for one-family residential buildings or accessory buildings as additional Type II actions only when they are not located in a town or state wetland, flood hazard area, or the Bedford Historic District.",
-            codeReference: "Town Code § 53-3(A)",
-            tags: ["simple project", "wetland", "flood hazard", "historic district", "environmental review"],
-            related: ["Could steep slopes affect my project?", "Can tree removal rules change if I'm in a historic district, wetland, or steep slope area?"]
+            id: "tax-exemptions-exist",
+            question: "Does Bedford's code include property tax exemptions?",
+            quickAnswer: "Yes. The Town Code includes several local exemption provisions.",
+            plainEnglish: "This page should not try to calculate your taxes or replace the Assessor, but it can point residents to exemptions that exist in the code.",
+            involves: "Assessor",
+            codeExcerpt: "The Town Code includes taxation provisions addressing exemptions including STAR, persons with disabilities and limited income, Cold War veterans, and volunteer firefighters/ambulance workers.",
+            codeReference: "Town Code Chapter 110",
+            tags: ["property tax", "exemption", "STAR", "senior", "disability", "veteran", "firefighter", "ambulance"],
+            related: ["Are there exemptions for residents with disabilities and limited income?", "Are there exemptions for volunteer firefighters or ambulance workers?"]
           },
           {
-            id: "steep-slopes",
-            question: "Could steep slopes affect my project?",
-            quickAnswer: "Yes.",
-            plainEnglish: "Steep slopes are separately regulated, and disturbance on them is not something Bedford treats casually.",
-            involves: "Planning Board",
-            codeExcerpt: "Steep slopes are defined as ground areas with a minimum slope of 25% or greater, with minimum area and horizontal distance thresholds. The chapter regulates disturbance on steep slopes and ridgelines.",
-            codeReference: "Town Code Chapter 102",
-            tags: ["steep slope", "25% slope", "disturbance", "grading", "driveway"],
-            related: ["Why does location matter even for a small project?"]
+            id: "disability-exemption",
+            question: "Are there exemptions for residents with disabilities and limited income?",
+            quickAnswer: "Yes. The code includes an exemption for persons with disabilities and limited incomes.",
+            plainEnglish: "Eligibility details matter, so this should be confirmed with the Assessor before relying on it.",
+            involves: "Assessor",
+            codeExcerpt: "Chapter 110 includes tax exemption provisions for persons with disabilities and limited incomes.",
+            codeReference: "Town Code Chapter 110",
+            tags: ["disability exemption", "limited income", "property tax"],
+            related: ["Does Bedford's code include property tax exemptions?"]
           },
           {
-            id: "overlay-tree-rules",
-            question: "Can tree removal rules change if I'm in a historic district, wetland, or steep slope area?",
-            quickAnswer: "Yes.",
-            plainEnglish: "Those overlay conditions can independently trigger tree removal permitting.",
+            id: "volunteer-firefighter-exemption",
+            question: "Are there exemptions for volunteer firefighters or ambulance workers?",
+            quickAnswer: "Yes. The code includes an exemption related to enrolled volunteer firefighters and ambulance workers.",
+            plainEnglish: "This is useful for residents who serve locally and may not know the exemption exists.",
+            involves: "Assessor",
+            codeExcerpt: "Chapter 110 includes exemption provisions for enrolled members of incorporated volunteer fire companies, fire departments, or incorporated voluntary ambulance services.",
+            codeReference: "Town Code Chapter 110",
+            tags: ["firefighter exemption", "ambulance worker", "volunteer", "property tax"],
+            related: ["Does Bedford's code include property tax exemptions?"]
+          },
+          {
+            id: "assessment-grievance",
+            question: "Does this guide explain assessment math or how to grieve an assessment?",
+            quickAnswer: "Not yet.",
+            plainEnglish: "The Town Code excerpts we are using support exemption topics better than a full assessment-grievance explainer. Assessment math and grievance procedures should be added only after sourcing the current Assessor/County process.",
+            involves: "Assessor",
+            codeExcerpt: "This topic needs a current non-code source before publication.",
+            codeReference: "Needs current Assessor/County source",
+            tags: ["assessment", "grievance", "assessed value", "appeal", "contest assessment"],
+            related: ["Does Bedford's code include property tax exemptions?"]
+          }
+        ]
+      },
+
+      /* 10. Trees, Wetlands & Drainage */
+      {
+        id: "trees-wetlands",
+        title: "Trees, Wetlands & Drainage",
+        description: "Tree removal, wetlands, steep slopes, stormwater, drainage, and hidden project triggers.",
+        questions: [
+          {
+            id: "tree-permit-required",
+            question: "Do I need a permit to remove a tree?",
+            quickAnswer: "Often, yes. Bedford's tree rules are broader than many residents expect.",
+            plainEnglish: "A permit may be required not just for very large trees, but also for trees in certain locations or situations, including scenic roads, historic districts, wetlands, steep slopes, or if you remove more than a certain number in a year.",
             involves: "Enforcement Officer; Planning Board; Wetlands Control Commission",
-            codeExcerpt: "Tree removal permits are required for trees in a Town historic district, in wetlands unless specifically permitted by the Wetlands Control Commission, and on steep slopes unless specifically permitted by the Planning Board.",
+            codeExcerpt: "A tree removal permit is required before removing several categories of trees, including any tree 18 inches or more dbh, protected native plant trees, landmark/special trees, trees over 8 inches dbh within 150 feet of a designated scenic road, trees in historic districts, wetlands, steep slopes, and significant vegetation areas.",
             codeReference: "Town Code § 112-4",
-            tags: ["historic district tree", "wetland tree", "steep slope tree"],
+            tags: ["tree permit", "cut tree", "remove tree", "scenic road", "wetland tree", "steep slope tree"],
+            related: ["Are dead or dangerous trees exempt?", "How many trees can I remove in a year before it triggers a permit?"]
+          },
+          {
+            id: "dead-tree-exempt",
+            question: "Are dead or dangerous trees exempt?",
+            quickAnswer: "Yes, in several situations.",
+            plainEnglish: "Not every tree removal needs a permit. Dead trees and certain immediate safety hazards are explicitly exempt.",
+            involves: "Enforcement Officer",
+            codeExcerpt: "No permit is required for dead trees, trees posing danger to a structure or to vehicle or pedestrian traffic, trees removed for forest-fire control, or certain utility right-of-way work.",
+            codeReference: "Town Code § 112-4B",
+            tags: ["dead tree", "dangerous tree", "hazardous tree", "emergency tree removal"],
             related: ["Do I need a permit to remove a tree?"]
-          }
-        ]
-      },
-      {
-        id: "trash-haulers",
-        title: "Trash Haulers & Collector Rules",
-        description: "Private hauler permits, confidential fee schedules, and repeat recycling violations.",
-        questions: [
+          },
           {
-            id: "collector-permit",
-            question: "Do private garbage or recycling collectors need a Town permit?",
+            id: "tree-count-threshold",
+            question: "How many trees can I remove in a year before it triggers a permit?",
+            quickAnswer: "It depends on lot size.",
+            plainEnglish: "Even if no single tree is huge, Bedford may require a permit if the total number removed in a calendar year exceeds the threshold for your parcel size.",
+            involves: "Enforcement Officer",
+            codeExcerpt: "A permit is required for removing more than 10 trees on properties of four acres or less; more than 20 on properties over four and up to six acres; more than 30 on properties over six and up to eight acres; more than 40 on properties over eight and up to 10 acres; and more than 50 on properties over 10 acres.",
+            codeReference: "Town Code § 112-4A(7)",
+            tags: ["tree count", "clearing trees", "tree threshold", "lot size"],
+            related: ["Do I need a permit to remove a tree?"]
+          },
+          {
+            id: "wetlands-slopes-trigger",
+            question: "Could wetlands or steep slopes affect my project?",
             quickAnswer: "Yes.",
-            plainEnglish: "A hauler cannot simply operate in Bedford without Town collector permitting unless it is collecting from its own residence or business property.",
-            involves: "Town Clerk; Town Board; Private collector",
-            codeExcerpt: "It is unlawful to engage in the business of refuse or recyclables collection services within the Town without first obtaining or renewing a Town collector permit from the Town Clerk.",
-            codeReference: "Town Code § 67-6",
-            tags: ["garbage hauler permit", "collector permit", "approved vendor"],
-            related: ["How long is a collector permit valid?"]
+            plainEnglish: "A project that seems simple can become more complicated if it touches wetlands, steep slopes, a flood hazard area, or the Bedford Historic District.",
+            involves: "Building Department; Planning Board; Wetlands Control Commission",
+            codeExcerpt: "The code treats certain one-family residential and accessory-building permits and certificates as additional Type II actions only when they are not located in a town or state wetland, flood hazard area, or the Bedford Historic District.",
+            codeReference: "Town Code § 53-3(A)",
+            tags: ["wetlands", "steep slopes", "historic district", "flood hazard", "project review"],
+            related: ["Do I need a permit to remove a tree?"]
           },
           {
-            id: "collector-permit-duration",
-            question: "How long is a collector permit valid?",
-            quickAnswer: "One year.",
-            plainEnglish: "Collector permits are not indefinite.",
-            involves: "Town Clerk; Private collector",
-            codeExcerpt: "Collector permits are valid for a term of one year from the date of issuance.",
-            codeReference: "Town Code § 67-6(D)",
-            tags: ["one year", "hauler registration"],
-            related: ["Do private garbage or recycling collectors need a Town permit?"]
-          },
-          {
-            id: "collector-pricing",
-            question: "Are collector prices public?",
-            quickAnswer: "Not necessarily. The code says the fee schedule submitted with a collector's permit application is treated by the Town as confidential business information.",
-            plainEnglish: "This is one of the more surprising and genuinely useful facts in the code.",
-            involves: "Town Clerk; Town Supervisor; Private collector",
-            codeExcerpt: "The fee schedule charged by a collector shall be set forth in its application for a Town permit. That fee information shall be considered confidential business information by the Town and will not be released to the public unless required by court order.",
-            codeReference: "Town Code § 67-11",
-            tags: ["pricing", "garbage rates", "confidential", "public records"],
-            related: ["Do private garbage or recycling collectors need a Town permit?"]
-          },
-          {
-            id: "collector-service-stop",
-            question: "Can collectors stop service if a customer keeps mixing recyclables into trash?",
-            quickAnswer: "Yes, the code contemplates that.",
-            plainEnglish: "Repeatedly mixing recyclables into trash can create consequences beyond a missed pickup.",
-            involves: "Private collector; Town Clerk",
-            codeExcerpt: "Collectors must provide written notice to customers who repeatedly violate separation rules and explain that collection services shall be discontinued without refund or proration if required separation is not maintained.",
-            codeReference: "Town Code § 67-12(C)",
-            tags: ["service discontinued", "repeat violator", "recyclables mixed"],
-            related: ["Do I have to separate recyclables from regular trash?"]
+            id: "drainage-driveway",
+            question: "Can driveway or property drainage create an issue?",
+            quickAnswer: "Yes. Stormwater and drainage are regulated, and driveway runoff must not interfere with the street drainage system.",
+            plainEnglish: "Do not assume water can just be pushed toward the road or a neighbor. Drainage is one of those issues that often becomes a bigger problem later.",
+            involves: "Building Department; Highway Department; Planning Board",
+            codeExcerpt: "Stormwater management rules are intended to control runoff, erosion, flooding, sedimentation, and related impacts. Driveway runoff must be handled so it does not impede the street drainage system.",
+            codeReference: "Town Code Chapters 103 and driveway drainage provisions",
+            tags: ["stormwater", "drainage", "runoff", "driveway", "flooding", "erosion"],
+            related: ["Could wetlands or steep slopes affect my project?"]
           }
         ]
       }
-    */ /* end of commented-out legacy block */
+    ];
 
     /* ── State ────────────────────────────────────────────────────────────── */
     var state = { activeCatId: null, activeQId: null };
