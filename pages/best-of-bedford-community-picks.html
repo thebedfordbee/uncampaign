@@ -837,34 +837,6 @@ Output format:
     /* ── Wire submit button ───────────────────────────────── */
     if (submitBtn) submitBtn.addEventListener('click', doSubmit);
 
-    /* ── Launch cover start handler ───────────────────────── */
-    function initCommunityPicksStart() {
-      var launch = document.getElementById('cp-launch');
-      var start  = document.getElementById('cp-start');
-      var flow   = document.getElementById('cp-flow');
-
-      if (!launch || !start || !flow) {
-        console.warn('Community Picks: start controls missing', {
-          launch: !!launch, start: !!start, flow: !!flow
-        });
-        return;
-      }
-
-      start.addEventListener('click', function () {
-        launch.style.display = 'none';
-        flow.style.display   = 'block';
-        flow.hidden          = false;
-
-        var title = document.getElementById('cp-flow-cat-title');
-        if (title) {
-          title.setAttribute('tabindex', '-1');
-          title.focus({ preventScroll: true });
-        }
-      });
-    }
-
-    initCommunityPicksStart();
-
     /* ── Init ─────────────────────────────────────────────── */
     (function init() {
       var startIdx = firstUnsubmittedIndex();
@@ -880,6 +852,50 @@ Output format:
     }());
 
   }());
+  </script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var launch = document.getElementById('cp-launch');
+    var start  = document.getElementById('cp-start');
+    var flow   = document.getElementById('cp-flow');
+
+    if (!launch || !start || !flow) {
+      console.warn('Community Picks launch wiring missing', {
+        launch: !!launch,
+        start:  !!start,
+        flow:   !!flow
+      });
+      return;
+    }
+
+    flow.style.display = 'none';
+    flow.hidden = true;
+
+    start.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      launch.style.display = 'none';
+      launch.hidden = true;
+
+      flow.hidden = false;
+      flow.style.display = 'block';
+
+      if (typeof renderCategory === 'function') {
+        renderCategory();
+      }
+
+      var focusTarget =
+        document.getElementById('cp-flow-cat-title') ||
+        document.getElementById('cp-flow-card') ||
+        flow;
+
+      if (focusTarget && typeof focusTarget.focus === 'function') {
+        focusTarget.setAttribute('tabindex', '-1');
+        focusTarget.focus({ preventScroll: false });
+      }
+    });
+  });
   </script>
 
 </body>
