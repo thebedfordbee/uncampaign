@@ -200,7 +200,7 @@
 
 // =============================================
 // BEGIN SUBSCRIBE MODAL
-// Intercepts all a[href="https://donforbedford.substack.com/"] clicks
+// Intercepts all [data-subscribe-trigger] clicks via event delegation
 // and opens a custom email capture modal backed by the Apps Script endpoint.
 // To revert: remove this block and the matching CSS block in site.css.
 // =============================================
@@ -376,14 +376,13 @@
     });
   }
 
-  // Wire all subscribe CTAs by their shared Substack href
-  var ctaTriggers = document.querySelectorAll('a[href="https://donforbedford.substack.com/"]');
-  ctaTriggers.forEach(function (el) {
-    el.addEventListener('click', function (e) {
-      e.preventDefault();
-      resetModal();
-      openModal(el);
-    });
+  // Wire all subscribe CTAs via event delegation — catches any element with data-subscribe-trigger
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-subscribe-trigger]');
+    if (!trigger) return;
+    e.preventDefault();
+    resetModal();
+    openModal(trigger);
   });
 
   // Close: backdrop click
