@@ -6,7 +6,7 @@
 
   <!-- Primary meta -->
   <title>Best of Bedford: Code Red | Bedford Town Code Trivia | Don Scott for Bedford</title>
-  <meta name="description" content="Can you spot the real Bedford Town Code rule? Ten strange, specific, and completely real civic trivia questions from the 762-page code. Play the Code Red quiz.">
+  <meta name="description" content="Can you spot the real Bedford Town Code rule? Five strange, specific, and completely real civic trivia questions from the 762-page code. Play the Code Red quiz.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.donforbedford.com/best-of-bedford-code-red">
 
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/best-of-bedford-code-red">
   <meta property="og:title" content="Best of Bedford: Code Red">
-  <meta property="og:description" content="Can you spot the real Bedford Town Code rule? Ten strange, specific, and completely real civic trivia questions from the 762-page code.">
+  <meta property="og:description" content="Can you spot the real Bedford Town Code rule? Five strange, specific, and completely real civic trivia questions from the 762-page code.">
   <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -28,7 +28,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/best-of-bedford-code-red">
   <meta name="twitter:title" content="Best of Bedford: Code Red">
-  <meta name="twitter:description" content="Can you spot the real Bedford Town Code rule? Ten strange, specific, and real civic trivia questions from the 762-page Bedford code.">
+  <meta name="twitter:description" content="Can you spot the real Bedford Town Code rule? Five strange, specific, and real civic trivia questions from the 762-page Bedford code.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta name="twitter:image:alt" content="Best of Bedford: Code Red — Bedford Town Code trivia game.">
 
@@ -59,14 +59,14 @@
         "@id": "https://www.donforbedford.com/best-of-bedford-code-red#webpage",
         "url": "https://www.donforbedford.com/best-of-bedford-code-red",
         "name": "Best of Bedford: Code Red | Bedford Town Code Trivia",
-        "description": "Can you spot the real Bedford Town Code rule? Ten strange, specific, and completely real civic trivia questions from the 762-page code.",
+        "description": "Can you spot the real Bedford Town Code rule? Five strange, specific, and completely real civic trivia questions from the 762-page code.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
         "about": [
           { "@id": "https://www.donforbedford.com/#don-scott" },
           {
             "@type": "Thing",
             "name": "Bedford Town Code Trivia",
-            "description": "A civic trivia game built from the Bedford Town Code — ten unusual, specific, and real provisions buried in 762 pages of municipal law."
+            "description": "A civic trivia game built from the Bedford Town Code — five unusual, specific, and real provisions buried in 762 pages of municipal law."
           }
         ]
       },
@@ -116,22 +116,25 @@
   <link rel="stylesheet" href="../assets/css/site.css">
 
   <style>
-    /* ── Justified body copy ──────────────────────────────── */
+    /* ── Justified body copy (intro + section lead only) ─────── */
     .crtq-intro-body p,
-    .section-header__lead,
-    .ai-disclosure-body p {
+    .section-header__lead {
       text-align: justify;
       hyphens: auto;
     }
     @media (max-width: 380px) {
       .crtq-intro-body p,
-      .section-header__lead,
-      .ai-disclosure-body p {
+      .section-header__lead {
         text-align: left;
         hyphens: none;
       }
     }
     .crtq-intro-body p { max-width: none; color: var(--muted); margin-bottom: 1rem; }
+
+    /* ── What Is Code Red spacing — match section-header rhythm ─ */
+    .crtq-intro-body h2 { margin-top: 0.5rem; margin-bottom: 1rem; }
+
+    /* ── AI disclosure — left-aligned prose ───────────────────── */
     .ai-disclosure-body p {
       font-family: var(--sans);
       font-size: 0.9375rem;
@@ -139,13 +142,14 @@
       color: var(--charcoal);
       max-width: none;
       margin-bottom: 0.875rem;
+      text-align: left;
     }
     .ai-disclosure-body p:last-child { margin-bottom: 0; }
 
-    /* ── Quiz wrapper ─────────────────────────────────────── */
+    /* ── Quiz wrapper ─────────────────────────────────────────── */
     .crtq-wrap { max-width: 680px; margin-inline: auto; }
 
-    /* ── Intro card ───────────────────────────────────────── */
+    /* ── Intro card ───────────────────────────────────────────── */
     .crtq-intro-card {
       background: var(--white);
       border: 1.5px solid var(--border);
@@ -165,7 +169,7 @@
       hyphens: auto;
     }
 
-    /* ── Progress bar ─────────────────────────────────────── */
+    /* ── Progress bar ─────────────────────────────────────────── */
     .crtq-progress {
       display: flex;
       align-items: center;
@@ -204,7 +208,7 @@
       flex-shrink: 0;
     }
 
-    /* ── Question card ────────────────────────────────────── */
+    /* ── Question card ────────────────────────────────────────── */
     .crtq-card {
       background: var(--white);
       border: 1.5px solid var(--border);
@@ -231,7 +235,7 @@
       max-width: none;
     }
 
-    /* ── Options ──────────────────────────────────────────── */
+    /* ── Options ──────────────────────────────────────────────── */
     .crtq-options {
       display: flex;
       flex-direction: column;
@@ -283,7 +287,23 @@
 
     .crtq-option-text { flex: 1; }
 
-    /* ── Reveal panel ─────────────────────────────────────── */
+    /* ── Community guess percentage (right-aligned, post-submit) ─ */
+    .crtq-option-pct {
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-family: var(--sans);
+      color: var(--muted);
+      white-space: nowrap;
+      padding-left: 0.75rem;
+      align-self: center;
+      margin-left: auto;
+      letter-spacing: 0.02em;
+    }
+    .crtq-option.is-correct .crtq-option-pct { color: #2d7a4f; }
+    .crtq-option.is-wrong   .crtq-option-pct { color: #b53030; }
+
+    /* ── Reveal panel ─────────────────────────────────────────── */
     .crtq-reveal {
       margin-top: 1.25rem;
       padding: 1.125rem 1.25rem;
@@ -333,7 +353,7 @@
       max-width: none;
     }
 
-    /* ── Action buttons row ───────────────────────────────── */
+    /* ── Action buttons row ───────────────────────────────────── */
     .crtq-actions {
       display: flex;
       flex-wrap: wrap;
@@ -341,7 +361,7 @@
       margin-top: 1.25rem;
     }
 
-    /* ── Done / score panel ───────────────────────────────── */
+    /* ── Done panel (simplified — behind modal) ───────────────── */
     .crtq-score-card {
       background: var(--white);
       border: 1.5px solid var(--border);
@@ -366,7 +386,7 @@
       font-size: 5rem;
       color: var(--moss);
       line-height: 1;
-      display: block;
+      display: inline;
     }
     .crtq-score-denom {
       font-family: var(--serif);
@@ -387,24 +407,120 @@
       color: var(--charcoal);
       line-height: 1.6;
       max-width: 44ch;
-      margin: 0 auto 0;
-    }
-
-    /* ── Leaderboard submission form ──────────────────────── */
-    .crtq-submit-wrap {
-      max-width: 480px;
       margin: 0 auto;
     }
-    .crtq-submit-form {
-      background: var(--white);
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      padding: 1.75rem;
-      box-shadow: var(--shadow-sm);
+    .crtq-result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.25rem;
     }
-    .crtq-submit-form h3 { margin-bottom: 0.25rem; font-size: 1.125rem; }
-    .crtq-submit-form > p { color: var(--muted); font-size: 0.875rem; margin-bottom: 1.25rem; max-width: none; }
 
+    /* ── Post-game modal ──────────────────────────────────────── */
+    .crtq-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .crtq-modal[hidden] { display: none; }
+    .crtq-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(43,43,43,0.75);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+    .crtq-modal-box {
+      position: relative;
+      z-index: 1;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.32);
+      max-height: 90vh;
+      overflow-y: auto;
+      text-align: center;
+    }
+    .crtq-modal-box .crtq-form-group { text-align: left; }
+    .crtq-modal-close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 1.125rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: background 0.15s, color 0.15s;
+    }
+    .crtq-modal-close:hover { background: var(--cream); color: var(--charcoal); }
+
+    /* Modal score display */
+    .crtq-modal-score-big {
+      font-family: var(--serif);
+      font-size: 5rem;
+      color: var(--moss);
+      line-height: 1;
+      display: block;
+    }
+    .crtq-modal-score-denom {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--sage);
+    }
+    .crtq-modal-score-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      display: block;
+      margin-top: 0.375rem;
+    }
+    .crtq-modal-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 1.25rem 0;
+      padding: 1.125rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .crtq-modal-stat__value {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      color: var(--charcoal);
+      display: block;
+    }
+    .crtq-modal-stat__label {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      display: block;
+      margin-top: 0.2rem;
+    }
+    .crtq-rank-msg {
+      font-size: 1rem;
+      color: var(--charcoal);
+      margin: 1rem 0 0;
+    }
+    .crtq-rank-msg strong { color: var(--moss); }
+
+    /* Modal form */
     .crtq-form-group { margin-bottom: 1rem; }
     .crtq-form-group label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.375rem; color: var(--charcoal); }
     .crtq-form-group input,
@@ -426,31 +542,19 @@
     .crtq-form-group select:focus { outline: none; border-color: var(--moss); background: var(--white); }
     .crtq-form-group input.is-invalid,
     .crtq-form-group select.is-invalid { border-color: #b53030; }
+    .crtq-form-privacy { font-size: 0.8125rem; color: var(--muted); margin-top: 0.75rem; max-width: none; text-align: left; }
 
-    .crtq-form-privacy { font-size: 0.8125rem; color: var(--muted); margin-top: 0.75rem; max-width: none; }
-    .crtq-submit-status { display: none; font-size: 0.875rem; color: #8b2a2a; margin: 0 0 0.75rem; max-width: none; }
-    .crtq-submit-status.is-visible { display: block; }
-    .crtq-submitted-msg { display: none; text-align: center; padding: 1.5rem; color: var(--moss); font-family: var(--serif); font-size: 1.125rem; }
-    .crtq-submitted-msg.is-visible { display: block; }
-
-    .crtq-share-snippet {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 0.875rem 1rem;
+    .crtq-modal-submit-status {
+      display: none;
       font-size: 0.875rem;
-      color: var(--muted);
+      color: #8b2a2a;
+      margin: 0 0 0.75rem;
+      max-width: none;
       text-align: left;
-      margin: 1.25rem 0 0;
-      line-height: 1.65;
     }
-    .crtq-result-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-      margin-top: 1.25rem;
-    }
+    .crtq-modal-submit-status.is-visible { display: block; }
+
+    /* Modal share */
     .crtq-share-btn-social {
       display: inline-flex;
       align-items: center;
@@ -460,7 +564,7 @@
       min-height: 40px;
     }
 
-    /* ── Leaderboard ──────────────────────────────────────── */
+    /* ── Leaderboard ──────────────────────────────────────────── */
     .crtq-lb-wrap { overflow-x: auto; border-radius: 8px; border: 1.5px solid var(--border); box-shadow: var(--shadow-sm); }
     .crtq-lb-table {
       width: 100%;
@@ -565,7 +669,7 @@
         </button>
 
         <div class="issues-hero__copy-bot">
-          <p class="issues-hero__deck">Ten unbelievable things buried in the Bedford Town Code. Two answers are fake. One is real. Good luck.</p>
+          <p class="issues-hero__deck">Five unbelievable things buried in the Bedford Town Code. Two answers are fake. One is real. Good luck.</p>
         </div>
 
       </div>
@@ -595,7 +699,7 @@
       <div class="container">
         <div class="section-header">
           <p class="eyebrow">Code Red: The Quiz</p>
-          <h2 id="quiz-h2">Ten questions. One Bedford Town Code.</h2>
+          <h2 id="quiz-h2">Five questions. One Bedford Town Code.</h2>
           <p class="section-header__lead section-header__lead--wide">
             Each question presents three options. One is real — pulled directly from the Bedford Town Code language. Two are invented. Submit your answer after each question to see how you did, then move to the next one.
           </p>
@@ -607,7 +711,7 @@
             <div class="crtq-intro-card">
               <p class="eyebrow" style="color:var(--sage);margin-bottom:0.75rem;">Ready to play?</p>
               <h3>The Bedford code is 762 pages long. Buried inside are some truly remarkable sentences.</h3>
-              <p>For each question, one of the three options is a real provision from the Bedford Town Code. The other two are invented. Your job is to find the real one. Ten questions. Answer each before moving on.</p>
+              <p>For each question, one of the three options is a real provision from the Bedford Town Code. The other two are invented. Your job is to find the real one. Five questions. Answer each before moving on.</p>
               <button type="button" class="btn btn--primary" id="crtq-start" style="min-height:48px;font-size:1rem;padding-inline:2rem;">Start Code Red</button>
             </div>
           </div>
@@ -619,9 +723,9 @@
 
             <!-- Progress row -->
             <div class="crtq-progress" aria-label="Quiz progress">
-              <span class="crtq-progress-label" id="crtq-q-num" aria-live="polite">Question 1 of 10</span>
+              <span class="crtq-progress-label" id="crtq-q-num" aria-live="polite">Question 1 of 5</span>
               <div class="crtq-progress-track" aria-hidden="true">
-                <div class="crtq-progress-fill" id="crtq-progress-fill" style="width:10%;"></div>
+                <div class="crtq-progress-fill" id="crtq-progress-fill" style="width:20%;"></div>
               </div>
               <span class="crtq-score-tally" id="crtq-score-tally" aria-live="polite">0 correct</span>
             </div>
@@ -648,54 +752,52 @@
           </div>
         </div>
 
-        <!-- DONE PANEL -->
+        <!-- DONE PANEL (simplified — score summary behind modal) -->
         <div id="crtq-done" style="display:none;">
           <div class="crtq-wrap">
-
-            <!-- Score display -->
             <div class="crtq-score-card">
               <span class="crtq-score-eyebrow">Your Code Red result</span>
-              <span class="crtq-score-big" id="crtq-score-big">—</span>
-              <span class="crtq-score-denom"> / 10</span>
+              <span class="crtq-score-big" id="crtq-score-big">—</span><span class="crtq-score-denom"> / 5</span>
               <span class="crtq-score-label">Questions correct</span>
               <p class="crtq-score-msg" id="crtq-score-msg"></p>
-
-              <div id="crtq-share-row" style="margin-top:1.5rem;" hidden>
-                <p style="font-size:0.8125rem;color:var(--muted);margin:0 0 0.75rem;max-width:none;">Share your result:</p>
-                <div style="display:flex;flex-wrap:wrap;gap:0.625rem;justify-content:center;">
-                  <a id="crtq-share-x" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--secondary crtq-share-btn-social">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    Post on X
-                  </a>
-                  <a id="crtq-share-facebook" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--secondary crtq-share-btn-social">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
-                    Facebook
-                  </a>
-                  <button id="crtq-copy-btn" class="btn btn--secondary crtq-share-btn-social" type="button">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-                    Copy Link
-                  </button>
-                </div>
-              </div>
-
               <div class="crtq-result-actions" style="margin-top:1.5rem;">
                 <button type="button" class="btn btn--secondary" id="crtq-play-again">Play Again</button>
                 <a href="#leaderboard" class="btn btn--secondary">View Leaderboard</a>
               </div>
             </div>
+          </div>
+        </div>
 
-            <!-- Leaderboard submission -->
-            <div class="crtq-submit-wrap" id="crtq-submit-wrap">
-              <div class="crtq-submit-form">
-                <h3>Add your score to the board</h3>
-                <p>Your score stays private unless you submit your initials and hamlet.</p>
+        <!-- POST-GAME MODAL -->
+        <div id="crtq-modal" class="crtq-modal" role="dialog" aria-modal="true" aria-labelledby="crtq-modal-label" hidden>
+          <div class="crtq-modal-backdrop" id="crtq-modal-backdrop"></div>
+          <div class="crtq-modal-box">
+            <button type="button" class="crtq-modal-close" id="crtq-modal-close" aria-label="Close result panel">&#x2715;</button>
+
+            <!-- Phase 1: Score + submission form -->
+            <div id="crtq-modal-phase1">
+              <p class="eyebrow" style="color:var(--sage);margin-bottom:0.75rem;" id="crtq-modal-label">Your Code Red result</p>
+              <span class="crtq-modal-score-big" id="modal-score">—</span><span class="crtq-modal-score-denom"> / 5</span>
+              <span class="crtq-modal-score-label">Questions correct</span>
+              <div class="crtq-modal-stats">
+                <div class="crtq-modal-stat">
+                  <span class="crtq-modal-stat__value" id="modal-accuracy">—</span>
+                  <span class="crtq-modal-stat__label">Accuracy</span>
+                </div>
+                <div class="crtq-modal-stat">
+                  <span class="crtq-modal-stat__value" id="modal-rank-prov">—</span>
+                  <span class="crtq-modal-stat__label">Provisional rank</span>
+                </div>
+              </div>
+              <p style="font-size:0.875rem;color:var(--muted);margin-bottom:1rem;max-width:none;">Your score is not added to the public leaderboard unless you submit your initials and hamlet.</p>
+              <div id="modal-form-wrap">
                 <div class="crtq-form-group">
-                  <label for="crtq-initials">Initials <span style="color:var(--muted);font-weight:400;">(2–3 characters)</span></label>
-                  <input type="text" id="crtq-initials" name="initials" maxlength="3" placeholder="e.g. JK or RWS" autocomplete="off" autocapitalize="characters" spellcheck="false">
+                  <label for="modal-initials">Initials <span style="color:var(--muted);font-weight:400;">(2–3 characters)</span></label>
+                  <input type="text" id="modal-initials" name="initials" maxlength="3" placeholder="e.g. JK or RWS" autocomplete="off" autocapitalize="characters" spellcheck="false">
                 </div>
                 <div class="crtq-form-group">
-                  <label for="crtq-hamlet">Hamlet</label>
-                  <select id="crtq-hamlet" name="hamlet">
+                  <label for="modal-hamlet">Hamlet</label>
+                  <select id="modal-hamlet" name="hamlet">
                     <option value="">— select your hamlet —</option>
                     <option value="Bedford Village">Bedford Village</option>
                     <option value="Bedford Hills">Bedford Hills</option>
@@ -704,18 +806,41 @@
                     <option value="Prefer not to say">Prefer not to say</option>
                   </select>
                 </div>
-                <p class="crtq-submit-status" id="crtq-submit-status-msg"></p>
-                <div class="crtq-result-actions" style="justify-content:flex-start;margin-top:0;">
-                  <button class="btn btn--primary" id="crtq-submit-score-btn" type="button">Add My Score</button>
-                  <button class="btn btn--secondary" id="crtq-skip-btn" type="button">Skip</button>
+                <p class="crtq-modal-submit-status" id="modal-submit-status-msg"></p>
+                <div class="crtq-result-actions">
+                  <button class="btn btn--primary" id="modal-submit-btn" type="button">Add My Score</button>
+                  <button class="btn btn--secondary" id="modal-skip-btn" type="button">Skip and View Leaderboard</button>
                 </div>
                 <p class="crtq-form-privacy">Just your initials and hamlet. No name, no email, no pressure.</p>
               </div>
-              <div class="crtq-submitted-msg" id="crtq-submitted-msg"></div>
+            </div>
+
+            <!-- Phase 2: Rank + share -->
+            <div id="crtq-modal-phase2" hidden>
+              <p class="eyebrow" style="color:var(--sage);margin-bottom:0.75rem;" id="modal-phase2-eyebrow">You're on the board</p>
+              <span class="crtq-modal-score-big" id="modal-final-score">—</span><span class="crtq-modal-score-denom"> / 5</span>
+              <p class="crtq-rank-msg" id="modal-rank-msg" style="margin-top:0.75rem;"></p>
+              <div id="modal-share-row" hidden>
+                <p style="font-size:0.8125rem;color:var(--muted);margin:1rem 0 0.75rem;max-width:none;">Share your result:</p>
+                <div style="display:flex;flex-wrap:wrap;gap:0.625rem;justify-content:center;">
+                  <a id="modal-share-x" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--secondary crtq-share-btn-social">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    Post on X
+                  </a>
+                  <a id="modal-share-facebook" href="#" target="_blank" rel="noopener noreferrer" class="btn btn--secondary crtq-share-btn-social">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                    Facebook
+                  </a>
+                </div>
+              </div>
+              <div class="crtq-result-actions" style="margin-top:1.25rem;">
+                <button class="btn btn--primary" id="modal-play-again" type="button">Play Again</button>
+                <button class="btn btn--secondary" id="modal-view-lb" type="button">View Leaderboard</button>
+              </div>
             </div>
 
           </div>
-        </div>
+        </div><!-- /crtq-modal -->
 
       </div>
     </section>
@@ -758,7 +883,7 @@
           </p>
         </div>
 
-        <div class="ai-disclosure-body" style="max-width:680px;margin-inline:auto;">
+        <div class="ai-disclosure-body" style="max-width:680px;">
           <p>This page started with the 762-page Bedford Town Code. AI helped scan the document for odd, specific, and surprising provisions that might make residents stop and say, "Wait, that's real?" The questions were then reviewed, edited, and shaped into a short game so the code feels a little less like a PDF no one opens and a little more like something the community can actually explore.</p>
           <p>Like the rest of The UNCAMPAIGN, the point is not to make technology look impressive. The point is to make local government easier to see.</p>
         </div>
@@ -809,18 +934,7 @@ The page should clearly explain that AI was used to analyze the town code and id
 Match the visual language of the UNCAMPAIGN site. Same palette, spacing, card treatment, typography, and tone. This should feel like civic infrastructure, not a game show.
 
 7. Leaderboard
-Mirror the leaderboard architecture of the Bedford Typing Challenge. Use the same Google Apps Script endpoint with different action names. Seed with plausible community scores so the board is not empty at launch. Provide graceful fallback if the endpoint is unavailable.
-
-Build output requirements:
-- Complete single-file HTML
-- 10 trivia questions from the Bedford Town Code
-- Question-by-question submission flow
-- Score tally and final score display
-- Leaderboard with initials and hamlet
-- Share functionality
-- AI transparency section with instruction set reveal
-- SEO meta tags including Open Graph and Twitter Card
-- Accessible markup throughout</pre>
+Mirror the leaderboard architecture of the Bedford Typing Challenge. Use the same Google Apps Script endpoint with different action names. Seed with plausible community scores so the board is not empty at launch. Provide graceful fallback if the endpoint is unavailable.</pre>
           </div>
         </div>
 
@@ -856,7 +970,7 @@ Build output requirements:
 
   <script>
   /* ============================================================
-     BEDFORD CODE RED — Quiz Engine
+     BEDFORD CODE RED — Quiz Engine (5-question build)
      Self-contained. Graceful fallback if Apps Script unavailable.
      ============================================================ */
   (function () {
@@ -864,11 +978,11 @@ Build output requirements:
 
     /* ── Config ───────────────────────────────────────────── */
     var API_URL   = 'https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec';
-    var SCORE_KEY = 'bcr_scores_v1';
-    var TOTAL_Q   = 10;
+    var SCORE_KEY = 'bcr_scores_v2';
+    var TOTAL_Q   = 5;
     var PAGE_URL  = 'https://www.donforbedford.com/best-of-bedford-code-red';
 
-    /* ── Question bank ────────────────────────────────────── */
+    /* ── Question bank (first 5 only) ────────────────────── */
     var QUESTIONS = [
       {
         q: 'How bright does Bedford require a cabaret to be?',
@@ -920,81 +1034,39 @@ Build output requirements:
         ans: 1,
         code: 'No female dog in heat shall run at large. Any such dog shall be confined to the premises of its owner or kept at a veterinarian\'s office or a licensed boarding kennel.',
         ctx: 'Animal control laws often use very specific language around owner responsibility and public safety. This rule has appeared in local codes across New York State for decades.'
-      },
-      {
-        q: 'Which of these is actually prohibited under Bedford\'s cabaret law?',
-        opts: [
-          'A live band playing amplified music after midnight',
-          'A cover charge that changes after 9 PM',
-          'An employee approaching a guest to dance or have refreshments together'
-        ],
-        ans: 2,
-        code: 'No employee of a cabaret shall approach, solicit, or encourage any customer or guest to dance or have refreshments with such employee while the employee is on duty.',
-        ctx: 'Bedford\'s cabaret rules were written to prevent establishments from pressuring customers through social interaction. Employees soliciting guests for dances or drinks was a known regulatory concern at the time.'
-      },
-      {
-        q: 'In Bedford\'s peddling code, a "stationary location" includes how much surrounding area?',
-        opts: [
-          '500 feet in every direction',
-          '0.3 miles in all directions',
-          'One full block'
-        ],
-        ans: 1,
-        code: 'A "stationary location" shall include any point or distance within 0.3 of a mile in all directions therefrom.',
-        ctx: 'This definition helps establish when a peddler has truly moved on, rather than repositioning slightly to avoid permit restrictions at the same location.'
-      },
-      {
-        q: 'After how many false fire alarms in one calendar year can Bedford require a property owner to install a key box?',
-        opts: ['3', '2', '5'],
-        ans: 0,
-        code: 'Any fire alarm system that has had three or more false alarms within one calendar year under the same owner shall be required to install an approved key box.',
-        ctx: 'Key boxes give firefighters access to a building without forcing entry. Requiring them after repeated false alarms reduces response time and property damage during real emergencies.'
-      },
-      {
-        q: 'What is Bedford\'s dog park officially called in the town code?',
-        opts: [
-          'Bedford Municipal Dog Run',
-          'The Canis Commons',
-          'Bedford Canine Tribute Park'
-        ],
-        ans: 2,
-        code: 'The term "Bedford Dog Park" shall mean the area known as the Bedford Canine Tribute Park.',
-        ctx: 'That is the actual name in the code. Bedford Canine Tribute Park. A tribute park. For canines. Completely official.'
-      },
-      {
-        q: 'Which dog exception is actually written into Bedford law?',
-        opts: [
-          'Dogs may remove their tag during thunderstorms',
-          'Dogs in a dog show are exempt from wearing their municipal ID tag during participation',
-          'Dogs under 20 pounds may wear the tag on a harness instead of a collar'
-        ],
-        ans: 1,
-        code: 'Every dog shall wear its identification tag at all times, except that a dog participating in a dog show shall not be required to wear its tag during such participation.',
-        ctx: 'Dog show rules often require competitors to wear only official show numbers during judging. Bedford\'s code acknowledges this practical reality with a narrow, specific exemption.'
       }
     ];
 
-    /* ── Seeded leaderboard entries ───────────────────────── */
+    /* ── Seeded community guess distributions (per question) ─ */
+    /* Each row: [pct_opt0, pct_opt1, pct_opt2] — totals ~100 */
+    /* Correct option intentionally shown as minority pick      */
+    var GUESS_DATA = [
+      [38, 23, 39],   /* Q1 — correct opt 1 (B) at 23% */
+      [41, 22, 37],   /* Q2 — correct opt 1 (B) at 22% */
+      [21, 44, 35],   /* Q3 — correct opt 0 (A) at 21% */
+      [43, 31, 26],   /* Q4 — correct opt 2 (C) at 26% */
+      [36, 24, 40]    /* Q5 — correct opt 1 (B) at 24% */
+    ];
+
+    /* ── Seeded leaderboard (max 3/5 at launch) ──────────── */
     var REF_TS = new Date('2026-04-28T18:00:00Z').getTime();
     var H = ['Bedford Hills', 'Katonah', 'Bedford Village'];
 
     var SEED_RAW = [
-      /* Perfect score 10/10 */
-      ['MS',  1, 10, 228], ['AK',  2, 10,  96],
-      /* 9/10 */
-      ['JL',  0,  9, 312], ['RB',  1,  9, 201], ['EW',  2,  9, 145], ['DH',  0,  9,  44],
-      /* 8/10 */
-      ['CM',  1,  8, 337], ['TF',  0,  8, 264], ['NP',  2,  8, 188], ['GS',  1,  8, 112], ['WR',  0,  8,  67],
-      /* 7/10 */
-      ['LB',  1,  7, 321], ['AJ',  2,  7, 278], ['SK',  0,  7, 233], ['MR',  1,  7, 165], ['BF',  2,  7,  89],
-      /* 6/10 */
-      ['PT',  0,  6, 345], ['EH',  1,  6, 297], ['RM',  0,  6, 196], ['KL',  2,  6, 134],
-      /* 5/10 */
-      ['VN',  1,  5, 319], ['OC',  0,  5, 271], ['HL',  2,  5, 152], ['JD',  1,  5,  78],
-      /* 4/10 */
-      ['GT',  0,  4, 302], ['AF',  2,  4, 217], ['NB',  1,  4, 108],
-      /* 3/10 */
-      ['LW',  0,  3, 341], ['MK',  1,  3, 183], ['ST',  2,  3,  55]
+      /* 3/5 */
+      ['JL',  0, 3, 312], ['MS',  1, 3, 228], ['RB',  2, 3, 189],
+      ['EW',  0, 3, 145], ['DH',  1, 3,  44],
+      /* 2/5 */
+      ['CM',  2, 2, 337], ['TF',  0, 2, 298], ['NP',  1, 2, 264],
+      ['GS',  2, 2, 231], ['AJ',  0, 2, 201], ['LB',  1, 2, 178],
+      ['SK',  2, 2, 154], ['MR',  0, 2, 134], ['BF',  1, 2, 112],
+      ['WR',  2, 2,  89], ['PT',  0, 2,  67], ['EH',  1, 2,  52],
+      /* 1/5 */
+      ['RM',  2, 1, 345], ['KL',  0, 1, 319], ['VN',  1, 1, 278],
+      ['OC',  2, 1, 243], ['HL',  0, 1, 196], ['JD',  1, 1, 152],
+      ['GT',  2, 1, 108],
+      /* 0/5 */
+      ['LW',  0, 0, 341], ['MK',  1, 0, 183]
     ];
 
     var SEED_SCORES = SEED_RAW.map(function (r) {
@@ -1003,11 +1075,10 @@ Build output requirements:
     });
 
     /* ── Quiz state ───────────────────────────────────────── */
-    var gameState   = 'intro';   // 'intro' | 'playing' | 'done'
-    var currentQ    = 0;
-    var selected    = -1;        // index of selected option (-1 = none)
-    var answered    = false;     // whether current question has been submitted
-    var score       = 0;
+    var currentQ      = 0;
+    var selected      = -1;
+    var answered      = false;
+    var score         = 0;
     var mySubmission  = null;
     var liveScoreCache = null;
 
@@ -1028,20 +1099,31 @@ Build output requirements:
 
     var scoreBigEl  = document.getElementById('crtq-score-big');
     var scoreMsgEl  = document.getElementById('crtq-score-msg');
-    var shareRow    = document.getElementById('crtq-share-row');
-    var shareXEl    = document.getElementById('crtq-share-x');
-    var shareFbEl   = document.getElementById('crtq-share-facebook');
-    var copyBtn     = document.getElementById('crtq-copy-btn');
 
-    var submitWrap  = document.getElementById('crtq-submit-wrap');
-    var initialsIn  = document.getElementById('crtq-initials');
-    var hamletSel   = document.getElementById('crtq-hamlet');
-    var submitScoreBtn = document.getElementById('crtq-submit-score-btn');
-    var skipBtn     = document.getElementById('crtq-skip-btn');
-    var submitStatus = document.getElementById('crtq-submit-status-msg');
-    var submittedMsg = document.getElementById('crtq-submitted-msg');
+    /* Modal DOM refs */
+    var modal             = document.getElementById('crtq-modal');
+    var modalPhase1       = document.getElementById('crtq-modal-phase1');
+    var modalPhase2       = document.getElementById('crtq-modal-phase2');
+    var modalScoreEl      = document.getElementById('modal-score');
+    var modalAccEl        = document.getElementById('modal-accuracy');
+    var modalRankProvEl   = document.getElementById('modal-rank-prov');
+    var modalInitialsIn   = document.getElementById('modal-initials');
+    var modalHamletSel    = document.getElementById('modal-hamlet');
+    var modalSubmitBtn    = document.getElementById('modal-submit-btn');
+    var modalSkipBtn      = document.getElementById('modal-skip-btn');
+    var modalStatusMsg    = document.getElementById('modal-submit-status-msg');
+    var modalFinalScoreEl = document.getElementById('modal-final-score');
+    var modalRankMsg      = document.getElementById('modal-rank-msg');
+    var modalPhase2Eyebrow = document.getElementById('modal-phase2-eyebrow');
+    var modalShareRow     = document.getElementById('modal-share-row');
+    var modalShareX       = document.getElementById('modal-share-x');
+    var modalShareFb      = document.getElementById('modal-share-facebook');
+    var modalPlayAgainBtn = document.getElementById('modal-play-again');
+    var modalViewLbBtn    = document.getElementById('modal-view-lb');
+    var modalCloseBtn     = document.getElementById('crtq-modal-close');
+    var modalBackdropEl   = document.getElementById('crtq-modal-backdrop');
 
-    var lbBody      = document.getElementById('crtq-lb-body');
+    var lbBody = document.getElementById('crtq-lb-body');
 
     /* ── Utility ──────────────────────────────────────────── */
     function escHtml(s) {
@@ -1053,19 +1135,18 @@ Build output requirements:
     }
 
     function formatDate(iso) {
-      try {
-        return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      } catch (e) { return ''; }
+      try { return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); }
+      catch (e) { return ''; }
     }
 
-    /* ── Score messages ───────────────────────────────────── */
+    /* ── Score messages (out of 5) ────────────────────────── */
     function scoreMessage(n) {
-      if (n === 10) return 'Perfect score. You either work in municipal law or you\'re deeply curious about Bedford\'s pigs.';
-      if (n >= 8)  return 'Impressive. Most people don\'t know that the Bedford Town Code has opinions about cabarets.';
-      if (n >= 6)  return 'Solid. You know more about Bedford\'s laws than most people who live here.';
-      if (n >= 4)  return 'Half credit. The code is 762 pages and most of it is not a page-turner.';
-      if (n >= 2)  return 'The code is very specific. You\'ll do better next time.';
-      return 'Don\'t feel bad. The Bedford Town Code is not exactly summer reading.';
+      if (n === 5) return 'Perfect score. You either work in municipal law or you\'re deeply curious about Bedford\'s pigs.';
+      if (n === 4) return 'Four out of five. Impressive. Most people don\'t know the Bedford Town Code has opinions about cabarets.';
+      if (n === 3) return 'Three out of five. Better than most. The code is 762 pages and most of it is not a lot of fun to read.';
+      if (n === 2) return 'Two out of five. The code is very specific. You\'ll do better next time.';
+      if (n === 1) return 'One out of five. Don\'t feel bad. These rules are buried in a document most people will never open.';
+      return 'The Bedford Town Code is not exactly summer reading. But now you\'ve seen five sentences from it.';
     }
 
     /* ── Render question ──────────────────────────────────── */
@@ -1073,12 +1154,11 @@ Build output requirements:
       var q = QUESTIONS[currentQ];
       var letters = ['A', 'B', 'C'];
 
-      qNumEl.textContent  = 'Question ' + (currentQ + 1) + ' of ' + TOTAL_Q;
+      qNumEl.textContent   = 'Question ' + (currentQ + 1) + ' of ' + TOTAL_Q;
       progFill.style.width = Math.round(((currentQ + 1) / TOTAL_Q) * 100) + '%';
       tallyEl.textContent  = score + ' correct';
       qTextEl.textContent  = q.q;
 
-      /* Options */
       var html = '';
       for (var i = 0; i < q.opts.length; i++) {
         html +=
@@ -1097,7 +1177,6 @@ Build output requirements:
       nextBtn.style.display   = 'none';
       finishBtn.style.display = 'none';
 
-      /* Wire option buttons */
       var optBtns = optionsEl.querySelectorAll('.crtq-option');
       optBtns.forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -1111,7 +1190,6 @@ Build output requirements:
         });
       });
 
-      /* Focus question text for screen readers */
       qTextEl.focus();
     }
 
@@ -1124,13 +1202,15 @@ Build output requirements:
       var correct = (selected === q.ans);
       if (correct) score++;
 
-      var letters = ['A', 'B', 'C'];
-      var optBtns = optionsEl.querySelectorAll('.crtq-option');
+      var guesses  = GUESS_DATA[currentQ];
+      var optBtns  = optionsEl.querySelectorAll('.crtq-option');
+
       optBtns.forEach(function (btn) {
         var idx = parseInt(btn.getAttribute('data-idx'), 10);
         btn.disabled = true;
         btn.setAttribute('aria-pressed', 'false');
         btn.classList.remove('is-selected');
+
         if (idx === q.ans) {
           btn.classList.add('is-correct');
         } else if (idx === selected && !correct) {
@@ -1138,6 +1218,13 @@ Build output requirements:
         } else {
           btn.classList.add('is-dim');
         }
+
+        /* Inject community guess percentage (right-aligned) */
+        var pctSpan = document.createElement('span');
+        pctSpan.className = 'crtq-option-pct';
+        pctSpan.setAttribute('aria-label', guesses[idx] + '% of players chose this option');
+        pctSpan.textContent = guesses[idx] + '%';
+        btn.appendChild(pctSpan);
       });
 
       /* Reveal panel */
@@ -1156,8 +1243,7 @@ Build output requirements:
       tallyEl.textContent = score + ' correct';
       submitBtn.style.display = 'none';
 
-      var isLast = (currentQ === TOTAL_Q - 1);
-      if (isLast) {
+      if (currentQ === TOTAL_Q - 1) {
         finishBtn.style.display = '';
       } else {
         nextBtn.style.display = '';
@@ -1172,23 +1258,25 @@ Build output requirements:
       renderQuestion();
     }
 
-    /* ── Show done screen ─────────────────────────────────── */
+    /* ── Modal open / close ───────────────────────────────── */
+    function openModal() {
+      if (modal) { modal.removeAttribute('hidden'); document.body.style.overflow = 'hidden'; }
+    }
+    function closeModal() {
+      if (modal) { modal.setAttribute('hidden', ''); document.body.style.overflow = ''; }
+    }
+
+    /* ── Show done + open modal Phase 1 ──────────────────── */
     function showDone() {
       playPanel.style.display = 'none';
       donePanel.style.display = '';
 
-      scoreBigEl.textContent = score;
-      scoreMsgEl.textContent = scoreMessage(score);
+      /* Populate done-panel fallback */
+      if (scoreBigEl) scoreBigEl.textContent = score;
+      if (scoreMsgEl) scoreMsgEl.textContent = scoreMessage(score);
 
-      /* Share links */
-      var shareText = 'I scored ' + score + '/10 on the Bedford Code Red quiz — a trivia game built from the 762-page Bedford Town Code. Think you know your local laws?';
-      var shareUrl  = PAGE_URL;
-
-      if (shareXEl)  shareXEl.href  = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(shareUrl);
-      if (shareFbEl) shareFbEl.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl);
-      if (copyBtn)   copyBtn.onclick = function () { copyToClipboard(shareUrl + '\n\n' + shareText, copyBtn); };
-
-      if (shareRow) shareRow.removeAttribute('hidden');
+      /* Open modal Phase 1 */
+      openModalPhase1();
 
       renderLeaderboard();
       fetchLiveScores().then(function (scores) {
@@ -1197,28 +1285,67 @@ Build output requirements:
       });
     }
 
-    /* ── Start quiz ───────────────────────────────────────── */
+    function openModalPhase1() {
+      if (modalPhase1) modalPhase1.removeAttribute('hidden');
+      if (modalPhase2) modalPhase2.setAttribute('hidden', '');
+      if (modalScoreEl) modalScoreEl.textContent = score;
+      if (modalAccEl)   modalAccEl.textContent   = Math.round((score / TOTAL_Q) * 100) + '%';
+
+      var provisionalRank = getRank(score);
+      if (modalRankProvEl) modalRankProvEl.textContent = '#' + provisionalRank;
+
+      if (modalInitialsIn)  modalInitialsIn.value  = '';
+      if (modalHamletSel)   modalHamletSel.value   = '';
+      if (modalStatusMsg)   { modalStatusMsg.textContent = ''; modalStatusMsg.className = 'crtq-modal-submit-status'; }
+      if (modalSubmitBtn)   { modalSubmitBtn.disabled = false; modalSubmitBtn.textContent = 'Add My Score'; }
+
+      openModal();
+    }
+
+    function openModalPhase2(submitted, hamlet) {
+      if (modalPhase1) modalPhase1.setAttribute('hidden', '');
+      if (modalPhase2) modalPhase2.removeAttribute('hidden');
+      if (modalFinalScoreEl) modalFinalScoreEl.textContent = score;
+      if (modalPhase2Eyebrow) modalPhase2Eyebrow.textContent = submitted ? "You're on the board" : 'Round complete';
+
+      var displayTown = (hamlet === 'Bedford Village' || hamlet === 'Bedford Hills' || hamlet === 'Katonah')
+        ? hamlet : 'Bedford';
+
+      var rank = getRank(score);
+      if (modalRankMsg) {
+        modalRankMsg.innerHTML = submitted
+          ? 'You are currently <strong>#' + rank + ' in ' + escHtml(displayTown) + '</strong>.'
+          : 'Score not submitted to the public leaderboard.';
+      }
+
+      if (modalShareRow) {
+        if (submitted) {
+          var shareText = 'I scored ' + score + '/5 on the Bedford Code Red quiz — a trivia game built from the 762-page Bedford Town Code. Think you know your local laws?';
+          var shareUrl  = PAGE_URL;
+          if (modalShareX)  modalShareX.href  = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText) + '&url=' + encodeURIComponent(shareUrl);
+          if (modalShareFb) modalShareFb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareUrl);
+          modalShareRow.removeAttribute('hidden');
+        } else {
+          modalShareRow.setAttribute('hidden', '');
+        }
+      }
+    }
+
+    /* ── Start / reset quiz ───────────────────────────────── */
     function startQuiz() {
-      gameState  = 'playing';
-      currentQ   = 0;
-      score      = 0;
-      selected   = -1;
-      answered   = false;
+      currentQ = 0;
+      score    = 0;
+      selected = -1;
+      answered = false;
       introPanel.style.display = 'none';
+      donePanel.style.display  = 'none';
       playPanel.style.display  = '';
       renderQuestion();
     }
 
-    /* ── Reset (play again) ───────────────────────────────── */
     function resetQuiz() {
       mySubmission = null;
-      donePanel.style.display  = 'none';
-      submittedMsg.className   = 'crtq-submitted-msg';
-      submitWrap.style.display = '';
-      if (initialsIn)  initialsIn.value  = '';
-      if (hamletSel)   hamletSel.value   = '';
-      if (submitStatus) { submitStatus.textContent = ''; submitStatus.className = 'crtq-submit-status'; }
-      if (submitScoreBtn) { submitScoreBtn.disabled = false; submitScoreBtn.textContent = 'Add My Score'; }
+      closeModal();
       startQuiz();
     }
 
@@ -1249,9 +1376,7 @@ Build output requirements:
       var all = getAllScores();
       if (mySubmission) {
         var found = false;
-        for (var i = 0; i < all.length; i++) {
-          if (all[i] === mySubmission) { found = true; break; }
-        }
+        for (var i = 0; i < all.length; i++) { if (all[i] === mySubmission) { found = true; break; } }
         if (!found) all = all.concat([mySubmission]).sort(sortFn);
       }
       var rank = 1;
@@ -1271,7 +1396,7 @@ Build output requirements:
         for (var i = 0; i < all.length; i++) { if (all[i] === mySubmission) { hasMe = true; break; } }
         if (!hasMe) all = all.concat([mySubmission]).sort(sortFn);
       }
-      var top = all.slice(0, 12);
+      var top  = all.slice(0, 12);
       var html = '';
       for (var r = 0; r < top.length; r++) {
         var s = top[r];
@@ -1295,60 +1420,44 @@ Build output requirements:
       return fetch(API_URL + '?action=getCodeRedLeaderboard')
         .then(function (r) { return r.json(); })
         .then(function (data) {
-          if (data && data.ok && Array.isArray(data.scores)) {
-            console.log('[bcr] getCodeRedLeaderboard: ' + data.scores.length + ' live scores');
-            return data.scores;
-          }
-          console.warn('[bcr] getCodeRedLeaderboard unexpected response:', data);
+          if (data && data.ok && Array.isArray(data.scores)) return data.scores;
           return [];
         })
-        .catch(function (err) {
-          console.warn('[bcr] getCodeRedLeaderboard failed:', err);
-          return [];
-        });
+        .catch(function () { return []; });
     }
 
-    /* ── Submit score to leaderboard ──────────────────────── */
-    if (submitScoreBtn) {
-      submitScoreBtn.addEventListener('click', function () {
-        var ini    = (initialsIn ? initialsIn.value : '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 3);
-        var hamlet = hamletSel ? hamletSel.value : '';
+    /* ── Modal submit handler ─────────────────────────────── */
+    if (modalSubmitBtn) {
+      modalSubmitBtn.addEventListener('click', function () {
+        var ini    = (modalInitialsIn ? modalInitialsIn.value : '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 3);
+        var hamlet = modalHamletSel ? modalHamletSel.value : '';
 
-        if (initialsIn) initialsIn.classList.remove('is-invalid');
-        if (hamletSel)  hamletSel.classList.remove('is-invalid');
+        if (modalInitialsIn) modalInitialsIn.classList.remove('is-invalid');
+        if (modalHamletSel)  modalHamletSel.classList.remove('is-invalid');
         var valid = true;
-        if (ini.length < 2) { if (initialsIn) initialsIn.classList.add('is-invalid'); valid = false; }
-        if (!hamlet)        { if (hamletSel)  hamletSel.classList.add('is-invalid');  valid = false; }
+        if (ini.length < 2) { if (modalInitialsIn) modalInitialsIn.classList.add('is-invalid'); valid = false; }
+        if (!hamlet)        { if (modalHamletSel)  modalHamletSel.classList.add('is-invalid');  valid = false; }
         if (!valid) return;
 
         var entry = {
-          initials:  ini,
-          hamlet:    hamlet,
-          score:     score,
-          totalQ:    TOTAL_Q,
-          timestamp: new Date().toISOString(),
-          source:    'real'
+          initials: ini, hamlet: hamlet, score: score, totalQ: TOTAL_Q,
+          timestamp: new Date().toISOString(), source: 'real'
         };
-
         mySubmission = entry;
         saveLocal(entry);
 
-        submitScoreBtn.disabled = true;
-        submitScoreBtn.textContent = 'Submitting…';
-
-        var payload = {
-          action:        'submitCodeRedScore',
-          initials:      entry.initials,
-          hamlet:        entry.hamlet,
-          score:         entry.score,
-          totalQ:        entry.totalQ,
-          antiAbuseHint: window.location.href
-        };
+        modalSubmitBtn.disabled = true;
+        modalSubmitBtn.textContent = 'Submitting…';
 
         fetch(API_URL, {
-          method:  'POST',
+          method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body:    JSON.stringify(payload)
+          body: JSON.stringify({
+            action: 'submitCodeRedScore',
+            initials: entry.initials, hamlet: entry.hamlet,
+            score: entry.score, totalQ: entry.totalQ,
+            antiAbuseHint: window.location.href
+          })
         })
         .then(function (r) { return r.text(); })
         .then(function (raw) {
@@ -1357,99 +1466,62 @@ Build output requirements:
           if (data && data.ok) {
             fetchLiveScores().then(function (scores) {
               liveScoreCache = scores;
-              showSubmitted(ini, hamlet);
+              renderLeaderboard();
+              openModalPhase2(true, hamlet);
             });
           } else {
-            onSubmitFail('The leaderboard did not update. Your score is saved on this device.');
+            onModalSubmitFail('The leaderboard did not update. Your score is saved on this device.');
           }
         })
-        .catch(function (err) {
-          console.warn('[bcr] submitCodeRedScore failed:', err);
-          onSubmitFail('Could not reach the leaderboard server. Your score is saved on this device.');
+        .catch(function () {
+          onModalSubmitFail('Could not reach the leaderboard server. Your score is saved on this device.');
         });
       });
     }
 
-    function showSubmitted(ini, hamlet) {
-      var rank = getRank(score);
-      var displayTown = (hamlet === 'Bedford Village' || hamlet === 'Bedford Hills' || hamlet === 'Katonah')
-        ? hamlet : 'Bedford';
-
-      if (submitWrap)   submitWrap.style.display = 'none';
-      if (submittedMsg) {
-        submittedMsg.innerHTML =
-          '<p style="margin-bottom:0.5rem;">You\'re on the board.</p>' +
-          '<p style="font-size:0.875rem;color:var(--muted);max-width:none;">' +
-            ini + ' — ' + escHtml(displayTown) + ' — ranked <strong>#' + rank + '</strong> with ' + score + '/10.' +
-          '</p>';
-        submittedMsg.className = 'crtq-submitted-msg is-visible';
-      }
-      renderLeaderboard();
+    function onModalSubmitFail(msg) {
+      if (modalStatusMsg) { modalStatusMsg.textContent = msg; modalStatusMsg.className = 'crtq-modal-submit-status is-visible'; }
+      if (modalSubmitBtn) { modalSubmitBtn.disabled = false; modalSubmitBtn.textContent = 'Try Again'; }
     }
 
-    function onSubmitFail(msg) {
-      if (submitStatus) { submitStatus.textContent = msg; submitStatus.className = 'crtq-submit-status is-visible'; }
-      if (submitScoreBtn) { submitScoreBtn.disabled = false; submitScoreBtn.textContent = 'Try Again'; }
-    }
-
-    if (skipBtn) {
-      skipBtn.addEventListener('click', function () {
-        if (submitWrap)   submitWrap.style.display = 'none';
-        if (submittedMsg) {
-          submittedMsg.textContent = 'Score not submitted to the public leaderboard.';
-          submittedMsg.className = 'crtq-submitted-msg is-visible';
-        }
+    if (modalSkipBtn) {
+      modalSkipBtn.addEventListener('click', function () {
+        openModalPhase2(false, null);
       });
     }
 
-    /* ── Clipboard helper ─────────────────────────────────── */
-    function copyToClipboard(text, btn) {
-      function confirm() {
-        if (!btn) return;
-        var orig = btn.textContent;
-        btn.textContent = 'Copied!';
-        setTimeout(function () { btn.textContent = orig; }, 2000);
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(confirm).catch(function () { fallback(text, confirm); });
-      } else {
-        fallback(text, confirm);
-      }
-    }
+    /* ── Modal dismiss ────────────────────────────────────── */
+    if (modalCloseBtn)    modalCloseBtn.addEventListener('click', closeModal);
+    if (modalBackdropEl)  modalBackdropEl.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal && !modal.hasAttribute('hidden')) closeModal();
+    });
 
-    function fallback(text, cb) {
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
-      document.body.appendChild(ta);
-      ta.focus(); ta.select();
-      try { if (document.execCommand('copy')) cb(); } catch (e) {}
-      document.body.removeChild(ta);
+    if (modalPlayAgainBtn) modalPlayAgainBtn.addEventListener('click', resetQuiz);
+    if (modalViewLbBtn) {
+      modalViewLbBtn.addEventListener('click', function () {
+        closeModal();
+        var lb = document.getElementById('leaderboard');
+        if (lb) lb.scrollIntoView({ behavior: 'smooth' });
+      });
     }
 
     /* ── Wire static buttons ──────────────────────────────── */
     var startBtnEl = document.getElementById('crtq-start');
     if (startBtnEl) startBtnEl.addEventListener('click', startQuiz);
 
-    if (submitBtn) {
-      submitBtn.addEventListener('click', function () {
-        if (selected >= 0 && !answered) submitAnswer();
-      });
-    }
+    if (submitBtn) submitBtn.addEventListener('click', function () {
+      if (selected >= 0 && !answered) submitAnswer();
+    });
 
-    if (nextBtn) {
-      nextBtn.addEventListener('click', function () {
-        if (currentQ < TOTAL_Q - 1) nextQuestion();
-      });
-    }
+    if (nextBtn)   nextBtn.addEventListener('click', function () {
+      if (currentQ < TOTAL_Q - 1) nextQuestion();
+    });
 
-    if (finishBtn) {
-      finishBtn.addEventListener('click', showDone);
-    }
+    if (finishBtn) finishBtn.addEventListener('click', showDone);
 
-    /* Play again */
-    var playAgainBtn = document.getElementById('crtq-play-again');
-    if (playAgainBtn) playAgainBtn.addEventListener('click', resetQuiz);
+    var playAgainDoneBtn = document.getElementById('crtq-play-again');
+    if (playAgainDoneBtn) playAgainDoneBtn.addEventListener('click', resetQuiz);
 
     /* ── Init ─────────────────────────────────────────────── */
     renderLeaderboard();
