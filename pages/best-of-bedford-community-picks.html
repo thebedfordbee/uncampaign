@@ -837,65 +837,43 @@ Output format:
     /* ── Wire submit button ───────────────────────────────── */
     if (submitBtn) submitBtn.addEventListener('click', doSubmit);
 
-    /* ── Init ─────────────────────────────────────────────── */
-    (function init() {
+    /* ── Launch cover + Init ─────────────────────────────── */
+    (function () {
+      var launch   = document.getElementById('cp-launch');
+      var startBtn = document.getElementById('cp-start');
+
+      /* Keep flow hidden behind launch cover on load */
+      if (flowWrap) { flowWrap.style.display = 'none'; flowWrap.hidden = true; }
+
       var startIdx = firstUnsubmittedIndex();
+
       if (startIdx === -1) {
-        /* Already complete — skip cover, show done state */
-        var launchEl = document.getElementById('cp-launch');
-        if (launchEl) launchEl.style.display = 'none';
+        /* Already complete — bypass cover, show done state */
+        if (launch) { launch.style.display = 'none'; launch.hidden = true; }
         showCompletion();
         return;
       }
-      /* Pre-render first category so it's ready when Start is clicked */
-      renderCategory(startIdx);
+
+      if (!startBtn) return;
+
+      startBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (launch) { launch.style.display = 'none'; launch.hidden = true; }
+
+        /* Render the first unsubmitted category now (inside IIFE — renderCategory is in scope) */
+        renderCategory(startIdx);
+
+        if (flowWrap) { flowWrap.hidden = false; flowWrap.style.display = 'block'; }
+
+        var title = document.getElementById('cp-flow-cat-title');
+        if (title) {
+          title.setAttribute('tabindex', '-1');
+          title.focus({ preventScroll: false });
+        }
+      });
     }());
 
   }());
-  </script>
-
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    var launch = document.getElementById('cp-launch');
-    var start  = document.getElementById('cp-start');
-    var flow   = document.getElementById('cp-flow');
-
-    if (!launch || !start || !flow) {
-      console.warn('Community Picks launch wiring missing', {
-        launch: !!launch,
-        start:  !!start,
-        flow:   !!flow
-      });
-      return;
-    }
-
-    flow.style.display = 'none';
-    flow.hidden = true;
-
-    start.addEventListener('click', function (event) {
-      event.preventDefault();
-
-      launch.style.display = 'none';
-      launch.hidden = true;
-
-      flow.hidden = false;
-      flow.style.display = 'block';
-
-      if (typeof renderCategory === 'function') {
-        renderCategory();
-      }
-
-      var focusTarget =
-        document.getElementById('cp-flow-cat-title') ||
-        document.getElementById('cp-flow-card') ||
-        flow;
-
-      if (focusTarget && typeof focusTarget.focus === 'function') {
-        focusTarget.setAttribute('tabindex', '-1');
-        focusTarget.focus({ preventScroll: false });
-      }
-    });
-  });
   </script>
 
 </body>
