@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Best of Bedford is an ongoing civic participation series featuring local challenges, community surveys, scorecards, and interactive tools built for Bedford, New York.">
+  <meta name="description" content="Best of Bedford is Don Scott's interactive civic series for Bedford: local challenges, resident surveys, voter tools, and low-cost experiments in civic engagement.">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <title>Best of Bedford | Civic Participation Series | Don Scott for Bedford</title>
+  <title>Best of Bedford | Interactive Civic Projects for Bedford | Don Scott</title>
   <link rel="canonical" href="https://www.donforbedford.com/best-of-bedford">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/best-of-bedford">
   <meta property="og:title" content="Best of Bedford | Civic Participation Series | Don Scott for Bedford">
-  <meta property="og:description" content="Best of Bedford is an ongoing civic participation series featuring local challenges, community surveys, scorecards, and interactive tools built for Bedford, New York.">
+  <meta property="og:description" content="Best of Bedford is Don Scott's interactive civic series for Bedford: local challenges, resident surveys, voter tools, and low-cost experiments in civic engagement.">
   <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -26,7 +26,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/best-of-bedford">
   <meta name="twitter:title" content="Best of Bedford | Civic Participation Series">
-  <meta name="twitter:description" content="Best of Bedford is an ongoing civic participation series featuring local challenges, community surveys, scorecards, and interactive tools built for Bedford, New York.">
+  <meta name="twitter:description" content="Best of Bedford is Don Scott's interactive civic series for Bedford: local challenges, resident surveys, voter tools, and low-cost experiments in civic engagement.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta name="twitter:image:alt" content="Best of Bedford civic participation series.">
 
@@ -56,15 +56,15 @@
         "@type": "CollectionPage",
         "@id": "https://www.donforbedford.com/best-of-bedford#webpage",
         "url": "https://www.donforbedford.com/best-of-bedford",
-        "name": "Best of Bedford | Civic Participation Series | Don Scott for Bedford",
-        "description": "Best of Bedford is an ongoing civic participation series featuring local challenges, community surveys, scorecards, and interactive tools built for Bedford, New York.",
+        "name": "Best of Bedford | Interactive Civic Projects for Bedford | Don Scott",
+        "description": "Best of Bedford is Don Scott's interactive civic series for Bedford: local challenges, resident surveys, voter tools, and low-cost experiments in civic engagement.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
         "about": [
           { "@id": "https://www.donforbedford.com/#don-scott" },
           {
             "@type": "Thing",
             "name": "Best of Bedford",
-            "description": "An ongoing civic participation series featuring community challenges, surveys, scorecards, and local engagement experiments built for Bedford, New York."
+            "description": "Best of Bedford is Don Scott's interactive civic series for Bedford: local challenges, resident surveys, voter tools, and low-cost experiments in civic engagement."
           }
         ],
         "hasPart": [
@@ -143,7 +143,6 @@
     /* ── Justified body copy — paragraphs, card descs, explainer copy ── */
     .issues-hero__deck,
     .bob-series-body p,
-    .bob-series-card__desc,
     .issues-explainer__why p,
     .section-header__lead {
       text-align: justify;
@@ -153,7 +152,6 @@
     @media (max-width: 380px) {
       .issues-hero__deck,
       .bob-series-body p,
-      .bob-series-card__desc,
       .issues-explainer__why p,
       .section-header__lead {
         text-align: left;
@@ -262,6 +260,11 @@
       margin: 0;
       flex: 1;
       max-width: none;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: calc(0.875rem * 1.65 * 3);
     }
   </style>
 </head>
@@ -322,7 +325,7 @@
         </button>
 
         <div class="issues-hero__copy-bot">
-          <p class="issues-hero__deck">A civic participation series for Bedford featuring interactive community challenges, civic experiments, and local scorecards designed to make participation a little more interesting.</p>
+          <p class="issues-hero__deck">A civic participation series for Bedford, featuring interactive challenges, resident-powered tools, and small experiments that make local engagement more interesting.</p>
         </div>
 
       </div>
@@ -340,7 +343,7 @@
 
           <p>Instead of spending money on ads, mailers, or the usual political interruptions, we're building a series of local participation projects that invite Bedford residents to engage with the campaign in more interesting ways. Rather than buying attention, we're trying to earn it by making things that are engaging, useful, or at least memorable enough to start a conversation.</p>
 
-          <p>Some may call it a stunt. Don believes local government should be more creative than it usually is. It should look for better ways to involve residents, surface local insights, and make civic life feel less like a chore.</p>
+          <p>Some may call it a stunt. Don sees it differently. Local government should be more creative about involving residents, surfacing local insight, and making civic life feel less like homework.</p>
         </div>
       </div>
     </section>
@@ -352,7 +355,7 @@
           <p class="eyebrow">Explore the Series</p>
           <h2 id="explore-h2">Best of Bedford, So Far</h2>
           <p class="section-header__lead section-header__lead--wide">
-            Each entry in the Best of Bedford series is a different kind of civic participation experiment for Bedford. Some are competitive. Some are informational. All of them are free and built for Bedford residents.
+            Each Best of Bedford entry is a small civic experiment built for residents. Some are competitive. Some are informational. All are free, local, and designed to make participation easier to start.
           </p>
         </div>
 
@@ -371,7 +374,7 @@
 
             <div class="bob-series-card__body">
               <h3 class="bob-series-card__title">Fastest Typist in Bedford</h3>
-              <p class="bob-series-card__desc">A town-wide typing challenge to see who types fastest in Bedford, which hamlet leads the leaderboard, and whether Bedford beats the national average.</p>
+              <p class="bob-series-card__desc">Compete in a town-wide typing challenge, see which hamlet leads, and find out how Bedford stacks up against the national average.</p>
               <span class="bob-series-card__cta" style="margin-top:auto;font-size:0.875rem;font-weight:600;color:var(--moss);">Start Typing →</span>
             </div>
 
@@ -390,7 +393,7 @@
 
             <div class="bob-series-card__body">
               <h3 class="bob-series-card__title">Cutest Pet in Bedford</h3>
-              <p class="bob-series-card__desc">Submit your dog, cat, horse, lizard, bird, gerbil, or other beloved creature and help Bedford decide which local pets deserve bragging rights.</p>
+              <p class="bob-series-card__desc">Submit your dog, cat, horse, lizard, bird, gerbil, or other beloved creature, then help Bedford choose its cutest local pet.</p>
               <span class="bob-series-card__cta" style="margin-top:auto;font-size:0.875rem;font-weight:600;color:var(--moss);">Submit and/or Vote →</span>
             </div>
 
@@ -409,7 +412,7 @@
 
             <div class="bob-series-card__body">
               <h3 class="bob-series-card__title">Voter Report Card</h3>
-              <p class="bob-series-card__desc">Look up your own public voter-history record, see your turnout score, and get a reminder for the next local election.</p>
+              <p class="bob-series-card__desc">Look up your public voter-history record, see your turnout score, and get a reminder for Bedford's next local election.</p>
               <span class="bob-series-card__cta" style="margin-top:auto;font-size:0.875rem;font-weight:600;color:var(--moss);">Get Your Grade →</span>
             </div>
 
@@ -429,7 +432,7 @@
 
             <div class="bob-series-card__body">
               <h3 class="bob-series-card__title">Code Red</h3>
-              <p class="bob-series-card__desc">A trivia game built from the 762-page Bedford Town Code. Guess which strange rule is real.</p>
+              <p class="bob-series-card__desc">Play a trivia game built from Bedford's 762-page Town Code and guess which strange local rules are actually real.</p>
               <span class="bob-series-card__cta" style="margin-top:auto;font-size:0.875rem;font-weight:600;color:var(--moss);">Test Your Knowledge →</span>
             </div>
 
@@ -449,7 +452,7 @@
 
             <div class="bob-series-card__body">
               <h3 class="bob-series-card__title">Community Picks</h3>
-              <p class="bob-series-card__desc">Help build a post-election Best of Bedford list shaped by resident input.</p>
+              <p class="bob-series-card__desc">Vote for local favorites and help build a resident-powered Best of Bedford list shaped by the community itself.</p>
               <span class="bob-series-card__cta" style="margin-top:auto;font-size:0.875rem;font-weight:600;color:var(--moss);">Vote Now →</span>
             </div>
 
