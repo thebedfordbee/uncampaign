@@ -13,8 +13,8 @@
 /best-of-bedford-cutest-pet-ugly  /pages/best-of-bedford-cutest-pet-ugly  301
 /best-of-bedford-cutest-pet-pj    /pages/best-of-bedford-cutest-pet-pj    301
 /best-of-bedford-voter-report-card  /pages/best-of-bedford-voter-report-card  301
-/best-of-bedford-community-picks    /pages/best-of-bedford-community-picks    301
-/best-of-bedford-code-red           /pages/best-of-bedford-code-red           301
+/best-of-bedford-community-picks    /pages/best-of-bedford-community-picks.html    200
+/best-of-bedford-code-red           /pages/best-of-bedford-code-red.html           200
 
 # Legacy /minutes and /minute redirects — keep old links working
 /minutes        /podcasts           301
