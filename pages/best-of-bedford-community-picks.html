@@ -154,6 +154,7 @@
       position: absolute;
       inset: 0;
       background: rgba(16, 28, 16, 0.60);
+      pointer-events: none;
     }
     .cp-launch-inner {
       position: relative;
@@ -448,7 +449,7 @@
         </div>
 
         <!-- LAUNCH COVER -->
-        <div id="cp-intro">
+        <div id="cp-launch">
           <div class="cp-launch-module">
             <div class="cp-launch-inner">
               <span class="cp-launch-label">Ready to Pick?</span>
@@ -832,35 +833,48 @@ Output format:
       if (completeDiv) completeDiv.style.display = '';
     }
 
-    /* ── Launch cover — wired before anything that can throw,
-          so the start button always works ─────────────────── */
-    var launchDiv = document.getElementById('cp-intro');
-    var startBtn  = document.getElementById('cp-start');
-
-    function startSurvey() {
-      if (launchDiv) launchDiv.style.display = 'none';
-      if (flowWrap)  flowWrap.style.display  = '';
-      if (flowCard) {
-        var firstOpt = flowCard.querySelector('.cp-option');
-        if (firstOpt) firstOpt.focus();
-      }
-    }
-
-    if (startBtn) startBtn.addEventListener('click', startSurvey);
-
     /* ── Wire submit button ───────────────────────────────── */
     if (submitBtn) submitBtn.addEventListener('click', doSubmit);
+
+    /* ── Launch cover start handler ───────────────────────── */
+    function initCommunityPicksStart() {
+      var launch = document.getElementById('cp-launch');
+      var start  = document.getElementById('cp-start');
+      var flow   = document.getElementById('cp-flow');
+
+      if (!launch || !start || !flow) {
+        console.warn('Community Picks: start controls missing', {
+          launch: !!launch, start: !!start, flow: !!flow
+        });
+        return;
+      }
+
+      start.addEventListener('click', function () {
+        launch.style.display = 'none';
+        flow.style.display   = 'block';
+        flow.hidden          = false;
+
+        var title = document.getElementById('cp-flow-cat-title');
+        if (title) {
+          title.setAttribute('tabindex', '-1');
+          title.focus({ preventScroll: true });
+        }
+      });
+    }
+
+    initCommunityPicksStart();
 
     /* ── Init ─────────────────────────────────────────────── */
     (function init() {
       var startIdx = firstUnsubmittedIndex();
       if (startIdx === -1) {
-        /* Already completed — skip cover, go straight to done state */
-        if (launchDiv) launchDiv.style.display = 'none';
+        /* Already complete — skip cover, show done state */
+        var launchEl = document.getElementById('cp-launch');
+        if (launchEl) launchEl.style.display = 'none';
         showCompletion();
         return;
       }
-      /* Pre-render the first category so it's ready when Start is clicked */
+      /* Pre-render first category so it's ready when Start is clicked */
       renderCategory(startIdx);
     }());
 
