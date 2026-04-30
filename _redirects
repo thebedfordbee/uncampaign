@@ -1,4 +1,9 @@
 # Cloudflare Pages redirect rules
+# IMPORTANT: specific 200 rewrites MUST come first — before any catch-all fallback.
+
+/best-of-bedford-community-picks /pages/best-of-bedford-community-picks.html 200
+/best-of-bedford-code-red        /pages/best-of-bedford-code-red.html        200
+
 # Clean URL routing — redirects short canonical paths to actual file-based routes.
 # Cloudflare Pages automatically strips .html extensions, so /pages/photos.html
 # is served at /pages/photos. These 301s make the shorter canonical URLs real routes.
@@ -13,8 +18,6 @@
 /best-of-bedford-cutest-pet-ugly  /pages/best-of-bedford-cutest-pet-ugly  301
 /best-of-bedford-cutest-pet-pj    /pages/best-of-bedford-cutest-pet-pj    301
 /best-of-bedford-voter-report-card  /pages/best-of-bedford-voter-report-card  301
-/best-of-bedford-community-picks    /pages/best-of-bedford-community-picks.html    200
-/best-of-bedford-code-red           /pages/best-of-bedford-code-red.html           200
 
 # Legacy /minutes and /minute redirects — keep old links working
 /minutes        /podcasts           301
