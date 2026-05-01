@@ -838,35 +838,172 @@
         <div class="instr-panel" id="instr-panel-donbot" hidden>
           <div class="instr-panel__bar">
             <span class="instr-panel__title">Public Instruction Set</span>
-            <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
-              <span class="instr-panel__copy-label">Copy All</span>
-            </button>
+            <div class="instr-panel__controls">
+              <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+                <span class="instr-panel__copy-label">Copy All</span>
+              </button>
+              <button class="instr-panel__close" aria-label="Close">&#10005;</button>
+            </div>
           </div>
           <div class="instr-panel__body">
-            <pre class="instr-panel__text">Build a Human-Reviewed Q&A Chatbot
+            <pre class="instr-panel__text">Purpose
 
-I want to build a simple chatbot-style webpage from a set of questions and answers I provide.
+This is a structured system for building a transparent, human-reviewed Q&A tool that helps voters quickly access clear, pre-written answers from a candidate.
 
-The chatbot should not make up answers. Visitors should choose from prewritten questions, organized by topic, and the site should show the answer I already reviewed.
+It is intentionally designed to:
 
-Please build it with these requirements:
+make information easy to browse, not search for
+prevent AI from generating or improvising answers
+reflect the candidate's actual positions, not approximations
+anticipate real voter questions, including uncomfortable or off-topic ones
+create a calm, usable alternative to traditional campaign messaging
 
-1. Create expandable categories for the questions.
-2. Put each question under the right category.
-3. When someone clicks a question, show the matching answer in a chat-style answer window.
-4. Do not allow visitors to type their own questions unless I specifically provide a safe answer system.
-5. Add a short "typing" indicator before the answer appears.
-6. Make the answer appear with a fast typewriter effect.
-7. Add one subtle human-like correction while typing, such as a typo that gets erased and fixed, or a word that gets replaced with a better word.
-8. Make the correction slow enough that people can notice it, but not so slow that the tool becomes annoying.
-9. On desktop, keep the answer window visible while people browse questions.
-10. On mobile, scroll people to the answer after they select a question, then give them an easy way to return to the question list.
-11. Add a plain-language note explaining that the chatbot uses human-reviewed answers.
-12. Add page metadata and FAQ schema so search engines can understand the questions and answers.
-13. Respect reduced-motion settings by showing the answer immediately for people who prefer less animation.
-14. Keep the tone useful and transparent. Do not pretend the chatbot is alive or that AI is deciding what to say.
+This system can be used for:
 
-The goal is to make information easier to browse, not to replace a real conversation.</pre>
+local campaigns
+civic education tools
+structured public Q&A archives
+
+Phase 1: Build the Question Set
+
+Objective
+
+Create a comprehensive, structured list of voter-relevant questions that a thoughtful resident would want answered before voting.
+
+Core Instruction
+
+Compile a broad and useful question set covering:
+
+the candidate
+the role itself
+local issues
+general policy thinking
+anticipated off-topic or higher-level political questions
+
+Question Categories
+
+Organize questions into clear categories such as:
+
+About Don
+Experience &amp; Background
+Role of Town Supervisor
+Local Issues (roads, zoning, services, etc.)
+Taxes &amp; Spending
+Decision-Making Philosophy
+How Government Works
+State &amp; National Context
+
+Rules
+
+Prioritize real questions voters actually have, not idealized ones
+Include basic questions (for new voters) and nuanced ones (for engaged residents)
+Include questions that may be:
+skeptical
+unclear
+outside the strict scope of the role
+Do not optimize for message control &#8212; optimize for usefulness
+Avoid redundancy
+
+Output
+
+Export the full categorized question set into a document for the candidate to answer individually.
+
+Phase 2: Build the Answer System
+
+Objective
+
+Turn the reviewed answers into a structured, non-generative chatbot interface.
+
+Core Principle
+
+The system does not generate answers.
+
+It only retrieves and displays pre-written, human-reviewed responses.
+
+Interaction Model
+
+Question Selection
+
+Users browse questions organized by category
+Users select from prewritten questions only
+No free-form input unless a controlled system is explicitly added
+
+Answer Display
+
+When a question is selected:
+
+Show a brief typing indicator
+Display the answer using a fast typewriter effect
+Include one subtle human-like correction:
+a typo that is erased and fixed, or
+a word replaced with a better one
+
+Animation Rules
+
+The correction should be noticeable but not distracting
+The overall response should feel quick and responsive
+Respect reduced-motion settings:
+if enabled, show the full answer immediately
+
+Layout Behavior
+
+Desktop
+
+Keep the answer window visible
+Allow users to browse questions without losing the current answer
+
+Mobile
+
+Scroll to the answer after selection
+Provide a clear way to return to the question list
+
+Transparency Requirements
+
+Include a clear, plain-language note:
+
+Answers are written and reviewed by the candidate
+The chatbot is a browsing tool, not an AI decision-maker
+The system does not generate new responses
+
+Tone should be:
+
+calm
+direct
+non-defensive
+
+Discoverability Requirements
+
+Add appropriate page metadata
+Implement FAQ schema for all questions and answers
+Ensure content is crawlable and understandable by search engines and AI systems
+
+Voice and Tone
+
+Useful, not promotional
+Clear, not clever
+Honest about limits
+Consistent with the candidate's real voice
+
+Do not:
+
+simulate personality beyond light interaction cues
+imply the system is "thinking" or "deciding"
+overuse animation or novelty
+
+Output Requirement
+
+The final product should be:
+
+structured
+easy to scan
+technically simple
+trustworthy
+
+Closing Note
+
+This system does not replace conversation.
+
+It makes the candidate's answers easier to access, understand, and evaluate.</pre>
           </div>
         </div>
 
