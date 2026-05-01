@@ -20,12 +20,12 @@ export async function onRequest(context) {
 
   // No valid score in params — redirect to the game
   if (!wpm) {
-    return Response.redirect('https://www.donforbedford.com/pages/best-of-bedford.html', 302);
+    return Response.redirect('https://www.donforbedford.com/best-of-bedford', 302);
   }
 
   const canonicalUrl = `https://www.donforbedford.com/result?wpm=${wpm}&rank=${rank}&town=${encodeURIComponent(town)}`;
   const shareImage   = 'https://www.donforbedford.com/assets/img/og-image.png';
-  const gameUrl      = 'https://www.donforbedford.com/pages/best-of-bedford.html';
+  const gameUrl      = 'https://www.donforbedford.com/best-of-bedford';
 
   const ogTitle = `I typed ${wpm} WPM. #${rank} in ${town}.`;
   const ogDesc  = 'Think you can beat my score on the Bedford Typing Challenge?';

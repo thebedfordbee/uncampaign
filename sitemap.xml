@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.donforbedford.com/</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-01</lastmod>
   </url>
 
   <!-- Links / linktree page -->
@@ -15,17 +15,37 @@
 
   <!-- Main pages -->
   <url>
-    <loc>https://www.donforbedford.com/pages/rules.html</loc>
+    <loc>https://www.donforbedford.com/pages/rules</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://www.donforbedford.com/pages/issues.html</loc>
+    <loc>https://www.donforbedford.com/pages/issues</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://www.donforbedford.com/pages/ideas.html</loc>
+    <loc>https://www.donforbedford.com/pages/ideas</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.donforbedford.com/pages/don-bot</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.donforbedford.com/pages/ai</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.donforbedford.com/pages/odds</loc>
+    <lastmod>2026-04-28</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.donforbedford.com/pages/press</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 
@@ -34,11 +54,7 @@
     <lastmod>2026-04-28</lastmod>
   </url>
 
-  <url>
-    <loc>https://www.donforbedford.com/pages/odds.html</loc>
-    <lastmod>2026-04-28</lastmod>
-  </url>
-
+  <!-- Best of Bedford series -->
   <url>
     <loc>https://www.donforbedford.com/best-of-bedford</loc>
     <lastmod>2026-04-29</lastmod>
@@ -75,6 +91,11 @@
   </url>
 
   <url>
+    <loc>https://www.donforbedford.com/best-of-bedford-cutest-pet-scout</loc>
+    <lastmod>2026-05-01</lastmod>
+  </url>
+
+  <url>
     <loc>https://www.donforbedford.com/best-of-bedford-voter-report-card</loc>
     <lastmod>2026-04-30</lastmod>
   </url>
@@ -89,6 +110,12 @@
     <lastmod>2026-04-30</lastmod>
   </url>
 
+  <url>
+    <loc>https://www.donforbedford.com/bedford-how-to-guide</loc>
+    <lastmod>2026-05-01</lastmod>
+  </url>
+
+  <!-- Photos -->
   <url>
     <loc>https://www.donforbedford.com/photos</loc>
     <lastmod>2026-04-28</lastmod>
@@ -108,64 +135,49 @@
   <url><loc>https://www.donforbedford.com/photos/porch</loc><lastmod>2026-05-01</lastmod></url>
   <url><loc>https://www.donforbedford.com/photos/dog</loc><lastmod>2026-05-01</lastmod></url>
 
-  <url>
-    <loc>https://www.donforbedford.com/pages/press.html</loc>
-    <lastmod>2026-04-28</lastmod>
-  </url>
-
-  <url>
-    <loc>https://www.donforbedford.com/pages/don-bot.html</loc>
-    <lastmod>2026-04-28</lastmod>
-  </url>
-
-  <url>
-    <loc>https://www.donforbedford.com/pages/ai.html</loc>
-    <lastmod>2026-04-28</lastmod>
-  </url>
-
   <!-- Issue deep-dives -->
   <url>
-    <loc>https://www.donforbedford.com/pages/issues/leaf-blower-ban.html</loc>
+    <loc>https://www.donforbedford.com/pages/issues/leaf-blower-ban</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://www.donforbedford.com/pages/issues/roads-infrastructure.html</loc>
+    <loc>https://www.donforbedford.com/pages/issues/roads-infrastructure</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://www.donforbedford.com/pages/issues/bedford-hills.html</loc>
+    <loc>https://www.donforbedford.com/pages/issues/bedford-hills</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://www.donforbedford.com/pages/issues/battery-storage.html</loc>
+    <loc>https://www.donforbedford.com/pages/issues/battery-storage</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://www.donforbedford.com/pages/issues/cell-service.html</loc>
+    <loc>https://www.donforbedford.com/pages/issues/cell-service</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://www.donforbedford.com/pages/issues/energy-costs.html</loc>
+    <loc>https://www.donforbedford.com/pages/issues/energy-costs</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://www.donforbedford.com/pages/issues/growth-character.html</loc>
+    <loc>https://www.donforbedford.com/pages/issues/growth-character</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://www.donforbedford.com/pages/issues/consultants.html</loc>
+    <loc>https://www.donforbedford.com/pages/issues/consultants</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 
   <url>
-    <loc>https://www.donforbedford.com/pages/issues/advocacy-government.html</loc>
+    <loc>https://www.donforbedford.com/pages/issues/advocacy-government</loc>
     <lastmod>2026-04-28</lastmod>
   </url>
 

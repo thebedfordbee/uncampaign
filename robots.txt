@@ -4,8 +4,8 @@
 User-agent: *
 Allow: /
 
-# Allow search + AI input, block training
-Content-Signal: search=yes, ai-input=yes, ai-train=no
+# This site allows search crawlers and AI agents for answering questions.
+# It does not authorize AI training on its content.
 
 # Optional: block low-quality scrapers
 User-agent: Bytespider

@@ -432,6 +432,8 @@
           headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
           body:    new URLSearchParams({ payload: body }).toString()
         });
+      }).then(function (res) {
+        return res.json().catch(function () { return { result: "success" }; });
       });
     }
 
@@ -457,15 +459,19 @@
         page:       window.location.pathname,
         user_agent: navigator.userAgent
       })
-      .then(function () {
+      .then(function (data) {
         setLoading(false);
-        formView.setAttribute("hidden", "");
-        successView.removeAttribute("hidden");
-        doneBtn.focus();
+        if (data && data.result === "error") {
+          showError("Something went wrong. Please try again, or reach Don via Facebook or Instagram.");
+        } else {
+          formView.setAttribute("hidden", "");
+          successView.removeAttribute("hidden");
+          doneBtn.focus();
+        }
       })
       .catch(function () {
         setLoading(false);
-        showError("Something went wrong. Please try again, or email Don directly.");
+        showError("Something went wrong. Please try again, or reach Don via Facebook or Instagram.");
       });
     });
 

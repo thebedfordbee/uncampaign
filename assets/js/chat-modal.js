@@ -187,15 +187,24 @@
           body:    new URLSearchParams({ payload: rawBody }).toString()
         });
       })
-      .then(function () {
+      .then(function (res) {
+        return res.json().catch(function () { return { result: 'success' }; });
+      })
+      .then(function (data) {
         submitting = false;
-        showStep('ok');
+        if (data && data.result === 'error') {
+          submitBtn.textContent = 'Send Request';
+          submitBtn.disabled    = false;
+          showError('Something went wrong. Please try again, or reach Don via Facebook or Instagram.');
+        } else {
+          showStep('ok');
+        }
       })
       .catch(function () {
         submitting = false;
         submitBtn.textContent = 'Send Request';
         submitBtn.disabled    = false;
-        showError('Something went wrong. Please try again, or email Don directly.');
+        showError('Something went wrong. Please try again, or reach Don via Facebook or Instagram.');
       });
     });
   }
