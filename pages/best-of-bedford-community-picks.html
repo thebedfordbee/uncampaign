@@ -170,7 +170,7 @@
       font-size: 0.625rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.58);
+      color: rgba(255, 255, 255, 0.82);
       margin-bottom: 1rem;
     }
     .cp-launch-headline {
@@ -184,7 +184,7 @@
     .cp-launch-support {
       font-family: var(--sans);
       font-size: 0.9375rem;
-      color: rgba(255, 255, 255, 0.62);
+      color: rgba(255, 255, 255, 0.82);
       margin: 0 0 2rem;
       line-height: 1.5;
     }
@@ -261,19 +261,67 @@
       .cp-flow-actions { justify-content: center; }
     }
 
-    /* ── Completion card ──────────────────────────────────── */
+    /* ── Completion card (mirrors launch cover) ───────────── */
     .cp-complete-card {
-      background: var(--white);
-      border: 1.5px solid var(--border);
+      position: relative;
       border-radius: 8px;
-      padding: 2.5rem 2rem;
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-      max-width: 640px;
+      overflow: hidden;
+      min-height: 340px;
+      max-width: 680px;
       margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-color: #2a3a2a;
+      background-image: url('../assets/img/oak.png');
+      background-size: cover;
+      background-position: center;
+      box-shadow: var(--shadow-md);
     }
-    .cp-complete-card h3 { margin-bottom: 0.75rem; }
-    .cp-complete-card p  { color: var(--muted); max-width: none; }
+    .cp-complete-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(16, 28, 16, 0.62);
+      pointer-events: none;
+    }
+    .cp-complete-inner {
+      position: relative;
+      z-index: 1;
+      padding: 3rem 2rem;
+      max-width: 480px;
+      width: 100%;
+    }
+    .cp-complete-eyebrow {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.625rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.82);
+      margin-bottom: 1rem;
+    }
+    .cp-complete-headline {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 4vw, 2.125rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin: 0 0 0.75rem;
+    }
+    .cp-complete-support {
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.82);
+      margin: 0;
+      line-height: 1.5;
+    }
+    @media (max-width: 480px) {
+      .cp-complete-card   { min-height: 280px; }
+      .cp-complete-inner  { padding: 2.5rem 1.5rem; }
+      .cp-complete-headline { font-size: 1.5rem; }
+    }
 
     /* ── Category eyebrow / title ─────────────────────────── */
     .cp-category-eyebrow {
@@ -454,9 +502,9 @@
           <div class="cp-launch-module">
             <div class="cp-launch-inner">
               <span class="cp-launch-label">Ready to Pick?</span>
-              <h3 class="cp-launch-headline">Seven categories. One Bedford list.</h3>
+              <h3 class="cp-launch-headline">Seven Categories. One Bedford List.</h3>
               <p class="cp-launch-support">Vote for local favorites and help build the resident-powered Best of Bedford Community Picks.</p>
-              <button type="button" class="btn btn--primary" id="cp-start">Start Community Picks</button>
+              <button type="button" class="btn btn--primary" id="cp-start">Begin Survey</button>
             </div>
           </div>
         </div>
@@ -478,10 +526,14 @@
         </div>
 
         <!-- ALL DONE STATE -->
-        <div id="cp-complete" class="cp-complete-card" hidden>
-          <p class="eyebrow" style="color:var(--sage);margin-bottom:0.75rem;">All Done</p>
-          <h3>Thanks for Your Community Picks</h3>
-          <p>Your responses have been recorded. The Best of Bedford Community Picks list will be published after Election Day.</p>
+        <div id="cp-complete" hidden>
+          <div class="cp-complete-card">
+            <div class="cp-complete-inner">
+              <p class="cp-complete-eyebrow">All Done</p>
+              <h3 class="cp-complete-headline">Thanks for Your Community Picks</h3>
+              <p class="cp-complete-support cp-complete-msg">Your responses have been recorded. The Best of Bedford Community Picks list will be published after Election Day.</p>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -617,12 +669,23 @@ Output format:
 
   <script>
   /* ============================================================
-     BEST OF BEDFORD COMMUNITY PICKS - Survey Engine v4
-     Clean rewrite. No localStorage. No backend. Front-end only.
+     BEST OF BEDFORD COMMUNITY PICKS - Survey Engine v5
+     Adds: Apps Script submission, session duplicate guard,
+     cover-matched completion screen, submission states.
      ============================================================ */
   (function () {
     'use strict';
 
+    // ── Apps Script endpoint ─────────────────────────────────
+    // Shared campaign Apps Script web app — same endpoint used site-wide.
+    // Replace with your deployed Apps Script Web App URL if this changes.
+    var COMMUNITY_PICKS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec';
+
+    // ── localStorage keys ────────────────────────────────────
+    var KEY_SESSION   = 'communityPicksSessionId';
+    var KEY_SUBMITTED = 'communityPicksSubmitted';
+
+    // ── Survey config ────────────────────────────────────────
     var CATEGORIES = [
       {
         id: 'best-pool',
@@ -661,9 +724,24 @@ Output format:
       }
     ];
 
-    var currentIndex  = 0;
+    // ── State ────────────────────────────────────────────────
+    var currentIndex   = 0;
     var selectedOption = null;
+    var answers        = [];
 
+    // ── Session ID (stable per browser, persists across tabs) ─
+    var sessionId;
+    try {
+      sessionId = localStorage.getItem(KEY_SESSION);
+      if (!sessionId) {
+        sessionId = 'cp-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+        localStorage.setItem(KEY_SESSION, sessionId);
+      }
+    } catch (e) {
+      sessionId = 'cp-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8);
+    }
+
+    // ── DOM refs ─────────────────────────────────────────────
     var launch   = document.getElementById('cp-launch');
     var start    = document.getElementById('cp-start');
     var flow     = document.getElementById('cp-flow');
@@ -673,6 +751,7 @@ Output format:
     var submit   = document.getElementById('cp-flow-submit');
     var complete = document.getElementById('cp-complete');
 
+    // ── Helpers ──────────────────────────────────────────────
     function setVisible(el, visible) {
       if (!el) return;
       el.hidden = !visible;
@@ -687,10 +766,59 @@ Output format:
         .replace(/"/g, '&quot;');
     }
 
+    function alreadySubmitted() {
+      try { return !!localStorage.getItem(KEY_SUBMITTED); } catch (e) { return false; }
+    }
+
+    function markSubmitted() {
+      try { localStorage.setItem(KEY_SUBMITTED, String(Date.now())); } catch (e) {}
+    }
+
+    // ── Error display ────────────────────────────────────────
+    function clearError() {
+      var el = document.getElementById('cp-error-area');
+      if (el) el.remove();
+    }
+
+    function showError(msg, retryFn) {
+      clearError();
+      var div = document.createElement('div');
+      div.id = 'cp-error-area';
+      div.style.marginTop = '0.75rem';
+      var p = document.createElement('p');
+      p.className = 'cp-error-msg';
+      p.textContent = msg;
+      div.appendChild(p);
+      if (retryFn) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'btn btn--ghost';
+        btn.style.marginTop = '0.5rem';
+        btn.textContent = 'Try Again';
+        btn.addEventListener('click', retryFn);
+        div.appendChild(btn);
+      }
+      var actions = document.querySelector('.cp-flow-actions');
+      if (actions) actions.appendChild(div);
+    }
+
+    // ── Completion screen ────────────────────────────────────
+    function showComplete(alreadyDone) {
+      if (complete) {
+        var msgEl = complete.querySelector('.cp-complete-msg');
+        if (msgEl) {
+          msgEl.textContent = alreadyDone
+            ? 'Your responses have already been recorded from this browser. The Best of Bedford Community Picks list will be published after Election Day.'
+            : 'Your responses have been recorded. The Best of Bedford Community Picks list will be published after Election Day.';
+        }
+        setVisible(complete, true);
+      }
+    }
+
+    // ── Render ───────────────────────────────────────────────
     function renderCategory() {
       var cat = CATEGORIES[currentIndex];
       if (!cat || !card) return;
-
       selectedOption = null;
 
       if (lbl)  lbl.textContent  = 'Category ' + (currentIndex + 1) + ' of ' + CATEGORIES.length;
@@ -725,10 +853,86 @@ Output format:
       });
     }
 
+    // ── Submission ───────────────────────────────────────────
+    function buildPayload() {
+      return {
+        action:    'submitCommunityPicks',
+        sessionId: sessionId,
+        userAgent: navigator.userAgent,
+        page:      location.pathname,
+        source:    'real',
+        votes:     answers.map(function (a) {
+          return { categoryId: a.id, category: a.label, pick: a.pick };
+        })
+      };
+    }
+
+    function finalizeAndSubmit() {
+      if (!submit) return;
+      submit.disabled    = true;
+      submit.textContent = 'Submitting…';
+      clearError();
+
+      if (COMMUNITY_PICKS_ENDPOINT.indexOf('PASTE_APPS_SCRIPT') !== -1) {
+        console.warn('Community Picks: endpoint not configured — set COMMUNITY_PICKS_ENDPOINT.');
+        submit.disabled    = false;
+        submit.textContent = 'Submit';
+        showError('Survey endpoint is not configured. Contact the campaign.', null);
+        return;
+      }
+
+      var payload = buildPayload();
+
+      fetch(COMMUNITY_PICKS_ENDPOINT, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload)
+      })
+      .then(function (resp) {
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        return resp.json();
+      })
+      .then(function (data) {
+        if (data.ok || data.success) {
+          markSubmitted();
+          setVisible(flow, false);
+          showComplete(false);
+        } else {
+          throw new Error(data.error || 'Unexpected response from server.');
+        }
+      })
+      .catch(function (err) {
+        // CORS or network error — try no-cors fallback (response unreadable; best-effort)
+        console.warn('Community Picks: direct fetch failed, trying no-cors fallback.', err);
+        fetch(COMMUNITY_PICKS_ENDPOINT, {
+          method:  'POST',
+          mode:    'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(payload)
+        })
+        .then(function () {
+          markSubmitted();
+          setVisible(flow, false);
+          showComplete(false);
+        })
+        .catch(function (err2) {
+          console.error('Community Picks: both fetch attempts failed.', err2);
+          submit.disabled    = false;
+          submit.textContent = 'Submit';
+          showError(
+            'Could not record your picks. Please check your connection and try again.',
+            finalizeAndSubmit
+          );
+        });
+      });
+    }
+
+    // ── Survey flow ──────────────────────────────────────────
     function startSurvey(event) {
       if (event) event.preventDefault();
       currentIndex   = 0;
       selectedOption = null;
+      answers        = [];
       setVisible(launch,   false);
       setVisible(complete, false);
       setVisible(flow,     true);
@@ -744,24 +948,38 @@ Output format:
     function submitAnswer(event) {
       if (event) event.preventDefault();
       if (!selectedOption) return;
+
+      var cat = CATEGORIES[currentIndex];
+      answers.push({ id: cat.id, label: cat.label, pick: selectedOption });
       currentIndex += 1;
+
       if (currentIndex >= CATEGORIES.length) {
-        setVisible(flow,     false);
-        setVisible(complete, true);
+        finalizeAndSubmit();
         return;
       }
+
+      clearError();
       renderCategory();
       var first = card && card.querySelector('.cp-option');
       if (first) first.focus();
     }
 
+    // ── Init ─────────────────────────────────────────────────
     function init() {
+      if (alreadySubmitted()) {
+        setVisible(launch, false);
+        setVisible(flow,   false);
+        showComplete(true);
+        return;
+      }
+
       if (!launch || !start || !flow || !card || !submit) {
         console.error('Community Picks: required elements missing', {
           launch: !!launch, start: !!start, flow: !!flow, card: !!card, submit: !!submit
         });
         return;
       }
+
       setVisible(launch,   true);
       setVisible(flow,     false);
       setVisible(complete, false);
