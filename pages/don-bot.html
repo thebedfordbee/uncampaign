@@ -5,30 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Browse Don Scott's answers to common questions about Bedford, local issues, the Town Supervisor role, and this unusual low-cost campaign for Bedford Town Supervisor.">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <title>Ask Don | Don-Bot for Bedford Town Supervisor</title>
+  <title>Ask Don | Don Bot for Bedford Town Supervisor</title>
   <link rel="canonical" href="https://www.donforbedford.com/pages/don-bot.html">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/pages/don-bot.html">
-  <meta property="og:title" content="Ask Don-Bot | Don Scott for Bedford Town Supervisor">
+  <meta property="og:title" content="Ask Don Bot | Don Scott for Bedford Town Supervisor">
   <meta property="og:description" content="A human-reviewed Q&A tool with Don Scott's answers on Bedford, local government, development, roads, taxes, party politics, and The UNCAMPAIGN.">
   <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Ask Don-Bot — Don Scott's answers to common questions about Bedford and The UNCAMPAIGN.">
+  <meta property="og:image:alt" content="Ask Don Bot — Don Scott's answers to common questions about Bedford and The UNCAMPAIGN.">
   <meta property="og:site_name" content="Don Scott for Bedford">
   <meta property="og:locale" content="en_US">
 
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/pages/don-bot.html">
-  <meta name="twitter:title" content="Ask Don-Bot | Don Scott for Bedford Town Supervisor">
+  <meta name="twitter:title" content="Ask Don Bot | Don Scott for Bedford Town Supervisor">
   <meta name="twitter:description" content="A human-reviewed Q&A tool with Don Scott's answers on Bedford, local government, development, roads, taxes, party politics, and The UNCAMPAIGN.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
-  <meta name="twitter:image:alt" content="Ask Don-Bot — Don Scott's answers to common questions about Bedford and The UNCAMPAIGN.">
+  <meta name="twitter:image:alt" content="Ask Don Bot — Don Scott's answers to common questions about Bedford and The UNCAMPAIGN.">
 
   <!-- Favicons and browser theme -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -56,7 +56,7 @@
         "@type": "WebPage",
         "@id": "https://www.donforbedford.com/pages/don-bot.html#webpage",
         "url": "https://www.donforbedford.com/pages/don-bot.html",
-        "name": "Ask Don | Don-Bot for Bedford Town Supervisor",
+        "name": "Ask Don | Don Bot for Bedford Town Supervisor",
         "description": "Browse Don Scott's answers to common questions about Bedford, local issues, the Town Supervisor role, and this unusual low-cost campaign.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
         "about": { "@id": "https://www.donforbedford.com/#don-scott" },
@@ -85,7 +85,7 @@
       {
         "@type": "FAQPage",
         "mainEntity": [
-          { "@type": "Question", "name": "What is Don-Bot?", "acceptedAnswer": { "@type": "Answer", "text": "Don-Bot is a simple way to ask me the questions people would normally ask a candidate, without turning it into a campaign event. You pick a question, and you get my answer. No email capture. No donation pitch. No clipboard." } },
+          { "@type": "Question", "name": "What is Don Bot?", "acceptedAnswer": { "@type": "Answer", "text": "Don Bot is a simple way to ask me the questions people would normally ask a candidate, without turning it into a campaign event. You pick a question, and you get my answer. No email capture. No donation pitch. No clipboard." } },
           { "@type": "Question", "name": "Are these answers really from Don?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. These answers are based on my views, my experience, and how I think about Bedford. AI helps organize and present them, but it does not invent my positions. If I put my name on something, I should be able to stand behind it." } },
           { "@type": "Question", "name": "Why can't I type my own question?", "acceptedAnswer": { "@type": "Answer", "text": "Mostly because I wanted this to be useful, not chaotic. Most people ask some version of the same core questions. So this starts with the questions Bedford residents are most likely to care about. If enough people ask about something missing, we can add it." } },
           { "@type": "Question", "name": "Is this supposed to replace talking to you?", "acceptedAnswer": { "@type": "Answer", "text": "No. It is supposed to make basic answers easier to find. A website can answer common questions. It cannot replace judgment, conversation, or accountability." } },
@@ -319,36 +319,6 @@
     /* ── Answer column ───────────────────────────────────────────────── */
     .donbot-answer-col { display: flex; flex-direction: column; gap: 0.75rem; }
 
-    /* Recent history */
-    .donbot-history { display: none; }
-    .donbot-history.is-visible { display: block; }
-    .donbot-history__label {
-      font-size: 0.625rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-    .donbot-history__chips { display: flex; flex-wrap: wrap; gap: 0.375rem; }
-    .donbot-history__chip {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.625rem;
-      background: var(--cream);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      cursor: pointer;
-      color: var(--charcoal);
-      font-family: var(--sans);
-      transition: background 0.15s, border-color 0.15s, color 0.15s;
-      max-width: 220px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .donbot-history__chip:hover { background: var(--moss); color: var(--white); border-color: var(--moss); }
-    .donbot-history__chip:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; border-radius: 20px; }
-
     /* Answer card */
     .donbot-answer-card {
       background: var(--white);
@@ -372,17 +342,14 @@
       width: 2rem;
       height: 2rem;
       border-radius: 50%;
-      background: var(--moss);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
+      overflow: hidden;
       flex-shrink: 0;
-      font-family: var(--sans);
-      text-transform: uppercase;
+    }
+    .donbot-answer-card__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .donbot-answer-card__info { flex: 1; min-width: 0; }
     .donbot-answer-card__name {
@@ -494,8 +461,7 @@
     @media (prefers-reduced-motion: reduce) {
       .donbot-category__panel,
       .donbot-category__icon,
-      .donbot-q-btn,
-      .donbot-history__chip { transition: none; }
+      .donbot-q-btn { transition: none; }
       .donbot-typing__dot { animation: none; opacity: 0.55; }
     }
 
@@ -612,7 +578,7 @@
           <h1 id="donbot-title">Ask Don Bot</h1>
         </div>
 
-        <button type="button" class="issues-hero__visual" aria-label="Expand Don-Bot hero image" aria-haspopup="dialog">
+        <button type="button" class="issues-hero__visual" aria-label="Expand Don Bot hero image" aria-haspopup="dialog">
           <img
             src="../assets/img/don-bot.png"
             alt="Don Scott at a laptop, ready to answer your questions about Bedford"
@@ -622,7 +588,7 @@
         </button>
 
         <div class="issues-hero__copy-bot">
-          <p class="issues-hero__deck">Choose a question and Don-Bot will show you Don's answer. No email capture. No donation pitch. No pretending this is a normal campaign.</p>
+          <p class="issues-hero__deck">Choose a question and Don Bot will show you Don's answer. No email capture. No donation pitch. No pretending this is a normal campaign.</p>
           <div class="cta-row">
             <a href="#browse-by-topic" class="btn btn--primary">Ask Don Bot</a>
             <button type="button" class="btn btn--primary" id="donbot-convo-btn" data-chat-req-open>Ask Don Scott</button>
@@ -636,7 +602,7 @@
   <main id="main-content">
 
     <!-- Q&A INTERFACE — directly under hero -->
-    <section class="donbot-qa-section" id="donbot-qa" aria-label="Don-Bot question and answer interface">
+    <section class="donbot-qa-section" id="donbot-qa" aria-label="Don Bot question and answer interface">
       <div class="container">
         <div class="donbot-layout">
 
@@ -651,25 +617,19 @@
               <!-- Populated by JS -->
             </div>
             <!-- Disclaimer moved here from the top intro section -->
-            <p class="donbot-browse-note">Don-Bot is a human-reviewed Q&amp;A tool. You are selecting from prewritten questions, not chatting live with Don. AI helps organize and present the answers. It does not invent his positions. Every answer here reflects Don's actual views.</p>
+            <p class="donbot-browse-note">Don Bot is a human-reviewed Q&amp;A tool. You are selecting from prewritten questions, not chatting live with Don. AI helps organize and present the answers. It does not invent his positions. Every answer here reflects Don's actual views.</p>
           </div>
 
           <!-- RIGHT: Answer panel -->
           <div class="donbot-answer-col">
 
-            <!-- Recent history -->
-            <div class="donbot-history" id="donbot-history" aria-label="Recent questions">
-              <p class="donbot-history__label">Recent</p>
-              <div class="donbot-history__chips" id="donbot-history-chips" role="list"></div>
-            </div>
-
             <!-- Answer card -->
             <div class="donbot-answer-card" role="region" aria-label="Don's answer" aria-live="polite" aria-atomic="false">
               <div class="donbot-answer-card__header">
-                <div class="donbot-answer-card__avatar" aria-hidden="true">DS</div>
+                <div class="donbot-answer-card__avatar"><img src="../assets/img/profile.png" alt="Don Scott"></div>
                 <div class="donbot-answer-card__info">
                   <div class="donbot-answer-card__name">Don Scott</div>
-                  <div class="donbot-answer-card__status" id="donbot-status">Don-Bot</div>
+                  <div class="donbot-answer-card__status" id="donbot-status">Don Bot</div>
                 </div>
               </div>
               <div class="donbot-answer-card__body">
@@ -719,7 +679,7 @@
           <p class="eyebrow">How this was built</p>
           <h2 id="donbot-built-headline">This Campaign Shows Its Work</h2>
           <p class="section-header__lead section-header__lead--wide">
-            This campaign is committed to showing its work, not just stating positions. When a tool or workflow helps make civic information more accessible, it should be explained, shared, and made useful beyond the campaign. The instruction set below shows, in plain English, how a human-reviewed Q&amp;A tool like this can be built with AI from a set of questions and answers.
+            This campaign is committed to showing its work, not just stating positions. When a tool or workflow helps clarify a local issue, it should be explained, shared, and made useful beyond the campaign. The instruction set used to build a human-reviewed Q&amp;A tool like this is published here in full.
           </p>
         </div>
 
@@ -893,7 +853,7 @@ The goal is to make information easier to browse, not to replace a real conversa
         id: 'start-here',
         name: 'Start Here',
         questions: [
-          { id: 'what-is-donbot', q: 'What is Don-Bot?', a: 'Don-Bot is a simple way to ask me the questions people would normally ask a candidate, without turning it into a campaign event. You pick a question, and you get my answer. No email capture. No donation pitch. No clipboard.' },
+          { id: 'what-is-donbot', q: 'What is Don Bot?', a: 'Don Bot is a simple way to ask me the questions people would normally ask a candidate, without turning it into a campaign event. You pick a question, and you get my answer. No email capture. No donation pitch. No clipboard.' },
           { id: 'answers-really-from-don', q: 'Are these answers really from Don?', a: 'Yes. These answers are based on my views, my experience, and how I think about Bedford. AI helps organize and present them, but it does not invent my positions. If I put my name on something, I should be able to stand behind it.' },
           { id: 'why-no-custom-question', q: "Why can't I type my own question?", a: 'Mostly because I wanted this to be useful, not chaotic. Most people ask some version of the same core questions. So this starts with the questions Bedford residents are most likely to care about. If enough people ask about something missing, we can add it.' },
           { id: 'replace-talking', q: 'Is this supposed to replace talking to you?', a: 'No. It is supposed to make basic answers easier to find. A website can answer common questions. It cannot replace judgment, conversation, or accountability.' }
@@ -1141,43 +1101,6 @@ The goal is to make information easier to browse, not to replace a real conversa
     }
 
     /* ── History ──────────────────────────────────────────────────────── */
-    var historyList = [];
-
-    function updateHistory(qObj) {
-      historyList = historyList.filter(function (h) { return h.id !== qObj.id; });
-      historyList.unshift({ id: qObj.id, q: qObj.q });
-      if (historyList.length > 3) historyList.length = 3;
-      renderHistory();
-    }
-
-    function renderHistory() {
-      var wrap  = document.getElementById('donbot-history');
-      var chips = document.getElementById('donbot-history-chips');
-      if (!historyList.length) { wrap.classList.remove('is-visible'); return; }
-      wrap.classList.add('is-visible');
-      chips.innerHTML = '';
-      historyList.forEach(function (item) {
-        var btn = document.createElement('button');
-        btn.type      = 'button';
-        btn.className = 'donbot-history__chip';
-        btn.setAttribute('role', 'listitem');
-        btn.setAttribute('aria-label', 'Revisit: ' + item.q);
-        btn.title     = item.q;
-        btn.textContent = item.q;
-        btn.addEventListener('click', function () {
-          for (var c = 0; c < CATEGORIES.length; c++) {
-            for (var q = 0; q < CATEGORIES[c].questions.length; q++) {
-              if (CATEGORIES[c].questions[q].id === item.id) {
-                selectQuestion(CATEGORIES[c].questions[q]);
-                return;
-              }
-            }
-          }
-        });
-        chips.appendChild(btn);
-      });
-    }
-
     /* ── Select a question ────────────────────────────────────────────── */
     function selectQuestion(qObj) {
       if (activeTimer) { clearTimeout(activeTimer); activeTimer = null; }
@@ -1196,9 +1119,6 @@ The goal is to make information easier to browse, not to replace a real conversa
       activeEl.classList.add('is-visible');
       document.getElementById('donbot-active-a').textContent = '';
 
-      /* Update history */
-      updateHistory(qObj);
-
       /* Scroll to answer card on narrow screens, accounting for fixed nav */
       if (window.innerWidth < 800) {
         var card = document.querySelector('.donbot-answer-card');
@@ -1210,7 +1130,7 @@ The goal is to make information easier to browse, not to replace a real conversa
 
       if (prefersReducedMotion) {
         document.getElementById('donbot-typing').classList.remove('is-visible');
-        document.getElementById('donbot-status').textContent = 'Don-Bot';
+        document.getElementById('donbot-status').textContent = 'Don Bot';
         document.getElementById('donbot-active-a').textContent = qObj.a;
         return;
       }
@@ -1222,7 +1142,7 @@ The goal is to make information easier to browse, not to replace a real conversa
 
       activeTimer = setTimeout(function () {
         typingEl.classList.remove('is-visible');
-        document.getElementById('donbot-status').textContent = 'Don-Bot';
+        document.getElementById('donbot-status').textContent = 'Don Bot';
         typeAnswer(qObj.a);
       }, getTypingIndicatorDelay(qObj.a.length));
     }
