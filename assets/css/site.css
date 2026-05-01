@@ -2002,6 +2002,13 @@ p { max-width: 68ch; }
   max-width: none;
 }
 
+/* Rich HTML instruction panels — child element rules */
+.instr-panel__text p  { max-width: none; margin-bottom: 0.5rem; }
+.instr-panel__text ul,
+.instr-panel__text ol { list-style: revert; padding-left: 1.5rem; margin: 0.5rem 0 0.75rem; }
+.instr-panel__text li { margin-bottom: 0.35rem; }
+.instr-panel__text li > p { margin-bottom: 0.35rem; }
+
 @media (min-width: 768px) {
   .instr-panel__body { padding: 2rem; }
   .instr-panel__text { font-size: 0.9375rem; }
