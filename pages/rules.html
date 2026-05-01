@@ -153,11 +153,9 @@
        Gated to pointer-capable hover devices only. */
     @media (hover: hover) and (pointer: fine) {
       .rule-card {
-        transition: background 0.18s ease, border-color 0.18s ease,
-                    box-shadow 0.18s ease, transform 0.18s ease;
+        transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
       }
       .rule-card:hover {
-        background: var(--cream);
         border-color: var(--sage);
         box-shadow: var(--shadow-md);
         transform: translateY(-2px);
@@ -165,7 +163,7 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .rule-card {
-        transition: background 0.15s ease, border-color 0.15s ease;
+        transition: border-color 0.15s ease;
       }
       .rule-card:hover { transform: none; }
     }

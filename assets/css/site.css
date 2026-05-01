@@ -2292,11 +2292,9 @@ p { max-width: 68ch; }
    ============================================= */
 @media (hover: hover) and (pointer: fine) {
   .card {
-    transition: background 0.18s ease, border-color 0.18s ease,
-                box-shadow 0.18s ease, transform 0.18s ease;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
   }
   .card:hover {
-    background: var(--cream);
     border-color: var(--sage);
     box-shadow: var(--shadow-md);
     transform: translateY(-2px);
@@ -2308,7 +2306,7 @@ p { max-width: 68ch; }
 }
 @media (prefers-reduced-motion: reduce) {
   .card {
-    transition: background 0.15s ease, border-color 0.15s ease;
+    transition: border-color 0.15s ease;
   }
   .card:hover { transform: none; }
   .card__indicator { transition: none; }
