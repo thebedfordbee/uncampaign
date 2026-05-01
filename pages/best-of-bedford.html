@@ -92,6 +92,11 @@
             "@type": "WebPage",
             "url": "https://www.donforbedford.com/best-of-bedford-code-red",
             "name": "Best of Bedford: Code Red | Bedford Town Code Trivia"
+          },
+          {
+            "@type": "WebPage",
+            "url": "https://www.donforbedford.com/bedford-how-to-guide",
+            "name": "The Bedford How-To Guide | Best of Bedford"
           }
         ]
       },
@@ -114,6 +119,57 @@
           "addressRegion": "NY",
           "addressCountry": "US"
         }
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://www.donforbedford.com/best-of-bedford#series-list",
+        "name": "Best of Bedford Series",
+        "description": "Interactive civic participation projects built for Bedford residents.",
+        "numberOfItems": 6,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Fastest Typist in Bedford",
+            "url": "https://www.donforbedford.com/best-of-bedford-fastest-typist",
+            "description": "Compete in a town-wide typing challenge, see which hamlet leads, and find out how Bedford stacks up against the national average."
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Cutest Pet in Bedford",
+            "url": "https://www.donforbedford.com/best-of-bedford-cutest-pet",
+            "description": "Submit your dog, cat, horse, lizard, bird, gerbil, or other beloved creature, then help Bedford choose its cutest local pet."
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Voter Report Card",
+            "url": "https://www.donforbedford.com/best-of-bedford-voter-report-card",
+            "description": "Look up your public voter-history record, see your turnout score, and get a reminder for Bedford's next local election."
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Code Red",
+            "url": "https://www.donforbedford.com/best-of-bedford-code-red",
+            "description": "Play a trivia game built from Bedford's 762-page Town Code and guess which strange local rules are actually real."
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Community Picks",
+            "url": "https://www.donforbedford.com/best-of-bedford-community-picks",
+            "description": "Vote for local favorites and help build a resident-powered Best of Bedford list shaped by the community itself."
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "The Bedford How-To Guide",
+            "url": "https://www.donforbedford.com/bedford-how-to-guide",
+            "description": "The town code, translated into plain English. Fences, tree removal, permits, recycling, property rules, and more — without digging through 700+ pages yourself."
+          }
+        ]
       }
     ]
   }
@@ -211,6 +267,12 @@
     .bob-series-card__thumb svg {
       width: 100%;
       height: 100%;
+    }
+    .bob-series-card__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .bob-series-card__body {
@@ -341,7 +403,7 @@
           <p class="eyebrow">INNOVATING CIVIC ENGAGEMENT</p>
           <h2 id="series-h2">Earning Attention Through Action</h2>
 
-          <p>Instead of spending money on ads, mailers, or political interruptions, we're building local participation projects Bedford residents can actually use. The goal is simple: earn attention by making things that are engaging, useful, or memorable enough to start a conversation.</p>
+          <p>Instead of spending money on ads, mailers, or political interruptions, we're building local participation projects Bedford residents can use. The goal is simple: earn attention by making things useful, engaging, or memorable enough to start a conversation.</p>
 
           <p>Some may call it a stunt. Don sees it differently. Local government should be more creative about involving residents, surfacing local insight, and making civic life feel less like homework.</p>
         </div>
@@ -367,9 +429,7 @@
             <div class="bob-series-card__thumb">
               <img
                 src="../assets/img/type.png"
-                alt="AI persona at a typewriter for the Typing challenge"
-                style="width:100%;height:100%;object-fit:cover;display:block;"
-                loading="lazy">
+                alt="AI persona at a typewriter for the Typing challenge"                loading="lazy">
             </div>
 
             <div class="bob-series-card__body">
@@ -386,9 +446,7 @@
             <div class="bob-series-card__thumb">
               <img
                 src="../assets/img/dogshow.png"
-                alt="AI persona judging a Bedford cutest pet contest"
-                style="width:100%;height:100%;object-fit:cover;display:block;"
-                loading="lazy">
+                alt="AI persona judging a Bedford cutest pet contest"                loading="lazy">
             </div>
 
             <div class="bob-series-card__body">
@@ -405,9 +463,7 @@
             <div class="bob-series-card__thumb">
               <img
                 src="../assets/img/school.png"
-                alt="AI persona passing out report cards in a classroom"
-                style="width:100%;height:100%;object-fit:cover;display:block;"
-                loading="lazy">
+                alt="AI persona passing out report cards in a classroom"                loading="lazy">
             </div>
 
             <div class="bob-series-card__body">
@@ -424,9 +480,7 @@
             <div class="bob-series-card__thumb">
               <img
                 src="../assets/img/codered.png"
-                alt="Code Red trivia game — test your knowledge of the Bedford Town Code"
-                style="width:100%;height:100%;object-fit:cover;display:block;"
-                loading="lazy"
+                alt="Code Red trivia game — test your knowledge of the Bedford Town Code"                loading="lazy"
                 onerror="this.style.display='none';this.parentElement.style.background='var(--cream)'">
             </div>
 
@@ -444,9 +498,7 @@
             <div class="bob-series-card__thumb">
               <img
                 src="../assets/img/census.png"
-                alt="Community Picks survey — vote on Bedford's local favorites"
-                style="width:100%;height:100%;object-fit:cover;display:block;"
-                loading="lazy"
+                alt="Community Picks survey — vote on Bedford's local favorites"                loading="lazy"
                 onerror="this.style.display='none';this.parentElement.style.background='var(--cream)'">
             </div>
 
@@ -464,9 +516,7 @@
             <div class="bob-series-card__thumb">
               <img
                 src="../assets/img/whiteboard.png"
-                alt="A whiteboard representing plain-English explanations of Bedford's Town Code"
-                style="width:100%;height:100%;object-fit:cover;display:block;"
-                loading="lazy"
+                alt="A whiteboard representing plain-English explanations of Bedford's Town Code"                loading="lazy"
                 onerror="this.style.display='none';this.parentElement.style.background='var(--cream)'">
             </div>
 
