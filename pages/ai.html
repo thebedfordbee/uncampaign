@@ -1277,6 +1277,175 @@ demonstrates how AI can make civic information accessible</pre>
             </div>
           </div>
 
+          <!-- 8. Voter Report Card Builder -->
+          <div class="idea-category" role="listitem">
+            <button
+              class="idea-category__trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="ai-panel-voter-report-card"
+              aria-label="Voter Report Card Builder — expand to view instruction set"
+            >
+              <span class="idea-category__trigger-left">
+                <span class="idea-category__name">Voter Report Card Builder</span>
+                <span class="idea-category__count">Instruction set</span>
+              </span>
+              <i class="idea-category__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="idea-category__panel" id="ai-panel-voter-report-card" role="region" aria-label="Voter Report Card Builder instruction set">
+              <div class="idea-category__panel-inner">
+                <p class="ai-tool-desc">An AI-assisted civic tool that matches residents against public voter file data, scores voting consistency with a clear participation rubric, and creates a personalized Election Day calendar reminder with polling place details. <a href="best-of-bedford-voter-report-card.html">Check your voter record.</a></p>
+                <div class="instr-panel">
+                  <div class="instr-panel__bar">
+                    <span class="instr-panel__title">Public Instruction Set &#8212; Voter Report Card Builder</span>
+                    <div class="instr-panel__controls">
+                      <button class="instr-panel__copy" aria-label="Copy Voter Report Card Builder instruction set to clipboard">
+                        <span class="instr-panel__copy-label">Copy All</span>
+                      </button>
+                      <button class="instr-panel__close" aria-label="Close">&#10005;</button>
+                    </div>
+                  </div>
+                  <div class="instr-panel__body">
+                    <pre class="instr-panel__text">Voter Report Card Builder
+
+Purpose
+
+Build a civic participation tool that helps residents understand their own voting history, not someone else's politics.
+
+The tool uses publicly available voter information from the Westchester County Board of Elections, matches it against information entered by the user, applies a simple voting-participation rubric, and returns a personalized voter report card.
+
+The goal is not persuasion.
+The goal is to make voting history visible, understandable, and actionable.
+
+What This Tool Does
+
+Searches a public voter information file
+Matches a voter using the information they enter
+Reviews participation across recent elections
+Scores consistency using a clear rubric
+Generates a simple report card
+Creates a calendar reminder for Election Day
+Inserts the voter's polling place into the calendar location
+
+This is a civic utility, not a campaign targeting tool.
+
+Core Principles
+
+1. Use Public Data Carefully
+The source data comes from publicly available voter information. The tool should use only what is needed to help a voter find their own record and understand their participation history.
+
+2. Match Conservatively
+The lookup should rely on entered voter information and avoid overclaiming. If the tool cannot confidently match a record, it should say so clearly and avoid returning the wrong result.
+
+3. Score Participation, Not Beliefs
+The report card evaluates voting consistency. It does not infer ideology, party loyalty, candidate preference, or issue position.
+
+4. Make The Rubric Understandable
+The scoring system should be simple enough for a resident to understand at a glance. A user should be able to see why they received a particular rating.
+
+5. Turn Insight Into Action
+The tool should not stop at showing a score. It should help the resident make a plan to vote next time.
+
+How The Lookup Works
+
+The user enters identifying information.
+
+The tool checks that information against the public voter file and attempts to locate the matching voter record.
+
+If a reliable match is found, the tool reads the voting history fields and applies the report card rubric.
+
+If no reliable match is found, the tool should provide a calm failure message and avoid guessing.
+
+Report Card Rubric
+
+The rubric should rate voting participation based on actual voting history.
+
+It should prioritize:
+consistency
+recent participation
+local election participation
+whether the voter tends to show up when turnout is lower
+
+The score should be presented plainly, without shame or pressure.
+
+The message should feel like:
+"Here is what your record shows, and here is how to make the next election easier to remember."
+
+Election Day Calendar Invite
+
+The tool should generate a calendar reminder that includes the practical details a voter needs.
+
+The calendar invite should dynamically include:
+the voter's polling place as the event location
+the hardcoded Election Day date for this year
+polling place hours
+a clear event title
+a short reminder note
+
+The point is to reduce friction.
+A voter should be able to click once and save everything needed to remember when and where to vote.
+
+Data Flow
+
+User enters lookup information
+Tool searches the public voter file
+Matching record is evaluated against the rubric
+Report card is rendered in the browser
+Polling place data is passed into the calendar invite
+Calendar event is generated for the user to save
+
+Do not collect unnecessary personal information.
+Do not use the tool to pressure, rank, or target voters.
+
+Privacy And Tone
+
+This tool should feel useful, not invasive.
+
+Use:
+plain explanations
+minimal data handling
+clear failure states
+no shaming language
+no partisan framing
+
+The campaign can encourage participation without making the user feel watched.
+
+Design Approach
+
+Match the Uncampaign system:
+
+calm typography
+cream backgrounds
+moss and sage accents
+restrained cards
+clear spacing
+plain civic language
+
+The report card should feel like a useful public-service artifact, not a political scoring machine.
+
+Build Checklist
+Load or reference the public voter file
+Build conservative matching logic
+Apply a clear voting-participation rubric
+Render a readable report card
+Show helpful failure states
+Generate a calendar invite
+Insert polling place into calendar location
+Hardcode this year's Election Day date and voting hours
+Avoid unnecessary personal data collection
+Keep the tool calm, useful, and transparent
+
+Output
+
+A voter report card tool that helps residents understand their own participation history and gives them an easy way to remember the next election.
+
+It turns public election data into a practical civic reminder.</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>

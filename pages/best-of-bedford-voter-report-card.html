@@ -872,7 +872,7 @@
 
         <div class="instr-panel" id="instr-panel-vrc" hidden>
           <div class="instr-panel__bar">
-            <span class="instr-panel__title">Public Instruction Set</span>
+            <span class="instr-panel__title">Public Instruction Set &#8212; Voter Report Card Builder</span>
             <div class="instr-panel__controls">
               <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
                 <span class="instr-panel__copy-label">Copy All</span>
@@ -881,58 +881,140 @@
             </div>
           </div>
           <div class="instr-panel__body">
-            <pre class="instr-panel__text">Act as a civic transparency tool designer, UX strategist, and front-end builder tasked with creating a public-facing voter engagement page that feels informative, respectful, and non-punitive.
+            <pre class="instr-panel__text">Voter Report Card Builder
 
-The tool to build is:
-A "Voter Report Card" page that lets residents look up a public voting-participation record or civic score in a way that encourages engagement without feeling invasive, shaming, or partisan.
+Purpose
 
-Objective:
-Create a lookup experience that turns public-record-style civic participation into a readable, reflective, and shareable local tool. The page should feel useful and slightly provocative, but not cruel. It should be built as a public-interest transparency artifact, not a political attack page.
+Build a civic participation tool that helps residents understand their own voting history, not someone else's politics.
 
-Design and maintain these priorities throughout the build:
+The tool uses publicly available voter information from the Westchester County Board of Elections, matches it against information entered by the user, applies a simple voting-participation rubric, and returns a personalized voter report card.
 
-1. Civic Framing
-The page should explain clearly that the tool is about participation, not ideology. The emphasis is whether people show up, not how they vote. The framing should make it obvious that the tool is designed to encourage local engagement, not embarrass residents.
+The goal is not persuasion.
+The goal is to make voting history visible, understandable, and actionable.
 
-2. Calm Lookup Experience
-The lookup form should be simple, centered, and easy to understand. Ask only for the minimum needed to perform the lookup. The explanatory subtext should be readable, full-width where appropriate, and not broken into awkward narrow columns.
+What This Tool Does
 
-3. Result Container Discipline
-Do not reserve a large empty result area before results exist. The layout should feel tight and intentional when nothing has been searched yet. Result space should expand only when a record is found or when a no-result state needs to be shown.
+Searches a public voter information file
+Matches a voter using the information they enter
+Reviews participation across recent elections
+Scores consistency using a clear rubric
+Generates a simple report card
+Creates a calendar reminder for Election Day
+Inserts the voter's polling place into the calendar location
 
-4. Readable Public Record Output
-If a record is found, present it in a clean card or panel that summarizes the participation record in plain language. Show the relevant score, turnout history, or attendance-style metrics in a way that is understandable to a non-expert.
+This is a civic utility, not a campaign targeting tool.
 
-5. Respectful Tone
-The page can be playful or pointed, but never punitive. Avoid language that feels like public shaming. The tool should invite reflection and conversation, not humiliation.
+Core Principles
 
-6. Shareable But Responsible
-If the tool includes sharing, it should be transparent and optional. Make sure sharing feels like "look what I found" rather than "weaponize this against a neighbor."
+1. Use Public Data Carefully
+The source data comes from publicly available voter information. The tool should use only what is needed to help a voter find their own record and understand their participation history.
 
-7. Design System Discipline
-Match the campaign site's visual system. Use the same palette, typography, section rhythm, border treatment, and restrained animation. Body copy should feel editorial and readable. On this page, subtext should be aligned cleanly and consistently.
+2. Match Conservatively
+The lookup should rely on entered voter information and avoid overclaiming. If the tool cannot confidently match a record, it should say so clearly and avoid returning the wrong result.
 
-8. Accessibility and Failure States
-The form, results, empty states, and error states should all be understandable and dismissible. If no record is found, the user should receive a clear and respectful explanation. If the lookup fails, the page should not collapse or leave dead space.
+3. Score Participation, Not Beliefs
+The report card evaluates voting consistency. It does not infer ideology, party loyalty, candidate preference, or issue position.
 
-Build instructions:
-- Start with a hero and civic framing.
-- Include a back link to /best-of-bedford.
-- Present a dedicated lookup section.
-- Keep the form simple and centered.
-- Let supporting subtext span the section naturally.
-- Only expand result containers when needed.
-- Use respectful, readable result states.
-- Keep the overall experience informative, slightly playful, and structurally disciplined.
+4. Make The Rubric Understandable
+The scoring system should be simple enough for a resident to understand at a glance. A user should be able to see why they received a particular rating.
 
-Output format:
-1. Civic framing
-2. Lookup architecture
-3. Result-state logic
-4. Tone and copy rules
-5. Visual design requirements
-6. Accessibility and failure-state handling
-7. Final implementation checklist</pre>
+5. Turn Insight Into Action
+The tool should not stop at showing a score. It should help the resident make a plan to vote next time.
+
+How The Lookup Works
+
+The user enters identifying information.
+
+The tool checks that information against the public voter file and attempts to locate the matching voter record.
+
+If a reliable match is found, the tool reads the voting history fields and applies the report card rubric.
+
+If no reliable match is found, the tool should provide a calm failure message and avoid guessing.
+
+Report Card Rubric
+
+The rubric should rate voting participation based on actual voting history.
+
+It should prioritize:
+consistency
+recent participation
+local election participation
+whether the voter tends to show up when turnout is lower
+
+The score should be presented plainly, without shame or pressure.
+
+The message should feel like:
+"Here is what your record shows, and here is how to make the next election easier to remember."
+
+Election Day Calendar Invite
+
+The tool should generate a calendar reminder that includes the practical details a voter needs.
+
+The calendar invite should dynamically include:
+the voter's polling place as the event location
+the hardcoded Election Day date for this year
+polling place hours
+a clear event title
+a short reminder note
+
+The point is to reduce friction.
+A voter should be able to click once and save everything needed to remember when and where to vote.
+
+Data Flow
+
+User enters lookup information
+Tool searches the public voter file
+Matching record is evaluated against the rubric
+Report card is rendered in the browser
+Polling place data is passed into the calendar invite
+Calendar event is generated for the user to save
+
+Do not collect unnecessary personal information.
+Do not use the tool to pressure, rank, or target voters.
+
+Privacy And Tone
+
+This tool should feel useful, not invasive.
+
+Use:
+plain explanations
+minimal data handling
+clear failure states
+no shaming language
+no partisan framing
+
+The campaign can encourage participation without making the user feel watched.
+
+Design Approach
+
+Match the Uncampaign system:
+
+calm typography
+cream backgrounds
+moss and sage accents
+restrained cards
+clear spacing
+plain civic language
+
+The report card should feel like a useful public-service artifact, not a political scoring machine.
+
+Build Checklist
+Load or reference the public voter file
+Build conservative matching logic
+Apply a clear voting-participation rubric
+Render a readable report card
+Show helpful failure states
+Generate a calendar invite
+Insert polling place into calendar location
+Hardcode this year's Election Day date and voting hours
+Avoid unnecessary personal data collection
+Keep the tool calm, useful, and transparent
+
+Output
+
+A voter report card tool that helps residents understand their own participation history and gives them an easy way to remember the next election.
+
+It turns public election data into a practical civic reminder.</pre>
           </div>
         </div>
 
