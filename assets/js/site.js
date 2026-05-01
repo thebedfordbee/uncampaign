@@ -242,14 +242,12 @@
     var headline = document.createElement("h2");
     headline.className = "subscribe-modal__headline";
     headline.id = "subscribe-modal-headline";
-    headline.textContent = "Receive Uncampaign Updates";
+    headline.textContent = "Sign Up";
     formView.appendChild(headline);
 
     var bodyP = document.createElement("p");
     bodyP.className = "subscribe-modal__body";
-    bodyP.textContent = "Useful, occasional emails from Don during the campaign."
-      + " Bedford updates, campaign experiments, local questions, and the occasional"
-      + " useful thing that would never survive a normal campaign newsletter.";
+    bodyP.textContent = "Occasional notes from Don — Bedford updates, campaign experiments, and useful things.";
     formView.appendChild(bodyP);
 
     var form = document.createElement("form");
@@ -299,7 +297,7 @@
     nameInput.id = "subscribe-name";
     nameInput.name = "name";
     nameInput.autocomplete = "given-name";
-    nameInput.placeholder = "Your name";
+    nameInput.placeholder = "Your Name";
     nameField.appendChild(nameInput);
 
     /* Error */
@@ -331,8 +329,7 @@
     /* Fine print */
     var finePrint = document.createElement("p");
     finePrint.className = "subscribe-modal__fine-print";
-    finePrint.textContent = "No fundraising blasts. No spam."
-      + " Just campaign updates and useful Bedford notes. You can unsubscribe anytime.";
+    finePrint.textContent = "No fundraising. No spam. Unsubscribe anytime.";
     formView.appendChild(finePrint);
 
     /* Success view */
