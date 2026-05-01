@@ -3132,3 +3132,36 @@ div.issues-hero__visual--static:hover {
    END SUBSCRIBE MODAL
    ============================================= */
 
+/* =============================================
+   COMMON QUESTIONS CTA LAYOUT
+   ============================================= */
+
+.homepage-contact__actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.homepage-contact__actions a,
+.homepage-contact__actions button {
+  flex: 1 1 260px;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 640px) {
+  .homepage-contact__actions {
+    flex-direction: column;
+  }
+
+  .homepage-contact__actions a,
+  .homepage-contact__actions button {
+    width: 100%;
+  }
+}
+
