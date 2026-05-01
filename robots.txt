@@ -1,5 +1,20 @@
+# NOTE: This robots.txt is intended to allow AI input (Claude, GPT, Google AI) while blocking training.
+# If Cloudflare Managed Content overrides this file, those settings must be disabled in Cloudflare dashboard.
+
 User-agent: *
 Allow: /
-Disallow: /admin/
+
+# Allow search + AI input, block training
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+# Optional: block low-quality scrapers
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
 
 Sitemap: https://www.donforbedford.com/sitemap.xml
