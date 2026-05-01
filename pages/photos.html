@@ -110,8 +110,8 @@
     }
 
     /* Profile section */
-    .photos-profile-section { padding-block: 2.5rem 0; }
-    @media (min-width: 768px) { .photos-profile-section { padding-block: 3rem 0; } }
+    .photos-profile-section { padding-block: 2.5rem; }
+    @media (min-width: 768px) { .photos-profile-section { padding-block: 3rem; } }
 
     /* ---- Profile Header ---- */
     .profile-header {
@@ -494,6 +494,7 @@
     .photo-modal__like-btn:hover { color: var(--warm); }
     .photo-modal__like-btn:active { transform: scale(1.25); }
     .photo-modal__like-btn:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+    .photo-modal__like-btn svg { fill: none; }
     .photo-modal__like-btn.is-liked { color: var(--warm); }
     .photo-modal__like-btn.is-liked svg { fill: var(--warm); }
 
@@ -638,6 +639,8 @@
 
         <h2 id="profile-heading" class="sr-only">Campaign profile and photo archive</h2>
 
+        <p class="eyebrow">THE FEED</p>
+
         <!-- Profile Header -->
         <div class="profile-header">
           <div class="profile-avatar" aria-hidden="true">
@@ -694,22 +697,25 @@
           <p class="eyebrow">How this was built</p>
           <h2 id="howbuilt-headline-photos">This Campaign Shows Its Work</h2>
           <p class="section-header__lead section-header__lead--wide">
-            This campaign is committed to transparency — not just about positions, but about process. When a tool, workflow, or idea helps clarify a local issue, it should be explained, shared, and made useful beyond the campaign. We&#8217;ll publish the instruction set behind this photo series too, since showing the method matters as much as the images.
+            This campaign is committed to showing its work, not just stating positions. When a tool or workflow helps clarify a local issue, it should be explained, shared, and made useful beyond the campaign. The instruction set used to build a fake social media profile is published here in full.
           </p>
         </div>
 
         <div class="cta-row">
           <div class="howbuilt-cta-group">
-            <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-photos" aria-expanded="false">Download The Instructions Set</button>
+            <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-photos" aria-expanded="false">View The Instruction Set</button>
           </div>
         </div>
 
         <div class="instr-panel" id="instr-panel-photos" hidden>
           <div class="instr-panel__bar">
             <span class="instr-panel__title">Public Instruction Set</span>
-            <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
-              <span class="instr-panel__copy-label">Copy All</span>
-            </button>
+            <div class="instr-panel__controls">
+              <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+                <span class="instr-panel__copy-label">Copy All</span>
+              </button>
+              <button class="instr-panel__close" aria-label="Close">&#10005;</button>
+            </div>
           </div>
           <div class="instr-panel__body">
             <p style="font-size:0.8125rem;color:var(--muted);font-style:italic;margin:0 0 1.25rem;max-width:none">Cleaned up slightly for readability. Functionally the same instructions used to generate the staged photo series.</p>
@@ -1011,7 +1017,7 @@ VISUAL STYLE
             if (typeof counts[id] === 'undefined') return;
             var entry = data.likes[id];
             if (entry && typeof entry.total_likes === 'number') {
-              counts[id] = entry.total_likes;
+              counts[id] = liked[id] ? Math.max(entry.total_likes, counts[id]) : entry.total_likes;
             }
           });
           PHOTOS.forEach(function (p) {
@@ -1200,15 +1206,10 @@ VISUAL STYLE
 
       likeCount.textContent = n + (n === 1 ? ' like' : ' likes');
 
-      var svg = likeBtn.querySelector('svg');
       if (isLiked) {
-        svg.setAttribute('fill', 'var(--warm)');
-        svg.setAttribute('stroke', 'var(--warm)');
         likeBtn.classList.add('is-liked');
         likeBtn.setAttribute('aria-label', 'Already liked');
       } else {
-        svg.setAttribute('fill', 'none');
-        svg.setAttribute('stroke', 'currentColor');
         likeBtn.classList.remove('is-liked');
         likeBtn.setAttribute('aria-label', 'Like this photo');
       }
