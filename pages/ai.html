@@ -1090,6 +1090,193 @@ A public-facing survey page that collects lightweight civic input, stores respon
             </div>
           </div>
 
+          <!-- 7. Code Red Quiz Builder -->
+          <div class="idea-category" role="listitem">
+            <button
+              class="idea-category__trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="ai-panel-code-red"
+              aria-label="Code Red Quiz Builder — expand to view instruction set"
+            >
+              <span class="idea-category__trigger-left">
+                <span class="idea-category__name">Code Red Quiz Builder</span>
+                <span class="idea-category__count">Instruction set</span>
+              </span>
+              <i class="idea-category__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="idea-category__panel" id="ai-panel-code-red" role="region" aria-label="Code Red Quiz Builder instruction set">
+              <div class="idea-category__panel-inner">
+                <p class="ai-tool-desc">AI-assisted analysis of the Bedford Town Code used to surface surprising provisions and turn them into an interactive quiz with a live leaderboard. The same approach works for any long public document a community should understand but rarely reads. <a href="best-of-bedford-code-red.html">Play Code Red.</a></p>
+                <div class="instr-panel">
+                  <div class="instr-panel__bar">
+                    <span class="instr-panel__title">Public Instruction Set &#8212; Code Red Quiz Builder</span>
+                    <div class="instr-panel__controls">
+                      <button class="instr-panel__copy" aria-label="Copy Code Red Quiz Builder instruction set to clipboard">
+                        <span class="instr-panel__copy-label">Copy All</span>
+                      </button>
+                      <button class="instr-panel__close" aria-label="Close">&#10005;</button>
+                    </div>
+                  </div>
+                  <div class="instr-panel__body">
+                    <pre class="instr-panel__text">Code Red Quiz Builder
+
+Purpose
+
+Build a civic quiz that turns a long, rarely-read public document into something residents will actually engage with.
+
+The tool uses AI to analyze the full Bedford Town Code, identify surprising provisions, and present them as a short interactive quiz with a live leaderboard.
+
+The goal is simple:
+Make local government more understandable by making it more approachable.
+
+What This Tool Does
+Reads a 700+ page municipal code document
+Uses AI to surface unusual, specific, or surprising provisions
+Converts those into multiple-choice questions
+Reveals the real code after each answer
+Tracks scores and displays a lightweight leaderboard
+
+This is not trivia for its own sake.
+It is a way to make public information visible.
+
+Core Principles
+
+1. Use Real Source Material
+Every correct answer comes directly from the Bedford Town Code.
+Nothing is invented or exaggerated.
+
+2. Let AI Do the Heavy Reading
+AI is used to scan the full document and identify provisions that are:
+
+real
+surprising
+understandable
+worth showing to residents
+
+A human reviews all outputs before publishing.
+
+3. Make the Code Legible
+Each question reveals:
+
+the correct answer
+the actual code language
+a short plain-English explanation
+
+The value is not just guessing correctly.
+It is seeing what is actually written.
+
+4. Keep the Experience Simple
+
+One question at a time
+One answer per question
+Immediate feedback
+No sign-in
+No friction
+
+5. Keep the Tone Grounded
+The Town Code is treated seriously.
+The quiz is curious, not cynical.
+
+How The Quiz Works
+
+Each question includes:
+
+1 real provision from the Town Code
+2 invented options designed to be plausible
+
+The challenge is not spotting a joke.
+It is recognizing how strange real rules can be.
+
+After submission:
+
+the correct answer is revealed
+the real code is shown
+a short explanation is provided
+
+Scores are tracked across all questions.
+
+AI + Research Workflow
+Load the full Bedford Town Code document
+Ask AI to scan for:
+unusual rules
+oddly specific provisions
+things a resident would not expect
+Filter results for:
+clarity
+accuracy
+real-world relevance
+Convert selected items into quiz questions
+Add plausible distractor answers
+Review all outputs before publishing
+
+AI is used to find what matters.
+Humans decide what gets shown.
+
+Leaderboard System
+
+The quiz includes a simple leaderboard to create light participation.
+
+Users submit:
+initials
+hamlet
+No personal data is collected
+Scores are sent to Google Sheets via Apps Script
+The leaderboard mirrors the Typing Challenge system
+
+If the backend fails, the quiz still works.
+
+The leaderboard is optional, not required.
+
+Data Flow
+Quiz runs entirely in the browser
+Score is calculated client-side
+On submission:
+a payload is sent to Apps Script
+Apps Script writes to Google Sheets
+Sheet stores:
+initials
+hamlet
+score
+timestamp
+
+This creates a lightweight, transparent record of participation.
+
+Design Approach
+
+Match the Uncampaign system:
+
+calm typography
+restrained layout
+editorial spacing
+no game-show styling
+
+The design should feel like civic infrastructure, not entertainment.
+
+Build Checklist
+Load Town Code as source document
+Use AI to extract candidate provisions
+Build structured question set
+Implement one-question flow
+Reveal real code after each answer
+Track score across quiz
+Submit scores to leaderboard
+Handle failures cleanly
+Keep everything readable and copyable
+
+Output
+
+A public-facing quiz that:
+
+turns a long legal document into something usable
+shows residents what is actually in their town code
+demonstrates how AI can make civic information accessible</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
