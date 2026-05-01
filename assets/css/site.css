@@ -2280,6 +2280,10 @@ p { max-width: 68ch; }
   .rule-card-wrapper.is-expanded .rule-card--finale .rule-card__cta {
     border-top-color: rgba(255, 255, 255, 0.15);
   }
+
+  /* Hide repeated "Do this instead" eyebrow inside expanded panel —
+     toggle button above already carries that label on mobile */
+  .rule-card .rule-card__cta-label { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
