@@ -1446,6 +1446,174 @@ It turns public election data into a practical civic reminder.</pre>
             </div>
           </div>
 
+          <!-- 9. Pet Contest Builder -->
+          <div class="idea-category" role="listitem">
+            <button
+              class="idea-category__trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="ai-panel-pet-contest"
+              aria-label="Pet Contest Builder — expand to view instruction set"
+            >
+              <span class="idea-category__trigger-left">
+                <span class="idea-category__name">Pet Contest Builder</span>
+                <span class="idea-category__count">Instruction set</span>
+              </span>
+              <i class="idea-category__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="idea-category__panel" id="ai-panel-pet-contest" role="region" aria-label="Pet Contest Builder instruction set">
+              <div class="idea-category__panel-inner">
+                <p class="ai-tool-desc">An AI-assisted civic engagement tool that lets residents submit pets through a form, routes entries through Google Apps Script and Sheets, and powers a category-based voting gallery with real-time upvotes. <a href="best-of-bedford-cutest-pet.html">Visit the Pet Contest.</a></p>
+                <div class="instr-panel">
+                  <div class="instr-panel__bar">
+                    <span class="instr-panel__title">Public Instruction Set &#8212; Pet Contest Builder</span>
+                    <div class="instr-panel__controls">
+                      <button class="instr-panel__copy" aria-label="Copy Pet Contest Builder instruction set to clipboard">
+                        <span class="instr-panel__copy-label">Copy All</span>
+                      </button>
+                      <button class="instr-panel__close" aria-label="Close">&#10005;</button>
+                    </div>
+                  </div>
+                  <div class="instr-panel__body">
+                    <pre class="instr-panel__text">Best of Bedford Pet Contest Builder
+
+Purpose
+
+Build a playful civic participation tool that lets residents submit their pets, browse local entries, and vote for favorites in a friendly, low-pressure way.
+
+The tool combines a public pet submission form, a Google Sheets backend connected through Apps Script, a reviewed publishing workflow, and an interactive voting gallery.
+
+The goal is not just to run a cute contest.
+The goal is to create a neighborly reason for residents to interact with a civic campaign.
+
+What This Tool Does
+
+Lets residents submit a pet through a simple form
+Sends each submission to Google Sheets through Apps Script
+Notifies the campaign when a new pet is submitted
+Allows reviewed pets to be turned into public cards
+Organizes pets by category
+Lets visitors upvote favorites
+Stores vote events and totals
+Keeps the experience light, local, and easy to share
+
+This is a civic engagement experiment disguised as something people actually want to click.
+
+Core Principles
+
+1. Make Participation Easy
+The form should ask only for what is needed to review and publish a pet entry. Keep the tone friendly and the process short.
+
+2. Separate Submission From Publishing
+A submitted pet should not automatically appear on the public page. Entries are first stored in the backend spreadsheet, then reviewed before a pet card is added to the site.
+
+3. Use A Lightweight Backend
+Google Apps Script acts as the public bridge between the website and Google Sheets. It receives form submissions, stores the data, and can notify the campaign when a new entry arrives.
+
+4. Keep Voting Simple
+Visitors should be able to browse pets, expand a card, and upvote a favorite without creating an account or handing over personal information.
+
+5. Organize The Contest Clearly
+Use category sections for different types of pets so the page remains easy to scan as entries grow.
+
+6. Make Sharing Neighborly
+Sharing should help residents celebrate a pet or invite friends to participate. It should not feel like a growth hack.
+
+How The Submission Flow Works
+
+A resident fills out the pet submission form.
+
+The form sends the entry to Apps Script, which writes the submission into a Google Sheet and pings the campaign.
+
+The campaign can then review the entry, prepare the public pet card, and deploy it to the site.
+
+This keeps the public page curated while still making submission easy.
+
+How Voting Works
+
+Each approved pet appears as a public card.
+
+Cards can be grouped by category and expanded for more detail.
+
+In the expanded state, visitors can upvote and share the pet.
+
+Vote events are sent through Apps Script and stored in Google Sheets, allowing totals to update and persist over time.
+
+Data Flow
+
+Resident submits pet form
+Website sends submission to Apps Script
+Apps Script writes to Google Sheets
+Campaign receives notification
+Approved pet is added as a public card
+Visitor upvotes a pet
+Vote is sent to Apps Script
+Sheet stores vote event and updated total
+Page displays current vote count
+
+This creates a lightweight contest system without a paid backend.
+
+Fairness And Guardrails
+
+Use simple browser or session-based limits to discourage repeat voting.
+
+Avoid heavy authentication unless the project truly needs it.
+
+The contest should feel playful and fair, not bureaucratic.
+
+Do not use fake urgency, fake scarcity, or inflated vote totals.
+
+Privacy And Moderation
+
+Collect only the information needed to review and publish a pet entry.
+
+Avoid unnecessary personal details.
+
+Review submissions before publishing to prevent spam, inappropriate content, or accidental oversharing.
+
+Keep owner information minimal and display-friendly.
+
+Design Approach
+
+Match the Uncampaign system:
+
+calm typography
+cream backgrounds
+moss and sage accents
+restrained cards
+clean category sections
+readable expanded states
+mobile-friendly voting controls
+
+The page should feel polished and local, not like a generic contest platform.
+
+Build Checklist
+Create a friendly contest hero
+Present browse-and-vote before submission
+Organize pets by category
+Make pet cards expandable
+Include upvote and share controls
+Build a short submission form
+Send submissions to Apps Script
+Store entries in Google Sheets
+Notify the campaign of new submissions
+Review entries before publishing
+Store vote events and totals
+Update visible vote counts
+Handle backend failures cleanly
+Keep the experience warm, fair, and easy to use
+
+Output
+
+A public-facing pet contest that collects local submissions, powers a category-based voting gallery, and gives residents a lighthearted reason to participate.
+
+It turns campaign technology into something neighborly.</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
