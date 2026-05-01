@@ -95,6 +95,10 @@
     /* Hero — reset cta-row margin inside issues-hero__copy-bot flex gap */
     .issues-hero__copy-bot .cta-row { margin-top: 0; }
 
+    /* Justify body copy paragraphs scoped to this page */
+    .issues-hero__deck { text-align: justify; }
+    .section-header__lead { text-align: justify; }
+
     /* /ideas hero image is now a clickable button, same as /issues — no suppressions needed */
 
     /* Hero CTA: white-filled button on moss background so it reads as a button at rest.
@@ -121,7 +125,7 @@
 
     .matchup-header { margin-bottom: 2rem; }
     .matchup-header h2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
-    .matchup-header p { color: var(--muted); margin-top: 0; max-width: none; }
+    .matchup-header p { color: var(--muted); margin-top: 0; max-width: none; text-align: justify; }
 
     /* Arena: desktop 2-col side-by-side; skip spans both columns below */
     .matchup-arena {
@@ -222,25 +226,22 @@
     }
     .matchup-card__confirm.is-visible { opacity: 1; }
 
-    /* Skip button — centered below both cards, warm-white background like the option cards */
+    /* Skip button — primary green styling to match CTA hierarchy */
     .matchup-skip {
-      background: var(--white);
-      border: 1px solid var(--border);
+      background: var(--moss);
+      border: none;
       border-radius: var(--radius);
-      box-shadow: var(--shadow-sm);
       cursor: pointer;
       padding: 0.5625rem 1.375rem;
-      color: var(--muted);
+      color: var(--white);
       font-size: 0.875rem;
       font-weight: 600;
       font-family: var(--sans);
-      transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+      transition: background 0.15s, color 0.15s;
     }
     .matchup-skip:hover {
-      background: var(--cream);
-      color: var(--charcoal);
-      border-color: var(--sage);
-      box-shadow: var(--shadow-md);
+      background: var(--charcoal);
+      color: var(--white);
     }
     .matchup-skip:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 
@@ -294,7 +295,7 @@
 
     .ideas-accordion-header { margin-bottom: 2rem; }
     .ideas-accordion-header h2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
-    .ideas-accordion-header p { color: var(--muted); }
+    .ideas-accordion-header p { color: var(--muted); text-align: justify; }
 
     .ideas-accordion {
       border: 1px solid var(--border);
