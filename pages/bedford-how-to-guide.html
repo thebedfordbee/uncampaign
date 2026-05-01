@@ -10,7 +10,7 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/bedford-how-to-guide">
-  <meta property="og:title" content="The Bedford How-To Guide | Plain-English Town Code for Residents">
+  <meta property="og:title" content="Bedford How-To Guide | Don Scott">
   <meta property="og:description" content="Plain-English answers to common Bedford Town Code questions: fences, tree removal, permits, recycling, accessory apartments, and more.">
   <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
@@ -23,7 +23,7 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/bedford-how-to-guide">
-  <meta name="twitter:title" content="The Bedford How-To Guide | Plain-English Town Code">
+  <meta name="twitter:title" content="Bedford How-To Guide | Don Scott">
   <meta name="twitter:description" content="Plain-English answers to common Bedford Town Code questions: fences, tree removal, permits, recycling, accessory apartments, and more.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta name="twitter:image:alt" content="The Bedford How-To Guide — plain-English answers to Bedford Town Code questions.">
@@ -240,10 +240,11 @@
       border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.75rem;
     }
     .guide-answer-card__avatar {
-      width: 2rem; height: 2rem; border-radius: 50%; background: var(--moss);
-      color: var(--white); display: flex; align-items: center; justify-content: center;
-      font-size: 0.5625rem; font-weight: 700; letter-spacing: 0.04em;
-      flex-shrink: 0; font-family: var(--sans); text-transform: uppercase;
+      width: 2rem; height: 2rem; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .guide-answer-card__avatar img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .guide-answer-card__info { flex: 1; min-width: 0; }
     .guide-answer-card__name { font-family: var(--serif); font-size: 0.9375rem; color: var(--charcoal); line-height: 1.2; }
@@ -356,6 +357,24 @@
     /* ── Justified copy ── */
     .issues-hero__deck { text-align: justify; hyphens: auto; }
     @media (max-width: 380px) { .issues-hero__deck { text-align: left; hyphens: none; } }
+
+    /* ── Mobile "ask another question" button ── */
+    .guide-ask-another {
+      display: block; width: 100%; margin-top: 0.875rem;
+      padding: 0.75rem 1.5rem; background: var(--moss); border: 2px solid var(--moss);
+      border-radius: var(--radius, 4px); font-family: var(--sans); font-size: 0.9375rem;
+      font-weight: 600; color: var(--white); cursor: pointer; text-align: center;
+      line-height: 1.2; min-height: 48px; transition: background 0.15s, border-color 0.15s;
+    }
+    .guide-ask-another:hover { background: #2d3e2f; border-color: #2d3e2f; }
+    .guide-ask-another:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+    @media (min-width: 800px) { .guide-ask-another { display: none; } }
+
+    /* ── Suggest a Topic — mobile center ── */
+    @media (max-width: 799px) {
+      #guide-suggest { text-align: center; }
+      #guide-suggest .btn { width: 100%; max-width: 20rem; }
+    }
   </style>
 </head>
 <body>
@@ -399,7 +418,7 @@
       <div class="issues-hero__inner">
 
         <div class="issues-hero__copy-top">
-          <p class="eyebrow">DON SCOTT PRESENTS</p>
+          <a href="best-of-bedford.html" class="issue-back">← BACK TO BEST OF BEDFORD</a>
           <h1 id="guide-hero-h1">The Bedford How-To Guide</h1>
         </div>
 
@@ -414,10 +433,6 @@
 
         <div class="issues-hero__copy-bot">
           <p class="issues-hero__deck">We read the Town Code so you don&#8217;t have to. A plain-English guide to some of the questions Bedford residents actually run into: fences, tree removal, permits, recycling, accessory apartments, home businesses, and more. Where possible, we include the actual Town Code language too &#8212; so you can see both the rule and the translation.</p>
-          <div class="cta-row">
-            <a href="#guide-browser" class="btn btn--primary">Search the Guide</a>
-            <a href="#guide-suggest" class="btn btn--ghost">Suggest a Topic</a>
-          </div>
         </div>
 
       </div>
@@ -430,6 +445,7 @@
     <section class="section section--alt guide-search-section" aria-label="Search the guide">
       <div class="container">
         <div class="guide-search-wrap">
+          <p class="eyebrow" style="margin-bottom:0.75rem;">SEARCH</p>
           <div class="guide-search-input-wrap">
             <svg class="guide-search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
               <circle cx="11" cy="11" r="8"/>
@@ -439,7 +455,7 @@
               type="search"
               id="guide-search-input"
               class="guide-search-input"
-              placeholder="Search fences, tree removal, recycling, permits, accessory apartments&#8230;"
+              placeholder="Does my dog need to be licensed?"
               aria-label="Search the Bedford How-To Guide"
               autocomplete="off"
               spellcheck="false">
@@ -467,7 +483,7 @@
               <p>No exact match yet. Try another phrase &#8212; or suggest a topic below and we may add it.</p>
             </div>
             <div id="guide-suggest" style="margin-top: 1.25rem;">
-              <button type="button" class="btn btn--primary" data-chat-req-open>Suggest a Topic</button>
+              <button type="button" class="btn btn--primary" data-suggest-open>Suggest a Topic</button>
             </div>
           </div>
 
@@ -475,10 +491,10 @@
           <div class="guide-answer-col" id="guide-answer-col">
             <div class="guide-answer-card" role="region" aria-label="Guide answer" aria-live="polite" aria-atomic="false">
               <div class="guide-answer-card__header">
-                <div class="guide-answer-card__avatar" aria-hidden="true">BG</div>
+                <div class="guide-answer-card__avatar"><img src="../assets/img/profile.png" alt="Don Scott"></div>
                 <div class="guide-answer-card__info">
-                  <div class="guide-answer-card__name">Bedford How-To Guide</div>
-                  <div class="guide-answer-card__status">Plain English &middot; Town Code Reference</div>
+                  <div class="guide-answer-card__name">Don Scott</div>
+                  <div class="guide-answer-card__status">Bedford How-To Guide</div>
                 </div>
               </div>
               <div class="guide-answer-card__body" id="guide-answer-body">
@@ -492,17 +508,18 @@
           </div>
 
         </div>
+        <button type="button" class="guide-ask-another" id="guide-ask-another" aria-label="Scroll back to search">Ask another question</button>
       </div>
     </section>
 
     <!-- HOW THIS WAS BUILT -->
-    <section class="section" id="guide-built" aria-labelledby="guide-built-headline">
+    <section class="section section--alt" id="guide-built" aria-labelledby="guide-built-headline">
       <div class="container">
         <div class="section-header">
           <p class="eyebrow">How this was built</p>
           <h2 id="guide-built-headline">This Campaign Shows Its Work</h2>
           <p class="section-header__lead section-header__lead--wide">
-            This guide was built by reviewing the Town of Bedford code and translating parts of it into plain English so residents can find answers faster. AI helped organize, summarize, and structure the material, but every answer should still be treated as a starting point &#8212; not a substitute for confirming details with the Town before acting.
+            This campaign is committed to showing its work, not just stating positions. When a tool or workflow helps clarify a local issue, it should be explained, shared, and made useful beyond the campaign. The instruction set used to organize, summarize, and structure the material is published here in full.
           </p>
         </div>
         <div class="cta-row">
@@ -559,6 +576,44 @@ The goal is to make local government information easier to use without replacing
 
 
   </main>
+
+  <!-- SUGGEST A TOPIC MODAL -->
+  <div class="chat-req-modal" id="suggest-modal" role="dialog" aria-labelledby="suggest-modal-title" aria-modal="true" hidden>
+    <div class="chat-req-modal__backdrop" id="suggest-backdrop" aria-hidden="true"></div>
+    <div class="chat-req-modal__frame">
+      <div class="chat-req-modal__header">
+        <span class="chat-req-modal__title" id="suggest-modal-title">Suggest a Topic</span>
+        <button class="chat-req-modal__close" id="suggest-close" aria-label="Close">&#x2715;</button>
+      </div>
+      <div class="chat-req-modal__body">
+        <div id="suggest-form-step">
+          <p class="chat-step__prompt">Something missing from the guide? Tell us what you&#8217;d like to see covered.</p>
+          <form class="chat-req-form" id="suggest-form" novalidate>
+            <div>
+              <label for="suggest-topic">Topic suggestion <span class="chat-req-form__optional">(Required)</span></label>
+              <textarea id="suggest-topic" name="topic" rows="3" placeholder="e.g. What are the rules for keeping chickens?"></textarea>
+            </div>
+            <div>
+              <label for="suggest-context">Any additional context <span class="chat-req-form__optional">(Optional)</span></label>
+              <textarea id="suggest-context" name="context" rows="2" placeholder="Tell us more if it&#8217;s helpful."></textarea>
+            </div>
+            <div>
+              <label for="suggest-email">Your email <span class="chat-req-form__optional">(Optional &mdash; we&#8217;ll let you know when it&#8217;s added)</span></label>
+              <input type="email" id="suggest-email" name="email" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="chat-req-form__error" id="suggest-error" role="alert" hidden></div>
+            <div class="chat-req-form__actions">
+              <button type="submit" class="btn btn--primary" id="suggest-submit">Send Suggestion</button>
+            </div>
+          </form>
+        </div>
+        <div class="chat-req-modal__confirm" id="suggest-confirm" role="status" hidden>
+          <p>Thanks. We&#8217;ll look into adding that topic to the guide.</p>
+          <button type="button" class="btn btn--secondary" id="suggest-done">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- CHAT REQUEST MODAL -->
   <div class="chat-req-modal" id="chat-req-modal" role="dialog" aria-labelledby="chat-req-title" aria-modal="true" hidden>
@@ -660,6 +715,112 @@ The goal is to make local government information easier to use without replacing
 
   <script src="../assets/js/site.js"></script>
   <script src="../assets/js/chat-modal.js"></script>
+  <script>
+  /* ── Suggest a Topic modal ───────────────────────────────────────────────── */
+  (function () {
+    'use strict';
+    var SUGGEST_API = 'https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec';
+    var modal      = document.getElementById('suggest-modal');
+    if (!modal) return;
+    var backdrop   = document.getElementById('suggest-backdrop');
+    var closeBtn   = document.getElementById('suggest-close');
+    var form       = document.getElementById('suggest-form');
+    var formStep   = document.getElementById('suggest-form-step');
+    var confirmEl  = document.getElementById('suggest-confirm');
+    var errorEl    = document.getElementById('suggest-error');
+    var submitBtn  = document.getElementById('suggest-submit');
+    var doneBtn    = document.getElementById('suggest-done');
+    var lastFocused = null;
+    var submitting  = false;
+
+    function openSuggestModal(trigger) {
+      lastFocused = trigger || document.activeElement;
+      if (formStep) formStep.hidden = false;
+      if (confirmEl) confirmEl.hidden = true;
+      if (errorEl) { errorEl.textContent = ''; errorEl.hidden = true; }
+      if (form) form.reset();
+      if (submitBtn) { submitBtn.textContent = 'Send Suggestion'; submitBtn.disabled = false; }
+      modal.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      var first = form && form.querySelector('textarea');
+      if (first) first.focus();
+    }
+
+    function closeSuggestModal() {
+      modal.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', closeSuggestModal);
+    if (backdrop) backdrop.addEventListener('click', closeSuggestModal);
+    if (doneBtn)  doneBtn.addEventListener('click', closeSuggestModal);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeSuggestModal();
+    });
+
+    modal.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var focusables = Array.from(modal.querySelectorAll(
+        'button:not([disabled]), input:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+      )).filter(function (el) { return !el.closest('[hidden]') && el.offsetParent !== null; });
+      if (focusables.length < 2) return;
+      var first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (submitting) return;
+        var topic = ((document.getElementById('suggest-topic') || {}).value || '').trim();
+        if (!topic) {
+          if (errorEl) { errorEl.textContent = 'Please enter a topic suggestion.'; errorEl.hidden = false; }
+          return;
+        }
+        if (errorEl) errorEl.hidden = true;
+        submitting = true;
+        submitBtn.textContent = 'Sending…';
+        submitBtn.disabled = true;
+        var payload = {
+          action:       'topicSuggestion',
+          type:         'topic_suggestion',
+          topic:        topic,
+          context:      ((document.getElementById('suggest-context') || {}).value || '').trim(),
+          email:        ((document.getElementById('suggest-email') || {}).value || '').trim(),
+          submitted_at: new Date().toISOString(),
+          page_url:     window.location.href
+        };
+        var rawBody = JSON.stringify(payload);
+        fetch(SUGGEST_API, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: rawBody })
+          .catch(function () {
+            return fetch(SUGGEST_API, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+              body: new URLSearchParams({ payload: rawBody }).toString()
+            });
+          })
+          .then(function () {
+            submitting = false;
+            if (formStep) formStep.hidden = true;
+            if (confirmEl) confirmEl.hidden = false;
+          })
+          .catch(function () {
+            submitting = false;
+            submitBtn.textContent = 'Send Suggestion';
+            submitBtn.disabled = false;
+            if (errorEl) { errorEl.textContent = 'Something went wrong. Please try again.'; errorEl.hidden = false; }
+          });
+      });
+    }
+
+    document.querySelectorAll('[data-suggest-open]').forEach(function (btn) {
+      btn.addEventListener('click', function () { openSuggestModal(btn); });
+    });
+  })();
+  </script>
   <script>
   (function () {
     'use strict';
@@ -1307,45 +1468,26 @@ The goal is to make local government information easier to use without replacing
     /* ── Build answer HTML (shared by desktop panel + mobile inline) ─────── */
     function buildAnswerHTML(q) {
       var html = '';
+
       html += '<div class="guide-answer-q">';
       html += '<span class="guide-answer-q__label">Question</span>';
       html += '<span class="guide-answer-q__text">' + escHtml(q.question) + '</span>';
       html += '</div>';
 
       html += '<div class="guide-quick">';
-      html += '<span class="guide-section-label">Quick Answer</span>';
-      html += '<p class="guide-quick__text">' + escHtml(q.quickAnswer) + '</p>';
+      html += '<span class="guide-section-label">' + escHtml(q.codeReference) + '</span>';
+      html += '<p class="guide-quick__text" style="font-style:italic;">' + escHtml(q.codeExcerpt) + '</p>';
       html += '</div>';
 
       html += '<div class="guide-section">';
-      html += '<span class="guide-section-label">In Plain English</span>';
-      html += '<p class="guide-section__text">' + escHtml(q.plainEnglish) + '</p>';
+      html += '<span class="guide-section-label">DON\'S READ</span>';
+      html += '<p class="guide-section__text">' + escHtml(q.quickAnswer) + ' ' + escHtml(q.plainEnglish) + '</p>';
       html += '</div>';
 
       html += '<div class="guide-section">';
       html += '<span class="guide-section-label">Who This Usually Involves</span>';
       html += '<p class="guide-section__text guide-involves">' + escHtml(q.involves) + '</p>';
       html += '</div>';
-
-      html += '<div class="guide-section">';
-      html += '<button class="guide-code-toggle" aria-expanded="false">See the Actual Town Code Language</button>';
-      html += '<div class="guide-code-panel">';
-      html += '<blockquote class="guide-code-text">' + escHtml(q.codeExcerpt) + '</blockquote>';
-      html += '</div>';
-      html += '</div>';
-
-      html += '<p class="guide-code-ref"><strong>Code Reference:</strong> ' + escHtml(q.codeReference) + '</p>';
-
-      if (q.related && q.related.length) {
-        html += '<div class="guide-section guide-related">';
-        html += '<span class="guide-section-label">Related Questions</span>';
-        html += '<ul class="guide-related-list">';
-        for (var r = 0; r < q.related.length; r++) {
-          html += '<li><button class="guide-related-btn" data-qtext="' + escAttr(q.related[r]) + '">' + escHtml(q.related[r]) + '</button></li>';
-        }
-        html += '</ul>';
-        html += '</div>';
-      }
 
       html += '<p class="guide-answer-disclaimer">This guide is for convenience only and is not legal advice. Confirm details with the Town before acting.</p>';
       return html;
@@ -1603,12 +1745,28 @@ The goal is to make local government information easier to use without replacing
       });
     }
 
+    /* ── Mobile "ask another question" button ─────────────────────────────── */
+    function setupAskAnother() {
+      var btn = document.getElementById('guide-ask-another');
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        var searchInput = document.getElementById('guide-search-input');
+        if (!searchInput) return;
+        var nav = document.querySelector('.site-header');
+        var navH = nav ? nav.offsetHeight : 64;
+        var top = searchInput.getBoundingClientRect().top + window.pageYOffset - navH - 12;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+        searchInput.focus();
+      });
+    }
+
     /* ── Init ─────────────────────────────────────────────────────────────── */
     function init() {
       buildAccordion();
       setupAnswerPanelEvents();
       setupSearch();
       setupBrowseMore();
+      setupAskAnother();
     }
 
     if (document.readyState === 'loading') {
