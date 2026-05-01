@@ -3091,6 +3091,7 @@ div.issues-hero__visual--static:hover {
   opacity: 0.8;
   line-height: 1.6;
   margin-top: 0.75rem;
+  text-align: center;
 }
 
 /* Success state */
