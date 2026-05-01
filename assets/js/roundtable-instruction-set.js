@@ -57,7 +57,7 @@
     + '<p style="margin-top:1.5rem"><strong>Rules of the Roundtable</strong></p>'
     + '<ul>'
     + '<li>Each perspective must advocate for its priorities as if it is responsible for the outcome.</li>'
-    + ‘<li>No perspective may assume another role&#8217;s concerns are already handled.</li>’
+    + '<li>No perspective may assume another role&#8217;s concerns are already handled.</li>'
     + '<li>Avoid abstract arguments. Ground all points in real-world consequences.</li>'
     + '<li>Prioritize second-order effects (what happens next, not just what happens now).</li>'
     + '<li>If something sounds good in theory but fails under practical pressure, say so clearly.</li>'
