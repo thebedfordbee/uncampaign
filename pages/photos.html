@@ -101,7 +101,7 @@
               "name": "Ribbon Cutting",
               "description": "Giant scissors are a local candidate's best friend this time of year. No, I didn't open this place. I just made sure I was standing nearby when someone else did. #ScissorsSeason",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/ribbon.png",
-              "url": "https://www.donforbedford.com/photos#ribbon"
+              "url": "https://www.donforbedford.com/photos/ribbon"
             }
           },
           {
@@ -112,7 +112,7 @@
               "name": "The Handshake",
               "description": "That's not cash changing hands. It's a firm Bedford handshake between two men doing their best to act like this photo wasn't arranged 14 seconds ago. #HandshakeContent",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/shake.png",
-              "url": "https://www.donforbedford.com/photos#shake"
+              "url": "https://www.donforbedford.com/photos/shake"
             }
           },
           {
@@ -123,7 +123,7 @@
               "name": "Campaign Baby Photo",
               "description": "Every campaign eventually requires a tasteful baby photo. This one was completed quickly, respectfully, and without pretending the baby had endorsed anyone. #BabyPhotoObligation",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/baby.png",
-              "url": "https://www.donforbedford.com/photos#baby"
+              "url": "https://www.donforbedford.com/photos/baby"
             }
           },
           {
@@ -134,7 +134,7 @@
               "name": "Coffee With Residents",
               "description": "Nothing says \"serious local candidate\" like being photographed near coffee while listening intently. To be fair, we were already talking before someone decided this should become content. #CoffeeWithConstituents",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/coffee.png",
-              "url": "https://www.donforbedford.com/photos#coffee"
+              "url": "https://www.donforbedford.com/photos/coffee"
             }
           },
           {
@@ -145,7 +145,7 @@
               "name": "Podium, As Required",
               "description": "A podium was located, so naturally I stood behind it for a while. That's just how campaigns work. If you can look mildly concerned near a microphone, people assume you're prepared. #PodiumSeason",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/podium.png",
-              "url": "https://www.donforbedford.com/photos#podium"
+              "url": "https://www.donforbedford.com/photos/podium"
             }
           },
           {
@@ -156,7 +156,7 @@
               "name": "Cleanup Day",
               "description": "The classic cleanup-day photo: one bag of litter, one candidate, and just enough effort to prove this wasn't purely symbolic. In fairness, the block did end up cleaner. #CleanupContent",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/garbage.png",
-              "url": "https://www.donforbedford.com/photos#garbage"
+              "url": "https://www.donforbedford.com/photos/garbage"
             }
           },
           {
@@ -167,7 +167,7 @@
               "name": "Group Photo",
               "description": "A classic campaign group photo, where everyone agrees for three seconds to stand close together and look like they've been discussing municipal governance all morning. #GroupPhotoProtocol",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/group.png",
-              "url": "https://www.donforbedford.com/photos#group"
+              "url": "https://www.donforbedford.com/photos/group"
             }
           },
           {
@@ -178,7 +178,7 @@
               "name": "Crossing Guard Shift",
               "description": "Some candidates kiss babies. Some candidates inspect potholes. I borrowed a crossing vest and briefly became the most visible unpaid municipal employee in Bedford. #SafetyVestContent",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/crossing.png",
-              "url": "https://www.donforbedford.com/photos#crossing"
+              "url": "https://www.donforbedford.com/photos/crossing"
             }
           },
           {
@@ -189,7 +189,7 @@
               "name": "Reviewing the Trail Map",
               "description": "Campaigns love a good \"candidate studying a map\" photo because it suggests leadership, curiosity, and possibly a plan. In reality, a resident was explaining where the good trail actually starts. #MapBasedLeadership",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/map.png",
-              "url": "https://www.donforbedford.com/photos#map"
+              "url": "https://www.donforbedford.com/photos/map"
             }
           },
           {
@@ -200,7 +200,7 @@
               "name": "Road Check",
               "description": "You can't run for Town Supervisor without eventually crouching near a road and looking disappointed by infrastructure. It's one of the oldest rituals in local politics. #PotholeAdjacency",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/road.png",
-              "url": "https://www.donforbedford.com/photos#road"
+              "url": "https://www.donforbedford.com/photos/road"
             }
           },
           {
@@ -211,7 +211,7 @@
               "name": "Front Porch Conversation",
               "description": "This is the only photo here that actually matters. Two chairs, one porch, no performance. The rest of the album is mostly to satisfy campaign traditions and the internet. #ConversationNotCampaigning",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/porch.png",
-              "url": "https://www.donforbedford.com/photos#porch"
+              "url": "https://www.donforbedford.com/photos/porch"
             }
           },
           {
@@ -222,7 +222,7 @@
               "name": "Candidate Meets Dog",
               "description": "The dog was immediately supportive, which I appreciated. The owners had actual questions, which felt more on brand for Bedford. #DogFirstOutreach",
               "contentUrl": "https://www.donforbedford.com/assets/img/social/dog.png",
-              "url": "https://www.donforbedford.com/photos#dog"
+              "url": "https://www.donforbedford.com/photos/dog"
             }
           }
         ]
@@ -1503,9 +1503,9 @@ VISUAL STYLE
     document.getElementById('modal-share-btn').addEventListener('click', function () {
       if (!currentPhoto) return;
       shareItem(
-        currentPhoto.title + ' — Don Scott for Bedford',
+        currentPhoto.title + ' | Photos from the Uncampaign',
         currentPhoto.caption,
-        window.location.origin + window.location.pathname + '#' + currentPhoto.id,
+        window.location.origin + '/photos/' + currentPhoto.id,
         this
       );
     });
