@@ -2805,6 +2805,7 @@ div.issues-hero__visual--static:hover {
   margin-top: 1.25rem;
   display: flex;
   gap: 0.75rem;
+  justify-content: center;
 }
 
 .chat-req-form {
@@ -2865,10 +2866,26 @@ div.issues-hero__visual--static:hover {
   flex-wrap: wrap;
   padding-top: 0.25rem;
   align-items: center;
+  justify-content: center;
 }
 .chat-req-form__actions .btn {
   font-size: 0.875rem;
   padding: 0.5625rem 1.125rem;
+}
+
+.btn--chat-back {
+  background: #2d3e2f;
+  color: var(--white);
+  border-color: #2d3e2f;
+}
+.btn--chat-back:hover {
+  background: #1e2e20;
+  border-color: #1e2e20;
+  color: var(--white);
+}
+.btn--chat-back:focus-visible {
+  outline: 3px solid #2d3e2f;
+  outline-offset: 2px;
 }
 
 .chat-req-modal__confirm {
