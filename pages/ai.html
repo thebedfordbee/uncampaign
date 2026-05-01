@@ -963,6 +963,133 @@ It's about demonstrating how campaign visuals can be constructed, replicated, an
             </div>
           </div>
 
+          <!-- 6. Community Picks Survey Builder -->
+          <div class="idea-category" role="listitem">
+            <button
+              class="idea-category__trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="ai-panel-community-picks"
+              aria-label="Community Picks Survey Builder — expand to view instruction set"
+            >
+              <span class="idea-category__trigger-left">
+                <span class="idea-category__name">Community Picks Survey Builder</span>
+                <span class="idea-category__count">Instruction set</span>
+              </span>
+              <i class="idea-category__icon" aria-hidden="true">+</i>
+            </button>
+            <div class="idea-category__panel" id="ai-panel-community-picks" role="region" aria-label="Community Picks Survey Builder instruction set">
+              <div class="idea-category__panel-inner">
+                <p class="ai-tool-desc">A lightweight AI-assisted survey workflow used to collect resident picks, send completed responses through Google Apps Script, and store them in Google Sheets for a final Best of Bedford tally after Election Day. The same approach works for any community input tool that needs to collect structured responses without a paid backend. <a href="best-of-bedford-community-picks.html">View the Community Picks survey.</a></p>
+                <div class="instr-panel">
+                  <div class="instr-panel__bar">
+                    <span class="instr-panel__title">Public Instruction Set &#8212; Community Picks Survey Builder</span>
+                    <div class="instr-panel__controls">
+                      <button class="instr-panel__copy" aria-label="Copy Community Picks Survey Builder instruction set to clipboard">
+                        <span class="instr-panel__copy-label">Copy All</span>
+                      </button>
+                      <button class="instr-panel__close" aria-label="Close">&#10005;</button>
+                    </div>
+                  </div>
+                  <div class="instr-panel__body">
+                    <pre class="instr-panel__text">Best of Bedford Community Picks Survey Builder
+
+Purpose
+
+Build a lightweight civic survey that lets residents choose local favorites during the campaign, stores each response in Google Sheets, and preserves the data needed to publish a resident-powered Best of Bedford list after Election Day.
+
+What This Tool Does
+
+The survey presents a short set of fixed categories, asks residents to choose one favorite in each, and records those selections without requiring a name, email, account, or donation.
+
+It is not a scientific poll, endorsement system, or live contest. It is a simple community input tool designed to make participation easy and preserve responses cleanly for a final tally.
+
+Core Principles
+
+1. Keep Participation Simple
+The survey should feel quick, neighborly, and low-friction. Residents should understand what they are doing immediately and should not feel trapped in a long form.
+
+2. Use Clear Categories
+Each category should have fixed answer choices, a readable label, and one selected response. The structure should be easy to update, audit, and reuse.
+
+3. Store Only What Matters
+Track the minimum useful data:
+- timestamp
+- category ID
+- category label
+- selected pick
+- session ID
+- user agent
+- page
+- source
+
+Do not collect names, emails, addresses, or unnecessary personal information.
+
+4. Submit Responses Reliably
+When the survey is completed, the front end sends a JSON payload to the deployed Google Apps Script web app.
+
+Payload structure:
+{
+  action: "submitCommunityPicks",
+  sessionId,
+  userAgent: navigator.userAgent,
+  page: location.pathname,
+  source: "real",
+  votes: [
+    { categoryId, category, pick }
+  ]
+}
+
+Each item in votes represents one completed category.
+
+5. Use Apps Script As The Public Bridge
+Google Apps Script receives the submission, validates the required fields, normalizes heading variations, and writes each vote to the CommunityPicksVotes tab in Google Sheets.
+
+The sheet headings are:
+Timestamp, CategoryID, Category, Pick, SessionID, UserAgent, Page, Source
+
+This turns a static campaign page into a working civic data tool without a paid backend.
+
+6. Maintain A Campaign-Long Response Log
+Each valid response becomes part of a running list throughout the campaign. The sheet can be reviewed, deduplicated, filtered, and tallied at the end of the campaign.
+
+Final results should not be declared before Election Day. Until then, any language should refer to "responses," "running input," or "community picks," not winners.
+
+7. Add Light Abuse Prevention
+Use a browser/session ID and local storage or session storage to reduce repeat submissions from the same browser. Do not add login, identity checks, or heavy authentication unless the project truly needs it.
+
+The goal is basic integrity, not bureaucracy.
+
+8. Handle Failure Clearly
+If submission fails, show a useful message and allow retry. Do not tell users their responses were recorded unless the submission succeeds or a deliberate best-effort fallback is used.
+
+9. Keep The Design Calm
+Match the existing campaign system: cream backgrounds, moss and sage accents, restrained borders, editorial typography, and generous spacing. The tool should feel civic and useful, not like a noisy contest platform.
+
+10. Make It Reusable
+Keep the survey categories, options, Apps Script endpoint, and submission logic organized enough that another town could adapt the same pattern.
+
+Build Checklist
+- Create a clear hero and survey introduction.
+- Render categories from a reusable configuration object.
+- Store selected answers in front-end state.
+- Generate or retrieve a browser/session ID.
+- Submit completed responses to Apps Script.
+- Append or update rows in Google Sheets.
+- Show a real completion state only after submission.
+- Keep final results unresolved until after Election Day.
+- Preserve accessibility, keyboard support, and mobile readability.
+- Document the workflow so residents can understand how the tool was built.
+
+Output
+
+A public-facing survey page that collects lightweight civic input, stores responses in Google Sheets through Apps Script, and creates the data trail needed to publish a transparent Best of Bedford Community Picks list after the campaign.</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>

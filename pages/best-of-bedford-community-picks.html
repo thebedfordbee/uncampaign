@@ -558,74 +558,107 @@
 
         <div class="instr-panel" id="instr-panel-community-picks" hidden>
           <div class="instr-panel__bar">
-            <span class="instr-panel__title">Public Instruction Set</span>
+            <span class="instr-panel__title">Public Instruction Set &#8212; Community Picks Survey Builder</span>
             <div class="instr-panel__controls">
-              <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+              <button class="instr-panel__copy" aria-label="Copy Community Picks instruction set to clipboard">
                 <span class="instr-panel__copy-label">Copy All</span>
               </button>
               <button class="instr-panel__close" aria-label="Close public instruction set">&#10005;</button>
             </div>
           </div>
           <div class="instr-panel__body">
-            <pre class="instr-panel__text">Act as a civic survey designer, lightweight data architect, and front-end builder tasked with creating a public voting tool that turns community preferences into a transparent Best of list.
+            <pre class="instr-panel__text">Best of Bedford Community Picks Survey Builder
 
-The tool to build is:
-A Best of Bedford community picks survey that lets residents vote on local favorites during a campaign and publishes a final community-inputted list after Election Day.
+Purpose
 
-Objective:
-Create a public-facing voting page that feels simple, neighborly, and trustworthy. The page should collect lightweight community input, show provisional results when available, and make clear that final selections will not be published until after Election Day and all responses have been tallied.
+Build a lightweight civic survey that lets residents choose local favorites during the campaign, stores each response in Google Sheets, and preserves the data needed to publish a resident-powered Best of Bedford list after Election Day.
 
-Design and maintain these priorities throughout the build:
+What This Tool Does
 
-1. Civic Framing
-Frame the survey as a participation tool, not a scientific poll or endorsement system. Explain that residents are helping shape a community-inputted Best of Bedford list. The tone should be fun, local, and transparent.
+The survey presents a short set of fixed categories, asks residents to choose one favorite in each, and records those selections without requiring a name, email, account, or donation.
 
-2. Structured Categories
-Build the survey around clear categories with fixed answer choices. Each category should be easy to understand at a glance, with one selected response per category. Keep the structure simple enough that another town could adapt it quickly.
+It is not a scientific poll, endorsement system, or live contest. It is a simple community input tool designed to make participation easy and preserve responses cleanly for a final tally.
 
-3. Lightweight Voting Flow
-Let residents vote with minimal friction. A vote should visibly register, provide a confirmation, and avoid making the user feel trapped in a long form. If browser-based limits are used before backend validation exists, explain nothing publicly unless needed. Keep the experience smooth and respectful.
+Core Principles
 
-4. Google Sheets And Apps Script Integration
-Use Google Sheets as the lightweight database and Apps Script as the public endpoint. The website should submit votes to Apps Script, Apps Script should append or update rows in the sheet, and the page should retrieve aggregated results from the same source or a published JSON endpoint.
+1. Keep Participation Simple
+The survey should feel quick, neighborly, and low-friction. Residents should understand what they are doing immediately and should not feel trapped in a long form.
 
-5. Data Model
-Track only what is necessary: category, selected answer, timestamp, optional hamlet if used, and a browser/session identifier if needed for basic duplicate prevention. Do not collect unnecessary personal data. Avoid names, emails, or addresses unless there is a clear reason.
+2. Use Clear Categories
+Each category should have fixed answer choices, a readable label, and one selected response. The structure should be easy to update, audit, and reuse.
 
-6. Results And Leaderboards
-Display running results only when real response data exists. Results should be provisional and clearly described as community responses, not final winners. Empty states should look intentional and polished rather than broken or blank.
+3. Store Only What Matters
+Track the minimum useful data:
+- timestamp
+- category ID
+- category label
+- selected pick
+- session ID
+- user agent
+- page
+- source
 
-7. Final Tally Logic
-The final Best of Bedford list should be published only after Election Day. Until then, use language like "running responses" or "current community input." Do not imply that any category has been decided early.
+Do not collect names, emails, addresses, or unnecessary personal information.
 
-8. Abuse Prevention
-Use lightweight guardrails such as localStorage, session IDs, timestamp checks, and server-side duplicate detection if available. Avoid heavy-handed authentication unless the project actually needs it. The goal is civic participation, not bureaucratic friction.
+4. Submit Responses Reliably
+When the survey is completed, the front end sends a JSON payload to the deployed Google Apps Script web app.
 
-9. Visual Design
-Match the existing Uncampaign design system: cream backgrounds, moss and sage accents, restrained borders, editorial typography, and calm spacing. The survey should feel like a civic artifact, not a noisy contest platform.
+Payload structure:
+{
+  action: "submitCommunityPicks",
+  sessionId,
+  userAgent: navigator.userAgent,
+  page: location.pathname,
+  source: "real",
+  votes: [
+    { categoryId, category, pick }
+  ]
+}
 
-10. Accessibility And Failure States
-Each category should be keyboard accessible. Buttons must have clear labels. If submission fails, show a useful message and allow retry. If results cannot load, the voting experience should still work locally and explain that results will refresh later.
+Each item in votes represents one completed category.
 
-Build instructions:
-- Start with a hero and back link to Best of Bedford.
-- Present a short civic explanation.
-- Render each category as a clear voting card.
-- Submit each vote through the Apps Script endpoint.
-- Retrieve and display provisional results when available.
-- Avoid fake vote totals in production.
-- Keep the final list unresolved until after Election Day.
-- Include a reusable configuration object for categories and options.
-- Keep the code readable enough that another town can copy the pattern.
+5. Use Apps Script As The Public Bridge
+Google Apps Script receives the submission, validates the required fields, normalizes heading variations, and writes each vote to the CommunityPicksVotes tab in Google Sheets.
 
-Output format:
-1. Civic framing
-2. Survey architecture
-3. Google Sheets and Apps Script data flow
-4. Vote submission and duplicate prevention
-5. Results and provisional leaderboard logic
-6. Privacy and accessibility rules
-7. Final implementation checklist</pre>
+The sheet headings are:
+Timestamp, CategoryID, Category, Pick, SessionID, UserAgent, Page, Source
+
+This turns a static campaign page into a working civic data tool without a paid backend.
+
+6. Maintain A Campaign-Long Response Log
+Each valid response becomes part of a running list throughout the campaign. The sheet can be reviewed, deduplicated, filtered, and tallied at the end of the campaign.
+
+Final results should not be declared before Election Day. Until then, any language should refer to "responses," "running input," or "community picks," not winners.
+
+7. Add Light Abuse Prevention
+Use a browser/session ID and local storage or session storage to reduce repeat submissions from the same browser. Do not add login, identity checks, or heavy authentication unless the project truly needs it.
+
+The goal is basic integrity, not bureaucracy.
+
+8. Handle Failure Clearly
+If submission fails, show a useful message and allow retry. Do not tell users their responses were recorded unless the submission succeeds or a deliberate best-effort fallback is used.
+
+9. Keep The Design Calm
+Match the existing campaign system: cream backgrounds, moss and sage accents, restrained borders, editorial typography, and generous spacing. The tool should feel civic and useful, not like a noisy contest platform.
+
+10. Make It Reusable
+Keep the survey categories, options, Apps Script endpoint, and submission logic organized enough that another town could adapt the same pattern.
+
+Build Checklist
+- Create a clear hero and survey introduction.
+- Render categories from a reusable configuration object.
+- Store selected answers in front-end state.
+- Generate or retrieve a browser/session ID.
+- Submit completed responses to Apps Script.
+- Append or update rows in Google Sheets.
+- Show a real completion state only after submission.
+- Keep final results unresolved until after Election Day.
+- Preserve accessibility, keyboard support, and mobile readability.
+- Document the workflow so residents can understand how the tool was built.
+
+Output
+
+A public-facing survey page that collects lightweight civic input, stores responses in Google Sheets through Apps Script, and creates the data trail needed to publish a transparent Best of Bedford Community Picks list after the campaign.</pre>
           </div>
         </div>
 
