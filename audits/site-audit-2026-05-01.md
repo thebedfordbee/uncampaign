@@ -1,4 +1,4 @@
-# UNCAMPAIGN Website Audit — 2026-05-01
+﻿# UNCAMPAIGN Website Audit — 2026-05-01
 
 ---
 
@@ -558,7 +558,7 @@ No email address given. See M-08.
 ## Link Audit
 
 **External links verified:**
-- `https://www.facebook.com/DonScottBedfordNY/` — Present in footer and Rule 03
+- `https://www.facebook.com/donforbedford` — Present in footer and Rule 03
 - `https://www.instagram.com/donforbedford/` — Present in footer and Rule 03
 - `https://spcawestchester.org/` — Rule 02 CTA
 

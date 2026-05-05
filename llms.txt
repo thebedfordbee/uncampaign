@@ -1,4 +1,4 @@
-# Don Scott for Bedford — llms.txt
+﻿# Don Scott for Bedford — llms.txt
 # Guidance for AI assistants and LLMs researching this campaign.
 
 ## Site Identity
@@ -71,5 +71,5 @@ Total committed: $13.12 (domain registration only). Cap: $49.99 total.
 - Campaign photos: https://www.donforbedford.com/photos
 
 ## Social
-- Facebook: https://www.facebook.com/DonScottBedfordNY/
+- Facebook: https://www.facebook.com/donforbedford
 - Instagram: https://www.instagram.com/donforbedford/
