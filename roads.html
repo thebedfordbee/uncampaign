@@ -36,13 +36,11 @@
   <link rel="stylesheet" href="assets/css/site.css">
   <style>
     /* =============================================
-       roads.html — Roundtable simulation prototype
+       roads.html — Roundtable simulation v2
        ============================================= */
 
-    .rt-hero {
-      background: var(--moss);
-      padding-block: 3.5rem 3rem;
-    }
+    /* Hero */
+    .rt-hero { background: var(--moss); padding-block: 3.5rem 3rem; }
     .rt-hero .eyebrow { color: rgba(255,255,255,0.55); margin-bottom: 0.875rem; }
     .rt-hero h1 { color: var(--white); max-width: 24ch; margin-bottom: 1rem; }
     .rt-hero__deck {
@@ -60,63 +58,101 @@
       line-height: 1.6;
       max-width: 56ch;
     }
-    @media (min-width: 768px) {
-      .rt-hero { padding-block: 4.5rem 3.5rem; }
+    @media (min-width: 768px) { .rt-hero { padding-block: 4.5rem 3.5rem; } }
+
+    /* Simulation section */
+    .rt-sim-section { background: var(--white); }
+    .rt-sim-section .section-header { margin-bottom: 1.5rem; }
+    .rt-sim__lead { color: var(--muted); max-width: 56ch; margin-bottom: 1.75rem; }
+
+    /* Button row */
+    .rt-btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.75rem; }
+
+    /* Preview transcript box */
+    .rt-preview {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--cream);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
     }
+    .rt-preview__placeholder {
+      padding: 1.5rem 1.25rem;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.9375rem;
+      line-height: 1.65;
+    }
+    /* JS hides placeholder when running/done */
+    .sim-running .rt-preview__placeholder,
+    .sim-done    .rt-preview__placeholder { display: none; }
 
-    /* CTA row */
-    .rt-run-cta { background: var(--white); border-bottom: 1px solid var(--border); }
-    .rt-run-cta__lead { color: var(--muted); margin-top: 0.75rem; margin-bottom: 1.75rem; max-width: 56ch; }
-    .rt-run-cta__buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
-    #btn-reset { display: none; }
-    .sim-done #btn-reset { display: inline-flex; }
-    .sim-done #btn-run  { display: none; }
-
-    /* Transcript section */
-    .rt-sim-section { background: var(--cream); }
-
-    .rt-sim__status {
+    /* Status bar: shown after simulation */
+    .rt-status-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.875rem;
+      margin-top: 1.25rem;
+      padding: 0.875rem 1.125rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .rt-status-bar__text {
       font-size: 0.8125rem;
-      color: var(--sage);
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      min-height: 1.5em;
-      margin-bottom: 1rem;
+      color: var(--sage);
+      flex: 1;
+      min-width: 0;
+      max-width: none;
     }
 
-    .rt-transcript {
+    /* Full transcript collapsible panel */
+    .rt-full-panel {
+      margin-top: 1rem;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: var(--white);
       box-shadow: var(--shadow-sm);
       overflow: hidden;
     }
-
-    .rt-transcript__placeholder {
-      padding: 1.75rem 1.5rem;
-      color: var(--muted);
-      font-style: italic;
-      font-size: 0.9375rem;
-      line-height: 1.65;
-    }
-    .sim-running .rt-transcript__placeholder,
-    .sim-done    .rt-transcript__placeholder { display: none; }
-
-    .rt-msg-list { list-style: none; padding: 0; margin: 0; }
-
-    .rt-marker {
-      padding: 0.4rem 1.25rem;
+    .rt-full-panel__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.625rem 1.25rem;
       background: var(--cream);
-      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+    }
+    .rt-full-panel__title {
       font-size: 0.6875rem;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--sage);
     }
-    .rt-marker:first-child { border-top: none; }
+    .rt-full-panel__close {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.3125rem 0.75rem;
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--moss);
+      white-space: nowrap;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .rt-full-panel__close:hover { background: var(--moss); color: var(--white); border-color: var(--moss); }
+    .rt-full-panel__close:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
+    /* Message list — shared by preview and full panel */
+    .rt-msg-list { list-style: none; padding: 0; margin: 0; }
 
     .rt-msg {
       display: flex;
@@ -127,7 +163,7 @@
       background: var(--white);
     }
     .rt-msg:last-child { border-bottom: none; }
-    .rt-msg--don { background: rgba(62,82,64,0.05); }
+    .rt-msg:nth-child(even) { background: var(--cream); }
 
     .rt-msg__avatar {
       width: 34px;
@@ -138,8 +174,6 @@
       flex-shrink: 0;
       display: block;
     }
-    .rt-msg--don .rt-msg__avatar { border: 1px solid rgba(62,82,64,0.2); }
-
     .rt-msg__body  { flex: 1; min-width: 0; }
     .rt-msg__speaker {
       display: flex;
@@ -154,12 +188,6 @@
       color: var(--charcoal);
       max-width: none;
     }
-    .rt-msg--don .rt-msg__name { color: var(--moss); }
-    .rt-msg__role {
-      font-size: 0.75rem;
-      color: var(--muted);
-      max-width: none;
-    }
     .rt-msg__text {
       font-size: 0.9375rem;
       color: var(--charcoal);
@@ -167,153 +195,95 @@
       max-width: none;
     }
 
-    /* JS animation */
-    .sim-ready .rt-msg,
-    .sim-ready .rt-marker {
+    /* Preview animation — JS adds .sim-ready to .rt-preview */
+    .sim-ready .rt-preview .rt-msg {
       opacity: 0;
       transform: translateY(4px);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      transition: opacity 0.18s ease, transform 0.18s ease;
     }
-    .sim-ready .rt-msg.is-visible,
-    .sim-ready .rt-marker.is-visible { opacity: 1; transform: translateY(0); }
+    .sim-ready .rt-preview .rt-msg.is-visible { opacity: 1; transform: translateY(0); }
     @media (prefers-reduced-motion: reduce) {
-      .sim-ready .rt-msg,
-      .sim-ready .rt-marker { transition: none; }
+      .sim-ready .rt-preview .rt-msg { transition: none; }
     }
 
-    /* Highlight flash */
-    .rt-msg.is-highlighted {
-      background: rgba(255,200,80,0.2) !important;
-      transition: background 0.1s ease;
-    }
+    /* Strongest Points section */
+    .rt-strongest-section { background: var(--cream); }
+    .rt-strongest-section .section-header { margin-bottom: 2rem; }
 
-    /* Highlights section */
-    .rt-highlights-section { background: var(--white); }
-
-    .rt-highlights-notice {
-      font-size: 0.875rem;
-      color: var(--muted);
-      font-style: italic;
-      margin-bottom: 1.25rem;
-      display: none;
-    }
-    .rt-highlights-inactive .rt-highlights-notice { display: block; }
-
-    .rt-highlights-grid {
+    .rt-strongest-grid {
       display: grid;
       gap: 0.875rem;
-      grid-template-columns: 1fr;
-      margin-top: 0.5rem;
-    }
-    @media (min-width: 600px) { .rt-highlights-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    .rt-highlights-inactive .rt-highlights-grid-inner {
-      opacity: 0.4;
-      pointer-events: none;
-      filter: blur(0.4px);
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     }
 
-    .rt-highlight-card {
-      display: block;
-      width: 100%;
-      text-align: left;
-      background: var(--cream);
+    .rt-strongest-card {
+      background: var(--white);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.125rem 1.25rem;
-      cursor: pointer;
-      font-family: inherit;
       box-shadow: var(--shadow-sm);
-      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+      display: flex;
+      gap: 0.875rem;
+      align-items: flex-start;
     }
-    .rt-highlight-card:hover { border-color: var(--sage); box-shadow: var(--shadow-md); background: var(--white); }
-    .rt-highlight-card:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
-
-    .rt-highlight-card__title {
+    .rt-strongest-card__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
+      object-fit: cover;
+      object-position: center top;
+      flex-shrink: 0;
+      display: block;
+    }
+    .rt-strongest-card__content { flex: 1; min-width: 0; }
+    .rt-strongest-card__name {
       font-family: var(--serif);
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
       color: var(--charcoal);
       display: block;
       margin-bottom: 0.375rem;
+      max-width: none;
     }
-    .rt-highlight-card__desc {
-      font-size: 0.8375rem;
+    .rt-strongest-card__point {
+      font-size: 0.875rem;
       color: var(--muted);
       line-height: 1.6;
       max-width: none;
-      display: block;
     }
-    .rt-highlight-card__jump {
-      display: inline-block;
-      margin-top: 0.625rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--sage);
-    }
-    .rt-highlight-card:hover .rt-highlight-card__jump { color: var(--moss); }
 
-    /* Platform Commitment */
-    .platform-commitment-section { background: var(--cream); }
-    .platform-commitment-box {
-      background: var(--moss);
-      color: var(--white);
-      border-radius: var(--radius);
-      padding: 2rem 2rem 2.25rem;
-      max-width: 680px;
-    }
-    .platform-commitment-box .eyebrow { color: rgba(255,255,255,0.5); margin-bottom: 0.625rem; }
-    .platform-commitment-box h2 {
-      color: var(--white);
-      margin-bottom: 1rem;
-      font-size: clamp(1.25rem, 2.5vw, 1.625rem);
-    }
-    .platform-commitment-box > p {
-      color: rgba(255,255,255,0.82);
-      margin-bottom: 0.875rem;
-      max-width: none;
-      font-size: 0.9375rem;
-      line-height: 1.7;
-    }
-    .platform-commitment-box ul {
+    /* Don's View — standalone, commitment box embedded */
+    .dons-view--rt .dons-view__layout { align-items: start; }
+    .dons-view--rt .dons-view__commitment ul {
       list-style: none;
       padding: 0;
-      margin: 0.75rem 0 1.25rem;
+      margin: 0.75rem 0 1rem;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
-    .platform-commitment-box ul li {
+    .dons-view--rt .dons-view__commitment ul li {
       display: flex;
-      gap: 0.625rem;
+      gap: 0.5rem;
       align-items: flex-start;
+      font-family: var(--serif);
       font-size: 0.9375rem;
       color: rgba(255,255,255,0.88);
       line-height: 1.5;
+      max-width: none;
     }
-    .platform-commitment-box ul li::before {
+    .dons-view--rt .dons-view__commitment ul li::before {
       content: "—";
       color: var(--sage);
       flex-shrink: 0;
-      font-weight: 600;
     }
-    .platform-commitment-box .closing-line {
-      font-family: var(--serif);
+    .dons-view--rt .dons-view__commitment p + p { margin-top: 0.75rem; }
+    .dons-view--rt .dons-view__commitment .commitment-close {
       font-style: italic;
-      font-size: 1rem;
-      color: rgba(255,255,255,0.72);
-      line-height: 1.65;
-      border-top: 1px solid rgba(255,255,255,0.14);
-      padding-top: 1rem;
+      color: rgba(255,255,255,0.65);
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 0.875rem;
       margin-top: 0.25rem;
-      max-width: none;
-    }
-
-    /* Don's View — standalone (no commitment box, prose goes full width) */
-    .dons-view--standalone .dons-view__layout {
-      grid-template-columns: 1fr;
-      max-width: 680px;
+      font-size: 0.9375rem;
     }
   </style>
   <!-- Google tag -->
@@ -407,307 +377,520 @@
       </div>
     </section>
 
-    <!-- 2. RUN SIMULATION CTA -->
-    <section class="section rt-run-cta" aria-labelledby="rt-cta-headline">
+    <!-- 2 + 3 + 4. SIMULATION: CTA / PREVIEW / FULL TRANSCRIPT -->
+    <section class="section rt-sim-section" aria-labelledby="rt-cta-headline">
       <div class="container">
-        <p class="eyebrow">Roundtable Simulation</p>
-        <h2 id="rt-cta-headline">Run the discussion</h2>
-        <p class="rt-run-cta__lead">Click once to generate the full Roundtable. You do not have to read every word. The highlights below will take you back to the moments that shaped the conclusion.</p>
-        <div class="rt-run-cta__buttons">
-          <button type="button" class="btn btn--primary" id="btn-run">Run Simulation</button>
-          <button type="button" class="btn btn--secondary" id="btn-reset">Reset Simulation</button>
+
+        <div class="section-header">
+          <p class="eyebrow">Roundtable Simulation</p>
+          <h2 id="rt-cta-headline">Run the discussion</h2>
         </div>
-      </div>
-    </section>
+        <p class="rt-sim__lead">Click once to generate the Roundtable. The page will show a short preview, then you can open the full transcript if you want to inspect the reasoning.</p>
 
-    <!-- 3. TRANSCRIPT -->
-    <section class="section rt-sim-section" aria-labelledby="rt-transcript-label">
-      <div class="container">
-        <p class="eyebrow" id="rt-transcript-label">Roundtable Transcript</p>
+        <!-- Button row -->
+        <div class="rt-btn-row">
+          <button type="button" class="btn btn--primary" id="btn-run">Run Simulation</button>
+          <button type="button" class="btn btn--secondary" id="btn-reset" hidden>Reset Simulation</button>
+        </div>
 
-        <p class="rt-sim__status" aria-live="polite" aria-atomic="true" id="rt-sim-status"></p>
+        <!-- Preview transcript -->
+        <div class="rt-preview" id="rt-preview" role="region" aria-label="Roundtable preview">
+          <p class="rt-preview__placeholder">Ready when you are. The Roundtable will test jurisdiction, urgency, cost, visibility, environmental impact, business impact, and long-term repair quality.</p>
+          <ol class="rt-msg-list" id="rt-preview-list" aria-label="Roundtable preview messages">
 
-        <div class="rt-transcript" id="rt-transcript">
-
-          <p class="rt-transcript__placeholder">Ready when you are. The Roundtable will test jurisdiction, urgency, cost, visibility, and long-term repair quality.</p>
-
-          <ol class="rt-msg-list" aria-label="Roundtable transcript">
-
-            <li class="rt-marker" id="marker-1">Opening frame</li>
-
-            <li class="rt-msg rt-msg--don" id="msg-1">
-              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Don</span>
-                  <span class="rt-msg__role">Chair</span>
-                </div>
-                <p class="rt-msg__text">There are really two road systems in Bedford: the roads the town controls, and the state roads that run through town.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg rt-msg--don" id="msg-2">
-              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Don</span>
-                  <span class="rt-msg__role">Chair</span>
-                </div>
-                <p class="rt-msg__text">The Highway Department deserves credit for the local roads Bedford actually maintains. That part of the story matters.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg rt-msg--don" id="msg-3">
-              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Don</span>
-                  <span class="rt-msg__role">Chair</span>
-                </div>
-                <p class="rt-msg__text">The harder question is what local leadership should do when residents experience a problem locally, but the authority sits with New York State.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg" id="msg-4">
+            <li class="rt-msg" id="pre-1">
               <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
               <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Practical Family</span>
-                </div>
-                <p class="rt-msg__text">I understand the jurisdiction piece. But when you are driving this every day, it stops feeling like a policy question. It just feels like something is not getting fixed.</p>
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Practical Family</span></div>
+                <p class="rt-msg__text">I understand the jurisdiction issue. But when you drive the same road every day, "state responsibility" does not make the car repair bill feel any less local.</p>
               </div>
             </li>
 
-            <li class="rt-msg" id="msg-5">
+            <li class="rt-msg" id="pre-2">
               <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
               <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Affordability Realist</span>
-                </div>
-                <p class="rt-msg__text">That frustration is real, but the ownership matters. The Town Board cannot simply decide to repave a state highway without creating a new financial and legal problem.</p>
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Affordability Realist</span></div>
+                <p class="rt-msg__text">That frustration is real, but Bedford should not imply it can solve a state-road problem with local taxpayer money. That creates a different problem.</p>
               </div>
             </li>
 
-            <li class="rt-msg" id="msg-6">
+            <li class="rt-msg" id="pre-3">
               <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
               <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Services Neighbor</span>
-                </div>
-                <p class="rt-msg__text">Maybe. But most residents are not thinking about the ownership chart when they hit the same pothole again. They are thinking the basics are not being handled.</p>
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Services Neighbor</span></div>
+                <p class="rt-msg__text">Nobody is asking the town to run an asphalt crew. People are asking whether someone local is visibly staying on it.</p>
               </div>
             </li>
 
-            <li class="rt-marker" id="marker-2">The pressure test</li>
-
-            <li class="rt-msg" id="msg-7">
-              <img class="rt-msg__avatar" src="assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Main-Streeter</span>
-                </div>
-                <p class="rt-msg__text">And the visible condition of these roads affects more than drivers. It affects how people experience Bedford, whether they stop in the hamlets, and whether the town feels cared for.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg" id="msg-8">
-              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Affordability Realist</span>
-                </div>
-                <p class="rt-msg__text">That still does not make it a town-controlled project. Expectations need to match authority, or we end up blaming the wrong level of government.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg" id="msg-9">
-              <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Practical Family</span>
-                </div>
-                <p class="rt-msg__text">I am not asking the town to pave it. I am asking whether the town is visibly staying on it. There is a difference between "we reached out" and "we are actively pushing."</p>
-              </div>
-            </li>
-
-            <li class="rt-msg" id="msg-10">
-              <img class="rt-msg__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Civic Skeptic</span>
-                </div>
-                <p class="rt-msg__text">That is the transparency gap. The Town Board may be making calls and sending letters. But if residents cannot see the record, they are left guessing.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg" id="msg-11">
+            <li class="rt-msg" id="pre-4">
               <img class="rt-msg__avatar" src="assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
               <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Environmental Steward</span>
-                </div>
-                <p class="rt-msg__text">There is another risk too. Bad roads are often symptoms of drainage, base failure, runoff, or freeze-thaw damage. A fast surface repair can look good briefly and fail again.</p>
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Environmental Steward</span></div>
+                <p class="rt-msg__text">And staying on it should include asking for the right repair. A fast patch that fails after two winters is not progress.</p>
               </div>
             </li>
 
-            <li class="rt-msg" id="msg-12">
-              <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Services Neighbor</span>
-                </div>
-                <p class="rt-msg__text">I hear that. But "do it right" cannot become a softer way of saying "wait indefinitely." People still need safe, reliable roads now.</p>
-              </div>
-            </li>
-
-            <li class="rt-marker" id="marker-3">The tradeoff</li>
-
-            <li class="rt-msg rt-msg--don" id="msg-13">
-              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Don</span>
-                  <span class="rt-msg__role">Chair</span>
-                </div>
-                <p class="rt-msg__text">Let me pause the discussion here, because the tradeoff is clear.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg rt-msg--don" id="msg-14">
-              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Don</span>
-                  <span class="rt-msg__role">Chair</span>
-                </div>
-                <p class="rt-msg__text">One side is saying: do not pretend Bedford controls what it does not control. Another side is saying: residents still deserve visible pressure and progress.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg rt-msg--don" id="msg-15">
-              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Don</span>
-                  <span class="rt-msg__role">Chair</span>
-                </div>
-                <p class="rt-msg__text">There is also a second tension: faster visible action versus more durable repair. You can push for speed, quality, transparency, and fiscal restraint, but you may not get all four at once.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg" id="msg-16">
-              <img class="rt-msg__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Civic Skeptic</span>
-                </div>
-                <p class="rt-msg__text">Then make the process visible. If the state is responsible, show residents the outreach, the dates, the responses, and the next step. Let the accountability land where it belongs.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg" id="msg-17">
-              <img class="rt-msg__avatar" src="assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Environmental Steward</span>
-                </div>
-                <p class="rt-msg__text">And when the state does act, Bedford should be pushing for a repair that lasts, not just a politically convenient patch.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg" id="msg-18">
+            <li class="rt-msg" id="pre-5">
               <img class="rt-msg__avatar" src="assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
               <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Main-Streeter</span>
-                </div>
-                <p class="rt-msg__text">The economic case should be part of that pressure. These are not abstract corridors. They shape the daily impression of the town.</p>
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Main-Streeter</span></div>
+                <p class="rt-msg__text">The condition of these roads also affects how Bedford feels to visitors, customers, and residents. Infrastructure is part of the town's front door.</p>
               </div>
             </li>
 
-            <li class="rt-msg" id="msg-19">
+            <li class="rt-msg" id="pre-6">
+              <img class="rt-msg__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Civic Skeptic</span></div>
+                <p class="rt-msg__text">Then show the work. If the town is pushing the state, residents should be able to see the dates, contacts, responses, and next steps.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="pre-7">
+              <img class="rt-msg__avatar" src="assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Preservationist</span></div>
+                <p class="rt-msg__text">And when the state does repair it, Bedford should care how it is done. The road corridor is part of the town's character too.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="pre-8">
               <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
               <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Practical Family</span>
-                </div>
-                <p class="rt-msg__text">For families, visibility may matter as much as speed. If people can see movement, they can tolerate some delay. If they cannot, it feels like drift.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg" id="msg-20">
-              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Affordability Realist</span>
-                </div>
-                <p class="rt-msg__text">And the discipline matters. The town should advocate, document, and escalate. It should not imply it can solve a state capital-planning problem with local money.</p>
-              </div>
-            </li>
-
-            <li class="rt-msg" id="msg-21">
-              <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
-              <div class="rt-msg__body">
-                <div class="rt-msg__speaker">
-                  <span class="rt-msg__name">Services Neighbor</span>
-                </div>
-                <p class="rt-msg__text">The simple standard is this: someone local needs to be on it consistently. Not occasionally. Consistently.</p>
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Practical Family</span></div>
+                <p class="rt-msg__text">That is the point. Residents can handle complexity. What they cannot handle is silence.</p>
               </div>
             </li>
 
           </ol>
-        </div><!-- /.rt-transcript -->
+        </div><!-- /.rt-preview -->
+
+        <!-- Status bar + open transcript toggle (shown after simulation) -->
+        <div class="rt-status-bar" id="rt-status-bar" hidden>
+          <p class="rt-status-bar__text" id="rt-sim-status" aria-live="polite" aria-atomic="true">Full Roundtable Transcript Generated</p>
+          <button type="button" class="btn btn--secondary" id="btn-open-full" aria-expanded="false" aria-controls="rt-full-panel" style="font-size:0.875rem;padding:0.5rem 1rem;min-height:40px;">Open Full Transcript</button>
+        </div>
+
+        <!-- Full transcript (collapsed by default; visible without JS) -->
+        <div class="rt-full-panel" id="rt-full-panel">
+          <div class="rt-full-panel__header">
+            <span class="rt-full-panel__title">Full Roundtable Transcript</span>
+            <button type="button" class="rt-full-panel__close" id="btn-close-full">Close Full Transcript</button>
+          </div>
+          <ol class="rt-msg-list" aria-label="Full roundtable transcript">
+
+            <li class="rt-msg" id="full-1">
+              <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Practical Family</span></div>
+                <p class="rt-msg__text">I understand the jurisdiction issue. I really do. But when you drive the same road every day, "state responsibility" does not make the car repair bill feel any less local.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-2">
+              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Affordability Realist</span></div>
+                <p class="rt-msg__text">That frustration is real, but ownership matters. Bedford should not imply it can solve a state-road problem with local taxpayer money. That creates a different problem.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-3">
+              <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Services Neighbor</span></div>
+                <p class="rt-msg__text">Nobody is asking the town to run an asphalt crew. People are asking whether someone local is visibly staying on it.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-4">
+              <img class="rt-msg__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Civic Skeptic</span></div>
+                <p class="rt-msg__text">That is the gap for me. The Board may have sent letters. It may have made calls. But if residents cannot see the record, they are left guessing.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-5">
+              <img class="rt-msg__avatar" src="assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Main-Streeter</span></div>
+                <p class="rt-msg__text">And the visible condition of these roads affects more than drivers. It affects how Bedford feels to visitors, customers, and residents. Infrastructure is part of the town's front door.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-6">
+              <img class="rt-msg__avatar" src="assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Preservationist</span></div>
+                <p class="rt-msg__text">That matters. Roads are not just pavement. They shape the approach into hamlets, the feel of the landscape, and the sense that a place is being cared for.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-7">
+              <img class="rt-msg__avatar" src="assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Environmental Steward</span></div>
+                <p class="rt-msg__text">I agree, but the repair itself matters too. A quick surface fix that fails after two winters is not progress. Roads often fail because of drainage, base conditions, runoff, and freeze-thaw cycles.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-8">
+              <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Practical Family</span></div>
+                <p class="rt-msg__text">I do not want a bad repair either. But "do it right" cannot become the polite version of "wait indefinitely."</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-9">
+              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Affordability Realist</span></div>
+                <p class="rt-msg__text">Fair. But "do something" cannot mean pretending Bedford controls the state capital schedule. The Town Board cannot order NYSDOT to pave Route 117 or Route 172.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-10">
+              <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Services Neighbor</span></div>
+                <p class="rt-msg__text">No, but it can make the issue impossible to ignore. There is a big difference between "we contacted the state" and "we are publicly tracking this until it is fixed."</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-11">
+              <img class="rt-msg__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Civic Skeptic</span></div>
+                <p class="rt-msg__text">Exactly. A letter is an action. It is not a strategy. What happened after the letter? Who responded? What was promised? What is the next escalation step?</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-12">
+              <img class="rt-msg__avatar" src="assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Main-Streeter</span></div>
+                <p class="rt-msg__text">Route 117 reportedly being on the 2027 paving schedule shows that state movement is possible, even if it is slow. Route 172 having no announced timeline is the unresolved piece.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-13">
+              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Affordability Realist</span></div>
+                <p class="rt-msg__text">And that distinction matters. If Route 117 is on the schedule, the town should be careful not to claim nothing has happened. Delayed progress is still progress.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-14">
+              <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Practical Family</span></div>
+                <p class="rt-msg__text">But 2027 still feels far away if you are driving it now. And for Route 172, no timeline means residents are being asked to accept uncertainty without much explanation.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-15">
+              <img class="rt-msg__avatar" src="assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Environmental Steward</span></div>
+                <p class="rt-msg__text">For Route 117, the town should be asking what kind of repair is planned. Is drainage part of it? Are recurring failure points being addressed? Or is this mostly resurfacing?</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-16">
+              <img class="rt-msg__avatar" src="assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Preservationist</span></div>
+                <p class="rt-msg__text">And Bedford should care about how the work affects the corridor. Tree canopy, road edges, stone walls, drainage structures, shoulders. A state project can solve one problem while creating another if no one local is paying attention.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-17">
+              <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Services Neighbor</span></div>
+                <p class="rt-msg__text">That is important, but the basics still need to stay first. Safe roads, emergency access, school routes, seniors driving to appointments. Those are not aesthetic concerns.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-18">
+              <img class="rt-msg__avatar" src="assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Main-Streeter</span></div>
+                <p class="rt-msg__text">They are economic concerns too. Rough roads around commercial areas tell people that the town is not functioning well. That has consequences for small businesses.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-19">
+              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Affordability Realist</span></div>
+                <p class="rt-msg__text">But we should be honest about what the town can spend. Local taxpayers are already under pressure. If the road is a state responsibility, the funding should be state responsibility too.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-20">
+              <img class="rt-msg__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Civic Skeptic</span></div>
+                <p class="rt-msg__text">Which is why the public record matters. If the state is responsible and slow, show that clearly. Residents should know where the bottleneck is.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-21">
+              <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Practical Family</span></div>
+                <p class="rt-msg__text">Yes. I would be less frustrated if I could see the town pushing and see where the delay is. The silence is what makes it feel like drift.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-22">
+              <img class="rt-msg__avatar" src="assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Environmental Steward</span></div>
+                <p class="rt-msg__text">And I would be more comfortable with the delay if the explanation was tied to durable repair. People can accept complexity when the reasoning is visible.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-23">
+              <img class="rt-msg__avatar" src="assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Preservationist</span></div>
+                <p class="rt-msg__text">The same is true for design and character. If the state is coming in, Bedford should not be passive. Local leadership should define what matters before the project is already designed.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-24">
+              <img class="rt-msg__avatar" src="assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Main-Streeter</span></div>
+                <p class="rt-msg__text">That requires treating roads as more than maintenance. They are part of economic development, resident confidence, and hamlet vitality.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-25">
+              <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Services Neighbor</span></div>
+                <p class="rt-msg__text">I still worry that this can get too complicated. The resident view is simple: this road is bad, and someone should be accountable.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-26">
+              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Affordability Realist</span></div>
+                <p class="rt-msg__text">Accountable, yes. But accurately accountable. If residents blame Town Hall for a road it does not control, the pressure may miss the people who can actually move the project.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-27">
+              <img class="rt-msg__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Civic Skeptic</span></div>
+                <p class="rt-msg__text">That is why transparency solves two problems. It protects the town from unfair blame if it is doing the work, and it helps residents pressure the right agency if the state is the delay.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-28">
+              <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Practical Family</span></div>
+                <p class="rt-msg__text">So the standard should not be "fix it tomorrow." The standard should be "show us the active path."</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-29">
+              <img class="rt-msg__avatar" src="assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Environmental Steward</span></div>
+                <p class="rt-msg__text">And include quality in that path. Not just when, but what kind of fix.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-30">
+              <img class="rt-msg__avatar" src="assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Preservationist</span></div>
+                <p class="rt-msg__text">And include local character in that path. Bedford should not outsource the feel of its corridors completely to Albany.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-31">
+              <img class="rt-msg__avatar" src="assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Main-Streeter</span></div>
+                <p class="rt-msg__text">And include economic impact. The state may respond differently when the argument is not just potholes, but the daily functioning of a town.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-32">
+              <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Services Neighbor</span></div>
+                <p class="rt-msg__text">And include basics: safety, drainage, emergency response, school routes. Keep it grounded.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-33">
+              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Affordability Realist</span></div>
+                <p class="rt-msg__text">And include cost discipline. No promises that suggest Bedford can buy its way out of a state obligation.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-34">
+              <img class="rt-msg__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Civic Skeptic</span></div>
+                <p class="rt-msg__text">That sounds like the actual answer: a public state-road accountability log. Road, agency, status, last contact, response, next step.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-35">
+              <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Practical Family</span></div>
+                <p class="rt-msg__text">That would help. It gives residents something concrete to look at instead of just wondering.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-36">
+              <img class="rt-msg__avatar" src="assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Environmental Steward</span></div>
+                <p class="rt-msg__text">It should also include known repair-quality concerns: drainage, repeated failure points, runoff, and resilience.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-37">
+              <img class="rt-msg__avatar" src="assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Preservationist</span></div>
+                <p class="rt-msg__text">And local corridor concerns where appropriate.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-38">
+              <img class="rt-msg__avatar" src="assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Main-Streeter</span></div>
+                <p class="rt-msg__text">And business or hamlet impacts where those are real.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-39">
+              <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Services Neighbor</span></div>
+                <p class="rt-msg__text">As long as it stays simple enough that people actually use it.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-40">
+              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Affordability Realist</span></div>
+                <p class="rt-msg__text">Simple, public, disciplined. That is the right lane for the town.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="full-41">
+              <img class="rt-msg__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker"><span class="rt-msg__name">Civic Skeptic</span></div>
+                <p class="rt-msg__text">And it gives residents a fair standard: not "did you personally pave it?" but "can we see what you are doing and what happens next?"</p>
+              </div>
+            </li>
+
+          </ol>
+        </div><!-- /.rt-full-panel -->
+
       </div>
     </section>
 
-    <!-- 4. HIGHLIGHTS -->
-    <section class="section rt-highlights-section" id="rt-highlights-section" aria-labelledby="rt-highlights-headline">
+    <!-- 5. STRONGEST POINTS FROM THE ROUNDTABLE -->
+    <section class="section rt-strongest-section" aria-labelledby="rt-strongest-headline">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">From the transcript</p>
-          <h2 id="rt-highlights-headline">Key moments from the discussion</h2>
-          <p class="section-header__lead">Most people will not read the whole transcript. These are the moments that shaped the conclusion.</p>
+          <p class="eyebrow">From the discussion</p>
+          <h2 id="rt-strongest-headline">Strongest Points From the Roundtable</h2>
+          <p class="section-header__lead">The full transcript is there for anyone who wants to inspect it. These are the strongest points each perspective brought to the discussion.</p>
         </div>
 
-        <div id="rt-highlights-wrap" class="rt-highlights-inactive">
-          <p class="rt-highlights-notice" id="rt-highlights-notice">Run the simulation above to activate the highlights.</p>
-          <div class="rt-highlights-grid rt-highlights-grid-inner" id="rt-highlights-grid" role="list">
+        <div class="rt-strongest-grid" role="list">
 
-            <button type="button" class="rt-highlight-card" data-jump="msg-5,msg-8,msg-9" role="listitem">
-              <span class="rt-highlight-card__title">Who owns the problem?</span>
-              <span class="rt-highlight-card__desc">The Affordability Realist pushes back on blaming Bedford for a state-controlled road, while the Practical Family reframes the issue around visible follow-through.</span>
-              <span class="rt-highlight-card__jump">Jump to transcript &#8594;</span>
-            </button>
-
-            <button type="button" class="rt-highlight-card" data-jump="msg-6,msg-7" role="listitem">
-              <span class="rt-highlight-card__title">What residents actually experience</span>
-              <span class="rt-highlight-card__desc">The Services Neighbor and Main-Streeter argue that residents and visitors experience road conditions as part of Bedford, regardless of jurisdiction.</span>
-              <span class="rt-highlight-card__jump">Jump to transcript &#8594;</span>
-            </button>
-
-            <button type="button" class="rt-highlight-card" data-jump="msg-11,msg-12,msg-17" role="listitem">
-              <span class="rt-highlight-card__title">Why quick fixes may fail</span>
-              <span class="rt-highlight-card__desc">The Environmental Steward warns that road failure may involve drainage, base conditions, and long-term engineering, not just asphalt.</span>
-              <span class="rt-highlight-card__jump">Jump to transcript &#8594;</span>
-            </button>
-
-            <button type="button" class="rt-highlight-card" data-jump="msg-13,msg-14,msg-15,msg-16" role="listitem">
-              <span class="rt-highlight-card__title">The tradeoff that decides it</span>
-              <span class="rt-highlight-card__desc">Don identifies the real choice: authority versus responsibility, speed versus durability, and private advocacy versus public accountability.</span>
-              <span class="rt-highlight-card__jump">Jump to transcript &#8594;</span>
-            </button>
-
+          <div class="rt-strongest-card" role="listitem">
+            <img class="rt-strongest-card__avatar" src="assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="80" height="80" loading="lazy" onerror="this.style.display='none'">
+            <div class="rt-strongest-card__content">
+              <span class="rt-strongest-card__name">The Preservationist</span>
+              <p class="rt-strongest-card__point">When the state repairs a road through Bedford, the town should care how it is done. Road corridors shape the town's character too.</p>
+            </div>
           </div>
+
+          <div class="rt-strongest-card" role="listitem">
+            <img class="rt-strongest-card__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="80" height="80" loading="lazy" onerror="this.style.display='none'">
+            <div class="rt-strongest-card__content">
+              <span class="rt-strongest-card__name">The Practical Family</span>
+              <p class="rt-strongest-card__point">Residents can handle complexity. What they cannot handle is silence, drift, and having no visible path toward relief.</p>
+            </div>
+          </div>
+
+          <div class="rt-strongest-card" role="listitem">
+            <img class="rt-strongest-card__avatar" src="assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="80" height="80" loading="lazy" onerror="this.style.display='none'">
+            <div class="rt-strongest-card__content">
+              <span class="rt-strongest-card__name">The Main-Streeter</span>
+              <p class="rt-strongest-card__point">Road conditions affect more than drivers. They shape visitor confidence, hamlet vitality, and whether Bedford feels cared for.</p>
+            </div>
+          </div>
+
+          <div class="rt-strongest-card" role="listitem">
+            <img class="rt-strongest-card__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="80" height="80" loading="lazy" onerror="this.style.display='none'">
+            <div class="rt-strongest-card__content">
+              <span class="rt-strongest-card__name">The Affordability Realist</span>
+              <p class="rt-strongest-card__point">Bedford should advocate, document, and escalate. It should not imply local taxpayers can solve a state responsibility.</p>
+            </div>
+          </div>
+
+          <div class="rt-strongest-card" role="listitem">
+            <img class="rt-strongest-card__avatar" src="assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="80" height="80" loading="lazy" onerror="this.style.display='none'">
+            <div class="rt-strongest-card__content">
+              <span class="rt-strongest-card__name">The Environmental Steward</span>
+              <p class="rt-strongest-card__point">A fast patch that fails is not progress. Bedford should push for repairs that address drainage, runoff, base conditions, and resilience.</p>
+            </div>
+          </div>
+
+          <div class="rt-strongest-card" role="listitem">
+            <img class="rt-strongest-card__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="80" height="80" loading="lazy" onerror="this.style.display='none'">
+            <div class="rt-strongest-card__content">
+              <span class="rt-strongest-card__name">The Civic Skeptic</span>
+              <p class="rt-strongest-card__point">The missing piece may not be effort. It may be public proof of effort: dates, contacts, responses, and next steps.</p>
+            </div>
+          </div>
+
+          <div class="rt-strongest-card" role="listitem">
+            <img class="rt-strongest-card__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="80" height="80" loading="lazy" onerror="this.style.display='none'">
+            <div class="rt-strongest-card__content">
+              <span class="rt-strongest-card__name">The Services Neighbor</span>
+              <p class="rt-strongest-card__point">Someone local needs to be visibly and consistently on it, even when the road belongs to the state.</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- 5. DON'S VIEW -->
-    <section class="section dons-view dons-view--standalone" aria-labelledby="dons-view-headline">
+    <!-- 6. DON'S VIEW (combined with commitment) -->
+    <section class="section dons-view dons-view--rt" aria-labelledby="dons-view-headline">
       <div class="container">
         <p class="eyebrow">Don's View</p>
         <h2 id="dons-view-headline">Where Don Lands</h2>
         <div class="dons-view__layout">
+
           <div class="dons-view__prose">
             <div class="dons-view__speaker">
               <img
@@ -723,32 +906,23 @@
                 <span class="dons-view__speaker-role">Candidate for Bedford Town Supervisor</span>
               </div>
             </div>
-            <p>The Roundtable clarifies the issue without pretending it is simple.</p>
-            <p>Bedford does not control state roads, and local leaders should be honest about that. The Town Board cannot order NYSDOT to pave Route 117 or Route 172. That constraint is real.</p>
-            <p>But residents experience these roads as part of daily life in Bedford. They experience the damage, the delays, the safety concerns, and the frustration locally. That is real too.</p>
-            <p>So the job of local leadership is not to pretend it controls the outcome. The job is to own the visibility and the pressure.</p>
-            <p>If I am Supervisor, state-road advocacy will not disappear into occasional letters or private conversations. Residents should be able to see what has been requested, who has been contacted, what the response was, and what happens next.</p>
-            <p>If the process takes time, that is one thing. If the process is invisible, that is something we can fix.</p>
+            <p>The Roundtable points to a fair middle ground: Bedford does not control state roads, and no Supervisor should pretend otherwise. But when those roads shape daily life here, local leadership still owes residents visible, persistent advocacy.</p>
+            <p>The strongest idea is not a new promise to "fix everything." It is a new standard for showing the work: what has been requested, who has been contacted, what response came back, and what happens next.</p>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 6. PLATFORM COMMITMENT -->
-    <section class="section platform-commitment-section" aria-labelledby="commitment-headline">
-      <div class="container">
-        <div class="platform-commitment-box">
-          <p class="eyebrow">Platform Commitment</p>
-          <h2 id="commitment-headline">State Road Accountability Log</h2>
-          <p>If I am in this role, residents will be able to see:</p>
-          <ul>
-            <li>which roads are state-controlled</li>
-            <li>who the responsible agency is</li>
-            <li>when the town last made contact</li>
-            <li>what the response was</li>
-            <li>what the next step is</li>
-          </ul>
-          <p class="closing-line">Not because the town controls every road. Because residents deserve to know who does — and what is being done about it.</p>
+          <div class="dons-view__commitment">
+            <span class="dons-view__commitment-eyebrow">My position</span>
+            <p><strong>Bedford should publish and maintain a State Road Accountability Log for major unresolved state-road issues, including Route 117 and Route 172, and update it until the work is complete.</strong></p>
+            <ul>
+              <li>which roads are state-controlled</li>
+              <li>who the responsible agency is</li>
+              <li>when the town last made contact</li>
+              <li>what the response was</li>
+              <li>what the next step is</li>
+            </ul>
+            <p class="commitment-close">Not because Bedford controls every road. Because residents deserve to know who does — and what is being done about it.</p>
+          </div>
+
         </div>
       </div>
     </section>
@@ -874,106 +1048,90 @@ Output format:
 
   <script src="assets/js/site.js"></script>
   <script>
-  /* roads.html — simulation controller */
+  /* roads.html v2 — simulation controller */
   (function () {
     'use strict';
 
     var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var btnRun      = document.getElementById('btn-run');
-    var btnReset    = document.getElementById('btn-reset');
-    var statusEl    = document.getElementById('rt-sim-status');
-    var transcript  = document.getElementById('rt-transcript');
-    var hlWrap      = document.getElementById('rt-highlights-wrap');
-    var hlNotice    = document.getElementById('rt-highlights-notice');
-    var hlGrid      = document.getElementById('rt-highlights-grid');
+    var btnRun       = document.getElementById('btn-run');
+    var btnReset     = document.getElementById('btn-reset');
+    var statusBar    = document.getElementById('rt-status-bar');
+    var statusText   = document.getElementById('rt-sim-status');
+    var btnOpenFull  = document.getElementById('btn-open-full');
+    var btnCloseFull = document.getElementById('btn-close-full');
+    var fullPanel    = document.getElementById('rt-full-panel');
+    var preview      = document.getElementById('rt-preview');
+    var previewItems = Array.from(document.querySelectorAll('#rt-preview-list .rt-msg'));
 
-    if (!btnRun || !transcript) return;
+    if (!btnRun) return;
 
-    var items = Array.from(transcript.querySelectorAll('.rt-msg, .rt-marker'));
+    /* ── Init: hide items (JS active); collapse full panel ── */
+    preview.classList.add('sim-ready');
+    if (fullPanel) fullPanel.hidden = true;
 
-    /* init: JS active — hide all items */
-    transcript.classList.add('sim-ready');
-
-    /* ── run ── */
+    /* ── Run Simulation ── */
     function runSimulation() {
-      btnRun.disabled = true;
+      btnRun.hidden = true;
+      btnReset.hidden = false;
       document.body.classList.add('sim-running');
-      statusEl.textContent = '';
 
       if (reducedMotion) {
-        items.forEach(function (el) { el.classList.add('is-visible'); });
-        onComplete();
+        previewItems.forEach(function (el) { el.classList.add('is-visible'); });
+        onPreviewComplete();
         return;
       }
 
-      var total = 1200; /* ms */
-      var step  = total / items.length;
+      var total = 1000;
+      var step  = total / previewItems.length;
 
-      items.forEach(function (el, i) {
+      previewItems.forEach(function (el, i) {
         setTimeout(function () {
           el.classList.add('is-visible');
-          if (i === items.length - 1) onComplete();
+          if (i === previewItems.length - 1) onPreviewComplete();
         }, Math.round(i * step));
       });
     }
 
-    function onComplete() {
+    function onPreviewComplete() {
       document.body.classList.remove('sim-running');
       document.body.classList.add('sim-done');
-      statusEl.textContent = 'Simulation complete.';
-      hlWrap.classList.remove('rt-highlights-inactive');
-      if (hlNotice) hlNotice.textContent = '';
+      if (statusBar)  statusBar.hidden  = false;
+      if (statusText) statusText.textContent = 'Full Roundtable Transcript Generated';
     }
 
-    /* ── reset ── */
+    /* ── Reset ── */
     function resetSimulation() {
       document.body.classList.remove('sim-done', 'sim-running');
-      btnRun.disabled = false;
-      statusEl.textContent = '';
-      items.forEach(function (el) { el.classList.remove('is-visible', 'is-highlighted'); });
-      hlWrap.classList.add('rt-highlights-inactive');
-      if (hlNotice) hlNotice.textContent = 'Run the simulation above to activate the highlights.';
+      btnRun.hidden   = false;
+      btnReset.hidden = true;
+      previewItems.forEach(function (el) { el.classList.remove('is-visible'); });
+      if (statusBar)  statusBar.hidden  = true;
+      if (statusText) statusText.textContent = '';
+      closeFullTranscript();
+    }
+
+    /* ── Open / Close full transcript ── */
+    function openFullTranscript() {
+      if (!fullPanel) return;
+      fullPanel.hidden = false;
+      if (btnOpenFull) btnOpenFull.setAttribute('aria-expanded', 'true');
+      fullPanel.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+    }
+
+    function closeFullTranscript() {
+      if (!fullPanel) return;
+      fullPanel.hidden = true;
+      if (btnOpenFull) btnOpenFull.setAttribute('aria-expanded', 'false');
     }
 
     btnRun.addEventListener('click', runSimulation);
     btnReset.addEventListener('click', resetSimulation);
+    if (btnOpenFull)  btnOpenFull.addEventListener('click',  openFullTranscript);
+    if (btnCloseFull) btnCloseFull.addEventListener('click', closeFullTranscript);
 
-    /* ── highlight jump ── */
-    if (hlGrid) {
-      hlGrid.addEventListener('click', function (e) {
-        var card = e.target.closest('.rt-highlight-card');
-        if (!card) return;
-
-        var ids = (card.getAttribute('data-jump') || '')
-          .split(',').map(function (s) { return s.trim(); }).filter(Boolean);
-        if (!ids.length) return;
-
-        transcript.querySelectorAll('.is-highlighted').forEach(function (el) {
-          el.classList.remove('is-highlighted');
-        });
-
-        var first = document.getElementById(ids[0]);
-        if (first) {
-          first.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
-        }
-
-        ids.forEach(function (id) {
-          var el = document.getElementById(id);
-          if (el) el.classList.add('is-highlighted');
-        });
-
-        setTimeout(function () {
-          ids.forEach(function (id) {
-            var el = document.getElementById(id);
-            if (el) el.classList.remove('is-highlighted');
-          });
-        }, 2500);
-      });
-    }
-
-    /* ── instruction set toggle ── */
-    var btnInstr = document.getElementById('btn-instr-toggle');
+    /* ── Instruction set toggle ── */
+    var btnInstr   = document.getElementById('btn-instr-toggle');
     var instrPanel = document.getElementById('instr-panel-roads-sim');
     if (btnInstr && instrPanel) {
       btnInstr.addEventListener('click', function () {
