@@ -371,6 +371,10 @@
     .cp-option:hover:not(:disabled) { border-color: var(--sage); background: var(--white); }
     .cp-option:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
     .cp-option.is-selected { background: var(--moss); border-color: var(--moss); color: var(--white); transition: none; }
+    .cp-option.is-selected:hover,
+    .cp-option.is-selected:focus,
+    .cp-option.is-selected:active { background: var(--moss); border-color: var(--moss); color: var(--white); }
+    .cp-option.is-selected:focus-visible { outline: 2px solid rgba(255,255,255,0.75); outline-offset: 2px; }
     .cp-option:disabled { cursor: default; opacity: 0.65; }
     .cp-option.is-selected:disabled { opacity: 1; transition: none; }
     .cp-option__dot {
