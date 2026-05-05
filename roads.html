@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Bedford Roundtable tests road conditions through competing civic perspectives before Don Scott reaches a view on state roads, local advocacy, and accountability.">
+  <title>Road Conditions Roundtable — Don Scott for Bedford Town Supervisor</title>
+  <link rel="canonical" href="https://www.donforbedford.com/roads">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.donforbedford.com/roads">
+  <meta property="og:title" content="Road Conditions Roundtable — Don Scott for Bedford">
+  <meta property="og:description" content="The Bedford Roundtable tests road conditions through competing civic perspectives before Don Scott reaches a view.">
+  <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Road Conditions Roundtable — Don Scott for Bedford Town Supervisor.">
+  <meta property="og:site_name" content="Don Scott for Bedford">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.donforbedford.com/roads">
+  <meta name="twitter:title" content="Road Conditions Roundtable — Don Scott for Bedford">
+  <meta name="twitter:description" content="The Bedford Roundtable tests road conditions through competing civic perspectives before Don Scott reaches a view.">
+  <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta name="twitter:image:alt" content="Road Conditions Roundtable — Don Scott for Bedford Town Supervisor.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4A5240">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#4A5240">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <style>
+    /* =============================================
+       roads.html — Roundtable simulation prototype
+       ============================================= */
+
+    .rt-hero {
+      background: var(--moss);
+      padding-block: 3.5rem 3rem;
+    }
+    .rt-hero .eyebrow { color: rgba(255,255,255,0.55); margin-bottom: 0.875rem; }
+    .rt-hero h1 { color: var(--white); max-width: 24ch; margin-bottom: 1rem; }
+    .rt-hero__deck {
+      color: rgba(255,255,255,0.82);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      max-width: 56ch;
+      margin-bottom: 1.25rem;
+    }
+    .rt-hero__ai-note {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.5);
+      border-left: 2px solid rgba(255,255,255,0.18);
+      padding-left: 0.875rem;
+      line-height: 1.6;
+      max-width: 56ch;
+    }
+    @media (min-width: 768px) {
+      .rt-hero { padding-block: 4.5rem 3.5rem; }
+    }
+
+    /* CTA row */
+    .rt-run-cta { background: var(--white); border-bottom: 1px solid var(--border); }
+    .rt-run-cta__lead { color: var(--muted); margin-top: 0.75rem; margin-bottom: 1.75rem; max-width: 56ch; }
+    .rt-run-cta__buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    #btn-reset { display: none; }
+    .sim-done #btn-reset { display: inline-flex; }
+    .sim-done #btn-run  { display: none; }
+
+    /* Transcript section */
+    .rt-sim-section { background: var(--cream); }
+
+    .rt-sim__status {
+      font-size: 0.8125rem;
+      color: var(--sage);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      min-height: 1.5em;
+      margin-bottom: 1rem;
+    }
+
+    .rt-transcript {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .rt-transcript__placeholder {
+      padding: 1.75rem 1.5rem;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.9375rem;
+      line-height: 1.65;
+    }
+    .sim-running .rt-transcript__placeholder,
+    .sim-done    .rt-transcript__placeholder { display: none; }
+
+    .rt-msg-list { list-style: none; padding: 0; margin: 0; }
+
+    .rt-marker {
+      padding: 0.4rem 1.25rem;
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    .rt-marker:first-child { border-top: none; }
+
+    .rt-msg {
+      display: flex;
+      gap: 0.875rem;
+      padding: 0.875rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+      background: var(--white);
+    }
+    .rt-msg:last-child { border-bottom: none; }
+    .rt-msg--don { background: rgba(62,82,64,0.05); }
+
+    .rt-msg__avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius);
+      object-fit: cover;
+      object-position: center top;
+      flex-shrink: 0;
+      display: block;
+    }
+    .rt-msg--don .rt-msg__avatar { border: 1px solid rgba(62,82,64,0.2); }
+
+    .rt-msg__body  { flex: 1; min-width: 0; }
+    .rt-msg__speaker {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      margin-bottom: 0.25rem;
+      flex-wrap: wrap;
+    }
+    .rt-msg__name {
+      font-family: var(--serif);
+      font-size: 0.875rem;
+      color: var(--charcoal);
+      max-width: none;
+    }
+    .rt-msg--don .rt-msg__name { color: var(--moss); }
+    .rt-msg__role {
+      font-size: 0.75rem;
+      color: var(--muted);
+      max-width: none;
+    }
+    .rt-msg__text {
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      line-height: 1.65;
+      max-width: none;
+    }
+
+    /* JS animation */
+    .sim-ready .rt-msg,
+    .sim-ready .rt-marker {
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .sim-ready .rt-msg.is-visible,
+    .sim-ready .rt-marker.is-visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .sim-ready .rt-msg,
+      .sim-ready .rt-marker { transition: none; }
+    }
+
+    /* Highlight flash */
+    .rt-msg.is-highlighted {
+      background: rgba(255,200,80,0.2) !important;
+      transition: background 0.1s ease;
+    }
+
+    /* Highlights section */
+    .rt-highlights-section { background: var(--white); }
+
+    .rt-highlights-notice {
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 1.25rem;
+      display: none;
+    }
+    .rt-highlights-inactive .rt-highlights-notice { display: block; }
+
+    .rt-highlights-grid {
+      display: grid;
+      gap: 0.875rem;
+      grid-template-columns: 1fr;
+      margin-top: 0.5rem;
+    }
+    @media (min-width: 600px) { .rt-highlights-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .rt-highlights-inactive .rt-highlights-grid-inner {
+      opacity: 0.4;
+      pointer-events: none;
+      filter: blur(0.4px);
+    }
+
+    .rt-highlight-card {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.125rem 1.25rem;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+    }
+    .rt-highlight-card:hover { border-color: var(--sage); box-shadow: var(--shadow-md); background: var(--white); }
+    .rt-highlight-card:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
+    .rt-highlight-card__title {
+      font-family: var(--serif);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      display: block;
+      margin-bottom: 0.375rem;
+    }
+    .rt-highlight-card__desc {
+      font-size: 0.8375rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: none;
+      display: block;
+    }
+    .rt-highlight-card__jump {
+      display: inline-block;
+      margin-top: 0.625rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+    .rt-highlight-card:hover .rt-highlight-card__jump { color: var(--moss); }
+
+    /* Platform Commitment */
+    .platform-commitment-section { background: var(--cream); }
+    .platform-commitment-box {
+      background: var(--moss);
+      color: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem 2rem 2.25rem;
+      max-width: 680px;
+    }
+    .platform-commitment-box .eyebrow { color: rgba(255,255,255,0.5); margin-bottom: 0.625rem; }
+    .platform-commitment-box h2 {
+      color: var(--white);
+      margin-bottom: 1rem;
+      font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+    }
+    .platform-commitment-box > p {
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 0.875rem;
+      max-width: none;
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+    .platform-commitment-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.75rem 0 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .platform-commitment-box ul li {
+      display: flex;
+      gap: 0.625rem;
+      align-items: flex-start;
+      font-size: 0.9375rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.5;
+    }
+    .platform-commitment-box ul li::before {
+      content: "—";
+      color: var(--sage);
+      flex-shrink: 0;
+      font-weight: 600;
+    }
+    .platform-commitment-box .closing-line {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.65;
+      border-top: 1px solid rgba(255,255,255,0.14);
+      padding-top: 1rem;
+      margin-top: 0.25rem;
+      max-width: none;
+    }
+
+    /* Don's View — standalone (no commitment box, prose goes full width) */
+    .dons-view--standalone .dons-view__layout {
+      grid-template-columns: 1fr;
+      max-width: 680px;
+    }
+  </style>
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7WVQR4MTH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G7WVQR4MTH');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,"clarity","script","wis1l4ilnm");
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+        <span class="site-logo__name">Don Scott</span>
+        <span class="site-logo__race">for Bedford</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="pages/rules.html">Rules</a></li>
+          <li><a href="pages/issues.html">Issues</a></li>
+          <li><a href="pages/ideas.html">Ideas</a></li>
+        </ul>
+        <a href="#" data-subscribe-trigger class="btn btn--subscribe site-nav__cta">Subscribe</a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation menu">
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </nav>
+    </div>
+    <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
+      <a href="index.html">Home</a>
+      <a href="pages/rules.html">Rules</a>
+      <a href="pages/issues.html">Issues</a>
+      <a href="pages/ideas.html">Ideas</a>
+      <a href="#" data-subscribe-trigger class="btn btn--subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="rt-hero" aria-labelledby="rt-title">
+    <div class="container">
+      <p class="eyebrow">The Bedford Roundtable</p>
+      <h1 id="rt-title">Road Conditions, Tested in Public</h1>
+      <p class="rt-hero__deck">Most campaigns tell you what they think. This campaign shows how the thinking happens. The Roundtable below tests Bedford's road conditions through competing civic perspectives before Don reaches a view.</p>
+      <p class="rt-hero__ai-note">AI-assisted. Human-reviewed. The personas are not real residents. They are recurring civic lenses used to test tradeoffs.</p>
+    </div>
+  </section>
+
+  <main id="main-content">
+
+    <!-- 1. DON SETS THE TABLE -->
+    <section class="section" aria-labelledby="don-framing-headline">
+      <div class="container">
+        <p class="eyebrow">Don Sets the Table</p>
+        <h2 id="don-framing-headline">Don Sets the Table</h2>
+        <div class="don-framing">
+          <div class="don-framing__speaker">
+            <img
+              class="voice-panel__portrait"
+              src="assets/img/personas/don-chair.webp"
+              alt="Don Scott, candidate for Bedford Town Supervisor"
+              width="400" height="400"
+              loading="lazy"
+              onerror="this.style.display='none'"
+            >
+            <div>
+              <span class="don-framing__speaker-name">Don Scott</span>
+              <span class="don-framing__speaker-role">Candidate for Bedford Town Supervisor</span>
+            </div>
+          </div>
+          <div class="don-framing__text">
+            <p>Bedford's road issue needs a fair starting point.</p>
+            <p>There are local roads Bedford controls, and there are state roads Bedford does not control. The Highway Department deserves credit for the roads the town actually maintains. The sharper frustration is with roads like Routes 117 and 172, where residents experience the problem locally, but the authority sits with New York State.</p>
+            <p>So the real question is not simply, "Why hasn't Bedford paved these roads?" It is: what should local leadership do when the problem belongs to someone else?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. RUN SIMULATION CTA -->
+    <section class="section rt-run-cta" aria-labelledby="rt-cta-headline">
+      <div class="container">
+        <p class="eyebrow">Roundtable Simulation</p>
+        <h2 id="rt-cta-headline">Run the discussion</h2>
+        <p class="rt-run-cta__lead">Click once to generate the full Roundtable. You do not have to read every word. The highlights below will take you back to the moments that shaped the conclusion.</p>
+        <div class="rt-run-cta__buttons">
+          <button type="button" class="btn btn--primary" id="btn-run">Run Simulation</button>
+          <button type="button" class="btn btn--secondary" id="btn-reset">Reset Simulation</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TRANSCRIPT -->
+    <section class="section rt-sim-section" aria-labelledby="rt-transcript-label">
+      <div class="container">
+        <p class="eyebrow" id="rt-transcript-label">Roundtable Transcript</p>
+
+        <p class="rt-sim__status" aria-live="polite" aria-atomic="true" id="rt-sim-status"></p>
+
+        <div class="rt-transcript" id="rt-transcript">
+
+          <p class="rt-transcript__placeholder">Ready when you are. The Roundtable will test jurisdiction, urgency, cost, visibility, and long-term repair quality.</p>
+
+          <ol class="rt-msg-list" aria-label="Roundtable transcript">
+
+            <li class="rt-marker" id="marker-1">Opening frame</li>
+
+            <li class="rt-msg rt-msg--don" id="msg-1">
+              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Don</span>
+                  <span class="rt-msg__role">Chair</span>
+                </div>
+                <p class="rt-msg__text">There are really two road systems in Bedford: the roads the town controls, and the state roads that run through town.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg rt-msg--don" id="msg-2">
+              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Don</span>
+                  <span class="rt-msg__role">Chair</span>
+                </div>
+                <p class="rt-msg__text">The Highway Department deserves credit for the local roads Bedford actually maintains. That part of the story matters.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg rt-msg--don" id="msg-3">
+              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Don</span>
+                  <span class="rt-msg__role">Chair</span>
+                </div>
+                <p class="rt-msg__text">The harder question is what local leadership should do when residents experience a problem locally, but the authority sits with New York State.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-4">
+              <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Practical Family</span>
+                </div>
+                <p class="rt-msg__text">I understand the jurisdiction piece. But when you are driving this every day, it stops feeling like a policy question. It just feels like something is not getting fixed.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-5">
+              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Affordability Realist</span>
+                </div>
+                <p class="rt-msg__text">That frustration is real, but the ownership matters. The Town Board cannot simply decide to repave a state highway without creating a new financial and legal problem.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-6">
+              <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Services Neighbor</span>
+                </div>
+                <p class="rt-msg__text">Maybe. But most residents are not thinking about the ownership chart when they hit the same pothole again. They are thinking the basics are not being handled.</p>
+              </div>
+            </li>
+
+            <li class="rt-marker" id="marker-2">The pressure test</li>
+
+            <li class="rt-msg" id="msg-7">
+              <img class="rt-msg__avatar" src="assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Main-Streeter</span>
+                </div>
+                <p class="rt-msg__text">And the visible condition of these roads affects more than drivers. It affects how people experience Bedford, whether they stop in the hamlets, and whether the town feels cared for.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-8">
+              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Affordability Realist</span>
+                </div>
+                <p class="rt-msg__text">That still does not make it a town-controlled project. Expectations need to match authority, or we end up blaming the wrong level of government.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-9">
+              <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Practical Family</span>
+                </div>
+                <p class="rt-msg__text">I am not asking the town to pave it. I am asking whether the town is visibly staying on it. There is a difference between "we reached out" and "we are actively pushing."</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-10">
+              <img class="rt-msg__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Civic Skeptic</span>
+                </div>
+                <p class="rt-msg__text">That is the transparency gap. The Town Board may be making calls and sending letters. But if residents cannot see the record, they are left guessing.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-11">
+              <img class="rt-msg__avatar" src="assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Environmental Steward</span>
+                </div>
+                <p class="rt-msg__text">There is another risk too. Bad roads are often symptoms of drainage, base failure, runoff, or freeze-thaw damage. A fast surface repair can look good briefly and fail again.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-12">
+              <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Services Neighbor</span>
+                </div>
+                <p class="rt-msg__text">I hear that. But "do it right" cannot become a softer way of saying "wait indefinitely." People still need safe, reliable roads now.</p>
+              </div>
+            </li>
+
+            <li class="rt-marker" id="marker-3">The tradeoff</li>
+
+            <li class="rt-msg rt-msg--don" id="msg-13">
+              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Don</span>
+                  <span class="rt-msg__role">Chair</span>
+                </div>
+                <p class="rt-msg__text">Let me pause the discussion here, because the tradeoff is clear.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg rt-msg--don" id="msg-14">
+              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Don</span>
+                  <span class="rt-msg__role">Chair</span>
+                </div>
+                <p class="rt-msg__text">One side is saying: do not pretend Bedford controls what it does not control. Another side is saying: residents still deserve visible pressure and progress.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg rt-msg--don" id="msg-15">
+              <img class="rt-msg__avatar" src="assets/img/personas/don-chair.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Don</span>
+                  <span class="rt-msg__role">Chair</span>
+                </div>
+                <p class="rt-msg__text">There is also a second tension: faster visible action versus more durable repair. You can push for speed, quality, transparency, and fiscal restraint, but you may not get all four at once.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-16">
+              <img class="rt-msg__avatar" src="assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Civic Skeptic</span>
+                </div>
+                <p class="rt-msg__text">Then make the process visible. If the state is responsible, show residents the outreach, the dates, the responses, and the next step. Let the accountability land where it belongs.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-17">
+              <img class="rt-msg__avatar" src="assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Environmental Steward</span>
+                </div>
+                <p class="rt-msg__text">And when the state does act, Bedford should be pushing for a repair that lasts, not just a politically convenient patch.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-18">
+              <img class="rt-msg__avatar" src="assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Main-Streeter</span>
+                </div>
+                <p class="rt-msg__text">The economic case should be part of that pressure. These are not abstract corridors. They shape the daily impression of the town.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-19">
+              <img class="rt-msg__avatar" src="assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Practical Family</span>
+                </div>
+                <p class="rt-msg__text">For families, visibility may matter as much as speed. If people can see movement, they can tolerate some delay. If they cannot, it feels like drift.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-20">
+              <img class="rt-msg__avatar" src="assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Affordability Realist</span>
+                </div>
+                <p class="rt-msg__text">And the discipline matters. The town should advocate, document, and escalate. It should not imply it can solve a state capital-planning problem with local money.</p>
+              </div>
+            </li>
+
+            <li class="rt-msg" id="msg-21">
+              <img class="rt-msg__avatar" src="assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="68" height="68" loading="lazy" onerror="this.style.display='none'">
+              <div class="rt-msg__body">
+                <div class="rt-msg__speaker">
+                  <span class="rt-msg__name">Services Neighbor</span>
+                </div>
+                <p class="rt-msg__text">The simple standard is this: someone local needs to be on it consistently. Not occasionally. Consistently.</p>
+              </div>
+            </li>
+
+          </ol>
+        </div><!-- /.rt-transcript -->
+      </div>
+    </section>
+
+    <!-- 4. HIGHLIGHTS -->
+    <section class="section rt-highlights-section" id="rt-highlights-section" aria-labelledby="rt-highlights-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">From the transcript</p>
+          <h2 id="rt-highlights-headline">Key moments from the discussion</h2>
+          <p class="section-header__lead">Most people will not read the whole transcript. These are the moments that shaped the conclusion.</p>
+        </div>
+
+        <div id="rt-highlights-wrap" class="rt-highlights-inactive">
+          <p class="rt-highlights-notice" id="rt-highlights-notice">Run the simulation above to activate the highlights.</p>
+          <div class="rt-highlights-grid rt-highlights-grid-inner" id="rt-highlights-grid" role="list">
+
+            <button type="button" class="rt-highlight-card" data-jump="msg-5,msg-8,msg-9" role="listitem">
+              <span class="rt-highlight-card__title">Who owns the problem?</span>
+              <span class="rt-highlight-card__desc">The Affordability Realist pushes back on blaming Bedford for a state-controlled road, while the Practical Family reframes the issue around visible follow-through.</span>
+              <span class="rt-highlight-card__jump">Jump to transcript &#8594;</span>
+            </button>
+
+            <button type="button" class="rt-highlight-card" data-jump="msg-6,msg-7" role="listitem">
+              <span class="rt-highlight-card__title">What residents actually experience</span>
+              <span class="rt-highlight-card__desc">The Services Neighbor and Main-Streeter argue that residents and visitors experience road conditions as part of Bedford, regardless of jurisdiction.</span>
+              <span class="rt-highlight-card__jump">Jump to transcript &#8594;</span>
+            </button>
+
+            <button type="button" class="rt-highlight-card" data-jump="msg-11,msg-12,msg-17" role="listitem">
+              <span class="rt-highlight-card__title">Why quick fixes may fail</span>
+              <span class="rt-highlight-card__desc">The Environmental Steward warns that road failure may involve drainage, base conditions, and long-term engineering, not just asphalt.</span>
+              <span class="rt-highlight-card__jump">Jump to transcript &#8594;</span>
+            </button>
+
+            <button type="button" class="rt-highlight-card" data-jump="msg-13,msg-14,msg-15,msg-16" role="listitem">
+              <span class="rt-highlight-card__title">The tradeoff that decides it</span>
+              <span class="rt-highlight-card__desc">Don identifies the real choice: authority versus responsibility, speed versus durability, and private advocacy versus public accountability.</span>
+              <span class="rt-highlight-card__jump">Jump to transcript &#8594;</span>
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. DON'S VIEW -->
+    <section class="section dons-view dons-view--standalone" aria-labelledby="dons-view-headline">
+      <div class="container">
+        <p class="eyebrow">Don's View</p>
+        <h2 id="dons-view-headline">Where Don Lands</h2>
+        <div class="dons-view__layout">
+          <div class="dons-view__prose">
+            <div class="dons-view__speaker">
+              <img
+                class="voice-panel__portrait"
+                src="assets/img/personas/don-chair.webp"
+                alt="Don Scott, candidate for Bedford Town Supervisor"
+                width="400" height="400"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+              <div>
+                <span class="dons-view__speaker-name">Don Scott</span>
+                <span class="dons-view__speaker-role">Candidate for Bedford Town Supervisor</span>
+              </div>
+            </div>
+            <p>The Roundtable clarifies the issue without pretending it is simple.</p>
+            <p>Bedford does not control state roads, and local leaders should be honest about that. The Town Board cannot order NYSDOT to pave Route 117 or Route 172. That constraint is real.</p>
+            <p>But residents experience these roads as part of daily life in Bedford. They experience the damage, the delays, the safety concerns, and the frustration locally. That is real too.</p>
+            <p>So the job of local leadership is not to pretend it controls the outcome. The job is to own the visibility and the pressure.</p>
+            <p>If I am Supervisor, state-road advocacy will not disappear into occasional letters or private conversations. Residents should be able to see what has been requested, who has been contacted, what the response was, and what happens next.</p>
+            <p>If the process takes time, that is one thing. If the process is invisible, that is something we can fix.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PLATFORM COMMITMENT -->
+    <section class="section platform-commitment-section" aria-labelledby="commitment-headline">
+      <div class="container">
+        <div class="platform-commitment-box">
+          <p class="eyebrow">Platform Commitment</p>
+          <h2 id="commitment-headline">State Road Accountability Log</h2>
+          <p>If I am in this role, residents will be able to see:</p>
+          <ul>
+            <li>which roads are state-controlled</li>
+            <li>who the responsible agency is</li>
+            <li>when the town last made contact</li>
+            <li>what the response was</li>
+            <li>what the next step is</li>
+          </ul>
+          <p class="closing-line">Not because the town controls every road. Because residents deserve to know who does — and what is being done about it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. HOW THIS WAS BUILT -->
+    <section class="section section--alt" aria-labelledby="howbuilt-headline">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">How this was built</p>
+          <h2 id="howbuilt-headline">How This Was Built</h2>
+          <p class="section-header__lead section-header__lead--wide">This campaign is committed to showing its work, not just stating positions. The Roundtable is an AI-assisted, human-reviewed framework designed to test local issues against recurring civic perspectives before Don reaches a view.</p>
+        </div>
+
+        <div class="cta-row cta-row--centered">
+          <div class="howbuilt-cta-group">
+            <button type="button" class="btn btn--primary" id="btn-instr-toggle" aria-expanded="false" aria-controls="instr-panel-roads-sim">View the Roundtable Instruction Set</button>
+          </div>
+        </div>
+
+        <div class="instr-panel" id="instr-panel-roads-sim" hidden>
+          <div class="instr-panel__bar">
+            <span class="instr-panel__title">Public Instruction Set</span>
+            <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+              <span class="instr-panel__copy-label">Copy All</span>
+            </button>
+          </div>
+          <div class="instr-panel__body">
+            <pre class="instr-panel__text">Act as a civic Roundtable designed to evaluate one local issue through eight consistent perspectives before arriving at a practical recommendation.
+
+The issue to evaluate is:
+[PASTE YOUR ISSUE HERE]
+
+Create and maintain these eight roles throughout the discussion:
+
+1. Chair
+A real decision-maker who introduces the issue neutrally, moderates the discussion, identifies where perspectives agree or conflict, and delivers the final recommendation. The Chair is informed by the discussion but not replaced by it.
+
+2. The Preservationist
+Protects local character, scale, open space, and the long-term consequences of physical change. Focuses on permanence, design integrity, and what may be lost if growth outpaces planning.
+
+3. The Practical Family
+Tests whether a policy works in real daily life. Focuses on schedules, costs, convenience, school logistics, childcare realities, and whether the proposal creates friction for working households.
+
+4. The Main-Streeter
+Focuses on local business vitality, hamlet energy, storefronts, foot traffic, parking, and whether plans produce visible economic life instead of endless talk.
+
+5. The Affordability Realist
+Tracks who pays, how much, and when. Focuses on taxes, rents, utility bills, mandates, downstream costs, hidden burdens, and whether a policy is financially survivable.
+
+6. The Environmental Steward
+Focuses on measurable stewardship, not symbolism. Evaluates habitat, water quality, tree canopy, resilience, land use, and whether environmental claims are real, durable, and evidence-based.
+
+7. The Civic Skeptic
+Demands visible accountability. Examines contracts, timelines, deliverables, public notice, process integrity, measurable outcomes, and whether the public can actually verify what is being promised.
+
+8. The Services Neighbor
+Keeps the basics first. Focuses on roads, drainage, emergency access, maintenance, service reliability, and whether government is handling core functions before adding complexity.
+
+Instructions for the Roundtable:
+- The Chair must begin with a neutral framing of the issue, explaining context without taking a side.
+- Each perspective should respond in its own distinct voice, raising concerns, tradeoffs, risks, and priorities specific to that role.
+- Do not make the perspectives repetitive. Make each one meaningfully different.
+- Stress-test the issue across all perspectives more than once if needed until the strongest arguments, hidden risks, and recurring points of agreement are clear.
+- Identify where perspectives align, where they conflict, and what tradeoffs are unavoidable.
+- Do not force false consensus.
+- Do not default to a mushy compromise.
+- After all perspectives have been heard, have the Chair deliver a final recommendation that is practical, disciplined, and clearly reasoned.
+- The final recommendation should not try to please everyone equally. It should make a sound judgment after weighing all relevant perspectives.
+- The final recommendation must explain:
+  1. What matters most
+  2. What tradeoffs were accepted
+  3. What objections remain
+  4. Why this is the most reasonable path forward
+
+Output format:
+1. Neutral issue framing from the Chair
+2. Individual responses from each perspective
+3. Points of agreement and conflict
+4. Final recommendation from the Chair
+5. A short platform commitment or action plan summarizing what should happen next</pre>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <div class="footer-brand">
+          <a href="index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+            <span class="site-logo__name">Don Scott</span>
+            <span class="site-logo__race">for Bedford</span>
+          </a>
+          <p class="footer-brand__tagline">Less Campaign. More Bedford.</p>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="https://www.facebook.com/donforbedford" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/donforbedford/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <p class="footer-nav__label">Pages</p>
+          <a href="pages/ai.html">AI Transparency</a>
+        </nav>
+
+        <div class="footer-cta">
+          <p class="footer-nav__label">Stay informed</p>
+          <a href="#" data-subscribe-trigger class="btn btn--ghost">Subscribe</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/site.js"></script>
+  <script>
+  /* roads.html — simulation controller */
+  (function () {
+    'use strict';
+
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var btnRun      = document.getElementById('btn-run');
+    var btnReset    = document.getElementById('btn-reset');
+    var statusEl    = document.getElementById('rt-sim-status');
+    var transcript  = document.getElementById('rt-transcript');
+    var hlWrap      = document.getElementById('rt-highlights-wrap');
+    var hlNotice    = document.getElementById('rt-highlights-notice');
+    var hlGrid      = document.getElementById('rt-highlights-grid');
+
+    if (!btnRun || !transcript) return;
+
+    var items = Array.from(transcript.querySelectorAll('.rt-msg, .rt-marker'));
+
+    /* init: JS active — hide all items */
+    transcript.classList.add('sim-ready');
+
+    /* ── run ── */
+    function runSimulation() {
+      btnRun.disabled = true;
+      document.body.classList.add('sim-running');
+      statusEl.textContent = '';
+
+      if (reducedMotion) {
+        items.forEach(function (el) { el.classList.add('is-visible'); });
+        onComplete();
+        return;
+      }
+
+      var total = 1200; /* ms */
+      var step  = total / items.length;
+
+      items.forEach(function (el, i) {
+        setTimeout(function () {
+          el.classList.add('is-visible');
+          if (i === items.length - 1) onComplete();
+        }, Math.round(i * step));
+      });
+    }
+
+    function onComplete() {
+      document.body.classList.remove('sim-running');
+      document.body.classList.add('sim-done');
+      statusEl.textContent = 'Simulation complete.';
+      hlWrap.classList.remove('rt-highlights-inactive');
+      if (hlNotice) hlNotice.textContent = '';
+    }
+
+    /* ── reset ── */
+    function resetSimulation() {
+      document.body.classList.remove('sim-done', 'sim-running');
+      btnRun.disabled = false;
+      statusEl.textContent = '';
+      items.forEach(function (el) { el.classList.remove('is-visible', 'is-highlighted'); });
+      hlWrap.classList.add('rt-highlights-inactive');
+      if (hlNotice) hlNotice.textContent = 'Run the simulation above to activate the highlights.';
+    }
+
+    btnRun.addEventListener('click', runSimulation);
+    btnReset.addEventListener('click', resetSimulation);
+
+    /* ── highlight jump ── */
+    if (hlGrid) {
+      hlGrid.addEventListener('click', function (e) {
+        var card = e.target.closest('.rt-highlight-card');
+        if (!card) return;
+
+        var ids = (card.getAttribute('data-jump') || '')
+          .split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+        if (!ids.length) return;
+
+        transcript.querySelectorAll('.is-highlighted').forEach(function (el) {
+          el.classList.remove('is-highlighted');
+        });
+
+        var first = document.getElementById(ids[0]);
+        if (first) {
+          first.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+        }
+
+        ids.forEach(function (id) {
+          var el = document.getElementById(id);
+          if (el) el.classList.add('is-highlighted');
+        });
+
+        setTimeout(function () {
+          ids.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.classList.remove('is-highlighted');
+          });
+        }, 2500);
+      });
+    }
+
+    /* ── instruction set toggle ── */
+    var btnInstr = document.getElementById('btn-instr-toggle');
+    var instrPanel = document.getElementById('instr-panel-roads-sim');
+    if (btnInstr && instrPanel) {
+      btnInstr.addEventListener('click', function () {
+        var open = !instrPanel.hidden;
+        instrPanel.hidden = open;
+        btnInstr.setAttribute('aria-expanded', String(!open));
+        btnInstr.textContent = open
+          ? 'View the Roundtable Instruction Set'
+          : 'Hide Instruction Set';
+      });
+
+      var copyBtn   = instrPanel.querySelector('.instr-panel__copy');
+      var copyLabel = instrPanel.querySelector('.instr-panel__copy-label');
+      var preEl     = instrPanel.querySelector('.instr-panel__text');
+      if (copyBtn && preEl) {
+        copyBtn.addEventListener('click', function () {
+          navigator.clipboard.writeText(preEl.textContent).then(function () {
+            copyBtn.classList.add('is-copied');
+            if (copyLabel) copyLabel.textContent = 'Copied!';
+            setTimeout(function () {
+              copyBtn.classList.remove('is-copied');
+              if (copyLabel) copyLabel.textContent = 'Copy All';
+            }, 2000);
+          });
+        });
+      }
+    }
+
+  }());
+  </script>
+</body>
+</html>
