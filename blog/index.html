@@ -73,17 +73,13 @@
 
   <link rel="stylesheet" href="../assets/css/site.css">
   <style>
-    .section { padding-block: 2.5rem; }
-    @media (min-width: 768px) { .section { padding-block: 3.5rem; } }
-
-    /* ── Blog hero — single-column centered variant ─── */
+    /* ── Blog hero ─── */
     .blog-hero {
       background: var(--moss);
       color: var(--white);
       padding-block: 3rem 2.5rem;
       text-align: center;
     }
-    .blog-hero .eyebrow { color: rgba(255,255,255,0.7); margin-bottom: 0.5rem; }
     .blog-hero h1 { color: var(--white); margin-bottom: 0.75rem; }
     .blog-hero__lead {
       font-size: 1.0625rem;
@@ -137,6 +133,38 @@
     }
     .blog-search::placeholder { color: var(--muted); }
 
+    /* Random Article button — primary (dark moss) to match site hero CTA */
+    .btn--random {
+      background: var(--moss);
+      color: var(--white);
+      border-color: var(--moss);
+      font-size: 0.875rem;
+      padding: 0.625rem 1.25rem;
+      min-height: 42px;
+    }
+    .btn--random:hover {
+      background: #2d3e2f;
+      border-color: #2d3e2f;
+      color: var(--white);
+    }
+    .btn--random:focus-visible {
+      outline: 2px solid var(--moss);
+      outline-offset: 2px;
+    }
+
+    /* Mobile: stack search full-width, center button below */
+    @media (max-width: 540px) {
+      .blog-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .blog-search-wrap { flex: 1 1 100%; }
+      .btn--random {
+        align-self: center;
+        width: auto;
+      }
+    }
+
     /* ── Article count ─── */
     .blog-count {
       font-size: 0.8125rem;
@@ -153,12 +181,13 @@
     .blog-item { border-top: 1px solid var(--border); }
     .blog-item:last-child { border-bottom: 1px solid var(--border); }
 
+    /* Grid: date | square-thumb | title | arrow */
     .blog-item__link {
       display: grid;
       grid-template-columns: 3rem 5rem 1fr 1.5rem;
       gap: 0 1.25rem;
       align-items: center;
-      padding: 1.25rem 0.25rem;
+      padding: 1rem 0.25rem;
       text-decoration: none;
       color: inherit;
       border-radius: var(--radius);
@@ -197,44 +226,37 @@
       line-height: 1.1;
     }
 
-    /* Placeholder thumbnail */
+    /* Square thumbnail — 1:1, designed for 1080×1080 assets */
     .blog-item__thumb {
       width: 5rem;
-      height: 3.5rem;
+      aspect-ratio: 1 / 1;
       background: linear-gradient(140deg, var(--moss) 0%, #4d6453 100%);
       border-radius: 3px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
-    .blog-item__thumb svg { opacity: 0.35; }
+    .blog-item__thumb svg { opacity: 0.3; }
 
-    /* Text body */
+    /* When an actual image is provided, it will fill the square naturally */
+    .blog-item__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Title — no description or read-time shown in index */
     .blog-item__body { min-width: 0; }
     .blog-item__title {
       font-family: var(--serif);
       font-size: 1.0625rem;
       font-weight: 400;
       color: var(--charcoal);
-      margin: 0 0 0.275rem;
-      line-height: 1.35;
-    }
-    .blog-item__desc {
-      font-size: 0.875rem;
-      color: var(--muted);
       margin: 0;
-      line-height: 1.5;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-    .blog-item__read-time {
-      display: inline-block;
-      font-size: 0.75rem;
-      color: var(--sage);
-      margin-top: 0.3rem;
+      line-height: 1.35;
     }
 
     /* Arrow */
@@ -268,14 +290,14 @@
       margin-bottom: 0.4rem;
     }
 
-    /* ── Mobile ─── */
+    /* ── Mobile adjustments ─── */
     @media (max-width: 540px) {
       .blog-item__link {
         grid-template-columns: 2.75rem 3.75rem 1fr;
         gap: 0 0.875rem;
-        padding: 1rem 0;
+        padding: 0.875rem 0;
       }
-      .blog-item__thumb { width: 3.75rem; height: 2.75rem; }
+      .blog-item__thumb { width: 3.75rem; }
       .blog-item__day { font-size: 1.5rem; }
       .blog-item__title { font-size: 0.9375rem; }
       .blog-item__arrow { display: none; }
@@ -340,10 +362,9 @@
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO — no eyebrow -->
   <section class="blog-hero" aria-labelledby="blog-title">
     <div class="container">
-      <p class="eyebrow">Articles</p>
       <h1 id="blog-title">In Case You Missed It</h1>
       <p class="blog-hero__lead">Writing from Don's campaign — on local democracy, civic tools, and what it means to run a different kind of race.</p>
     </div>
@@ -368,7 +389,7 @@
             autocomplete="off"
           >
         </div>
-        <button class="btn btn--secondary" id="random-article-btn" type="button">
+        <button class="btn btn--random" id="random-article-btn" type="button">
           Random Article
         </button>
       </div>
@@ -436,30 +457,28 @@
     /* ─────────────────────────────────────────────────────────────────
        ARTICLES DATA
        To add a new article, append an object to this array.
+
        Fields:
          slug        — relative path from /blog/ (e.g. 'my-article/')
          title       — article headline
          date        — ISO 8601 (YYYY-MM-DD)
-         dateDisplay — human-readable publish date
-         month       — 3-letter uppercase month (for date block)
-         day         — day number as string
-         description — short teaser (shown in index row)
-         readTime    — estimated minutes (integer)
-         tags        — keyword array (searched but not displayed in index)
-         bodyText    — plain-text summary for full-text search
+         month       — 3-letter uppercase month label
+         day         — day number string
+         readTime    — minutes (integer). Compute: Math.max(1, Math.round(wordCount / 200))
+                       Must match the value displayed on the article page itself.
+         tags        — keyword array (searched but not displayed)
+         bodyText    — full or representative article text for search
     ───────────────────────────────────────────────────────────────── */
     var ARTICLES = [
       {
         slug: 'the-danger-of-one-party-towns/',
         title: 'The Danger of One-Party Towns',
         date: '2026-05-06',
-        dateDisplay: 'May 6, 2026',
         month: 'MAY',
         day: '6',
-        description: 'Local elections are moving onto crowded even-year ballots. Don argues that Bedford should ask what happens when competition disappears and local boards become one-party by default.',
-        readTime: 4,
+        readTime: 3,
         tags: ['Bedford', 'local elections', 'Town Supervisor', 'one-party towns', 'contested elections', 'New York election consolidation', 'local democracy'],
-        bodyText: 'Bedford local elections one-party towns competition contested races Town Supervisor even-year ballot consolidation civic health democracy accountability uncontested governance'
+        bodyText: 'As the tulips begin to bloom political mailers are starting to arrive in our mailboxes a sure sign that another campaign season is beginning. This year campaign season arrives with a significant change. For the first time most local elections in New York will be held alongside state and federal races. Even without a presidential contest those bigger campaigns will dominate the attention and resources leaving local issues to fight for whatever space remains. The race for Mike Lawler re-election in the 17th Congressional District will cost over 50 million. In that environment the national party label Republican or Democrat becomes the default. The result is predictable Republican towns elect Republicans and Democratic towns elect Democrats. Red towns get redder and blue towns get bluer. More towns can expect local boards that will be one party only. Political scientist and Yale Law Professor David Schleicher studied local elections and found the vote in local elections directly tracks the vote in national elections despite strong evidence that voters hold very different views on local issues. Competition tends to produce better outcomes throughout our economy and our culture. There is a growing body of research showing that groups make better decisions when they include a diversity of perspectives. Diversity trumps ability. Ideologically homogeneous boards bring fewer perspectives to the table and fewer questions get asked. We seem to be building a system that trickles down national politics to the local level which is not the way American democracy is supposed to work. Jeffersonian notion that the government closest to the people governs best. The system is supposed to be bottom up not top down. A town board should run more like a roundtable with each member representing a distinct perspective. If we want decisions that reflect the full range of community viewpoints then we should at least be asking whether we are moving closer to that goal or away from it.'
       }
     ];
 
@@ -493,12 +512,16 @@
               '<span class="blog-item__day">' + esc(a.day) + '</span>' +
             '</div>' +
             '<div class="blog-item__thumb" role="img" aria-label="' + esc(a.title) + ' thumbnail">' +
-              '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' +
+                '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>' +
+                '<polyline points="14 2 14 8 20 8"/>' +
+                '<line x1="16" y1="13" x2="8" y2="13"/>' +
+                '<line x1="16" y1="17" x2="8" y2="17"/>' +
+                '<polyline points="10 9 9 9 8 9"/>' +
+              '</svg>' +
             '</div>' +
             '<div class="blog-item__body">' +
               '<h2 class="blog-item__title">' + esc(a.title) + '</h2>' +
-              '<p class="blog-item__desc">' + esc(a.description) + '</p>' +
-              '<span class="blog-item__read-time">' + a.readTime + ' min read</span>' +
             '</div>' +
             '<span class="blog-item__arrow" aria-hidden="true">&#8594;</span>' +
           '</a>';
@@ -512,7 +535,6 @@
       return ARTICLES.filter(function (a) {
         return (
           a.title.toLowerCase().indexOf(lq) !== -1 ||
-          a.description.toLowerCase().indexOf(lq) !== -1 ||
           (a.bodyText || '').toLowerCase().indexOf(lq) !== -1 ||
           a.tags.some(function (t) { return t.toLowerCase().indexOf(lq) !== -1; })
         );
