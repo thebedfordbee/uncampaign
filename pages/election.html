@@ -307,6 +307,23 @@
     }
     .ec-card__done[hidden] { display: none; }
 
+    /* Center countdown card content horizontally */
+    .ec-card { text-align: center; }
+    .ec-digits { justify-content: center; }
+
+    /* Full-width justified intro paragraph (reused across sections) */
+    .section-intro-text {
+      max-width: none;
+      text-align: justify;
+      hyphens: auto;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+    @media (max-width: 380px) {
+      .section-intro-text { text-align: left; hyphens: none; }
+    }
+
     /* Visually hidden SR-only helper */
     .ec-sr-only {
       position: absolute;
@@ -329,15 +346,21 @@
       .issues-hero__deck--election { text-align: left; hyphens: none; }
     }
 
-    /* ── Race overview: two-column layout ──────────────────────────────── */
-    .race-overview-grid {
-      display: grid;
-      gap: 2.5rem;
-      margin-top: 1.25rem;
-      align-items: start;
+    /* ── Hero CTA: white-filled on forest green — matches /ideas treatment */
+    .issues-hero .btn--primary {
+      background: var(--white);
+      color: var(--moss);
+      border-color: var(--white);
     }
-    @media (min-width: 768px) {
-      .race-overview-grid { grid-template-columns: 3fr 2fr; gap: 3rem; }
+    .issues-hero .btn--primary:hover {
+      background: var(--cream);
+      border-color: var(--cream);
+      color: var(--moss);
+    }
+
+    /* ── Race overview: stacked — full-width copy then candidate cards ──── */
+    .race-overview__copy {
+      margin-bottom: 2rem;
     }
     .race-overview__copy p {
       text-align: justify;
@@ -352,6 +375,13 @@
     @media (max-width: 380px) {
       .race-overview__copy p { text-align: left; hyphens: none; }
     }
+    .race-overview__candidates {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) {
+      .race-overview__candidates { grid-template-columns: 1fr 1fr; }
+    }
 
     /* ── Candidate cards ───────────────────────────────────────────────── */
     .candidate-card {
@@ -359,9 +389,7 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.25rem 1.5rem;
-      margin-bottom: 1rem;
     }
-    .candidate-card:last-child { margin-bottom: 0; }
     .candidate-card__name {
       font-family: var(--serif);
       font-size: 1.125rem;
@@ -419,11 +447,7 @@
       max-width: none;
     }
 
-    /* ── Ballot-reason: centered, justified ────────────────────────────── */
-    .ballot-reason-inner {
-      max-width: 64ch;
-      margin-inline: auto;
-    }
+    /* ── Ballot-reason: full-width, justified ───────────────────────────── */
     .ballot-reason-inner p {
       text-align: justify;
       hyphens: auto;
@@ -445,8 +469,8 @@
       padding: 0;
       margin: 1.5rem 0 0;
     }
-    @media (min-width: 600px) {
-      .date-cards { grid-template-columns: repeat(3, 1fr); }
+    @media (min-width: 480px) {
+      .date-cards { grid-template-columns: repeat(2, 1fr); }
     }
     .date-card {
       background: var(--white);
@@ -811,7 +835,12 @@
       font-size: 1rem;
       color: var(--muted);
       margin-bottom: 1.5rem;
-      max-width: 60ch;
+      max-width: none;
+      text-align: justify;
+      hyphens: auto;
+    }
+    @media (max-width: 380px) {
+      .reminder-section__lead { text-align: left; hyphens: none; }
     }
     .reminder-results {
       margin-top: 1.5rem;
@@ -924,7 +953,7 @@
 
         <div class="issues-hero__copy-top">
           <p class="eyebrow">Don Scott Presents</p>
-          <h1 id="election-title">2026 Town of Bedford Supervisor Election</h1>
+          <h1 id="election-title">2026 Bedford Supervisor Election</h1>
         </div>
 
         <!-- Live election countdown — two cards, updates every second -->
@@ -991,9 +1020,9 @@
         </div>
 
         <div class="issues-hero__copy-bot">
-          <p class="issues-hero__deck issues-hero__deck--election">Everything Bedford voters need to know about the 2026 Town of Bedford Supervisor Election &#8212; including key dates, how to vote, early voting options, absentee and mail ballot information, polling places by district, and a personalized calendar reminder for Election Day.</p>
+          <p class="issues-hero__deck issues-hero__deck--election">Everything Bedford voters need to know about the 2026 Town of Bedford Supervisor Election &#8212; including key dates, how to vote, early voting options, absentee and mail ballot information, and polling places by district.</p>
           <div class="hero-cta-row">
-            <a href="#reminder" class="btn btn--ghost" aria-label="Save the date — scroll to election reminder tool">Save the Date</a>
+            <a href="#reminder" class="btn btn--primary" aria-label="Save the date — scroll to election reminder tool">Save the Date</a>
           </div>
         </div>
 
@@ -1003,62 +1032,71 @@
 
   <main id="main-content">
 
-    <!-- Race overview — white background, two-column -->
+    <!-- Race overview — white background, full-width copy then candidate cards -->
     <section class="section section--alt" aria-labelledby="race-overview-heading">
       <div class="container">
         <p class="eyebrow">Overview</p>
-        <div class="race-overview-grid">
+        <h2 id="race-overview-heading">The 2026 Bedford Town Supervisor Race</h2>
 
-          <div class="race-overview__copy">
-            <h2 id="race-overview-heading">The 2026 Bedford Town Supervisor Race</h2>
-            <p>The 2026 Town of Bedford Supervisor election is scheduled for Tuesday, November 3, 2026. The race is expected to include Don Scott and incumbent Town Supervisor Ellen Calves. This page is intended as a plain-English election information resource for Bedford voters.</p>
-            <p>Bedford is one of many New York municipalities transitioning local elections to even-numbered years. That transition is why this race is appearing on the November 2026 ballot. The change is statewide, nonpartisan, and applies to many town offices across New York.</p>
-            <p>Voters can find candidate information, voter guides, and campaign materials through local newspapers, the Westchester County Board of Elections, and each candidate&#8217;s public-facing materials.</p>
+        <div class="race-overview__copy">
+          <p>The 2026 Town of Bedford Supervisor election is scheduled for Tuesday, November 3, 2026. The race is expected to include Don Scott and incumbent Town Supervisor Ellen Calves. This page is intended as a plain-English election information resource for Bedford voters.</p>
+          <p>Bedford is one of many New York municipalities transitioning local elections to even-numbered years. That transition is why this race is appearing on the November 2026 ballot. The change is statewide, nonpartisan, and applies to many town offices across New York.</p>
+          <p>Voters can find candidate information, voter guides, and campaign materials through local newspapers, the Westchester County Board of Elections, and each candidate&#8217;s public-facing materials.</p>
+        </div>
+
+        <div class="race-overview__candidates">
+
+          <div class="candidate-card">
+            <h3 class="candidate-card__name">Don Scott</h3>
+            <p class="candidate-card__role">Candidate for Town Supervisor</p>
+            <p class="candidate-card__desc">Don Scott is running for Bedford Town Supervisor in 2026.</p>
+            <ul class="candidate-card__links" aria-label="Don Scott campaign links">
+              <li>
+                <span class="link-label">Website</span>
+                <a href="https://www.donforbedford.com/" aria-label="Don for Bedford campaign website">DonForBedford.com</a>
+              </li>
+              <li>
+                <span class="link-label">Facebook</span>
+                <a href="https://www.facebook.com/donforbedford" target="_blank" rel="noopener noreferrer" aria-label="Don for Bedford on Facebook (opens in new tab)">DonForBedford</a>
+              </li>
+              <li>
+                <span class="link-label">Instagram</span>
+                <a href="https://www.instagram.com/donforbedford/" target="_blank" rel="noopener noreferrer" aria-label="Don for Bedford on Instagram (opens in new tab)">@DonForBedford</a>
+              </li>
+            </ul>
           </div>
 
-          <div class="race-overview__candidates">
-
-            <div class="candidate-card">
-              <h3 class="candidate-card__name">Don Scott</h3>
-              <p class="candidate-card__role">Candidate for Town Supervisor</p>
-              <p class="candidate-card__desc">Don Scott is running for Bedford Town Supervisor in 2026. His campaign is known as <em>Don for Bedford</em>, or the Uncampaign.</p>
-              <ul class="candidate-card__links" aria-label="Don Scott campaign links">
-                <li>
-                  <span class="link-label">Web</span>
-                  <a href="https://www.donforbedford.com/" aria-label="Don for Bedford campaign website">donforbedford.com</a>
-                </li>
-                <li>
-                  <span class="link-label">Facebook</span>
-                  <a href="https://www.facebook.com/donforbedford" target="_blank" rel="noopener noreferrer" aria-label="Don for Bedford on Facebook (opens in new tab)">Don for Bedford</a>
-                </li>
-                <li>
-                  <span class="link-label">Instagram</span>
-                  <a href="https://www.instagram.com/donforbedford/" target="_blank" rel="noopener noreferrer" aria-label="Don for Bedford on Instagram (opens in new tab)">@donforbedford</a>
-                </li>
-              </ul>
-            </div>
-
-            <div class="candidate-card">
-              <h3 class="candidate-card__name">Ellen Calves</h3>
-              <p class="candidate-card__role">Incumbent Town Supervisor</p>
-              <p class="candidate-card__desc">Ellen Calves is the current Bedford Town Supervisor. Her campaign may appear online as <em>Ellen Calves for Supervisor</em>, <em>Ellen Calves for Bedford</em>, or <em>Friends of Ellen Calves</em>.</p>
-              <p class="candidate-card__note">Search for <em>Ellen Calves for Supervisor</em> or <em>Friends of Ellen Calves</em> to find her campaign&#8217;s public materials.</p>
-            </div>
-
+          <div class="candidate-card">
+            <h3 class="candidate-card__name">Ellen Calves</h3>
+            <p class="candidate-card__role">Incumbent Town Supervisor</p>
+            <p class="candidate-card__desc">Ellen Calves has been the Bedford Town Supervisor since 2022, and is running for re-election in 2026.</p>
+            <ul class="candidate-card__links" aria-label="Ellen Calves campaign links">
+              <li>
+                <span class="link-label">Website</span>
+                <a href="https://www.friends-of-ellen-calves.com/" target="_blank" rel="noopener noreferrer" aria-label="Friends of Ellen Calves campaign website (opens in new tab)">Friends-of-Ellen-Calves.com</a>
+              </li>
+              <li>
+                <span class="link-label">Facebook</span>
+                <a href="https://www.facebook.com/Ellen4Bedford" target="_blank" rel="noopener noreferrer" aria-label="Ellen Calves for Bedford on Facebook (opens in new tab)">Ellen4Bedford</a>
+              </li>
+              <li>
+                <span class="link-label">Instagram</span>
+                <a href="https://www.instagram.com/ellen4bedford/" target="_blank" rel="noopener noreferrer" aria-label="Ellen Calves for Bedford on Instagram (opens in new tab)">@Ellen4Bedford</a>
+              </li>
+            </ul>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- Why on ballot — cream background, centered, eyebrow -->
+    <!-- Why on ballot — cream background, full-width, eyebrow -->
     <section class="section" aria-labelledby="ballot-reason-heading">
       <div class="container">
-        <div class="ballot-reason-inner">
-          <p class="eyebrow">Background Context</p>
-          <h2 id="ballot-reason-heading">Why the Supervisor Race Is on the Ballot in 2026</h2>
-          <p>New York State has transitioned many local elections from odd-numbered years to even-numbered years. That is why Bedford voters may see the Town Supervisor race on the ballot in back-to-back years. Under the transition, certain town offices move onto the even-year election calendar beginning with the 2026 cycle.</p>
-          <p>This change is statewide and affects many municipalities across New York. It is not specific to Bedford or to any candidate in this race.</p>
-        </div>
+        <p class="eyebrow">Background Context</p>
+        <h2 id="ballot-reason-heading">Why the Supervisor Race Is on the Ballot in 2026</h2>
+        <p class="ballot-reason-inner">New York State has transitioned many local elections from odd-numbered years to even-numbered years. That is why Bedford voters may see the Town Supervisor race on the ballot in back-to-back years. Under the transition, certain town offices move onto the even-year election calendar beginning with the 2026 cycle.</p>
+        <p class="ballot-reason-inner">This change is statewide and affects many municipalities across New York. It is not specific to Bedford or to any candidate in this race.</p>
       </div>
     </section>
 
@@ -1070,19 +1108,14 @@
         <p>Mark these dates for the 2026 Bedford general election.</p>
         <ul class="date-cards" role="list">
           <li class="date-card">
-            <p class="date-card__label">General Election</p>
-            <p class="date-card__value">Tuesday, November 3, 2026</p>
-            <p class="date-card__note">Polls open 6:00 AM&#8202;&#8211;&#8202;9:00 PM</p>
-          </li>
-          <li class="date-card">
             <p class="date-card__label">Early Voting</p>
             <p class="date-card__value">Oct. 24 &#8211; Nov. 1, 2026</p>
             <p class="date-card__note">Saturday through Sunday, 9 days</p>
           </li>
           <li class="date-card">
-            <p class="date-card__label">Polls Open</p>
-            <p class="date-card__value">6:00 AM to 9:00 PM</p>
-            <p class="date-card__note">Election Day, November 3</p>
+            <p class="date-card__label">General Election</p>
+            <p class="date-card__value">Tuesday, November 3, 2026</p>
+            <p class="date-card__note">Polls open 6:00 AM&#8202;&#8211;&#8202;9:00 PM</p>
           </li>
         </ul>
       </div>
@@ -1091,6 +1124,7 @@
     <!-- Election reminder tool — cream background -->
     <section class="section" id="reminder" aria-labelledby="reminder-heading">
       <div class="container">
+        <p class="eyebrow">Civic Participation Tools</p>
         <h2 id="reminder-heading">Generate Your Custom Election Reminder</h2>
         <p class="reminder-section__lead">Enter your information to find your Election Day polling place and create a calendar reminder. This does not show your vote, your party preference, or who you support.</p>
 
@@ -1154,13 +1188,13 @@
           </div>
         </div>
 
-        <p class="reminder-privacy-note">This lookup is only used to find your polling place and generate a reminder. It does not display voter-history records, grades, or campaign targeting information.</p>
       </div>
     </section>
 
     <!-- How to vote — white, clickable cards, alternating colors, justified -->
     <section class="section section--alt" aria-labelledby="how-to-vote-heading">
       <div class="container">
+        <p class="eyebrow">Voting Options</p>
         <h2 id="how-to-vote-heading">How to Vote in the Bedford Election</h2>
         <p>Bedford voters have several options for casting their ballot in the 2026 general election.</p>
         <div class="vote-methods">
@@ -1205,26 +1239,6 @@
             <p class="vote-method__cta">Request an early mail ballot &#8594;</p>
           </a>
 
-          <a class="vote-method"
-            href="https://elections.ny.gov/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Voter registration — New York State Board of Elections (opens in new tab)">
-            <p class="vote-method__title">Voter Registration</p>
-            <p class="vote-method__body">New voters must register before the deadline &#8212; typically 25 days before Election Day. Existing voters should confirm their registration and address are current.</p>
-            <p class="vote-method__cta">Register or check your registration &#8594;</p>
-          </a>
-
-          <a class="vote-method"
-            href="https://voterlookup.elections.ny.gov/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Check your polling place — New York State poll site search (opens in new tab)">
-            <p class="vote-method__title">Check Your Polling Place</p>
-            <p class="vote-method__body">Use the New York State Poll Site Search to confirm your assigned polling place before Election Day. Polling places can change between elections.</p>
-            <p class="vote-method__cta">NYS Poll Site Search &#8594;</p>
-          </a>
-
         </div>
       </div>
     </section>
@@ -1232,8 +1246,9 @@
     <!-- Where to get forms — cream background -->
     <section class="section" aria-labelledby="forms-heading">
       <div class="container">
+        <p class="eyebrow">Election Resources</p>
         <h2 id="forms-heading">Where to Get Forms and Election Information</h2>
-        <p>Find absentee ballot applications, vote-by-mail information, early voting information, political calendars, and voter registration forms at:</p>
+        <p class="section-intro-text">Find absentee ballot applications, vote-by-mail information, early voting information, political calendars, and voter registration forms at:</p>
         <div class="contact-block">
           <p>
             <strong>Town Clerk&#8217;s Office</strong><br>
@@ -1258,6 +1273,7 @@
     <!-- Common voter questions — white background -->
     <section class="section section--alt" aria-labelledby="faq-heading">
       <div class="container">
+        <p class="eyebrow">Voter FAQ</p>
         <h2 id="faq-heading">Common Voter Questions</h2>
         <p>Answers to frequently asked questions about voting in the 2026 Bedford election.</p>
         <div class="faq-list">
@@ -1382,45 +1398,6 @@
           </div>
 
         </div>
-      </div>
-    </section>
-
-    <!-- Bedford polling places — cream background -->
-    <section class="section" aria-labelledby="polling-places-heading">
-      <div class="container">
-        <h2 id="polling-places-heading">Bedford Election Day Polling Places</h2>
-        <p>The Town of Bedford uses 18 election districts. The polling places listed below reflect historical assignments. Always confirm your assigned polling place through the NYS voter lookup before Election Day.</p>
-        <div class="polling-table-wrap">
-          <table class="polling-table" aria-label="Bedford Election Day Polling Places by District">
-            <thead>
-              <tr>
-                <th scope="col">District</th>
-                <th scope="col">Polling Place</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td class="district-num">1</td><td>Bedford Presbyterian Church, Bedford Village</td></tr>
-              <tr><td class="district-num">2</td><td>Bedford Presbyterian Church, Bedford Village</td></tr>
-              <tr><td class="district-num">3</td><td>Katonah Elementary School, Katonah</td></tr>
-              <tr><td class="district-num">4</td><td>Community House, Bedford Hills</td></tr>
-              <tr><td class="district-num">5</td><td>Community House, Bedford Hills</td></tr>
-              <tr><td class="district-num">6</td><td>Katonah Village Library, Katonah</td></tr>
-              <tr><td class="district-num">7</td><td>Katonah Memorial House, Katonah</td></tr>
-              <tr><td class="district-num">8</td><td>Katonah Elementary School, Katonah</td></tr>
-              <tr><td class="district-num">9</td><td>Town House, Bedford Hills</td></tr>
-              <tr><td class="district-num">10</td><td>Bedford Presbyterian Church, Bedford Village</td></tr>
-              <tr><td class="district-num">11</td><td>Bedford Presbyterian Church, Bedford Village</td></tr>
-              <tr><td class="district-num">12</td><td>Community House, Bedford Hills</td></tr>
-              <tr><td class="district-num">13</td><td>Bedford Presbyterian Church, Bedford Village</td></tr>
-              <tr><td class="district-num">14</td><td>Town House, Bedford Hills</td></tr>
-              <tr><td class="district-num">15</td><td>Katonah Village Library, Katonah</td></tr>
-              <tr><td class="district-num">16</td><td>Katonah Memorial House, Katonah</td></tr>
-              <tr><td class="district-num">17</td><td>Bedford Presbyterian Church, Bedford Village</td></tr>
-              <tr><td class="district-num">18</td><td>Town House, Bedford Hills</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="polling-table-note">Polling places can change. Always confirm your assigned polling place through the <a href="https://voterlookup.elections.ny.gov/" target="_blank" rel="noopener noreferrer" aria-label="New York State Board of Elections poll site search (opens in new tab)">New York State Board of Elections Poll Site Search</a> before voting.</p>
       </div>
     </section>
 
