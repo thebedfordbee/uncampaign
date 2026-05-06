@@ -247,7 +247,7 @@
       align-items: center;
       justify-content: center;
       font-family: var(--sans);
-      font-size: 0.5rem; /* 8px — fits "Newsletter" in 56px circle */
+      font-size: 0.5625rem;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -259,7 +259,7 @@
       transition: opacity 0.2s;
       pointer-events: none;
       z-index: 2;
-      word-break: break-word;
+      white-space: nowrap;
     }
 
     /* Hover/focus: crossfade icon out, label in */
@@ -284,15 +284,15 @@
       color: #fff;
     }
 
-    .links-social-item--newsletter:hover,
-    .links-social-item--newsletter:focus-visible {
-      background: #FF6719;
-      border-color: #FF6719;
+    .links-social-item--youtube:hover,
+    .links-social-item--youtube:focus-visible {
+      background: #FF0000;
+      border-color: #FF0000;
       color: #fff;
     }
 
-    .links-social-item--podcast:hover,
-    .links-social-item--podcast:focus-visible {
+    .links-social-item--spotify:hover,
+    .links-social-item--spotify:focus-visible {
       background: #1DB954;
       border-color: #1DB954;
       color: #fff;
@@ -623,8 +623,7 @@
          ============================================= -->
     <nav class="links-social" aria-label="Social media and contact channels">
 
-      <!-- PLACEHOLDER: Update href when Facebook page is live -->
-      <a href="#" class="links-social-item links-social-item--facebook" aria-label="Follow on Facebook">
+      <a href="https://www.facebook.com/donforbedford" class="links-social-item links-social-item--facebook" target="_blank" rel="noopener noreferrer" aria-label="Follow on Facebook">
         <svg class="links-social-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
           <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
         </svg>
@@ -640,23 +639,18 @@
         <span class="links-social-item__label" aria-hidden="true">Instagram</span>
       </a>
 
-      <a href="#" data-subscribe-trigger class="links-social-item links-social-item--newsletter" aria-label="Subscribe to newsletter">
-        <svg class="links-social-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-          <polyline points="22,6 12,13 2,6"/>
+      <a href="https://www.youtube.com/@DonScottForBedford" class="links-social-item links-social-item--youtube" target="_blank" rel="noopener noreferrer" aria-label="Watch on YouTube">
+        <svg class="links-social-item__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
         </svg>
-        <span class="links-social-item__label" aria-hidden="true">Newsletter</span>
+        <span class="links-social-item__label" aria-hidden="true">YouTube</span>
       </a>
 
-      <!-- PLACEHOLDER: Update href when podcast / audio feed is live -->
-      <a href="#" class="links-social-item links-social-item--podcast" aria-label="Listen to podcast">
-        <svg class="links-social-item__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-          <line x1="12" y1="19" x2="12" y2="23"/>
-          <line x1="8" y1="23" x2="16" y2="23"/>
+      <a href="https://open.spotify.com/show/6dLXuS4EPBukJ4Mo5Kycuy" class="links-social-item links-social-item--spotify" target="_blank" rel="noopener noreferrer" aria-label="Listen on Spotify">
+        <svg class="links-social-item__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
         </svg>
-        <span class="links-social-item__label" aria-hidden="true">Podcast</span>
+        <span class="links-social-item__label" aria-hidden="true">Spotify</span>
       </a>
 
     </nav>
