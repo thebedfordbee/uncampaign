@@ -116,23 +116,42 @@
 
     /* ─── Hero ─── */
     .rt-hero { background: var(--moss); padding-block: 3.5rem 3rem; }
-    .rt-hero .eyebrow { color: rgba(255,255,255,0.55); margin-bottom: 0.875rem; }
-    .rt-hero h1 { color: var(--white); max-width: 24ch; margin-top: 1.125rem; margin-bottom: 1rem; }
+    .rt-hero .issue-back { color: rgba(255,255,255,0.65); display: inline-block; margin-bottom: 0.875rem; }
+    .rt-hero .issue-back:hover { color: var(--white); }
+    .rt-hero h1 { color: var(--white); max-width: 24ch; margin-top: 0.625rem; margin-bottom: 0; }
     .rt-hero__deck {
       color: rgba(255,255,255,0.82);
       font-size: 1.0625rem;
       line-height: 1.7;
       max-width: 56ch;
-      margin-bottom: 1.25rem;
+      margin-top: 1rem;
+      margin-bottom: 0;
     }
     @media (min-width: 768px) { .rt-hero { padding-block: 4.5rem 3.5rem; } }
 
-    /* ─── Hero image — within dark rt-hero ─── */
+    /* ─── Hero inner grid — mirrors issues-hero two-column layout ─── */
+    .rt-hero .issues-hero__inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    @media (min-width: 768px) {
+      .rt-hero .issues-hero__inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr;
+        column-gap: 2.5rem;
+        align-items: start;
+      }
+      .rt-hero .issues-hero__copy-top { grid-column: 1; grid-row: 1; }
+      .rt-hero .issues-hero__copy-bot { grid-column: 1; grid-row: 2; align-self: end; padding-top: 1.25rem; }
+      .rt-hero .issues-hero__visual   { grid-column: 2; grid-row: 1 / span 2; }
+    }
+
+    /* ─── Hero image button ─── */
     .rt-hero .issues-hero__visual {
       display: block;
       width: 100%;
-      max-width: 680px;
-      margin-block: 1.5rem;
       border-radius: var(--radius);
       overflow: hidden;
       cursor: zoom-in;
@@ -478,7 +497,7 @@
     <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
       <a href="../../index.html">Home</a>
       <a href="../rules.html">Rules</a>
-      <a href="../issues.html">Issues</a>
+      <a href="../issues.html" aria-current="page">Issues</a>
       <a href="../ideas.html">Ideas</a>
       <!-- <a href="../podcasts.html">Podcast</a> -->
       <a href="../best-of-bedford.html">Best-Of</a>
@@ -489,20 +508,30 @@
   <!-- HERO -->
   <section class="rt-hero" aria-labelledby="rt-title">
     <div class="container">
-      <a href="../issues.html" class="issue-back">&#8592; Back To Issues</a>
-      <h1 id="rt-title">Road Conditions, Tested in Public</h1>
-      <!-- Hero image: replace src with ../../assets/img/roads-roundtable.png when image is ready -->
-      <button type="button" class="issues-hero__visual" aria-label="Expand road conditions roundtable illustration" aria-haspopup="dialog">
-        <img
-          src="../../assets/img/roads-roundtable-placeholder.svg"
-          alt="Illustrated civic roundtable discussion about Bedford road conditions and state-road accountability"
-          width="1200"
-          height="800"
-          loading="eager"
-          decoding="async"
-        >
-      </button>
-      <p class="rt-hero__deck">Most campaigns tell you what they think. This campaign shows how the thinking happens. The Roundtable below tests Bedford's road conditions through competing civic perspectives before Don reaches a view.</p>
+      <div class="issues-hero__inner">
+
+        <div class="issues-hero__copy-top">
+          <a href="../issues.html" class="issue-back">&#8592; Back To Issues</a>
+          <h1 id="rt-title">Road Conditions, Tested in Public</h1>
+        </div>
+
+        <!-- Hero image: replace src with ../../assets/img/roads-roundtable.png when image is ready -->
+        <button type="button" class="issues-hero__visual" aria-label="Expand road conditions roundtable illustration" aria-haspopup="dialog">
+          <img
+            src="../../assets/img/roads-roundtable-placeholder.svg"
+            alt="Illustrated civic roundtable discussion about Bedford road conditions and state-road accountability"
+            width="1200"
+            height="800"
+            loading="eager"
+            decoding="async"
+          >
+        </button>
+
+        <div class="issues-hero__copy-bot">
+          <p class="rt-hero__deck">Most campaigns tell you what they think. This campaign shows how the thinking happens. The Roundtable below tests Bedford's road conditions through competing civic perspectives before Don reaches a view.</p>
+        </div>
+
+      </div>
     </div>
   </section>
 
