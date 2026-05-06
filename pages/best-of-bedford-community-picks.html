@@ -1,4 +1,4 @@
-<!-- COMMUNITY PICKS PAGE DEPLOY CHECK -->
+﻿<!-- COMMUNITY PICKS PAGE DEPLOY CHECK -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,6 +104,7 @@
     gtag('js', new Date());
     gtag('config', 'G-G7WVQR4MTH');
   </script>
+  <script src="/assets/js/analytics.js" defer></script>
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -851,6 +852,7 @@ A public-facing survey page that collects lightweight civic input, stores respon
 
     // ── Completion screen ────────────────────────────────────
     function showComplete(alreadyDone) {
+      if (!alreadyDone && typeof gtag === 'function') { gtag('event', 'community_pick_submitted', {}); }
       if (complete) {
         var msgEl = complete.querySelector('.cp-complete-msg');
         if (msgEl) {

@@ -95,6 +95,7 @@
           b.classList.toggle('is-selected', b === btn);
           b.setAttribute('aria-pressed', String(b === btn));
         });
+        document.dispatchEvent(new CustomEvent('chatModalStep', { detail: { step: 2 } }));
         setTimeout(function () { showStep(2); }, 160);
       });
     });
@@ -109,6 +110,7 @@
           b.classList.toggle('is-selected', b === btn);
           b.setAttribute('aria-pressed', String(b === btn));
         });
+        document.dispatchEvent(new CustomEvent('chatModalStep', { detail: { step: 3 } }));
         setTimeout(function () { showStep(3); }, 160);
       });
     });
@@ -197,6 +199,9 @@
           submitBtn.disabled    = false;
           showError('Something went wrong. Please try again, or reach Don via Facebook or Instagram.');
         } else {
+          document.dispatchEvent(new CustomEvent('chatModalSuccess', {
+            detail: { meetingFormat: meetingType, timePreference: preferredTime }
+          }));
           showStep('ok');
         }
       })

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -103,6 +103,7 @@
     gtag('js', new Date());
     gtag('config', 'G-G7WVQR4MTH');
   </script>
+  <script src="/assets/js/analytics.js" defer></script>
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -1583,6 +1584,7 @@ It turns campaign technology into something neighborly.</pre>
         })
         .then(function () {
           successMsg.classList.add('is-visible');
+          if (typeof gtag === 'function') { gtag('event', 'pet_voted', {}); }
           form.reset();
           filePreview.classList.remove('is-visible');
         })

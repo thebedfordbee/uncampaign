@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -134,6 +134,7 @@
     gtag('js', new Date());
     gtag('config', 'G-G7WVQR4MTH');
   </script>
+  <script src="/assets/js/analytics.js" defer></script>
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -1456,6 +1457,7 @@ Output format:
       var wpm = calcWPM();
       var acc = calcAccuracy();
       pendingResult = { wpm: wpm, accuracy: acc, passageId: PASSAGES[passageIdx].id, roundDuration: ROUND_DURATION };
+      if (typeof gtag === 'function') { gtag('event', 'typing_challenge_completed', { wpm: wpm, accuracy: acc }); }
       renderPassage();
       openModalPhase1(wpm, acc);
     }

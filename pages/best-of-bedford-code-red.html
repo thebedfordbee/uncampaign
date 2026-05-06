@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -103,6 +103,7 @@
     gtag('js', new Date());
     gtag('config', 'G-G7WVQR4MTH');
   </script>
+  <script src="/assets/js/analytics.js" defer></script>
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -1478,6 +1479,7 @@ demonstrates how AI can make civic information accessible</pre>
 
     /* ── Show done + open modal Phase 1 ──────────────────── */
     function showDone() {
+      if (typeof gtag === 'function') { gtag('event', 'quiz_completed', { score: score, total: TOTAL_Q }); }
       playPanel.style.display = 'none';
       donePanel.style.display = '';
 
