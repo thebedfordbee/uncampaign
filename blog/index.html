@@ -477,6 +477,8 @@
         month: 'MAY',
         day: '6',
         readTime: 3,
+        imgSrc: '../assets/img/blog/05062026-thumb.png',
+        imgAlt: 'Bedford town scene partly buried by campaign mail, illustrating local elections being overwhelmed by national politics.',
         tags: ['Bedford', 'local elections', 'Town Supervisor', 'one-party towns', 'contested elections', 'New York election consolidation', 'local democracy'],
         bodyText: 'As the tulips begin to bloom political mailers are starting to arrive in our mailboxes a sure sign that another campaign season is beginning. This year campaign season arrives with a significant change. For the first time most local elections in New York will be held alongside state and federal races. Even without a presidential contest those bigger campaigns will dominate the attention and resources leaving local issues to fight for whatever space remains. The race for Mike Lawler re-election in the 17th Congressional District will cost over 50 million. In that environment the national party label Republican or Democrat becomes the default. The result is predictable Republican towns elect Republicans and Democratic towns elect Democrats. Red towns get redder and blue towns get bluer. More towns can expect local boards that will be one party only. Political scientist and Yale Law Professor David Schleicher studied local elections and found the vote in local elections directly tracks the vote in national elections despite strong evidence that voters hold very different views on local issues. Competition tends to produce better outcomes throughout our economy and our culture. There is a growing body of research showing that groups make better decisions when they include a diversity of perspectives. Diversity trumps ability. Ideologically homogeneous boards bring fewer perspectives to the table and fewer questions get asked. We seem to be building a system that trickles down national politics to the local level which is not the way American democracy is supposed to work. Jeffersonian notion that the government closest to the people governs best. The system is supposed to be bottom up not top down. A town board should run more like a roundtable with each member representing a distinct perspective. If we want decisions that reflect the full range of community viewpoints then we should at least be asking whether we are moving closer to that goal or away from it.'
       }
@@ -511,15 +513,18 @@
               '<span class="blog-item__month">' + esc(a.month) + '</span>' +
               '<span class="blog-item__day">' + esc(a.day) + '</span>' +
             '</div>' +
-            '<div class="blog-item__thumb" role="img" aria-label="' + esc(a.title) + ' thumbnail">' +
-              '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' +
-                '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>' +
-                '<polyline points="14 2 14 8 20 8"/>' +
-                '<line x1="16" y1="13" x2="8" y2="13"/>' +
-                '<line x1="16" y1="17" x2="8" y2="17"/>' +
-                '<polyline points="10 9 9 9 8 9"/>' +
-              '</svg>' +
-            '</div>' +
+            (a.imgSrc
+              ? '<div class="blog-item__thumb"><img src="' + esc(a.imgSrc) + '" alt="' + esc(a.imgAlt || a.title) + '"></div>'
+              : '<div class="blog-item__thumb" role="img" aria-label="' + esc(a.title) + ' thumbnail">' +
+                  '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' +
+                    '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>' +
+                    '<polyline points="14 2 14 8 20 8"/>' +
+                    '<line x1="16" y1="13" x2="8" y2="13"/>' +
+                    '<line x1="16" y1="17" x2="8" y2="17"/>' +
+                    '<polyline points="10 9 9 9 8 9"/>' +
+                  '</svg>' +
+                '</div>'
+            ) +
             '<div class="blog-item__body">' +
               '<h2 class="blog-item__title">' + esc(a.title) + '</h2>' +
             '</div>' +
