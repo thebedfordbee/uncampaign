@@ -212,6 +212,114 @@
     .section { padding-block: 2.5rem; }
     @media (min-width: 768px) { .section { padding-block: 3.5rem; } }
 
+    /* ── Live election countdown ───────────────────────────────────────── */
+    /* Reset button-style overrides from .issues-hero__visual */
+    .election-countdown {
+      cursor: default !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      overflow: visible !important;
+      padding: 0 !important;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .election-countdown:hover { box-shadow: none !important; }
+
+    /* Individual countdown cards */
+    .ec-card {
+      background: rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 6px;
+      padding: 0.875rem 1.125rem 0.75rem;
+    }
+    .ec-card__label {
+      font-family: var(--sans);
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Digit row */
+    .ec-digits {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+    .ec-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* Fixed-width numbers prevent layout shift as digits change */
+    .ec-num {
+      font-family: var(--serif);
+      font-size: clamp(1.625rem, 3.5vw, 2rem);
+      font-variant-numeric: tabular-nums;
+      color: var(--white);
+      line-height: 1;
+      display: block;
+      text-align: center;
+      min-width: 2.2ch; /* holds "00"–"59" without shift */
+    }
+    .ec-num--wide {
+      min-width: 2.9ch; /* holds 3-digit day counts */
+    }
+    .ec-unit-label {
+      font-family: var(--sans);
+      font-size: 0.5625rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.38);
+      margin-top: 0.25rem;
+    }
+    .ec-sep {
+      font-family: var(--sans);
+      font-size: clamp(1.25rem, 3vw, 1.625rem);
+      color: rgba(255, 255, 255, 0.22);
+      line-height: 1;
+      padding-top: 0.06rem;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    /* Target date label */
+    .ec-card__date {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      color: rgba(255, 255, 255, 0.33);
+      margin-top: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* Completed state */
+    .ec-card__done {
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.02em;
+      padding-block: 0.5rem 0.25rem;
+    }
+    .ec-card__done[hidden] { display: none; }
+
+    /* Visually hidden SR-only helper */
+    .ec-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     /* ── Hero deck: justified, white ───────────────────────────────────── */
     .issues-hero__deck--election {
       text-align: justify;
@@ -819,9 +927,67 @@
           <h1 id="election-title">2026 Town of Bedford Supervisor Election</h1>
         </div>
 
-        <!-- Image placeholder — replace <div> with <button aria-haspopup="dialog"> when image is ready -->
-        <div class="issues-hero__visual issues-hero__visual--placeholder" aria-hidden="true">
-          <span>Election 2026</span>
+        <!-- Live election countdown — two cards, updates every second -->
+        <div class="issues-hero__visual election-countdown" id="election-countdown" role="region" aria-label="Election countdown">
+
+          <div class="ec-card">
+            <p class="ec-card__label">Early Voting Begins</p>
+            <!-- SR text: updates once per minute (not per-second, to avoid noise) -->
+            <p class="ec-sr-only" id="ec-ev-sr" aria-live="polite" aria-atomic="true"></p>
+            <!-- Visual digits: aria-hidden because they update every second -->
+            <div class="ec-digits" id="ec-ev-digits" aria-hidden="true">
+              <div class="ec-unit">
+                <span class="ec-num ec-num--wide" id="ec-ev-days">--</span>
+                <span class="ec-unit-label">days</span>
+              </div>
+              <span class="ec-sep" aria-hidden="true">:</span>
+              <div class="ec-unit">
+                <span class="ec-num" id="ec-ev-hours">--</span>
+                <span class="ec-unit-label">hrs</span>
+              </div>
+              <span class="ec-sep" aria-hidden="true">:</span>
+              <div class="ec-unit">
+                <span class="ec-num" id="ec-ev-minutes">--</span>
+                <span class="ec-unit-label">min</span>
+              </div>
+              <span class="ec-sep" aria-hidden="true">:</span>
+              <div class="ec-unit">
+                <span class="ec-num" id="ec-ev-seconds">--</span>
+                <span class="ec-unit-label">sec</span>
+              </div>
+            </div>
+            <p class="ec-card__date">Oct. 24, 2026 &middot; 6:00 AM ET</p>
+            <p class="ec-card__done" id="ec-ev-done" hidden>Early voting is underway</p>
+          </div>
+
+          <div class="ec-card">
+            <p class="ec-card__label">Election Day</p>
+            <p class="ec-sr-only" id="ec-ed-sr" aria-live="polite" aria-atomic="true"></p>
+            <div class="ec-digits" id="ec-ed-digits" aria-hidden="true">
+              <div class="ec-unit">
+                <span class="ec-num ec-num--wide" id="ec-ed-days">--</span>
+                <span class="ec-unit-label">days</span>
+              </div>
+              <span class="ec-sep" aria-hidden="true">:</span>
+              <div class="ec-unit">
+                <span class="ec-num" id="ec-ed-hours">--</span>
+                <span class="ec-unit-label">hrs</span>
+              </div>
+              <span class="ec-sep" aria-hidden="true">:</span>
+              <div class="ec-unit">
+                <span class="ec-num" id="ec-ed-minutes">--</span>
+                <span class="ec-unit-label">min</span>
+              </div>
+              <span class="ec-sep" aria-hidden="true">:</span>
+              <div class="ec-unit">
+                <span class="ec-num" id="ec-ed-seconds">--</span>
+                <span class="ec-unit-label">sec</span>
+              </div>
+            </div>
+            <p class="ec-card__date">Nov. 3, 2026 &middot; 6:00 AM ET</p>
+            <p class="ec-card__done" id="ec-ed-done" hidden>Election Day is here</p>
+          </div>
+
         </div>
 
         <div class="issues-hero__copy-bot">
@@ -1296,6 +1462,114 @@
   </footer>
 
   <script src="../assets/js/site.js"></script>
+
+  <!-- Live election countdown -->
+  <script>
+  (function () {
+    'use strict';
+
+    // Target dates with explicit UTC offset to handle Eastern Time correctly.
+    // Oct 24 2026: still Eastern Daylight Time (UTC-4), so 6 AM EDT = 10:00 UTC
+    // Nov  3 2026: Eastern Standard Time (UTC-5), so 6 AM EST = 11:00 UTC
+    var EARLY_VOTING = new Date('2026-10-24T06:00:00-04:00');
+    var ELECTION_DAY = new Date('2026-11-03T06:00:00-05:00');
+
+    var evDigits = document.getElementById('ec-ev-digits');
+    var evDone   = document.getElementById('ec-ev-done');
+    var evDays   = document.getElementById('ec-ev-days');
+    var evHours  = document.getElementById('ec-ev-hours');
+    var evMin    = document.getElementById('ec-ev-minutes');
+    var evSec    = document.getElementById('ec-ev-seconds');
+    var evSr     = document.getElementById('ec-ev-sr');
+
+    var edDigits = document.getElementById('ec-ed-digits');
+    var edDone   = document.getElementById('ec-ed-done');
+    var edDays   = document.getElementById('ec-ed-days');
+    var edHours  = document.getElementById('ec-ed-hours');
+    var edMin    = document.getElementById('ec-ed-minutes');
+    var edSec    = document.getElementById('ec-ed-seconds');
+    var edSr     = document.getElementById('ec-ed-sr');
+
+    // Guard: bail if the countdown elements are not in the DOM
+    if (!evDays || !edDays) return;
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function decompose(ms) {
+      var t = Math.floor(ms / 1000);
+      return {
+        days:    Math.floor(t / 86400),
+        hours:   Math.floor((t % 86400) / 3600),
+        minutes: Math.floor((t % 3600) / 60),
+        seconds: t % 60
+      };
+    }
+
+    var lastSrMinute = -1;
+
+    function tick() {
+      var now  = Date.now();
+      var evMs = EARLY_VOTING.getTime() - now;
+      var edMs = ELECTION_DAY.getTime() - now;
+
+      // Early Voting countdown
+      if (evMs <= 0) {
+        evDigits.hidden = true;
+        evDone.hidden   = false;
+      } else {
+        var ev = decompose(evMs);
+        evDays.textContent  = ev.days;
+        evHours.textContent = pad(ev.hours);
+        evMin.textContent   = pad(ev.minutes);
+        evSec.textContent   = pad(ev.seconds);
+      }
+
+      // Election Day countdown
+      if (edMs <= 0) {
+        edDigits.hidden = true;
+        edDone.hidden   = false;
+      } else {
+        var ed = decompose(edMs);
+        edDays.textContent  = ed.days;
+        edHours.textContent = pad(ed.hours);
+        edMin.textContent   = pad(ed.minutes);
+        edSec.textContent   = pad(ed.seconds);
+      }
+
+      // Screen-reader update: once per minute to avoid constant interruptions
+      var curMin = Math.floor(now / 60000);
+      if (curMin !== lastSrMinute) {
+        lastSrMinute = curMin;
+        if (evMs > 0) {
+          var ev2 = decompose(evMs);
+          evSr.textContent = ev2.days + ' days, ' + ev2.hours + ' hours, ' +
+            ev2.minutes + ' minutes until early voting begins.';
+        }
+        if (edMs > 0) {
+          var ed2 = decompose(edMs);
+          edSr.textContent = ed2.days + ' days, ' + ed2.hours + ' hours, ' +
+            ed2.minutes + ' minutes until Election Day.';
+        }
+      }
+    }
+
+    tick(); // paint immediately — no blank flash
+
+    var timer = setInterval(tick, 1000);
+
+    // Pause the interval when the tab is hidden; resume on visibility
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        clearInterval(timer);
+        timer = null;
+      } else {
+        tick();
+        timer = setInterval(tick, 1000);
+      }
+    });
+
+  }());
+  </script>
 
   <!-- Election reminder: lookup + calendar (no voter history, grades, or sharing) -->
   <script>
