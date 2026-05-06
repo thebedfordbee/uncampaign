@@ -211,12 +211,6 @@
       }
     }
 
-    /* Completion card */
-    .rt-sim-complete {
-      display: block;
-      padding: 1.5rem;
-      background: var(--cream);
-    }
     /* Preview: 6 opening messages */
     #rt-sim.js-sim .rt-sim-preview { display: none; }
     #rt-sim.sim-done .rt-sim-preview { display: block; }
@@ -234,35 +228,30 @@
     @media (prefers-reduced-motion: reduce) {
       #rt-sim .rt-sim-preview .rt-msg { transition: none !important; }
     }
-    .rt-sim-complete__label {
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--moss);
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.375rem;
-    }
-    .rt-sim-complete__label::before {
-      content: '';
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--moss);
-      flex-shrink: 0;
-    }
-    .rt-sim-complete__desc {
-      font-size: 0.9375rem;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: 52ch;
-      margin-bottom: 1.25rem;
-    }
 
-    /* Full transcript */
+    /* Inline "continue reading" expander — quiet, attached to transcript */
+    .rt-continue {
+      display: block;
+      width: 100%;
+      padding: 0.75rem 1.25rem;
+      background: none;
+      border: none;
+      border-top: 1px solid var(--border);
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-align: center;
+      letter-spacing: 0.01em;
+      transition: color 0.15s, background 0.15s;
+    }
+    .rt-continue:hover { color: var(--moss); background: rgba(62,82,64,0.04); }
+    .rt-continue:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
+    /* Hide continue button while full transcript is open */
+    #rt-sim.full-open .rt-continue { display: none; }
+
+    /* Full transcript — inline, no heavy header */
     .rt-full-transcript { border-top: 1px solid var(--border); }
     .rt-full-transcript[hidden] { display: none; }
 
@@ -271,30 +260,54 @@
       @keyframes rt-expand-in { from { opacity: 0; } to { opacity: 1; } }
     }
 
-    .rt-full-transcript__bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0.6875rem 1.25rem;
-      background: var(--charcoal);
+    /* Collapse control at the end of the full transcript */
+    .rt-collapse-row {
+      border-top: 1px solid var(--border);
+      padding: 0.75rem 1.25rem;
+      text-align: center;
     }
-    .rt-full-transcript__label { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
-    .rt-full-transcript__close {
+    .rt-collapse {
       background: none;
-      border: 1px solid rgba(255,255,255,0.22);
-      border-radius: var(--radius);
-      padding: 0.3125rem 0.75rem;
+      border: none;
       cursor: pointer;
       font-family: var(--sans);
       font-size: 0.8125rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.72);
-      white-space: nowrap;
-      transition: border-color 0.15s, color 0.15s;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+      padding: 0.25rem 0;
+      transition: color 0.15s;
     }
-    .rt-full-transcript__close:hover { border-color: rgba(255,255,255,0.6); color: var(--white); }
-    .rt-full-transcript__close:focus-visible { outline: 2px solid rgba(255,255,255,0.55); outline-offset: 2px; }
+    .rt-collapse:hover { color: var(--moss); }
+    .rt-collapse:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
+    /* Prose justification — explanatory copy only */
+    .rt-hero__deck,
+    .rt-hero__ai-note,
+    .don-framing__text p,
+    .don-framing__transition,
+    .rt-panel__text p,
+    .rt-sim__lead,
+    .dons-view__prose p,
+    .section-header__lead {
+      text-align: justify;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+    }
+    /* Revert on very narrow screens where justification creates ugly gaps */
+    @media (max-width: 479px) {
+      .rt-hero__deck,
+      .rt-hero__ai-note,
+      .don-framing__text p,
+      .don-framing__transition,
+      .rt-panel__text p,
+      .rt-sim__lead,
+      .dons-view__prose p,
+      .section-header__lead {
+        text-align: left;
+        hyphens: none;
+      }
+    }
 
     /* Shared message rows */
     .rt-msg-list { list-style: none; padding: 0; margin: 0; }
@@ -409,7 +422,7 @@
     <section class="section" aria-labelledby="don-framing-headline">
       <div class="container">
         <p class="eyebrow">Don Sets the Table</p>
-        <h2 id="don-framing-headline">Don Sets the Table</h2>
+        <h2 id="don-framing-headline">Don Sets The Table</h2>
         <div class="don-framing">
           <div class="don-framing__speaker">
             <img
@@ -438,7 +451,7 @@
       <div class="container">
         <div class="section-header">
           <p class="eyebrow">The Roundtable Responds</p>
-          <h2 id="rt-persona-headline">Choose a perspective</h2>
+          <h2 id="rt-persona-headline">Choose A Perspective</h2>
         </div>
         <p class="rt-persona__lead">Each voice tests the issue from a different civic angle.</p>
 
@@ -647,7 +660,7 @@
         <div class="rt-sim-panel" id="rt-sim-panel">
 
           <!-- Pre-run placeholder -->
-          <p class="rt-sim-placeholder">Ready to test the tradeoff.</p>
+          <p class="rt-sim-placeholder">Ready To Test The Tradeoff.</p>
 
           <!-- Generating indicator (brief, ~700ms) -->
           <div class="rt-sim-generating" id="rt-sim-generating" aria-hidden="true">
@@ -694,25 +707,15 @@
               </li>
 
             </ol>
-          </div><!-- /.rt-sim-preview -->
-
-          <!-- Completion card (hidden by JS on init; shown after preview stagger completes) -->
-          <div class="rt-sim-complete" id="rt-sim-complete">
-            <p class="rt-sim-complete__label">Roundtable generated</p>
-            <p class="rt-sim-complete__desc">This is the full discussion Don reviews before forming a position.</p>
-            <button type="button" class="btn btn--secondary" id="btn-expand-full"
-              aria-expanded="false" aria-controls="rt-full-transcript"
-              style="font-size:0.875rem;padding:0.5rem 1.125rem;min-height:40px;">
-              View Full Roundtable
+            <!-- Inline expander — quiet control attached to the transcript -->
+            <button type="button" class="rt-continue" id="btn-expand-full"
+              aria-expanded="false" aria-controls="rt-full-transcript">
+              Continue Reading The Full Roundtable ↓
             </button>
-          </div>
+          </div><!-- /.rt-sim-preview -->
 
           <!-- Full transcript: continues from preview. Visible without JS; JS collapses on init -->
           <div class="rt-full-transcript" id="rt-full-transcript">
-            <div class="rt-full-transcript__bar">
-              <span class="rt-full-transcript__label">Full Roundtable — continuing from above</span>
-              <button type="button" class="rt-full-transcript__close" id="btn-collapse-full">Collapse Full Roundtable</button>
-            </div>
             <ol class="rt-msg-list" aria-label="Full roundtable transcript">
 
               <li class="rt-msg" id="full-7">
@@ -891,6 +894,10 @@
               </li>
 
             </ol>
+            <!-- Inline collapse — at the very end of the expanded transcript -->
+            <div class="rt-collapse-row">
+              <button type="button" class="rt-collapse" id="btn-collapse-full">Collapse Full Roundtable ↑</button>
+            </div>
           </div><!-- /.rt-full-transcript -->
 
         </div><!-- /.rt-sim-panel -->
@@ -953,7 +960,7 @@
         <div class="cta-row cta-row--centered">
           <div class="howbuilt-cta-group">
             <button type="button" class="btn btn--primary" id="btn-instr-toggle"
-              aria-expanded="false" aria-controls="instr-panel-roads">View the Roundtable Instruction Set</button>
+              aria-expanded="false" aria-controls="instr-panel-roads">View The Roundtable Instruction Set</button>
           </div>
         </div>
         <div class="instr-panel" id="instr-panel-roads" hidden>
@@ -1114,7 +1121,6 @@ Output format:
     var btnRun          = document.getElementById('btn-sim-run');
     var btnReset        = document.getElementById('btn-sim-reset');
     var statusEl        = document.getElementById('rt-sim-status');
-    var simComplete     = document.getElementById('rt-sim-complete');
     var btnExpandFull   = document.getElementById('btn-expand-full');
     var btnCollapseFull = document.getElementById('btn-collapse-full');
     var fullTranscript  = document.getElementById('rt-full-transcript');
@@ -1123,12 +1129,11 @@ Output format:
       : [];
 
     if (simSection && btnRun) {
-      /* Init: collapse full transcript, hide completion card */
+      /* Init: hide full transcript */
       simSection.classList.add('js-sim');
       if (fullTranscript) fullTranscript.hidden = true;
-      if (simComplete)    simComplete.hidden    = true;
 
-      /* Run: generating → preview stagger → completion card */
+      /* Run: generating → preview stagger → inline expander appears */
       function runSim() {
         btnRun.disabled = true;
         simSection.classList.add('sim-generating');
@@ -1137,64 +1142,56 @@ Output format:
         var genDelay = reducedMotion ? 0 : 700;
         setTimeout(function () {
           simSection.classList.remove('sim-generating');
-          simSection.classList.add('sim-done'); /* reveals preview container */
+          simSection.classList.add('sim-done'); /* reveals preview + continue button */
 
           if (reducedMotion) {
             previewMsgs.forEach(function (m) { m.classList.add('is-visible'); });
-            showComplete();
+            if (statusEl) statusEl.textContent = 'Roundtable generated.';
             return;
           }
 
           /* Stagger preview messages: 80ms each */
-          var step = 80;
           previewMsgs.forEach(function (m, i) {
             setTimeout(function () {
               m.classList.add('is-visible');
-              if (i === previewMsgs.length - 1) {
-                setTimeout(showComplete, 120);
+              if (i === previewMsgs.length - 1 && statusEl) {
+                setTimeout(function () {
+                  statusEl.textContent = 'Roundtable generated.';
+                }, 100);
               }
-            }, i * step);
+            }, i * 80);
           });
         }, genDelay);
       }
 
-      function showComplete() {
-        if (simComplete) simComplete.hidden = false;
-        if (statusEl) statusEl.textContent = 'Roundtable generated.';
-      }
-
-      /* Reset */
+      /* Reset: collapses everything, clears preview */
       function resetSim() {
-        simSection.classList.remove('sim-done', 'sim-generating');
+        simSection.classList.remove('sim-done', 'sim-generating', 'full-open');
         btnRun.disabled = false;
         previewMsgs.forEach(function (m) { m.classList.remove('is-visible'); });
-        if (simComplete)    simComplete.hidden    = true;
         if (fullTranscript) fullTranscript.hidden = true;
-        if (btnExpandFull) {
-          btnExpandFull.setAttribute('aria-expanded', 'false');
-          btnExpandFull.textContent = 'View Full Roundtable';
-        }
+        if (btnExpandFull) btnExpandFull.setAttribute('aria-expanded', 'false');
         if (statusEl) statusEl.textContent = '';
       }
 
-      /* Expand full transcript */
+      /* Expand full transcript inline — preview stays above */
       function expandFull() {
         if (!fullTranscript) return;
         fullTranscript.hidden = false;
-        btnExpandFull.setAttribute('aria-expanded', 'true');
-        btnExpandFull.textContent = 'Hide Full Roundtable';
+        simSection.classList.add('full-open');
+        if (btnExpandFull) btnExpandFull.setAttribute('aria-expanded', 'true');
         setTimeout(function () {
           fullTranscript.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
         }, 30);
       }
 
-      /* Collapse full transcript — preview messages stay visible */
+      /* Collapse full transcript — preview messages remain visible */
       function collapseFull() {
         if (!fullTranscript) return;
         fullTranscript.hidden = true;
+        simSection.classList.remove('full-open');
         if (btnExpandFull) {
           btnExpandFull.setAttribute('aria-expanded', 'false');
-          btnExpandFull.textContent = 'View Full Roundtable';
           btnExpandFull.focus();
         }
       }
@@ -1217,7 +1214,7 @@ Output format:
         var open = !instrPanel.hidden;
         instrPanel.hidden = open;
         btnInstr.setAttribute('aria-expanded', String(!open));
-        btnInstr.textContent = open ? 'View the Roundtable Instruction Set' : 'Hide Instruction Set';
+        btnInstr.textContent = open ? 'View The Roundtable Instruction Set' : 'Hide Instruction Set';
       });
 
       var copyBtn   = instrPanel.querySelector('.instr-panel__copy');
