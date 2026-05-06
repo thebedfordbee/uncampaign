@@ -170,6 +170,27 @@
       border-color: var(--border);
     }
     .issue-grid .issue-card .issue-card__explore { display: none; }
+
+    /* ── Live issue card — cursor, hover, and focus state ─────────── */
+    .issue-grid a.issue-card {
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .issue-grid a.issue-card:hover,
+    .issue-grid a.issue-card:focus-visible {
+      border-color: var(--charcoal);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.09);
+      background: var(--white);
+      transform: none;
+    }
+    .issue-grid a.issue-card:focus-visible {
+      outline: 2px solid var(--charcoal);
+      outline-offset: 2px;
+    }
+    .issue-grid a.issue-card .issue-card__explore {
+      display: inline;
+    }
+
     .issue-card__coming-soon {
       position: absolute;
       top: 50%;
