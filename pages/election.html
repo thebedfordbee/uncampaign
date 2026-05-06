@@ -212,8 +212,8 @@
     .section { padding-block: 2.5rem; }
     @media (min-width: 768px) { .section { padding-block: 3.5rem; } }
 
-    /* ── Live election countdown ───────────────────────────────────────── */
-    /* Reset button-style overrides from .issues-hero__visual */
+    /* ── Live election countdown — single panel design ──────────────────── */
+    /* Reset button-style overrides inherited from .issues-hero__visual */
     .election-countdown {
       cursor: default !important;
       background: transparent !important;
@@ -223,33 +223,64 @@
       padding: 0 !important;
       display: flex;
       flex-direction: column;
-      gap: 0.625rem;
     }
     .election-countdown:hover { box-shadow: none !important; }
 
-    /* Individual countdown cards — centered, slightly compact */
-    .ec-card {
+    /* Outer panel — single bordered container */
+    .ec-panel {
       background: rgba(255, 255, 255, 0.09);
       border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 6px;
-      padding: 0.75rem 1rem 0.625rem;
-      text-align: center;
+      border-radius: 8px;
+      overflow: hidden;
+      width: 100%;
     }
 
-    /* Eyebrow label — reduced tracking prevents visual spread */
-    .ec-card__label {
+    /* Panel header */
+    .ec-panel__heading {
       font-family: var(--sans);
-      font-size: 0.625rem;
+      font-size: 0.5625rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 0.325rem;
-      display: block;
+      color: rgba(255, 255, 255, 0.35);
+      text-align: center;
+      padding: 0.625rem 1.25rem 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Each countdown row */
+    .ec-row {
+      padding: 0.875rem 1.25rem 0.75rem;
       text-align: center;
     }
 
-    /* Digit row — centered, numbers and separator share the same font-size */
+    /* Row label and date */
+    .ec-row__label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.72);
+      margin-bottom: 0.125rem;
+    }
+    .ec-row__date {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.5625rem;
+      letter-spacing: 0.03em;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 0.625rem;
+    }
+
+    /* Thin rule between the two rows */
+    .ec-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+      margin-inline: 1.25rem;
+    }
+
+    /* Digit row */
     .ec-digits {
       display: flex;
       align-items: flex-start;
@@ -263,10 +294,10 @@
       min-width: 0;
     }
 
-    /* Numbers — slightly larger on desktop, tabular for stable width */
+    /* Numbers — large, tabular, stable width */
     .ec-num {
       font-family: var(--serif);
-      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-size: clamp(2rem, 5vw, 2.75rem);
       font-variant-numeric: tabular-nums;
       font-feature-settings: "tnum";
       color: var(--white);
@@ -275,54 +306,40 @@
       text-align: center;
       min-width: 2.2ch;
     }
-    .ec-num--wide {
-      min-width: 2.9ch;
-    }
+    .ec-num--wide { min-width: 2.9ch; }
 
-    /* Unit labels (DAYS / HRS / MIN / SEC) — centered beneath numbers */
+    /* Unit labels */
     .ec-unit-label {
       font-family: var(--sans);
-      font-size: 0.5rem;
+      font-size: 0.4375rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.38);
+      color: rgba(255, 255, 255, 0.35);
       margin-top: 0.1875rem;
       display: block;
       text-align: center;
     }
 
-    /* Separator — matches number font-size so it sits at the same cap height */
+    /* Separator — same size as numbers so it aligns at cap height */
     .ec-sep {
       font-family: var(--serif);
-      font-size: clamp(1.75rem, 4vw, 2.25rem);
-      color: rgba(255, 255, 255, 0.2);
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      color: rgba(255, 255, 255, 0.18);
       line-height: 1;
-      padding-top: 0;
       flex-shrink: 0;
       user-select: none;
     }
 
-    /* Target date label */
-    .ec-card__date {
-      font-family: var(--sans);
-      font-size: 0.625rem;
-      color: rgba(255, 255, 255, 0.3);
-      margin-top: 0.4rem;
-      letter-spacing: 0.04em;
-      text-align: center;
-    }
-
     /* Completed state */
-    .ec-card__done {
+    .ec-row__done {
       font-family: var(--sans);
-      font-size: 0.9375rem;
+      font-size: 0.875rem;
       font-weight: 600;
-      color: rgba(255, 255, 255, 0.9);
-      letter-spacing: 0.02em;
-      padding-block: 0.375rem 0.125rem;
+      color: rgba(255, 255, 255, 0.85);
       text-align: center;
+      padding: 0.375rem 0 0.125rem;
     }
-    .ec-card__done[hidden] { display: none; }
+    .ec-row__done[hidden] { display: none; }
 
     /* Full-width justified intro paragraph (reused across sections) */
     .section-intro-text {
@@ -969,67 +986,75 @@
           <h1 id="election-title">2026 Bedford Supervisor Election</h1>
         </div>
 
-        <!-- Live election countdown — two cards, updates every second -->
+        <!-- Live election countdown — single panel, two rows -->
         <div class="issues-hero__visual election-countdown" id="election-countdown" role="region" aria-label="Election countdown">
+          <div class="ec-panel">
 
-          <div class="ec-card">
-            <p class="ec-card__label">Early Voting Begins</p>
-            <!-- SR text: updates once per minute (not per-second, to avoid noise) -->
-            <p class="ec-sr-only" id="ec-ev-sr" aria-live="polite" aria-atomic="true"></p>
-            <!-- Visual digits: aria-hidden because they update every second -->
-            <div class="ec-digits" id="ec-ev-digits" aria-hidden="true">
-              <div class="ec-unit">
-                <span class="ec-num ec-num--wide" id="ec-ev-days">--</span>
-                <span class="ec-unit-label">days</span>
+            <p class="ec-panel__heading">Election Countdown</p>
+
+            <!-- Row 1: Early Voting -->
+            <div class="ec-row">
+              <span class="ec-row__label">Early Voting Begins</span>
+              <span class="ec-row__date">Oct. 24, 2026 &middot; 6:00 AM ET</span>
+              <!-- SR text: updates once per minute to avoid per-second noise -->
+              <p class="ec-sr-only" id="ec-ev-sr" aria-live="polite" aria-atomic="true"></p>
+              <!-- Visual digits: aria-hidden — updates every second -->
+              <div class="ec-digits" id="ec-ev-digits" aria-hidden="true">
+                <div class="ec-unit">
+                  <span class="ec-num ec-num--wide" id="ec-ev-days">--</span>
+                  <span class="ec-unit-label">days</span>
+                </div>
+                <span class="ec-sep" aria-hidden="true">:</span>
+                <div class="ec-unit">
+                  <span class="ec-num" id="ec-ev-hours">--</span>
+                  <span class="ec-unit-label">hrs</span>
+                </div>
+                <span class="ec-sep" aria-hidden="true">:</span>
+                <div class="ec-unit">
+                  <span class="ec-num" id="ec-ev-minutes">--</span>
+                  <span class="ec-unit-label">min</span>
+                </div>
+                <span class="ec-sep" aria-hidden="true">:</span>
+                <div class="ec-unit">
+                  <span class="ec-num" id="ec-ev-seconds">--</span>
+                  <span class="ec-unit-label">sec</span>
+                </div>
               </div>
-              <span class="ec-sep" aria-hidden="true">:</span>
-              <div class="ec-unit">
-                <span class="ec-num" id="ec-ev-hours">--</span>
-                <span class="ec-unit-label">hrs</span>
-              </div>
-              <span class="ec-sep" aria-hidden="true">:</span>
-              <div class="ec-unit">
-                <span class="ec-num" id="ec-ev-minutes">--</span>
-                <span class="ec-unit-label">min</span>
-              </div>
-              <span class="ec-sep" aria-hidden="true">:</span>
-              <div class="ec-unit">
-                <span class="ec-num" id="ec-ev-seconds">--</span>
-                <span class="ec-unit-label">sec</span>
-              </div>
+              <p class="ec-row__done" id="ec-ev-done" hidden>Early voting is underway</p>
             </div>
-            <p class="ec-card__date">Oct. 24, 2026 &middot; 6:00 AM ET</p>
-            <p class="ec-card__done" id="ec-ev-done" hidden>Early voting is underway</p>
-          </div>
 
-          <div class="ec-card">
-            <p class="ec-card__label">Election Day</p>
-            <p class="ec-sr-only" id="ec-ed-sr" aria-live="polite" aria-atomic="true"></p>
-            <div class="ec-digits" id="ec-ed-digits" aria-hidden="true">
-              <div class="ec-unit">
-                <span class="ec-num ec-num--wide" id="ec-ed-days">--</span>
-                <span class="ec-unit-label">days</span>
+            <div class="ec-divider" aria-hidden="true"></div>
+
+            <!-- Row 2: Election Day -->
+            <div class="ec-row">
+              <span class="ec-row__label">Election Day</span>
+              <span class="ec-row__date">Nov. 3, 2026 &middot; 6:00 AM ET</span>
+              <p class="ec-sr-only" id="ec-ed-sr" aria-live="polite" aria-atomic="true"></p>
+              <div class="ec-digits" id="ec-ed-digits" aria-hidden="true">
+                <div class="ec-unit">
+                  <span class="ec-num ec-num--wide" id="ec-ed-days">--</span>
+                  <span class="ec-unit-label">days</span>
+                </div>
+                <span class="ec-sep" aria-hidden="true">:</span>
+                <div class="ec-unit">
+                  <span class="ec-num" id="ec-ed-hours">--</span>
+                  <span class="ec-unit-label">hrs</span>
+                </div>
+                <span class="ec-sep" aria-hidden="true">:</span>
+                <div class="ec-unit">
+                  <span class="ec-num" id="ec-ed-minutes">--</span>
+                  <span class="ec-unit-label">min</span>
+                </div>
+                <span class="ec-sep" aria-hidden="true">:</span>
+                <div class="ec-unit">
+                  <span class="ec-num" id="ec-ed-seconds">--</span>
+                  <span class="ec-unit-label">sec</span>
+                </div>
               </div>
-              <span class="ec-sep" aria-hidden="true">:</span>
-              <div class="ec-unit">
-                <span class="ec-num" id="ec-ed-hours">--</span>
-                <span class="ec-unit-label">hrs</span>
-              </div>
-              <span class="ec-sep" aria-hidden="true">:</span>
-              <div class="ec-unit">
-                <span class="ec-num" id="ec-ed-minutes">--</span>
-                <span class="ec-unit-label">min</span>
-              </div>
-              <span class="ec-sep" aria-hidden="true">:</span>
-              <div class="ec-unit">
-                <span class="ec-num" id="ec-ed-seconds">--</span>
-                <span class="ec-unit-label">sec</span>
-              </div>
+              <p class="ec-row__done" id="ec-ed-done" hidden>Election Day is here</p>
             </div>
-            <p class="ec-card__date">Nov. 3, 2026 &middot; 6:00 AM ET</p>
-            <p class="ec-card__done" id="ec-ed-done" hidden>Election Day is here</p>
-          </div>
 
+          </div>
         </div>
 
         <div class="issues-hero__copy-bot">
