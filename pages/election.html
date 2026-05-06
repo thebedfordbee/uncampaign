@@ -575,6 +575,201 @@
     /* ── Tighter section spacing (this page only) ──────────────────────── */
     .section { padding-block: 2.5rem; }
     @media (min-width: 768px) { .section { padding-block: 3.5rem; } }
+
+    /* ── Election reminder: lookup form ────────────────────────────────── */
+    .vrc-form-wrap { max-width: 600px; }
+    .vrc-form {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .vrc-form__row { margin-bottom: 1.25rem; }
+    .vrc-form__row-group {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: 480px) {
+      .vrc-form__row-group { grid-template-columns: 1fr; }
+    }
+    .vrc-form label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+    .vrc-form label .req { color: var(--moss); margin-left: 0.15rem; }
+    .vrc-form input[type="text"] {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 4px;
+      padding: 0.6rem 0.875rem;
+      transition: border-color 0.12s;
+      box-sizing: border-box;
+    }
+    .vrc-form input[type="text"]:focus {
+      outline: none;
+      border-color: var(--sage);
+    }
+    .vrc-form__helper {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 1rem;
+      line-height: 1.65;
+    }
+    .vrc-form__submit { width: 100%; margin-top: 1.5rem; }
+    .vrc-form__msg {
+      display: none;
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      margin-top: 1.25rem;
+    }
+    .vrc-form__msg.is-visible { display: block; }
+    .vrc-form__msg--error {
+      background: rgba(181,48,48,0.06);
+      border: 1px solid rgba(181,48,48,0.2);
+      color: #8b2a2a;
+    }
+    .vrc-form__msg--info {
+      background: rgba(74,82,64,0.07);
+      border: 1px solid rgba(74,82,64,0.22);
+      color: var(--charcoal);
+    }
+    .vrc-form__msg--info a {
+      color: var(--moss);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    /* Loading spinner */
+    .vrc-loading-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+    }
+    .vrc-loading-card[hidden] { display: none; }
+    .vrc-loading-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--border);
+      border-top-color: var(--moss);
+      border-radius: 50%;
+      animation: vrc-spin 0.9s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes vrc-spin { to { transform: rotate(360deg); } }
+    .vrc-loading-status {
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Calendar dropdown */
+    .vrc-dropdown { position: relative; display: inline-block; }
+    .vrc-dropdown__menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      min-width: 220px;
+      z-index: 200;
+      overflow: hidden;
+    }
+    .vrc-dropdown__menu.is-open { display: block; }
+    .vrc-dropdown__item {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0.75rem 1.125rem;
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      line-height: 1.4;
+      box-sizing: border-box;
+      transition: background 0.1s;
+    }
+    .vrc-dropdown__item:last-child { border-bottom: none; }
+    .vrc-dropdown__item:hover,
+    .vrc-dropdown__item:focus { background: var(--cream); outline: none; }
+
+    /* ── Election reminder: results card ───────────────────────────────── */
+    .reminder-section__lead {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      max-width: 60ch;
+    }
+    .reminder-results {
+      margin-top: 1.5rem;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .reminder-polling-block {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .reminder-polling-eyebrow,
+    .reminder-calendar-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.375rem;
+    }
+    .reminder-calendar-eyebrow { margin-bottom: 0.75rem; }
+    .reminder-polling-place {
+      font-family: var(--serif);
+      font-size: 1.125rem;
+      color: var(--charcoal);
+      margin-bottom: 0.25rem;
+    }
+    .reminder-polling-address {
+      font-size: 0.9375rem;
+      color: var(--muted);
+    }
+    .reminder-privacy-note {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 1.25rem;
+      max-width: 60ch;
+    }
   </style>
 
   <!-- Google tag (gtag.js) -->
@@ -725,6 +920,76 @@
             <p class="date-card__note">Election Day, November 3</p>
           </li>
         </ul>
+      </div>
+    </section>
+
+    <!-- Election reminder tool -->
+    <section class="section" id="reminder" aria-labelledby="reminder-heading">
+      <div class="container">
+        <h2 id="reminder-heading">Generate Your Custom Election Reminder</h2>
+        <p class="reminder-section__lead">Enter your information to find your Election Day polling place and create a calendar reminder. This does not show your vote, your party preference, or who you support.</p>
+
+        <div class="vrc-form-wrap">
+          <form class="vrc-form" id="er-form" novalidate>
+
+            <div class="vrc-form__row">
+              <label for="er-last-name">Last name <span class="req">*</span></label>
+              <input type="text" id="er-last-name" name="lastName" placeholder="Smith" autocomplete="family-name" required maxlength="60">
+            </div>
+
+            <div class="vrc-form__row">
+              <label for="er-dob">Date of birth <span class="req">*</span></label>
+              <input type="text" id="er-dob" name="dateOfBirth" placeholder="MM/DD/YYYY" autocomplete="bday" required maxlength="10" inputmode="numeric">
+            </div>
+
+            <div class="vrc-form__row vrc-form__row-group">
+              <div>
+                <label for="er-street-number">Street number <span class="req">*</span></label>
+                <input type="text" id="er-street-number" name="streetNumber" placeholder="44" required maxlength="10" inputmode="numeric">
+              </div>
+              <div>
+                <label for="er-street-name">Street name <span class="req">*</span></label>
+                <input type="text" id="er-street-name" name="streetName" placeholder="Cherry" required maxlength="80">
+              </div>
+            </div>
+
+            <p class="vrc-form__helper">Enter the street name only &#8212; for example, &#8220;Main&#8221; not &#8220;Main Street.&#8221;</p>
+
+            <button type="submit" class="btn btn--primary vrc-form__submit" id="er-submit-btn">Generate My Custom Calendar Reminder</button>
+
+            <div class="vrc-form__msg vrc-form__msg--error" id="er-msg-error" role="alert"></div>
+            <div class="vrc-form__msg vrc-form__msg--info" id="er-msg-info" role="status"></div>
+
+            <div class="vrc-loading-card" id="er-loading-card" hidden>
+              <span class="vrc-loading-spinner" aria-hidden="true"></span>
+              <p class="vrc-loading-status" id="er-loading-status" aria-live="polite" aria-atomic="true">Looking up your polling place&#8230;</p>
+            </div>
+
+          </form>
+
+          <!-- Results — shown after a successful lookup -->
+          <div class="reminder-results" id="er-results" hidden>
+            <div class="reminder-polling-block">
+              <p class="reminder-polling-eyebrow">Your Election Day Polling Place</p>
+              <p class="reminder-polling-place" id="er-polling-place">&#8212;</p>
+              <p class="reminder-polling-address" id="er-polling-address"></p>
+            </div>
+            <div>
+              <p class="reminder-calendar-eyebrow">Add to Your Calendar</p>
+              <div class="vrc-dropdown" id="er-cal-dropdown-wrap">
+                <button type="button" id="er-cal-btn" class="btn btn--primary" aria-expanded="false" aria-controls="er-cal-menu">Add Election Reminder &#9662;</button>
+                <div class="vrc-dropdown__menu" id="er-cal-menu" role="menu">
+                  <button type="button" class="vrc-dropdown__item" id="er-cal-google" role="menuitem">Google Calendar</button>
+                  <button type="button" class="vrc-dropdown__item" id="er-cal-apple" role="menuitem">Apple Calendar</button>
+                  <button type="button" class="vrc-dropdown__item" id="er-cal-outlook" role="menuitem">Outlook Calendar</button>
+                  <button type="button" class="vrc-dropdown__item" id="er-cal-yahoo" role="menuitem">Yahoo Calendar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="reminder-privacy-note">This lookup is only used to find your polling place and generate a reminder. It does not display voter-history records, grades, or campaign targeting information.</p>
       </div>
     </section>
 
@@ -1086,5 +1351,269 @@
   </footer>
 
   <script src="../assets/js/site.js"></script>
+
+  <!-- Election reminder: lookup + calendar (no voter history, grades, or sharing) -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── Config ───────────────────────────────────────────────────────── */
+    var ENDPOINT = 'https://script.google.com/macros/s/AKfycbywHW-nW2zx6neSqr2VvXp1LPvWa8pFdHYOWpfCaSyGhe9vJX7QfWKtJP5n1q6ZfxdjHw/exec';
+    var ELECTION_TITLE = 'Vote in the 2026 Bedford Town Supervisor Election';
+    var ELECTION_DATE  = '2026-11-03';
+    var ELECTION_DESC  = 'General Election Day for the 2026 Town of Bedford Supervisor race. Polls are open from 6:00 AM to 9:00 PM. Confirm your polling place before voting.';
+
+    /* ── DOM refs ─────────────────────────────────────────────────────── */
+    var form          = document.getElementById('er-form');
+    var submitBtn     = document.getElementById('er-submit-btn');
+    var msgError      = document.getElementById('er-msg-error');
+    var msgInfo       = document.getElementById('er-msg-info');
+    var loadingCard   = document.getElementById('er-loading-card');
+    var loadingStatus = document.getElementById('er-loading-status');
+    var resultsDiv    = document.getElementById('er-results');
+
+    /* ── Message helpers ──────────────────────────────────────────────── */
+    function clearMsgs() {
+      msgError.classList.remove('is-visible');
+      msgError.textContent = '';
+      msgInfo.classList.remove('is-visible');
+      msgInfo.innerHTML = '';
+    }
+
+    function showError(msg) {
+      clearMsgs();
+      msgError.textContent = msg;
+      msgError.classList.add('is-visible');
+    }
+
+    function showNotFound() {
+      clearMsgs();
+      msgInfo.innerHTML =
+        'We could not confidently find a matching Bedford voter record. ' +
+        'You can still check your polling place using the ' +
+        '<a href="https://voterlookup.elections.ny.gov/" target="_blank" rel="noopener noreferrer">' +
+        'New York State Board of Elections Poll Site Search</a>.';
+      msgInfo.classList.add('is-visible');
+    }
+
+    /* ── DOB input mask: digits only, auto-insert slashes MM/DD/YYYY ─── */
+    (function () {
+      var dob = document.getElementById('er-dob');
+      dob.addEventListener('keydown', function (e) {
+        var nav = ['Backspace','Delete','Tab','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'];
+        if (nav.indexOf(e.key) !== -1) return;
+        if (!e.metaKey && !e.ctrlKey && !/^\d$/.test(e.key)) { e.preventDefault(); }
+      });
+      dob.addEventListener('input', function () {
+        var digits = this.value.replace(/\D/g, '').slice(0, 8);
+        var out = digits;
+        if (digits.length > 4) {
+          out = digits.slice(0, 2) + '/' + digits.slice(2, 4) + '/' + digits.slice(4);
+        } else if (digits.length > 2) {
+          out = digits.slice(0, 2) + '/' + digits.slice(2);
+        }
+        this.value = out;
+      });
+    }());
+
+    function isValidDob(val) {
+      return /^\d{2}\/\d{2}\/\d{4}$/.test(val.trim());
+    }
+
+    /* ── Loading state ────────────────────────────────────────────────── */
+    var loadingTimer  = null;
+    var loadingMsgIdx = 0;
+    var LOADING_MSGS  = [
+      'Looking up your polling place…',
+      'Checking Bedford voter records…',
+      'Matching your address…',
+      'Finding your Election District…',
+      'Almost there…'
+    ];
+
+    function startLoading() {
+      loadingMsgIdx = 0;
+      loadingStatus.textContent = LOADING_MSGS[0];
+      loadingCard.hidden = false;
+      loadingTimer = setInterval(function () {
+        loadingMsgIdx = (loadingMsgIdx + 1) % LOADING_MSGS.length;
+        loadingStatus.textContent = LOADING_MSGS[loadingMsgIdx];
+      }, 2500);
+    }
+
+    function stopLoading() {
+      if (loadingTimer) { clearInterval(loadingTimer); loadingTimer = null; }
+      loadingCard.hidden = true;
+    }
+
+    /* ── Form submit ──────────────────────────────────────────────────── */
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      clearMsgs();
+      resultsDiv.hidden = true;
+
+      var lastName     = form.lastName.value.trim();
+      var dateOfBirth  = form.dateOfBirth.value.trim();
+      var streetNumber = form.streetNumber.value.trim();
+      var streetName   = form.streetName.value.trim();
+
+      if (!lastName || !dateOfBirth || !streetNumber || !streetName) {
+        showError('Please complete all required fields.');
+        return;
+      }
+      if (!isValidDob(dateOfBirth)) {
+        showError('Please enter your date of birth as MM/DD/YYYY.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Looking up…';
+      startLoading();
+
+      try {
+        var response = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ lastName: lastName, dateOfBirth: dateOfBirth, streetNumber: streetNumber, streetName: streetName })
+        });
+        var text = await response.text();
+        var data;
+        try { data = JSON.parse(text); } catch (pe) { throw new Error('Parse error'); }
+        handleResponse(data);
+      } catch (err) {
+        showError('Something went wrong with the lookup. Please try again in a moment.');
+        console.error('Election reminder lookup error:', err);
+      } finally {
+        stopLoading();
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Generate My Custom Calendar Reminder';
+      }
+    });
+
+    /* ── Handle API response ──────────────────────────────────────────── */
+    function handleResponse(data) {
+      var status = data.matchStatus || '';
+      if (!data.found || status === 'none' || status === 'multiple') {
+        showNotFound();
+        return;
+      }
+      if (status === 'missing_fields') {
+        showError('Please complete all required fields.');
+        return;
+      }
+      if (status === 'error') {
+        showError('Something went wrong with the lookup. Please try again in a moment.');
+        return;
+      }
+      showResults(data);
+    }
+
+    /* ── Render polling place + calendar buttons ──────────────────────── */
+    function showResults(d) {
+      var place   = d.pollingPlace || d.pollingPlaceRaw || '';
+      var address = d.pollingAddress || '';
+
+      document.getElementById('er-polling-place').textContent =
+        place || 'Not on file — use the NYS voter lookup to confirm.';
+      document.getElementById('er-polling-address').textContent = address;
+
+      var calLocation = (place && address) ? place + ', ' + address
+                      : (place || address || 'Bedford, New York');
+      var dateBase  = ELECTION_DATE.replace(/-/g, '');
+      var dateStart = dateBase + 'T060000';
+      var dateEnd   = dateBase + 'T210000';
+
+      document.getElementById('er-cal-google').onclick = function () {
+        window.open(
+          'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+          '&text='     + encodeURIComponent(ELECTION_TITLE) +
+          '&dates='    + dateStart + '/' + dateEnd +
+          '&details='  + encodeURIComponent(ELECTION_DESC) +
+          '&location=' + encodeURIComponent(calLocation),
+          '_blank', 'noopener,noreferrer'
+        );
+      };
+      document.getElementById('er-cal-apple').onclick = function () {
+        downloadIcs(calLocation);
+      };
+      document.getElementById('er-cal-outlook').onclick = function () {
+        downloadIcs(calLocation);
+      };
+      document.getElementById('er-cal-yahoo').onclick = function () {
+        window.open(
+          'https://calendar.yahoo.com/?v=60&view=d&type=20' +
+          '&title='  + encodeURIComponent(ELECTION_TITLE) +
+          '&st='     + dateStart +
+          '&et='     + dateEnd +
+          '&desc='   + encodeURIComponent(ELECTION_DESC) +
+          '&in_loc=' + encodeURIComponent(calLocation),
+          '_blank', 'noopener,noreferrer'
+        );
+      };
+
+      resultsDiv.hidden = false;
+      resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    /* ── ICS download (Apple Calendar / Outlook) ──────────────────────── */
+    function downloadIcs(location) {
+      var d   = ELECTION_DATE.replace(/-/g, '');
+      var ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//DonForBedford//ElectionReminderTool//EN',
+        'BEGIN:VEVENT',
+        'DTSTART:' + d + 'T060000',
+        'DTEND:'   + d + 'T210000',
+        'SUMMARY:' + ELECTION_TITLE.replace(/,/g, '\\,'),
+        'DESCRIPTION:' + ELECTION_DESC.replace(/,/g, '\\,'),
+        'LOCATION:' + (location || 'Bedford, New York').replace(/,/g, '\\,'),
+        'BEGIN:VALARM',
+        'TRIGGER:-P7D',
+        'ACTION:DISPLAY',
+        'DESCRIPTION:Election reminder: Vote on November 3\\, 2026',
+        'END:VALARM',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      var url  = URL.createObjectURL(blob);
+      var a    = document.createElement('a');
+      a.href     = url;
+      a.download = 'bedford-election-reminder.ics';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    /* ── Calendar dropdown toggle ─────────────────────────────────────── */
+    var calBtn  = document.getElementById('er-cal-btn');
+    var calMenu = document.getElementById('er-cal-menu');
+
+    function closeDropdown() {
+      calMenu.classList.remove('is-open');
+      calBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    calBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var opening = !calMenu.classList.contains('is-open');
+      closeDropdown();
+      if (opening) {
+        calMenu.classList.add('is-open');
+        calBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+
+    document.addEventListener('click', closeDropdown);
+
+    calMenu.querySelectorAll('.vrc-dropdown__item').forEach(function (item) {
+      item.addEventListener('click', closeDropdown);
+    });
+
+  }());
+  </script>
 </body>
 </html>
