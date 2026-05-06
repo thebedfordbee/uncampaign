@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Articles from Don Scott's campaign for Bedford Town Supervisor — civic thinking, local democracy, and what it means to run an Uncampaign.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <title>Blog | Don Scott for Bedford</title>
+  <link rel="canonical" href="https://www.donforbedford.com/blog">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.donforbedford.com/blog">
+  <meta property="og:title" content="Blog | Don Scott for Bedford">
+  <meta property="og:description" content="Articles from Don Scott's campaign for Bedford Town Supervisor — civic thinking, local democracy, and what it means to run an Uncampaign.">
+  <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Don Scott for Bedford — Blog">
+  <meta property="og:site_name" content="Don Scott for Bedford">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.donforbedford.com/blog">
+  <meta name="twitter:title" content="Blog | Don Scott for Bedford">
+  <meta name="twitter:description" content="Articles from Don Scott's campaign for Bedford Town Supervisor — civic thinking, local democracy, and what it means to run an Uncampaign.">
+  <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta name="twitter:image:alt" content="Don Scott for Bedford — Blog">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4A5240">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#4A5240">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.donforbedford.com/#website",
+        "url": "https://www.donforbedford.com/",
+        "name": "Don Scott for Bedford",
+        "description": "The Uncampaign — Don Scott for Bedford Town Supervisor"
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://www.donforbedford.com/blog#webpage",
+        "url": "https://www.donforbedford.com/blog",
+        "name": "Blog | Don Scott for Bedford",
+        "description": "Articles from Don Scott's campaign for Bedford Town Supervisor — civic thinking, local democracy, and what it means to run an Uncampaign.",
+        "isPartOf": { "@id": "https://www.donforbedford.com/#website" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.donforbedford.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.donforbedford.com/blog" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="../assets/css/site.css">
+  <style>
+    .section { padding-block: 2.5rem; }
+    @media (min-width: 768px) { .section { padding-block: 3.5rem; } }
+
+    /* ── Blog hero — single-column centered variant ─── */
+    .blog-hero {
+      background: var(--moss);
+      color: var(--white);
+      padding-block: 3rem 2.5rem;
+      text-align: center;
+    }
+    .blog-hero .eyebrow { color: rgba(255,255,255,0.7); margin-bottom: 0.5rem; }
+    .blog-hero h1 { color: var(--white); margin-bottom: 0.75rem; }
+    .blog-hero__lead {
+      font-size: 1.0625rem;
+      color: rgba(255,255,255,0.82);
+      max-width: 38rem;
+      margin-inline: auto;
+    }
+
+    /* ── Blog main content ─── */
+    .blog-main {
+      background: var(--cream);
+      padding-block: 2.5rem 3.5rem;
+    }
+    .blog-main .container { max-width: 740px; }
+
+    /* ── Search + controls ─── */
+    .blog-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .blog-search-wrap {
+      position: relative;
+      flex: 1 1 220px;
+    }
+    .blog-search-wrap__icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--sage);
+      pointer-events: none;
+    }
+    .blog-search {
+      width: 100%;
+      padding: 0.625rem 0.875rem 0.625rem 2.375rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--white);
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .blog-search:focus {
+      border-color: var(--moss);
+      box-shadow: 0 0 0 3px rgba(62, 82, 64, 0.12);
+    }
+    .blog-search::placeholder { color: var(--muted); }
+
+    /* ── Article count ─── */
+    .blog-count {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    /* ── Article list ─── */
+    .blog-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .blog-item { border-top: 1px solid var(--border); }
+    .blog-item:last-child { border-bottom: 1px solid var(--border); }
+
+    .blog-item__link {
+      display: grid;
+      grid-template-columns: 3rem 5rem 1fr 1.5rem;
+      gap: 0 1.25rem;
+      align-items: center;
+      padding: 1.25rem 0.25rem;
+      text-decoration: none;
+      color: inherit;
+      border-radius: var(--radius);
+      transition: background 0.15s ease;
+    }
+    .blog-item__link:hover { background: rgba(248,245,239,0.7); }
+    .blog-item__link:hover .blog-item__arrow { opacity: 1; transform: translateX(4px); }
+    .blog-item__link:focus-visible {
+      outline: 2px solid var(--moss);
+      outline-offset: 2px;
+    }
+
+    /* Date block */
+    .blog-item__date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .blog-item__month {
+      display: block;
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sage);
+      line-height: 1;
+    }
+    .blog-item__day {
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.1;
+    }
+
+    /* Placeholder thumbnail */
+    .blog-item__thumb {
+      width: 5rem;
+      height: 3.5rem;
+      background: linear-gradient(140deg, var(--moss) 0%, #4d6453 100%);
+      border-radius: 3px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .blog-item__thumb svg { opacity: 0.35; }
+
+    /* Text body */
+    .blog-item__body { min-width: 0; }
+    .blog-item__title {
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin: 0 0 0.275rem;
+      line-height: 1.35;
+    }
+    .blog-item__desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .blog-item__read-time {
+      display: inline-block;
+      font-size: 0.75rem;
+      color: var(--sage);
+      margin-top: 0.3rem;
+    }
+
+    /* Arrow */
+    .blog-item__arrow {
+      font-size: 1rem;
+      color: var(--sage);
+      opacity: 0.45;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      justify-self: end;
+      align-self: center;
+    }
+
+    /* ── Empty / no-results state ─── */
+    .blog-empty {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--muted);
+    }
+    .blog-empty.is-visible { display: block; }
+    .blog-empty__icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin: 0 auto 1rem;
+      color: var(--border);
+    }
+    .blog-empty__title {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+
+    /* ── Mobile ─── */
+    @media (max-width: 540px) {
+      .blog-item__link {
+        grid-template-columns: 2.75rem 3.75rem 1fr;
+        gap: 0 0.875rem;
+        padding: 1rem 0;
+      }
+      .blog-item__thumb { width: 3.75rem; height: 2.75rem; }
+      .blog-item__day { font-size: 1.5rem; }
+      .blog-item__title { font-size: 0.9375rem; }
+      .blog-item__arrow { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .blog-item__link,
+      .blog-item__arrow { transition: none; }
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7WVQR4MTH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G7WVQR4MTH');
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+        <span class="site-logo__name">Don Scott</span>
+        <span class="site-logo__race">for Bedford</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__links" role="list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../pages/rules.html">Rules</a></li>
+          <li><a href="../pages/issues.html">Issues</a></li>
+          <li><a href="../pages/ideas.html">Ideas</a></li>
+          <!-- <li><a href="../pages/podcasts.html">Podcast</a></li> -->
+          <li><a href="../pages/best-of-bedford.html">Best-Of</a></li>
+        </ul>
+        <a href="#" data-subscribe-trigger class="btn btn--subscribe site-nav__cta">Subscribe</a>
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Open navigation menu"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </nav>
+    </div>
+
+    <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
+      <a href="../index.html">Home</a>
+      <a href="../pages/rules.html">Rules</a>
+      <a href="../pages/issues.html">Issues</a>
+      <a href="../pages/ideas.html">Ideas</a>
+      <!-- <a href="../pages/podcasts.html">Podcast</a> -->
+      <a href="../pages/best-of-bedford.html">Best-Of</a>
+      <a href="#" data-subscribe-trigger class="btn btn--subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="blog-hero" aria-labelledby="blog-title">
+    <div class="container">
+      <p class="eyebrow">Articles</p>
+      <h1 id="blog-title">In Case You Missed It</h1>
+      <p class="blog-hero__lead">Writing from Don's campaign — on local democracy, civic tools, and what it means to run a different kind of race.</p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main id="main-content" class="blog-main">
+    <div class="container">
+
+      <!-- Search + Random Article -->
+      <div class="blog-controls">
+        <div class="blog-search-wrap">
+          <svg class="blog-search-wrap__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <label for="blog-search" class="sr-only">Search articles</label>
+          <input
+            type="search"
+            id="blog-search"
+            class="blog-search"
+            placeholder="Search articles…"
+            autocomplete="off"
+          >
+        </div>
+        <button class="btn btn--secondary" id="random-article-btn" type="button">
+          Random Article
+        </button>
+      </div>
+
+      <p class="blog-count" id="blog-count" aria-live="polite"></p>
+
+      <!-- Article list (populated by JS) -->
+      <ul class="blog-list" id="blog-list" role="list" aria-label="Articles"></ul>
+
+      <!-- No-results state -->
+      <div class="blog-empty" id="blog-empty" role="status" aria-live="polite" aria-atomic="true">
+        <svg class="blog-empty__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" focusable="false">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          <line x1="8" y1="11" x2="14" y2="11"/>
+        </svg>
+        <p class="blog-empty__title">No articles found</p>
+        <p>Try a different search term.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <div class="footer-brand">
+          <a href="../index.html" class="site-logo" aria-label="Don Scott for Bedford — Home">
+            <span class="site-logo__name">Don Scott</span>
+            <span class="site-logo__race">for Bedford</span>
+          </a>
+          <p class="footer-brand__tagline">Less Campaign. More Bedford.</p>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="https://www.facebook.com/donforbedford" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/donforbedford/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <p class="footer-nav__label">Pages</p>
+          <a href="index.html" aria-current="page">Blog</a>
+          <a href="../pages/election.html">Election Info</a>
+          <a href="../pages/ai.html">AI Transparency</a>
+        </nav>
+
+        <div class="footer-cta">
+          <p class="footer-nav__label">Stay informed</p>
+          <a href="#" data-subscribe-trigger class="btn btn--ghost" id="subscribe">Subscribe</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* ─────────────────────────────────────────────────────────────────
+       ARTICLES DATA
+       To add a new article, append an object to this array.
+       Fields:
+         slug        — relative path from /blog/ (e.g. 'my-article/')
+         title       — article headline
+         date        — ISO 8601 (YYYY-MM-DD)
+         dateDisplay — human-readable publish date
+         month       — 3-letter uppercase month (for date block)
+         day         — day number as string
+         description — short teaser (shown in index row)
+         readTime    — estimated minutes (integer)
+         tags        — keyword array (searched but not displayed in index)
+         bodyText    — plain-text summary for full-text search
+    ───────────────────────────────────────────────────────────────── */
+    var ARTICLES = [
+      {
+        slug: 'the-danger-of-one-party-towns/',
+        title: 'The Danger of One-Party Towns',
+        date: '2026-05-06',
+        dateDisplay: 'May 6, 2026',
+        month: 'MAY',
+        day: '6',
+        description: 'Local elections are moving onto crowded even-year ballots. Don argues that Bedford should ask what happens when competition disappears and local boards become one-party by default.',
+        readTime: 4,
+        tags: ['Bedford', 'local elections', 'Town Supervisor', 'one-party towns', 'contested elections', 'New York election consolidation', 'local democracy'],
+        bodyText: 'Bedford local elections one-party towns competition contested races Town Supervisor even-year ballot consolidation civic health democracy accountability uncontested governance'
+      }
+    ];
+
+    var listEl    = document.getElementById('blog-list');
+    var countEl   = document.getElementById('blog-count');
+    var emptyEl   = document.getElementById('blog-empty');
+    var searchEl  = document.getElementById('blog-search');
+    var randomBtn = document.getElementById('random-article-btn');
+
+    function esc(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function render(list) {
+      listEl.innerHTML = '';
+      if (!list.length) {
+        emptyEl.classList.add('is-visible');
+        countEl.textContent = '0 articles';
+        return;
+      }
+      emptyEl.classList.remove('is-visible');
+      countEl.textContent = list.length === 1 ? '1 article' : list.length + ' articles';
+
+      list.forEach(function (a) {
+        var li = document.createElement('li');
+        li.className = 'blog-item';
+        li.innerHTML =
+          '<a href="' + esc(a.slug) + '" class="blog-item__link">' +
+            '<div class="blog-item__date" aria-hidden="true">' +
+              '<span class="blog-item__month">' + esc(a.month) + '</span>' +
+              '<span class="blog-item__day">' + esc(a.day) + '</span>' +
+            '</div>' +
+            '<div class="blog-item__thumb" role="img" aria-label="' + esc(a.title) + ' thumbnail">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>' +
+            '</div>' +
+            '<div class="blog-item__body">' +
+              '<h2 class="blog-item__title">' + esc(a.title) + '</h2>' +
+              '<p class="blog-item__desc">' + esc(a.description) + '</p>' +
+              '<span class="blog-item__read-time">' + a.readTime + ' min read</span>' +
+            '</div>' +
+            '<span class="blog-item__arrow" aria-hidden="true">&#8594;</span>' +
+          '</a>';
+        listEl.appendChild(li);
+      });
+    }
+
+    function filter(q) {
+      if (!q.trim()) return ARTICLES;
+      var lq = q.toLowerCase();
+      return ARTICLES.filter(function (a) {
+        return (
+          a.title.toLowerCase().indexOf(lq) !== -1 ||
+          a.description.toLowerCase().indexOf(lq) !== -1 ||
+          (a.bodyText || '').toLowerCase().indexOf(lq) !== -1 ||
+          a.tags.some(function (t) { return t.toLowerCase().indexOf(lq) !== -1; })
+        );
+      });
+    }
+
+    searchEl.addEventListener('input', function () { render(filter(this.value)); });
+
+    randomBtn.addEventListener('click', function () {
+      if (!ARTICLES.length) return;
+      var pick = ARTICLES[Math.floor(Math.random() * ARTICLES.length)];
+      window.location.href = pick.slug;
+    });
+
+    render(ARTICLES);
+  }());
+  </script>
+
+</body>
+</html>
