@@ -301,6 +301,13 @@
     .article-body a { color: var(--moss); }
     .article-body a:hover { color: var(--warm); }
 
+    /* ── Header divider — separates meta row from article body ─── */
+    .article-header-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 1.25rem 0 1.75rem;
+    }
+
     /* ── Divider, related, CTA ─── */
     .article-divider {
       border: none;
@@ -408,6 +415,20 @@
               <span class="article-meta__sep" aria-hidden="true">·</span>
 
               <div class="article-meta__actions">
+                <!-- Summarize — collapses/reveals AI summary -->
+                <button
+                  class="meta-btn"
+                  id="summarize-btn"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="ai-summary"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                  </svg>
+                  Summarize
+                </button>
+
                 <!-- Share -->
                 <div class="share-wrap" id="share-wrap">
                   <button
@@ -449,22 +470,9 @@
                 </div>
 
                 <span class="copy-feedback" id="copy-feedback" aria-live="polite" aria-atomic="true">Copied!</span>
-
-                <!-- Summarize — collapses/reveals AI summary -->
-                <button
-                  class="meta-btn"
-                  id="summarize-btn"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="ai-summary"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
-                  Summarize
-                </button>
               </div>
             </div>
+            <hr class="article-header-divider">
           </header>
 
           <!-- AI summary — hidden by default, revealed by Summarize button -->

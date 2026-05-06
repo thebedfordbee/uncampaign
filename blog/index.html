@@ -248,15 +248,20 @@
       display: block;
     }
 
-    /* Title — no description or read-time shown in index */
+    /* Title + read time */
     .blog-item__body { min-width: 0; }
     .blog-item__title {
       font-family: var(--serif);
       font-size: 1.0625rem;
       font-weight: 400;
       color: var(--charcoal);
-      margin: 0;
+      margin: 0 0 0.2rem;
       line-height: 1.35;
+    }
+    .blog-item__read-time {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--sage);
     }
 
     /* Arrow */
@@ -527,6 +532,7 @@
             ) +
             '<div class="blog-item__body">' +
               '<h2 class="blog-item__title">' + esc(a.title) + '</h2>' +
+              '<span class="blog-item__read-time">' + a.readTime + ' min read</span>' +
             '</div>' +
             '<span class="blog-item__arrow" aria-hidden="true">&#8594;</span>' +
           '</a>';
