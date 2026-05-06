@@ -1004,7 +1004,7 @@
             <!-- Row 1: Early Voting -->
             <div class="ec-row">
               <span class="ec-row__label">Early Voting Begins</span>
-              <span class="ec-row__date">Oct. 24, 2026 &middot; 6:00 AM ET</span>
+              <span class="ec-row__date">Oct. 24, 2026 &middot; 10:00 AM ET</span>
               <!-- SR text: updates once per minute to avoid per-second noise -->
               <p class="ec-sr-only" id="ec-ev-sr" aria-live="polite" aria-atomic="true"></p>
               <!-- Visual digits: aria-hidden — updates every second -->
@@ -1495,7 +1495,7 @@
     // Target dates with explicit UTC offset to handle Eastern Time correctly.
     // Oct 24 2026: still Eastern Daylight Time (UTC-4), so 6 AM EDT = 10:00 UTC
     // Nov  3 2026: Eastern Standard Time (UTC-5), so 6 AM EST = 11:00 UTC
-    var EARLY_VOTING = new Date('2026-10-24T06:00:00-04:00');
+    var EARLY_VOTING = new Date('2026-10-24T10:00:00-04:00');
     var ELECTION_DAY = new Date('2026-11-03T06:00:00-05:00');
 
     var evDigits = document.getElementById('ec-ev-digits');
