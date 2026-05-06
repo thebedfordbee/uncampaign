@@ -235,22 +235,30 @@
       width: 100%;
     }
 
-    /* Panel header — true flex centering, no inherited paragraph offsets */
+    /* Panel header — flex column, centers both title and short rule on the same axis */
+    .ec-panel__header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.5rem 1.25rem 0.625rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
     .ec-panel__heading {
       font-family: var(--sans);
       font-size: 0.5625rem;
       font-weight: 700;
-      letter-spacing: 0.09em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.35);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0.5rem 1.25rem 0.625rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      margin: 0 0 0.375rem;
+      padding: 0;
+    }
+    /* Short centered rule — shares exact center axis with the title above */
+    .ec-header-rule {
+      width: 60%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.18);
     }
 
     /* Each countdown row */
@@ -995,7 +1003,10 @@
         <div class="issues-hero__visual election-countdown" id="election-countdown" role="region" aria-label="Election countdown">
           <div class="ec-panel">
 
-            <p class="ec-panel__heading">Election Countdown</p>
+            <div class="ec-panel__header">
+              <p class="ec-panel__heading">Election Countdown</p>
+              <div class="ec-header-rule" aria-hidden="true"></div>
+            </div>
 
             <!-- Row 1: Early Voting -->
             <div class="ec-row">
