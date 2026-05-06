@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f0ede6"/>
+
+  <!-- Dashed frame -->
+  <rect x="52" y="52" width="1096" height="696" rx="8"
+        fill="none" stroke="#c0b49e" stroke-width="2.5" stroke-dasharray="16 8"/>
+
+  <!-- Camera icon -->
+  <g transform="translate(540 96)">
+    <rect x="0" y="10" width="120" height="82" rx="6"
+          fill="none" stroke="#3e5240" stroke-width="3.5"/>
+    <circle cx="60" cy="52" r="22"
+            fill="none" stroke="#3e5240" stroke-width="3.5"/>
+    <circle cx="60" cy="52" r="8" fill="#3e5240"/>
+    <rect x="36" y="0" width="48" height="16" rx="4"
+          fill="none" stroke="#3e5240" stroke-width="3.5"/>
+    <circle cx="100" cy="22" r="5" fill="#3e5240"/>
+  </g>
+
+  <!-- Main heading -->
+  <text x="600" y="246"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="42" font-weight="bold"
+        fill="#3e5240" text-anchor="middle">Recommended Image Specs</text>
+
+  <!-- Divider -->
+  <line x1="400" y1="268" x2="800" y2="268"
+        stroke="#c0b49e" stroke-width="1.5"/>
+
+  <!-- Core specs -->
+  <text x="600" y="308"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="24" font-weight="600"
+        fill="#3e5240" text-anchor="middle">1200 × 800 px · 3:2 aspect ratio · PNG or WebP</text>
+
+  <!-- Bullet guidelines -->
+  <text x="600" y="358"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="18" fill="#6a5e4e" text-anchor="middle">Keep important subject matter centered</text>
+
+  <text x="600" y="388"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="18" fill="#6a5e4e" text-anchor="middle">Avoid small text inside the image</text>
+
+  <text x="600" y="418"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="18" fill="#6a5e4e" text-anchor="middle">Must work when cropped / resized on mobile</text>
+
+  <text x="600" y="448"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="18" fill="#6a5e4e" text-anchor="middle">Should visually match the campaign's warm civic illustration style</text>
+
+  <!-- Divider -->
+  <line x1="400" y1="478" x2="800" y2="478"
+        stroke="#c0b49e" stroke-width="1.5"/>
+
+  <!-- File path -->
+  <text x="600" y="516"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15" fill="#9a8d7c" text-anchor="middle">Suggested file path:</text>
+
+  <text x="600" y="546"
+        font-family="'Courier New', Courier, monospace"
+        font-size="18" font-weight="600"
+        fill="#3e5240" text-anchor="middle">assets/img/roads-roundtable.png</text>
+
+  <!-- Divider -->
+  <line x1="400" y1="574" x2="800" y2="574"
+        stroke="#c0b49e" stroke-width="1.5"/>
+
+  <!-- Alt text label -->
+  <text x="600" y="612"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="15" fill="#9a8d7c" text-anchor="middle">Alt text to use later:</text>
+
+  <text x="600" y="642"
+        font-family="Georgia, 'Times New Roman', serif"
+        font-size="16" fill="#5a5040" text-anchor="middle"
+        font-style="italic">"Illustrated civic roundtable discussion about Bedford road conditions and state-road accountability"</text>
+
+  <!-- Replace note -->
+  <text x="600" y="716"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="13" fill="#b0a090" text-anchor="middle">Replace src with assets/img/roads-roundtable.png when the real image is ready</text>
+
+</svg>
