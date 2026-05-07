@@ -129,11 +129,17 @@
       min-width: 0;
     }
 
-    /* ── Explainer copy ───────────────────────────── */
-    .issues-explainer__why p { text-align: justify; }
-
-    /* ── Recap intro text ─────────────────────────── */
-    .personas-intro__lead { text-align: justify; }
+    /* ── Subcopy / body copy justified ──────────────── */
+    .issues-explainer__why p,
+    .personas-intro__lead,
+    .section-header__lead,
+    .recap-card__summary { text-align: justify; hyphens: auto; }
+    @media (max-width: 380px) {
+      .issues-explainer__why p,
+      .personas-intro__lead,
+      .section-header__lead,
+      .recap-card__summary { text-align: left; hyphens: none; }
+    }
 
     /* ── RECAP CARDS — horizontal, mirrors rule-card ─ */
     .recap-cards {
@@ -438,12 +444,12 @@
 
           <div class="issues-explainer__why">
             <p class="eyebrow">Why It Exists</p>
-            <h2 id="about-headline">Meetings are public. They should also be usable.</h2>
+            <h2 id="about-headline">Meetings Are Public. They Should Also Be Usable.</h2>
             <p>Town Board meetings happen every other week. These recaps turn long public meetings into shorter summaries residents can watch or listen to when they have time.</p>
           </div>
 
           <div class="issues-explainer__offers">
-            <p class="eyebrow">What it covers</p>
+            <p class="eyebrow">What It Covers</p>
             <ul class="explainer-points" role="list">
               <li>Built from public meeting recordings and transcripts.</li>
               <li>Available as video on YouTube and audio on Spotify.</li>
@@ -460,7 +466,7 @@
       <div class="container">
         <div class="personas-intro">
           <p class="eyebrow">Recent Recaps</p>
-          <h2 id="recaps-archive-headline">Bedford Town Board meetings, summarized.</h2>
+          <h2 id="recaps-archive-headline">Bedford Town Board Meetings, Summarized.</h2>
           <p class="personas-intro__lead">Each entry below links to the video recap on YouTube and the audio recap on Spotify.</p>
         </div>
 
@@ -489,7 +495,7 @@
                       href="https://www.youtube.com/@DonScottForBedford"
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="btn btn--primary recap-card__cta-btn"
+                      class="btn btn--secondary recap-card__cta-btn"
                       aria-label="Watch April 21, 2026 Bedford Town Board recap on YouTube (opens in new tab)"
                     >
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" style="flex-shrink:0;">
@@ -531,7 +537,7 @@
     <section class="section section--alt" aria-labelledby="howbuilt-headline">
       <div class="container">
         <div class="section-header">
-          <p class="eyebrow">How this was built</p>
+          <p class="eyebrow">How This Was Built</p>
           <h2 id="howbuilt-headline">This Campaign Shows Its Work</h2>
           <p class="section-header__lead section-header__lead--wide">
             This campaign is committed to showing its work, not just stating positions. When a tool or workflow helps clarify a local issue, it should be explained, shared, and made useful beyond the campaign. The instruction set used to summarize a meeting transcript into digestible audio and video recaps is published here in full.
@@ -543,47 +549,46 @@
         </div>
 
         <!-- 4. INSTRUCTION SET (revealed on button click) -->
-        <div class="instr-panel" id="instr-panel-recaps" hidden aria-label="Instruction set for Bedford Town Board meeting recaps">
+        <div class="instr-panel" id="instr-panel-recaps" hidden>
           <div class="instr-panel__bar">
-            <span class="instr-panel__title">Instruction Set &#8212; Bedford Town Board Meeting Recaps (via NotebookLM)</span>
-            <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
-              <span class="instr-panel__copy-label">Copy All</span>
-            </button>
+            <span class="instr-panel__title">Public Instruction Set</span>
+            <div class="instr-panel__controls">
+              <button class="instr-panel__copy" aria-label="Copy instruction set to clipboard">
+                <span class="instr-panel__copy-label">Copy All</span>
+              </button>
+              <button class="instr-panel__close" aria-label="Close public instruction set">&#10005;</button>
+            </div>
           </div>
           <div class="instr-panel__body">
-            <pre class="instr-panel__text">HOW THESE RECAPS ARE MADE
+            <div class="instr-panel__text" style="white-space:normal">
+              <p style="margin-top:0"><strong>How These Recaps Are Made</strong></p>
+              <p>This workflow uses NotebookLM, a free tool from Google, along with the public YouTube recording of each Bedford Town Board meeting. Any resident can use the same method for any public meeting.</p>
 
-This workflow uses NotebookLM, a free tool from Google, along with the public YouTube recording of each Bedford Town Board meeting. Any resident can use the same method for any public meeting.
+              <p style="margin-top:1.5rem"><strong>Step 1. Start With the Public YouTube Recording</strong></p>
+              <p>The Town of Bedford posts most Town Board meetings on YouTube. Find the recording for the meeting you want to recap.</p>
 
-Step 1. Start with the public YouTube recording.
-The Town of Bedford posts most Town Board meetings on YouTube. Find the recording for the meeting you want to recap.
+              <p style="margin-top:1rem"><strong>Step 2. Get the Transcript</strong></p>
+              <p>YouTube generates automatic transcripts for most videos. Open the video, click the three-dot menu below the video, and select &#8220;Open transcript.&#8221; Copy the full text. You can also paste the video&#8217;s URL directly as a source in NotebookLM.</p>
 
-Step 2. Get the transcript.
-YouTube generates automatic transcripts for most videos. Open the video, click the three-dot menu below the video, and select "Open transcript." Copy the full text. You can also paste the video's URL directly as a source in NotebookLM.
+              <p style="margin-top:1rem"><strong>Step 3. Open NotebookLM</strong></p>
+              <p>Go to notebooklm.google.com and create a new notebook. Add the transcript, the video link, or both as sources.</p>
 
-Step 3. Open NotebookLM.
-Go to notebooklm.google.com and create a new notebook. Add the transcript, the video link, or both as sources.
+              <p style="margin-top:1rem"><strong>Step 4. Ask for a Civic Summary</strong></p>
+              <p>Use the prompt below. NotebookLM will create a clear, neutral, resident-friendly summary of the meeting.</p>
 
-Step 4. Ask for a civic summary.
-Use the prompt below. NotebookLM will create a clear, neutral, resident-friendly summary of the meeting.
+              <p style="margin-top:1rem"><strong>Step 5. Create the Audio and Video Overview</strong></p>
+              <p>Use NotebookLM&#8217;s Audio Overview feature to generate a spoken version. This becomes the foundation of the Spotify audio recap and the YouTube video recap.</p>
 
-Step 5. Create the audio and video overview.
-Use NotebookLM's Audio Overview feature to generate a spoken version. This becomes the foundation of the Spotify audio recap and the YouTube video recap.
+              <p style="margin-top:1rem"><strong>Step 6. Human Review Before Publishing</strong></p>
+              <p>Review the summary against the original meeting video. Correct any errors. Remove anything unclear or unsupported by the source material. These recaps are meant to help residents follow local government &#8212; not to replace the official meeting record.</p>
+              <p>Residents can use the same method for school board meetings, planning board meetings, or any other public meeting with a recording or transcript.</p>
 
-Step 6. Human review before publishing.
-Review the summary against the original meeting video. Correct any errors. Remove anything unclear or unsupported by the source material. These recaps are meant to help residents follow local government — not to replace the official meeting record.
+              <p style="margin-top:1.5rem"><strong>Prompt to Use in NotebookLM</strong></p>
+              <p>&#8220;Using the transcript of this Bedford Town Board meeting, create a clear, neutral, resident-friendly summary. Focus on the decisions discussed, issues raised, votes taken, deadlines, costs, resident impacts, and follow-up items. Avoid partisan framing. Do not add facts that are not in the transcript. Flag anything that is unclear or needs human review. Then create a shorter audio/video overview script that explains the meeting in plain English for a Bedford resident who did not attend.&#8221;</p>
 
-Residents can use the same method for school board meetings, planning board meetings, or any other public meeting with a recording or transcript.
-
----
-
-PROMPT TO USE IN NOTEBOOKLM:
-
-"Using the transcript of this Bedford Town Board meeting, create a clear, neutral, resident-friendly summary. Focus on the decisions discussed, issues raised, votes taken, deadlines, costs, resident impacts, and follow-up items. Avoid partisan framing. Do not add facts that are not in the transcript. Flag anything that is unclear or needs human review. Then create a shorter audio/video overview script that explains the meeting in plain English for a Bedford resident who did not attend."
-
----
-
-NOTE: AI can make public information easier to follow. It still requires human judgment, source-checking, and common sense. These recaps are not official Town of Bedford minutes. For the full public record, refer to the Town's official agendas, videos, and published minutes when available.</pre>
+              <p style="margin-top:1.5rem"><strong>Note</strong></p>
+              <p>AI can make public information easier to follow. It still requires human judgment, source-checking, and common sense. These recaps are not official Town of Bedford minutes. For the full public record, refer to the Town&#8217;s official agendas, videos, and published minutes when available.</p>
+            </div>
           </div>
         </div>
 
