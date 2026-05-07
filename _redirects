@@ -13,7 +13,9 @@
 # is served at /pages/photos. These 301s make the shorter canonical URLs real routes.
 
 /photos             /pages/photos           301
-/podcasts           /pages/podcasts         301
+/recaps             /pages/recaps           301
+/podcasts           /pages/recaps           301
+/pages/podcasts     /pages/recaps           301
 /best-of-bedford                  /pages/best-of-bedford                  301
 /best-of-bedford-fastest-typist   /pages/best-of-bedford-fastest-typist   301
 /best-of-bedford-cutest-pet       /pages/best-of-bedford-cutest-pet       301
@@ -26,6 +28,6 @@
 /bedford-how-to-guide               /pages/bedford-how-to-guide               301
 
 # Legacy /minutes and /minute redirects — keep old links working
-/minutes        /podcasts           301
-/minute         /podcasts           301
-/pages/minutes  /podcasts           301
+/minutes        /pages/recaps       301
+/minute         /pages/recaps       301
+/pages/minutes  /pages/recaps       301
