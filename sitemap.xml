@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.donforbedford.com/</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-05-07</lastmod>
   </url>
 
   <!-- Election information page -->
@@ -187,7 +187,12 @@
     <lastmod>2026-04-28</lastmod>
   </url>
 
-  <!-- Blog posts -->
+  <!-- Blog -->
+  <url>
+    <loc>https://www.donforbedford.com/blog</loc>
+    <lastmod>2026-05-07</lastmod>
+  </url>
+
   <url>
     <loc>https://www.donforbedford.com/blog/the-danger-of-one-party-towns</loc>
     <lastmod>2026-05-06</lastmod>
