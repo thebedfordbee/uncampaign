@@ -340,6 +340,20 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
       margin-top: 1.375rem;
       text-align: left;
+      display: block;
+      text-decoration: none;
+      cursor: pointer;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .links-feature:hover {
+      box-shadow: 0 6px 28px rgba(0, 0, 0, 0.24);
+      border-color: rgba(62, 82, 64, 0.22);
+    }
+
+    .links-feature:focus-visible {
+      outline: 2px solid var(--moss);
+      outline-offset: 3px;
     }
 
     .links-feature__eyebrow {
@@ -379,12 +393,7 @@
       align-items: center;
       gap: 0.25rem;
     }
-    .links-feature__cta:hover { color: var(--warm); }
-    .links-feature__cta:focus-visible {
-      outline: 2px solid var(--moss);
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
+    .links-feature:hover .links-feature__cta { color: var(--warm); }
 
     /* ---- Link stack ---- */
     .links-stack {
@@ -567,7 +576,8 @@
       .links-btn,
       .links-btn__icon,
       .links-btn__arrow,
-      .links-share { transition: none; }
+      .links-share,
+      .links-feature { transition: none; }
       .links-toast { transition: none; }
     }
   </style>
@@ -667,16 +677,16 @@
     <!-- =============================================
          FEATURED COVERAGE
          ============================================= -->
-    <div class="links-feature" role="region" aria-labelledby="featured-title">
+    <a class="links-feature" href="https://www.donforbedford.com/blog/the-danger-of-one-party-towns/" aria-labelledby="featured-title">
       <p class="links-feature__eyebrow">Featured</p>
       <h2 class="links-feature__title" id="featured-title">Latest Article</h2>
       <p class="links-feature__desc">
         I wrote a few thoughts about what happens when local elections get swallowed by national politics.
       </p>
-      <a href="https://www.donforbedford.com/blog/the-danger-of-one-party-towns/" class="links-feature__cta" aria-label="Read the latest article">
+      <span class="links-feature__cta" aria-hidden="true">
         Read →
-      </a>
-    </div>
+      </span>
+    </a>
 
 
     <!-- =============================================
