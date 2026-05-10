@@ -27,6 +27,10 @@
 /best-of-bedford-cutest-pet-scout   /pages/best-of-bedford-cutest-pet-scout   301
 /bedford-how-to-guide               /pages/bedford-how-to-guide               301
 
+# Newsletter clean URLs
+/newsletter/bedford-brief-2026-05-08   /pages/newsletter/bedford-brief-2026-05-08.html   200
+/newsletter/bedford-brief-2026-05-08/  /pages/newsletter/bedford-brief-2026-05-08.html   200
+
 # Legacy /minutes and /minute redirects — keep old links working
 /minutes        /pages/recaps       301
 /minute         /pages/recaps       301
