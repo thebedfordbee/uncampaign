@@ -55,7 +55,6 @@
           { "@type": "Thing", "name": "Bedford Hills Hamlet" },
           { "@type": "Thing", "name": "Small Business Attraction" },
           { "@type": "Thing", "name": "Transit-Oriented Development" },
-          { "@type": "Thing", "name": "Consultant Accountability" },
           { "@type": "Thing", "name": "Hamlet Revitalization" }
         ],
         "primaryImageOfPage": {
@@ -585,182 +584,189 @@
 
           <div class="rt-chips" role="tablist" aria-label="Roundtable perspectives" id="rt-tablist">
 
-            <button type="button" role="tab" class="rt-chip" id="tab-bh-resident"
-              aria-selected="true" aria-controls="panel-bh-resident" tabindex="0">
+            <button type="button" role="tab" class="rt-chip" id="tab-preservationist"
+              aria-selected="true" aria-controls="panel-preservationist" tabindex="0">
               <img class="rt-chip__avatar" src="../../assets/img/personas/preservationist.webp"
                 alt="" aria-hidden="true" width="56" height="56" loading="lazy"
                 onerror="this.style.display='none'">
-              <span>BH Resident</span>
+              <span>Preservationist</span>
             </button>
 
-            <button type="button" role="tab" class="rt-chip" id="tab-biz-realist"
-              aria-selected="false" aria-controls="panel-biz-realist" tabindex="-1">
-              <img class="rt-chip__avatar" src="../../assets/img/personas/main-streeter.webp"
-                alt="" aria-hidden="true" width="56" height="56" loading="lazy"
-                onerror="this.style.display='none'">
-              <span>Business Realist</span>
-            </button>
-
-            <button type="button" role="tab" class="rt-chip" id="tab-consultant-acct"
-              aria-selected="false" aria-controls="panel-consultant-acct" tabindex="-1">
-              <img class="rt-chip__avatar" src="../../assets/img/personas/civic-skeptic.webp"
-                alt="" aria-hidden="true" width="56" height="56" loading="lazy"
-                onerror="this.style.display='none'">
-              <span>Accountability</span>
-            </button>
-
-            <button type="button" role="tab" class="rt-chip" id="tab-popup"
-              aria-selected="false" aria-controls="panel-popup" tabindex="-1">
+            <button type="button" role="tab" class="rt-chip" id="tab-young-family"
+              aria-selected="false" aria-controls="panel-young-family" tabindex="-1">
               <img class="rt-chip__avatar" src="../../assets/img/personas/practical-family.webp"
                 alt="" aria-hidden="true" width="56" height="56" loading="lazy"
                 onerror="this.style.display='none'">
-              <span>Pop-Up Experimenter</span>
+              <span>Practical Family</span>
             </button>
 
-            <button type="button" role="tab" class="rt-chip" id="tab-tod"
-              aria-selected="false" aria-controls="panel-tod" tabindex="-1">
+            <button type="button" role="tab" class="rt-chip" id="tab-affordability-realist"
+              aria-selected="false" aria-controls="panel-affordability-realist" tabindex="-1">
               <img class="rt-chip__avatar" src="../../assets/img/personas/affordability-realist.webp"
                 alt="" aria-hidden="true" width="56" height="56" loading="lazy"
                 onerror="this.style.display='none'">
-              <span>Transit Advocate</span>
+              <span>Affordability Realist</span>
             </button>
 
-            <button type="button" role="tab" class="rt-chip" id="tab-parking-skeptic"
-              aria-selected="false" aria-controls="panel-parking-skeptic" tabindex="-1">
+            <button type="button" role="tab" class="rt-chip" id="tab-main-streeter"
+              aria-selected="false" aria-controls="panel-main-streeter" tabindex="-1">
+              <img class="rt-chip__avatar" src="../../assets/img/personas/main-streeter.webp"
+                alt="" aria-hidden="true" width="56" height="56" loading="lazy"
+                onerror="this.style.display='none'">
+              <span>Main-Streeter</span>
+            </button>
+
+            <button type="button" role="tab" class="rt-chip" id="tab-services-neighbor"
+              aria-selected="false" aria-controls="panel-services-neighbor" tabindex="-1">
               <img class="rt-chip__avatar" src="../../assets/img/personas/services-neighbor.webp"
                 alt="" aria-hidden="true" width="56" height="56" loading="lazy"
                 onerror="this.style.display='none'">
-              <span>Parking Skeptic</span>
+              <span>Services Neighbor</span>
             </button>
 
-            <button type="button" role="tab" class="rt-chip" id="tab-action-neighbor"
-              aria-selected="false" aria-controls="panel-action-neighbor" tabindex="-1">
+            <button type="button" role="tab" class="rt-chip" id="tab-civic-skeptic"
+              aria-selected="false" aria-controls="panel-civic-skeptic" tabindex="-1">
+              <img class="rt-chip__avatar" src="../../assets/img/personas/civic-skeptic.webp"
+                alt="" aria-hidden="true" width="56" height="56" loading="lazy"
+                onerror="this.style.display='none'">
+              <span>Civic Skeptic</span>
+            </button>
+
+            <button type="button" role="tab" class="rt-chip" id="tab-environmental-steward"
+              aria-selected="false" aria-controls="panel-environmental-steward" tabindex="-1">
               <img class="rt-chip__avatar" src="../../assets/img/personas/environmental-steward.webp"
                 alt="" aria-hidden="true" width="56" height="56" loading="lazy"
                 onerror="this.style.display='none'">
-              <span>Action Neighbor</span>
+              <span>Environmental Steward</span>
             </button>
 
           </div><!-- /.rt-chips -->
 
           <div class="rt-panels" id="rt-panels">
 
-            <div class="rt-panel is-active" role="tabpanel" id="panel-bh-resident"
-              aria-labelledby="tab-bh-resident" tabindex="0">
+            <!-- The Preservationist -->
+            <div class="rt-panel is-active" role="tabpanel" id="panel-preservationist"
+              aria-labelledby="tab-preservationist" tabindex="0">
               <div class="rt-panel__header">
                 <img class="rt-panel__avatar" src="../../assets/img/personas/preservationist.webp"
-                  alt="Bedford Hills Resident" width="400" height="400" loading="lazy"
+                  alt="The Preservationist" width="400" height="400" loading="lazy"
                   onerror="this.style.display='none'">
                 <div>
-                  <span class="rt-panel__name">Bedford Hills Resident</span>
-                  <span class="rt-panel__subtitle">Wants the hamlet to feel cared for</span>
+                  <span class="rt-panel__name">The Preservationist</span>
+                  <span class="rt-panel__subtitle">Protects Bedford&#8217;s character</span>
                 </div>
               </div>
               <div class="rt-panel__text">
-                <p>I do not need Bedford Hills to become something it is not. I just want it to feel like the town sees it.</p>
-                <p>When storefronts sit empty, litter stays visible, plantings feel neglected, and the train station remains unresolved, residents notice. So do visitors. So do prospective businesses. A hamlet develops a reputation one small impression at a time. If the public realm looks forgotten, people begin to assume the place is forgotten.</p>
+                <p>Bedford Hills already has a character. It is not Bedford Village, and it is not supposed to be. It has its own history, its own scale, and its own identity as a working hamlet built around the train station. What concerns me is redevelopment that tries to remake Bedford Hills rather than restore and reinforce what is already there.</p>
+                <p>The train station area can be activated without being overdeveloped. Adaptive reuse, thoughtful scale, and design that respects the existing fabric — that is not opposition to change. That is a standard for how change earns trust from the people who live here.</p>
               </div>
             </div>
 
-            <div class="rt-panel" role="tabpanel" id="panel-biz-realist"
-              aria-labelledby="tab-biz-realist" tabindex="0" hidden>
-              <div class="rt-panel__header">
-                <img class="rt-panel__avatar" src="../../assets/img/personas/main-streeter.webp"
-                  alt="Small Business Realist" width="400" height="400" loading="lazy"
-                  onerror="this.style.display='none'">
-                <div>
-                  <span class="rt-panel__name">Small Business Realist</span>
-                  <span class="rt-panel__subtitle">Knows government cannot create demand</span>
-                </div>
-              </div>
-              <div class="rt-panel__text">
-                <p>The Town Board cannot magically bring in businesses. That is not how local economies work.</p>
-                <p>But town government can influence whether a place feels worth betting on. Is the hamlet clean? Is parking understandable? Are sidewalks inviting? Are trees, planters, signs, lighting, benches, and crossings maintained? Does the town make it easier or harder for a business to imagine opening there? Bedford Hills does not need magical thinking. It needs the basics done visibly and consistently.</p>
-              </div>
-            </div>
-
-            <div class="rt-panel" role="tabpanel" id="panel-consultant-acct"
-              aria-labelledby="tab-consultant-acct" tabindex="0" hidden>
-              <div class="rt-panel__header">
-                <img class="rt-panel__avatar" src="../../assets/img/personas/civic-skeptic.webp"
-                  alt="Consultant Accountability Voice" width="400" height="400" loading="lazy"
-                  onerror="this.style.display='none'">
-                <div>
-                  <span class="rt-panel__name">Consultant Accountability Voice</span>
-                  <span class="rt-panel__subtitle">Says the issue is oversight, not scapegoating</span>
-                </div>
-              </div>
-              <div class="rt-panel__text">
-                <p>It is easy to blame consultants, but that misses the point.</p>
-                <p>Consultants are hired by the Town Board. Their contracts are renewed by the Town Board. Their goals, timelines, deliverables, and public reporting expectations should be set by the Town Board. If residents cannot explain what consultants are doing, what they are expected to produce, and how success will be measured, that is an oversight problem. You get out what you put in.</p>
-              </div>
-            </div>
-
-            <div class="rt-panel" role="tabpanel" id="panel-popup"
-              aria-labelledby="tab-popup" tabindex="0" hidden>
+            <!-- The Practical Family -->
+            <div class="rt-panel" role="tabpanel" id="panel-young-family"
+              aria-labelledby="tab-young-family" tabindex="0" hidden>
               <div class="rt-panel__header">
                 <img class="rt-panel__avatar" src="../../assets/img/personas/practical-family.webp"
-                  alt="Pop-Up Experimenter" width="400" height="400" loading="lazy"
+                  alt="The Practical Family" width="400" height="400" loading="lazy"
                   onerror="this.style.display='none'">
                 <div>
-                  <span class="rt-panel__name">Pop-Up Experimenter</span>
-                  <span class="rt-panel__subtitle">Wants the town to try something real</span>
+                  <span class="rt-panel__name">The Practical Family</span>
+                  <span class="rt-panel__subtitle">Tests whether daily life actually works</span>
                 </div>
               </div>
               <div class="rt-panel__text">
-                <p>At some point, Bedford Hills needs experiments, not just reports.</p>
-                <p>What if the town used a portion of consultant spending to lease a vacant storefront temporarily and invite local entrepreneurs, artists, residents, nonprofits, food vendors, students, or start-ups to test pop-up concepts? It might not work. But an empty storefront is already not working. A visible experiment would at least teach the town something and give people a reason to come downtown.</p>
+                <p>For families who use Bedford Hills regularly, the basics matter enormously. Can I run an errand quickly? Is there something to eat nearby? Are the sidewalks usable? Is it safe and welcoming enough that I can bring my kids? Right now, the answer is inconsistent depending on where you are standing.</p>
+                <p>I want Bedford Hills to work because we depend on it. Not for civic pride — because a functional hamlet makes daily life easier. When it feels neglected or unpredictable, that is a real daily cost. The town should treat that cost as worth solving, not as background noise.</p>
               </div>
             </div>
 
-            <div class="rt-panel" role="tabpanel" id="panel-tod"
-              aria-labelledby="tab-tod" tabindex="0" hidden>
+            <!-- The Affordability Realist -->
+            <div class="rt-panel" role="tabpanel" id="panel-affordability-realist"
+              aria-labelledby="tab-affordability-realist" tabindex="0" hidden>
               <div class="rt-panel__header">
                 <img class="rt-panel__avatar" src="../../assets/img/personas/affordability-realist.webp"
-                  alt="Transit-Oriented Development Advocate" width="400" height="400" loading="lazy"
+                  alt="The Affordability Realist" width="400" height="400" loading="lazy"
                   onerror="this.style.display='none'">
                 <div>
-                  <span class="rt-panel__name">Transit-Oriented Development Advocate</span>
-                  <span class="rt-panel__subtitle">Argues density may be the obvious lever</span>
+                  <span class="rt-panel__name">The Affordability Realist</span>
+                  <span class="rt-panel__subtitle">Keeps cost burden in view</span>
                 </div>
               </div>
               <div class="rt-panel__text">
-                <p>If you want businesses, you need people. Bedford Hills has a train station. That makes transit-oriented development the most obvious economic lever.</p>
-                <p>More residents near the station could mean more foot traffic, more customers, more energy, and more reason for businesses to take a risk. It will not be popular with everyone, and it has to be done carefully. But if Bedford Hills wants a stronger downtown, housing near transit is one of the few tools that directly changes the market.</p>
+                <p>Revitalization can mean different things to different people. For some, it means energy and activity returning to the hamlet. For others, it can mean rising commercial rents, displacement of affordable small businesses, and a downtown that stops serving the people who currently use it.</p>
+                <p>The question is always: who pays for this, and who benefits? Consultant fees come from somewhere. If revitalization investments raise commercial costs faster than they attract stable businesses, the hamlet ends up with higher expenses and the same vacancies. That is worth watching before the next contract is signed.</p>
               </div>
             </div>
 
-            <div class="rt-panel" role="tabpanel" id="panel-parking-skeptic"
-              aria-labelledby="tab-parking-skeptic" tabindex="0" hidden>
+            <!-- The Main-Streeter -->
+            <div class="rt-panel" role="tabpanel" id="panel-main-streeter"
+              aria-labelledby="tab-main-streeter" tabindex="0" hidden>
+              <div class="rt-panel__header">
+                <img class="rt-panel__avatar" src="../../assets/img/personas/main-streeter.webp"
+                  alt="The Main-Streeter" width="400" height="400" loading="lazy"
+                  onerror="this.style.display='none'">
+                <div>
+                  <span class="rt-panel__name">The Main-Streeter</span>
+                  <span class="rt-panel__subtitle">Hamlets, storefronts, and visible results</span>
+                </div>
+              </div>
+              <div class="rt-panel__text">
+                <p>Bedford Hills has a train station, storefronts, and the physical ingredients for a functioning downtown. What it has not had, for too long, is visible momentum. Businesses open and close. The same vacancies persist. The train station commercial space remains empty. The hamlet feels like it is permanently in transition without ever arriving anywhere.</p>
+                <p>The most useful thing the town can do is be honest about what is actually working and what is not. Not another plan. A real accounting: which spaces are active, which are vacant, what the barriers are, and what concrete steps are being taken — and by whom, and by when.</p>
+              </div>
+            </div>
+
+            <!-- The Services Neighbor -->
+            <div class="rt-panel" role="tabpanel" id="panel-services-neighbor"
+              aria-labelledby="tab-services-neighbor" tabindex="0" hidden>
               <div class="rt-panel__header">
                 <img class="rt-panel__avatar" src="../../assets/img/personas/services-neighbor.webp"
-                  alt="Parking And Traffic Skeptic" width="400" height="400" loading="lazy"
+                  alt="The Services Neighbor" width="400" height="400" loading="lazy"
                   onerror="this.style.display='none'">
                 <div>
-                  <span class="rt-panel__name">Parking And Traffic Skeptic</span>
-                  <span class="rt-panel__subtitle">Warns that density can create new problems</span>
+                  <span class="rt-panel__name">The Services Neighbor</span>
+                  <span class="rt-panel__subtitle">Keeps the basics front and center</span>
                 </div>
               </div>
               <div class="rt-panel__text">
-                <p>Transit-oriented development sounds simple until residents have to live with the consequences.</p>
-                <p>Bedford Hills already has limited parking, traffic pinch points, train station constraints, and streets that were not designed for unlimited intensity. Adding density without a serious parking, traffic, sewer, sidewalk, drainage, and emergency access plan could make the hamlet harder to use. Revitalization should not mean solving vacancies by creating a different set of daily frustrations.</p>
+                <p>Before the town launches another revitalization initiative, it should answer a simpler question: is Bedford Hills maintained? Are the sidewalks repaired and clear? Is the litter picked up consistently? Are the planters, benches, crossings, signage, and lighting in working order? Is the parking situation understandable to someone who does not already know the quirks?</p>
+                <p>Visitors and prospective businesses notice those things before they notice anything else. A clean, well-maintained hamlet is not a solved problem — it is the baseline. If the town cannot reliably deliver the baseline, bigger revitalization promises are hard to take seriously.</p>
               </div>
             </div>
 
-            <div class="rt-panel" role="tabpanel" id="panel-action-neighbor"
-              aria-labelledby="tab-action-neighbor" tabindex="0" hidden>
+            <!-- The Civic Skeptic -->
+            <div class="rt-panel" role="tabpanel" id="panel-civic-skeptic"
+              aria-labelledby="tab-civic-skeptic" tabindex="0" hidden>
               <div class="rt-panel__header">
-                <img class="rt-panel__avatar" src="../../assets/img/personas/environmental-steward.webp"
-                  alt="Practical Action Neighbor" width="400" height="400" loading="lazy"
+                <img class="rt-panel__avatar" src="../../assets/img/personas/civic-skeptic.webp"
+                  alt="The Civic Skeptic" width="400" height="400" loading="lazy"
                   onerror="this.style.display='none'">
                 <div>
-                  <span class="rt-panel__name">Practical Action Neighbor</span>
-                  <span class="rt-panel__subtitle">Wants visible wins and public scorekeeping</span>
+                  <span class="rt-panel__name">The Civic Skeptic</span>
+                  <span class="rt-panel__subtitle">Asks who decided this and what it costs</span>
                 </div>
               </div>
               <div class="rt-panel__text">
-                <p>Start with what residents can see.</p>
-                <p>Publish a Bedford Hills action dashboard. List every consultant, contract, goal, deliverable, deadline, and cost. Track vacancies. Track storefront openings. Track streetscape improvements. Track train station progress. Track litter cleanup, plantings, lighting, benches, signage, sidewalks, and parking changes. Residents do not need another vague promise. They need visible work and a way to know whether it is working.</p>
+                <p>How many consultants have worked on Bedford Hills revitalization? What did each contract cost? What did each produce? Are any of those contracts still active? What are the deliverables, the timelines, and the reporting requirements? These are not hostile questions. They are the minimum a responsible board should be able to answer in public.</p>
+                <p>If residents cannot find that information easily, that is an accountability problem — not a communication gap. The town cannot expect public trust in revitalization spending when the spending itself is not legible to the public. Publish the contracts. Publish the goals. Publish what has been delivered.</p>
+              </div>
+            </div>
+
+            <!-- The Environmental Steward -->
+            <div class="rt-panel" role="tabpanel" id="panel-environmental-steward"
+              aria-labelledby="tab-environmental-steward" tabindex="0" hidden>
+              <div class="rt-panel__header">
+                <img class="rt-panel__avatar" src="../../assets/img/personas/environmental-steward.webp"
+                  alt="The Environmental Steward" width="400" height="400" loading="lazy"
+                  onerror="this.style.display='none'">
+                <div>
+                  <span class="rt-panel__name">The Environmental Steward</span>
+                  <span class="rt-panel__subtitle">Protects long-term natural stewardship</span>
+                </div>
+              </div>
+              <div class="rt-panel__text">
+                <p>A revitalized Bedford Hills should feel more livable, not just more active. That means trees, plantings, green space, good lighting, safe pedestrian crossings, and a streetscape that people actually want to be in. It means adaptive reuse of existing buildings where possible rather than demolition and replacement.</p>
+                <p>Beautification and environmental stewardship are not obstacles to economic revitalization. They are part of what makes a place worth being in. The town should treat the streetscape quality of Bedford Hills as a direct indicator of how seriously it takes the hamlet — and invest accordingly.</p>
               </div>
             </div>
 
@@ -800,33 +806,33 @@
             <ol class="rt-msg-list" aria-label="Roundtable opening">
 
               <li class="rt-msg" id="pre-1">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Bedford Hills Resident</span><p class="rt-msg__text">I walk through Bedford Hills every week. The storefronts that were vacant last year are still vacant. The train station has no business. At what point does &#8220;we&#8217;re working on it&#8221; stop being enough?</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Main-Streeter</span><p class="rt-msg__text">The same storefronts have been vacant for years. The train station has no business. At what point does &#8220;we&#8217;re working on it&#8221; stop being enough?</p></div>
               </li>
 
               <li class="rt-msg" id="pre-2">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Small Business Realist</span><p class="rt-msg__text">Government cannot force businesses to open. But it can make the place look like it is worth showing up to. Right now, Bedford Hills does not always send that signal.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Services Neighbor</span><p class="rt-msg__text">Before we talk strategy, is the hamlet maintained? Clean sidewalks, working benches, lit crossings, picked-up litter. Those things signal whether anyone is paying attention — and right now the signal is mixed.</p></div>
               </li>
 
               <li class="rt-msg" id="pre-3">
                 <img class="rt-msg__avatar" src="../../assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Consultant Accountability Voice</span><p class="rt-msg__text">Nobody is saying consultants are the villain. The question is whether the Town Board has set clear goals, timelines, and public deliverables. If residents cannot explain what consultants are producing, that is an oversight gap.</p></div>
+                <div class="rt-msg__body"><span class="rt-msg__name">Civic Skeptic</span><p class="rt-msg__text">How many consultants have worked on Bedford Hills? What did each one produce? If residents cannot answer that, the Town Board has an accountability problem, not a communications problem.</p></div>
               </li>
 
               <li class="rt-msg" id="pre-4">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Pop-Up Experimenter</span><p class="rt-msg__text">The train station space has been empty for too long. Why not try something visible? A pop-up concept, a temporary lease, a pilot. Failure is already the current result. At least an experiment produces information.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Preservationist</span><p class="rt-msg__text">I want the hamlet to come back. But coming back does not mean becoming unrecognizable. Bedford Hills has a character. Revitalization should reinforce that, not erase it.</p></div>
               </li>
 
               <li class="rt-msg" id="pre-5">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Transit-Oriented Development Advocate</span><p class="rt-msg__text">If you want businesses to survive in Bedford Hills, you need foot traffic. More residents near the train station creates more customers. That is one of the most direct levers available.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Practical Family</span><p class="rt-msg__text">My family uses Bedford Hills for errands, the train, quick stops. We want it to work. When it feels neglected, that is a real cost to daily life — not an abstract civic concern.</p></div>
               </li>
 
               <li class="rt-msg" id="pre-6">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Parking And Traffic Skeptic</span><p class="rt-msg__text">More density sounds good in principle. But Bedford Hills already has constrained parking, limited road capacity, and a train station that creates its own pressure. Adding density without a real infrastructure plan trades one problem for a different one.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Affordability Realist</span><p class="rt-msg__text">Revitalization is a good word. But who pays, and who benefits? If consultant fees and rising commercial costs price out the small businesses currently there, the hamlet ends up with the same vacancies and a higher bill.</p></div>
               </li>
 
             </ol>
@@ -841,197 +847,142 @@
 
               <li class="rt-msg" id="full-7">
                 <img class="rt-msg__avatar" src="../../assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Practical Action Neighbor</span><p class="rt-msg__text">Before we debate big strategies, can we agree on the small stuff? Litter, plantings, lighting, bench repairs, sidewalk maintenance. The basics signal whether the town takes the hamlet seriously.</p></div>
+                <div class="rt-msg__body"><span class="rt-msg__name">Environmental Steward</span><p class="rt-msg__text">And a revitalized hamlet should feel like a place people want to be in. Trees, plantings, safe crossings, good lighting, walkable streets. Those are not decoration. They are the difference between a place that feels cared for and one that feels abandoned.</p></div>
               </li>
 
               <li class="rt-msg" id="full-8">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Bedford Hills Resident</span><p class="rt-msg__text">Exactly. The small stuff matters as much as the big plans. A dirty sidewalk next to a handsome new sign is still a dirty sidewalk.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Main-Streeter</span><p class="rt-msg__text">The message the public realm sends to a prospective business is: does someone own this? Does anyone care? Right now, in some stretches of Bedford Hills, the answer is genuinely unclear.</p></div>
               </li>
 
               <li class="rt-msg" id="full-9">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Small Business Realist</span><p class="rt-msg__text">And a business owner considering Bedford Hills notices both. The message the public realm sends is: does someone own this? Does anyone care? Right now, in some stretches, the answer is unclear.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Civic Skeptic</span><p class="rt-msg__text">There have been multiple consultants working on Bedford Hills over the years. What did each contract produce? What changed as a result? If residents cannot answer that, something is wrong with how goals were set — and that is the Town Board&#8217;s responsibility, not the consultant&#8217;s.</p></div>
               </li>
 
               <li class="rt-msg" id="full-10">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Consultant Accountability Voice</span><p class="rt-msg__text">There have been multiple consultants working on Bedford Hills over time. What did each one produce? What changed as a result? If residents cannot answer that, something is wrong with how goals were set and how progress was reported.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Preservationist</span><p class="rt-msg__text">I have seen those consultant names come and go, too. I have not always been able to connect their work to anything I could walk up to and point at. That is not how you build confidence in the process.</p></div>
               </li>
 
               <li class="rt-msg" id="full-11">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Bedford Hills Resident</span><p class="rt-msg__text">That is a fair question. I have seen consultant names come and go. I have not always been able to connect their work to anything I could walk up to and point at.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Services Neighbor</span><p class="rt-msg__text">The basics are not waiting for the strategy to be figured out. Fix the litter schedule. Repair the planters. Check the benches. Repaint the crosswalks. A maintenance schedule and someone accountable for it — that is not complicated. And it would be visible within days.</p></div>
               </li>
 
               <li class="rt-msg" id="full-12">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Practical Action Neighbor</span><p class="rt-msg__text">This is why a public dashboard matters. Not a report. Not a PDF. A live list: here is who is working on Bedford Hills, here is what they are supposed to produce, here is what has been completed, and here is what has not. Updated regularly.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Practical Family</span><p class="rt-msg__text">A well-maintained street is an invitation. A neglected one is a warning. Businesses and residents both read those signals before they read any plan document.</p></div>
               </li>
 
               <li class="rt-msg" id="full-13">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Pop-Up Experimenter</span><p class="rt-msg__text">The train station is the most obvious symbol of what Bedford Hills could be and is not. It is the first thing commuters see. An empty commercial space there is not neutral. It is a statement.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Main-Streeter</span><p class="rt-msg__text">The train station is the single most visible symbol of what Bedford Hills could be and is not. It is the first impression the hamlet makes for anyone arriving by train. An empty commercial space there is not neutral. It is a statement.</p></div>
               </li>
 
               <li class="rt-msg" id="full-14">
                 <img class="rt-msg__avatar" src="../../assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Transit-Oriented Development Advocate</span><p class="rt-msg__text">It has been that statement for years. There are towns with train stations that anchor their entire downtown energy. Bedford Hills has the station. The infrastructure is there. The market opportunity is being left on the table.</p></div>
+                <div class="rt-msg__body"><span class="rt-msg__name">Affordability Realist</span><p class="rt-msg__text">Is the train station problem a lease issue? A zoning issue? A landlord-asking-too-much issue? A permitting issue? Because the answer determines what the town can actually do about it. Naming the problem specifically matters before proposing solutions.</p></div>
               </li>
 
               <li class="rt-msg" id="full-15">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Parking And Traffic Skeptic</span><p class="rt-msg__text">The train station opportunity is real. But parking near the station is already tight on weekdays. Add more residents and the friction multiplies. That is a real constraint, not an excuse.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Civic Skeptic</span><p class="rt-msg__text">Exactly. And the town should be able to answer that question publicly. What is the specific obstacle? What has been tried? What is the current status? That information should not require a public records request to find.</p></div>
               </li>
 
               <li class="rt-msg" id="full-16">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Small Business Realist</span><p class="rt-msg__text">Parking constraints do not explain a vacant commercial space at or near the station. Those are separate problems. One is a land-use question. The other is a basic activation question.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Preservationist</span><p class="rt-msg__text">If the answer eventually involves more housing near the station, I am open to that conversation — but carefully, at a scale that fits the hamlet. Transit-oriented development can be done in a way that reinforces Bedford Hills or in a way that overwhelms it. The difference is in the details.</p></div>
               </li>
 
               <li class="rt-msg" id="full-17">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Parking And Traffic Skeptic</span><p class="rt-msg__text">Fair. My concern is the broader density question. If the answer to Bedford Hills is a significant increase in housing units near the station, I want to see the parking plan, the traffic study, the sewer capacity, and the school impact before that conversation goes further.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Practical Family</span><p class="rt-msg__text">More residents near the station could mean more foot traffic and more customers, which could help businesses stay. I understand the logic. But I also want to know what it means for parking, school capacity, and traffic on Route 117 before any of that moves forward.</p></div>
               </li>
 
               <li class="rt-msg" id="full-18">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Transit-Oriented Development Advocate</span><p class="rt-msg__text">And you should see all of that. Transit-oriented development done badly is a problem. Done carefully, it changes the baseline economics of a downtown. Bedford Hills has a chicken-and-egg problem. More residents create more customers. More customers give businesses a reason to stay.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Services Neighbor</span><p class="rt-msg__text">Parking near the station is already tight on weekday mornings. Add more residents and the friction multiplies. That is not an argument against density. It is a requirement that any density proposal comes with a serious parking and access plan — not just a promise to figure it out later.</p></div>
               </li>
 
               <li class="rt-msg" id="full-19">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Bedford Hills Resident</span><p class="rt-msg__text">I understand the logic. I also understand why residents push back. Construction and density have immediate costs while the benefits are long-term and uncertain. Trust is earned by showing visible progress first.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Main-Streeter</span><p class="rt-msg__text">There are also things the town can do to attract businesses that do not involve major development at all. Active outreach to vacant property owners. Clear information on permitting timelines and costs. Connecting prospective tenants with local resources. That is real work that produces results without requiring a zoning debate first.</p></div>
               </li>
 
               <li class="rt-msg" id="full-20">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Practical Action Neighbor</span><p class="rt-msg__text">Which is why short-term wins matter so much. If the town shows visible progress on the basics — cleaner streets, better lighting, one resolved storefront, one answered train station question — it builds the credibility needed for bigger conversations.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Affordability Realist</span><p class="rt-msg__text">How hard is it to get a permit to open a business in Bedford Hills right now? How many offices? How long? If the answer is &#8220;too long and too many,&#8221; that is entirely within the town&#8217;s control to fix, and it costs nothing. That should be solved before anything more ambitious is attempted.</p></div>
               </li>
 
               <li class="rt-msg" id="full-21">
                 <img class="rt-msg__avatar" src="../../assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Consultant Accountability Voice</span><p class="rt-msg__text">The accountability question and the progress question are linked. If there are no public KPIs, there is no way to tell whether a project is succeeding or failing. That makes it easy for a contract to renew without demonstrating results.</p></div>
+                <div class="rt-msg__body"><span class="rt-msg__name">Civic Skeptic</span><p class="rt-msg__text">Permit turnaround time is exactly the kind of metric a public action plan should publish. Current baseline, stated goal, progress over time. That is not a complicated number to track. The fact that it is not published anywhere already tells you something.</p></div>
               </li>
 
               <li class="rt-msg" id="full-22">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Pop-Up Experimenter</span><p class="rt-msg__text">Pop-up storefronts are a low-cost way to test a hypothesis. Could a local artisan make it work in that space? A food vendor? A community organization? An artist? Even a weekend farmers&#8217; market? None of these require a long-term lease or major capital. They require willingness to try.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Environmental Steward</span><p class="rt-msg__text">Pop-up storefronts are also worth exploring. A temporary lease in a vacant space — an artisan, a food vendor, a community organization — costs little and produces information. Even a short-run experiment proves whether demand exists and gives the town something visible to point to.</p></div>
               </li>
 
               <li class="rt-msg" id="full-23">
                 <img class="rt-msg__avatar" src="../../assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Small Business Realist</span><p class="rt-msg__text">Pop-ups can work. They can also fail quietly if the space is not marketed and the conditions are not right. The town&#8217;s role is to reduce friction, not to make promises and walk away.</p></div>
+                <div class="rt-msg__body"><span class="rt-msg__name">Main-Streeter</span><p class="rt-msg__text">A pop-up that works proves the market. That data point is useful to a permanent tenant considering the space. An empty storefront proves nothing except that it is empty.</p></div>
               </li>
 
               <li class="rt-msg" id="full-24">
                 <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Bedford Hills Resident</span><p class="rt-msg__text">Reducing friction is very concrete in practice. How hard is it to get a permit to open a business in Bedford Hills? How many offices? How long does it take? If the answer is &#8220;too long and too many,&#8221; that is entirely within the town&#8217;s control to fix.</p></div>
+                <div class="rt-msg__body"><span class="rt-msg__name">Preservationist</span><p class="rt-msg__text">I can support that kind of activation. It does not require changing the hamlet&#8217;s character. It tests what residents and visitors actually respond to, and it does so without committing to a development path the community has not had a real say in.</p></div>
               </li>
 
               <li class="rt-msg" id="full-25">
                 <img class="rt-msg__avatar" src="../../assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Consultant Accountability Voice</span><p class="rt-msg__text">Permit friction is exactly the kind of thing a public action plan should track. How long does a standard business permit take? What is the goal? What is the current baseline? That is not a complicated metric to report.</p></div>
+                <div class="rt-msg__body"><span class="rt-msg__name">Civic Skeptic</span><p class="rt-msg__text">Bedford Hills probably has years of planning documents describing what the hamlet could become. What it has less of is public documentation of what was actually tried, what worked, and what did not. That institutional memory would be genuinely useful — and it does not exist anywhere residents can access.</p></div>
               </li>
 
               <li class="rt-msg" id="full-26">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Parking And Traffic Skeptic</span><p class="rt-msg__text">I am not opposed to progress. I want progress to be honest about tradeoffs. If we are adding density, be honest about the infrastructure investment required. If we are doing pop-ups, be honest about the support structure needed to make them work.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Practical Family</span><p class="rt-msg__text">Residents will engage with a harder conversation if they feel the process is honest. What they resist is the sense that a conclusion has already been reached and they are being managed through a public process that does not actually listen.</p></div>
               </li>
 
               <li class="rt-msg" id="full-27">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Transit-Oriented Development Advocate</span><p class="rt-msg__text">The infrastructure argument is real but it is not a permanent veto. It is a scoping question. What is the right scale for the right location? Where are the pinch points? What can be solved? That is the work.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Services Neighbor</span><p class="rt-msg__text">Transparency is the difference between trust and resentment. Post the consultant contracts. Post the goals. Post what has been completed and what has not. Let residents see whether the town is actually delivering — and hold it accountable when it is not.</p></div>
               </li>
 
               <li class="rt-msg" id="full-28">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Practical Action Neighbor</span><p class="rt-msg__text">In the meantime, the streetscape basics are not waiting on a housing study. Fix the litter. Fix the planters. Fix the benches. Fix the lighting. Paint the crosswalks. These things do not require a zoning debate. They require a maintenance schedule and someone accountable for it.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Affordability Realist</span><p class="rt-msg__text">If the vacancy rate has not changed after two years of effort and spending, residents deserve to know that and to ask why. That is not an attack on anyone. That is responsible governance. The town cannot manage what it does not measure.</p></div>
               </li>
 
               <li class="rt-msg" id="full-29">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Bedford Hills Resident</span><p class="rt-msg__text">And they signal to businesses and residents that the town is paying attention. A well-maintained street is an invitation. A neglected one is a warning.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Environmental Steward</span><p class="rt-msg__text">And the streetscape quality is itself a measurable outcome. Are there more trees than last year? Are the planters maintained? Is the pedestrian experience better or worse? Those are not soft metrics. They are observable, photographable, and meaningful.</p></div>
               </li>
 
               <li class="rt-msg" id="full-30">
                 <img class="rt-msg__avatar" src="../../assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Small Business Realist</span><p class="rt-msg__text">There are also things the town can do to attract businesses without forcing anyone. Outreach. Targeted conversations with owners of vacant properties. Incentive information. Contact information for business support resources. That is active stewardship, not magical thinking.</p></div>
+                <div class="rt-msg__body"><span class="rt-msg__name">Main-Streeter</span><p class="rt-msg__text">At minimum, do one thing in the next twelve months that residents can walk up to and point at. One resolved storefront. One clean block that stays clean. One answered question about the train station. Give people something real to stand on.</p></div>
               </li>
 
               <li class="rt-msg" id="full-31">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Pop-Up Experimenter</span><p class="rt-msg__text">A pop-up that succeeds proves the market. That is a data point a potential long-term tenant can actually use. An empty storefront proves nothing except that the space is empty.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Civic Skeptic</span><p class="rt-msg__text">One visible win builds more trust than five planning documents. I can get behind that as a starting point, as long as it is followed by honest reporting on what happens next.</p></div>
               </li>
 
               <li class="rt-msg" id="full-32">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Consultant Accountability Voice</span><p class="rt-msg__text">Bedford Hills probably has years of planning documents describing what the hamlet could become. What it has less of is public documentation of what was tried, what worked, and what failed. That institutional memory would be genuinely valuable.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Preservationist</span><p class="rt-msg__text">Not a different Bedford Hills. The same one, but better. Cared for. Active. Worth coming to. That is the version of revitalization I can support — and I think most residents would too.</p></div>
               </li>
 
               <li class="rt-msg" id="full-33">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Transit-Oriented Development Advocate</span><p class="rt-msg__text">Any market study for transit-oriented development needs to reflect what the hamlet actually looks like today, not what a plan document from years ago described. Conditions change. The analysis has to be current.</p></div>
+                <img class="rt-msg__avatar" src="../../assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
+                <div class="rt-msg__body"><span class="rt-msg__name">Practical Family</span><p class="rt-msg__text">Government will not create a thriving hamlet by itself. But it can create the conditions that make one possible. Right now, some of those conditions are in place and some are not. Closing that gap is the work.</p></div>
               </li>
 
               <li class="rt-msg" id="full-34">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Parking And Traffic Skeptic</span><p class="rt-msg__text">A realistic study is what I want. Not advocacy for a predetermined outcome. A genuine look at capacity, demand, tradeoffs, and what the hamlet can realistically absorb. That is a reasonable ask before anything significant is approved.</p></div>
-              </li>
-
-              <li class="rt-msg" id="full-35">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Bedford Hills Resident</span><p class="rt-msg__text">Residents will support hard conversations if they feel the process is honest. What they resist is the sense that a conclusion has already been reached and they are being managed through a public process that does not actually listen.</p></div>
-              </li>
-
-              <li class="rt-msg" id="full-36">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Practical Action Neighbor</span><p class="rt-msg__text">The dashboard idea gets at that. Transparency is not just a nice-to-have. It is the difference between trust and resentment. Post the consultant contracts. Post the goals. Post the status. Let residents see whether the town is delivering.</p></div>
-              </li>
-
-              <li class="rt-msg" id="full-37">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Small Business Realist</span><p class="rt-msg__text">And let residents hold the board accountable when the numbers do not move. If the vacancy rate has not changed after two years of work, residents deserve to know that and to ask why.</p></div>
-              </li>
-
-              <li class="rt-msg" id="full-38">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Consultant Accountability Voice</span><p class="rt-msg__text">That is not an attack on the consultants. That is responsible governance. The town cannot manage what it does not measure. Without published metrics, there is no accountability and no way to make informed decisions about whether to continue or change direction.</p></div>
-              </li>
-
-              <li class="rt-msg" id="full-39">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/practical-family.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Pop-Up Experimenter</span><p class="rt-msg__text">At minimum, do one thing in the next twelve months that residents can walk up to and point at. One visible activation. One resolved storefront. One clean block. One answered question about the train station. Give people something real to stand on.</p></div>
-              </li>
-
-              <li class="rt-msg" id="full-40">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/services-neighbor.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Parking And Traffic Skeptic</span><p class="rt-msg__text">One visible win builds more trust than five consultants. I can get behind that as a starting point before the bigger questions are resolved.</p></div>
-              </li>
-
-              <li class="rt-msg" id="full-41">
                 <img class="rt-msg__avatar" src="../../assets/img/personas/affordability-realist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Transit-Oriented Development Advocate</span><p class="rt-msg__text">And use that starting point to build toward the longer conversation about what Bedford Hills can become if it gets the policy environment, the investment, and the planning it has been promised for years.</p></div>
-              </li>
-
-              <li class="rt-msg" id="full-42">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/preservationist.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Bedford Hills Resident</span><p class="rt-msg__text">Not a different Bedford Hills. The same one, but better. Cared for. Active. Useful. Worth coming to.</p></div>
-              </li>
-
-              <li class="rt-msg" id="full-43">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/environmental-steward.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Practical Action Neighbor</span><p class="rt-msg__text">The accountability piece ties it together. Every improvement, every activation, every metric, every contract, every result — published in plain language for anyone to read. That is what a town that takes Bedford Hills seriously would do.</p></div>
-              </li>
-
-              <li class="rt-msg" id="full-44">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/main-streeter.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Small Business Realist</span><p class="rt-msg__text">Government will not create a thriving downtown by itself. But it can create the conditions that make one possible. Right now, some of those conditions are in place and some are not. The work is closing the gap.</p></div>
-              </li>
-
-              <li class="rt-msg" id="full-45">
-                <img class="rt-msg__avatar" src="../../assets/img/personas/civic-skeptic.webp" alt="" aria-hidden="true" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
-                <div class="rt-msg__body"><span class="rt-msg__name">Consultant Accountability Voice</span><p class="rt-msg__text">And to be honest with residents about what that gap actually is, what it will take to close it, and whether the town is making real progress. Not aspirational progress. Visible, measurable, documented progress.</p></div>
+                <div class="rt-msg__body"><span class="rt-msg__name">Affordability Realist</span><p class="rt-msg__text">And being honest with residents about what that gap actually is — what it will take to close it, and whether the town is making real progress. Not aspirational progress. Visible, documented, measurable progress.</p></div>
               </li>
 
             </ol>
