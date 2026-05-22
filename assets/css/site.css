@@ -4398,5 +4398,169 @@ div.issues-hero__visual--static:hover {
   .fp-master__trigger { padding: 0.875rem 0.75rem; }
 }
 
+/* ── page-footprint: justified body copy ────────────────── */
+.page-footprint main p {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+.page-footprint .issues-hero__deck {
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+/* Override for centered display elements */
+.page-footprint .fp-dual-punchline p,
+.page-footprint .fp-equiv-pullquote,
+.page-footprint .fp-show-work-closer {
+  text-align: center;
+  hyphens: none;
+  -webkit-hyphens: none;
+}
+
+/* ── Section 2: intro body ───────────────────────────────── */
+.fp-intro-body {
+  max-width: 52ch;
+  margin-top: 1.25rem;
+}
+
+/* ── Scoreboard box: column layout + new elements ────────── */
+.fp-dual-punchline {
+  flex-direction: column;
+  gap: 0.625rem;
+  text-align: center;
+}
+.fp-dual-punchline__title {
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.25rem;
+}
+.fp-dual-punchline__stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.fp-dual-punchline__caption {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  max-width: 48ch;
+  margin: 0.125rem auto 0;
+}
+.fp-dual-punchline__tagline {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  max-width: none;
+}
+.fp-dual-punchline__tagline em {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ── Equivalents: column delineation ────────────────────── */
+.fp-equiv-col--inc,
+.fp-equiv-col--unc {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.fp-equiv-col--unc {
+  border-color: rgba(62, 82, 64, 0.35);
+}
+.fp-equiv-col__header {
+  padding: 0.875rem 1rem;
+}
+.fp-equiv-col--inc .fp-equiv-col__header {
+  background: var(--charcoal);
+}
+.fp-equiv-col--unc .fp-equiv-col__header {
+  background: var(--moss);
+}
+.fp-equiv-col__campaign {
+  display: block;
+  color: rgba(255, 255, 255, 0.55) !important;
+  font-size: 0.5625rem !important;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.3rem;
+}
+.fp-equiv-col__total {
+  font-family: var(--serif);
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  color: var(--white);
+  margin: 0;
+  max-width: none;
+  line-height: 1.25;
+}
+/* Force 1-column list within delineated equiv columns */
+.fp-equiv-col--inc .fp-equiv-list,
+.fp-equiv-col--unc .fp-equiv-list {
+  grid-template-columns: 1fr;
+  padding: 0.875rem;
+  gap: 0.5rem;
+  margin-top: 0;
+}
+
+/* ── Equivalents: pull-quote ─────────────────────────────── */
+.fp-equiv-pullquote {
+  font-family: var(--serif);
+  font-size: 0.9375rem;
+  color: var(--muted);
+  margin-top: 2rem;
+  max-width: none;
+}
+
+/* ── Show Your Work: 3-card grid ─────────────────────────── */
+.fp-work-cards {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+@media (min-width: 700px) {
+  .fp-work-cards { grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+}
+@media (min-width: 960px) {
+  .fp-work-cards { grid-template-columns: 1fr 1fr 1fr; }
+}
+.fp-work-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+.fp-work-card__title {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  color: var(--charcoal);
+  margin: 0 0 1rem;
+  line-height: 1.35;
+}
+.fp-work-card p {
+  font-size: 0.9375rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 0.875rem;
+  max-width: none;
+}
+.fp-work-card p:last-child { margin-bottom: 0; }
+.fp-work-card a { color: var(--moss); }
+.fp-work-card a:hover { color: var(--warm); }
+.fp-work-card .fp-caveats-list { margin-top: 0; }
+.fp-work-card .fp-table-wrap { margin-top: 0.875rem; }
+
+/* ── Show Your Work: centered closer ────────────────────── */
+.fp-show-work-closer {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--moss);
+  margin-top: 2rem;
+  max-width: none;
+}
+
 /* ---- END FOOTPRINT TRACKER ---- */
 

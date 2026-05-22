@@ -228,7 +228,21 @@
       // Toggle this item
       this.setAttribute('aria-expanded', String(!expanded));
       if (item)  item.classList.toggle('is-open', !expanded);
-      if (panel) panel.style.maxHeight = expanded ? '0' : panel.scrollHeight + 'px';
+      if (panel) {
+        if (expanded) {
+          panel.style.maxHeight = '0';
+        } else {
+          // panel.scrollHeight returns 0 when the element is a CSS grid child
+          // with max-height:0 + overflow:hidden — measure by temporarily removing constraint
+          panel.style.transition = 'none';
+          panel.style.maxHeight = 'none';
+          var h = panel.scrollHeight;
+          panel.style.maxHeight = '0';
+          void panel.offsetHeight; // force reflow before re-enabling transition
+          panel.style.transition = '';
+          panel.style.maxHeight = h + 'px';
+        }
+      }
     });
   });
 })();
