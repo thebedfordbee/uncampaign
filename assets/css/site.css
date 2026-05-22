@@ -5108,5 +5108,56 @@ div.issues-hero__visual--static:hover {
   border-top-color: rgba(62, 82, 64, 0.22) !important;
 }
 
+/* Change 2: explicit grid-column for zone headers (removes auto-placement
+   ambiguity; pins each header exactly above its two sub-columns) */
+.cg__cell--bkt.cg__zh { grid-column: 1; }
+.cg__cell--inc.cg__zh { grid-column: 2 / span 2; }
+.cg__cell--unc.cg__zh { grid-column: 4 / span 2; background: var(--moss); }
+
+/* Change 1: carbon cells — two-line treatment (value above, kg CO₂e below) */
+.cg__val--carbon {
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.1rem;
+}
+.cg__val--carbon::after {
+  content: 'kg CO₂e';
+  display: block;
+  font-size: 0.5625rem;
+  color: var(--muted);
+  font-weight: 400;
+  font-family: var(--sans);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  font-variant-numeric: normal;
+}
+.cg__val--carbon.cg__val--zero::after { color: rgba(107, 101, 94, 0.3); }
+.cg__val--carbon.cg__val--unc::after  { color: rgba(62, 82, 64, 0.5); }
+
+/* Change 1: mobile — remove "carbon" suffix, add kg CO₂e via ::after */
+.fp-mobile-card__carbon::after {
+  content: 'kg CO₂e';
+  display: block;
+  font-size: 0.5625rem;
+  color: var(--muted);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  margin-top: 0.1rem;
+  font-variant-numeric: normal;
+}
+.fp-mobile-card__carbon--zero::after { color: rgba(107, 101, 94, 0.3); }
+.fp-mobile-card__carbon--unc::after  { color: rgba(62, 82, 64, 0.6); }
+
+/* Change 1: explanatory caption below the table */
+.cg__co2-note {
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: 1rem;
+  max-width: none;
+}
+
 /* ---- END FOOTPRINT TRACKER ---- */
 
