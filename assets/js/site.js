@@ -199,6 +199,41 @@
 })();
 
 // =============================================
+// FOOTPRINT TRACKER — bucket accordion
+// Parallel to the FAQ accordion above; uses .bucket-item__trigger selectors
+// instead of .faq-item__question. Collapses siblings on open.
+// =============================================
+(function () {
+  'use strict';
+  var triggers = document.querySelectorAll('.bucket-item__trigger');
+  if (!triggers.length) return;
+
+  triggers.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      var panelId  = this.getAttribute('aria-controls');
+      var panel    = document.getElementById(panelId);
+      var item     = this.closest('.bucket-item');
+
+      // Collapse all other open items
+      triggers.forEach(function (other) {
+        if (other === btn) return;
+        other.setAttribute('aria-expanded', 'false');
+        var otherItem = other.closest('.bucket-item');
+        if (otherItem) otherItem.classList.remove('is-open');
+        var otherPanel = document.getElementById(other.getAttribute('aria-controls'));
+        if (otherPanel) otherPanel.style.maxHeight = '0';
+      });
+
+      // Toggle this item
+      this.setAttribute('aria-expanded', String(!expanded));
+      if (item)  item.classList.toggle('is-open', !expanded);
+      if (panel) panel.style.maxHeight = expanded ? '0' : panel.scrollHeight + 'px';
+    });
+  });
+})();
+
+// =============================================
 // BEGIN SUBSCRIBE MODAL
 // Opens a custom email capture modal on any [data-subscribe-trigger] click.
 // Modal DOM is injected by this script; no per-page HTML changes required.

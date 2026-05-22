@@ -70,6 +70,8 @@ Total committed: $13.12 (domain registration only). Cap: $49.99 total.
 - The Bedford Brief (meeting recap podcasts): https://www.donforbedford.com/podcasts
 - Campaign photos: https://www.donforbedford.com/photos
 
+- The Footprint Tracker (campaign spending + environmental footprint comparison, $13.12 vs. $118,021): https://www.donforbedford.com/footprint
+
 ## Social
 - Facebook: https://www.facebook.com/donforbedford
 - Instagram: https://www.instagram.com/donforbedford/
