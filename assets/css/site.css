@@ -4679,14 +4679,14 @@ div.issues-hero__visual--static:hover {
   .fp-tripanel__trigger .bucket-item__icon { transition: none; }
 }
 
-/* Bucket panel: expanded vendor detail */
-.fp-tripanel__bpanel {
-  border-top: 1px dashed var(--border);
-  border-bottom: 1px solid var(--border);
-}
+/* Bucket panel: expanded vendor detail.
+   NO borders on bpanel itself — they add layout height even when
+   max-height:0/overflow:hidden, causing ~12px TOTAL row misalignment. */
+.fp-tripanel__bpanel { }
 .fp-tripanel__panel-inner {
   padding: 0.875rem 1rem 1rem;
   background: rgba(248, 245, 239, 0.7);
+  border-top: 1px dashed var(--border); /* inside overflow:hidden — invisible when collapsed */
 }
 
 /* Bucket panel: non-clickable name rows (AI, Hosting, Total) */
@@ -4756,6 +4756,181 @@ div.issues-hero__visual--static:hover {
 .fp-tripanel__panel--unc .fp-tripanel__cell { border-left-color: rgba(62, 82, 64, 0.1); }
 .fp-tripanel__cell--zero { color: rgba(107, 101, 94, 0.38); font-size: 0.8125rem; }
 .fp-tripanel__cell--unc-val { color: var(--moss); font-weight: 600; }
+
+/* ── Change 1: paragraphs inside fp-intro-body ───────────────
+   Root cause: p { max-width: 68ch } global rule (line 74).
+   Setting max-width on the container div didn't fix the <p> children
+   since they have no class. Fix at the element level instead. ────── */
+.fp-intro-body p { max-width: none; }
+
+/* ── Mobile: hide desktop table, show per-bucket cards ──────── */
+@media (max-width: 699px) {
+  .fp-tripanel-scroll { display: none; }
+}
+.fp-mobile-cards { display: none; }
+@media (max-width: 699px) {
+  .fp-mobile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+}
+.fp-mobile-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background: var(--white);
+}
+.fp-mobile-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: var(--cream);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  text-align: left;
+  transition: background 0.15s;
+}
+.fp-mobile-card__header:hover { background: rgba(123, 140, 121, 0.08); }
+.fp-mobile-card__header:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: -2px;
+}
+.fp-mobile-card__icon {
+  font-style: normal;
+  font-size: 1.25rem;
+  color: var(--sage);
+  flex-shrink: 0;
+  line-height: 1;
+  transition: transform 0.22s ease;
+}
+.fp-mobile-card.is-open .fp-mobile-card__icon { transform: rotate(45deg); }
+@media (prefers-reduced-motion: reduce) {
+  .fp-mobile-card__icon { transition: none; }
+}
+.fp-mobile-card__static-head,
+.fp-mobile-card__total-head {
+  padding: 0.75rem 1rem;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--charcoal);
+}
+.fp-mobile-card--unc-only .fp-mobile-card__static-head {
+  background: rgba(62, 82, 64, 0.06);
+  font-size: 0.8125rem;
+}
+.fp-mobile-card--total { border-color: var(--charcoal); border-width: 2px; }
+.fp-mobile-card--total .fp-mobile-card__total-head {
+  background: var(--charcoal);
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.fp-mobile-card__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.fp-mobile-card__col { padding: 0.75rem; }
+.fp-mobile-card__col--inc {
+  background: rgba(248, 245, 239, 0.9);
+  border-right: 1px solid var(--border);
+}
+.fp-mobile-card__col--unc { background: rgba(62, 82, 64, 0.04); }
+
+.fp-mobile-card__label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(107, 101, 94, 0.65);
+  margin-bottom: 0.4rem;
+  max-width: none;
+}
+.fp-mobile-card__spent {
+  font-family: var(--serif);
+  font-size: clamp(0.875rem, 3.5vw, 1rem);
+  color: var(--charcoal);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+  max-width: none;
+}
+.fp-mobile-card__spent--zero { color: rgba(107, 101, 94, 0.42); }
+.fp-mobile-card__spent--unc { color: var(--moss); font-weight: 600; }
+.fp-mobile-card--total .fp-mobile-card__spent { font-weight: 600; }
+.fp-mobile-card__carbon {
+  font-size: 0.75rem;
+  color: var(--muted);
+  max-width: none;
+  margin: 0;
+}
+.fp-mobile-card__carbon--zero { color: rgba(107, 101, 94, 0.35); }
+.fp-mobile-card__carbon--unc { color: var(--moss); }
+.fp-mobile-card--total .fp-mobile-card__carbon { color: var(--charcoal); }
+
+.fp-mobile-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.38s ease;
+  border-top: 1px dashed var(--border);
+}
+@media (prefers-reduced-motion: reduce) {
+  .fp-mobile-panel { transition: none; }
+}
+.fp-mobile-panel__inner {
+  padding: 0.875rem 1rem 1rem;
+  background: rgba(248, 245, 239, 0.5);
+}
+
+/* ── Methodology cards: reuse .card + additions ──────────────
+   Uses site's existing .cards-grid / .card pattern (line 406).
+   New: card__eyebrow, card__source, per-card accent color. ─── */
+.card__eyebrow {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 0.5rem;
+  max-width: none;
+}
+.card__source {
+  margin-top: auto;
+  padding-top: 0.875rem;
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  color: var(--muted);
+  max-width: none;
+}
+.card__source a { color: var(--moss); font-size: 0.75rem; }
+
+/* Top accent + flex column for equal-height cards */
+.fp-method-card--dollars { border-top: 3px solid var(--sage); padding-bottom: 1.5rem; display: flex; flex-direction: column; }
+.fp-method-card--carbon  { border-top: 3px solid var(--moss); padding-bottom: 1.5rem; display: flex; flex-direction: column; }
+.fp-method-card--caveats { border-top: 3px solid var(--warm); padding-bottom: 1.5rem; display: flex; flex-direction: column; }
+.fp-method-card--dollars .card__body,
+.fp-method-card--carbon .card__body,
+.fp-method-card--caveats .card__body { flex: 1; }
 
 /* ---- END FOOTPRINT TRACKER ---- */
 

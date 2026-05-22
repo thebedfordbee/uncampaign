@@ -248,6 +248,51 @@
 })();
 
 // =============================================
+// FOOTPRINT TRACKER — mobile per-bucket card accordion
+// Separate from the desktop bucket accordion; targets .fp-mobile-card__header
+// buttons and animates .fp-mobile-panel elements (distinct IDs with -mob suffix).
+// =============================================
+(function () {
+  'use strict';
+  var headers = document.querySelectorAll('.fp-mobile-card__header');
+  if (!headers.length) return;
+  headers.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var expanded = this.getAttribute('aria-expanded') === 'true';
+      var panelId  = this.getAttribute('aria-controls');
+      var panel    = document.getElementById(panelId);
+      var card     = this.closest('.fp-mobile-card');
+
+      // Collapse all other open cards
+      headers.forEach(function (other) {
+        if (other === btn) return;
+        other.setAttribute('aria-expanded', 'false');
+        var otherCard = other.closest('.fp-mobile-card');
+        if (otherCard) otherCard.classList.remove('is-open');
+        var otherPanel = document.getElementById(other.getAttribute('aria-controls'));
+        if (otherPanel) otherPanel.style.maxHeight = '0';
+      });
+
+      this.setAttribute('aria-expanded', String(!expanded));
+      if (card) card.classList.toggle('is-open', !expanded);
+      if (panel) {
+        if (expanded) {
+          panel.style.maxHeight = '0';
+        } else {
+          panel.style.transition = 'none';
+          panel.style.maxHeight = 'none';
+          var h = panel.scrollHeight;
+          panel.style.maxHeight = '0';
+          void panel.offsetHeight;
+          panel.style.transition = '';
+          panel.style.maxHeight = h + 'px';
+        }
+      }
+    });
+  });
+})();
+
+// =============================================
 // BEGIN SUBSCRIBE MODAL
 // Opens a custom email capture modal on any [data-subscribe-trigger] click.
 // Modal DOM is injected by this script; no per-page HTML changes required.
