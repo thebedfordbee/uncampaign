@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="Footprint Tracker hero placeholder — campaign materials and AI usage compared visually">
+  <title>Footprint Tracker — Placeholder Image</title>
+
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#F8F5EF"/>
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="266" x2="1200" y2="266" stroke="#E0DBD3" stroke-width="1"/>
+  <line x1="0" y1="533" x2="1200" y2="533" stroke="#E0DBD3" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="800" stroke="#E0DBD3" stroke-width="1"/>
+  <line x1="800" y1="0" x2="800" y2="800" stroke="#E0DBD3" stroke-width="1"/>
+
+  <!-- LEFT PANEL: Incumbent's campaign materials -->
+  <rect x="40" y="60" width="320" height="680" rx="8" fill="#EEE9E1" stroke="#E0DBD3" stroke-width="1"/>
+
+  <!-- Eyebrow -->
+  <text x="200" y="100" font-family="Georgia, 'Times New Roman', serif" font-size="11" fill="#7B8C79" text-anchor="middle" letter-spacing="2">INCUMBENT'S 2021 CAMPAIGN</text>
+
+  <!-- Mailer stack (offset paper pile) -->
+  <rect x="80" y="130" width="180" height="130" rx="3" fill="#E0DBD3"/>
+  <rect x="90" y="120" width="180" height="130" rx="3" fill="#E8E3DA"/>
+  <rect x="100" y="110" width="180" height="130" rx="3" fill="#EDE8DF" stroke="#D8D2C8" stroke-width="1"/>
+  <line x1="120" y1="145" x2="260" y2="145" stroke="#C8C2B8" stroke-width="1.5"/>
+  <line x1="120" y1="160" x2="260" y2="160" stroke="#C8C2B8" stroke-width="1.5"/>
+  <line x1="120" y1="175" x2="220" y2="175" stroke="#C8C2B8" stroke-width="1.5"/>
+  <rect x="120" y="195" width="120" height="36" rx="2" fill="#D8D2C8"/>
+  <text x="200" y="260" font-family="Georgia, serif" font-size="12" fill="#6A655E" text-anchor="middle">~8,000 mailers</text>
+
+  <!-- Lawn signs -->
+  <rect x="90" y="300" width="88" height="60" rx="2" fill="#7B8C79" opacity="0.3"/>
+  <rect x="94" y="304" width="80" height="52" rx="1" fill="#F8F5EF" stroke="#7B8C79" stroke-width="1.5"/>
+  <line x1="134" y1="360" x2="134" y2="410" stroke="#9A948A" stroke-width="2.5"/>
+  <rect x="90" y="320" width="88" height="60" rx="2" fill="#7B8C79" opacity="0.2"/>
+  <rect x="94" y="324" width="80" height="52" rx="1" fill="#F8F5EF" stroke="#7B8C79" stroke-width="1.5"/>
+  <line x1="134" y1="380" x2="134" y2="420" stroke="#9A948A" stroke-width="2.5"/>
+  <text x="200" y="400" font-family="Georgia, serif" font-size="12" fill="#6A655E" text-anchor="middle">hundreds of signs</text>
+
+  <!-- Big dollar number -->
+  <text x="200" y="490" font-family="Georgia, serif" font-size="38" fill="#3E5240" text-anchor="middle" font-weight="bold">$118,021</text>
+  <text x="200" y="515" font-family="Georgia, serif" font-size="12" fill="#7B8C79" text-anchor="middle">total spent · 195 expense records</text>
+
+  <!-- Carbon bar -->
+  <text x="80" y="560" font-family="Georgia, serif" font-size="11" fill="#9A948A">estimated CO₂e</text>
+  <rect x="80" y="570" width="240" height="16" rx="8" fill="#E0DBD3"/>
+  <rect x="80" y="570" width="230" height="16" rx="8" fill="#7B8C79" opacity="0.55"/>
+  <text x="200" y="610" font-family="Georgia, serif" font-size="13" fill="#3E5240" text-anchor="middle">~10,000 kg CO₂e</text>
+
+  <!-- RIGHT PANEL: UNCAMPAIGN -->
+  <rect x="840" y="60" width="320" height="680" rx="8" fill="#EEE9E1" stroke="#E0DBD3" stroke-width="1"/>
+
+  <!-- Eyebrow -->
+  <text x="1000" y="100" font-family="Georgia, serif" font-size="11" fill="#7B8C79" text-anchor="middle" letter-spacing="2">THE UNCAMPAIGN</text>
+
+  <!-- Laptop / AI symbol -->
+  <rect x="890" y="120" width="220" height="150" rx="6" fill="#E0DBD3"/>
+  <rect x="900" y="130" width="200" height="130" rx="4" fill="#F8F5EF"/>
+  <!-- Screen content: tiny bar chart -->
+  <rect x="920" y="180" width="14" height="60" rx="2" fill="#7B8C79" opacity="0.4"/>
+  <rect x="942" y="200" width="14" height="40" rx="2" fill="#7B8C79" opacity="0.3"/>
+  <rect x="964" y="170" width="14" height="70" rx="2" fill="#7B8C79" opacity="0.5"/>
+  <rect x="986" y="210" width="14" height="30" rx="2" fill="#3E5240" opacity="0.7"/>
+  <rect x="1008" y="195" width="14" height="45" rx="2" fill="#3E5240" opacity="0.5"/>
+  <rect x="1030" y="220" width="14" height="20" rx="2" fill="#3E5240" opacity="0.35"/>
+  <!-- Base of laptop -->
+  <rect x="880" y="270" width="240" height="12" rx="6" fill="#D8D2C8"/>
+  <rect x="950" y="282" width="100" height="6" rx="3" fill="#C8C2B8"/>
+
+  <text x="1000" y="330" font-family="Georgia, serif" font-size="12" fill="#6A655E" text-anchor="middle">AI-assisted · human-reviewed</text>
+
+  <!-- No signs -->
+  <text x="1000" y="390" font-family="Georgia, serif" font-size="28" fill="#3E5240" text-anchor="middle">0 signs</text>
+  <text x="1000" y="415" font-family="Georgia, serif" font-size="12" fill="#7B8C79" text-anchor="middle">no mailers · no palm cards</text>
+
+  <!-- Big dollar number -->
+  <text x="1000" y="490" font-family="Georgia, serif" font-size="38" fill="#3E5240" text-anchor="middle" font-weight="bold">$13.12</text>
+  <text x="1000" y="515" font-family="Georgia, serif" font-size="12" fill="#7B8C79" text-anchor="middle">domain registration · total campaign spend</text>
+
+  <!-- Carbon bar -->
+  <text x="880" y="560" font-family="Georgia, serif" font-size="11" fill="#9A948A">estimated CO₂e</text>
+  <rect x="880" y="570" width="240" height="16" rx="8" fill="#E0DBD3"/>
+  <rect x="880" y="570" width="2" height="16" rx="1" fill="#7B8C79" opacity="0.55"/>
+  <text x="1000" y="610" font-family="Georgia, serif" font-size="13" fill="#3E5240" text-anchor="middle">~53 kg CO₂e</text>
+
+  <!-- CENTER: comparison column -->
+  <text x="600" y="100" font-family="Georgia, serif" font-size="11" fill="#9A948A" text-anchor="middle" letter-spacing="2">THE COMPARISON</text>
+
+  <!-- VS divider -->
+  <text x="600" y="400" font-family="Georgia, serif" font-size="42" fill="#E0DBD3" text-anchor="middle" font-style="italic">vs.</text>
+
+  <!-- Ratio callouts -->
+  <rect x="480" y="200" width="240" height="56" rx="6" fill="#3E5240" opacity="0.08"/>
+  <text x="600" y="228" font-family="Georgia, serif" font-size="14" fill="#3E5240" text-anchor="middle">~9,000× more dollars</text>
+  <text x="600" y="248" font-family="Georgia, serif" font-size="12" fill="#7B8C79" text-anchor="middle">$118,021 vs. $13.12</text>
+
+  <rect x="480" y="520" width="240" height="56" rx="6" fill="#3E5240" opacity="0.08"/>
+  <text x="600" y="548" font-family="Georgia, serif" font-size="14" fill="#3E5240" text-anchor="middle">~188× more carbon</text>
+  <text x="600" y="568" font-family="Georgia, serif" font-size="12" fill="#7B8C79" text-anchor="middle">~10,000 kg vs. ~53 kg CO₂e</text>
+
+  <!-- Bottom label -->
+  <line x1="200" y1="760" x2="1000" y2="760" stroke="#E0DBD3" stroke-width="1"/>
+  <text x="600" y="782" font-family="Georgia, serif" font-size="12" fill="#9A948A" text-anchor="middle" font-style="italic">Placeholder — final image will replace this</text>
+</svg>
