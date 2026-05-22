@@ -4964,20 +4964,22 @@ div.issues-hero__visual--static:hover {
 .cg__zh {
   display: flex;
   align-items: center;
-  padding: 0.625rem 1rem;
+  justify-content: center; /* Change 2: center zone headers */
+  padding: 0.75rem 1rem;
   background: var(--charcoal);
   border-bottom: none;
 }
 .cg__cell--inc.cg__zh { grid-column: span 2; }
 .cg__cell--unc.cg__zh { grid-column: span 2; background: var(--moss); }
 .cg__zh-name {
-  font-family: var(--sans);
-  font-size: 0.5625rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.52);
+  font-family: var(--serif);    /* Change 1: serif for authority */
+  font-size: 0.9375rem;          /* Change 1: 15px — matches .card__title scale */
+  font-weight: normal;
+  letter-spacing: 0.01em;
+  text-transform: none;          /* Change 1: no uppercase — these are proper names */
+  color: rgba(255, 255, 255, 0.92);
   max-width: none;
+  text-align: center;
 }
 
 /* Sub-header row (Spent / Carbon) */
@@ -4985,21 +4987,21 @@ div.issues-hero__visual--static:hover {
   padding: 0.5rem 1rem;
   background: var(--cream);
   font-family: var(--sans);
-  font-size: 0.5625rem;
+  font-size: 0.6875rem;  /* Change 3: 11px (up from 9px) */
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  text-align: right;
+  text-align: center; /* Change 2: center sub-column labels */
   color: var(--sage);
   border-bottom: 2px solid var(--border);
 }
-.cg__cell--bkt.cg__sh { text-align: left; }
+.cg__cell--bkt.cg__sh { text-align: center; } /* Change 2: was left, now center */
 .cg__cell--unc.cg__sh { color: var(--moss); }
 .cg__unit {
   display: block;
-  font-size: 0.4375rem;
+  font-size: 0.5625rem; /* Change 3: 9px (up from 7px) — legible unit caption */
   color: var(--muted);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   font-style: normal;
   font-weight: 400;
   text-transform: none;
