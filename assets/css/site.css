@@ -3399,7 +3399,7 @@ div.issues-hero__visual--static:hover {
   font-size: 1rem;
   color: var(--muted);
   line-height: 1.7;
-  max-width: 62ch;
+  max-width: none;
   margin-bottom: 2rem;
 }
 
@@ -4420,15 +4420,16 @@ div.issues-hero__visual--static:hover {
 
 /* ── Section 2: intro body ───────────────────────────────── */
 .fp-intro-body {
-  max-width: 52ch;
+  max-width: none;
   margin-top: 1.25rem;
 }
 
-/* ── Scoreboard box: column layout + new elements ────────── */
+/* ── Scoreboard box: column layout + refined design ─────── */
 .fp-dual-punchline {
   flex-direction: column;
   gap: 0.625rem;
   text-align: center;
+  padding: 3rem 2rem;
 }
 .fp-dual-punchline__title {
   color: rgba(255, 255, 255, 0.5);
@@ -4561,6 +4562,200 @@ div.issues-hero__visual--static:hover {
   margin-top: 2rem;
   max-width: none;
 }
+
+/* ── Scoreboard: accent lines around stats ───────────────── */
+.fp-dual-punchline__stats {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem 0;
+  width: 100%;
+  max-width: 380px;
+  margin-inline: auto;
+}
+.fp-dual-punchline__num {
+  font-size: clamp(2.5rem, 7vw, 4rem);
+}
+
+/* ── Three-panel comparison layout ──────────────────────── */
+.fp-tripanel-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+  margin-top: 2rem;
+}
+.fp-tripanel {
+  display: grid;
+  grid-template-columns: 1.75fr 1fr 1fr;
+  gap: 1.25rem;
+  min-width: 580px;
+  align-items: start;
+}
+
+/* Individual panels */
+.fp-tripanel__panel {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  background: var(--white);
+}
+.fp-tripanel__panel--inc { background: rgba(248, 245, 239, 0.9); }
+.fp-tripanel__panel--unc {
+  background: rgba(62, 82, 64, 0.03);
+  border-color: rgba(62, 82, 64, 0.25);
+}
+
+/* Panel headers */
+.fp-tripanel__head { padding: 0.625rem 1rem; background: var(--charcoal); }
+.fp-tripanel__panel--unc .fp-tripanel__head { background: var(--moss); }
+
+.fp-tripanel__campaign {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.52);
+  margin-bottom: 0.3rem;
+}
+.fp-tripanel__subcols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.fp-tripanel__subcol {
+  font-family: var(--sans);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.38);
+  text-align: right;
+  line-height: 1.4;
+}
+.fp-tripanel__unit {
+  display: block;
+  font-size: 0.4375rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.25);
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Suppress existing bucket-item base styles inside tripanel */
+.fp-tripanel .bucket-item {
+  border-bottom: none;
+  background: transparent;
+}
+.fp-tripanel .bucket-item:nth-child(even) { background: transparent; }
+
+/* Bucket panel: accordion trigger rows */
+.fp-tripanel__trigger {
+  display: flex !important;
+  grid-template-columns: unset !important;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.875rem 1rem;
+  min-height: 52px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  font-family: var(--sans);
+  text-align: left;
+  transition: background 0.15s;
+}
+.fp-tripanel__trigger:hover { background: rgba(123, 140, 121, 0.07); }
+.fp-tripanel__trigger:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: -2px;
+}
+/* Icon rotation on open */
+.bucket-item.is-open .fp-tripanel__trigger .bucket-item__icon { transform: rotate(45deg); }
+@media (prefers-reduced-motion: reduce) {
+  .fp-tripanel__trigger .bucket-item__icon { transition: none; }
+}
+
+/* Bucket panel: expanded vendor detail */
+.fp-tripanel__bpanel {
+  border-top: 1px dashed var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.fp-tripanel__panel-inner {
+  padding: 0.875rem 1rem 1rem;
+  background: rgba(248, 245, 239, 0.7);
+}
+
+/* Bucket panel: non-clickable name rows (AI, Hosting, Total) */
+.fp-tripanel__namerow { border-bottom: 1px solid var(--border); }
+.fp-tripanel__namerow--total {
+  border-top: 2px solid var(--border);
+  border-bottom: none;
+}
+.fp-tripanel__name {
+  display: flex;
+  flex-direction: column;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  min-height: 52px;
+  justify-content: center;
+  max-width: none;
+}
+.fp-tripanel__name-note {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 400;
+  display: block;
+  margin-top: 0.1rem;
+}
+.fp-tripanel__namerow--unc-only .fp-tripanel__name { background: rgba(62, 82, 64, 0.04); }
+.fp-tripanel__namerow--total .fp-tripanel__name {
+  background: var(--cream);
+  font-size: 0.9375rem;
+}
+
+/* Value rows in incumbent + uncampaign panels */
+.fp-tripanel__valrow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  min-height: 52px;
+}
+.fp-tripanel__panel--unc .fp-tripanel__valrow { border-bottom-color: rgba(62, 82, 64, 0.15); }
+.fp-tripanel__valrow:last-child { border-bottom: none; }
+.fp-tripanel__valrow--unc-only { background: rgba(62, 82, 64, 0.04); }
+.fp-tripanel__panel--inc .fp-tripanel__valrow--unc-only { background: rgba(248, 245, 239, 0.6); }
+.fp-tripanel__valrow--total {
+  border-top: 2px solid var(--border) !important;
+  border-bottom: none !important;
+  background: var(--cream);
+}
+.fp-tripanel__panel--unc .fp-tripanel__valrow--total {
+  background: rgba(62, 82, 64, 0.08);
+  border-top-color: rgba(62, 82, 64, 0.25) !important;
+}
+.fp-tripanel__valrow--total .fp-tripanel__cell { font-size: 0.9375rem; }
+
+/* Value cells */
+.fp-tripanel__cell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  color: var(--charcoal);
+  font-variant-numeric: tabular-nums;
+  border-left: 1px solid rgba(224, 219, 211, 0.55);
+}
+.fp-tripanel__cell:first-child { border-left: none; }
+.fp-tripanel__panel--unc .fp-tripanel__cell { border-left-color: rgba(62, 82, 64, 0.1); }
+.fp-tripanel__cell--zero { color: rgba(107, 101, 94, 0.38); font-size: 0.8125rem; }
+.fp-tripanel__cell--unc-val { color: var(--moss); font-weight: 600; }
 
 /* ---- END FOOTPRINT TRACKER ---- */
 

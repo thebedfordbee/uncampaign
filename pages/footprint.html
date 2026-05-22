@@ -176,7 +176,7 @@
 
         <div class="issues-hero__copy-top">
           <p class="eyebrow">The Footprint Tracker</p>
-          <h1 id="fp-title">What Does This Campaign Actually <em class="fp-em">Cost</em>?</h1>
+          <h1 id="fp-title">The <em class="fp-em">Costs</em> of Campaigning</h1>
         </div>
 
         <!-- Hero image — matches recaps/rules pattern exactly; lightbox handled by site.js -->
@@ -234,192 +234,180 @@
           195 expense records from the incumbent&#8217;s 2021 public filings, organized into six buckets. Click any row to expand the top vendors.
         </p>
 
-        <!-- Master comparison table — scrollable wrapper + div-based rows for accordion support -->
-        <div class="fp-master-scroll" role="region" aria-label="Campaign comparison table — scroll horizontally on small screens" tabindex="0">
-        <div class="fp-master" role="table" aria-label="Side-by-side campaign comparison: dollars and carbon footprint">
+        <!-- Three-panel comparison: Bucket | Incumbent | UNCAMPAIGN — horizontal scroll on mobile -->
+        <div class="fp-tripanel-scroll" role="region" aria-label="Campaign comparison — scroll horizontally on small screens" tabindex="0">
+          <div class="fp-tripanel">
 
-          <!-- Column group headers -->
-          <div class="fp-master__colgroups" aria-hidden="true">
-            <div class="fp-master__cg-bucket">Bucket</div>
-            <div class="fp-master__cg-incumbent">Incumbent&#8217;s 2021 Campaign</div>
-            <div class="fp-master__cg-unc">The UNCAMPAIGN</div>
-          </div>
-
-          <!-- Sub-headers -->
-          <div class="fp-master__head" role="row" aria-hidden="true">
-            <span class="fp-master__th fp-master__th--bucket"></span>
-            <span class="fp-master__th">Dollars</span>
-            <span class="fp-master__th">kg&nbsp;CO<sub>2</sub>e</span>
-            <span class="fp-master__th fp-master__th--unc">Dollars</span>
-            <span class="fp-master__th fp-master__th--unc">kg&nbsp;CO<sub>2</sub>e</span>
-          </div>
-
-          <!-- Row 1: Printing & Mailers -->
-          <div class="bucket-item fp-master__row" role="row">
-            <button class="bucket-item__trigger fp-master__trigger" aria-expanded="false" aria-controls="bm-printing" id="bm-printing-btn">
-              <span class="bucket-item__name">Printing &amp; Mailers</span>
-              <i class="bucket-item__icon" aria-hidden="true">+</i>
-            </button>
-            <span class="fp-master__cell" role="cell">$37,676</span>
-            <span class="fp-master__cell" role="cell">1,884</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">$0</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">0</span>
-            <div class="bucket-item__panel fp-master__panel" id="bm-printing" role="region" aria-labelledby="bm-printing-btn">
-              <div class="bucket-item__panel-inner fp-master__panel-inner">
-                <p class="bucket-item__panel-note">Top vendors in the incumbent&#8217;s 2021 filings:</p>
-                <ul class="bucket-item__vendor-list" role="list">
-                  <li>Minuteman Press &#8212; $18,576</li>
-                  <li>Rose Press &#8212; $9,015</li>
-                  <li>USPS postage &#8212; $3,260</li>
-                  <li>Bedford Dems printing transfers (multiple entries)</li>
-                  <li>Staples, GotPrint, Fridgedoor magnets</li>
-                </ul>
+            <!-- ── Panel 1: Spending Buckets ── -->
+            <div class="fp-tripanel__panel fp-tripanel__panel--bucket">
+              <div class="fp-tripanel__head" aria-hidden="true">
+                <span class="fp-tripanel__campaign">Spending Bucket</span>
+                <div class="fp-tripanel__subcols">
+                  <span class="fp-tripanel__subcol" style="opacity:0" aria-hidden="true">—</span>
+                  <span class="fp-tripanel__subcol" style="opacity:0" aria-hidden="true">—</span>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Row 2: Donations & Transfers -->
-          <div class="bucket-item fp-master__row" role="row">
-            <button class="bucket-item__trigger fp-master__trigger" aria-expanded="false" aria-controls="bm-donations" id="bm-donations-btn">
-              <span class="bucket-item__name">Donations &amp; Transfers</span>
-              <i class="bucket-item__icon" aria-hidden="true">+</i>
-            </button>
-            <span class="fp-master__cell" role="cell">$30,738</span>
-            <span class="fp-master__cell" role="cell">2,459</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">$0</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">0</span>
-            <div class="bucket-item__panel fp-master__panel" id="bm-donations" role="region" aria-labelledby="bm-donations-btn">
-              <div class="bucket-item__panel-inner fp-master__panel-inner">
-                <p class="bucket-item__panel-note">Inter-committee transfers and political donations:</p>
-                <ul class="bucket-item__vendor-list" role="list">
-                  <li>Bedford Dems 2023 &#8212; $10,000</li>
-                  <li>Bedford Dems 2025 &#8212; $5,000</li>
-                  <li>Bedford Democratic Committee &#8212; $4,213</li>
-                  <li>Other Bedford Dems committee variants (multiple entries)</li>
-                  <li>Chris Burdick for Assembly &#8212; $1,200</li>
-                  <li>Smaller transfers to Bowman, Delgado, Harckham, Buchwald campaigns</li>
-                </ul>
+              <div class="bucket-item" role="rowgroup">
+                <button class="bucket-item__trigger fp-tripanel__trigger" aria-expanded="false" aria-controls="bm-printing" id="bm-printing-btn">
+                  <span class="bucket-item__name">Printing &amp; Mailers</span>
+                  <i class="bucket-item__icon" aria-hidden="true">+</i>
+                </button>
+                <div class="bucket-item__panel fp-tripanel__bpanel" id="bm-printing" role="region" aria-labelledby="bm-printing-btn">
+                  <div class="bucket-item__panel-inner fp-tripanel__panel-inner">
+                    <p class="bucket-item__panel-note">Top vendors in the incumbent&#8217;s 2021 filings:</p>
+                    <ul class="bucket-item__vendor-list" role="list">
+                      <li>Minuteman Press &#8212; $18,576</li>
+                      <li>Rose Press &#8212; $9,015</li>
+                      <li>USPS postage &#8212; $3,260</li>
+                      <li>Bedford Dems printing transfers (multiple entries)</li>
+                      <li>Staples, GotPrint, Fridgedoor magnets</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Row 3: Staff & Reimbursements -->
-          <div class="bucket-item fp-master__row" role="row">
-            <button class="bucket-item__trigger fp-master__trigger" aria-expanded="false" aria-controls="bm-staff" id="bm-staff-btn">
-              <span class="bucket-item__name">Staff &amp; Reimbursements</span>
-              <i class="bucket-item__icon" aria-hidden="true">+</i>
-            </button>
-            <span class="fp-master__cell" role="cell">$15,684</span>
-            <span class="fp-master__cell" role="cell">2,353</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">$0</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">0</span>
-            <div class="bucket-item__panel fp-master__panel" id="bm-staff" role="region" aria-labelledby="bm-staff-btn">
-              <div class="bucket-item__panel-inner fp-master__panel-inner">
-                <p class="bucket-item__panel-note">Itemized reimbursements to campaign staff and the candidate, per public filings.</p>
+              <div class="bucket-item" role="rowgroup">
+                <button class="bucket-item__trigger fp-tripanel__trigger" aria-expanded="false" aria-controls="bm-donations" id="bm-donations-btn">
+                  <span class="bucket-item__name">Donations &amp; Transfers</span>
+                  <i class="bucket-item__icon" aria-hidden="true">+</i>
+                </button>
+                <div class="bucket-item__panel fp-tripanel__bpanel" id="bm-donations" role="region" aria-labelledby="bm-donations-btn">
+                  <div class="bucket-item__panel-inner fp-tripanel__panel-inner">
+                    <p class="bucket-item__panel-note">Inter-committee transfers and political donations:</p>
+                    <ul class="bucket-item__vendor-list" role="list">
+                      <li>Bedford Dems 2023 &#8212; $10,000</li>
+                      <li>Bedford Dems 2025 &#8212; $5,000</li>
+                      <li>Bedford Democratic Committee &#8212; $4,213</li>
+                      <li>Other Bedford Dems committee variants (multiple entries)</li>
+                      <li>Chris Burdick for Assembly &#8212; $1,200</li>
+                      <li>Smaller transfers to Bowman, Delgado, Harckham, Buchwald campaigns</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Row 4: Consultants & Professional Services -->
-          <div class="bucket-item fp-master__row" role="row">
-            <button class="bucket-item__trigger fp-master__trigger" aria-expanded="false" aria-controls="bm-consultants" id="bm-consultants-btn">
-              <span class="bucket-item__name">Consultants &amp; Professional Services</span>
-              <i class="bucket-item__icon" aria-hidden="true">+</i>
-            </button>
-            <span class="fp-master__cell" role="cell">$13,724</span>
-            <span class="fp-master__cell" role="cell">1,372</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">$0</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">0</span>
-            <div class="bucket-item__panel fp-master__panel" id="bm-consultants" role="region" aria-labelledby="bm-consultants-btn">
-              <div class="bucket-item__panel-inner fp-master__panel-inner">
-                <p class="bucket-item__panel-note">Consultants, platforms, and professional vendors:</p>
-                <ul class="bucket-item__vendor-list" role="list">
-                  <li>Maria Colaco &#8212; $5,000</li>
-                  <li>Jovan Richards &#8212; $2,000</li>
-                  <li>Good Rebellion &#8212; $1,750</li>
-                  <li>Get Through (voter contact platform) &#8212; $1,673</li>
-                  <li>Amy Drucker Photography, Shiloni Pinto, design vendors (additional entries)</li>
-                </ul>
+              <div class="bucket-item" role="rowgroup">
+                <button class="bucket-item__trigger fp-tripanel__trigger" aria-expanded="false" aria-controls="bm-staff" id="bm-staff-btn">
+                  <span class="bucket-item__name">Staff &amp; Reimbursements</span>
+                  <i class="bucket-item__icon" aria-hidden="true">+</i>
+                </button>
+                <div class="bucket-item__panel fp-tripanel__bpanel" id="bm-staff" role="region" aria-labelledby="bm-staff-btn">
+                  <div class="bucket-item__panel-inner fp-tripanel__panel-inner">
+                    <p class="bucket-item__panel-note">Itemized reimbursements to campaign staff and the candidate, per public filings.</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Row 5: Newspaper & Online Ads -->
-          <div class="bucket-item fp-master__row" role="row">
-            <button class="bucket-item__trigger fp-master__trigger" aria-expanded="false" aria-controls="bm-ads" id="bm-ads-btn">
-              <span class="bucket-item__name">Newspaper &amp; Online Ads</span>
-              <i class="bucket-item__icon" aria-hidden="true">+</i>
-            </button>
-            <span class="fp-master__cell" role="cell">$13,466</span>
-            <span class="fp-master__cell" role="cell">539</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">$0</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">0</span>
-            <div class="bucket-item__panel fp-master__panel" id="bm-ads" role="region" aria-labelledby="bm-ads-btn">
-              <div class="bucket-item__panel-inner fp-master__panel-inner">
-                <p class="bucket-item__panel-note">Paid advertising in local press and online:</p>
-                <ul class="bucket-item__vendor-list" role="list">
-                  <li>The Record Review (across name variants) &#8212; $5,725</li>
-                  <li>Halston Media &#8212; $3,850</li>
-                  <li>Kaye Media Partners &#8212; $2,280</li>
-                </ul>
+              <div class="bucket-item" role="rowgroup">
+                <button class="bucket-item__trigger fp-tripanel__trigger" aria-expanded="false" aria-controls="bm-consultants" id="bm-consultants-btn">
+                  <span class="bucket-item__name">Consultants &amp; Professional Services</span>
+                  <i class="bucket-item__icon" aria-hidden="true">+</i>
+                </button>
+                <div class="bucket-item__panel fp-tripanel__bpanel" id="bm-consultants" role="region" aria-labelledby="bm-consultants-btn">
+                  <div class="bucket-item__panel-inner fp-tripanel__panel-inner">
+                    <p class="bucket-item__panel-note">Consultants, platforms, and professional vendors:</p>
+                    <ul class="bucket-item__vendor-list" role="list">
+                      <li>Maria Colaco &#8212; $5,000</li>
+                      <li>Jovan Richards &#8212; $2,000</li>
+                      <li>Good Rebellion &#8212; $1,750</li>
+                      <li>Get Through (voter contact platform) &#8212; $1,673</li>
+                      <li>Amy Drucker Photography, Shiloni Pinto, design vendors (additional entries)</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Row 6: Events, Software & Operations -->
-          <div class="bucket-item fp-master__row" role="row">
-            <button class="bucket-item__trigger fp-master__trigger" aria-expanded="false" aria-controls="bm-events" id="bm-events-btn">
-              <span class="bucket-item__name">Events, Software &amp; Operations</span>
-              <i class="bucket-item__icon" aria-hidden="true">+</i>
-            </button>
-            <span class="fp-master__cell" role="cell">$6,733</span>
-            <span class="fp-master__cell" role="cell">1,347</span>
-            <span class="fp-master__cell fp-master__cell--unc-val" role="cell">$13.12</span>
-            <span class="fp-master__cell fp-master__cell--unc-val" role="cell">8</span>
-            <div class="bucket-item__panel fp-master__panel" id="bm-events" role="region" aria-labelledby="bm-events-btn">
-              <div class="bucket-item__panel-inner fp-master__panel-inner">
-                <p class="bucket-item__panel-note">Incumbent&#8217;s 2021 events, digital tools, and platform fees:</p>
-                <ul class="bucket-item__vendor-list" role="list">
-                  <li>Wix website &#8212; $1,519</li>
-                  <li>Katonah Museum of Art (venue) &#8212; $1,018</li>
-                  <li>Balducci&#8217;s, Whole Foods, Farmer &amp; the Fish (event catering)</li>
-                  <li>NY League of Conservation Voters</li>
-                  <li>Act Blue platform fees</li>
-                </ul>
-                <p class="bucket-item__panel-note" style="margin-top:0.75rem;">UNCAMPAIGN: domain registration ($13.12) &#8212; the campaign&#8217;s only expenditure to date.</p>
+              <div class="bucket-item" role="rowgroup">
+                <button class="bucket-item__trigger fp-tripanel__trigger" aria-expanded="false" aria-controls="bm-ads" id="bm-ads-btn">
+                  <span class="bucket-item__name">Newspaper &amp; Online Ads</span>
+                  <i class="bucket-item__icon" aria-hidden="true">+</i>
+                </button>
+                <div class="bucket-item__panel fp-tripanel__bpanel" id="bm-ads" role="region" aria-labelledby="bm-ads-btn">
+                  <div class="bucket-item__panel-inner fp-tripanel__panel-inner">
+                    <p class="bucket-item__panel-note">Paid advertising in local press and online:</p>
+                    <ul class="bucket-item__vendor-list" role="list">
+                      <li>The Record Review (across name variants) &#8212; $5,725</li>
+                      <li>Halston Media &#8212; $3,850</li>
+                      <li>Kaye Media Partners &#8212; $2,280</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <!-- Row 7: AI Usage (UNCAMPAIGN only) -->
-          <div class="fp-master__row fp-master__row--unc-only" role="row">
-            <span class="fp-master__name-cell">AI Usage <span class="fp-master__name-note">(Claude, drafting, agents)</span></span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">$0</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">0</span>
-            <span class="fp-master__cell fp-master__cell--unc-val" role="cell">$0</span>
-            <span class="fp-master__cell fp-master__cell--unc-val" role="cell">~35</span>
-          </div>
+              <div class="bucket-item" role="rowgroup">
+                <button class="bucket-item__trigger fp-tripanel__trigger" aria-expanded="false" aria-controls="bm-events" id="bm-events-btn">
+                  <span class="bucket-item__name">Events, Software &amp; Operations</span>
+                  <i class="bucket-item__icon" aria-hidden="true">+</i>
+                </button>
+                <div class="bucket-item__panel fp-tripanel__bpanel" id="bm-events" role="region" aria-labelledby="bm-events-btn">
+                  <div class="bucket-item__panel-inner fp-tripanel__panel-inner">
+                    <p class="bucket-item__panel-note">Incumbent&#8217;s 2021 events, digital tools, and platform fees:</p>
+                    <ul class="bucket-item__vendor-list" role="list">
+                      <li>Wix website &#8212; $1,519</li>
+                      <li>Katonah Museum of Art (venue) &#8212; $1,018</li>
+                      <li>Balducci&#8217;s, Whole Foods, Farmer &amp; the Fish (event catering)</li>
+                      <li>NY League of Conservation Voters</li>
+                      <li>Act Blue platform fees</li>
+                    </ul>
+                    <p class="bucket-item__panel-note" style="margin-top:0.75rem;">UNCAMPAIGN: domain registration ($13.12) &#8212; the campaign&#8217;s only expenditure to date.</p>
+                  </div>
+                </div>
+              </div>
 
-          <!-- Row 8: Website Hosting (UNCAMPAIGN only) -->
-          <div class="fp-master__row fp-master__row--unc-only" role="row">
-            <span class="fp-master__name-cell">Website Hosting <span class="fp-master__name-note">(Cloudflare Pages)</span></span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">$0</span>
-            <span class="fp-master__cell fp-master__cell--zero" role="cell">0</span>
-            <span class="fp-master__cell fp-master__cell--unc-val" role="cell">$0</span>
-            <span class="fp-master__cell fp-master__cell--unc-val" role="cell">~10</span>
-          </div>
+              <div class="fp-tripanel__namerow fp-tripanel__namerow--unc-only" role="row">
+                <span class="fp-tripanel__name">AI Usage <span class="fp-tripanel__name-note">(Claude, drafting, agents)</span></span>
+              </div>
+              <div class="fp-tripanel__namerow fp-tripanel__namerow--unc-only" role="row">
+                <span class="fp-tripanel__name">Website Hosting <span class="fp-tripanel__name-note">(Cloudflare Pages)</span></span>
+              </div>
+              <div class="fp-tripanel__namerow fp-tripanel__namerow--total" role="row">
+                <span class="fp-tripanel__name"><strong>Total</strong></span>
+              </div>
+            </div><!-- /.fp-tripanel__panel--bucket -->
 
-          <!-- Total row -->
-          <div class="fp-master__row fp-master__row--total" role="row" aria-label="Totals">
-            <span class="fp-master__name-cell"><strong>Total</strong></span>
-            <span class="fp-master__cell" role="cell"><strong>$118,021</strong></span>
-            <span class="fp-master__cell" role="cell"><strong>~9,954</strong></span>
-            <span class="fp-master__cell fp-master__cell--unc-val" role="cell"><strong>$13.12</strong></span>
-            <span class="fp-master__cell fp-master__cell--unc-val" role="cell"><strong>~53</strong></span>
-          </div>
+            <!-- ── Panel 2: Incumbent's 2021 Campaign ── -->
+            <div class="fp-tripanel__panel fp-tripanel__panel--inc" role="table" aria-label="Incumbent's 2021 campaign costs">
+              <div class="fp-tripanel__head" aria-hidden="true">
+                <span class="fp-tripanel__campaign">Incumbent&#8217;s 2021 Campaign</span>
+                <div class="fp-tripanel__subcols">
+                  <span class="fp-tripanel__subcol">Spent</span>
+                  <span class="fp-tripanel__subcol">Carbon<small class="fp-tripanel__unit">kg CO&#x2082;e</small></span>
+                </div>
+              </div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell" role="cell">$37,676</span><span class="fp-tripanel__cell" role="cell">1,884</span></div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell" role="cell">$30,738</span><span class="fp-tripanel__cell" role="cell">2,459</span></div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell" role="cell">$15,684</span><span class="fp-tripanel__cell" role="cell">2,353</span></div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell" role="cell">$13,724</span><span class="fp-tripanel__cell" role="cell">1,372</span></div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell" role="cell">$13,466</span><span class="fp-tripanel__cell" role="cell">539</span></div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell" role="cell">$6,733</span><span class="fp-tripanel__cell" role="cell">1,347</span></div>
+              <div class="fp-tripanel__valrow fp-tripanel__valrow--unc-only" role="row"><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">$0</span><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">0</span></div>
+              <div class="fp-tripanel__valrow fp-tripanel__valrow--unc-only" role="row"><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">$0</span><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">0</span></div>
+              <div class="fp-tripanel__valrow fp-tripanel__valrow--total" role="row"><span class="fp-tripanel__cell" role="cell"><strong>$118,021</strong></span><span class="fp-tripanel__cell" role="cell"><strong>~9,954</strong></span></div>
+            </div><!-- /.fp-tripanel__panel--inc -->
 
-        </div><!-- /.fp-master -->
-        </div><!-- /.fp-master-scroll -->
+            <!-- ── Panel 3: The UNCAMPAIGN ── -->
+            <div class="fp-tripanel__panel fp-tripanel__panel--unc" role="table" aria-label="The UNCAMPAIGN costs">
+              <div class="fp-tripanel__head" aria-hidden="true">
+                <span class="fp-tripanel__campaign">The UNCAMPAIGN</span>
+                <div class="fp-tripanel__subcols">
+                  <span class="fp-tripanel__subcol">Spent</span>
+                  <span class="fp-tripanel__subcol">Carbon<small class="fp-tripanel__unit">kg CO&#x2082;e</small></span>
+                </div>
+              </div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">$0</span><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">0</span></div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">$0</span><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">0</span></div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">$0</span><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">0</span></div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">$0</span><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">0</span></div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">$0</span><span class="fp-tripanel__cell fp-tripanel__cell--zero" role="cell">0</span></div>
+              <div class="fp-tripanel__valrow" role="row"><span class="fp-tripanel__cell fp-tripanel__cell--unc-val" role="cell">$13.12</span><span class="fp-tripanel__cell fp-tripanel__cell--unc-val" role="cell">8</span></div>
+              <div class="fp-tripanel__valrow fp-tripanel__valrow--unc-only" role="row"><span class="fp-tripanel__cell fp-tripanel__cell--unc-val" role="cell">$0</span><span class="fp-tripanel__cell fp-tripanel__cell--unc-val" role="cell">~35</span></div>
+              <div class="fp-tripanel__valrow fp-tripanel__valrow--unc-only" role="row"><span class="fp-tripanel__cell fp-tripanel__cell--unc-val" role="cell">$0</span><span class="fp-tripanel__cell fp-tripanel__cell--unc-val" role="cell">~10</span></div>
+              <div class="fp-tripanel__valrow fp-tripanel__valrow--total" role="row"><span class="fp-tripanel__cell fp-tripanel__cell--unc-val" role="cell"><strong>$13.12</strong></span><span class="fp-tripanel__cell fp-tripanel__cell--unc-val" role="cell"><strong>~53</strong></span></div>
+            </div><!-- /.fp-tripanel__panel--unc -->
+
+          </div><!-- /.fp-tripanel -->
+        </div><!-- /.fp-tripanel-scroll -->
 
         <!-- Scoreboard -->
         <div class="fp-dual-punchline" aria-label="The UNCAMPAIGN by comparison: 188 times less carbon, 9,000 times less spending">
@@ -518,6 +506,7 @@
       <div class="container">
         <p class="eyebrow">Methodology</p>
         <h2 id="fp-method-hl">Show Your Work</h2>
+        <p class="fp-section-intro">The figures on this page come from public filings and published emission-factor data. Sources are cited below &#8212; the math is open to anyone who wants to check it.</p>
 
         <div class="fp-work-cards">
 
