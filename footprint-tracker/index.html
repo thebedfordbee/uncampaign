@@ -6,7 +6,7 @@
 
   <!-- Primary meta -->
   <title>The Bedford Campaign Footprint Tracker | Don Scott for Bedford</title>
-  <meta name="description" content="AI uses resources. Traditional campaigns do too. Don Scott's UNCAMPAIGN compares campaign tradeoffs honestly at Bedford scale — mailers, signs, spending, and AI use side by side.">
+  <meta name="description" content="AI uses real resources. Traditional campaigns do too. Don Scott's UNCAMPAIGN compares the tradeoffs honestly — spending, printed materials, signs, and AI use — across multiple office levels.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.donforbedford.com/footprint-tracker/">
 
@@ -50,10 +50,10 @@
         "@id": "https://www.donforbedford.com/footprint-tracker/#webpage",
         "url": "https://www.donforbedford.com/footprint-tracker/",
         "name": "The Bedford Campaign Footprint Tracker | Don Scott for Bedford",
-        "description": "A public comparison of campaign resource use between a typical Bedford Town Supervisor campaign and Don Scott's UNCAMPAIGN, including an interactive calculator for campaign materials.",
+        "description": "A public comparison of campaign resource use — spending, printed materials, signs, infrastructure, and AI — between typical campaigns at various office levels and Don Scott's UNCAMPAIGN.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
         "about": { "@id": "https://www.donforbedford.com/#don-scott" },
-        "keywords": "Bedford campaign, AI transparency, campaign spending, campaign footprint, UNCAMPAIGN, Don Scott, Bedford Town Supervisor, campaign materials, local campaign comparison, campaign calculator"
+        "keywords": "Bedford campaign, AI transparency, campaign spending, campaign footprint, UNCAMPAIGN, Don Scott, Bedford Town Supervisor, campaign materials comparison, campaign resource index"
       },
       {
         "@type": "BreadcrumbList",
@@ -74,51 +74,6 @@
           "addressRegion": "NY",
           "addressCountry": "US"
         }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Does AI use energy and natural resources?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. AI models require computing power, which requires electricity, which has an environmental cost. The UNCAMPAIGN acknowledges this openly. The relevant question for a local campaign is how that cost compares to the physical footprint of traditional campaign materials — mailers, signs, palm cards, and driving."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How much does a typical Bedford Town Supervisor campaign spend?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Based on prior Bedford supervisor elections, the average amount raised is approximately $15,750. This is an estimate based on available public data and should not be treated as a precise certified average."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is the UNCAMPAIGN's spending target?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Don Scott's UNCAMPAIGN targets spending of $49.99 or less for the entire campaign. This is not a stunt. It is a demonstration that meaningful civic participation does not require significant money."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is the Bedford Campaign Footprint Tracker a scientific analysis?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. This is a public estimate meant to make campaign tradeoffs visible. It is not a life-cycle analysis, a carbon accounting, or a certified audit. The methodology section explains all assumptions in plain language."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How does Don Scott use AI in this campaign?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "AI assists with drafting, organizing, coding, calculating, and summarizing. Don Scott reviews and is responsible for all final public statements, campaign positions, and decisions. AI use is disclosed openly and documented on the AI Transparency page."
-            }
-          }
-        ]
       }
     ]
   }
@@ -138,504 +93,293 @@
   <link rel="stylesheet" href="../assets/css/site.css">
 
   <style>
-    /* =============================================
+    /* ================================================
        FOOTPRINT TRACKER — page-specific styles
-       ============================================= */
+       ================================================ */
 
-    /* Hero: stats card in image slot */
-    .ft-hero-stats {
-      grid-area: img;
-      align-self: center;
-      background: rgba(255, 255, 255, 0.09);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 8px;
-      overflow: hidden;
-      width: 100%;
-    }
-
-    .ft-hero-stats__col {
-      padding: 1.125rem 1.375rem;
-    }
-    .ft-hero-stats__col + .ft-hero-stats__col {
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .ft-hero-stats__label {
-      font-family: var(--sans);
-      font-size: 0.5rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.42);
-      margin: 0 0 0.75rem;
-      max-width: none;
-    }
-
-    .ft-hero-row {
+    /* ── Campaign type tab selector ─────────────────── */
+    .ft-tabs {
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 0.75rem;
-      padding-block: 0.375rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      gap: 0.375rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 2px; /* prevent clipping focus ring */
+      margin-bottom: 2rem;
     }
-    .ft-hero-row:last-child { border-bottom: none; }
+    .ft-tabs::-webkit-scrollbar { display: none; }
 
-    .ft-hero-row__key {
-      font-size: 0.8125rem;
-      color: rgba(255, 255, 255, 0.58);
-      max-width: none;
-    }
-    .ft-hero-row__val {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.9);
+    .ft-tab {
       flex-shrink: 0;
-      max-width: none;
-      font-variant-numeric: tabular-nums;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.4375rem 1rem;
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      min-height: 36px;
+      line-height: 1.2;
     }
-    .ft-hero-row__val--green { color: #a8c8a0; }
+    .ft-tab:hover { border-color: var(--sage); color: var(--charcoal); }
+    .ft-tab.is-active {
+      background: var(--moss);
+      border-color: var(--moss);
+      color: var(--white);
+      font-weight: 600;
+    }
+    .ft-tab:focus-visible {
+      outline: 2px solid var(--moss);
+      outline-offset: 2px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ft-tab { transition: none; }
+    }
 
-    /* ── Dashboard: side-by-side comparison ── */
-    .ft-compare-grid {
+    /* ── Comparison cards ───────────────────────────── */
+    .ft-cards {
       display: grid;
       gap: 1rem;
-      margin-top: 2.5rem;
     }
     @media (min-width: 640px) {
-      .ft-compare-grid { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+      .ft-cards { grid-template-columns: 1fr 1fr; }
     }
 
-    .ft-compare-col {
+    .ft-card {
       background: var(--white);
       border: 1px solid var(--border);
       border-radius: 6px;
       overflow: hidden;
       box-shadow: var(--shadow-sm);
     }
-    .ft-compare-col--unc { border-color: var(--sage); }
+    .ft-card--unc {
+      border-color: var(--sage);
+    }
 
-    .ft-compare-col__header {
-      padding: 0.875rem 1.25rem;
-      background: var(--cream);
+    .ft-card__header {
+      padding: 0.875rem 1.25rem 0.75rem;
+      background: rgba(0, 0, 0, 0.018);
       border-bottom: 1px solid var(--border);
     }
-    .ft-compare-col--unc .ft-compare-col__header {
+    .ft-card--unc .ft-card__header {
       background: var(--moss);
       border-bottom-color: rgba(255, 255, 255, 0.12);
     }
 
-    .ft-compare-col__eyebrow {
+    .ft-card__eyebrow {
       font-family: var(--sans);
-      font-size: 0.5rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--sage);
-      margin: 0 0 0.25rem;
-      max-width: none;
-    }
-    .ft-compare-col--unc .ft-compare-col__eyebrow { color: rgba(255, 255, 255, 0.5); }
-
-    .ft-compare-col__title {
-      font-family: var(--serif);
-      font-size: 0.9375rem;
-      color: var(--charcoal);
-      margin: 0;
-      line-height: 1.3;
-    }
-    .ft-compare-col--unc .ft-compare-col__title { color: var(--white); }
-
-    .ft-compare-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.625rem 1.25rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-    }
-    .ft-compare-row:last-child { border-bottom: none; }
-
-    .ft-compare-row__label {
-      font-size: 0.8125rem;
-      color: var(--muted);
-      max-width: none;
-    }
-    .ft-compare-row__value {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--charcoal);
-      flex-shrink: 0;
-      max-width: none;
-      font-variant-numeric: tabular-nums;
-      text-align: right;
-    }
-    .ft-compare-row__value--zero { color: var(--sage); }
-
-    /* ── Bar comparison section ── */
-    .ft-bar-section { margin-top: 3rem; }
-    .ft-bar-section__intro {
-      font-size: 1rem;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 62ch;
-      margin-bottom: 2rem;
-    }
-
-    .ft-bar-rows { display: flex; flex-direction: column; gap: 1.625rem; }
-
-    .ft-bar-item__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 0.5rem;
-      margin-bottom: 0.4rem;
-    }
-    .ft-bar-item__name {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--charcoal);
-      max-width: none;
-    }
-    .ft-bar-item__annotation {
-      font-size: 0.75rem;
-      color: var(--muted);
-      flex-shrink: 0;
-      max-width: none;
-    }
-
-    .ft-bar-wrap { display: flex; flex-direction: column; gap: 0.3rem; }
-
-    .ft-bar-track {
-      height: 10px;
-      background: var(--border);
-      border-radius: 5px;
-      overflow: hidden;
-    }
-    .ft-bar-fill {
-      height: 100%;
-      border-radius: 5px;
-    }
-    .ft-bar-fill--typical { background: #b8b0a6; }
-    .ft-bar-fill--unc     { background: var(--sage); }
-
-    .ft-bar-legend {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.6875rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
-    }
-    .ft-bar-legend span:first-child { color: #968e85; }
-    .ft-bar-legend span:last-child  { color: var(--sage); }
-
-    /* ── Calculator ── */
-    .ft-calc-layout {
-      display: grid;
-      gap: 2.5rem;
-      align-items: start;
-    }
-    @media (min-width: 768px) {
-      .ft-calc-layout { grid-template-columns: 1fr 300px; gap: 3.5rem; }
-    }
-    @media (min-width: 960px) {
-      .ft-calc-layout { grid-template-columns: 1fr 320px; }
-    }
-
-    .ft-sliders { display: flex; flex-direction: column; gap: 1.875rem; }
-
-    .ft-slider-group { display: flex; flex-direction: column; gap: 0.4rem; }
-
-    .ft-slider-group label {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--charcoal);
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 0.5rem;
-      cursor: default;
-      max-width: none;
-    }
-
-    .ft-slider-val {
-      font-family: var(--sans);
-      font-size: 0.875rem;
-      font-weight: 700;
-      color: var(--moss);
-      flex-shrink: 0;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .ft-slider-desc {
-      font-size: 0.8rem;
-      color: var(--muted);
-      max-width: none;
-      line-height: 1.5;
-    }
-
-    input[type="range"].ft-range {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 100%;
-      height: 6px;
-      border-radius: 3px;
-      background: var(--border);
-      outline: none;
-      cursor: pointer;
-      accent-color: var(--moss);
-      margin-top: 0.375rem;
-    }
-    input[type="range"].ft-range::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--moss);
-      cursor: pointer;
-      border: 2px solid var(--white);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
-      transition: transform 0.15s;
-    }
-    input[type="range"].ft-range::-webkit-slider-thumb:hover { transform: scale(1.15); }
-    input[type="range"].ft-range::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--moss);
-      cursor: pointer;
-      border: 2px solid var(--white);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
-    }
-    input[type="range"].ft-range:focus-visible {
-      outline: 2px solid var(--moss);
-      outline-offset: 3px;
-      border-radius: 3px;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      input[type="range"].ft-range::-webkit-slider-thumb { transition: none; }
-    }
-
-    /* Result panel */
-    .ft-result-panel {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.625rem 1.5rem;
-      box-shadow: var(--shadow-sm);
-    }
-    @media (min-width: 768px) {
-      .ft-result-panel { position: sticky; top: 76px; }
-    }
-
-    .ft-result-eyebrow {
-      font-family: var(--sans);
-      font-size: 0.5rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--sage);
-      margin-bottom: 1rem;
-      display: block;
-      max-width: none;
-    }
-
-    .ft-result-big {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    .ft-result-big__val {
-      font-family: var(--serif);
-      font-size: clamp(2.25rem, 7vw, 3rem);
-      color: var(--charcoal);
-      display: block;
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-    .ft-result-big__label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--muted);
-      display: block;
-    }
-
-    .ft-result-bars { margin-bottom: 1.25rem; }
-
-    .ft-result-bar { margin-bottom: 0.875rem; }
-    .ft-result-bar:last-child { margin-bottom: 0; }
-
-    .ft-result-bar__header {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 0.3rem;
-      max-width: none;
-    }
-    .ft-result-bar__track {
-      height: 8px;
-      background: var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-    .ft-result-bar__fill {
-      height: 100%;
-      border-radius: 4px;
-      transition: width 0.35s ease;
-    }
-    .ft-result-bar__fill--custom { background: #b8b0a6; }
-    .ft-result-bar__fill--unc    { background: var(--sage); }
-
-    @media (prefers-reduced-motion: reduce) {
-      .ft-result-bar__fill { transition: none; }
-    }
-
-    .ft-result-note {
-      font-size: 0.8rem;
-      color: var(--muted);
-      line-height: 1.6;
-      border-top: 1px solid var(--border);
-      padding-top: 1rem;
-      margin-top: 1rem;
-      max-width: none;
-    }
-    .ft-result-note strong { color: var(--charcoal); }
-
-    /* ── What we count grid ── */
-    .ft-count-grid {
-      display: grid;
-      gap: 1rem;
-      margin-top: 2rem;
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 540px) { .ft-count-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 900px) { .ft-count-grid { grid-template-columns: repeat(3, 1fr); } }
-
-    .ft-count-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.25rem 1.375rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .ft-count-card__icon {
-      font-size: 1.375rem;
-      margin-bottom: 0.5rem;
-      line-height: 1;
-      display: block;
-    }
-    .ft-count-card__title {
-      font-family: var(--serif);
-      font-size: 0.9375rem;
-      color: var(--charcoal);
-      margin-bottom: 0.375rem;
-    }
-    .ft-count-card__body {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.65;
-      max-width: none;
-    }
-
-    /* ── Not claiming list ── */
-    .ft-not-claiming {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .ft-not-claiming li {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-    .ft-not-claiming__icon {
-      flex-shrink: 0;
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 50%;
-      background: rgba(123, 140, 121, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--sage);
-      margin-top: 0.1rem;
-    }
-    .ft-not-claiming__text {
-      font-size: 0.9375rem;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: none;
-    }
-    .ft-not-claiming__text strong { color: var(--charcoal); }
-
-    /* ── Methodology cards ── */
-    .ft-method-grid {
-      display: grid;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    @media (min-width: 600px) { .ft-method-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 900px) { .ft-method-grid { grid-template-columns: repeat(3, 1fr); } }
-
-    .ft-method-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 1.125rem 1.375rem;
-      box-shadow: var(--shadow-sm);
-    }
-    .ft-method-card__label {
-      font-family: var(--sans);
-      font-size: 0.5rem;
+      font-size: 0.5625rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       font-weight: 700;
       color: var(--sage);
-      margin: 0 0 0.3rem;
+      margin: 0 0 0.2rem;
       max-width: none;
     }
-    .ft-method-card__value {
+    .ft-card--unc .ft-card__eyebrow { color: rgba(255, 255, 255, 0.5); }
+
+    .ft-card__title {
       font-family: var(--serif);
-      font-size: 1.0625rem;
+      font-size: 0.9375rem;
       color: var(--charcoal);
-      margin: 0 0 0.3rem;
+      margin: 0;
       line-height: 1.3;
+      max-width: none;
     }
-    .ft-method-card__note {
+    .ft-card--unc .ft-card__title { color: var(--white); }
+
+    /* Card rows */
+    .ft-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 0.75rem;
+      row-gap: 0.1rem;
+      padding: 0.65rem 1.25rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+      align-items: start;
+    }
+    .ft-row:last-child { border-bottom: none; }
+
+    .ft-row__label {
       font-size: 0.8125rem;
       color: var(--muted);
+      grid-column: 1;
+      grid-row: 1;
+      align-self: start;
+      max-width: none;
+    }
+    .ft-row__value {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--charcoal);
+      grid-column: 2;
+      grid-row: 1;
+      text-align: right;
+      white-space: nowrap;
+      max-width: none;
+    }
+    .ft-row__value--zero { color: var(--sage); }
+    .ft-row__value--high {
+      color: var(--sage);
+    }
+    .ft-row__note {
+      font-size: 0.6875rem;
+      color: rgba(107, 101, 94, 0.75);
+      grid-column: 1 / -1;
+      grid-row: 2;
+      line-height: 1.4;
+      max-width: none;
+    }
+
+    /* Source note beneath card */
+    .ft-source-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.625rem;
+      max-width: none;
+      opacity: 0.75;
+    }
+
+    /* ── Footprint index ────────────────────────────── */
+    .ft-index {
+      margin-top: 2rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem 1.375rem 1.625rem;
+      box-shadow: var(--shadow-sm);
+    }
+    @media (min-width: 640px) {
+      .ft-index { padding: 1.625rem 1.875rem 1.875rem; }
+    }
+
+    .ft-index__header {
+      margin-bottom: 1.375rem;
+    }
+    .ft-index__label {
+      font-family: var(--sans);
+      font-size: 0.5625rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--sage);
+      margin: 0 0 0.25rem;
+      display: block;
+      max-width: none;
+    }
+    .ft-index__headline {
+      font-family: var(--serif);
+      font-size: clamp(1.0625rem, 2.5vw, 1.25rem);
+      color: var(--charcoal);
+      margin: 0;
+      line-height: 1.3;
+    }
+    .ft-index__method {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin: 0.5rem 0 0;
       max-width: none;
       line-height: 1.55;
+    }
+
+    .ft-index__bars {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      margin-bottom: 1.375rem;
+    }
+
+    .ft-index__bar-row {
+      display: grid;
+      grid-template-columns: 8rem 1fr 2.5rem;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    @media (max-width: 479px) {
+      .ft-index__bar-row { grid-template-columns: 6rem 1fr 2.5rem; }
+    }
+
+    .ft-index__bar-label {
+      font-size: 0.8125rem;
+      color: var(--charcoal);
+      font-weight: 500;
+      max-width: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .ft-index__bar-track {
+      height: 12px;
+      background: var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .ft-index__bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.5s ease;
+    }
+    .ft-index__bar-fill--typical { background: #b8b0a6; }
+    .ft-index__bar-fill--unc     { background: var(--sage); }
+    @media (prefers-reduced-motion: reduce) {
+      .ft-index__bar-fill { transition: none; }
+    }
+    .ft-index__bar-score {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+      max-width: none;
+    }
+
+    .ft-index__callout {
+      background: var(--cream);
+      border-left: 3px solid var(--sage);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 0.875rem 1.125rem;
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: none;
       margin: 0;
     }
+    .ft-index__callout strong { color: var(--charcoal); }
 
-    /* ── Closing CTA ── */
-    .ft-closing__headline {
-      font-size: clamp(1.5rem, 4vw, 2.25rem);
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
+    /* ── Honesty caveats — styled as left-bordered list ─ */
+    .ft-caveats {
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      margin-top: 0.25rem;
     }
-    .ft-closing__body {
+    .ft-caveat {
+      font-size: 0.9375rem;
       color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.75;
-      max-width: 58ch;
-      margin-bottom: 2rem;
+      padding-left: 1rem;
+      border-left: 2px solid var(--sage);
+      line-height: 1.6;
+      max-width: none;
     }
+    .ft-caveat strong { color: var(--charcoal); }
 
-    /* ── Subcopy justified blocks ── */
-    .issues-explainer__why p,
-    .ft-bar-section__intro { text-align: justify; hyphens: auto; }
+    /* ── Section spacing — slightly tighter on this page ─ */
+    .section { padding-block: 2.75rem; }
+    @media (min-width: 768px) { .section { padding-block: 4rem; } }
+
+    /* ── Body copy justified in two-col explainer ─────── */
+    .issues-explainer__why p {
+      text-align: justify;
+      hyphens: auto;
+      max-width: none;
+    }
     @media (max-width: 380px) {
-      .issues-explainer__why p,
-      .ft-bar-section__intro { text-align: left; hyphens: none; }
+      .issues-explainer__why p { text-align: left; hyphens: none; }
     }
   </style>
 
@@ -711,53 +455,26 @@
           <h1 id="footprint-title">The Bedford Campaign Footprint Tracker</h1>
         </div>
 
-        <!-- Stats card — occupies image column on desktop, sits between headlines on mobile -->
-        <div class="ft-hero-stats" aria-hidden="true">
-          <div class="ft-hero-stats__col">
-            <p class="ft-hero-stats__label">Typical Bedford Supervisor Campaign</p>
-            <div class="ft-hero-row">
-              <span class="ft-hero-row__key">Avg. funds raised</span>
-              <span class="ft-hero-row__val">~$15,750</span>
-            </div>
-            <div class="ft-hero-row">
-              <span class="ft-hero-row__key">Mailers</span>
-              <span class="ft-hero-row__val">~8,000</span>
-            </div>
-            <div class="ft-hero-row">
-              <span class="ft-hero-row__key">Palm cards</span>
-              <span class="ft-hero-row__val">~3,000</span>
-            </div>
-            <div class="ft-hero-row">
-              <span class="ft-hero-row__key">Lawn signs</span>
-              <span class="ft-hero-row__val">50–100</span>
-            </div>
-          </div>
-          <div class="ft-hero-stats__col">
-            <p class="ft-hero-stats__label">The UNCAMPAIGN</p>
-            <div class="ft-hero-row">
-              <span class="ft-hero-row__key">Spending target</span>
-              <span class="ft-hero-row__val ft-hero-row__val--green">Under $50</span>
-            </div>
-            <div class="ft-hero-row">
-              <span class="ft-hero-row__key">Mailers</span>
-              <span class="ft-hero-row__val ft-hero-row__val--green">0</span>
-            </div>
-            <div class="ft-hero-row">
-              <span class="ft-hero-row__key">Palm cards</span>
-              <span class="ft-hero-row__val ft-hero-row__val--green">0</span>
-            </div>
-            <div class="ft-hero-row">
-              <span class="ft-hero-row__key">Standard lawn signs</span>
-              <span class="ft-hero-row__val ft-hero-row__val--green">0</span>
-            </div>
-          </div>
-        </div>
+        <button
+          type="button"
+          class="issues-hero__visual"
+          aria-label="View expanded image — campaign materials compared"
+          aria-haspopup="dialog"
+        >
+          <img
+            src="../assets/img/lab.png"
+            alt="Campaign materials — printed mailers, signs, and a laptop — arranged as an editorial comparison"
+            width="1536"
+            height="1024"
+            fetchpriority="high"
+            decoding="async"
+          >
+        </button>
 
         <div class="issues-hero__copy-bot">
-          <p class="issues-hero__deck">AI uses real resources. Traditional campaigns do too. So we&#8217;re comparing the tradeoffs honestly, at Bedford scale.</p>
+          <p class="issues-hero__deck">AI uses real resources. Traditional campaigns do too. This page compares the tradeoffs honestly.</p>
           <div class="hero-cta-row">
-            <a href="#dashboard" class="btn btn--hero-primary">Compare the Footprint</a>
-            <a href="#methodology" class="btn btn--hero-primary" style="background:transparent;border-color:rgba(255,255,255,0.38);color:rgba(255,255,255,0.9);">See the Assumptions</a>
+            <a href="#comparison" class="btn btn--hero-primary">Compare the Footprint</a>
           </div>
         </div>
 
@@ -767,686 +484,191 @@
 
   <main id="main-content">
 
-    <!-- 1. WHY THIS EXISTS -->
-    <section class="section section--alt" id="intro" aria-labelledby="intro-headline">
+    <!-- ── SECTION 2: WHY + HONESTY ─────────────────── -->
+    <section class="section section--alt" aria-labelledby="why-headline">
       <div class="container">
         <div class="issues-explainer">
 
           <div class="issues-explainer__why">
             <p class="eyebrow">Why This Exists</p>
-            <h2 id="intro-headline">A Neighbor Asked a Fair Question.</h2>
-            <p>If this campaign uses AI, what does that mean for energy and natural resources? It&#8217;s a fair question, and we&#8217;re not brushing it aside. The honest answer is that AI has a footprint. But so does a traditional local campaign — with its mailers, palm cards, signs, driving, and printing. Rather than defend one side, we built a public comparison.</p>
-            <p>The goal is not to claim AI is costless. The goal is to make the tradeoffs visible, at Bedford scale, using real local assumptions anyone can examine.</p>
+            <h2 id="why-headline">A Neighbor Asked a Fair Question.</h2>
+            <p>If this campaign uses AI, what does that mean for energy and natural resources? It is a fair question. AI has a real footprint. But so does a traditional local campaign — with its mailers, signs, printing, and physical infrastructure. Rather than dismiss the concern, we built a public comparison.</p>
+            <p>This page is the answer. Not defensive. Not evasive. Just transparent.</p>
           </div>
 
           <div class="issues-explainer__offers">
-            <p class="eyebrow">What This Tracker Covers</p>
-            <ul class="explainer-points" role="list">
-              <li><strong>Campaign spending</strong> — current disclosed total vs. historical Bedford average</li>
-              <li><strong>Physical materials</strong> — mailers, palm cards, signs, and printing</li>
-              <li><strong>Local driving</strong> — canvassing and event travel across Bedford&#8217;s 39.3 square miles</li>
-              <li><strong>Digital tools and AI</strong> — openly counted, not hidden</li>
-              <li>An <strong>interactive calculator</strong> to build your own campaign scenario</li>
-            </ul>
+            <p class="eyebrow">Honesty First</p>
+            <div class="ft-caveats" role="list">
+              <p class="ft-caveat" role="listitem"><strong>AI has a real footprint.</strong> AI inference uses electricity. We acknowledge this openly.</p>
+              <p class="ft-caveat" role="listitem"><strong>Traditional campaigns have a real footprint too.</strong> Mailers, palm cards, signs, and driving all consume real resources.</p>
+              <p class="ft-caveat" role="listitem"><strong>This is not a scientific life-cycle analysis.</strong> It is a transparent comparison of campaign inputs — not a certified carbon audit.</p>
+              <p class="ft-caveat" role="listitem"><strong>This is not an attack on traditional campaigns.</strong> What they do is legal and normal. This is a comparison of tradeoffs.</p>
+              <p class="ft-caveat" role="listitem"><strong>This is a public estimate</strong> meant to make campaign tradeoffs visible.</p>
+            </div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- 2. DASHBOARD -->
-    <section class="section" id="dashboard" aria-labelledby="dashboard-headline">
+    <!-- ── SECTION 3: COMPARISON MODULE ─────────────── -->
+    <section class="section" id="comparison" aria-labelledby="comparison-headline">
       <div class="container">
 
         <div class="section-header">
           <p class="eyebrow">Campaign Comparison</p>
-          <h2 id="dashboard-headline">Side by Side, at Bedford Scale.</h2>
-          <p class="section-header__lead section-header__lead--wide">Bedford has about 12,000 registered voters. Prior supervisor elections have raised an average of around $15,750. The UNCAMPAIGN is targeting under $50. Here is what those two campaigns look like side by side.</p>
+          <h2 id="comparison-headline">How Does the UNCAMPAIGN Compare?</h2>
+          <p class="section-header__lead section-header__lead--wide">Select a campaign type to compare against the UNCAMPAIGN. The comparison uses public filing data and reasonable representative estimates. All figures are approximate.</p>
         </div>
 
-        <div class="ft-compare-grid">
+        <!-- Campaign type selector -->
+        <div class="ft-tabs" role="tablist" aria-label="Select campaign type to compare">
+          <button class="ft-tab is-active" role="tab" aria-selected="true" data-campaign="town-supervisor">Town Supervisor</button>
+          <button class="ft-tab" role="tab" aria-selected="false" data-campaign="assembly">State Assembly</button>
+          <button class="ft-tab" role="tab" aria-selected="false" data-campaign="senate">State Senate</button>
+          <button class="ft-tab" role="tab" aria-selected="false" data-campaign="congressional">Congressional</button>
+          <button class="ft-tab" role="tab" aria-selected="false" data-campaign="gubernatorial">Gubernatorial</button>
+        </div>
 
-          <!-- Typical campaign -->
-          <div class="ft-compare-col">
-            <div class="ft-compare-col__header">
-              <p class="ft-compare-col__eyebrow">Historical Average</p>
-              <p class="ft-compare-col__title">Typical Bedford Supervisor Campaign</p>
+        <!-- Side-by-side cards -->
+        <div class="ft-cards">
+
+          <!-- Typical campaign card (updated by JS) -->
+          <div class="ft-card" id="ft-typical-card">
+            <div class="ft-card__header">
+              <p class="ft-card__eyebrow">Typical Campaign</p>
+              <p class="ft-card__title" id="ft-office-label">Bedford Town Supervisor</p>
             </div>
-            <div class="ft-compare-col__body" role="list" aria-label="Typical campaign details">
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Funds raised</span>
-                <span class="ft-compare-row__value">~$15,750</span>
-              </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Mailers</span>
-                <span class="ft-compare-row__value">~8,000</span>
-              </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Palm cards</span>
-                <span class="ft-compare-row__value">~3,000</span>
-              </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Lawn signs</span>
-                <span class="ft-compare-row__value">50–100</span>
-              </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Campaign office</span>
-                <span class="ft-compare-row__value">Not assumed</span>
-              </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Local driving</span>
-                <span class="ft-compare-row__value">Modest, local</span>
-              </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">AI transparency</span>
-                <span class="ft-compare-row__value">Usually N/A</span>
-              </div>
+            <div id="ft-typical-rows">
+              <!-- populated by JS on load -->
             </div>
           </div>
 
-          <!-- UNCAMPAIGN -->
-          <div class="ft-compare-col ft-compare-col--unc">
-            <div class="ft-compare-col__header">
-              <p class="ft-compare-col__eyebrow">The UNCAMPAIGN</p>
-              <p class="ft-compare-col__title">Don Scott for Bedford</p>
+          <!-- UNCAMPAIGN card (static) -->
+          <div class="ft-card ft-card--unc">
+            <div class="ft-card__header">
+              <p class="ft-card__eyebrow">The UNCAMPAIGN</p>
+              <p class="ft-card__title">Don Scott for Bedford</p>
             </div>
-            <div class="ft-compare-col__body" role="list" aria-label="UNCAMPAIGN details">
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Spending target</span>
-                <span class="ft-compare-row__value ft-compare-row__value--zero">Under $50</span>
+            <div>
+              <div class="ft-row">
+                <span class="ft-row__label">Spending target</span>
+                <span class="ft-row__value ft-row__value--zero">Under $50</span>
+                <span class="ft-row__note">Total for the entire campaign</span>
               </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Mailers</span>
-                <span class="ft-compare-row__value ft-compare-row__value--zero">0</span>
+              <div class="ft-row">
+                <span class="ft-row__label">Printed materials</span>
+                <span class="ft-row__value ft-row__value--zero">0</span>
+                <span class="ft-row__note">No mailers, no palm cards</span>
               </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Palm cards</span>
-                <span class="ft-compare-row__value ft-compare-row__value--zero">0</span>
+              <div class="ft-row">
+                <span class="ft-row__label">Lawn signs</span>
+                <span class="ft-row__value ft-row__value--zero">0 standard</span>
+                <span class="ft-row__note">No sign program</span>
               </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Lawn signs</span>
-                <span class="ft-compare-row__value ft-compare-row__value--zero">0 standard</span>
+              <div class="ft-row">
+                <span class="ft-row__label">Paid infrastructure</span>
+                <span class="ft-row__value ft-row__value--zero">None</span>
+                <span class="ft-row__note">No staff, no consultants, no vendors</span>
               </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Campaign office</span>
-                <span class="ft-compare-row__value ft-compare-row__value--zero">0</span>
-              </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">Local driving</span>
-                <span class="ft-compare-row__value ft-compare-row__value--zero">Minimal</span>
-              </div>
-              <div class="ft-compare-row" role="listitem">
-                <span class="ft-compare-row__label">AI transparency</span>
-                <span class="ft-compare-row__value ft-compare-row__value--zero">Openly disclosed</span>
+              <div class="ft-row">
+                <span class="ft-row__label">AI usage</span>
+                <span class="ft-row__value ft-row__value--high">High — openly disclosed</span>
+                <span class="ft-row__note">Human-reviewed; not automated</span>
               </div>
             </div>
           </div>
 
         </div>
 
-        <!-- Bar comparison -->
-        <div class="ft-bar-section">
-          <p class="ft-bar-section__intro">The bars below visualize relative scale. Each pair shows the typical campaign (top, gray) against the UNCAMPAIGN (bottom, green). The UNCAMPAIGN baseline for physical materials is zero — so the comparison is stark, and that is the point.</p>
+        <!-- Source note (updated by JS) -->
+        <p class="ft-source-note" id="ft-source-note">Based on prior Bedford supervisor election data.</p>
 
-          <div class="ft-bar-rows" aria-label="Campaign material comparison bars">
+        <!-- Campaign Footprint Index -->
+        <div class="ft-index" aria-label="Campaign Footprint Index" aria-live="polite" aria-atomic="false">
 
-            <div>
-              <div class="ft-bar-item__header">
-                <span class="ft-bar-item__name">Campaign Spending</span>
-                <span class="ft-bar-item__annotation">Typical: ~$15,750 &nbsp;·&nbsp; UNCAMPAIGN: &lt;$50</span>
-              </div>
-              <div class="ft-bar-wrap">
-                <div class="ft-bar-track" role="img" aria-label="Typical campaign spending: very high">
-                  <div class="ft-bar-fill ft-bar-fill--typical" style="width:95%"></div>
-                </div>
-                <div class="ft-bar-track" role="img" aria-label="UNCAMPAIGN spending: near zero">
-                  <div class="ft-bar-fill ft-bar-fill--unc" style="width:0.3%; min-width:4px"></div>
-                </div>
-              </div>
-              <div class="ft-bar-legend"><span>Typical campaign</span><span>UNCAMPAIGN</span></div>
-            </div>
-
-            <div>
-              <div class="ft-bar-item__header">
-                <span class="ft-bar-item__name">Mailers</span>
-                <span class="ft-bar-item__annotation">Typical: ~8,000 &nbsp;·&nbsp; UNCAMPAIGN: 0</span>
-              </div>
-              <div class="ft-bar-wrap">
-                <div class="ft-bar-track" role="img" aria-label="Typical campaign mailers: high">
-                  <div class="ft-bar-fill ft-bar-fill--typical" style="width:93%"></div>
-                </div>
-                <div class="ft-bar-track" role="img" aria-label="UNCAMPAIGN mailers: zero">
-                  <div class="ft-bar-fill ft-bar-fill--unc" style="width:0%"></div>
-                </div>
-              </div>
-              <div class="ft-bar-legend"><span>Typical campaign</span><span>UNCAMPAIGN</span></div>
-            </div>
-
-            <div>
-              <div class="ft-bar-item__header">
-                <span class="ft-bar-item__name">Palm Cards</span>
-                <span class="ft-bar-item__annotation">Typical: ~3,000 &nbsp;·&nbsp; UNCAMPAIGN: 0</span>
-              </div>
-              <div class="ft-bar-wrap">
-                <div class="ft-bar-track" role="img" aria-label="Typical campaign palm cards: moderate">
-                  <div class="ft-bar-fill ft-bar-fill--typical" style="width:35%"></div>
-                </div>
-                <div class="ft-bar-track" role="img" aria-label="UNCAMPAIGN palm cards: zero">
-                  <div class="ft-bar-fill ft-bar-fill--unc" style="width:0%"></div>
-                </div>
-              </div>
-              <div class="ft-bar-legend"><span>Typical campaign</span><span>UNCAMPAIGN</span></div>
-            </div>
-
-            <div>
-              <div class="ft-bar-item__header">
-                <span class="ft-bar-item__name">Lawn Signs</span>
-                <span class="ft-bar-item__annotation">Typical: 50–100 &nbsp;·&nbsp; UNCAMPAIGN: 0</span>
-              </div>
-              <div class="ft-bar-wrap">
-                <div class="ft-bar-track" role="img" aria-label="Typical campaign lawn signs: moderate">
-                  <div class="ft-bar-fill ft-bar-fill--typical" style="width:40%"></div>
-                </div>
-                <div class="ft-bar-track" role="img" aria-label="UNCAMPAIGN lawn signs: zero">
-                  <div class="ft-bar-fill ft-bar-fill--unc" style="width:0%"></div>
-                </div>
-              </div>
-              <div class="ft-bar-legend"><span>Typical campaign</span><span>UNCAMPAIGN</span></div>
-            </div>
-
+          <div class="ft-index__header">
+            <span class="ft-index__label">Campaign Footprint Index</span>
+            <p class="ft-index__headline">Printed materials: 0 vs. thousands. Signs: 0 vs. dozens to thousands. Spending: under $50 vs. thousands, hundreds of thousands, or millions.</p>
+            <p class="ft-index__method">Weighted relative index: money raised 35%, printed materials 30%, lawn signs 15%, paid infrastructure 10%, AI use 10%. Higher score = more visible campaign inputs. This is an estimate — not a certified environmental audit.</p>
           </div>
+
+          <div class="ft-index__bars">
+            <div class="ft-index__bar-row">
+              <span class="ft-index__bar-label" id="ft-bar-typical-label">Typical campaign</span>
+              <div class="ft-index__bar-track">
+                <div class="ft-index__bar-fill ft-index__bar-fill--typical" id="ft-bar-typical" style="width:22%"></div>
+              </div>
+              <span class="ft-index__bar-score" id="ft-score-typical">22</span>
+            </div>
+            <div class="ft-index__bar-row">
+              <span class="ft-index__bar-label">UNCAMPAIGN</span>
+              <div class="ft-index__bar-track">
+                <div class="ft-index__bar-fill ft-index__bar-fill--unc" id="ft-bar-unc" style="width:2%"></div>
+              </div>
+              <span class="ft-index__bar-score">2</span>
+            </div>
+          </div>
+
+          <p class="ft-index__callout" id="ft-callout">
+            By this index, the UNCAMPAIGN uses approximately <strong>~91% fewer visible campaign inputs</strong> than a typical Bedford Town Supervisor campaign. AI is where the UNCAMPAIGN uses more. Almost everywhere else, it uses less.
+          </p>
+
         </div>
 
       </div>
     </section>
 
-    <!-- 3. BUILD-A-CAMPAIGN CALCULATOR -->
-    <section class="section section--alt" id="calculator" aria-labelledby="calc-headline">
+    <!-- ── SECTION 4: AI TRANSPARENCY (mirrors /pages/recaps) ── -->
+    <section class="section section--alt" aria-labelledby="ai-headline">
       <div class="container">
-
         <div class="section-header">
-          <p class="eyebrow">Interactive Tool</p>
-          <h2 id="calc-headline">Build a Bedford Campaign.</h2>
-          <p class="section-header__lead section-header__lead--wide">Adjust the sliders to model a campaign scenario. The Campaign Materials Index on the right updates in real time. This is not a carbon calculator — it is a relative comparison tool. The UNCAMPAIGN baseline is zero.</p>
+          <p class="eyebrow">How This Was Built</p>
+          <h2 id="ai-headline">This Campaign Shows Its Work</h2>
+          <p class="section-header__lead section-header__lead--wide">
+            The UNCAMPAIGN uses AI openly — not secretly, not as a black box. AI may help draft, organize, code, calculate, or summarize. Don Scott is responsible for final public statements, campaign positions, and decisions. The point is transparency, not pretending technology is magic or cost-free.
+          </p>
         </div>
 
-        <div class="ft-calc-layout">
-
-          <!-- Sliders -->
-          <div class="ft-sliders">
-
-            <div class="ft-slider-group">
-              <label for="sl-mailers">
-                Mailers
-                <span class="ft-slider-val" id="sl-mailers-val">8,000</span>
-              </label>
-              <p class="ft-slider-desc" id="sl-mailers-desc">Printed direct-mail pieces sent to Bedford&#8217;s ~12,000 registered voters</p>
-              <input
-                type="range"
-                id="sl-mailers"
-                class="ft-range"
-                min="0"
-                max="12000"
-                value="8000"
-                step="100"
-                aria-label="Number of mailers"
-                aria-describedby="sl-mailers-desc"
-                aria-valuetext="8,000 mailers"
-              >
-            </div>
-
-            <div class="ft-slider-group">
-              <label for="sl-palmcards">
-                Palm Cards
-                <span class="ft-slider-val" id="sl-palmcards-val">3,000</span>
-              </label>
-              <p class="ft-slider-desc" id="sl-palmcards-desc">Small printed cards distributed at events or during canvassing</p>
-              <input
-                type="range"
-                id="sl-palmcards"
-                class="ft-range"
-                min="0"
-                max="6000"
-                value="3000"
-                step="100"
-                aria-label="Number of palm cards"
-                aria-describedby="sl-palmcards-desc"
-                aria-valuetext="3,000 palm cards"
-              >
-            </div>
-
-            <div class="ft-slider-group">
-              <label for="sl-signs">
-                Lawn Signs
-                <span class="ft-slider-val" id="sl-signs-val">75</span>
-              </label>
-              <p class="ft-slider-desc" id="sl-signs-desc">Corrugated plastic signs with steel stakes, placed across Bedford&#8217;s 39.3 sq mi</p>
-              <input
-                type="range"
-                id="sl-signs"
-                class="ft-range"
-                min="0"
-                max="200"
-                value="75"
-                step="1"
-                aria-label="Number of lawn signs"
-                aria-describedby="sl-signs-desc"
-                aria-valuetext="75 lawn signs"
-              >
-            </div>
-
-            <div class="ft-slider-group">
-              <label for="sl-miles">
-                Local Driving (miles)
-                <span class="ft-slider-val" id="sl-miles-val">75</span>
-              </label>
-              <p class="ft-slider-desc" id="sl-miles-desc">Campaign driving within Bedford — canvassing, events, sign placement</p>
-              <input
-                type="range"
-                id="sl-miles"
-                class="ft-range"
-                min="0"
-                max="300"
-                value="75"
-                step="5"
-                aria-label="Campaign driving in miles"
-                aria-describedby="sl-miles-desc"
-                aria-valuetext="75 miles"
-              >
-            </div>
-
-            <div class="ft-slider-group">
-              <label for="sl-events">
-                Events with Physical Materials
-                <span class="ft-slider-val" id="sl-events-val">2</span>
-              </label>
-              <p class="ft-slider-desc" id="sl-events-desc">Organized events that use printed programs, banners, or other materials</p>
-              <input
-                type="range"
-                id="sl-events"
-                class="ft-range"
-                min="0"
-                max="10"
-                value="2"
-                step="1"
-                aria-label="Number of events with physical materials"
-                aria-describedby="sl-events-desc"
-                aria-valuetext="2 events"
-              >
-            </div>
-
-          </div>
-
-          <!-- Live result panel -->
-          <div
-            class="ft-result-panel"
-            role="region"
-            aria-label="Campaign materials index"
-            aria-live="polite"
-            aria-atomic="false"
-          >
-            <span class="ft-result-eyebrow">Campaign Materials Index</span>
-
-            <div class="ft-result-big">
-              <span class="ft-result-big__val" id="calc-index-val">9,375</span>
-              <span class="ft-result-big__label">Your scenario</span>
-            </div>
-
-            <div class="ft-result-bars">
-              <div class="ft-result-bar">
-                <div class="ft-result-bar__header">
-                  <span>Your Scenario</span>
-                  <span id="calc-pct-custom">64%</span>
-                </div>
-                <div class="ft-result-bar__track">
-                  <div class="ft-result-bar__fill ft-result-bar__fill--custom" id="calc-bar-custom" style="width:64%"></div>
-                </div>
-              </div>
-
-              <div class="ft-result-bar">
-                <div class="ft-result-bar__header">
-                  <span>UNCAMPAIGN Baseline</span>
-                  <span>0</span>
-                </div>
-                <div class="ft-result-bar__track">
-                  <div class="ft-result-bar__fill ft-result-bar__fill--unc" style="width:0%; min-width:4px"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="ft-result-note">
-              <strong>This is a relative index, not an emissions number.</strong> It weights mailers most heavily (largest physical material at scale), then signs, palm cards, driving, and event materials. The UNCAMPAIGN baseline is zero physical materials.
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 4. WHAT WE ARE COUNTING -->
-    <section class="section" id="what-we-count" aria-labelledby="counting-headline">
-      <div class="container">
-
-        <div class="section-header">
-          <p class="eyebrow">Scope</p>
-          <h2 id="counting-headline">What We Are Counting.</h2>
-          <p class="section-header__lead">These are the categories this tracker includes. Each one involves real resources — paper, plastic, fuel, or electricity.</p>
-        </div>
-
-        <div class="ft-count-grid" role="list">
-
-          <div class="ft-count-card" role="listitem">
-            <span class="ft-count-card__icon" aria-hidden="true">📄</span>
-            <p class="ft-count-card__title">Paper and Printing</p>
-            <p class="ft-count-card__body">Mailers require paper, ink, printing energy, and postal distribution. At 8,000 pieces, this is the largest physical material category in a typical local supervisor race.</p>
-          </div>
-
-          <div class="ft-count-card" role="listitem">
-            <span class="ft-count-card__icon" aria-hidden="true">🃏</span>
-            <p class="ft-count-card__title">Palm Cards</p>
-            <p class="ft-count-card__body">Small printed cards handed out at events or during canvassing. Lighter per unit than mailers, but still require paper, ink, and printing.</p>
-          </div>
-
-          <div class="ft-count-card" role="listitem">
-            <span class="ft-count-card__icon" aria-hidden="true">🪧</span>
-            <p class="ft-count-card__title">Lawn Signs</p>
-            <p class="ft-count-card__body">Corrugated plastic with steel stakes. Rarely recycled. At 75 signs across Bedford&#8217;s 39.3 square miles, modest in absolute terms — but real, durable plastic that has to go somewhere after Election Day.</p>
-          </div>
-
-          <div class="ft-count-card" role="listitem">
-            <span class="ft-count-card__icon" aria-hidden="true">🚗</span>
-            <p class="ft-count-card__title">Local Driving</p>
-            <p class="ft-count-card__body">Vehicle travel within Bedford for canvassing, sign installation, and events. Estimates are deliberately modest; the UNCAMPAIGN does not canvass, reducing this category to near zero.</p>
-          </div>
-
-          <div class="ft-count-card" role="listitem">
-            <span class="ft-count-card__icon" aria-hidden="true">📦</span>
-            <p class="ft-count-card__title">Events and Materials</p>
-            <p class="ft-count-card__body">Organized campaign events with physical materials: programs, banners, signage, printed items. Includes production and transport of those materials.</p>
-          </div>
-
-          <div class="ft-count-card" role="listitem">
-            <span class="ft-count-card__icon" aria-hidden="true">🤖</span>
-            <p class="ft-count-card__title">Digital Tools and AI</p>
-            <p class="ft-count-card__body">AI inference and website hosting use electricity. The UNCAMPAIGN counts this openly — it is a real cost, often invisible in traditional campaigns&#8217; broader spending. We are not pretending it is free.</p>
-          </div>
-
-          <div class="ft-count-card" role="listitem">
-            <span class="ft-count-card__icon" aria-hidden="true">💵</span>
-            <p class="ft-count-card__title">Campaign Spending</p>
-            <p class="ft-count-card__body">Total disclosed dollars raised and spent. Traditional campaigns raise money to buy the items above. The UNCAMPAIGN&#8217;s under-$50 constraint shapes every other category on this list.</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 5. WHAT WE ARE NOT CLAIMING -->
-    <section class="section section--alt" id="not-claiming" aria-labelledby="not-claiming-headline">
-      <div class="container">
-        <div class="issues-explainer">
-
-          <div class="issues-explainer__why">
-            <p class="eyebrow">Honesty First</p>
-            <h2 id="not-claiming-headline">What We Are Not Claiming.</h2>
-            <p>Transparency requires being clear about what this analysis does not prove. This tracker is a public estimate built to spark honest conversation — not a certified audit, and not an attack on anyone.</p>
-          </div>
-
-          <div class="issues-explainer__offers">
-            <p class="eyebrow">Our Limits</p>
-            <ul class="ft-not-claiming" role="list">
-              <li>
-                <span class="ft-not-claiming__icon" aria-hidden="true">&#10005;</span>
-                <p class="ft-not-claiming__text"><strong>This is not a scientific life-cycle analysis.</strong> We have not measured grams of CO&#8322; or kilowatt-hours per AI inference. We are not qualified to certify that.</p>
-              </li>
-              <li>
-                <span class="ft-not-claiming__icon" aria-hidden="true">&#10005;</span>
-                <p class="ft-not-claiming__text"><strong>This is not a claim that AI has no cost.</strong> AI inference uses electricity. That electricity has an environmental cost. We acknowledge this openly.</p>
-              </li>
-              <li>
-                <span class="ft-not-claiming__icon" aria-hidden="true">&#10005;</span>
-                <p class="ft-not-claiming__text"><strong>This is not an attack on traditional campaigns.</strong> Local campaigns that use mailers, signs, and canvassing follow normal, legal, accepted practices. This is a comparison of tradeoffs — not a moral verdict.</p>
-              </li>
-              <li>
-                <span class="ft-not-claiming__icon" aria-hidden="true">&#10005;</span>
-                <p class="ft-not-claiming__text"><strong>This is a public estimate.</strong> It is meant to make campaign tradeoffs visible for Bedford residents who are curious about how campaigns work and what they cost in money, materials, and digital resources.</p>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. AI TRANSPARENCY -->
-    <section class="section ai-section" id="ai-transparency" aria-labelledby="ai-headline">
-      <div class="container">
-        <div class="ai-section__inner">
-
-          <div>
-            <p class="eyebrow">AI Transparency</p>
-            <h2 id="ai-headline">This Campaign Shows Its Work.</h2>
-            <p>The UNCAMPAIGN uses AI openly — not secretly, not as a black box. As a transparent civic tool that any resident can examine, question, or copy.</p>
-            <p>AI helped draft this page. Don Scott reviewed it. That is how AI is used throughout this campaign: as an assistant with a human in the loop, not as an autonomous agent setting campaign positions.</p>
-          </div>
-
-          <div>
-            <p class="eyebrow">Human Review Pledge</p>
-            <div class="ai-points">
-              <div class="ai-point">
-                <em class="ai-point__icon" aria-hidden="true">&#x2192;</em>
-                <p class="ai-point__text"><strong>AI may draft, organize, and summarize.</strong> Every public statement is reviewed by Don Scott before publication.</p>
-              </div>
-              <div class="ai-point">
-                <em class="ai-point__icon" aria-hidden="true">&#x2192;</em>
-                <p class="ai-point__text"><strong>AI does not set campaign positions.</strong> Don is responsible for every position taken on Bedford issues.</p>
-              </div>
-              <div class="ai-point">
-                <em class="ai-point__icon" aria-hidden="true">&#x2192;</em>
-                <p class="ai-point__text"><strong>AI tools are documented</strong> on the <a href="/pages/ai" style="color:rgba(255,255,255,0.85)">AI Transparency page</a> — what was used, and how.</p>
-              </div>
-              <div class="ai-point">
-                <em class="ai-point__icon" aria-hidden="true">&#x2192;</em>
-                <p class="ai-point__text"><strong>Residents are welcome to ask.</strong> If you want to know how something was built, ask Don directly through the <a href="/pages/don-bot" style="color:rgba(255,255,255,0.85)">Ask Don</a> page.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. METHODOLOGY -->
-    <section class="section section--alt" id="methodology" aria-labelledby="method-headline">
-      <div class="container">
-
-        <div class="section-header">
-          <p class="eyebrow">Methodology</p>
-          <h2 id="method-headline">All Assumptions, Plainly Stated.</h2>
-          <p class="section-header__lead">This tracker uses publicly available data and intentionally conservative estimates. Nothing here is inflated for effect. If you find a better source for any of these numbers, tell us.</p>
-        </div>
-
-        <div class="ft-method-grid" role="list">
-
-          <div class="ft-method-card" role="listitem">
-            <p class="ft-method-card__label">Bedford Registered Voters</p>
-            <p class="ft-method-card__value">~12,000</p>
-            <p class="ft-method-card__note">Used as the scale basis for mailer and palm card volume estimates.</p>
-          </div>
-
-          <div class="ft-method-card" role="listitem">
-            <p class="ft-method-card__label">Prior Average Raised</p>
-            <p class="ft-method-card__value">~$15,750</p>
-            <p class="ft-method-card__note">Estimated from available historical Bedford supervisor election data. This is an approximation, not a certified average.</p>
-          </div>
-
-          <div class="ft-method-card" role="listitem">
-            <p class="ft-method-card__label">Typical Mailer Volume</p>
-            <p class="ft-method-card__value">~8,000</p>
-            <p class="ft-method-card__note">A reasonable estimate for a local supervisor race targeting roughly two-thirds of registered voters. Not every voter is targeted every cycle.</p>
-          </div>
-
-          <div class="ft-method-card" role="listitem">
-            <p class="ft-method-card__label">Typical Palm Cards</p>
-            <p class="ft-method-card__value">~3,000</p>
-            <p class="ft-method-card__note">Standard volume for events, door canvassing, and community distribution in a local race of this scale.</p>
-          </div>
-
-          <div class="ft-method-card" role="listitem">
-            <p class="ft-method-card__label">Typical Lawn Signs</p>
-            <p class="ft-method-card__value">50–100 (midpoint: 75)</p>
-            <p class="ft-method-card__note">Midpoint of 75 is used in the calculator. Bedford is 39.3 square miles; sign placement requires driving and installation time.</p>
-          </div>
-
-          <div class="ft-method-card" role="listitem">
-            <p class="ft-method-card__label">Bedford Land Area</p>
-            <p class="ft-method-card__value">39.3 square miles</p>
-            <p class="ft-method-card__note">Used to keep driving and canvassing estimates realistic. Bedford is a large, rural-suburban town where door-to-door canvassing is logistically difficult.</p>
-          </div>
-
-          <div class="ft-method-card" role="listitem">
-            <p class="ft-method-card__label">Driving Estimate</p>
-            <p class="ft-method-card__value">Intentionally modest</p>
-            <p class="ft-method-card__note">Default of 75 miles in the calculator reflects light local activity. The UNCAMPAIGN does not canvass, reducing this to near zero.</p>
-          </div>
-
-          <div class="ft-method-card" role="listitem">
-            <p class="ft-method-card__label">Campaign Office</p>
-            <p class="ft-method-card__value">Not assumed</p>
-            <p class="ft-method-card__note">No campaign office is included for either scenario. This is a conservative assumption that slightly understates the typical campaign&#8217;s footprint.</p>
-          </div>
-
-          <div class="ft-method-card" role="listitem">
-            <p class="ft-method-card__label">UNCAMPAIGN Spending Target</p>
-            <p class="ft-method-card__value">Under $49.99</p>
-            <p class="ft-method-card__note">The published campaign spend limit. Transparency requires disclosing any departure from this target immediately.</p>
-          </div>
-
-          <div class="ft-method-card" role="listitem">
-            <p class="ft-method-card__label">UNCAMPAIGN Physical Materials</p>
-            <p class="ft-method-card__value">Zero (standard)</p>
-            <p class="ft-method-card__note">No mailers, no palm cards, no standard lawn sign program. Any future novelty exception would be disclosed publicly at the time of the exception.</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 8. FAQ -->
-    <section class="section" id="faq" aria-labelledby="faq-headline">
-      <div class="container">
-
-        <div class="faq__header">
-          <p class="eyebrow">Questions</p>
-          <h2 id="faq-headline">Common Questions About This Tracker.</h2>
-          <p>If you have a question that is not answered here, ask Don directly through the <a href="/pages/don-bot">Ask Don</a> page.</p>
-        </div>
-
-        <div class="faq-list">
-
-          <div class="faq-item">
-            <button
-              class="faq-item__question"
-              aria-expanded="false"
-              aria-controls="faq-a-1"
-              id="faq-q-1"
-            >
-              Does AI use energy and natural resources?
-              <i class="faq-item__icon" aria-hidden="true">+</i>
-            </button>
-            <div class="faq-item__answer" id="faq-a-1" role="region" aria-labelledby="faq-q-1">
-              <div class="faq-item__answer-inner">
-                <p>Yes. AI models require computing power, which requires electricity, which has an environmental cost. The UNCAMPAIGN acknowledges this openly. The relevant question for a local campaign is how that cost compares to the physical footprint of traditional campaign materials — mailers, signs, palm cards, and driving — which also consume real resources.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button
-              class="faq-item__question"
-              aria-expanded="false"
-              aria-controls="faq-a-2"
-              id="faq-q-2"
-            >
-              How much does a typical Bedford Town Supervisor campaign spend?
-              <i class="faq-item__icon" aria-hidden="true">+</i>
-            </button>
-            <div class="faq-item__answer" id="faq-a-2" role="region" aria-labelledby="faq-q-2">
-              <div class="faq-item__answer-inner">
-                <p>Based on prior Bedford supervisor elections, the average amount raised is approximately $15,750. This is an estimate based on available public data. See the Methodology section for details and caveats.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button
-              class="faq-item__question"
-              aria-expanded="false"
-              aria-controls="faq-a-3"
-              id="faq-q-3"
-            >
-              What is the UNCAMPAIGN&#8217;s spending target?
-              <i class="faq-item__icon" aria-hidden="true">+</i>
-            </button>
-            <div class="faq-item__answer" id="faq-a-3" role="region" aria-labelledby="faq-q-3">
-              <div class="faq-item__answer-inner">
-                <p>Don Scott&#8217;s UNCAMPAIGN targets total spending of $49.99 or less for the entire campaign. This is not a stunt. It is a demonstration that meaningful civic participation does not require significant money — and that radical spending transparency is possible at the local level.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button
-              class="faq-item__question"
-              aria-expanded="false"
-              aria-controls="faq-a-4"
-              id="faq-q-4"
-            >
-              Is this a scientific analysis?
-              <i class="faq-item__icon" aria-hidden="true">+</i>
-            </button>
-            <div class="faq-item__answer" id="faq-a-4" role="region" aria-labelledby="faq-q-4">
-              <div class="faq-item__answer-inner">
-                <p>No. This is a public estimate meant to make campaign tradeoffs visible, not a life-cycle analysis, carbon accounting, or certified audit. All assumptions are published in the Methodology section so residents can evaluate them and push back on any that seem wrong.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button
-              class="faq-item__question"
-              aria-expanded="false"
-              aria-controls="faq-a-5"
-              id="faq-q-5"
-            >
-              How does Don Scott use AI in this campaign?
-              <i class="faq-item__icon" aria-hidden="true">+</i>
-            </button>
-            <div class="faq-item__answer" id="faq-a-5" role="region" aria-labelledby="faq-q-5">
-              <div class="faq-item__answer-inner">
-                <p>AI assists with drafting, organizing, coding, calculating, and summarizing. Don Scott reviews and is responsible for all final public statements, campaign positions, and decisions. AI use is openly disclosed and documented on the <a href="/pages/ai">AI Transparency page</a>. Any resident can ask how something was built.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 9. CLOSING CTA -->
-    <section class="section section--alt issues-cta" id="closing" aria-labelledby="closing-headline">
-      <div class="container">
-        <p class="eyebrow">The Bottom Line</p>
-        <h2 id="closing-headline" class="ft-closing__headline">Less money. Less noise. More transparency.</h2>
-        <p class="ft-closing__body">You do not have to agree with every tool we use to appreciate the principle: campaign tradeoffs should be visible. Whether it&#8217;s spending, materials, or AI use, Bedford residents deserve to see the full picture.</p>
         <div class="cta-row">
-          <a href="/" class="btn btn--primary">Back to Home</a>
-          <a href="/pages/don-bot" class="btn btn--secondary">Ask Don Directly</a>
+          <button type="button" class="btn btn--primary" data-instr-toggle="instr-panel-footprint" aria-expanded="false">View the AI Transparency Statement</button>
         </div>
+
+        <div class="instr-panel" id="instr-panel-footprint" hidden>
+          <div class="instr-panel__bar">
+            <span class="instr-panel__title">AI Transparency Statement</span>
+            <div class="instr-panel__controls">
+              <button class="instr-panel__copy" aria-label="Copy statement to clipboard">
+                <span class="instr-panel__copy-label">Copy All</span>
+              </button>
+              <button class="instr-panel__close" aria-label="Close AI transparency statement">&#10005;</button>
+            </div>
+          </div>
+          <div class="instr-panel__body">
+            <div class="instr-panel__text" style="white-space:normal">
+
+              <p style="margin-top:0"><strong>How AI Is Used in This Campaign</strong></p>
+              <p>This campaign uses AI tools openly. Not secretly. Not as a labor-saving shortcut that goes unacknowledged. As a transparent part of how this campaign operates — and as a demonstration that small campaigns can produce high-quality civic work without large budgets.</p>
+
+              <p style="margin-top:1.5rem"><strong>What AI Does</strong></p>
+              <p>AI may help draft copy, organize information, summarize public records, write code, perform calculations, and generate first versions of documents. Every public-facing output goes through human review before it is published.</p>
+
+              <p style="margin-top:1rem"><strong>What AI Does Not Do</strong></p>
+              <p>AI does not set campaign positions. AI does not make decisions. AI does not publish anything autonomously. Don Scott reviews and is responsible for every public statement, policy position, and campaign decision.</p>
+
+              <p style="margin-top:1rem"><strong>Why This Page Exists</strong></p>
+              <p>A Bedford neighbor asked a fair question about AI and natural resources. This tracker was built in response — not to deflect, but to answer honestly. AI uses electricity. Traditional campaigns use paper, plastic, fuel, and money. This page is a public attempt to make those tradeoffs visible.</p>
+
+              <p style="margin-top:1rem"><strong>What This Page Is Not</strong></p>
+              <p>This is not a scientific life-cycle analysis. It is not a carbon certification. It is not a claim that AI is costless or that traditional campaigns are wasteful. It is a transparent estimate meant to spark honest conversation about how campaigns use resources.</p>
+
+              <p style="margin-top:1.5rem"><strong>Human Review Pledge</strong></p>
+              <p>Every public statement on this campaign&#8217;s website was reviewed by Don Scott before publication. If you see something that appears inaccurate or generated without human review, you can ask Don about it directly through the <a href="/pages/don-bot">Ask Don</a> page.</p>
+
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1497,88 +719,135 @@
 
   <script src="../assets/js/site.js"></script>
 
-  <!-- ── Footprint Tracker: calculator logic ── -->
+  <!-- ── Footprint Tracker: comparison module ── -->
   <script>
   (function () {
     'use strict';
 
-    /* Index weights — relative, not emissions units */
-    var W = {
-      mailers:   1.0,   /* largest physical material per unit */
-      palmcards: 0.15,  /* smaller than mailers */
-      signs:     7,     /* plastic + steel stake, rarely recycled */
-      miles:     0.9,   /* fuel per mile */
-      events:    28     /* materials + setup per event */
+    /* ── Campaign data ── */
+    var CAMPAIGNS = {
+      'town-supervisor': {
+        officeLabel: 'Bedford Town Supervisor',
+        sourceNote: 'Based on prior Bedford supervisor election data. Registered voters: ~12,000.',
+        rows: [
+          { label: 'Funds raised',         value: '~$15,750',           note: 'avg. prior Bedford supervisor elections' },
+          { label: 'Printed materials',    value: '~11,000 pieces',      note: '~8,000 mailers + ~3,000 palm cards' },
+          { label: 'Lawn signs',           value: '~75',                 note: '50–100 range; 75 used as midpoint' },
+          { label: 'Paid infrastructure', value: 'None assumed',         note: 'Small local race; no campaign office assumed' },
+          { label: 'AI usage',             value: 'Not typical',         note: 'Most local campaigns do not disclose AI use' }
+        ],
+        barPct: 22,
+        pctLighter: 91,
+        calloutNote: 'compared to a typical Bedford Town Supervisor campaign'
+      },
+      'assembly': {
+        officeLabel: 'NY State Assembly',
+        sourceNote: 'Representative public filing scale. Figures are estimated and rounded.',
+        rows: [
+          { label: 'Funds raised',         value: '~$165,000',           note: 'representative public filing scale' },
+          { label: 'Printed materials',    value: '~40,000 pieces',      note: 'estimated mailers and palm cards' },
+          { label: 'Lawn signs',           value: '~300',                note: 'estimated district-wide placement' },
+          { label: 'Paid infrastructure', value: 'Staff + consultants',  note: 'Typical paid campaign operation for district race' },
+          { label: 'AI usage',             value: 'Not typical',         note: 'Most campaigns do not disclose AI use' }
+        ],
+        barPct: 35,
+        pctLighter: 94,
+        calloutNote: 'compared to a typical NY State Assembly campaign'
+      },
+      'senate': {
+        officeLabel: 'NY State Senate',
+        sourceNote: 'Representative public filing scale. Figures are estimated and rounded.',
+        rows: [
+          { label: 'Funds raised',         value: '~$248,000',           note: 'representative public filing scale' },
+          { label: 'Printed materials',    value: '~75,000 pieces',      note: 'estimated mailers and palm cards' },
+          { label: 'Lawn signs',           value: '~600',                note: 'estimated district-wide placement' },
+          { label: 'Paid infrastructure', value: 'Staff + consultants',  note: 'Typical paid campaign operation for district race' },
+          { label: 'AI usage',             value: 'Not typical',         note: 'Most campaigns do not disclose AI use' }
+        ],
+        barPct: 42,
+        pctLighter: 95,
+        calloutNote: 'compared to a typical NY State Senate campaign'
+      },
+      'congressional': {
+        officeLabel: 'U.S. Congressional',
+        sourceNote: 'Representative public filing scale for a competitive Hudson Valley congressional race.',
+        rows: [
+          { label: 'Funds raised',         value: '~$6.7M',              note: 'representative public filing scale' },
+          { label: 'Printed materials',    value: '~400,000 pieces',     note: 'estimated — plus major digital and TV spend' },
+          { label: 'Lawn signs',           value: '~3,000',              note: 'estimated district-wide placement' },
+          { label: 'Paid infrastructure', value: 'Full campaign operation', note: 'Campaign manager, staff, consultants, vendors' },
+          { label: 'AI usage',             value: 'Targeted digital use', note: 'Digital ad targeting; not typically disclosed' }
+        ],
+        barPct: 78,
+        pctLighter: 97,
+        calloutNote: 'compared to a typical U.S. Congressional campaign'
+      },
+      'gubernatorial': {
+        officeLabel: 'NY Gubernatorial',
+        sourceNote: 'Representative public filing scale for a competitive NY statewide race.',
+        rows: [
+          { label: 'Funds raised',         value: '$10M–$30M+',          note: 'competitive NY gubernatorial range' },
+          { label: 'Printed materials',    value: 'Millions of pieces',  note: 'statewide mail plus TV and digital' },
+          { label: 'Lawn signs',           value: 'Tens of thousands',   note: 'statewide placement' },
+          { label: 'Paid infrastructure', value: 'Massive full operation', note: 'Hundreds of staff, major vendors, consultants' },
+          { label: 'AI usage',             value: 'Targeted digital use', note: 'Sophisticated digital targeting; not fully disclosed' }
+        ],
+        barPct: 96,
+        pctLighter: 98,
+        calloutNote: 'compared to a typical NY Gubernatorial campaign'
+      }
     };
 
-    /* Max possible index (for bar scaling) */
-    var MAX = (12000 * W.mailers) +
-              (6000  * W.palmcards) +
-              (200   * W.signs) +
-              (300   * W.miles) +
-              (10    * W.events);
-    /* 12000 + 900 + 1400 + 270 + 280 = 14850 */
+    /* ── DOM refs ── */
+    var tabs       = document.querySelectorAll('.ft-tab');
+    var officeEl   = document.getElementById('ft-office-label');
+    var typicalEl  = document.getElementById('ft-typical-rows');
+    var sourceEl   = document.getElementById('ft-source-note');
+    var barTypical = document.getElementById('ft-bar-typical');
+    var barLblEl   = document.getElementById('ft-bar-typical-label');
+    var scoreEl    = document.getElementById('ft-score-typical');
+    var calloutEl  = document.getElementById('ft-callout');
 
-    var s = {
-      mailers:   document.getElementById('sl-mailers'),
-      palmcards: document.getElementById('sl-palmcards'),
-      signs:     document.getElementById('sl-signs'),
-      miles:     document.getElementById('sl-miles'),
-      events:    document.getElementById('sl-events')
-    };
-    var d = {
-      mailers:   document.getElementById('sl-mailers-val'),
-      palmcards: document.getElementById('sl-palmcards-val'),
-      signs:     document.getElementById('sl-signs-val'),
-      miles:     document.getElementById('sl-miles-val'),
-      events:    document.getElementById('sl-events-val')
-    };
-    var idxEl    = document.getElementById('calc-index-val');
-    var barEl    = document.getElementById('calc-bar-custom');
-    var pctEl    = document.getElementById('calc-pct-custom');
-
-    function fmt(n) { return n.toLocaleString('en-US'); }
-
-    function update() {
-      var v = {
-        mailers:   parseInt(s.mailers.value,   10),
-        palmcards: parseInt(s.palmcards.value, 10),
-        signs:     parseInt(s.signs.value,     10),
-        miles:     parseInt(s.miles.value,     10),
-        events:    parseInt(s.events.value,    10)
-      };
-
-      d.mailers.textContent   = fmt(v.mailers);
-      d.palmcards.textContent = fmt(v.palmcards);
-      d.signs.textContent     = fmt(v.signs);
-      d.miles.textContent     = fmt(v.miles);
-      d.events.textContent    = fmt(v.events);
-
-      s.mailers.setAttribute('aria-valuetext',   v.mailers   + ' mailers');
-      s.palmcards.setAttribute('aria-valuetext', v.palmcards + ' palm cards');
-      s.signs.setAttribute('aria-valuetext',     v.signs     + ' signs');
-      s.miles.setAttribute('aria-valuetext',     v.miles     + ' miles');
-      s.events.setAttribute('aria-valuetext',    v.events    + ' events with materials');
-
-      var idx = (v.mailers   * W.mailers)   +
-                (v.palmcards * W.palmcards) +
-                (v.signs     * W.signs)     +
-                (v.miles     * W.miles)     +
-                (v.events    * W.events);
-
-      var pct = MAX > 0 ? Math.min(100, Math.round((idx / MAX) * 100)) : 0;
-
-      idxEl.textContent   = fmt(Math.round(idx));
-      pctEl.textContent   = pct + '%';
-      barEl.style.width   = pct + '%';
+    function buildRow(r) {
+      return '<div class="ft-row">' +
+        '<span class="ft-row__label">' + r.label + '</span>' +
+        '<span class="ft-row__value">' + r.value + '</span>' +
+        (r.note ? '<span class="ft-row__note">' + r.note + '</span>' : '') +
+        '</div>';
     }
 
-    Object.keys(s).forEach(function (k) {
-      s[k].addEventListener('input', update);
+    function render(id) {
+      var d = CAMPAIGNS[id];
+      if (!d) return;
+
+      officeEl.textContent  = d.officeLabel;
+      typicalEl.innerHTML   = d.rows.map(buildRow).join('');
+      sourceEl.textContent  = d.sourceNote;
+
+      barTypical.style.width = d.barPct + '%';
+      scoreEl.textContent    = d.barPct;
+      barLblEl.textContent   = 'Typical ' + d.officeLabel + ' campaign';
+
+      calloutEl.innerHTML = 'By this index, the UNCAMPAIGN uses approximately ' +
+        '<strong>~' + d.pctLighter + '% fewer visible campaign inputs</strong> ' +
+        d.calloutNote + '. AI is where the UNCAMPAIGN uses more. Almost everywhere else, it uses less.';
+    }
+
+    /* ── Tab click handler ── */
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+        render(tab.getAttribute('data-campaign'));
+      });
     });
 
-    /* Run once on load to sync display with HTML default values */
-    update();
+    /* ── Initialize with default ── */
+    render('town-supervisor');
 
   }());
   </script>
