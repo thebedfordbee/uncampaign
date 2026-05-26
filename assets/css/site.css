@@ -5062,11 +5062,12 @@ div.issues-hero__visual--static:hover {
   margin-top: 0.1rem;
 }
 
-/* Value cells */
+/* Value cells — centered to sit directly under their centered column headers */
 .cg__val {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
+  text-align: center;
   padding: 0.875rem 0.875rem;
   font-size: 0.875rem;
   color: var(--charcoal);
@@ -5117,7 +5118,7 @@ div.issues-hero__visual--static:hover {
 /* Change 1: carbon cells — two-line treatment (value above, kg CO₂e below) */
 .cg__val--carbon {
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   gap: 0.1rem;
 }
@@ -5157,6 +5158,11 @@ div.issues-hero__visual--static:hover {
   font-style: italic;
   margin-top: 1rem;
   max-width: none;
+}
+/* When placed above the table (or below the equivalencies), keep it tucked close */
+.cg__co2-note--top {
+  margin-top: 0.75rem;
+  margin-bottom: 0;
 }
 
 /* ---- END FOOTPRINT TRACKER ---- */

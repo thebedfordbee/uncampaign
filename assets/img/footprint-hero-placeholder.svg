@@ -93,8 +93,8 @@
   <text x="600" y="248" font-family="Georgia, serif" font-size="12" fill="#7B8C79" text-anchor="middle">$118,021 vs. $13.12</text>
 
   <rect x="480" y="520" width="240" height="56" rx="6" fill="#3E5240" opacity="0.08"/>
-  <text x="600" y="548" font-family="Georgia, serif" font-size="14" fill="#3E5240" text-anchor="middle">~188× more carbon</text>
-  <text x="600" y="568" font-family="Georgia, serif" font-size="12" fill="#7B8C79" text-anchor="middle">~10,000 kg vs. ~53 kg CO₂e</text>
+  <text x="600" y="548" font-family="Georgia, serif" font-size="14" fill="#3E5240" text-anchor="middle">~182× more carbon</text>
+  <text x="600" y="568" font-family="Georgia, serif" font-size="12" fill="#7B8C79" text-anchor="middle">~9,662 kg vs. ~53 kg CO₂e</text>
 
   <!-- Bottom label -->
   <line x1="200" y1="760" x2="1000" y2="760" stroke="#E0DBD3" stroke-width="1"/>
