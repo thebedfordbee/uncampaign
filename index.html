@@ -111,11 +111,7 @@
 
     /* Justified body copy — scoped to sections that warrant it */
     .issues-hero__deck,
-    .spending__body,
     .ai-section__text p { text-align: justify; }
-
-    /* Radical Transparency: remove artificial width cap from subcopy */
-    .spending__body { max-width: none; }
 
     /* AI section: spacing below full-width header */
     .ai-section__header { margin-bottom: 2.5rem; }
@@ -193,98 +189,118 @@
     .section { padding-block: 2.375rem; }
     @media (min-width: 768px) { .section { padding-block: 3.5rem; } }
 
-    /* Expense accordion — matches /ideas category expand/collapse pattern */
-    .expense-accordion__trigger {
-      width: 100%;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      padding: 0;
-      font-family: inherit;
-      text-align: left;
-    }
-    .expense-accordion__trigger:focus-visible {
-      outline: 2px solid var(--moss);
-      outline-offset: 2px;
-      border-radius: 2px;
-    }
-    .expense-accordion__icon {
-      font-style: normal;
-      font-size: 1.125rem;
-      color: var(--sage);
-      flex-shrink: 0;
-      line-height: 1;
-      transition: transform 0.22s ease;
-    }
-    .expense-accordion.is-open .expense-accordion__icon { transform: rotate(45deg); }
-    .expense-accordion__panel {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.4s ease;
-    }
-    .expense-accordion.is-open .expense-accordion__panel { max-height: 400px; }
-    .expense-accordion__panel-inner { padding-top: 0.75rem; }
-    .expense-accordion { margin-top: 2rem; }
-    @media (prefers-reduced-motion: reduce) {
-      .expense-accordion__icon { transition: none; }
-      .expense-accordion__panel { transition: none; }
-    }
-
     /* Alternating card shading — even cards get subtle cream tint */
     .cards-grid > li:nth-child(even) .card {
       background: var(--cream);
     }
 
     /* =============================================
-       LOCAL-SPEND-BARS — two-row $20K comparison
+       SPEND-COMPARE — UNCAMPAIGN vs. 2021 winning campaign
+       Two proportional comparison cards (dollars + carbon).
        ============================================= */
-    .local-spend-bars {
-      margin-top: 1.625rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .local-spend-bars__meta {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: baseline;
-      gap: 0.2rem 0.625rem;
-      margin-bottom: 0.35rem;
-    }
-    .local-spend-bars__name {
-      font-size: 0.875rem;
-      color: var(--charcoal);
-      font-weight: 500;
-    }
-    .local-spend-bars__label {
-      font-size: 0.8125rem;
+    .spend-compare { text-align: center; }
+    .spend-compare__header { margin-bottom: 2.5rem; }
+    .spend-compare__header h2 { margin-top: 0.5rem; }
+    .spend-compare__intro {
       color: var(--muted);
-      white-space: nowrap;
-      text-align: right;
+      max-width: 46rem;
+      margin: 1rem auto 0;
     }
-    .local-spend-bars__track {
+
+    .spend-compare__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      text-align: left;
+    }
+    @media (min-width: 768px) {
+      .spend-compare__grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    }
+
+    .compare-card {
+      background: var(--white);
+      border: 1px solid rgba(123,140,121,0.30);
+      border-radius: 10px;
+      padding: 1.75rem;
+    }
+    .compare-card--unc { border-color: rgba(62,82,64,0.45); }
+    .compare-card__title {
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--moss);
+      margin: 0 0 1.375rem;
+    }
+    .compare-card__metrics { margin: 0; }
+    .compare-metric + .compare-metric { margin-top: 1.375rem; }
+    .compare-metric__label {
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .compare-metric__value { margin: 0; }
+    .compare-metric__amount {
+      display: block;
+      margin: 0.15rem 0 0.625rem;
+      font-family: var(--serif);
+      font-size: clamp(1.375rem, 3vw, 1.625rem);
+      line-height: 1.15;
+      color: var(--charcoal);
+    }
+    .compare-metric__amount sub { font-size: 0.6em; }
+
+    .compare-bar {
+      display: block;
       height: 8px;
       background: rgba(224,219,211,0.72);
       border-radius: 4px;
       overflow: hidden;
     }
-    .local-spend-bars__fill {
+    .compare-bar__fill {
+      display: block;
       height: 100%;
       border-radius: 4px;
-      min-width: 1px;
+      /* Actual proportional value lives in --bar-pct; min keeps it visible. */
+      width: max(var(--bar-pct, 100%), 5px);
     }
-    .local-spend-bars__fill--incumbent { background: rgba(62,82,64,0.45); }
-    .local-spend-bars__fill--don       { background: var(--moss); min-width: 2px; }
+    .compare-bar__fill--past { background: rgba(62,82,64,0.45); }
+    .compare-bar__fill--unc  { background: var(--moss); }
 
-    /* Transparency date — two-line split */
-    .transparency-date__line2 {
-      display: block;
+    .spend-compare__bar-note {
+      font-size: 0.75rem;
       font-style: italic;
-      opacity: 0.75;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 0.875rem;
+    }
+
+    .spend-compare__summary {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 2.75rem;
+      margin-top: 2.25rem;
+    }
+    .spend-compare__stat {
+      margin: 0;
+      font-size: 1.0625rem;
+      color: var(--charcoal);
+    }
+    .spend-compare__stat strong {
+      font-family: var(--serif);
+      font-weight: normal;
+      font-size: 1.875rem;
+      color: var(--moss);
+      margin-right: 0.4rem;
+    }
+
+    .spend-compare__cta-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
     }
   </style>
   <!-- Google tag (gtag.js) -->
@@ -479,106 +495,88 @@
       </div>
     </section>
 
-    <!-- RADICAL TRANSPARENCY -->
-    <section class="section spending" aria-labelledby="spending-headline">
+    <!-- RADICAL TRANSPARENCY — UNCAMPAIGN vs. last contested race -->
+    <section class="section spend-compare" aria-labelledby="spend-compare-headline">
       <div class="container">
-        <div class="spending__inner">
 
-          <!-- Left column: label, headline, copy, comparison bars -->
-          <div class="spending__left">
-            <p class="eyebrow">Radical transparency</p>
-            <h2 id="spending-headline">The Public Spending Record</h2>
-            <p class="spending__body">
-              This campaign has committed to spending $49.99 or less. Not per week. Total.
-              Every expense is public. The point is not to be cute. The point is to show
-              that civic participation does not have to require fundraising, consultants,
-              paid ads, or a campaign machine.
-            </p>
+        <div class="spend-compare__header">
+          <p class="eyebrow">Radical transparency</p>
+          <h2 id="spend-compare-headline">The UNCAMPAIGN vs. the Last Real Race</h2>
+          <p class="spend-compare__intro">
+            The last contested Bedford Supervisor election was in 2021. These figures
+            compare that year&#8217;s winning campaign with Don&#8217;s UNCAMPAIGN today.
+            The 2021 figures refer only to the winning candidate&#8217;s campaign, not all
+            candidates combined.
+          </p>
+        </div>
 
-            <!-- Local spending bar comparison -->
-            <div class="local-spend-bars" aria-label="Local campaign spending comparison">
-              <div class="local-spend-bars__row">
-                <div class="local-spend-bars__meta">
-                  <span class="local-spend-bars__name">Incumbent Town Supervisor</span>
-                  <span class="local-spend-bars__label">$15,750 average spend</span>
-                </div>
-                <div class="local-spend-bars__track">
-                  <div class="local-spend-bars__fill local-spend-bars__fill--incumbent" style="width:78.75%"></div>
-                </div>
+        <div class="spend-compare__grid">
+
+          <!-- 2021 winning campaign -->
+          <article class="compare-card compare-card--past" aria-labelledby="compare-past-title">
+            <h3 class="compare-card__title" id="compare-past-title">2021 Winning Campaign</h3>
+            <dl class="compare-card__metrics">
+              <div class="compare-metric">
+                <dt class="compare-metric__label">Spent</dt>
+                <dd class="compare-metric__value">
+                  <span class="compare-metric__amount">$118,021</span>
+                  <span class="compare-bar" role="img"
+                        aria-label="Spent $118,021 — the baseline, shown at full bar width.">
+                    <span class="compare-bar__fill compare-bar__fill--past" style="--bar-pct:100%"></span>
+                  </span>
+                </dd>
               </div>
-              <div class="local-spend-bars__row">
-                <div class="local-spend-bars__meta">
-                  <span class="local-spend-bars__name">Don Scott</span>
-                  <span class="local-spend-bars__label">&lt;$49.99 campaign cap</span>
-                </div>
-                <div class="local-spend-bars__track">
-                  <div class="local-spend-bars__fill local-spend-bars__fill--don" style="width:0.24995%"></div>
-                </div>
+              <div class="compare-metric">
+                <dt class="compare-metric__label">Carbon Footprint</dt>
+                <dd class="compare-metric__value">
+                  <span class="compare-metric__amount">9,662 kg CO<sub>2</sub>e</span>
+                  <span class="compare-bar" role="img"
+                        aria-label="Carbon footprint 9,662 kilograms of CO2 equivalent — the baseline, shown at full bar width.">
+                    <span class="compare-bar__fill compare-bar__fill--past" style="--bar-pct:100%"></span>
+                  </span>
+                </dd>
               </div>
-            </div>
+            </dl>
+          </article>
 
-          </div>
-
-          <!-- Right column: spending meter card -->
-          <div class="spending__right">
-            <div class="spending__meter-card" role="region" aria-label="Campaign spending tracker">
-              <p class="eyebrow spending__meter-eyebrow">Current total</p>
-              <span class="spending__current-amount">$13.12</span>
-              <span class="spending__current-label">of $49.99 cap</span>
-              <p id="transparency-date"
-                 title="Daily transparency tracker current through today's date"
-                 style="font-size:0.75rem;color:var(--muted);margin-top:-1.25rem;margin-bottom:1.25rem;letter-spacing:0.02em;"></p>
-
-              <div class="thermometer">
-                <div class="thermometer__track">
-                  <div
-                    class="thermometer__fill"
-                    role="progressbar"
-                    aria-valuenow="13.12"
-                    aria-valuemin="0"
-                    aria-valuemax="49.99"
-                    aria-label="$13.12 of $49.99 spending cap used"
-                  ></div>
-                </div>
-                <div class="thermometer__labels" aria-hidden="true">
-                  <span>$13.12 Spent</span>
-                  <span>$49.99 cap</span>
-                </div>
+          <!-- UNCAMPAIGN -->
+          <article class="compare-card compare-card--unc" aria-labelledby="compare-unc-title">
+            <h3 class="compare-card__title" id="compare-unc-title">UNCAMPAIGN</h3>
+            <dl class="compare-card__metrics">
+              <div class="compare-metric">
+                <dt class="compare-metric__label">Spent</dt>
+                <dd class="compare-metric__value">
+                  <span class="compare-metric__amount">$13.12</span>
+                  <span class="compare-bar" role="img"
+                        aria-label="Spent $13.12 — about 0.011 percent of the 2021 campaign, shown at minimum visible width.">
+                    <span class="compare-bar__fill compare-bar__fill--unc" style="--bar-pct:0.011%"></span>
+                  </span>
+                </dd>
               </div>
-
-              <div class="expense-accordion" id="expense-accordion">
-                <button
-                  class="expense-accordion__trigger"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="expense-panel"
-                >
-                  <span class="eyebrow">Expenses</span>
-                  <i class="expense-accordion__icon" aria-hidden="true">+</i>
-                </button>
-                <div
-                  class="expense-accordion__panel"
-                  id="expense-panel"
-                  role="region"
-                  aria-label="Itemized campaign expenses"
-                >
-                  <div class="expense-accordion__panel-inner">
-                    <ul class="expense-list" role="list">
-                      <li class="expense-item">
-                        <span class="expense-item__name">Domain Registration</span>
-                        <span class="expense-item__amount">$13.12</span>
-                      </li>
-                    </ul>
-                    <div class="expense-total">
-                      <span class="expense-total__label">Total</span>
-                      <span class="expense-total__value">$13.12</span>
-                    </div>
-                  </div>
-                </div>
+              <div class="compare-metric">
+                <dt class="compare-metric__label">Carbon Footprint</dt>
+                <dd class="compare-metric__value">
+                  <span class="compare-metric__amount">53 kg CO<sub>2</sub>e</span>
+                  <span class="compare-bar" role="img"
+                        aria-label="Carbon footprint 53 kilograms of CO2 equivalent — about 0.55 percent of the 2021 campaign, shown at minimum visible width.">
+                    <span class="compare-bar__fill compare-bar__fill--unc" style="--bar-pct:0.55%"></span>
+                  </span>
+                </dd>
               </div>
-            </div>
-          </div>
+            </dl>
+          </article>
 
+        </div>
+
+        <p class="spend-compare__bar-note">Tiny bars shown at minimum width so they remain visible.</p>
+
+        <div class="spend-compare__summary">
+          <p class="spend-compare__stat"><strong>9,000&#215;</strong> less spent</p>
+          <p class="spend-compare__stat"><strong>182&#215;</strong> less carbon</p>
+        </div>
+
+        <div class="spend-compare__cta-row">
+          <a href="/footprint" class="btn btn--secondary spend-compare__cta">See the full footprint &#8594;</a>
         </div>
 
       </div>
@@ -695,28 +693,6 @@
     </div>
   </footer>
 
-  <script>
-    (function() {
-      var el = document.getElementById('expense-accordion');
-      if (!el) return;
-      var trigger = el.querySelector('.expense-accordion__trigger');
-      trigger.addEventListener('click', function() {
-        var open = el.classList.contains('is-open');
-        el.classList.toggle('is-open', !open);
-        trigger.setAttribute('aria-expanded', String(!open));
-      });
-    })();
-
-    (function() {
-      var dateEl = document.getElementById('transparency-date');
-      if (!dateEl) return;
-      var d = new Date();
-      var dateStr = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-      dateEl.innerHTML = 'Daily transparency tracker.' +
-        '<span class="transparency-date__line2">Current through: ' + dateStr + '.</span>';
-    })();
-
-  </script>
   <!-- CHAT REQUEST MODAL -->
   <div class="chat-req-modal" id="chat-req-modal" role="dialog" aria-labelledby="chat-req-title" aria-modal="true" hidden>
     <div class="chat-req-modal__backdrop" id="chat-req-backdrop" aria-hidden="true"></div>
