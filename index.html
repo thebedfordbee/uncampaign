@@ -198,13 +198,15 @@
        SPEND-COMPARE — UNCAMPAIGN vs. 2021 winning campaign
        Two proportional comparison cards (dollars + carbon).
        ============================================= */
-    .spend-compare { text-align: center; }
+    /* Single left-aligned content column; cards inset into the same width. */
+    .spend-compare { text-align: left; }
     .spend-compare__header { margin-bottom: 2.5rem; }
     .spend-compare__header h2 { margin-top: 0.5rem; }
     .spend-compare__intro {
       color: var(--muted);
-      max-width: 46rem;
-      margin: 1rem auto 0;
+      max-width: none;
+      margin: 1rem 0 0;
+      text-align: justify;
     }
 
     .spend-compare__grid {
@@ -273,14 +275,20 @@
       font-size: 0.75rem;
       font-style: italic;
       color: var(--muted);
-      text-align: center;
+      text-align: left;
       margin-top: 0.875rem;
+    }
+    .spend-compare__co2-note {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      max-width: none;
+      margin-top: 0.5rem;
     }
 
     .spend-compare__summary {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 0.5rem 2.75rem;
       margin-top: 2.25rem;
     }
@@ -299,7 +307,7 @@
 
     .spend-compare__cta-row {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       margin-top: 2rem;
     }
   </style>
@@ -569,6 +577,7 @@
         </div>
 
         <p class="spend-compare__bar-note">Tiny bars shown at minimum width so they remain visible.</p>
+        <p class="spend-compare__co2-note">kg CO<sub>2</sub>e stands for kilograms of carbon dioxide equivalent, a standard measure that accounts for different greenhouse gases and their impact on the climate.</p>
 
         <div class="spend-compare__summary">
           <p class="spend-compare__stat"><strong>9,000&#215;</strong> less spent</p>
