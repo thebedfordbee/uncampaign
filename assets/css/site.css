@@ -3810,7 +3810,10 @@ div.issues-hero__visual--static:hover {
 .fp-equiv-item {
   display: flex;
   gap: 0.75rem;
-  align-items: flex-start;
+  align-items: center;
+  /* Uniform row height so the four rows align across the two side-by-side
+     boxes on desktop; matched categories wrap consistently. */
+  min-height: 3.5rem;
   background: var(--cream);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -3985,6 +3988,65 @@ div.issues-hero__visual--static:hover {
   max-width: none;
 }
 .fp-sources-list strong { color: var(--charcoal); }
+.fp-sources-list a { color: var(--moss); }
+
+/* Collapsible "Sources & Methodology" (native <details>/<summary>) */
+.fp-sources {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.fp-sources__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.125rem 1.25rem;
+  cursor: pointer;
+  list-style: none;
+  background: var(--cream);
+  transition: background 0.15s;
+}
+.fp-sources__summary::-webkit-details-marker { display: none; }
+.fp-sources__summary:hover { background: rgba(123, 140, 121, 0.08); }
+.fp-sources__summary:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
+.fp-sources__summary-text { display: flex; flex-direction: column; gap: 0.3rem; }
+.fp-sources__summary-title { display: block; margin: 0; }
+.fp-sources__summary-hint {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  line-height: 1.5;
+  font-style: italic;
+  max-width: 60ch;
+}
+.fp-sources__chevron {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--sage);
+  transition: transform 0.22s ease;
+}
+.fp-sources[open] .fp-sources__chevron { transform: rotate(45deg); }
+@media (prefers-reduced-motion: reduce) {
+  .fp-sources__chevron { transition: none; }
+}
+.fp-sources__body {
+  padding: 0.25rem 1.25rem 1.25rem;
+  border-top: 1px solid var(--border);
+}
+.fp-sources__group { margin-top: 1.25rem; }
+.fp-sources__group-title {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin: 0 0 0.6rem;
+  max-width: none;
+}
 
 /* ── Section 11: Final word ─────────────────────────── */
 .fp-section--final { }
@@ -4951,12 +5013,15 @@ div.issues-hero__visual--static:hover {
   display: grid;
   grid-template-columns: minmax(200px, 1.5fr) 1fr 1fr 1fr 1fr;
   min-width: 560px;
+  background: var(--white);
 }
 
-/* Zone colors */
-.cg__cell--bkt { background: var(--white); border-right: 1px solid var(--border); }
-.cg__cell--inc { background: rgba(248, 245, 239, 0.85); }
-.cg__cell--unc { background: rgba(62, 82, 64, 0.03); }
+/* Zone backgrounds are transparent; readability comes from row zebra-striping
+   (.cg__cell--band) below. Zone identity is carried by the divider border and
+   the moss-colored UNCAMPAIGN values. */
+.cg__cell--bkt { background: transparent; border-right: 1px solid var(--border); }
+.cg__cell--inc { background: transparent; }
+.cg__cell--unc { background: transparent; }
 /* Visual divider between incumbent zone and UNCAMPAIGN zone */
 .cg__cell--unc-start { border-left: 2px solid rgba(62, 82, 64, 0.18); }
 
@@ -5030,7 +5095,7 @@ div.issues-hero__visual--static:hover {
   text-align: left;
   transition: background 0.15s;
 }
-.cg__trigger:hover { background: rgba(123, 140, 121, 0.07); }
+.cg .cg__trigger:hover { background: rgba(123, 140, 121, 0.12); }
 .cg__trigger:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
 .cg__trigger.is-open .bucket-item__icon { transform: rotate(45deg); }
 .cg__label {
@@ -5092,10 +5157,12 @@ div.issues-hero__visual--static:hover {
   border-top: 1px dashed var(--border);
 }
 
-/* UNC-only rows (AI Usage, Website Hosting) */
-.cg__cell--bkt.cg__cell--unc-only { background: rgba(62, 82, 64, 0.04); }
-.cg__cell--inc.cg__cell--unc-only { background: rgba(62, 82, 64, 0.02); }
-.cg__cell--unc.cg__cell--unc-only { background: rgba(62, 82, 64, 0.07); }
+/* Alternating row band for readability (applied per-cell to every cell in a row,
+   since the single-grid architecture has no per-row wrapper element). The
+   .cg__trigger selector beats the .cg .bucket-item base background; row hover
+   (bumped to .cg .cg__trigger:hover) still wins over the band. */
+.cg__cell--band,
+.cg__trigger.cg__cell--band { background: var(--cream); }
 
 /* Total row */
 .cg__cell--total {
