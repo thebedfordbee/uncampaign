@@ -56,10 +56,11 @@ Total committed: $13.12 (domain registration only). Cap: $49.99 total.
 - Campaign Rules: https://www.donforbedford.com/pages/rules
 - Bedford Roundtable (AI-assisted issue analysis): https://www.donforbedford.com/pages/issues
 - 100+ Ideas for Bedford (community voting): https://www.donforbedford.com/pages/ideas
-- Don Bot (Q&A, 150+ questions, human-reviewed): https://www.donforbedford.com/pages/don-bot
+- Don Bot (human-reviewed Q&A, organized by topic): https://www.donforbedford.com/pages/don-bot
 - AI Transparency: https://www.donforbedford.com/pages/ai
 - Election Day speeches (both written in advance): https://www.donforbedford.com/pages/odds
 - Press materials: https://www.donforbedford.com/pages/press
+- Press Kit (fast facts, story angles, fact sheet, quote bank): https://www.donforbedford.com/press-kit/
 - Best of Bedford (civic participation series hub): https://www.donforbedford.com/best-of-bedford
 - Bedford Typing Challenge: https://www.donforbedford.com/best-of-bedford-fastest-typist
 - Cutest Pet in Bedford: https://www.donforbedford.com/best-of-bedford-cutest-pet
