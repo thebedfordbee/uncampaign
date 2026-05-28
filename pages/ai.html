@@ -1,34 +1,36 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="A transparent look at how Don Scott's Bedford Town Supervisor campaign uses AI to build civic tools, reduce costs, and keep human judgment at the center.">
+
+  <!-- Primary meta -->
+  <title>The AI Transparency Project | Don Scott for Bedford</title>
+  <meta name="description" content="Don Scott&#8217;s AI Transparency Project shows how AI works best with clear thinking, strong prompts, useful context, and human judgment.">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <title>How We Use AI | Don Scott for Bedford Town Supervisor</title>
   <link rel="canonical" href="https://www.donforbedford.com/pages/ai">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/pages/ai">
-  <meta property="og:title" content="How We Use AI | Don for Bedford">
-  <meta property="og:description" content="This campaign uses AI openly. See the prompts, tools, and human-reviewed workflows behind the Don for Bedford site.">
-  <meta property="og:image" content="https://www.donforbedford.com/assets/img/don-bot.png">
-  <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/don-bot.png">
+  <meta property="og:title" content="The AI Transparency Project | Don Scott for Bedford">
+  <meta property="og:description" content="Don Scott&#8217;s AI Transparency Project shows how AI works best with clear thinking, strong prompts, useful context, and human judgment.">
+  <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1536">
-  <meta property="og:image:height" content="1024">
-  <meta property="og:image:alt" content="How We Use AI — Don Scott for Bedford Town Supervisor campaign AI transparency page.">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The AI Transparency Project — Don Scott for Bedford.">
   <meta property="og:site_name" content="Don Scott for Bedford">
   <meta property="og:locale" content="en_US">
 
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/pages/ai">
-  <meta name="twitter:title" content="How We Use AI | Don for Bedford">
-  <meta name="twitter:description" content="This campaign uses AI openly. See the prompts, tools, and human-reviewed workflows behind the Don for Bedford site.">
-  <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/don-bot.png">
-  <meta name="twitter:image:alt" content="How We Use AI — Don Scott for Bedford Town Supervisor campaign AI transparency page.">
+  <meta name="twitter:title" content="The AI Transparency Project | Don Scott for Bedford">
+  <meta name="twitter:description" content="Don Scott&#8217;s AI Transparency Project shows how AI works best with clear thinking, strong prompts, useful context, and human judgment.">
+  <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta name="twitter:image:alt" content="The AI Transparency Project — Don Scott for Bedford.">
 
   <!-- Favicons and browser theme -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -58,15 +60,15 @@
         "@type": "WebPage",
         "@id": "https://www.donforbedford.com/pages/ai#webpage",
         "url": "https://www.donforbedford.com/pages/ai",
-        "name": "How We Use AI | Don Scott for Bedford Town Supervisor",
-        "description": "A transparent look at how Don Scott's Bedford Town Supervisor campaign uses AI to build civic tools, reduce costs, and keep human judgment at the center.",
+        "name": "The AI Transparency Project | Don Scott for Bedford",
+        "description": "Don Scott’s AI Transparency Project shows how AI works best with clear thinking, strong prompts, useful context, and human judgment.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
         "about": { "@id": "https://www.donforbedford.com/#don-scott" },
         "primaryImageOfPage": {
           "@type": "ImageObject",
-          "url": "https://www.donforbedford.com/assets/img/don-bot.png",
-          "width": 1536,
-          "height": 1024
+          "url": "https://www.donforbedford.com/assets/img/og-image.png",
+          "width": 1200,
+          "height": 630
         }
       },
       {
@@ -81,7 +83,7 @@
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "How We Use AI",
+            "name": "The AI Transparency Project",
             "item": "https://www.donforbedford.com/pages/ai"
           }
         ]
@@ -91,7 +93,7 @@
         "@id": "https://www.donforbedford.com/#don-scott",
         "name": "Don Scott",
         "url": "https://www.donforbedford.com/",
-        "jobTitle": "Candidate for Town Supervisor",
+        "jobTitle": "Candidate for Bedford Town Supervisor",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Bedford",
@@ -104,51 +106,575 @@
   </script>
 
   <link rel="stylesheet" href="../assets/css/site.css">
-  <style>
-    /* ── Tighter section spacing (ai page only) ──────────────────────────── */
-    .section { padding-block: 2.25rem; }
-    @media (min-width: 768px) { .section { padding-block: 3.25rem; } }
 
-    /* ── Justified body copy — scoped to this page ───────────────────────── */
-    .issues-explainer__why p,
-    .issues-explainer__offers p:not(.rules-intro__standout),
-    .issues-hero__deck,
-    .personas-intro__lead,
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7WVQR4MTH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G7WVQR4MTH');
+  </script>
+  <script src="/assets/js/analytics.js" defer></script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wis1l4ilnm");
+  </script>
+
+  <style>
+    /* =============================================
+       /pages/ai — The AI Transparency Project
+       Built on existing site tokens. No new deps.
+       ============================================= */
+
+    /* ---------- Justified body copy (page-wide) ---------- */
+    .ai-hero__deck,
+    .ai-point > .container > p,
+    .ai-point__kicker,
+    .ai-demo__header > p,
+    .ai-diagnosis,
+    .ai-builder__header > p,
+    .ai-anatomy__header > p,
+    .ai-tools__intro p,
     .ai-tool-desc {
       text-align: justify;
       hyphens: auto;
+      max-width: none;
     }
-    .issues-explainer__why p { max-width: none; }
-    @media (max-width: 380px) {
-      .issues-explainer__why p,
-      .issues-explainer__offers p:not(.rules-intro__standout),
-      .issues-hero__deck,
-      .personas-intro__lead,
+    /* Mobile: revert to left-aligned to avoid awkward gaps */
+    @media (max-width: 540px) {
+      .ai-hero__deck,
+      .ai-point > .container > p,
+      .ai-point__kicker,
+      .ai-demo__header > p,
+      .ai-diagnosis,
+      .ai-builder__header > p,
+      .ai-anatomy__header > p,
+      .ai-tools__intro p,
       .ai-tool-desc {
         text-align: left;
         hyphens: none;
       }
     }
 
-    /* ── Restrained standout quote in AI approach section ─────────────────── */
-    .issues-explainer__offers .rules-intro__standout {
-      font-size: clamp(1.0625rem, 2.5vw, 1.25rem);
-      line-height: 1.45;
-      margin: 0.875rem 0 1rem;
+    /* ---------- Hero ---------- */
+    .ai-hero {
+      background: var(--moss);
+      padding-block: 3rem 2.75rem;
+    }
+    .ai-hero .eyebrow { color: rgba(255,255,255,0.55); margin-bottom: 0.875rem; }
+    .ai-hero h1 { color: var(--white); max-width: 22ch; margin-bottom: 0; }
+
+    .ai-hero__inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
     }
 
-    /* ── AI tools accordion (mirrors ideas.html accordion pattern) ────────── */
+    .ai-hero__tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--white);
+      font-size: 1.25rem;
+      line-height: 1.45;
+      margin-top: 0.875rem;
+      margin-bottom: 0.25rem;
+      max-width: 36ch;
+    }
+
+    .ai-hero__deck {
+      color: rgba(255,255,255,0.86);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+    }
+    .ai-hero__deck + .ai-hero__deck { margin-top: 0.75rem; }
+
+    .ai-hero__cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.25rem;
+    }
+    .ai-hero .btn--secondary {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.55);
+    }
+    .ai-hero .btn--secondary:hover {
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      border-color: rgba(255,255,255,0.8);
+    }
+    .ai-hero .btn--primary {
+      background: var(--cream);
+      color: var(--moss);
+      border-color: var(--cream);
+    }
+    .ai-hero .btn--primary:hover {
+      background: var(--white);
+      border-color: var(--white);
+      color: var(--moss);
+    }
+
+    /* Clickable hero visual — CSS split card */
+    .ai-hero__visual {
+      display: block;
+      width: 100%;
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .ai-hero__visual:focus-visible {
+      outline: 2px solid rgba(255,255,255,0.65);
+      outline-offset: 4px;
+    }
+    .ai-hero__visual:hover { transform: translateY(-2px); }
+
+    .compare-card {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 1.25rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.875rem;
+      align-items: stretch;
+      position: relative;
+    }
+    .compare-card__pane {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1rem 1.125rem;
+      text-align: left;
+    }
+    .compare-card__pane--vague { opacity: 0.92; }
+    .compare-card__pane--thoughtful {
+      border-color: var(--sage);
+      box-shadow: 0 1px 0 var(--sage) inset, var(--shadow-sm);
+    }
+    .compare-card__label {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .compare-card__pane--thoughtful .compare-card__label { color: var(--moss); }
+    .compare-card__snippet {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--charcoal);
+      margin: 0;
+      max-width: none;
+    }
+    .compare-card__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--moss);
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      font-weight: 700;
+    }
+    .compare-card__hint {
+      margin-top: 0.25rem;
+      text-align: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      max-width: none;
+    }
+    @media (min-width: 520px) {
+      .compare-card { grid-template-columns: 1fr auto 1fr; }
+      .compare-card__arrow { padding-inline: 0.25rem; }
+    }
+
+    /* Desktop hero layout — copy left, visual right */
+    @media (min-width: 768px) {
+      .ai-hero { padding-block: 4rem 3.25rem; }
+      .ai-hero__inner {
+        display: grid;
+        grid-template-columns: 1fr 1.05fr;
+        grid-template-areas:
+          "top  vis"
+          "deck vis"
+          "cta  vis";
+        gap: 0 3.5rem;
+        align-items: center;
+      }
+      .ai-hero__copy-top { grid-area: top; align-self: end; }
+      .ai-hero__deck-wrap { grid-area: deck; }
+      .ai-hero__cta-row { grid-area: cta; align-self: start; }
+      .ai-hero__visual { grid-area: vis; }
+      .ai-hero__tagline { max-width: none; }
+    }
+    @media (min-width: 960px) {
+      .ai-hero__inner { gap: 0 4.5rem; }
+    }
+
+    /* ---------- The Point ---------- */
+    .ai-point { background: var(--white); }
+    .ai-point__intro { margin-bottom: 1.25rem; }
+    .ai-point__intro h2 { margin-top: 0.5rem; }
+    .ai-point__list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 0.625rem;
+    }
+    .ai-point__list li {
+      padding: 0.875rem 1.125rem;
+      background: var(--cream);
+      border-left: 3px solid var(--sage);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: var(--charcoal);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+    .ai-point__kicker {
+      margin-top: 1.5rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ---------- Interactive comparison module ---------- */
+    .ai-demo { background: var(--cream); }
+    .ai-demo__header { margin-bottom: 1.75rem; }
+    .ai-demo__header h2 { margin-top: 0.5rem; }
+    .ai-demo__header p { color: var(--muted); margin-top: 0.75rem; }
+
+    .ai-tabs {
+      display: inline-flex;
+      gap: 0.25rem;
+      padding: 0.25rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+    .ai-tab {
+      appearance: none;
+      border: none;
+      background: transparent;
+      font-family: var(--sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--muted);
+      padding: 0.55rem 1.125rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease;
+      min-height: 40px;
+    }
+    .ai-tab:hover { color: var(--charcoal); }
+    .ai-tab[aria-selected="true"] {
+      background: var(--moss);
+      color: var(--white);
+    }
+    .ai-tab:focus-visible {
+      outline: 2px solid var(--moss);
+      outline-offset: 2px;
+    }
+
+    .ai-demo__grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 880px) {
+      .ai-demo__grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .ai-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem 1.25rem 1.375rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .ai-panel__label {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--sage);
+      margin-bottom: 0.625rem;
+    }
+    .ai-panel__title {
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      color: var(--charcoal);
+      margin-bottom: 0.625rem;
+    }
+    .ai-panel__body {
+      color: var(--charcoal);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      margin: 0;
+      max-width: none;
+    }
+    .ai-panel__body--mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.8125rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.875rem 1rem;
+      line-height: 1.6;
+      max-height: 320px;
+      overflow: auto;
+    }
+
+    .ai-diagnosis {
+      margin-top: 1.5rem;
+      padding: 1rem 1.125rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--moss);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: var(--charcoal);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+    }
+    .ai-diagnosis strong { color: var(--moss); }
+
+    .ai-changes { margin-top: 1.5rem; }
+    .ai-changes__title {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--sage);
+      margin-bottom: 0.75rem;
+    }
+    .ai-changes__list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    @media (min-width: 520px) {
+      .ai-changes__list { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 880px) {
+      .ai-changes__list { grid-template-columns: repeat(4, 1fr); }
+    }
+    .ai-changes__list li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: var(--muted);
+      padding: 0.5rem 0.625rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .ai-changes__list li[data-on="true"] {
+      color: var(--charcoal);
+      border-color: var(--sage);
+      background: rgba(123,140,121,0.08);
+    }
+    .ai-changes__mark {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--white);
+      font-size: 0.7rem;
+      line-height: 1;
+    }
+    li[data-on="true"] .ai-changes__mark {
+      background: var(--sage);
+      border-color: var(--sage);
+    }
+
+    /* ---------- Prompt builder ---------- */
+    .ai-builder { background: var(--white); }
+    .ai-builder__header { margin-bottom: 1.5rem; }
+    .ai-builder__header h2 { margin-top: 0.5rem; }
+    .ai-builder__header p { color: var(--muted); margin-top: 0.75rem; }
+
+    .ai-form {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) {
+      .ai-form { grid-template-columns: 1fr 1fr; }
+      .ai-form__row--full { grid-column: 1 / -1; }
+    }
+    .ai-form label {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 700;
+      margin-bottom: 0.375rem;
+    }
+    .ai-form input,
+    .ai-form textarea {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.625rem 0.75rem;
+      line-height: 1.5;
+      min-height: 44px;
+      resize: vertical;
+    }
+    .ai-form textarea { min-height: 88px; }
+    .ai-form input:focus,
+    .ai-form textarea:focus {
+      outline: 2px solid var(--moss);
+      outline-offset: 1px;
+      border-color: var(--moss);
+      background: var(--white);
+    }
+
+    .ai-builder__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      align-items: center;
+    }
+
+    .ai-builder__output {
+      margin-top: 1.5rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--moss);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.125rem 1.25rem;
+    }
+    .ai-builder__output[hidden] { display: none; }
+    .ai-builder__output-label {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--moss);
+      margin-bottom: 0.5rem;
+    }
+    .ai-builder__output pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.8125rem;
+      line-height: 1.65;
+      color: var(--charcoal);
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin: 0;
+    }
+    .ai-builder__output-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.625rem;
+      margin-top: 0.875rem;
+    }
+    .ai-copy-feedback {
+      font-size: 0.8125rem;
+      color: var(--sage);
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+    .ai-copy-feedback[data-shown="true"] { opacity: 1; }
+
+    .ai-builder__privacy {
+      margin-top: 1rem;
+      font-size: 0.8125rem;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    /* ---------- Anatomy cards ---------- */
+    .ai-anatomy { background: var(--cream); }
+    .ai-anatomy__header { margin-bottom: 1.75rem; }
+    .ai-anatomy__header h2 { margin-top: 0.5rem; }
+    .ai-anatomy__header p { color: var(--muted); margin-top: 0.75rem; }
+
+    .ai-anatomy__grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 600px) {
+      .ai-anatomy__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 960px) {
+      .ai-anatomy__grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .ai-anatomy__card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.125rem 1.25rem 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .ai-anatomy__card h3 {
+      font-family: var(--serif);
+      font-size: 1.0625rem;
+      color: var(--moss);
+      margin-bottom: 0.375rem;
+    }
+    .ai-anatomy__card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* ---------- AI Tools section (replaces "Why This Is Here") ---------- */
+    .ai-tools { background: var(--white); }
+    .ai-tools__intro { margin-bottom: 1.75rem; }
+    .ai-tools__intro h2 { margin-top: 0.5rem; }
+    .ai-tools__intro p {
+      color: var(--muted);
+      margin-top: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* Accordion lifted from old /pages/ai */
     .ai-tools-accordion {
       border: 1px solid var(--border);
       border-radius: 6px;
       overflow: hidden;
       box-shadow: var(--shadow-sm);
     }
-
-    /* idea-category styles are page-scoped in ideas.html; copy them here */
     .idea-category { border-bottom: 1px solid var(--border); }
     .idea-category:last-child { border-bottom: none; }
-
     .idea-category__trigger {
       width: 100%;
       border: none;
@@ -164,16 +690,13 @@
       font-family: inherit;
     }
     .idea-category__trigger:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
-
     .idea-category:nth-child(5n+1) .idea-category__trigger { background: var(--white); }
     .idea-category:nth-child(5n+2) .idea-category__trigger { background: var(--cream); }
     .idea-category:nth-child(5n+3) .idea-category__trigger { background: rgba(123,140,121,0.07); }
     .idea-category:nth-child(5n+4) .idea-category__trigger { background: rgba(224,219,211,0.55); }
     .idea-category:nth-child(5n+5) .idea-category__trigger { background: rgba(62,82,64,0.05); }
-
     .idea-category__trigger:hover { filter: brightness(0.965); }
     .idea-category.is-open .idea-category__trigger { filter: brightness(0.955); }
-
     .idea-category__trigger-left {
       display: flex;
       align-items: center;
@@ -205,7 +728,6 @@
       transition: transform 0.22s ease;
     }
     .idea-category.is-open .idea-category__icon { transform: rotate(45deg); }
-
     .idea-category__panel {
       overflow: hidden;
       max-height: 0;
@@ -217,45 +739,25 @@
       background: var(--cream);
       border-top: 1px solid var(--border);
     }
-
-    /* Brief description above the instruction panel */
     .ai-tool-desc {
       font-size: 0.9375rem;
       color: var(--muted);
       margin: 0;
       max-width: none;
     }
-
-    /* Reduce top margin on instr-panel when nested inside accordion */
     .idea-category__panel-inner .instr-panel { margin-top: 1.25rem; }
 
-    /* Reduced motion */
+    /* Mild motion preference */
     @media (prefers-reduced-motion: reduce) {
+      .ai-hero__visual:hover { transform: none; }
       .idea-category__panel { transition: none; }
       .idea-category__icon { transition: none; }
     }
   </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7WVQR4MTH"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-G7WVQR4MTH');
-  </script>
-  <script src="/assets/js/analytics.js" defer></script>
-  <!-- Microsoft Clarity -->
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wis1l4ilnm");
-  </script>
 </head>
 <body>
 
-  <!-- HEADER — matches rules.html exactly (same links, same order, no aria-current) -->
+  <!-- HEADER — identical to other inner pages -->
   <header class="site-header" role="banner">
     <div class="container">
       <a href="/" class="site-logo" aria-label="Don Scott for Bedford — Home">
@@ -264,7 +766,7 @@
       </a>
 
       <nav class="site-nav" aria-label="Main navigation">
-                        <ul class="site-nav__links" role="list">
+        <ul class="site-nav__links" role="list">
           <li><a href="/">Home</a></li>
           <li><a href="/pages/rules">Rules</a></li>
           <li><a href="/pages/issues">Issues</a></li>
@@ -286,7 +788,7 @@
       </nav>
     </div>
 
-            <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
+    <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
       <a href="/">Home</a>
       <a href="/pages/rules">Rules</a>
       <a href="/pages/issues">Issues</a>
@@ -297,65 +799,252 @@
     </nav>
   </header>
 
-  <!-- HERO — matches rules.html hero pattern exactly -->
-  <section class="issues-hero" aria-labelledby="ai-title">
-    <div class="container">
-      <div class="issues-hero__inner">
-
-        <div class="issues-hero__copy-top">
-          <p class="eyebrow">Don Scott for Bedford</p>
-          <h1 id="ai-title">How We Use AI</h1>
-        </div>
-
-        <button type="button" class="issues-hero__visual" aria-label="Expand image" aria-haspopup="dialog">
-          <img
-            src="../assets/img/don-bot.png"
-            alt="Don Bot, the AI-assisted Q&amp;A tool built for the Don Scott for Bedford campaign"
-            width="1536"
-            height="1024"
-            loading="eager"
-            decoding="async"
-          >
-        </button>
-
-        <div class="issues-hero__copy-bot">
-          <p class="issues-hero__deck">AI helped build this campaign. Not to replace judgment &#8212; to reduce cost. This page explains what was built, how it works, and shows the exact instructions behind each tool.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <main id="main-content">
 
-    <!-- AI APPROACH — mirrors rules.html campaign approach section layout -->
-    <section class="section section--alt" aria-labelledby="ai-approach-headline">
+    <!-- ============================= HERO ============================= -->
+    <section class="ai-hero" aria-labelledby="ai-hero-title">
       <div class="container">
-        <div class="issues-explainer">
+        <div class="ai-hero__inner">
 
-          <div class="issues-explainer__why">
-            <p class="eyebrow">AI Assistance, Human Review</p>
-            <h2 id="ai-approach-headline">This Campaign Uses AI Openly</h2>
-            <p>Most campaigns spend thousands of dollars on consultants, designers, and communications staff. This campaign uses AI to do what those consultants would have done &#8212; at a fraction of the cost, and transparently. The tools on this page were built with AI. Don reviewed everything before it went public.</p>
+          <div class="ai-hero__copy-top">
+            <p class="eyebrow">Don Scott Presents</p>
+            <h1 id="ai-hero-title">The AI Transparency Project</h1>
+            <p class="ai-hero__tagline">AI is not magic. It&#8217;s amplification.</p>
           </div>
 
-          <div class="issues-explainer__offers">
-            <p class="rules-intro__standout">AI is a tool. Don is the candidate.</p>
-            <p>AI does not set positions, invent answers, or make campaign decisions. It helps draft, structure, and build. Every output is reviewed by a human before it is published. That is not a disclaimer &#8212; it is the design.</p>
+          <div class="ai-hero__deck-wrap">
+            <p class="ai-hero__deck">
+              We are not hiding the use of AI in this campaign. We are showing our work.
+            </p>
+            <p class="ai-hero__deck">
+              AI does not replace judgment, taste, preparation, or clear thinking. It rewards them. A vague prompt produces vague output. A thoughtful prompt can turn a useful idea into something clearer, sharper, and easier to share.
+            </p>
           </div>
+
+          <div class="ai-hero__cta-row">
+            <a href="#try-it" class="btn btn--primary" data-scroll>Try the Demonstration</a>
+            <a href="#prompt-anatomy" class="btn btn--secondary" data-scroll>See the Prompt Anatomy</a>
+          </div>
+
+          <button
+            type="button"
+            class="ai-hero__visual"
+            id="hero-visual"
+            aria-label="Compare a vague prompt and a thoughtful prompt — scroll to the interactive demonstration"
+          >
+            <div class="compare-card" aria-hidden="true">
+              <div class="compare-card__pane compare-card__pane--vague">
+                <p class="compare-card__label">Vague Input</p>
+                <p class="compare-card__snippet">&#8220;Help me plan dinner.&#8221;</p>
+              </div>
+              <div class="compare-card__arrow" aria-hidden="true">&rarr;</div>
+              <div class="compare-card__pane compare-card__pane--thoughtful">
+                <p class="compare-card__label">Thoughtful Input</p>
+                <p class="compare-card__snippet">Audience. Constraints. Timing. Location. Tone.</p>
+              </div>
+            </div>
+            <p class="compare-card__hint">Click to see the difference</p>
+          </button>
 
         </div>
       </div>
     </section>
 
-    <!-- AI TOOLS ACCORDION — section header mirrors personas-intro pattern from rules.html -->
-    <section class="section" aria-labelledby="ai-tools-headline">
+    <!-- ============================= THE POINT ============================= -->
+    <section class="section ai-point" aria-labelledby="ai-point-title">
+      <div class="container">
+        <div class="ai-point__intro">
+          <p class="eyebrow">The Point</p>
+          <h2 id="ai-point-title">The Tool Did Not Get Smarter. The Input Did.</h2>
+        </div>
+        <p>
+          The interesting part of using AI well is not the AI. It is the thinking that happens before you press send. People who already know what they are trying to do, who they are talking to, and what good looks like get sharper results because the AI has something real to work with. People who hand it a one-line request get a one-line version of nothing in particular.
+        </p>
+        <ul class="ai-point__list" role="list">
+          <li>A calculator does not make someone good at math.</li>
+          <li>Photoshop does not make someone a designer.</li>
+          <li>A spreadsheet does not make someone good at running a town budget.</li>
+          <li>AI does not create judgment. It amplifies the judgment, clarity, and preparation a person already brings to it.</li>
+        </ul>
+        <p class="ai-point__kicker">
+          That is also why this page exists. If we are going to use AI openly, residents should be able to see how we use it, and decide for themselves whether the work is honest.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================= TRY IT YOURSELF ============================= -->
+    <section class="section ai-demo" id="try-it" aria-labelledby="ai-demo-title">
+      <div class="container">
+        <div class="ai-demo__header">
+          <p class="eyebrow">Try It Yourself</p>
+          <h2 id="ai-demo-title">Same AI. Different Prompt.</h2>
+          <p>Toggle between a vague prompt and a thoughtful one. Same model. Same task. Two very different results. This is a normal everyday example &mdash; coordinating a dinner with friends &mdash; because the principle is the same whether you are planning a meal, writing an email, or drafting anything else.</p>
+        </div>
+
+        <div class="ai-tabs" role="tablist" aria-label="Prompt comparison">
+          <button
+            type="button"
+            class="ai-tab"
+            role="tab"
+            id="tab-vague"
+            aria-selected="true"
+            aria-controls="panel-prompt panel-output"
+            data-mode="vague"
+          >Vague Prompt</button>
+          <button
+            type="button"
+            class="ai-tab"
+            role="tab"
+            id="tab-thoughtful"
+            aria-selected="false"
+            aria-controls="panel-prompt panel-output"
+            data-mode="thoughtful"
+          >Thoughtful Prompt</button>
+        </div>
+
+        <div class="ai-demo__grid">
+          <div class="ai-panel" id="panel-prompt" role="tabpanel" aria-labelledby="tab-vague" aria-live="polite">
+            <p class="ai-panel__label">The Prompt</p>
+            <h3 class="ai-panel__title" id="prompt-title">What the human typed</h3>
+            <pre class="ai-panel__body ai-panel__body--mono" id="prompt-text"></pre>
+          </div>
+
+          <div class="ai-panel" id="panel-output" role="tabpanel" aria-labelledby="tab-vague" aria-live="polite">
+            <p class="ai-panel__label">The Likely Output</p>
+            <h3 class="ai-panel__title" id="output-title">What AI returned</h3>
+            <p class="ai-panel__body" id="output-text"></p>
+          </div>
+        </div>
+
+        <div class="ai-diagnosis" id="diagnosis" aria-live="polite">
+          <strong>Diagnosis: </strong><span id="diagnosis-text"></span>
+        </div>
+
+        <div class="ai-changes" aria-labelledby="changes-title">
+          <p class="ai-changes__title" id="changes-title">What changed?</p>
+          <ul class="ai-changes__list" id="changes-list" role="list">
+            <li data-key="context"><span class="ai-changes__mark" aria-hidden="true">&#10003;</span> Context</li>
+            <li data-key="audience"><span class="ai-changes__mark" aria-hidden="true">&#10003;</span> Audience</li>
+            <li data-key="tone"><span class="ai-changes__mark" aria-hidden="true">&#10003;</span> Tone</li>
+            <li data-key="constraints"><span class="ai-changes__mark" aria-hidden="true">&#10003;</span> Constraints</li>
+            <li data-key="examples"><span class="ai-changes__mark" aria-hidden="true">&#10003;</span> Examples or reference points</li>
+            <li data-key="goal"><span class="ai-changes__mark" aria-hidden="true">&#10003;</span> Goal</li>
+            <li data-key="format"><span class="ai-changes__mark" aria-hidden="true">&#10003;</span> Format</li>
+            <li data-key="judgment"><span class="ai-changes__mark" aria-hidden="true">&#10003;</span> Human judgment</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= PROMPT BUILDER ============================= -->
+    <section class="section ai-builder" id="builder" aria-labelledby="ai-builder-title">
+      <div class="container">
+        <div class="ai-builder__header">
+          <p class="eyebrow">Build a Better Prompt</p>
+          <h2 id="ai-builder-title">Build a Better Prompt</h2>
+          <p>This is a small tool for anyone &mdash; not just for the campaign. Fill in whatever applies to whatever you are working on. Press the button. Copy the result into ChatGPT, Claude, Gemini, or whatever AI tool you use. The more you tell it, the more useful it gets.</p>
+        </div>
+
+        <form class="ai-form" id="builder-form" novalidate>
+          <div class="ai-form__row ai-form__row--full">
+            <label for="b-role">What role should AI play? <span style="text-transform:none;letter-spacing:0;color:var(--muted);font-weight:400;font-size:0.7rem;">(Optional)</span></label>
+            <input id="b-role" name="role" type="text" placeholder="e.g. Act like a patient organizer, a practical editor, a travel planner, a tutor, a project manager, or a second set of eyes.">
+          </div>
+          <div class="ai-form__row ai-form__row--full">
+            <label for="b-create">What are you trying to create?</label>
+            <textarea id="b-create" name="create" rows="2" placeholder="e.g. A short text message inviting friends to dinner"></textarea>
+          </div>
+          <div class="ai-form__row">
+            <label for="b-audience">Who is it for?</label>
+            <input id="b-audience" name="audience" type="text" placeholder="e.g. A group of close friends with kids and dietary needs">
+          </div>
+          <div class="ai-form__row">
+            <label for="b-tone">What should it sound like?</label>
+            <input id="b-tone" name="tone" type="text" placeholder="e.g. Warm, organized, lightly funny, not too formal">
+          </div>
+          <div class="ai-form__row">
+            <label for="b-avoid">What should it avoid?</label>
+            <input id="b-avoid" name="avoid" type="text" placeholder="e.g. Long paragraphs, formality, anything that sounds like a forwarded email">
+          </div>
+          <div class="ai-form__row">
+            <label for="b-success">What does success look like?</label>
+            <textarea id="b-success" name="success" rows="2" placeholder="e.g. Everyone reads it in under a minute and replies with a date that works"></textarea>
+          </div>
+        </form>
+
+        <div class="ai-builder__actions">
+          <button type="button" class="btn btn--primary" id="build-btn">Build My Prompt</button>
+          <button type="button" class="btn btn--secondary" id="clear-btn">Clear</button>
+        </div>
+
+        <div class="ai-builder__output" id="builder-output" hidden aria-live="polite">
+          <p class="ai-builder__output-label">Your prompt</p>
+          <pre id="builder-output-text"></pre>
+          <div class="ai-builder__output-actions">
+            <button type="button" class="btn btn--secondary" id="copy-btn" aria-describedby="copy-feedback">Copy Prompt</button>
+            <span class="ai-copy-feedback" id="copy-feedback" role="status" aria-live="polite">Copied</span>
+          </div>
+        </div>
+
+        <p class="ai-builder__privacy">
+          This tool runs entirely in your browser. We are not collecting what you type here.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================= PROMPT ANATOMY ============================= -->
+    <section class="section ai-anatomy" id="prompt-anatomy" aria-labelledby="ai-anatomy-title">
+      <div class="container">
+        <div class="ai-anatomy__header">
+          <p class="eyebrow">How to Use AI Better</p>
+          <h2 id="ai-anatomy-title">A Good Prompt Is Just Clear Thinking in Writing.</h2>
+        </div>
+
+        <div class="ai-anatomy__grid">
+          <article class="ai-anatomy__card">
+            <h3>Context</h3>
+            <p>What situation should the AI understand before it answers?</p>
+          </article>
+          <article class="ai-anatomy__card">
+            <h3>Audience</h3>
+            <p>Who is this for, and what do they already know?</p>
+          </article>
+          <article class="ai-anatomy__card">
+            <h3>Goal</h3>
+            <p>What are you actually trying to accomplish?</p>
+          </article>
+          <article class="ai-anatomy__card">
+            <h3>Tone</h3>
+            <p>What should it sound like &mdash; and what should it never sound like?</p>
+          </article>
+          <article class="ai-anatomy__card">
+            <h3>Constraints</h3>
+            <p>What should it avoid, leave out, or stay away from?</p>
+          </article>
+          <article class="ai-anatomy__card">
+            <h3>Source material</h3>
+            <p>What facts, notes, or examples should it use to stay grounded?</p>
+          </article>
+          <article class="ai-anatomy__card">
+            <h3>Format</h3>
+            <p>What should the finished output actually look like?</p>
+          </article>
+          <article class="ai-anatomy__card">
+            <h3>Judgment</h3>
+            <p>What does a good answer need to respect that the AI can&#8217;t infer?</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================= AI TOOLS USED IN THIS CAMPAIGN ============================= -->
+    <section class="section ai-tools" aria-labelledby="ai-tools-headline">
       <div class="container">
 
-        <div class="personas-intro">
-          <p class="eyebrow">AI tools used in this campaign</p>
-          <h2 id="ai-tools-headline">How Each Tool Was Built</h2>
-          <p class="personas-intro__lead">This campaign publishes the exact AI instructions behind each tool it uses. These are the real prompts &#8212; not summaries. Click any row to read them. Copy them if they&#8217;re useful. Most of these prompts are not campaign-specific &#8212; the same approach works just as well for personal decisions, workplace projects, or anything else that benefits from a little structure. They are meant to be borrowed.</p>
+        <div class="ai-tools__intro">
+          <p class="eyebrow">AI Tools Used In This Campaign</p>
+          <h2 id="ai-tools-headline">The Actual Prompts Behind Each Tool</h2>
+          <p>This campaign publishes the exact AI instructions behind each tool it uses. These are the real prompts &mdash; not summaries. Click any row to read them. Copy them if they&#8217;re useful. Most of these prompts are not campaign-specific &mdash; the same approach works just as well for personal decisions, workplace projects, or anything else that benefits from a little structure. They are meant to be borrowed.</p>
         </div>
 
         <div class="ai-tools-accordion" role="list" aria-label="AI tools and instruction sets">
@@ -377,10 +1066,10 @@
             </button>
             <div class="idea-category__panel" id="ai-panel-roundtable" role="region" aria-label="Civic Roundtable instruction set">
               <div class="idea-category__panel-inner">
-                <p class="ai-tool-desc">The Bedford Roundtable examines every local issue through eight distinct civic perspectives before arriving at a recommendation. This is the exact prompt used to run each discussion. The same structure works for any decision that benefits from multiple viewpoints &#8212; a big purchase, a business choice, a complicated family situation. Swap out the eight civic roles for whatever perspectives matter to the problem at hand.</p>
+                <p class="ai-tool-desc">The Bedford Roundtable examines every local issue through eight distinct civic perspectives before arriving at a recommendation. This is the exact prompt used to run each discussion. The same structure works for any decision that benefits from multiple viewpoints &mdash; a big purchase, a business choice, a complicated family situation. Swap out the eight civic roles for whatever perspectives matter to the problem at hand.</p>
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
-                    <span class="instr-panel__title">Public Instruction Set &#8212; Civic Roundtable</span>
+                    <span class="instr-panel__title">Public Instruction Set &mdash; Civic Roundtable</span>
                     <div class="instr-panel__controls">
                       <button class="instr-panel__copy" aria-label="Copy Civic Roundtable instruction set to clipboard">
                         <span class="instr-panel__copy-label">Copy All</span>
@@ -415,7 +1104,7 @@
               <div class="idea-category__panel-inner">
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
-                    <span class="instr-panel__title">Public Instruction Set &#8212; Interactive Chatbot</span>
+                    <span class="instr-panel__title">Public Instruction Set &mdash; Interactive Chatbot</span>
                     <div class="instr-panel__controls">
                       <button class="instr-panel__copy" aria-label="Copy Interactive Chatbot instruction set to clipboard">
                         <span class="instr-panel__copy-label">Copy All</span>
@@ -479,7 +1168,7 @@ Include questions that may be:
 skeptical
 unclear
 outside the strict scope of the role
-Do not optimize for message control &#8212; optimize for usefulness
+Do not optimize for message control &mdash; optimize for usefulness
 Avoid redundancy
 
 Output
@@ -608,7 +1297,7 @@ It makes the candidate's answers easier to access, understand, and evaluate.</pr
                 <p class="ai-tool-desc">The Bedford Brief turns long public meetings into short audio and video recaps of Bedford Town Board meetings, available on Spotify and YouTube. The workflow starts with a public meeting recording, uses NotebookLM to create a civic summary and audio/video overview, and requires human review before anything is published. The full workflow is on the <a href="recaps.html">Recaps page</a>. The same approach works for any public meeting with a recording or transcript.</p>
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
-                    <span class="instr-panel__title">Public Instruction Set &#8212; Meeting Recaps</span>
+                    <span class="instr-panel__title">Public Instruction Set &mdash; Meeting Recaps</span>
                     <div class="instr-panel__controls">
                       <button class="instr-panel__copy" aria-label="Copy Meeting Recaps instruction set to clipboard">
                         <span class="instr-panel__copy-label">Copy All</span>
@@ -637,7 +1326,7 @@ It makes the candidate's answers easier to access, understand, and evaluate.</pr
                       <p>Use NotebookLM&#8217;s Audio Overview feature to generate a spoken version. This becomes the foundation of the Spotify audio recap and the YouTube video recap.</p>
 
                       <p style="margin-top:1rem"><strong>Step 6. Human Review Before Publishing</strong></p>
-                      <p>Review the summary against the original meeting video. Correct any errors. Remove anything unclear or unsupported by the source material. These recaps are meant to help residents follow local government &#8212; not to replace the official meeting record.</p>
+                      <p>Review the summary against the original meeting video. Correct any errors. Remove anything unclear or unsupported by the source material. These recaps are meant to help residents follow local government &mdash; not to replace the official meeting record.</p>
                       <p>Residents can use the same method for school board meetings, planning board meetings, or any other public meeting with a recording or transcript.</p>
 
                       <p style="margin-top:1.5rem"><strong>Prompt to Use in NotebookLM</strong></p>
@@ -669,10 +1358,10 @@ It makes the candidate's answers easier to access, understand, and evaluate.</pr
             </button>
             <div class="idea-category__panel" id="ai-panel-howto" role="region" aria-label="Town Code How-To Guide instruction set">
               <div class="idea-category__panel-inner">
-                <p class="ai-tool-desc">The Bedford How-To Guide turns the Town Code into a searchable, plain-English reference for residents. This is the exact prompt used to analyze the code, extract practical questions, and build the interactive page. The same approach works for any long legal or regulatory document &#8212; zoning rules, HOA bylaws, lease agreements, employee handbooks. Feed in the document and ask for the resident-first version.</p>
+                <p class="ai-tool-desc">The Bedford How-To Guide turns the Town Code into a searchable, plain-English reference for residents. This is the exact prompt used to analyze the code, extract practical questions, and build the interactive page. The same approach works for any long legal or regulatory document &mdash; zoning rules, HOA bylaws, lease agreements, employee handbooks. Feed in the document and ask for the resident-first version.</p>
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
-                    <span class="instr-panel__title">Public Instruction Set &#8212; Town Code How-To Guide</span>
+                    <span class="instr-panel__title">Public Instruction Set &mdash; Town Code How-To Guide</span>
                     <div class="instr-panel__controls">
                       <button class="instr-panel__copy" aria-label="Copy Town Code How-To Guide instruction set to clipboard">
                         <span class="instr-panel__copy-label">Copy All</span>
@@ -833,7 +1522,7 @@ It makes the code easier to approach, so residents can ask better questions and 
               <div class="idea-category__panel-inner">
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
-                    <span class="instr-panel__title">Public Instruction Set &#8212; Social Media Clone</span>
+                    <span class="instr-panel__title">Public Instruction Set &mdash; Social Media Clone</span>
                     <div class="instr-panel__controls">
                       <button class="instr-panel__copy" aria-label="Copy Social Media Clone instruction set to clipboard">
                         <span class="instr-panel__copy-label">Copy All</span>
@@ -984,7 +1673,7 @@ Closing Note
 
 This system is not about creating better images.
 
-It's about demonstrating how campaign visuals can be constructed, replicated, and distributed without traditional production &#8212; while still feeling familiar enough to be taken seriously.</pre>
+It's about demonstrating how campaign visuals can be constructed, replicated, and distributed without traditional production &mdash; while still feeling familiar enough to be taken seriously.</pre>
                   </div>
                 </div>
               </div>
@@ -1011,7 +1700,7 @@ It's about demonstrating how campaign visuals can be constructed, replicated, an
                 <p class="ai-tool-desc">A lightweight AI-assisted survey workflow used to collect resident picks, send completed responses through Google Apps Script, and store them in Google Sheets for a final Best of Bedford tally after Election Day. The same approach works for any community input tool that needs to collect structured responses without a paid backend. <a href="best-of-bedford-community-picks.html">View the Community Picks survey.</a></p>
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
-                    <span class="instr-panel__title">Public Instruction Set &#8212; Community Picks Survey Builder</span>
+                    <span class="instr-panel__title">Public Instruction Set &mdash; Community Picks Survey Builder</span>
                     <div class="instr-panel__controls">
                       <button class="instr-panel__copy" aria-label="Copy Community Picks Survey Builder instruction set to clipboard">
                         <span class="instr-panel__copy-label">Copy All</span>
@@ -1138,7 +1827,7 @@ A public-facing survey page that collects lightweight civic input, stores respon
                 <p class="ai-tool-desc">AI-assisted analysis of the Bedford Town Code used to surface surprising provisions and turn them into an interactive quiz with a live leaderboard. The same approach works for any long public document a community should understand but rarely reads. <a href="best-of-bedford-code-red.html">Play Code Red.</a></p>
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
-                    <span class="instr-panel__title">Public Instruction Set &#8212; Code Red Quiz Builder</span>
+                    <span class="instr-panel__title">Public Instruction Set &mdash; Code Red Quiz Builder</span>
                     <div class="instr-panel__controls">
                       <button class="instr-panel__copy" aria-label="Copy Code Red Quiz Builder instruction set to clipboard">
                         <span class="instr-panel__copy-label">Copy All</span>
@@ -1325,7 +2014,7 @@ demonstrates how AI can make civic information accessible</pre>
                 <p class="ai-tool-desc">An AI-assisted civic tool that matches residents against public voter file data, scores voting consistency with a clear participation rubric, and creates a personalized Election Day calendar reminder with polling place details. <a href="best-of-bedford-voter-report-card.html">Check your voter record.</a></p>
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
-                    <span class="instr-panel__title">Public Instruction Set &#8212; Voter Report Card Builder</span>
+                    <span class="instr-panel__title">Public Instruction Set &mdash; Voter Report Card Builder</span>
                     <div class="instr-panel__controls">
                       <button class="instr-panel__copy" aria-label="Copy Voter Report Card Builder instruction set to clipboard">
                         <span class="instr-panel__copy-label">Copy All</span>
@@ -1494,7 +2183,7 @@ It turns public election data into a practical civic reminder.</pre>
                 <p class="ai-tool-desc">An AI-assisted civic engagement tool that lets residents submit pets through a form, routes entries through Google Apps Script and Sheets, and powers a category-based voting gallery with real-time upvotes. <a href="best-of-bedford-cutest-pet.html">Visit the Pet Contest.</a></p>
                 <div class="instr-panel">
                   <div class="instr-panel__bar">
-                    <span class="instr-panel__title">Public Instruction Set &#8212; Pet Contest Builder</span>
+                    <span class="instr-panel__title">Public Instruction Set &mdash; Pet Contest Builder</span>
                     <div class="instr-panel__controls">
                       <button class="instr-panel__copy" aria-label="Copy Pet Contest Builder instruction set to clipboard">
                         <span class="instr-panel__copy-label">Copy All</span>
@@ -1649,11 +2338,7 @@ It turns campaign technology into something neighborly.</pre>
 
   </main>
 
-  <div class="container" style="padding-block:2rem;text-align:center;">
-    <p style="font-size:0.8125rem;color:var(--muted);margin:0;max-width:none;">Reviewed and current as of April 27, 2026.</p>
-  </div>
-
-  <!-- FOOTER — matches rules.html exactly -->
+  <!-- FOOTER — identical to index.html, with AI Transparency marked as current -->
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="site-footer__inner">
@@ -1680,8 +2365,10 @@ It turns campaign technology into something neighborly.</pre>
           </div>
         </div>
 
-                        <nav class="footer-nav" aria-label="Footer navigation">
+        <nav class="footer-nav" aria-label="Footer navigation">
           <p class="footer-nav__label">Pages</p>
+          <a href="/blog">Blog</a>
+          <a href="/election">Election Info</a>
           <a href="/pages/ai" aria-current="page">AI Transparency</a>
         </nav>
 
@@ -1694,12 +2381,240 @@ It turns campaign technology into something neighborly.</pre>
     </div>
   </footer>
 
+  <!-- Sitewide JS -->
   <script src="../assets/js/site.js"></script>
+  <!-- Roundtable instruction set (mounts into [data-roundtable-instr]) -->
   <script src="../assets/js/roundtable-instruction-set.js"></script>
+
+  <!-- Page-specific JS: demo tabs, prompt builder, copy, hero scroll, accordion -->
   <script>
-    /* AI tools accordion toggle — each row independently expandable */
     (function () {
       'use strict';
+
+      // ---------- Demo content (dinner example) ----------
+      var DEMO = {
+        vague: {
+          tabId: 'tab-vague',
+          promptTitle: 'A vague request',
+          outputTitle: 'A vague response',
+          prompt: '"Help me plan a dinner with friends."',
+          output: '"Pick a date, choose a restaurant, invite your friends, and confirm who is coming. You can also ask about dietary restrictions and make a reservation."',
+          diagnosis: 'This is not wrong, but it is generic. The prompt gave the AI almost nothing to work with. No number of people. No timing. No budget. No dietary needs. No location. No tone. No actual friction to solve.',
+          on: {}
+        },
+        thoughtful: {
+          tabId: 'tab-thoughtful',
+          promptTitle: 'A thoughtful request',
+          outputTitle: 'A grounded response',
+          prompt: [
+            'You are helping me coordinate a casual dinner with friends.',
+            '',
+            'Context:',
+            'There are 8 adults. Two people have young kids and need an early time. One person is vegetarian. One person avoids gluten. We live in different parts of Westchester, so the location should be convenient for people coming from Bedford, Katonah, Mount Kisco, and Chappaqua.',
+            '',
+            'Goal:',
+            'Make it easy to pick a date, choose a place, and get everyone to respond without creating a chaotic group text.',
+            '',
+            'Tone:',
+            'Warm, organized, lightly funny, not overly formal.',
+            '',
+            'Constraints:',
+            'Keep the message short. Offer three date options. Ask people to reply with availability and dietary issues. Suggest that I will make the reservation once there is a clear majority.',
+            '',
+            'Format:',
+            'Write one text message I can paste into the group chat.'
+          ].join('\n'),
+          output: [
+            '"Dinner attempt, with slightly more organization than our usual 47-message spiral.',
+            '',
+            'I’m looking at three options: Thursday 6:30, Friday 6:30, or Sunday 5:30. Reply with the dates that work for you, plus any food constraints I should know about. I have vegetarian and gluten-free on the radar already.',
+            '',
+            'Once there’s a clear winner, I’ll pick a spot that’s reasonably convenient for Bedford, Katonah, Mount Kisco, and Chappaqua and make the reservation."'
+          ].join('\n'),
+          diagnosis: 'This works better because the prompt gives the AI the real situation: people, constraints, geography, tone, goal, and format. The AI is not magically better. It has better instructions.',
+          on: { context:1, audience:1, tone:1, constraints:1, examples:1, goal:1, format:1, judgment:1 }
+        }
+      };
+
+      // ---------- Tab toggle ----------
+      var tabs = document.querySelectorAll('.ai-tab');
+      var promptText = document.getElementById('prompt-text');
+      var outputText = document.getElementById('output-text');
+      var promptTitle = document.getElementById('prompt-title');
+      var outputTitle = document.getElementById('output-title');
+      var diagText  = document.getElementById('diagnosis-text');
+      var changeItems = document.querySelectorAll('#changes-list li');
+      var promptPanel = document.getElementById('panel-prompt');
+      var outputPanel = document.getElementById('panel-output');
+
+      function render(mode) {
+        var d = DEMO[mode];
+        if (!d) return;
+        promptText.textContent = d.prompt;
+        outputText.textContent = d.output;
+        promptTitle.textContent = d.promptTitle;
+        outputTitle.textContent = d.outputTitle;
+        diagText.textContent = d.diagnosis;
+
+        tabs.forEach(function (t) {
+          var selected = t.dataset.mode === mode;
+          t.setAttribute('aria-selected', selected ? 'true' : 'false');
+        });
+        promptPanel.setAttribute('aria-labelledby', d.tabId);
+        outputPanel.setAttribute('aria-labelledby', d.tabId);
+
+        changeItems.forEach(function (li) {
+          var key = li.getAttribute('data-key');
+          li.setAttribute('data-on', d.on[key] ? 'true' : 'false');
+        });
+      }
+
+      tabs.forEach(function (t) {
+        t.addEventListener('click', function () { render(t.dataset.mode); });
+        t.addEventListener('keydown', function (e) {
+          if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+          e.preventDefault();
+          var arr = Array.prototype.slice.call(tabs);
+          var i = arr.indexOf(t);
+          var next = e.key === 'ArrowRight' ? arr[(i + 1) % arr.length] : arr[(i - 1 + arr.length) % arr.length];
+          next.focus();
+          render(next.dataset.mode);
+        });
+      });
+
+      render('vague');
+
+      // ---------- Hero visual: smooth-scroll to demo ----------
+      var heroVisual = document.getElementById('hero-visual');
+      if (heroVisual) {
+        heroVisual.addEventListener('click', function () {
+          var target = document.getElementById('try-it');
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+
+      // ---------- Prompt builder (general-purpose, not civic-specific) ----------
+      var form = document.getElementById('builder-form');
+      var buildBtn = document.getElementById('build-btn');
+      var clearBtn = document.getElementById('clear-btn');
+      var outBox = document.getElementById('builder-output');
+      var outText = document.getElementById('builder-output-text');
+      var copyBtn = document.getElementById('copy-btn');
+      var copyFeedback = document.getElementById('copy-feedback');
+
+      function val(id) {
+        var el = document.getElementById(id);
+        return (el && el.value || '').trim();
+      }
+
+      function buildPrompt() {
+        var role     = val('b-role');
+        var create   = val('b-create');
+        var audience = val('b-audience');
+        var tone     = val('b-tone');
+        var avoid    = val('b-avoid');
+        var success  = val('b-success');
+
+        var anyInput = role || create || audience || tone || avoid || success;
+        if (!anyInput) {
+          outText.textContent = 'Add at least one detail above, then press Build My Prompt. The more context you give, the better the prompt will be.';
+          outBox.hidden = false;
+          outBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          return;
+        }
+
+        var lines = [];
+        if (role) {
+          lines.push('You are acting as ' + role + '.');
+        } else {
+          lines.push('You are helping me think through and improve the task below.');
+        }
+        lines.push('');
+        if (create) {
+          lines.push('What I am trying to create:');
+          lines.push(create);
+          lines.push('');
+        }
+        if (audience) {
+          lines.push('Audience:');
+          lines.push(audience);
+          lines.push('');
+        }
+        if (tone) {
+          lines.push('Tone:');
+          lines.push(tone);
+          lines.push('');
+        }
+        if (avoid) {
+          lines.push('Avoid:');
+          lines.push(avoid);
+          lines.push('');
+        }
+        if (success) {
+          lines.push('What success looks like:');
+          lines.push(success);
+          lines.push('');
+        }
+        lines.push('Ground rules:');
+        lines.push('- Do not invent facts. If you are unsure, say so.');
+        lines.push('- Ask clarifying questions if important information is missing.');
+        lines.push('- Prefer practical, specific advice over generic suggestions.');
+        lines.push('- Match the tone requested above.');
+        lines.push('- Make the final answer easy to use.');
+        lines.push('');
+        lines.push('Please draft a first version. Then suggest one or two ways it could be sharper.');
+
+        outText.textContent = lines.join('\n');
+        outBox.hidden = false;
+        outBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      buildBtn.addEventListener('click', buildPrompt);
+
+      clearBtn.addEventListener('click', function () {
+        form.reset();
+        outBox.hidden = true;
+        outText.textContent = '';
+        var first = document.getElementById('b-role');
+        if (first) first.focus();
+      });
+
+      // ---------- Copy to clipboard ----------
+      function showCopied() {
+        copyFeedback.setAttribute('data-shown', 'true');
+        setTimeout(function () { copyFeedback.setAttribute('data-shown', 'false'); }, 1800);
+      }
+
+      copyBtn.addEventListener('click', function () {
+        var text = outText.textContent || '';
+        if (!text) return;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(showCopied, fallbackCopy);
+        } else {
+          fallbackCopy();
+        }
+
+        function fallbackCopy() {
+          try {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'absolute';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showCopied();
+          } catch (err) {
+            copyFeedback.textContent = 'Press Ctrl+C to copy';
+            copyFeedback.setAttribute('data-shown', 'true');
+          }
+        }
+      });
+
+      // ---------- AI tools accordion (same behavior as old /pages/ai) ----------
       document.querySelectorAll('.ai-tools-accordion .idea-category__trigger').forEach(function (btn) {
         btn.addEventListener('click', function () {
           var item = this.closest('.idea-category');
@@ -1712,7 +2627,6 @@ It turns campaign technology into something neighborly.</pre>
         });
       });
 
-      /* Close (X) buttons — collapse the parent accordion card */
       document.querySelectorAll('.ai-tools-accordion .instr-panel__close').forEach(function (closeBtn) {
         closeBtn.addEventListener('click', function () {
           var item = closeBtn.closest('.idea-category');
@@ -1725,6 +2639,7 @@ It turns campaign technology into something neighborly.</pre>
           }
         });
       });
+
     })();
   </script>
 </body>

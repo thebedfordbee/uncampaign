@@ -13,6 +13,8 @@
 # Cloudflare Pages automatically strips .html extensions, so /pages/photos.html
 # is served at /pages/photos. These 301s make the shorter canonical URLs real routes.
 
+/ai                 /pages/ai               301
+/ai.html            /pages/ai               301
 /photos             /pages/photos           301
 /recaps             /pages/recaps           301
 /podcasts           /pages/recaps           301
