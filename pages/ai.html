@@ -175,50 +175,12 @@
       gap: 1.75rem;
     }
 
-    .ai-hero__tagline {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--white);
-      font-size: 1.25rem;
-      line-height: 1.45;
-      margin-top: 0.875rem;
-      margin-bottom: 0.25rem;
-      max-width: 36ch;
-    }
-
     .ai-hero__deck {
       color: rgba(255,255,255,0.86);
       font-size: 1.0625rem;
       line-height: 1.7;
     }
     .ai-hero__deck + .ai-hero__deck { margin-top: 0.75rem; }
-
-    .ai-hero__cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 0.25rem;
-    }
-    .ai-hero .btn--secondary {
-      background: transparent;
-      color: var(--white);
-      border-color: rgba(255,255,255,0.55);
-    }
-    .ai-hero .btn--secondary:hover {
-      background: rgba(255,255,255,0.12);
-      color: var(--white);
-      border-color: rgba(255,255,255,0.8);
-    }
-    .ai-hero .btn--primary {
-      background: var(--cream);
-      color: var(--moss);
-      border-color: var(--cream);
-    }
-    .ai-hero .btn--primary:hover {
-      background: var(--white);
-      border-color: var(--white);
-      color: var(--moss);
-    }
 
     /* Clickable hero visual — CSS split card */
     .ai-hero__visual {
@@ -309,16 +271,13 @@
         grid-template-columns: 1fr 1.05fr;
         grid-template-areas:
           "top  vis"
-          "deck vis"
-          "cta  vis";
+          "deck vis";
         gap: 0 3.5rem;
         align-items: center;
       }
       .ai-hero__copy-top { grid-area: top; align-self: end; }
-      .ai-hero__deck-wrap { grid-area: deck; }
-      .ai-hero__cta-row { grid-area: cta; align-self: start; }
+      .ai-hero__deck-wrap { grid-area: deck; align-self: start; }
       .ai-hero__visual { grid-area: vis; }
-      .ai-hero__tagline { max-width: none; }
     }
     @media (min-width: 960px) {
       .ai-hero__inner { gap: 0 4.5rem; }
@@ -610,13 +569,6 @@
     }
     .ai-copy-feedback[data-shown="true"] { opacity: 1; }
 
-    .ai-builder__privacy {
-      margin-top: 1rem;
-      font-size: 0.8125rem;
-      color: var(--muted);
-      max-width: 60ch;
-    }
-
     /* ---------- Anatomy cards ---------- */
     .ai-anatomy { background: var(--cream); }
     .ai-anatomy__header { margin-bottom: 1.75rem; }
@@ -641,6 +593,12 @@
       padding: 1.125rem 1.25rem 1.25rem;
       box-shadow: var(--shadow-sm);
     }
+    /* Alternating card tints — matches the homepage "A Different Kind
+       of Campaign" palette pattern, expanded to a 4-step cycle. */
+    .ai-anatomy__grid > .ai-anatomy__card:nth-child(4n+1) { background: var(--white); }
+    .ai-anatomy__grid > .ai-anatomy__card:nth-child(4n+2) { background: var(--cream); }
+    .ai-anatomy__grid > .ai-anatomy__card:nth-child(4n+3) { background: rgba(123,140,121,0.07); }
+    .ai-anatomy__grid > .ai-anatomy__card:nth-child(4n+4) { background: var(--cream); }
     .ai-anatomy__card h3 {
       font-family: var(--serif);
       font-size: 1.0625rem;
@@ -809,7 +767,6 @@
           <div class="ai-hero__copy-top">
             <p class="eyebrow">Don Scott Presents</p>
             <h1 id="ai-hero-title">The AI Transparency Project</h1>
-            <p class="ai-hero__tagline">AI is not magic. It&#8217;s amplification.</p>
           </div>
 
           <div class="ai-hero__deck-wrap">
@@ -817,13 +774,8 @@
               We are not hiding the use of AI in this campaign. We are showing our work.
             </p>
             <p class="ai-hero__deck">
-              AI does not replace judgment, taste, preparation, or clear thinking. It rewards them. A vague prompt produces vague output. A thoughtful prompt can turn a useful idea into something clearer, sharper, and easier to share.
+              AI is not magic. It&#8217;s amplification. AI does not replace judgment, taste, preparation, or clear thinking. It rewards them. A vague prompt produces vague output. A thoughtful prompt can turn a useful idea into something clearer, sharper, and easier to share.
             </p>
-          </div>
-
-          <div class="ai-hero__cta-row">
-            <a href="#try-it" class="btn btn--primary" data-scroll>Try the Demonstration</a>
-            <a href="#prompt-anatomy" class="btn btn--secondary" data-scroll>See the Prompt Anatomy</a>
           </div>
 
           <button
@@ -986,9 +938,6 @@
           </div>
         </div>
 
-        <p class="ai-builder__privacy">
-          This tool runs entirely in your browser. We are not collecting what you type here.
-        </p>
       </div>
     </section>
 
