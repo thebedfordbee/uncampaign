@@ -6,7 +6,7 @@
 
   <!-- Primary meta -->
   <title>The AI Transparency Project | Don Scott for Bedford</title>
-  <meta name="description" content="Don Scott&#8217;s AI Transparency Project shows how AI works best with clear thinking, strong prompts, useful context, and human judgment.">
+  <meta name="description" content="Don Scott&#8217;s AI Transparency Project explains how his campaign uses AI openly as an assistant for organizing, drafting, coding, and building civic tools while keeping human judgment in charge.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.donforbedford.com/pages/ai">
 
@@ -14,7 +14,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/pages/ai">
   <meta property="og:title" content="The AI Transparency Project | Don Scott for Bedford">
-  <meta property="og:description" content="Don Scott&#8217;s AI Transparency Project shows how AI works best with clear thinking, strong prompts, useful context, and human judgment.">
+  <meta property="og:description" content="Don Scott&#8217;s AI Transparency Project explains how his campaign uses AI openly as an assistant for organizing, drafting, coding, and building civic tools while keeping human judgment in charge.">
   <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -28,7 +28,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/pages/ai">
   <meta name="twitter:title" content="The AI Transparency Project | Don Scott for Bedford">
-  <meta name="twitter:description" content="Don Scott&#8217;s AI Transparency Project shows how AI works best with clear thinking, strong prompts, useful context, and human judgment.">
+  <meta name="twitter:description" content="Don Scott&#8217;s AI Transparency Project explains how his campaign uses AI openly as an assistant for organizing, drafting, coding, and building civic tools while keeping human judgment in charge.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
   <meta name="twitter:image:alt" content="The AI Transparency Project — Don Scott for Bedford.">
 
@@ -61,7 +61,7 @@
         "@id": "https://www.donforbedford.com/pages/ai#webpage",
         "url": "https://www.donforbedford.com/pages/ai",
         "name": "The AI Transparency Project | Don Scott for Bedford",
-        "description": "Don Scott’s AI Transparency Project shows how AI works best with clear thinking, strong prompts, useful context, and human judgment.",
+        "description": "Don Scott’s AI Transparency Project explains how his campaign uses AI openly as an assistant for organizing, drafting, coding, and building civic tools while keeping human judgment in charge.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
         "about": { "@id": "https://www.donforbedford.com/#don-scott" },
         "primaryImageOfPage": {
@@ -133,12 +133,14 @@
 
     /* ---------- Justified body copy (page-wide) ---------- */
     .ai-hero__deck,
+    .ai-short__body p,
     .ai-point > .container > p,
     .ai-point__kicker,
     .ai-demo__header > p,
     .ai-diagnosis,
     .ai-builder__header > p,
     .ai-anatomy__header > p,
+    .ai-limits__kicker,
     .ai-tools__intro p,
     .ai-tool-desc {
       text-align: justify;
@@ -148,12 +150,14 @@
     /* Mobile: revert to left-aligned to avoid awkward gaps */
     @media (max-width: 540px) {
       .ai-hero__deck,
+      .ai-short__body p,
       .ai-point > .container > p,
       .ai-point__kicker,
       .ai-demo__header > p,
       .ai-diagnosis,
       .ai-builder__header > p,
       .ai-anatomy__header > p,
+      .ai-limits__kicker,
       .ai-tools__intro p,
       .ai-tool-desc {
         text-align: left;
@@ -569,6 +573,93 @@
     }
     .ai-copy-feedback[data-shown="true"] { opacity: 1; }
 
+    /* ---------- Short Answer (Don / AI / Residents) ---------- */
+    .ai-short { background: var(--white); }
+    .ai-short__intro { margin-bottom: 1.5rem; }
+    .ai-short__intro h2 { margin-top: 0.5rem; }
+    .ai-short__body p { margin-bottom: 1rem; }
+    .ai-short__body p:last-of-type { margin-bottom: 0; }
+    .ai-short__roles {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) {
+      .ai-short__roles { grid-template-columns: repeat(3, 1fr); }
+    }
+    .ai-short__role {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.125rem 1.25rem 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .ai-short__role-label {
+      font-family: var(--sans);
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--moss);
+      margin-bottom: 0.5rem;
+    }
+    .ai-short__role-body {
+      font-family: var(--serif);
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--charcoal);
+      margin: 0;
+      max-width: none;
+    }
+    /* Alternating role-card tints to match the page's existing pattern */
+    .ai-short__roles > .ai-short__role:nth-child(3n+1) { background: var(--cream); }
+    .ai-short__roles > .ai-short__role:nth-child(3n+2) { background: var(--white); }
+    .ai-short__roles > .ai-short__role:nth-child(3n+3) { background: rgba(123,140,121,0.07); }
+
+    /* ---------- Limits / "What AI Does Not Do" ---------- */
+    .ai-limits { background: var(--white); }
+    .ai-limits__intro { margin-bottom: 1.5rem; }
+    .ai-limits__intro h2 { margin-top: 0.5rem; }
+    .ai-limits__list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 0.625rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 600px) {
+      .ai-limits__list { grid-template-columns: 1fr 1fr; }
+    }
+    .ai-limits__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      padding: 0.875rem 1rem;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--warm);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: var(--charcoal);
+      font-size: 0.9375rem;
+      line-height: 1.55;
+    }
+    .ai-limits__mark {
+      flex-shrink: 0;
+      font-weight: 700;
+      color: var(--warm);
+      font-size: 1rem;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+    }
+    .ai-limits__kicker {
+      margin-top: 1.5rem;
+      color: var(--charcoal);
+      max-width: none;
+    }
+
     /* ---------- Anatomy cards ---------- */
     .ai-anatomy { background: var(--cream); }
     .ai-anatomy__header { margin-bottom: 1.75rem; }
@@ -771,10 +862,13 @@
 
           <div class="ai-hero__deck-wrap">
             <p class="ai-hero__deck">
-              We are not hiding the use of AI in this campaign. We are showing our work.
+              This campaign is not being run by AI. It is being run by Don Scott.
             </p>
             <p class="ai-hero__deck">
-              AI is not magic. It&#8217;s amplification. AI does not replace judgment, taste, preparation, or clear thinking. It rewards them. A vague prompt produces vague output. A thoughtful prompt can turn a useful idea into something clearer, sharper, and easier to share.
+              AI is not magic. It is amplification. Don brings the ideas, judgment, priorities, and standards. AI helps turn them into clearer writing, better-organized plans, useful civic tools, and public-facing digital assets without a campaign staff, consultants, or a large budget.
+            </p>
+            <p class="ai-hero__deck">
+              That is why we are showing the work. Not because AI is in charge, but because residents deserve to see exactly how the tool is being used.
             </p>
           </div>
 
@@ -782,23 +876,58 @@
             type="button"
             class="ai-hero__visual"
             id="hero-visual"
-            aria-label="Compare a vague prompt and a thoughtful prompt — scroll to the interactive demonstration"
+            aria-label="Human input becomes AI-assisted output — scroll to the interactive demonstration"
           >
             <div class="compare-card" aria-hidden="true">
               <div class="compare-card__pane compare-card__pane--vague">
-                <p class="compare-card__label">Vague Input</p>
-                <p class="compare-card__snippet">&#8220;Help me plan dinner.&#8221;</p>
+                <p class="compare-card__label">Human Input</p>
+                <p class="compare-card__snippet">Ideas. Judgment. Priorities. Voice.</p>
               </div>
               <div class="compare-card__arrow" aria-hidden="true">&rarr;</div>
               <div class="compare-card__pane compare-card__pane--thoughtful">
-                <p class="compare-card__label">Thoughtful Input</p>
-                <p class="compare-card__snippet">Audience. Constraints. Timing. Location. Tone.</p>
+                <p class="compare-card__label">AI-Assisted Output</p>
+                <p class="compare-card__snippet">Pages. Tools. Drafts. Recaps.</p>
               </div>
             </div>
-            <p class="compare-card__hint">Click to see the difference</p>
+            <p class="compare-card__hint">Click to see how the input changes the output</p>
           </button>
 
         </div>
+      </div>
+    </section>
+
+    <!-- ============================= THE SHORT ANSWER ============================= -->
+    <section class="section ai-short" aria-labelledby="ai-short-title">
+      <div class="container">
+        <div class="ai-short__intro">
+          <p class="eyebrow">The Short Answer</p>
+          <h2 id="ai-short-title">Don Is The Author. AI Is The Assistant.</h2>
+        </div>
+        <div class="ai-short__body">
+          <p>
+            There is a simple rule for this campaign: AI does not decide what Don believes, what issues matter, what promises he makes, or what he would do as Town Supervisor.
+          </p>
+          <p>
+            Those choices belong to Don.
+          </p>
+          <p>
+            AI helps with execution. It helps organize ideas, draft first versions, compare wording, build webpages, structure tools, summarize public information, and document the process. Every meaningful public-facing use still depends on human direction, human review, and human judgment.
+          </p>
+        </div>
+        <ul class="ai-short__roles" role="list">
+          <li class="ai-short__role">
+            <p class="ai-short__role-label">Don Decides</p>
+            <p class="ai-short__role-body">Issues, priorities, tone, limits, judgment, final approval.</p>
+          </li>
+          <li class="ai-short__role">
+            <p class="ai-short__role-label">AI Assists</p>
+            <p class="ai-short__role-body">Drafting, organizing, coding, summarizing, formatting, testing.</p>
+          </li>
+          <li class="ai-short__role">
+            <p class="ai-short__role-label">Residents See</p>
+            <p class="ai-short__role-body">Prompts, tools, workflows, source notes, public explanations.</p>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -807,10 +936,13 @@
       <div class="container">
         <div class="ai-point__intro">
           <p class="eyebrow">The Point</p>
-          <h2 id="ai-point-title">The Tool Did Not Get Smarter. The Input Did.</h2>
+          <h2 id="ai-point-title">The Tool Does Not Supply The Judgment.</h2>
         </div>
         <p>
-          The interesting part of using AI well is not the AI. It is the thinking that happens before you press send. People who already know what they are trying to do, who they are talking to, and what good looks like get sharper results because the AI has something real to work with. People who hand it a one-line request get a one-line version of nothing in particular.
+          The important part of this campaign is not that AI can generate words. Anyone can generate words. The important part is that the words, tools, and ideas have to start somewhere real.
+        </p>
+        <p>
+          Don&#8217;s positions, instincts, questions, and standards are the raw material. AI can help shape those into something clearer or more useful, but it cannot invent the judgment behind them. A vague idea still becomes vague output. A clear idea, with context and standards, becomes something stronger.
         </p>
         <ul class="ai-point__list" role="list">
           <li>A calculator does not make someone good at math.</li>
@@ -818,9 +950,6 @@
           <li>A spreadsheet does not make someone good at running a town budget.</li>
           <li>AI does not create judgment. It amplifies the judgment, clarity, and preparation a person already brings to it.</li>
         </ul>
-        <p class="ai-point__kicker">
-          That is also why this page exists. If we are going to use AI openly, residents should be able to see how we use it, and decide for themselves whether the work is honest.
-        </p>
       </div>
     </section>
 
@@ -830,7 +959,7 @@
         <div class="ai-demo__header">
           <p class="eyebrow">Try It Yourself</p>
           <h2 id="ai-demo-title">Same AI. Different Prompt.</h2>
-          <p>Toggle between a vague prompt and a thoughtful one. Same model. Same task. Two very different results. This is a normal everyday example &mdash; coordinating a dinner with friends &mdash; because the principle is the same whether you are planning a meal, writing an email, or drafting anything else.</p>
+          <p>This simple example shows why AI cannot run a campaign by itself. The tool only improves when the person using it supplies the context, constraints, audience, and goal. The same is true here. Don supplies the substance. AI helps with structure and execution.</p>
         </div>
 
         <div class="ai-tabs" role="tablist" aria-label="Prompt comparison">
@@ -892,9 +1021,9 @@
     <section class="section ai-builder" id="builder" aria-labelledby="ai-builder-title">
       <div class="container">
         <div class="ai-builder__header">
-          <p class="eyebrow">Build a Better Prompt</p>
-          <h2 id="ai-builder-title">Build a Better Prompt</h2>
-          <p>This is a small tool for anyone &mdash; not just for the campaign. Fill in whatever applies to whatever you are working on. Press the button. Copy the result into ChatGPT, Claude, Gemini, or whatever AI tool you use. The more you tell it, the more useful it gets.</p>
+          <p class="eyebrow">Try The Method</p>
+          <h2 id="ai-builder-title">Give The Tool Better Instructions.</h2>
+          <p>This small tool is here because the campaign is also meant to be useful. The same method Don is using can help anyone think more clearly with AI: explain the situation, define the audience, set the tone, name the constraints, and describe what success looks like.</p>
         </div>
 
         <form class="ai-form" id="builder-form" novalidate>
@@ -945,44 +1074,65 @@
     <section class="section ai-anatomy" id="prompt-anatomy" aria-labelledby="ai-anatomy-title">
       <div class="container">
         <div class="ai-anatomy__header">
-          <p class="eyebrow">How to Use AI Better</p>
-          <h2 id="ai-anatomy-title">A Good Prompt Is Just Clear Thinking in Writing.</h2>
+          <p class="eyebrow">What Don Supplies First</p>
+          <h2 id="ai-anatomy-title">AI Works Better When The Human Work Is Already There.</h2>
         </div>
 
         <div class="ai-anatomy__grid">
           <article class="ai-anatomy__card">
             <h3>Context</h3>
-            <p>What situation should the AI understand before it answers?</p>
+            <p>What situation should the AI understand?</p>
           </article>
           <article class="ai-anatomy__card">
             <h3>Audience</h3>
-            <p>Who is this for, and what do they already know?</p>
+            <p>Who needs to understand this?</p>
           </article>
           <article class="ai-anatomy__card">
             <h3>Goal</h3>
-            <p>What are you actually trying to accomplish?</p>
+            <p>What are we trying to accomplish?</p>
           </article>
           <article class="ai-anatomy__card">
             <h3>Tone</h3>
-            <p>What should it sound like &mdash; and what should it never sound like?</p>
+            <p>What should this sound like, and what should it never sound like?</p>
           </article>
           <article class="ai-anatomy__card">
             <h3>Constraints</h3>
-            <p>What should it avoid, leave out, or stay away from?</p>
+            <p>What should the tool avoid?</p>
           </article>
           <article class="ai-anatomy__card">
-            <h3>Source material</h3>
-            <p>What facts, notes, or examples should it use to stay grounded?</p>
+            <h3>Source Material</h3>
+            <p>What facts, notes, transcripts, ideas, or documents should ground the work?</p>
           </article>
           <article class="ai-anatomy__card">
             <h3>Format</h3>
-            <p>What should the finished output actually look like?</p>
+            <p>What should the finished thing become?</p>
           </article>
           <article class="ai-anatomy__card">
             <h3>Judgment</h3>
-            <p>What does a good answer need to respect that the AI can&#8217;t infer?</p>
+            <p>What must remain a human decision?</p>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- ============================= WHAT AI DOES NOT DO ============================= -->
+    <section class="section ai-limits" aria-labelledby="ai-limits-title">
+      <div class="container">
+        <div class="ai-limits__intro">
+          <p class="eyebrow">What AI Does Not Do</p>
+          <h2 id="ai-limits-title">The Lines We Do Not Cross.</h2>
+        </div>
+        <ul class="ai-limits__list" role="list">
+          <li><span class="ai-limits__mark" aria-hidden="true">&times;</span><span>AI does not decide Don&#8217;s positions.</span></li>
+          <li><span class="ai-limits__mark" aria-hidden="true">&times;</span><span>AI does not invent facts.</span></li>
+          <li><span class="ai-limits__mark" aria-hidden="true">&times;</span><span>AI does not speak for Don without review.</span></li>
+          <li><span class="ai-limits__mark" aria-hidden="true">&times;</span><span>AI does not replace conversations with residents.</span></li>
+          <li><span class="ai-limits__mark" aria-hidden="true">&times;</span><span>AI does not make campaign promises.</span></li>
+          <li><span class="ai-limits__mark" aria-hidden="true">&times;</span><span>AI does not determine what Bedford needs.</span></li>
+        </ul>
+        <p class="ai-limits__kicker">
+          Those are human responsibilities. AI can help with drafting, structure, coding, and organization. It cannot be accountable to voters. Don can.
+        </p>
       </div>
     </section>
 
@@ -993,7 +1143,7 @@
         <div class="ai-tools__intro">
           <p class="eyebrow">AI Tools Used In This Campaign</p>
           <h2 id="ai-tools-headline">The Actual Prompts Behind Each Tool</h2>
-          <p>This campaign publishes the exact AI instructions behind each tool it uses. These are the real prompts &mdash; not summaries. Click any row to read them. Copy them if they&#8217;re useful. Most of these prompts are not campaign-specific &mdash; the same approach works just as well for personal decisions, workplace projects, or anything else that benefits from a little structure. They are meant to be borrowed.</p>
+          <p>This is the transparency part. Below are the tools and workflows being used in the campaign, along with the prompts or instruction sets behind them. They are published so residents can inspect the process, borrow what is useful, and understand that AI is being used as a tool, not a substitute for judgment.</p>
         </div>
 
         <div class="ai-tools-accordion" role="list" aria-label="AI tools and instruction sets">
