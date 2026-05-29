@@ -115,45 +115,12 @@
       --knicks-orange: #f58426;
     }
 
-    /* ── Hero — mirrors the /rules issues-hero template (rectangular 16:9) ──
-       Layout, spacing, and responsive behavior come from .issues-hero in
-       site.css. Until /assets/knicks/don-knicks-hero.png (16:9) is added, the
-       visual is a placeholder frame showing the recommended specs + safe zones. */
+    /* ── Hero — mirrors the /rules issues-hero template (rectangular 16:9).
+       Layout, spacing, and responsive behavior come from .issues-hero in site.css. */
     .knx-hero-visual { cursor: default; }
     .knx-hero-visual img {
       width: 100%; height: auto; display: block;
       aspect-ratio: 16 / 9; object-fit: cover; object-position: center center;
-    }
-    .knx-hero-ph {
-      position: relative;
-      aspect-ratio: 16 / 9;
-      width: 100%;
-      background: rgba(255,255,255,0.05);
-      display: flex; align-items: center; justify-content: center;
-      text-align: center; padding: 1rem; overflow: hidden;
-    }
-    /* Nested crop safe-zone guides */
-    .knx-hero-ph__zone { position: absolute; border-radius: 4px; pointer-events: none; }
-    .knx-hero-ph__zone--75 { inset: 12.5%; border: 1px dashed rgba(255,255,255,0.30); }
-    .knx-hero-ph__zone--60 { inset: 20%;   border: 1px solid rgba(245,132,38,0.50); }
-    .knx-hero-ph__zlabel {
-      position: absolute; top: 2px; left: 5px;
-      font-family: var(--sans); font-size: 0.5rem; letter-spacing: 0.05em;
-      text-transform: uppercase; color: rgba(255,255,255,0.5);
-    }
-    .knx-hero-ph__content { position: relative; z-index: 1; max-width: 44ch; }
-    .knx-hero-ph__title {
-      font-family: var(--sans); font-size: 0.6875rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(255,255,255,0.72); margin-bottom: 0.4rem;
-    }
-    .knx-hero-ph__specs {
-      font-family: var(--sans); font-size: 0.5625rem; line-height: 1.8;
-      color: rgba(255,255,255,0.55); margin: 0;
-    }
-    @media (min-width: 560px) {
-      .knx-hero-ph__title { font-size: 0.75rem; }
-      .knx-hero-ph__specs { font-size: 0.6875rem; }
     }
 
     /* ── Game shell ──────────────────────────────────────── */
@@ -516,28 +483,12 @@
             <h1 id="knx-title">NYK Sudden Death</h1>
           </div>
 
-          <!-- HERO VISUAL — rectangular 16:9. Drop /assets/knicks/don-knicks-hero.png
-               (1600×900) into the repo to replace the placeholder; the recommended
-               specs + crop safe zones are drawn inside the placeholder frame below. -->
+          <!-- HERO VISUAL — rectangular 16:9 (1600×900, WebP/PNG, under 600KB ideal;
+               object-fit: cover; object-position: center center). -->
           <div class="issues-hero__visual knx-hero-visual">
             <img src="/assets/knicks/don-knicks-hero.png"
-                 alt="Don Scott in a New York Knicks jersey"
-                 width="1600" height="900" loading="eager" decoding="async"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="knx-hero-ph" style="display:none;" role="img"
-                 aria-label="Hero image placeholder — 16:9 landscape, 1600 by 900 pixels">
-              <span class="knx-hero-ph__zone knx-hero-ph__zone--75"><span class="knx-hero-ph__zlabel">Action · center 75%</span></span>
-              <span class="knx-hero-ph__zone knx-hero-ph__zone--60"><span class="knx-hero-ph__zlabel">Face &amp; body · center 60%</span></span>
-              <div class="knx-hero-ph__content">
-                <p class="knx-hero-ph__title">Hero image · 16:9</p>
-                <p class="knx-hero-ph__specs">
-                  1600×900&nbsp;px &nbsp;·&nbsp; min 1200×675 &nbsp;·&nbsp; WebP/PNG &nbsp;·&nbsp; &lt;600&nbsp;KB<br>
-                  Face &amp; upper body in center 60% &nbsp;·&nbsp; ball/hoop/action in center 75%<br>
-                  Keep important detail off the edges<br>
-                  Crop: object-fit: cover; object-position: center center
-                </p>
-              </div>
-            </div>
+                 alt="Don Scott in a Knicks jersey dunking a basketball at Madison Square Garden"
+                 width="1600" height="900" loading="eager" decoding="async">
           </div>
 
           <div class="issues-hero__copy-bot">
