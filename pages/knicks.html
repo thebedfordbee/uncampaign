@@ -115,66 +115,46 @@
       --knicks-orange: #f58426;
     }
 
-    /* ── Hero ────────────────────────────────────────────── */
-    .knx-hero { background: var(--moss); padding-block: 2.75rem 2.5rem; }
-    @media (min-width: 768px) { .knx-hero { padding-block: 3.75rem 3.25rem; } }
-    .knx-hero .eyebrow { color: rgba(255,255,255,0.6); margin-bottom: 0.75rem; }
-    .knx-hero h1 { color: var(--white); margin-bottom: 0; line-height: 1.1; }
-    .knx-hero__inner {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+    /* ── Hero — mirrors the /rules issues-hero template (rectangular 16:9) ──
+       Layout, spacing, and responsive behavior come from .issues-hero in
+       site.css. Until /assets/knicks/don-knicks-hero.png (16:9) is added, the
+       visual is a placeholder frame showing the recommended specs + safe zones. */
+    .knx-hero-visual { cursor: default; }
+    .knx-hero-visual img {
+      width: 100%; height: auto; display: block;
+      aspect-ratio: 16 / 9; object-fit: cover; object-position: center center;
     }
-    .knx-hero__deck {
-      color: rgba(255,255,255,0.86);
-      font-size: 1.0625rem;
-      line-height: 1.65;
-      max-width: 46ch;
-    }
-    .knx-hero__deck strong { color: var(--white); }
-    .knx-hero__note {
-      font-size: 0.8125rem;
-      color: rgba(255,255,255,0.55);
-      border-left: 2px solid rgba(255,255,255,0.22);
-      padding-left: 0.875rem;
-      line-height: 1.6;
-      max-width: 46ch;
-    }
-    /* Hero image — swap src to update without touching layout.
-       Portrait 3:4 frame. Kept compact on mobile so the headline + intro lead
-       the screen; grows into its own column on tablet/desktop. */
-    .knx-hero__image {
-      width: 100%;
-      max-width: 200px;          /* mobile: compact, never dominates above the fold */
-      margin-inline: auto;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #2d3e2f;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.28);
-      aspect-ratio: 3 / 4;       /* portrait — matches the recommended 1200x1600 source */
+    .knx-hero-ph {
       position: relative;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 1rem; overflow: hidden;
     }
-    .knx-hero__image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-    @media (min-width: 600px) { .knx-hero__image { max-width: 240px; } }
-    /* Placeholder shown until assets/knicks/don-knicks-hero.png exists */
-    .knx-hero__image-ph {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 0.5rem; text-align: center; padding: 1rem;
+    /* Nested crop safe-zone guides */
+    .knx-hero-ph__zone { position: absolute; border-radius: 4px; pointer-events: none; }
+    .knx-hero-ph__zone--75 { inset: 12.5%; border: 1px dashed rgba(255,255,255,0.30); }
+    .knx-hero-ph__zone--60 { inset: 20%;   border: 1px solid rgba(245,132,38,0.50); }
+    .knx-hero-ph__zlabel {
+      position: absolute; top: 2px; left: 5px;
+      font-family: var(--sans); font-size: 0.5rem; letter-spacing: 0.05em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
     }
-    .knx-hero__image-ph .knx-ball { font-size: 2.5rem; line-height: 1; }
-    .knx-hero__image-ph span {
-      font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(255,255,255,0.55); max-width: 22ch; line-height: 1.5;
+    .knx-hero-ph__content { position: relative; z-index: 1; max-width: 44ch; }
+    .knx-hero-ph__title {
+      font-family: var(--sans); font-size: 0.6875rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.72); margin-bottom: 0.4rem;
     }
-    @media (min-width: 768px) {
-      .knx-hero__inner { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; align-items: center; }
-      .knx-hero__image { max-width: 300px; margin-inline: 0; }
+    .knx-hero-ph__specs {
+      font-family: var(--sans); font-size: 0.5625rem; line-height: 1.8;
+      color: rgba(255,255,255,0.55); margin: 0;
     }
-
-    /* ── "The test" intro — uses the shared .section-header pattern.
-       Widen the lead so it spans the section naturally (no narrow column). */
-    .knx-intro .section-header__lead { max-width: 62ch; }
+    @media (min-width: 560px) {
+      .knx-hero-ph__title { font-size: 0.75rem; }
+      .knx-hero-ph__specs { font-size: 0.6875rem; }
+    }
 
     /* ── Game shell ──────────────────────────────────────── */
     .knx-game-wrap { max-width: 560px; margin-inline: auto; }
@@ -433,53 +413,58 @@
       .knx-lb-cards { display: flex; }
     }
 
-    /* ── Hamlet Score ────────────────────────────────────── */
+    /* ── Hamlet Score — mirrors the typist "By Hamlet" podium treatment ──── */
     .knx-hamlet-section { background: var(--cream); }
-    .knx-hamlet-lead { color: var(--muted); font-size: 0.9375rem; line-height: 1.65; max-width: 60ch; margin-bottom: 1.5rem; }
 
-    .knx-hamlet-grid {
-      display: grid; grid-template-columns: 1fr; gap: 0.875rem;
+    .knx-hamlet-podium {
+      display: grid; gap: 1rem; grid-template-columns: 1fr;
+      max-width: 860px; margin-inline: auto;
     }
-    @media (min-width: 560px) { .knx-hamlet-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 480px) { .knx-hamlet-podium { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 760px) { .knx-hamlet-podium { grid-template-columns: repeat(4, 1fr); align-items: stretch; } }
 
     .knx-hamlet-card {
-      background: var(--white); border: 1px solid var(--border); border-radius: 12px;
-      padding: 1.125rem 1.25rem; box-shadow: var(--shadow-sm);
-      display: flex; flex-direction: column; gap: 0.625rem;
+      background: var(--white); border: 1.5px solid var(--border); border-radius: 8px;
+      padding: 1.5rem 1.25rem; text-align: center; box-shadow: var(--shadow-sm);
+      position: relative; display: flex; flex-direction: column;
     }
-    .knx-hamlet-card--leader { border-color: var(--moss); box-shadow: 0 4px 20px rgba(62,82,64,0.14); }
-    .knx-hamlet-card--empty { opacity: 0.85; }
+    .knx-hamlet-card--gold   { border-color: #b5860d; box-shadow: 0 4px 20px rgba(181,134,13,0.15); }
+    .knx-hamlet-card--silver { border-color: #8a9ea0; }
+    .knx-hamlet-card--bronze { border-color: #a0745a; }
 
-    .knx-hamlet-card__top { display: flex; align-items: center; justify-content: space-between; gap: 0.625rem; }
-    .knx-hamlet-card__name { font-family: var(--serif); font-size: 1.0625rem; color: var(--charcoal); margin: 0; line-height: 1.2; }
-
-    .knx-hamlet-badge {
-      font-size: 0.625rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
-      padding: 0.25rem 0.5rem; border-radius: 999px; white-space: nowrap; flex-shrink: 0;
+    .knx-hamlet-medal {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 1.75rem; height: 1.75rem; border-radius: 50%;
+      font-size: 0.8125rem; font-weight: 700; margin: 0 auto 0.75rem;
+      color: #fff; font-family: var(--sans); background: var(--sage);
     }
-    .knx-hamlet-badge--leader { background: var(--moss); color: var(--white); }
-    .knx-hamlet-badge--needs { background: var(--cream); color: var(--muted); border: 1px solid var(--border); }
+    .knx-hamlet-medal--gold   { background: #b5860d; }
+    .knx-hamlet-medal--silver { background: #6e8080; }
+    .knx-hamlet-medal--bronze { background: #8b5c33; }
+    .knx-hamlet-medal--empty  { background: var(--border); color: var(--muted); }
 
-    .knx-hamlet-card__avg { display: flex; align-items: baseline; gap: 0.4rem; }
-    .knx-hamlet-card__avg .num { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: var(--moss); line-height: 1; }
-    .knx-hamlet-card__avg .unit { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
-
-    .knx-hamlet-bar { height: 8px; background: var(--border); border-radius: 999px; overflow: hidden; }
-    .knx-hamlet-bar__fill { height: 100%; background: var(--sage); border-radius: 999px; transition: width 0.6s ease; }
-    .knx-hamlet-card--leader .knx-hamlet-bar__fill { background: var(--moss); }
-
-    .knx-hamlet-card__stats { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
-    .knx-hamlet-stat { display: flex; flex-direction: column; }
-    .knx-hamlet-stat .k { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
-    .knx-hamlet-stat .v { font-size: 0.9375rem; font-weight: 600; color: var(--charcoal); }
-    .knx-hamlet-stat .v.rating { font-weight: 500; font-size: 0.8125rem; color: var(--muted); }
-
-    .knx-hamlet-card__empty { font-size: 0.875rem; color: var(--muted); margin: 0; }
+    .knx-hamlet-name {
+      font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: 0.875rem; display: block;
+    }
+    .knx-hamlet-score {
+      font-family: var(--serif); font-size: 2.75rem; color: var(--moss);
+      line-height: 1; display: block;
+    }
+    .knx-hamlet-score--empty { color: var(--muted); font-size: 2rem; }
+    .knx-hamlet-score-label {
+      font-size: 0.6875rem; color: var(--muted); display: block; margin-top: 0.25rem;
+    }
+    .knx-hamlet-meta {
+      margin-top: auto; padding-top: 1rem; font-size: 0.8125rem; color: var(--muted);
+      max-width: none; line-height: 1.5;
+    }
+    .knx-hamlet-meta strong { color: var(--charcoal); font-weight: 600; }
+    .knx-hamlet-rating { display: block; margin-top: 0.25rem; font-size: 0.75rem; color: var(--sage); }
 
     @media (prefers-reduced-motion: reduce) {
       .knx-timer__fill { transition: none !important; }
       .knx-answer { transition: none; }
-      .knx-hamlet-bar__fill { transition: none; }
     }
   </style>
 </head>
@@ -521,60 +506,47 @@
   </header>
 
   <main>
-    <!-- ===================== HERO ===================== -->
-    <section class="knx-hero">
+    <!-- ===================== HERO (mirrors /rules issues-hero) ===================== -->
+    <section class="issues-hero" aria-labelledby="knx-title">
       <div class="container">
-        <div class="knx-hero__inner">
-          <div>
-            <p class="eyebrow">Don Scott presents</p>
-            <h1>NYK Sudden Death</h1>
-            <p class="knx-hero__deck">
-              One Knicks player photo. Four possible names. <strong>Eight seconds.</strong>
-              Wrong answer and you're done. Fifteen in a row makes you a Municipal Knicks Historian.
-            </p>
-          </div>
-          <!-- ============================================================
-               HERO IMAGE — replace assets/knicks/don-knicks-hero.png with the
-               final photo of Don in a Knicks jersey. A placeholder tile shows
-               until that file exists.
+        <div class="issues-hero__inner">
 
-               FINAL IMAGE SPECS:
-                 • Recommended source: 1200px wide × 1600px tall
-                 • Aspect ratio:       3:4 portrait
-                 • Minimum acceptable: 900px × 1200px
-                 • Format:             WebP preferred, PNG acceptable
-                 • File size target:   under 500KB if possible
-                 • Subject placement:  Don centered vertically, face in the
-                   upper-middle third, basketball / action visible, with safe
-                   visual margins on all sides
-                 • Mobile crop safety: keep Don's face, jersey, and ball inside
-                   the center 70% of the image
-                 • Desktop crop safety: background can crop, subject should not
-                 • CSS applied below:  object-fit: cover; object-position: center top;
-               ============================================================ -->
-          <div class="knx-hero__image">
+          <div class="issues-hero__copy-top">
+            <p class="eyebrow">Don Scott presents</p>
+            <h1 id="knx-title">NYK Sudden Death</h1>
+          </div>
+
+          <!-- HERO VISUAL — rectangular 16:9. Drop /assets/knicks/don-knicks-hero.png
+               (1600×900) into the repo to replace the placeholder; the recommended
+               specs + crop safe zones are drawn inside the placeholder frame below. -->
+          <div class="issues-hero__visual knx-hero-visual">
             <img src="/assets/knicks/don-knicks-hero.png"
-                 alt="Don Scott in a New York Knicks jersey, holding a basketball"
+                 alt="Don Scott in a New York Knicks jersey"
+                 width="1600" height="900" loading="eager" decoding="async"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="knx-hero__image-ph" style="display:none;" aria-hidden="true">
-              <span class="knx-ball">🏀</span>
-              <span>Don in a Knicks jersey — photo coming soon</span>
+            <div class="knx-hero-ph" style="display:none;" role="img"
+                 aria-label="Hero image placeholder — 16:9 landscape, 1600 by 900 pixels">
+              <span class="knx-hero-ph__zone knx-hero-ph__zone--75"><span class="knx-hero-ph__zlabel">Action · center 75%</span></span>
+              <span class="knx-hero-ph__zone knx-hero-ph__zone--60"><span class="knx-hero-ph__zlabel">Face &amp; body · center 60%</span></span>
+              <div class="knx-hero-ph__content">
+                <p class="knx-hero-ph__title">Hero image · 16:9</p>
+                <p class="knx-hero-ph__specs">
+                  1600×900&nbsp;px &nbsp;·&nbsp; min 1200×675 &nbsp;·&nbsp; WebP/PNG &nbsp;·&nbsp; &lt;600&nbsp;KB<br>
+                  Face &amp; upper body in center 60% &nbsp;·&nbsp; ball/hoop/action in center 75%<br>
+                  Keep important detail off the edges<br>
+                  Crop: object-fit: cover; object-position: center center
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ===================== THE TEST ===================== -->
-    <section class="section section--alt" aria-labelledby="knx-test-h2">
-      <div class="container">
-        <div class="section-header knx-intro">
-          <p class="eyebrow">The test</p>
-          <h2 id="knx-test-h2">One photo. Four names. Eight seconds.</h2>
-          <p class="section-header__lead">
-            Some fans are lifelong. Some are recent. Some are still Googling who plays power
-            forward. This is a small test of Knicks accountability.
-          </p>
+          <div class="issues-hero__copy-bot">
+            <p class="issues-hero__deck">
+              One Knicks player photo. Four possible names. Eight seconds. Wrong answer
+              and you're done. Fifteen in a row makes you a Municipal Knicks Historian.
+            </p>
+          </div>
+
         </div>
       </div>
     </section>
@@ -596,7 +568,7 @@
                   <li><span class="knx-rule-ico" aria-hidden="true">3</span> Wrong answer — or the clock — ends it.</li>
                   <li><span class="knx-rule-ico" aria-hidden="true">4</span> It gets harder as you go.</li>
                 </ul>
-                <button class="btn btn--primary knx-btn-big" id="knx-start-btn">Start the run</button>
+                <button class="btn btn--primary knx-btn-big" id="knx-start-btn">Start The Run</button>
               </div>
             </div>
 
@@ -727,28 +699,25 @@
           <!-- Cards (mobile) -->
           <div class="knx-lb-cards" id="knx-lb-cards" aria-label="Knicks Fan Sudden Death leaderboard"></div>
 
-          <p class="knx-lb-note">Leaderboard entries are self-reported initials only. Top 25 shown.</p>
+          <p class="knx-lb-note">Top 10 scores from optional initials-only submissions.</p>
         </div>
       </div>
     </section>
 
-    <!-- ===================== HAMLET SCORE ===================== -->
+    <!-- ===================== HAMLET SCORE (mirrors typist "By Hamlet") ===================== -->
     <section class="section knx-hamlet-section" aria-labelledby="knx-hamlet-h2">
       <div class="container">
-        <div class="knx-game-wrap">
-          <p class="eyebrow">Hamlet score</p>
-          <h2 id="knx-hamlet-h2" style="margin-top:0.4rem;margin-bottom:0.5rem;">Which hamlet knows the Knicks best?</h2>
-          <p class="knx-hamlet-lead">
-            Aggregated from leaderboard submissions. A hamlet needs at least two entries before it
-            can be crowned the leader.
-          </p>
-
-          <div class="knx-hamlet-grid" id="knx-hamlet-grid" aria-label="Knicks knowledge by hamlet">
-            <!-- filled by JS -->
-          </div>
-
-          <p class="knx-lb-note">Hamlet scores are based on optional initials-only leaderboard submissions.</p>
+        <div class="section-header">
+          <p class="eyebrow">By Hamlet</p>
+          <h2 id="knx-hamlet-h2">Which hamlet knows the Knicks best?</h2>
+          <p class="section-header__lead">Average Knicks score across all submissions, by hamlet.</p>
         </div>
+
+        <div class="knx-hamlet-podium" id="knx-hamlet-grid" aria-label="Knicks knowledge by hamlet">
+          <!-- filled by JS -->
+        </div>
+
+        <p class="knx-lb-note" style="text-align:center;margin-top:1.5rem;">Hamlet scores are based on optional initials-only leaderboard submissions.</p>
       </div>
     </section>
   </main>
@@ -827,8 +796,8 @@
          img     photo path — drop the file at this path to replace the placeholder
          tier    'current' | 'bench' | '90s' | 'oldschool'
          pool    extra distractor names drawn from the same era
-       TODO: replace the /assets/knicks/*.jpg placeholders with real, properly
-       licensed player photos. The game is fully playable with placeholders.
+       NOTE: player photos live at /assets/knicks/*.png (already in the repo).
+       The game stays playable with a placeholder tile if any file is missing.
     ──────────────────────────────────────────────────────── */
     var TIERS = {
       current:   { label: 'Current', count: 5 },
@@ -839,24 +808,24 @@
 
     var QUESTIONS = [
       // ── 5 current / easy ──
-      { id: 'brun', name: 'Jalen Brunson',      img: '/assets/knicks/brunson.jpg',  tier: 'current' },
-      { id: 'hart', name: 'Josh Hart',          img: '/assets/knicks/hart.jpg',     tier: 'current' },
-      { id: 'kat',  name: 'Karl-Anthony Towns', img: '/assets/knicks/towns.jpg',    tier: 'current' },
-      { id: 'brid', name: 'Mikal Bridges',      img: '/assets/knicks/bridges.jpg',  tier: 'current' },
-      { id: 'og',   name: 'OG Anunoby',         img: '/assets/knicks/anunoby.jpg',  tier: 'current' },
+      { id: 'brun', name: 'Jalen Brunson',      img: '/assets/knicks/brunson.png',  tier: 'current' },
+      { id: 'hart', name: 'Josh Hart',          img: '/assets/knicks/hart.png',     tier: 'current' },
+      { id: 'kat',  name: 'Karl-Anthony Towns', img: '/assets/knicks/towns.png',    tier: 'current' },
+      { id: 'brid', name: 'Mikal Bridges',      img: '/assets/knicks/bridges.png',  tier: 'current' },
+      { id: 'og',   name: 'OG Anunoby',         img: '/assets/knicks/anunoby.png',  tier: 'current' },
       // ── 3 current / bench / medium ──
-      { id: 'mrob', name: 'Mitchell Robinson',  img: '/assets/knicks/robinson.jpg', tier: 'bench' },
-      { id: 'deuce',name: 'Miles McBride',      img: '/assets/knicks/mcbride.jpg',  tier: 'bench' },
-      { id: 'kolek',name: 'Tyler Kolek',        img: '/assets/knicks/kolek.jpg',    tier: 'bench' },
+      { id: 'mrob', name: 'Mitchell Robinson',  img: '/assets/knicks/robinson.png', tier: 'bench' },
+      { id: 'deuce',name: 'Miles McBride',      img: '/assets/knicks/mcbride.png',  tier: 'bench' },
+      { id: 'kolek',name: 'Tyler Kolek',        img: '/assets/knicks/kolek.png',    tier: 'bench' },
       // ── 4 1990s Knicks (Sprewell = upper-mid: harder than the roster, easier than old-school) ──
-      { id: 'ewing',name: 'Patrick Ewing',      img: '/assets/knicks/ewing.jpg',    tier: '90s' },
-      { id: 'stark',name: 'John Starks',        img: '/assets/knicks/starks.jpg',   tier: '90s' },
-      { id: 'oak',  name: 'Charles Oakley',     img: '/assets/knicks/oakley.jpg',   tier: '90s' },
-      { id: 'spree',name: 'Latrell Sprewell',   img: '/assets/knicks/sprewell.jpg', tier: '90s' },
+      { id: 'ewing',name: 'Patrick Ewing',      img: '/assets/knicks/ewing.png',    tier: '90s' },
+      { id: 'stark',name: 'John Starks',        img: '/assets/knicks/starks.png',   tier: '90s' },
+      { id: 'oak',  name: 'Charles Oakley',     img: '/assets/knicks/oakley.png',   tier: '90s' },
+      { id: 'spree',name: 'Latrell Sprewell',   img: '/assets/knicks/spreewell.png', tier: '90s' },
       // ── 3 old-school Knicks ──
-      { id: 'clyde',name: 'Walt "Clyde" Frazier', img: '/assets/knicks/frazier.jpg', tier: 'oldschool' },
-      { id: 'reed', name: 'Willis Reed',        img: '/assets/knicks/reed.jpg',     tier: 'oldschool' },
-      { id: 'pearl',name: 'Earl Monroe',        img: '/assets/knicks/monroe.jpg',   tier: 'oldschool' }
+      { id: 'clyde',name: 'Walt "Clyde" Frazier', img: '/assets/knicks/frazier.png', tier: 'oldschool' },
+      { id: 'reed', name: 'Willis Reed',        img: '/assets/knicks/reed.png',     tier: 'oldschool' },
+      { id: 'pearl',name: 'Earl Monroe',        img: '/assets/knicks/monroe.png',   tier: 'oldschool' }
     ];
 
     // Distractor name pools, per era — keeps wrong answers era-appropriate and plausible.
@@ -1272,7 +1241,7 @@
 
     function renderLeaderboard() {
       var all = getScoresWithMine();
-      var top = all.slice(0, 25);
+      var top = all.slice(0, 10);
 
       // Table
       var body = $('knx-lb-body');
@@ -1317,13 +1286,15 @@
     }
 
     /* ── Hamlet Score ───────────────────────────────────────
-       Aggregates leaderboard entries by hamlet. Sorts hamlets with the
-       minimum (2+) submissions first by average score; only the top
-       qualifying hamlet is crowned leader. Hamlets under the threshold are
-       still shown, labelled "needs more entries". No PII — score/hamlet only.
+       Aggregates leaderboard entries by hamlet, styled like the typist
+       "By Hamlet" podium. Qualifying hamlets (2+ entries) rank first by
+       average score and earn gold/silver/bronze medals; the top is the leader.
+       Sub-threshold hamlets still appear, labelled "needs more entries".
+       No PII — score/hamlet only.
     ──────────────────────────────────────────────────────── */
     var HAMLETS = ['Bedford Village', 'Bedford Hills', 'Katonah', 'Other / Nearby'];
     var MIN_FOR_LEADER = 2;
+    var MEDALS = ['gold', 'silver', 'bronze'];
 
     function renderHamlet() {
       var grid = $('knx-hamlet-grid');
@@ -1361,34 +1332,36 @@
         return y.count - x.count;
       });
 
-      var leaderAssigned = false;
+      var qualIndex = 0;
       var html = rows.map(function (r) {
-        var isLeader = !leaderAssigned && r.qualifies;
-        if (isLeader) leaderAssigned = true;
-
-        var cls = 'knx-hamlet-card' + (isLeader ? ' knx-hamlet-card--leader' : '') + (r.qualifies ? '' : ' knx-hamlet-card--empty');
-        var badge = isLeader
-          ? '<span class="knx-hamlet-badge knx-hamlet-badge--leader">🏀 Leader</span>'
-          : (!r.qualifies ? '<span class="knx-hamlet-badge knx-hamlet-badge--needs">Needs more entries</span>' : '');
-
-        var head = '<div class="knx-hamlet-card__top"><h3 class="knx-hamlet-card__name">' + escHtml(r.name) + '</h3>' + badge + '</div>';
+        var medal, cardMod, medalTxt;
+        if (r.qualifies) {
+          medal   = MEDALS[qualIndex];               // undefined for a 4th qualifier → neutral medal
+          cardMod = medal ? ' knx-hamlet-card--' + medal : '';
+          medalTxt = String(qualIndex + 1);
+          qualIndex++;
+        } else {
+          medal = 'empty'; cardMod = ''; medalTxt = '–';
+        }
+        var medalCls = 'knx-hamlet-medal' + (medal ? ' knx-hamlet-medal--' + medal : '');
+        var head = '<span class="' + medalCls + '" aria-hidden="true">' + medalTxt + '</span>' +
+                   '<span class="knx-hamlet-name">' + escHtml(r.name) + '</span>';
 
         if (!r.qualifies) {
-          var msg = r.count === 0
-            ? 'No entries yet — be the first from ' + escHtml(r.name) + '.'
-            : r.count + ' entry so far — needs more entries.';
-          return '<div class="' + cls + '">' + head + '<p class="knx-hamlet-card__empty">' + msg + '</p></div>';
+          var note = r.count === 0 ? 'No entries yet' : (r.count + ' player' + (r.count === 1 ? '' : 's') + ' so far');
+          return '<div class="knx-hamlet-card' + cardMod + '">' + head +
+            '<span class="knx-hamlet-score knx-hamlet-score--empty">—</span>' +
+            '<span class="knx-hamlet-score-label">needs more entries</span>' +
+            '<p class="knx-hamlet-meta">' + note + '</p>' +
+          '</div>';
         }
 
-        var pct = Math.max(4, Math.round((r.avg / MAX_SCORE) * 100));
-        return '<div class="' + cls + '">' + head +
-          '<div class="knx-hamlet-card__avg"><span class="num">' + r.avg + '</span><span class="unit">avg / ' + MAX_SCORE + '</span></div>' +
-          '<div class="knx-hamlet-bar"><div class="knx-hamlet-bar__fill" style="width:' + pct + '%"></div></div>' +
-          '<div class="knx-hamlet-card__stats">' +
-            '<div class="knx-hamlet-stat"><span class="k">Players</span><span class="v">' + r.count + '</span></div>' +
-            '<div class="knx-hamlet-stat"><span class="k">Best</span><span class="v">' + r.best + '/' + MAX_SCORE + '</span></div>' +
-            '<div class="knx-hamlet-stat"><span class="k">Top rating</span><span class="v rating">' + escHtml(r.bestRating || '—') + '</span></div>' +
-          '</div>' +
+        return '<div class="knx-hamlet-card' + cardMod + '">' + head +
+          '<span class="knx-hamlet-score">' + r.avg + '</span>' +
+          '<span class="knx-hamlet-score-label">avg score · /' + MAX_SCORE + '</span>' +
+          '<p class="knx-hamlet-meta"><strong>' + r.count + '</strong> player' + (r.count === 1 ? '' : 's') +
+            ' · best <strong>' + r.best + '/' + MAX_SCORE + '</strong>' +
+            '<span class="knx-hamlet-rating">Top rating: ' + escHtml(r.bestRating || '—') + '</span></p>' +
         '</div>';
       }).join('');
 
