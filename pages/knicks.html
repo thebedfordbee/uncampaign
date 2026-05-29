@@ -5,34 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary meta -->
-  <title>Knicks Fan Sudden Death | Don Scott for Bedford</title>
-  <meta name="description" content="One Knicks photo. Four names. Eight seconds. Wrong answer and you're done. A quick, friendly Knicks fan test from the Don for Bedford uncampaign.">
+  <title>NYK Sudden Death | Don Scott for Bedford</title>
+  <meta name="description" content="A fast Knicks fan quiz from Don Scott. One photo. Four names. Eight seconds. Wrong answer and you're done.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.donforbedford.com/knicks">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/knicks">
-  <meta property="og:title" content="Knicks Fan Sudden Death">
-  <meta property="og:description" content="One Knicks photo. Four names. Eight seconds. Wrong answer and you're done.">
+  <meta property="og:title" content="NYK Sudden Death">
+  <meta property="og:description" content="A fast Knicks fan quiz from Don Scott. One photo. Four names. Eight seconds. Wrong answer and you're done.">
   <!-- TODO: replace assets/knicks/don-knicks-og.png with final 1200x630 card of Don in a Knicks jersey -->
   <meta property="og:image" content="https://www.donforbedford.com/assets/knicks/don-knicks-og.png">
   <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/knicks/don-knicks-og.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Knicks Fan Sudden Death — a quick Knicks fan test from Don Scott for Bedford.">
+  <meta property="og:image:alt" content="NYK Sudden Death — a fast Knicks fan quiz from Don Scott for Bedford.">
   <meta property="og:site_name" content="Don Scott for Bedford">
   <meta property="og:locale" content="en_US">
 
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/knicks">
-  <meta name="twitter:title" content="Knicks Fan Sudden Death">
-  <meta name="twitter:description" content="One Knicks photo. Four names. Eight seconds. Wrong answer and you're done.">
+  <meta name="twitter:title" content="NYK Sudden Death">
+  <meta name="twitter:description" content="A fast Knicks fan quiz from Don Scott. One photo. Four names. Eight seconds. Wrong answer and you're done.">
   <!-- TODO: replace with final OG card of Don in a Knicks jersey -->
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/knicks/don-knicks-og.png">
-  <meta name="twitter:image:alt" content="Knicks Fan Sudden Death — a quick Knicks fan test from Don Scott for Bedford.">
+  <meta name="twitter:image:alt" content="NYK Sudden Death — a fast Knicks fan quiz from Don Scott for Bedford.">
 
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -62,15 +62,25 @@
         "@type": "WebPage",
         "@id": "https://www.donforbedford.com/knicks#webpage",
         "url": "https://www.donforbedford.com/knicks",
-        "name": "Knicks Fan Sudden Death",
-        "description": "One Knicks photo. Four names. Eight seconds. Wrong answer and you're done. A quick, friendly Knicks fan test from the Don for Bedford uncampaign.",
+        "name": "NYK Sudden Death",
+        "description": "A fast Knicks fan quiz from Don Scott. One photo. Four names. Eight seconds. Wrong answer and you're done.",
+        "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
+        "mainEntity": { "@id": "https://www.donforbedford.com/knicks#quiz" }
+      },
+      {
+        "@type": "Quiz",
+        "@id": "https://www.donforbedford.com/knicks#quiz",
+        "name": "NYK Sudden Death",
+        "description": "A 15-question, sudden-death Knicks fan quiz: one player photo, four possible names, eight seconds each. One wrong answer ends the run.",
+        "url": "https://www.donforbedford.com/knicks",
+        "about": { "@type": "Thing", "name": "New York Knicks" },
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" }
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.donforbedford.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Knicks Fan Sudden Death", "item": "https://www.donforbedford.com/knicks" }
+          { "@type": "ListItem", "position": 2, "name": "NYK Sudden Death", "item": "https://www.donforbedford.com/knicks" }
         ]
       }
     ]
@@ -130,19 +140,22 @@
       line-height: 1.6;
       max-width: 46ch;
     }
-    /* Hero image — swap src to update without touching layout. */
+    /* Hero image — swap src to update without touching layout.
+       Portrait 3:4 frame. Kept compact on mobile so the headline + intro lead
+       the screen; grows into its own column on tablet/desktop. */
     .knx-hero__image {
       width: 100%;
-      max-width: 360px;
+      max-width: 200px;          /* mobile: compact, never dominates above the fold */
       margin-inline: auto;
       border-radius: 14px;
       overflow: hidden;
       background: #2d3e2f;
       box-shadow: 0 8px 32px rgba(0,0,0,0.28);
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 4;       /* portrait — matches the recommended 1200x1600 source */
       position: relative;
     }
-    .knx-hero__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .knx-hero__image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    @media (min-width: 600px) { .knx-hero__image { max-width: 240px; } }
     /* Placeholder shown until assets/knicks/don-knicks-hero.png exists */
     .knx-hero__image-ph {
       position: absolute; inset: 0;
@@ -155,13 +168,13 @@
       color: rgba(255,255,255,0.55); max-width: 22ch; line-height: 1.5;
     }
     @media (min-width: 768px) {
-      .knx-hero__inner { display: grid; grid-template-columns: 1fr 360px; gap: 3rem; align-items: center; }
-      .knx-hero__image { margin-inline: 0; }
+      .knx-hero__inner { display: grid; grid-template-columns: 1fr 300px; gap: 3rem; align-items: center; }
+      .knx-hero__image { max-width: 300px; margin-inline: 0; }
     }
 
-    /* ── Intro copy ──────────────────────────────────────── */
-    .knx-intro p { color: var(--muted); max-width: 60ch; margin-bottom: 1rem; }
-    .knx-intro p:last-child { margin-bottom: 0; }
+    /* ── "The test" intro — uses the shared .section-header pattern.
+       Widen the lead so it spans the section naturally (no narrow column). */
+    .knx-intro .section-header__lead { max-width: 62ch; }
 
     /* ── Game shell ──────────────────────────────────────── */
     .knx-game-wrap { max-width: 560px; margin-inline: auto; }
@@ -400,13 +413,53 @@
       .knx-lb-cards { display: flex; }
     }
 
-    /* Footer note inside game */
-    .knx-funline { text-align: center; font-size: 0.8125rem; color: var(--muted); margin-top: 1.25rem; }
-    .knx-funline a { color: var(--moss); }
+    /* ── Hamlet Score ────────────────────────────────────── */
+    .knx-hamlet-section { background: var(--cream); }
+    .knx-hamlet-lead { color: var(--muted); font-size: 0.9375rem; line-height: 1.65; max-width: 60ch; margin-bottom: 1.5rem; }
+
+    .knx-hamlet-grid {
+      display: grid; grid-template-columns: 1fr; gap: 0.875rem;
+    }
+    @media (min-width: 560px) { .knx-hamlet-grid { grid-template-columns: 1fr 1fr; } }
+
+    .knx-hamlet-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.125rem 1.25rem; box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column; gap: 0.625rem;
+    }
+    .knx-hamlet-card--leader { border-color: var(--moss); box-shadow: 0 4px 20px rgba(62,82,64,0.14); }
+    .knx-hamlet-card--empty { opacity: 0.85; }
+
+    .knx-hamlet-card__top { display: flex; align-items: center; justify-content: space-between; gap: 0.625rem; }
+    .knx-hamlet-card__name { font-family: var(--serif); font-size: 1.0625rem; color: var(--charcoal); margin: 0; line-height: 1.2; }
+
+    .knx-hamlet-badge {
+      font-size: 0.625rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 0.25rem 0.5rem; border-radius: 999px; white-space: nowrap; flex-shrink: 0;
+    }
+    .knx-hamlet-badge--leader { background: var(--moss); color: var(--white); }
+    .knx-hamlet-badge--needs { background: var(--cream); color: var(--muted); border: 1px solid var(--border); }
+
+    .knx-hamlet-card__avg { display: flex; align-items: baseline; gap: 0.4rem; }
+    .knx-hamlet-card__avg .num { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: var(--moss); line-height: 1; }
+    .knx-hamlet-card__avg .unit { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+
+    .knx-hamlet-bar { height: 8px; background: var(--border); border-radius: 999px; overflow: hidden; }
+    .knx-hamlet-bar__fill { height: 100%; background: var(--sage); border-radius: 999px; transition: width 0.6s ease; }
+    .knx-hamlet-card--leader .knx-hamlet-bar__fill { background: var(--moss); }
+
+    .knx-hamlet-card__stats { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+    .knx-hamlet-stat { display: flex; flex-direction: column; }
+    .knx-hamlet-stat .k { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+    .knx-hamlet-stat .v { font-size: 0.9375rem; font-weight: 600; color: var(--charcoal); }
+    .knx-hamlet-stat .v.rating { font-weight: 500; font-size: 0.8125rem; color: var(--muted); }
+
+    .knx-hamlet-card__empty { font-size: 0.875rem; color: var(--muted); margin: 0; }
 
     @media (prefers-reduced-motion: reduce) {
       .knx-timer__fill { transition: none !important; }
       .knx-answer { transition: none; }
+      .knx-hamlet-bar__fill { transition: none; }
     }
   </style>
 </head>
@@ -453,21 +506,35 @@
       <div class="container">
         <div class="knx-hero__inner">
           <div>
-            <p class="eyebrow">Built for fun · Bedford, NY</p>
-            <h1>Knicks Fan<br>Sudden Death</h1>
+            <p class="eyebrow">Don Scott presents</p>
+            <h1>NYK Sudden Death</h1>
             <p class="knx-hero__deck">
               One Knicks player photo. Four possible names. <strong>Eight seconds.</strong>
               Wrong answer and you're done. Fifteen in a row makes you a Municipal Knicks Historian.
             </p>
-            <p class="knx-hero__note">
-              Built for fun. No money spent. No data collected beyond leaderboard entries. Go Knicks.
-            </p>
           </div>
-          <!-- HERO IMAGE: replace assets/knicks/don-knicks-hero.png with final photo of Don in a Knicks jersey.
-               The page shows a placeholder tile until that file exists. -->
+          <!-- ============================================================
+               HERO IMAGE — replace assets/knicks/don-knicks-hero.png with the
+               final photo of Don in a Knicks jersey. A placeholder tile shows
+               until that file exists.
+
+               FINAL IMAGE SPECS:
+                 • Recommended source: 1200px wide × 1600px tall
+                 • Aspect ratio:       3:4 portrait
+                 • Minimum acceptable: 900px × 1200px
+                 • Format:             WebP preferred, PNG acceptable
+                 • File size target:   under 500KB if possible
+                 • Subject placement:  Don centered vertically, face in the
+                   upper-middle third, basketball / action visible, with safe
+                   visual margins on all sides
+                 • Mobile crop safety: keep Don's face, jersey, and ball inside
+                   the center 70% of the image
+                 • Desktop crop safety: background can crop, subject should not
+                 • CSS applied below:  object-fit: cover; object-position: center top;
+               ============================================================ -->
           <div class="knx-hero__image">
             <img src="/assets/knicks/don-knicks-hero.png"
-                 alt="Don Scott in a New York Knicks jersey"
+                 alt="Don Scott in a New York Knicks jersey, holding a basketball"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
             <div class="knx-hero__image-ph" style="display:none;" aria-hidden="true">
               <span class="knx-ball">🏀</span>
@@ -478,17 +545,17 @@
       </div>
     </section>
 
-    <!-- ===================== INTRO ===================== -->
-    <section class="section section--alt">
-      <div class="container knx-intro">
-        <p>
-          Bedford is full of Knicks fans this week. Some lifelong. Some recent. Some still
-          Googling who plays power forward. So we built a small test.
-        </p>
-        <p>
-          It's the first Knicks Finals run since 1999, so it felt like a good week to find out
-          where everyone really stands. No politics here — just a quick game between neighbors.
-        </p>
+    <!-- ===================== THE TEST ===================== -->
+    <section class="section section--alt" aria-labelledby="knx-test-h2">
+      <div class="container">
+        <div class="section-header knx-intro">
+          <p class="eyebrow">The test</p>
+          <h2 id="knx-test-h2">One photo. Four names. Eight seconds.</h2>
+          <p class="section-header__lead">
+            Some fans are lifelong. Some are recent. Some are still Googling who plays power
+            forward. This is a small test of Knicks accountability.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -591,11 +658,6 @@
             </div>
 
           </div><!-- /.knx-stage -->
-
-          <p class="knx-funline">
-            No politics, no pressure — just neighbors and basketball.
-            <a href="/">More from the uncampaign →</a>
-          </p>
         </div>
       </div>
     </section>
@@ -628,6 +690,26 @@
           <div class="knx-lb-cards" id="knx-lb-cards" aria-label="Knicks Fan Sudden Death leaderboard"></div>
 
           <p class="knx-lb-note">Leaderboard entries are self-reported initials only. Top 25 shown.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HAMLET SCORE ===================== -->
+    <section class="section knx-hamlet-section" aria-labelledby="knx-hamlet-h2">
+      <div class="container">
+        <div class="knx-game-wrap">
+          <p class="eyebrow">Hamlet score</p>
+          <h2 id="knx-hamlet-h2" style="margin-top:0.4rem;margin-bottom:0.5rem;">Which hamlet knows the Knicks best?</h2>
+          <p class="knx-hamlet-lead">
+            Aggregated from leaderboard submissions. A hamlet needs at least two entries before it
+            can be crowned the leader.
+          </p>
+
+          <div class="knx-hamlet-grid" id="knx-hamlet-grid" aria-label="Knicks knowledge by hamlet">
+            <!-- filled by JS -->
+          </div>
+
+          <p class="knx-lb-note">Hamlet scores are based on optional initials-only leaderboard submissions.</p>
         </div>
       </div>
     </section>
@@ -756,9 +838,10 @@
     ];
 
     // Seeded leaderboard so the board isn't empty on launch. Clearly flagged source:'seed'.
-    // Remove or trim once real scores accumulate.
+    // NOTE: no seeded/sample entry may be a perfect 15 — the highest seed is capped at 14.
+    // A real 15/15 only ever appears from genuine spreadsheet data. Remove or trim once real scores accumulate.
     var SEED_SCORES = [
-      { initials:'JBW', hamlet:'Katonah',         score:15, rating:'Municipal Knicks Historian', timestamp:'2026-05-26T19:10:00Z', source:'seed' },
+      { initials:'JBW', hamlet:'Katonah',         score:14, rating:'Clyde-Approved',             timestamp:'2026-05-26T19:10:00Z', source:'seed' },
       { initials:'RKO', hamlet:'Bedford Hills',   score:13, rating:'Clyde-Approved',            timestamp:'2026-05-26T20:02:00Z', source:'seed' },
       { initials:'MEP', hamlet:'Bedford Village', score:12, rating:'Clyde-Approved',            timestamp:'2026-05-27T08:44:00Z', source:'seed' },
       { initials:'TAH', hamlet:'Katonah',         score:11, rating:'Oakley Would Nod',          timestamp:'2026-05-27T12:15:00Z', source:'seed' },
@@ -1066,6 +1149,12 @@
       var real = (liveScoreCache !== null && liveScoreCache.length > 0) ? liveScoreCache : getStoredScores();
       return [].concat(SEED_SCORES, real).sort(sortFn);
     }
+    // All scores including the player's just-submitted run (used by both leaderboard + hamlet).
+    function getScoresWithMine() {
+      var all = getAllScores();
+      if (mySubmission && all.indexOf(mySubmission) === -1) all = all.concat([mySubmission]).sort(sortFn);
+      return all;
+    }
 
     function fetchLiveScores() {
       return fetch(API_URL + '?action=getKnicksLeaderboard&gameType=' + encodeURIComponent(GAME_TYPE))
@@ -1090,11 +1179,7 @@
     }
 
     function renderLeaderboard() {
-      var all = getAllScores();
-      if (mySubmission) {
-        var hasMe = all.indexOf(mySubmission) !== -1;
-        if (!hasMe) all = all.concat([mySubmission]).sort(sortFn);
-      }
+      var all = getScoresWithMine();
       var top = all.slice(0, 25);
 
       // Table
@@ -1135,6 +1220,87 @@
         }
         cards.innerHTML = ch || '<p style="text-align:center;color:var(--muted);padding:1rem;">No scores yet — be the first.</p>';
       }
+
+      renderHamlet();
+    }
+
+    /* ── Hamlet Score ───────────────────────────────────────
+       Aggregates leaderboard entries by hamlet. Sorts hamlets with the
+       minimum (2+) submissions first by average score; only the top
+       qualifying hamlet is crowned leader. Hamlets under the threshold are
+       still shown, labelled "needs more entries". No PII — score/hamlet only.
+    ──────────────────────────────────────────────────────── */
+    var HAMLETS = ['Bedford Village', 'Bedford Hills', 'Katonah', 'Other / Nearby'];
+    var MIN_FOR_LEADER = 2;
+
+    function renderHamlet() {
+      var grid = $('knx-hamlet-grid');
+      if (!grid) return;
+
+      var all = getScoresWithMine();
+      var agg = {};
+      HAMLETS.forEach(function (h) { agg[h] = { name: h, count: 0, total: 0, best: -1, bestRating: '' }; });
+
+      all.forEach(function (s) {
+        var a = agg[s.hamlet];
+        if (!a) return;
+        var sc = Number(s.score) || 0;
+        a.count++;
+        a.total += sc;
+        if (sc >= a.best) { a.best = sc; a.bestRating = s.rating || a.bestRating; }
+      });
+
+      var rows = HAMLETS.map(function (h) {
+        var a = agg[h];
+        return {
+          name: h,
+          count: a.count,
+          avg: a.count ? Math.round((a.total / a.count) * 10) / 10 : 0,
+          best: a.count ? a.best : 0,
+          bestRating: a.bestRating,
+          qualifies: a.count >= MIN_FOR_LEADER
+        };
+      });
+
+      // Qualifying hamlets first (by avg, then count); sub-threshold hamlets after.
+      rows.sort(function (x, y) {
+        if (x.qualifies !== y.qualifies) return x.qualifies ? -1 : 1;
+        if (y.avg !== x.avg) return y.avg - x.avg;
+        return y.count - x.count;
+      });
+
+      var leaderAssigned = false;
+      var html = rows.map(function (r) {
+        var isLeader = !leaderAssigned && r.qualifies;
+        if (isLeader) leaderAssigned = true;
+
+        var cls = 'knx-hamlet-card' + (isLeader ? ' knx-hamlet-card--leader' : '') + (r.qualifies ? '' : ' knx-hamlet-card--empty');
+        var badge = isLeader
+          ? '<span class="knx-hamlet-badge knx-hamlet-badge--leader">🏀 Leader</span>'
+          : (!r.qualifies ? '<span class="knx-hamlet-badge knx-hamlet-badge--needs">Needs more entries</span>' : '');
+
+        var head = '<div class="knx-hamlet-card__top"><h3 class="knx-hamlet-card__name">' + escHtml(r.name) + '</h3>' + badge + '</div>';
+
+        if (!r.qualifies) {
+          var msg = r.count === 0
+            ? 'No entries yet — be the first from ' + escHtml(r.name) + '.'
+            : r.count + ' entry so far — needs more entries.';
+          return '<div class="' + cls + '">' + head + '<p class="knx-hamlet-card__empty">' + msg + '</p></div>';
+        }
+
+        var pct = Math.max(4, Math.round((r.avg / MAX_SCORE) * 100));
+        return '<div class="' + cls + '">' + head +
+          '<div class="knx-hamlet-card__avg"><span class="num">' + r.avg + '</span><span class="unit">avg / ' + MAX_SCORE + '</span></div>' +
+          '<div class="knx-hamlet-bar"><div class="knx-hamlet-bar__fill" style="width:' + pct + '%"></div></div>' +
+          '<div class="knx-hamlet-card__stats">' +
+            '<div class="knx-hamlet-stat"><span class="k">Players</span><span class="v">' + r.count + '</span></div>' +
+            '<div class="knx-hamlet-stat"><span class="k">Best</span><span class="v">' + r.best + '/' + MAX_SCORE + '</span></div>' +
+            '<div class="knx-hamlet-stat"><span class="k">Top rating</span><span class="v rating">' + escHtml(r.bestRating || '—') + '</span></div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+
+      grid.innerHTML = html;
     }
 
     /* ── Leaderboard submission ─────────────────────────── */
