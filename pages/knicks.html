@@ -327,6 +327,26 @@
       margin-top: 0.75rem; min-height: 1.2em;
     }
 
+    /* ── Lockout (already-completed) screen ──────────────── */
+    .knx-lock-eyebrow {
+      font-size: 0.9375rem; color: var(--muted); line-height: 1.5;
+      max-width: 34ch; margin: 0 auto 1.25rem;
+    }
+    .knx-lock-date {
+      font-size: 0.75rem; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 1.5rem;
+    }
+    /* Low-emphasis override — deterrence, not security */
+    .knx-replay-link {
+      display: inline-block; margin-top: 1.25rem;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--sans); font-size: 0.8125rem; color: var(--muted);
+      text-decoration: underline; text-underline-offset: 2px;
+      padding: 0.5rem; min-height: 44px;
+    }
+    .knx-replay-link:hover { color: var(--moss); }
+    .knx-replay-link:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+
     /* ── Leaderboard form (initials capture) ─────────────── */
     .knx-lb-form {
       background: var(--cream);
@@ -657,13 +677,31 @@
               </div>
             </div>
 
+            <!-- LOCKOUT SCREEN — shown when a completed run already exists on this device -->
+            <div class="knx-screen" id="knx-screen-locked" role="region" aria-label="Already completed">
+              <div class="knx-result">
+                <p class="knx-lock-eyebrow">You already completed NYK Sudden Death on this device.</p>
+                <div class="knx-result__score"><span id="knx-lock-score">0</span><small>/15</small></div>
+                <div class="knx-result__rating" id="knx-lock-rating">—</div>
+                <p class="knx-lock-date" id="knx-lock-date"></p>
+
+                <div class="knx-result__actions">
+                  <button class="btn btn--secondary" id="knx-lock-lb-btn">View leaderboard</button>
+                  <button class="btn btn--primary" id="knx-lock-share-btn">Share result</button>
+                </div>
+                <p class="knx-copied-note" id="knx-lock-note" aria-live="polite"></p>
+
+                <button type="button" class="knx-replay-link" id="knx-lock-replay">Play Again Anyway</button>
+              </div>
+            </div>
+
           </div><!-- /.knx-stage -->
         </div>
       </div>
     </section>
 
     <!-- ===================== LEADERBOARD ===================== -->
-    <section class="section knx-lb-section">
+    <section class="section knx-lb-section" id="knx-leaderboard">
       <div class="container">
         <div class="knx-game-wrap">
           <p class="eyebrow">Bedford's best</p>
@@ -778,7 +816,8 @@
     var MAX_SCORE = 15;
     var TIME_PER  = 8;            // seconds per question
     var SCORE_KEY = 'knx_real_scores_v1';
-    var DONE_KEY  = 'knx_submitted_v1';   // sessionStorage: one submission per completed run
+    var DONE_KEY  = 'knx_submitted_v1';   // sessionStorage: one leaderboard submission per completed run
+    var LOCK_KEY  = 'knx_completed_v1';   // localStorage: completion lock {score, rating, completedAt} — light anti-retake
     var PAGE_URL  = 'https://www.donforbedford.com/knicks';
 
     /* ── Question bank ──────────────────────────────────────
@@ -793,8 +832,8 @@
     ──────────────────────────────────────────────────────── */
     var TIERS = {
       current:   { label: 'Current', count: 5 },
-      bench:     { label: 'Rotation', count: 4 },
-      '90s':     { label: "'90s Knicks", count: 3 },
+      bench:     { label: 'Rotation', count: 3 },
+      '90s':     { label: "'90s Knicks", count: 4 },
       oldschool: { label: 'Old-school', count: 3 }
     };
 
@@ -805,15 +844,15 @@
       { id: 'kat',  name: 'Karl-Anthony Towns', img: '/assets/knicks/towns.jpg',    tier: 'current' },
       { id: 'brid', name: 'Mikal Bridges',      img: '/assets/knicks/bridges.jpg',  tier: 'current' },
       { id: 'og',   name: 'OG Anunoby',         img: '/assets/knicks/anunoby.jpg',  tier: 'current' },
-      // ── 4 current / bench / medium ──
+      // ── 3 current / bench / medium ──
       { id: 'mrob', name: 'Mitchell Robinson',  img: '/assets/knicks/robinson.jpg', tier: 'bench' },
       { id: 'deuce',name: 'Miles McBride',      img: '/assets/knicks/mcbride.jpg',  tier: 'bench' },
-      { id: 'prec', name: 'Precious Achiuwa',   img: '/assets/knicks/achiuwa.jpg',  tier: 'bench' },
       { id: 'kolek',name: 'Tyler Kolek',        img: '/assets/knicks/kolek.jpg',    tier: 'bench' },
-      // ── 3 1990s Knicks ──
+      // ── 4 1990s Knicks (Sprewell = upper-mid: harder than the roster, easier than old-school) ──
       { id: 'ewing',name: 'Patrick Ewing',      img: '/assets/knicks/ewing.jpg',    tier: '90s' },
       { id: 'stark',name: 'John Starks',        img: '/assets/knicks/starks.jpg',   tier: '90s' },
       { id: 'oak',  name: 'Charles Oakley',     img: '/assets/knicks/oakley.jpg',   tier: '90s' },
+      { id: 'spree',name: 'Latrell Sprewell',   img: '/assets/knicks/sprewell.jpg', tier: '90s' },
       // ── 3 old-school Knicks ──
       { id: 'clyde',name: 'Walt "Clyde" Frazier', img: '/assets/knicks/frazier.jpg', tier: 'oldschool' },
       { id: 'reed', name: 'Willis Reed',        img: '/assets/knicks/reed.jpg',     tier: 'oldschool' },
@@ -823,7 +862,7 @@
     // Distractor name pools, per era — keeps wrong answers era-appropriate and plausible.
     var DISTRACTORS = {
       current:   ['Jalen Brunson','Josh Hart','Karl-Anthony Towns','Mikal Bridges','OG Anunoby','Mitchell Robinson'],
-      bench:     ['Mitchell Robinson','Miles McBride','Precious Achiuwa','Tyler Kolek','Cameron Payne','Josh Hart','Landry Shamet'],
+      bench:     ['Mitchell Robinson','Miles McBride','Tyler Kolek','Cameron Payne','Josh Hart','Landry Shamet'],
       '90s':     ['Patrick Ewing','John Starks','Charles Oakley','Allan Houston','Latrell Sprewell','Larry Johnson','Charlie Ward'],
       oldschool: ['Walt "Clyde" Frazier','Willis Reed','Earl Monroe','Bill Bradley','Dave DeBusschere','Dick Barnett']
     };
@@ -863,10 +902,11 @@
     var endQuestionId = ''; // the id of the missed/timed-out player
     var liveScoreCache = null;
     var mySubmission = null;
+    var displayResult = null; // {score, rating} powering the share/copy buttons (result OR lockout screen)
 
     /* ── DOM ────────────────────────────────────────────── */
     var $ = function (id) { return document.getElementById(id); };
-    var screens = { start: $('knx-screen-start'), play: $('knx-screen-play'), result: $('knx-screen-result') };
+    var screens = { start: $('knx-screen-start'), play: $('knx-screen-play'), result: $('knx-screen-result'), lockout: $('knx-screen-locked') };
     var progressEl = $('knx-progress');
     var tierEl     = $('knx-tier');
     var timerNum   = $('knx-timer-num');
@@ -901,15 +941,18 @@
       });
     }
 
-    /* ── Build a run: shuffle WITHIN each tier, keep tier order (difficulty curve) ── */
+    /* ── Build a run: FIXED progressive order, easiest → hardest ──────────
+       Questions always appear in the same authored sequence within each tier,
+       and the tiers always run current → bench → 90s → oldschool. Question
+       order is never randomized. Only the four answer choices are shuffled. */
     function buildDeck() {
       var order = ['current', 'bench', '90s', 'oldschool'];
       var out = [];
       order.forEach(function (tier) {
-        var inTier = QUESTIONS.filter(function (q) { return q.tier === tier; });
-        shuffle(inTier).forEach(function (q) { out.push(q); });
+        // Preserve the intended within-tier sequence — no shuffle.
+        QUESTIONS.forEach(function (q) { if (q.tier === tier) out.push(q); });
       });
-      // Pre-compute 4 shuffled options for each question.
+      // Pre-compute 4 shuffled answer options for each question.
       return out.map(function (q) {
         var pool = DISTRACTORS[q.tier].filter(function (n) { return n !== q.name; });
         var picks = shuffle(pool).slice(0, 3);
@@ -1056,6 +1099,10 @@
       $('knx-blurb').textContent = rating.blurb;
       $('knx-copied-note').textContent = '';
 
+      // Power the share/copy buttons, and set the anti-retake completion lock.
+      displayResult = { score: score, rating: rating.label };
+      setCompletion({ score: score, rating: rating.label, completedAt: new Date().toISOString() });
+
       // Reset the leaderboard form for this run, unless already submitted this session.
       var lbForm = $('knx-lb-form');
       if (sessionStorage.getItem(DONE_KEY)) {
@@ -1074,7 +1121,49 @@
       try { screens.result.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {}
     }
 
-    /* ── Start / reset ──────────────────────────────────── */
+    /* ── Completion lock (light anti-retake) ────────────── */
+    function getCompletion() {
+      try { return JSON.parse(localStorage.getItem(LOCK_KEY) || 'null'); } catch (e) { return null; }
+    }
+    function setCompletion(rec) {
+      try { localStorage.setItem(LOCK_KEY, JSON.stringify(rec)); } catch (e) {}
+    }
+    function clearCompletion() {
+      try { localStorage.removeItem(LOCK_KEY); } catch (e) {}
+    }
+    function formatLockDate(iso) {
+      try { return new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); }
+      catch (e) { return ''; }
+    }
+
+    /* ── Start / lockout / reset ────────────────────────── */
+    // Gate every start attempt behind the completion lock.
+    function attemptStart() {
+      var rec = getCompletion();
+      if (rec) { showLockout(rec, true); return; }
+      startGame();
+    }
+
+    function showLockout(rec, doScroll) {
+      rec = rec || getCompletion();
+      if (!rec) { startGame(); return; }
+      displayResult = { score: rec.score, rating: rec.rating };
+      if ($('knx-lock-score'))  $('knx-lock-score').textContent  = rec.score;
+      if ($('knx-lock-rating')) $('knx-lock-rating').textContent = rec.rating;
+      if ($('knx-lock-date'))   $('knx-lock-date').textContent   = rec.completedAt ? 'Completed ' + formatLockDate(rec.completedAt) : '';
+      if ($('knx-lock-note'))   $('knx-lock-note').textContent   = '';
+      showScreen('lockout');
+      if (doScroll) { try { screens.lockout.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) {} }
+    }
+
+    // Deterrence, not security — let an honest user replay if they really want to.
+    function playAgainAnyway() {
+      clearCompletion();
+      try { sessionStorage.removeItem(DONE_KEY); } catch (e) {} // a genuine replay may submit once more
+      mySubmission = null;
+      startGame();
+    }
+
     function startGame() {
       deck = buildDeck();
       idx = 0; score = 0; correctIds = []; endReason = ''; endQuestionId = ''; locked = false;
@@ -1083,28 +1172,31 @@
       renderQuestion();
     }
 
-    /* ── Share / copy ───────────────────────────────────── */
+    /* ── Share / copy ─────────────────────────────────────
+       Uses displayResult so the result screen AND the lockout screen both
+       share the right score/rating. noteId says which status line to flash. */
     function shareText() {
-      var rating = ratingFor(score);
-      return 'I scored ' + score + '/' + MAX_SCORE + ' on Knicks Fan Sudden Death and earned: ' +
-        rating.label + '. One photo. Four names. Eight seconds. Wrong answer and you\'re done. Try it: ' + PAGE_URL;
+      var sc    = displayResult ? displayResult.score  : score;
+      var label = displayResult ? displayResult.rating : ratingFor(score).label;
+      return 'I scored ' + sc + '/' + MAX_SCORE + ' on NYK Sudden Death and earned: ' +
+        label + '. One photo. Four names. Eight seconds. Wrong answer and you\'re done. Try it: ' + PAGE_URL;
     }
-    function flashNote(msg) {
-      var n = $('knx-copied-note');
+    function flashNote(msg, noteId) {
+      var n = $(noteId || 'knx-copied-note');
       if (n) { n.textContent = msg; }
     }
-    function copyResult() {
+    function copyResult(noteId) {
       var text = shareText();
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(
-          function () { flashNote('Copied! Paste it anywhere.'); },
-          function () { fallbackCopy(text); }
+          function () { flashNote('Copied! Paste it anywhere.', noteId); },
+          function () { fallbackCopy(text, noteId); }
         );
       } else {
-        fallbackCopy(text);
+        fallbackCopy(text, noteId);
       }
     }
-    function fallbackCopy(text) {
+    function fallbackCopy(text, noteId) {
       try {
         var ta = document.createElement('textarea');
         ta.value = text;
@@ -1114,21 +1206,21 @@
         ta.select();
         document.execCommand('copy');
         document.body.removeChild(ta);
-        flashNote('Copied! Paste it anywhere.');
+        flashNote('Copied! Paste it anywhere.', noteId);
       } catch (e) {
-        flashNote('Copy not supported — long-press to copy your score.');
+        flashNote('Copy not supported — long-press to copy your score.', noteId);
       }
     }
-    function shareResult() {
+    function shareResult(noteId) {
       var text = shareText();
       if (navigator.share) {
         navigator.share({
-          title: 'Knicks Fan Sudden Death',
+          title: 'NYK Sudden Death',
           text: text,
           url: PAGE_URL
         }).catch(function () { /* user cancelled — no-op */ });
       } else {
-        copyResult();
+        copyResult(noteId);
       }
     }
 
@@ -1384,10 +1476,23 @@
     }
 
     /* ── Wire up ────────────────────────────────────────── */
-    $('knx-start-btn').addEventListener('click', startGame);
-    $('knx-again-btn').addEventListener('click', startGame);
-    $('knx-copy-btn').addEventListener('click', copyResult);
-    $('knx-share-btn').addEventListener('click', shareResult);
+    // Both Start and Play Again pass through the completion lock.
+    $('knx-start-btn').addEventListener('click', attemptStart);
+    $('knx-again-btn').addEventListener('click', attemptStart);
+    $('knx-copy-btn').addEventListener('click', function () { copyResult('knx-copied-note'); });
+    $('knx-share-btn').addEventListener('click', function () { shareResult('knx-copied-note'); });
+
+    // Lockout screen actions.
+    var lockShareBtn = $('knx-lock-share-btn');
+    if (lockShareBtn) lockShareBtn.addEventListener('click', function () { shareResult('knx-lock-note'); });
+    var lockLbBtn = $('knx-lock-lb-btn');
+    if (lockLbBtn) lockLbBtn.addEventListener('click', function () {
+      var sec = $('knx-leaderboard');
+      if (sec) { try { sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { sec.scrollIntoView(); } }
+    });
+    var lockReplay = $('knx-lock-replay');
+    if (lockReplay) lockReplay.addEventListener('click', playAgainAnyway);
+
     var skipBtn = $('knx-lb-skip');
     if (skipBtn) skipBtn.addEventListener('click', function () {
       var form = $('knx-lb-form');
@@ -1395,6 +1500,10 @@
     });
     var submitBtn = $('knx-lb-submit');
     if (submitBtn) submitBtn.addEventListener('click', submitScore);
+
+    // Returning visitor who already completed? Show the lockout in place of the start screen.
+    var priorRun = getCompletion();
+    if (priorRun) showLockout(priorRun, false);
 
     // Initial leaderboard paint (seeds + local), then refresh from server.
     renderLeaderboard();

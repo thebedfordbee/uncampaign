@@ -20,12 +20,12 @@ PLAYER PHOTOS (square crops, ~600x600px, head-and-shoulders work best)
   Current / bench (medium)
     robinson.jpg    Mitchell Robinson
     mcbride.jpg     Miles "Deuce" McBride
-    achiuwa.jpg     Precious Achiuwa
     kolek.jpg       Tyler Kolek
   1990s Knicks
     ewing.jpg       Patrick Ewing
     starks.jpg      John Starks
     oakley.jpg      Charles Oakley
+    sprewell.jpg    Latrell Sprewell
   Old-school Knicks
     frazier.jpg     Walt "Clyde" Frazier
     reed.jpg        Willis Reed
