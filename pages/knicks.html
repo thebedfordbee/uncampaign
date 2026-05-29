@@ -428,9 +428,75 @@
     .knx-hamlet-meta strong { color: var(--charcoal); font-weight: 600; }
     .knx-hamlet-rating { display: block; margin-top: 0.25rem; font-size: 0.75rem; color: var(--sage); }
 
+    /* ── Shared-link context banner ──────────────────────── */
+    .knx-shared-banner {
+      background: var(--moss); color: var(--white);
+      text-align: center; padding: 0.75rem 1.25rem;
+      font-size: 0.9375rem; line-height: 1.45;
+    }
+    .knx-shared-banner strong { font-weight: 700; }
+
+    /* ── Share panel (modal) ─────────────────────────────── */
+    .knx-share-modal {
+      position: fixed; inset: 0; z-index: 400;
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.25rem;
+    }
+    .knx-share-modal[hidden] { display: none; }
+    .knx-share-modal__backdrop {
+      position: absolute; inset: 0; background: rgba(20,22,20,0.6); cursor: pointer;
+    }
+    .knx-share-modal__panel {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 380px;
+      background: var(--white); border-radius: 14px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.32);
+      padding: 1.5rem 1.25rem 1.375rem;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .knx-share-modal__panel { animation: knx-share-in 0.18s ease; }
+    }
+    @keyframes knx-share-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .knx-share-modal__close {
+      position: absolute; top: 0.5rem; right: 0.5rem;
+      width: 2.25rem; height: 2.25rem; border-radius: 50%;
+      background: none; border: none; cursor: pointer;
+      font-size: 1.5rem; line-height: 1; color: var(--muted);
+    }
+    .knx-share-modal__close:hover { background: var(--cream); color: var(--charcoal); }
+    .knx-share-modal__close:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+    .knx-share-modal__title {
+      font-family: var(--serif); font-size: 1.25rem; color: var(--charcoal);
+      margin: 0 0 0.5rem; padding-right: 2rem;
+    }
+    .knx-share-modal__preview {
+      font-size: 0.875rem; color: var(--muted); line-height: 1.5;
+      background: var(--cream); border-radius: 8px; padding: 0.75rem 0.875rem;
+      margin: 0 0 1.125rem; max-width: none;
+    }
+    .knx-share-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.625rem; }
+    .knx-share-opt {
+      min-height: 52px; width: 100%;
+      font-family: var(--sans); font-size: 0.9375rem; font-weight: 600;
+      color: var(--charcoal); background: var(--white);
+      border: 1.5px solid var(--border); border-radius: 10px;
+      cursor: pointer; padding: 0.625rem 0.75rem;
+      transition: border-color 0.12s, background 0.12s;
+    }
+    .knx-share-opt:hover { border-color: var(--sage); background: var(--cream); }
+    .knx-share-opt:focus-visible { outline: 3px solid var(--moss); outline-offset: 2px; }
+    /* Copy Link spans the full row */
+    .knx-share-opt--copy { grid-column: 1 / -1; border-color: var(--moss); color: var(--moss); }
+    .knx-share-opt--copy:hover { background: var(--moss); color: var(--white); }
+    .knx-share-note {
+      font-size: 0.8125rem; color: var(--moss); font-weight: 600;
+      text-align: center; margin: 0.875rem 0 0; min-height: 1.2em;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .knx-timer__fill { transition: none !important; }
       .knx-answer { transition: none; }
+      .knx-share-modal__panel { animation: none; }
     }
   </style>
 </head>
@@ -472,6 +538,9 @@
   </header>
 
   <main>
+    <!-- Shared-link context banner — shown when a ?score=&rating= link is opened -->
+    <div class="knx-shared-banner" id="knx-shared-banner" role="status" hidden></div>
+
     <!-- ===================== HERO (mirrors /rules issues-hero) ===================== -->
     <section class="issues-hero" aria-labelledby="knx-title">
       <div class="container">
@@ -561,8 +630,7 @@
                 <p class="knx-result__blurb" id="knx-blurb"></p>
 
                 <div class="knx-result__actions">
-                  <button class="btn btn--secondary" id="knx-copy-btn">Copy my result</button>
-                  <button class="btn btn--primary" id="knx-share-btn">Share</button>
+                  <button class="btn btn--primary knx-btn-big" id="knx-share-btn">Share Result</button>
                 </div>
                 <p class="knx-copied-note" id="knx-copied-note" aria-live="polite"></p>
 
@@ -608,8 +676,8 @@
                 <p class="knx-lock-date" id="knx-lock-date"></p>
 
                 <div class="knx-result__actions">
-                  <button class="btn btn--secondary" id="knx-lock-lb-btn">View leaderboard</button>
-                  <button class="btn btn--primary" id="knx-lock-share-btn">Share result</button>
+                  <button class="btn btn--secondary" id="knx-lock-lb-btn">View Leaderboard</button>
+                  <button class="btn btn--primary" id="knx-lock-share-btn">Share Result</button>
                 </div>
                 <p class="knx-copied-note" id="knx-lock-note" aria-live="polite"></p>
 
@@ -671,6 +739,24 @@
       </div>
     </section>
   </main>
+
+  <!-- ===================== SHARE PANEL (modal) ===================== -->
+  <div class="knx-share-modal" id="knx-share-modal" hidden>
+    <div class="knx-share-modal__backdrop" data-share-close></div>
+    <div class="knx-share-modal__panel" role="dialog" aria-modal="true" aria-labelledby="knx-share-title">
+      <button class="knx-share-modal__close" type="button" data-share-close aria-label="Close share panel">&times;</button>
+      <h3 class="knx-share-modal__title" id="knx-share-title">Share your result</h3>
+      <p class="knx-share-modal__preview" id="knx-share-preview"></p>
+      <div class="knx-share-options">
+        <button class="knx-share-opt knx-share-opt--fb"    type="button" data-share="facebook">Facebook</button>
+        <button class="knx-share-opt knx-share-opt--x"     type="button" data-share="x">X / Twitter</button>
+        <button class="knx-share-opt knx-share-opt--sms"   type="button" data-share="sms">Text (SMS)</button>
+        <button class="knx-share-opt knx-share-opt--email" type="button" data-share="email">Email</button>
+        <button class="knx-share-opt knx-share-opt--copy"  type="button" data-share="copy">Copy Link</button>
+      </div>
+      <p class="knx-share-note" id="knx-share-note" aria-live="polite"></p>
+    </div>
+  </div>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer" role="contentinfo">
@@ -1091,56 +1177,104 @@
       renderQuestion();
     }
 
-    /* ── Share / copy ─────────────────────────────────────
-       Uses displayResult so the result screen AND the lockout screen both
-       share the right score/rating. noteId says which status line to flash. */
-    function shareText() {
-      var sc    = displayResult ? displayResult.score  : score;
-      var label = displayResult ? displayResult.rating : ratingFor(score).label;
-      return 'I scored ' + sc + '/' + MAX_SCORE + ' on NYK Sudden Death and earned: ' +
-        label + '. One photo. Four names. Eight seconds. Wrong answer and you\'re done. Try it: ' + PAGE_URL;
+    /* ── Share panel ──────────────────────────────────────
+       Platform-specific sharing (Facebook / X / SMS / Email / Copy Link).
+       Uses displayResult so the result AND lockout screens share the right
+       score/rating.
+
+       OG-image limitation: a static site like this cannot generate a unique
+       Open Graph image per user score. Per-score preview images would require
+       either a unique URL per result rendered with dynamic metadata (server or
+       edge function) or a set of pre-generated result pages — neither of which
+       we do here. So every share uses the single static OG card and carries the
+       score in the share *text* (and in optional ?score=&rating= URL params for
+       on-page context). We deliberately do NOT attempt server-side dynamic OG. */
+    function ratingSlug(label) {
+      return String(label || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     }
-    function flashNote(msg, noteId) {
-      var n = $(noteId || 'knx-copied-note');
-      if (n) { n.textContent = msg; }
+    function currentResult() {
+      return {
+        score:  displayResult ? displayResult.score  : score,
+        rating: displayResult ? displayResult.rating : ratingFor(score).label
+      };
     }
-    function copyResult(noteId) {
-      var text = shareText();
+    // Shared link carries the score for personalized on-page context (static OG card stays).
+    function shareUrl() {
+      var r = currentResult();
+      return PAGE_URL + '?score=' + encodeURIComponent(r.score) + '&rating=' + encodeURIComponent(ratingSlug(r.rating));
+    }
+    function shareMessage() {
+      var r = currentResult();
+      return 'I scored ' + r.score + '/' + MAX_SCORE + ' on NYK Sudden Death and earned: ' + r.rating + '. Can you beat it?';
+    }
+    function flashShareNote(msg) {
+      var n = $('knx-share-note');
+      if (n) n.textContent = msg;
+    }
+    function copyToClipboard(text, done) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(
-          function () { flashNote('Copied! Paste it anywhere.', noteId); },
-          function () { fallbackCopy(text, noteId); }
-        );
-      } else {
-        fallbackCopy(text, noteId);
-      }
+        navigator.clipboard.writeText(text).then(function () { done(true); }, function () { done(legacyCopy(text)); });
+      } else { done(legacyCopy(text)); }
     }
-    function fallbackCopy(text, noteId) {
+    function legacyCopy(text) {
       try {
         var ta = document.createElement('textarea');
-        ta.value = text;
-        ta.setAttribute('readonly', '');
+        ta.value = text; ta.setAttribute('readonly', '');
         ta.style.position = 'absolute'; ta.style.left = '-9999px';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        flashNote('Copied! Paste it anywhere.', noteId);
-      } catch (e) {
-        flashNote('Copy not supported — long-press to copy your score.', noteId);
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+        return true;
+      } catch (e) { return false; }
+    }
+
+    function openShareModal() {
+      var m = $('knx-share-modal');
+      if (!m) return;
+      var preview = $('knx-share-preview');
+      if (preview) preview.textContent = shareMessage();
+      flashShareNote('');
+      m.hidden = false;
+      var close = m.querySelector('.knx-share-modal__close');
+      if (close) { try { close.focus(); } catch (e) {} }
+    }
+    function closeShareModal() {
+      var m = $('knx-share-modal');
+      if (m) m.hidden = true;
+    }
+    function platformShare(platform) {
+      var url  = shareUrl();
+      var text = shareMessage();
+      var combined = text + ' ' + url;
+      if (platform === 'facebook') {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank', 'noopener');
+      } else if (platform === 'x') {
+        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url), '_blank', 'noopener');
+      } else if (platform === 'sms') {
+        window.location.href = 'sms:?&body=' + encodeURIComponent(combined);
+      } else if (platform === 'email') {
+        window.location.href = 'mailto:?subject=' + encodeURIComponent('NYK Sudden Death') + '&body=' + encodeURIComponent(text + '\n\n' + url);
+      } else if (platform === 'copy') {
+        copyToClipboard(combined, function (ok) {
+          flashShareNote(ok ? 'Copied! Paste it anywhere.' : 'Copy not supported — long-press to copy.');
+        });
       }
     }
-    function shareResult(noteId) {
-      var text = shareText();
-      if (navigator.share) {
-        navigator.share({
-          title: 'NYK Sudden Death',
-          text: text,
-          url: PAGE_URL
-        }).catch(function () { /* user cancelled — no-op */ });
-      } else {
-        copyResult(noteId);
-      }
+
+    /* ── Shared-link context banner ───────────────────────
+       A shared link may carry ?score=&rating=. If a valid score is present,
+       greet the visitor with the sharer's result. The rating label is derived
+       from the score (authoritative) so it can't be spoofed via the param. */
+    function showSharedBanner() {
+      var banner = $('knx-shared-banner');
+      if (!banner || !window.URLSearchParams) return;
+      var params = new URLSearchParams(window.location.search);
+      if (!params.has('score')) return;
+      var sc = parseInt(params.get('score'), 10);
+      if (isNaN(sc) || sc < 0 || sc > MAX_SCORE) return;
+      var label = ratingFor(sc).label;
+      banner.innerHTML = 'Someone scored <strong>' + sc + '/' + MAX_SCORE +
+        '</strong> and earned <strong>' + escHtml(label) + '</strong>. Can you beat it?';
+      banner.hidden = false;
     }
 
     /* ── Leaderboard: storage + sort ────────────────────── */
@@ -1242,7 +1376,10 @@
        Sub-threshold hamlets still appear, labelled "needs more entries".
        No PII — score/hamlet only.
     ──────────────────────────────────────────────────────── */
-    var HAMLETS = ['Bedford Village', 'Bedford Hills', 'Katonah', 'Other / Nearby'];
+    // BY HAMLET display covers the three Bedford hamlets only. "Other / Nearby"
+    // stays in the leaderboard submission dropdown (and existing entries), but is
+    // intentionally excluded from this aggregation/display.
+    var HAMLETS = ['Bedford Village', 'Bedford Hills', 'Katonah'];
     var MIN_FOR_LEADER = 2;
     var MEDALS = ['gold', 'silver', 'bronze'];
 
@@ -1402,12 +1539,12 @@
     // Both Start and Play Again pass through the completion lock.
     $('knx-start-btn').addEventListener('click', attemptStart);
     $('knx-again-btn').addEventListener('click', attemptStart);
-    $('knx-copy-btn').addEventListener('click', function () { copyResult('knx-copied-note'); });
-    $('knx-share-btn').addEventListener('click', function () { shareResult('knx-copied-note'); });
+    // Result + lockout "Share Result" both open the share panel.
+    $('knx-share-btn').addEventListener('click', openShareModal);
 
     // Lockout screen actions.
     var lockShareBtn = $('knx-lock-share-btn');
-    if (lockShareBtn) lockShareBtn.addEventListener('click', function () { shareResult('knx-lock-note'); });
+    if (lockShareBtn) lockShareBtn.addEventListener('click', openShareModal);
     var lockLbBtn = $('knx-lock-lb-btn');
     if (lockLbBtn) lockLbBtn.addEventListener('click', function () {
       var sec = $('knx-leaderboard');
@@ -1416,6 +1553,19 @@
     var lockReplay = $('knx-lock-replay');
     if (lockReplay) lockReplay.addEventListener('click', playAgainAnyway);
 
+    // Share panel: platform buttons, close controls, Esc.
+    var shareModal = $('knx-share-modal');
+    if (shareModal) {
+      shareModal.addEventListener('click', function (e) {
+        var opt = e.target.closest('[data-share]');
+        if (opt) { platformShare(opt.getAttribute('data-share')); return; }
+        if (e.target.closest('[data-share-close]')) closeShareModal();
+      });
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && shareModal && !shareModal.hidden) closeShareModal();
+    });
+
     var skipBtn = $('knx-lb-skip');
     if (skipBtn) skipBtn.addEventListener('click', function () {
       var form = $('knx-lb-form');
@@ -1423,6 +1573,9 @@
     });
     var submitBtn = $('knx-lb-submit');
     if (submitBtn) submitBtn.addEventListener('click', submitScore);
+
+    // Shared-link context banner — if ?score=&rating= is present, greet with it.
+    showSharedBanner();
 
     // Returning visitor who already completed? Show the lockout in place of the start screen.
     var priorRun = getCompletion();
