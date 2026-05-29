@@ -200,6 +200,14 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Knicks Fan Sudden Death -->
+  <url>
+    <loc>https://www.donforbedford.com/knicks</loc>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Blog -->
   <url>
     <loc>https://www.donforbedford.com/blog</loc>
