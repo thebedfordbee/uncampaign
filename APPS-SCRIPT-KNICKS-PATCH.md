@@ -18,14 +18,23 @@ synced Knicks scores in the spreadsheet.
 The new actions are **additive** — they do not touch the existing typing/chat
 behaviour. No existing action is modified.
 
+> **Canonical code lives in [`apps-script/Code.gs`](apps-script/Code.gs).**
+> That file is the source of truth for `KNICKS_SCORE_HEADERS`,
+> `submitKnicksScore_`, and `getKnicksLeaderboard_`. The schema below was updated
+> to the current 11-column **KnicksScores** layout; the header row, the appended
+> row, and the leaderboard read are all locked to the same column order there.
+> The older 9-column code blocks further down are kept only for historical
+> reference — deploy from `apps-script/Code.gs`.
+
 ---
 
 ## Sheet structure
 
-A new tab named **KnicksScores** is created automatically on first write, with:
+The **KnicksScores** tab uses this exact 11-column order (header row + every
+appended row must match — see `apps-script/Code.gs`):
 
-| Timestamp | GameType | Initials | Hamlet | Score | MaxScore | Rating | UserAgent | AnswersSummary |
-|-----------|----------|----------|--------|-------|----------|--------|-----------|----------------|
+| Timestamp | Initials | Name | Hamlet | Score | Misses | Duration | Source | Session ID | User Agent | Page |
+|-----------|----------|------|--------|-------|--------|----------|--------|------------|------------|------|
 
 ---
 

@@ -966,6 +966,12 @@
       }
       return RATINGS[0];
     }
+    // Shared score→rating label helper. An authoritative ratingFor() already
+    // exists, so per spec we reuse it (its tiers are a superset of the requested
+    // 12/9/6 thresholds and keep the board consistent with the result screen and
+    // share text). Used to label any row that arrives WITHOUT a rating — notably
+    // live Google Sheet rows, which no longer store one.
+    function ratingLabelFor(n) { return ratingFor(Number(n) || 0).label; }
     function showScreen(name) {
       Object.keys(screens).forEach(function (k) {
         if (screens[k]) screens[k].classList.toggle('is-active', k === name);
@@ -1320,15 +1326,48 @@
       if (b.score !== a.score) return b.score - a.score;            // higher score first
       return new Date(a.timestamp) - new Date(b.timestamp);          // earlier completion wins ties
     }
+    // ── Score-set helpers: rate · key · de-dupe · identity ───────────
+    // Every displayed row needs a rating. Seeds carry one; live sheet rows do
+    // NOT (the sheet no longer stores a Rating column), so derive it from score.
+    // Clone-and-fill so we never mutate the cached live objects.
+    function withRating(s) {
+      if (s && (s.rating === undefined || s.rating === null || s.rating === '')) {
+        var c = {}; for (var k in s) { if (Object.prototype.hasOwnProperty.call(s, k)) c[k] = s[k]; }
+        c.rating = ratingLabelFor(s.score);
+        return c;
+      }
+      return s;
+    }
+    // Identity key for de-duping: the same player's run can appear twice when the
+    // local / just-submitted copy is merged with the same row coming back from
+    // the live sheet. initials + hamlet + score collapses those into one.
+    function rowKey(s) {
+      return [String(s.initials || '').toUpperCase(), String(s.hamlet || ''), Number(s.score) || 0].join('|');
+    }
+    function dedupe(list) {
+      var seen = {}, out = [];
+      for (var i = 0; i < list.length; i++) {
+        var k = rowKey(list[i]);
+        if (seen[k]) continue;
+        seen[k] = true; out.push(list[i]);
+      }
+      return out;
+    }
+    // Highlight the player's own row by identity (not object reference), so it
+    // survives de-duping no matter which copy of the row is kept.
+    function isMine(s) { return !!mySubmission && rowKey(s) === rowKey(mySubmission); }
+
     function getAllScores() {
       var real = (liveScoreCache !== null && liveScoreCache.length > 0) ? liveScoreCache : getStoredScores();
-      return [].concat(SEED_SCORES, real).sort(sortFn);
+      // map(withRating) ensures live rows get a rating before they are rendered.
+      return [].concat(SEED_SCORES, real).map(withRating).sort(sortFn);
     }
-    // All scores including the player's just-submitted run (used by both leaderboard + hamlet).
+    // All scores incl. the player's just-submitted run, rated + de-duped. Used by
+    // BOTH the Top 10 leaderboard and the BY HAMLET aggregation (so they agree).
     function getScoresWithMine() {
       var all = getAllScores();
-      if (mySubmission && all.indexOf(mySubmission) === -1) all = all.concat([mySubmission]).sort(sortFn);
-      return all;
+      if (mySubmission) all = all.concat([withRating(mySubmission)]);
+      return dedupe(all.sort(sortFn));
     }
 
     function fetchLiveScores() {
@@ -1363,7 +1402,7 @@
         var rows = '';
         for (var i = 0; i < top.length; i++) {
           var s = top[i], rank = i + 1;
-          var cls = (rank <= 3 ? 'rank-' + rank : '') + (s === mySubmission ? ' is-me' : '');
+          var cls = (rank <= 3 ? 'rank-' + rank : '') + (isMine(s) ? ' is-me' : '');
           var medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : rank;
           rows += '<tr class="' + cls + '">' +
             '<td class="td-rank">' + medal + '</td>' +
@@ -1383,7 +1422,7 @@
         var ch = '';
         for (var j = 0; j < top.length; j++) {
           var c = top[j], rk = j + 1;
-          var ccls = 'knx-lb-card' + (rk <= 3 ? ' rank-' + rk : '') + (c === mySubmission ? ' is-me' : '');
+          var ccls = 'knx-lb-card' + (rk <= 3 ? ' rank-' + rk : '') + (isMine(c) ? ' is-me' : '');
           var rkLabel = rk === 1 ? '🥇' : rk === 2 ? '🥈' : rk === 3 ? '🥉' : rk;
           ch += '<div class="' + ccls + '">' +
             '<div class="knx-lb-card__rank">' + rkLabel + '</div>' +
