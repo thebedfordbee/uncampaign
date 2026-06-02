@@ -1205,32 +1205,19 @@
     }
 
     /* ── Share panel ──────────────────────────────────────
-       Sharing happens two ways:
-         1. Web Share API (navigator.share) on supporting devices — the player's
-            score rides along in the title + text of the native share sheet.
-         2. Fallback modal (Facebook / X / SMS / Email / Copy Link) everywhere
-            else. The score rides along in the share text and the ?score= URL.
-       Both use displayResult, so the result AND lockout screens share correctly.
+       Platform-specific sharing (Facebook / X / SMS / Email / Copy Link).
+       Clicking "Share Result" opens this in-page modal of share options — the
+       Web Share API is intentionally NOT used as the primary path.
+       Uses displayResult so the result AND lockout screens share the right
+       score/rating.
 
-       ── Facebook / Open Graph limitation (important) ──
-       Facebook does NOT read our button text. When a link is shared, Facebook's
-       crawler scrapes the *destination URL* and renders whatever <meta property="og:*">
-       tags it finds there. Because this is a fully static GitHub Pages site, every
-       shared URL (/knicks and /knicks?score=NN) returns the SAME static HTML head,
-       so Facebook always shows the fixed og:title "NYK Sudden Death" and the single
-       static og:image — never a per-score title.
-
-       Showing the player's actual score in the Facebook *preview card* would require
-       a crawlable per-score URL with its own server-rendered/static OG tags — e.g. a
-       prebuilt /knicks/score/12.html for each value, or an edge/serverless function
-       that injects og:title per ?score=. We deliberately do NOT do that here.
-
-       What DOES work on a static site, and what we ship:
-         • SMS / Email / X / Web Share API carry the live score in the share TEXT.
-         • The ?score= URL drives an on-page banner (showSharedBanner) so a visitor
-           who opens the link sees "Someone scored N/15… can you beat it?".
-       Do not advertise dynamic Facebook OG titles unless real per-score crawlable
-       pages are added. */
+       OG-image limitation: a static site like this cannot generate a unique
+       Open Graph image per user score. Per-score preview images would require
+       either a unique URL per result rendered with dynamic metadata (server or
+       edge function) or a set of pre-generated result pages — neither of which
+       we do here. So every share uses the single static OG card and carries the
+       score in the share *text* (and in optional ?score=&rating= URL params for
+       on-page context). We deliberately do NOT attempt server-side dynamic OG. */
     function ratingSlug(label) {
       return String(label || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
     }
@@ -1245,16 +1232,10 @@
       var r = currentResult();
       return PAGE_URL + '?score=' + encodeURIComponent(r.score) + '&rating=' + encodeURIComponent(ratingSlug(r.rating));
     }
-    // Short title for the native share sheet (matches the requested phrasing).
-    function shareTitle() {
-      var r = currentResult();
-      return 'I scored ' + r.score + ' in NYK Sudden Death. Can you beat it?';
-    }
-    // Fuller share body — leads with the score, then supporting copy to nudge a try.
+    // Share text keeps the player's score (and rating) so every channel carries it.
     function shareMessage() {
       var r = currentResult();
-      return 'I scored ' + r.score + '/' + MAX_SCORE + ' in NYK Sudden Death — ' + r.rating +
-        '. One photo, four names, eight seconds. Think you know the Knicks? Can you beat it?';
+      return 'I scored ' + r.score + '/' + MAX_SCORE + ' on NYK Sudden Death and earned: ' + r.rating + '. Can you beat it?';
     }
     function flashShareNote(msg) {
       var n = $('knx-share-note');
@@ -1274,20 +1255,6 @@
         document.execCommand('copy'); document.body.removeChild(ta);
         return true;
       } catch (e) { return false; }
-    }
-
-    // Entry point for both "Share Result" buttons. Prefer the native share sheet
-    // (mobile) so the score-bearing title/text go straight into the OS picker;
-    // fall back to the in-page modal (with FB / X / SMS / Email / Copy) elsewhere.
-    function doShare() {
-      if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
-        try {
-          navigator.share({ title: shareTitle(), text: shareMessage(), url: shareUrl() })
-            .catch(function () { /* user cancelled or share dismissed — nothing to do */ });
-          return;
-        } catch (e) { /* fall through to the modal */ }
-      }
-      openShareModal();
     }
 
     function openShareModal() {
@@ -1429,7 +1396,7 @@
         cards.innerHTML = ch || '<p style="text-align:center;color:var(--muted);padding:1rem;">No scores yet — be the first.</p>';
       }
 
-      renderHamlet();
+      renderHamlet(top);
     }
 
     /* ── Hamlet Score ───────────────────────────────────────
@@ -1439,20 +1406,25 @@
        Sub-threshold hamlets still appear, labelled "needs more entries".
        No PII — score/hamlet only.
     ──────────────────────────────────────────────────────── */
-    // BY HAMLET display covers every hamlet option, including "Other / Nearby",
-    // so the per-hamlet player counts always reconcile exactly with the
-    // leaderboard total (no submission is silently dropped from the breakdown).
-    // "Other / Nearby" shows like any other card and only earns a medal once it
-    // clears MIN_FOR_LEADER entries.
-    var HAMLETS = ['Bedford Village', 'Bedford Hills', 'Katonah', 'Other / Nearby'];
+    // BY HAMLET shows the three Bedford hamlets only. "Other / Nearby" scores
+    // still count in the leaderboard but get NO hamlet card (by request).
+    // Counts are derived live from the SAME score set the Top 10 leaderboard
+    // renders (seeds + Apps Script `scores` + the player's run), so the cards and
+    // the board can never disagree — nothing here is hardcoded. The Apps Script
+    // GET also returns a `byHamlet` object, but it aggregates real spreadsheet
+    // rows only (no seeds); deriving from the displayed set is what keeps the
+    // counts matching the visible Top 10.
+    var HAMLETS = ['Bedford Village', 'Bedford Hills', 'Katonah'];
     var MIN_FOR_LEADER = 2;
     var MEDALS = ['gold', 'silver', 'bronze'];
 
-    function renderHamlet() {
+    function renderHamlet(scores) {
       var grid = $('knx-hamlet-grid');
       if (!grid) return;
 
-      var all = getScoresWithMine();
+      // Aggregate the exact set shown in the Top 10 leaderboard (passed in by
+      // renderLeaderboard) so the hamlet counts always match the visible board.
+      var all = scores || getScoresWithMine().slice(0, 10);
       var agg = {};
       HAMLETS.forEach(function (h) { agg[h] = { name: h, count: 0, total: 0, best: -1, bestRating: '' }; });
 
@@ -1604,12 +1576,12 @@
     // Both Start and Play Again pass through the completion lock.
     $('knx-start-btn').addEventListener('click', attemptStart);
     $('knx-again-btn').addEventListener('click', attemptStart);
-    // Result + lockout "Share Result" both go through doShare (native sheet → modal).
-    $('knx-share-btn').addEventListener('click', doShare);
+    // Result + lockout "Share Result" both open the in-page share-options modal.
+    $('knx-share-btn').addEventListener('click', openShareModal);
 
     // Lockout screen actions.
     var lockShareBtn = $('knx-lock-share-btn');
-    if (lockShareBtn) lockShareBtn.addEventListener('click', doShare);
+    if (lockShareBtn) lockShareBtn.addEventListener('click', openShareModal);
     var lockLbBtn = $('knx-lock-lb-btn');
     if (lockLbBtn) lockLbBtn.addEventListener('click', function () {
       var sec = $('knx-leaderboard');
