@@ -850,6 +850,10 @@
     var LOCK_KEY  = 'knx_completed_v1';   // localStorage: completion lock {score, rating, completedAt} — light anti-retake
     var PAGE_URL  = 'https://www.donforbedford.com/knicks';
 
+    // Development-safe logging — quiet on the live site, chatty on localhost/file://.
+    var IS_DEV = (location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:');
+    function devLog() { if (IS_DEV && window.console && console.log) console.log.apply(console, arguments); }
+
     /* ── Question bank ──────────────────────────────────────
        Each question:
          id      stable short id (used in answersSummary, never shown)
@@ -1357,10 +1361,19 @@
     // survives de-duping no matter which copy of the row is kept.
     function isMine(s) { return !!mySubmission && rowKey(s) === rowKey(mySubmission); }
 
+    // True once a live fetch has returned at least one real score.
+    function hasLiveScores() {
+      return liveScoreCache !== null && liveScoreCache.length > 0;
+    }
     function getAllScores() {
-      var real = (liveScoreCache !== null && liveScoreCache.length > 0) ? liveScoreCache : getStoredScores();
-      // map(withRating) ensures live rows get a rating before they are rendered.
-      return [].concat(SEED_SCORES, real).map(withRating).sort(sortFn);
+      // Live wins outright. When the Apps Script board has scores we render those
+      // ALONE — seeds are never blended into a live board (spec #6). Seeds + this
+      // device's local runs are used only as a fallback when the live fetch fails
+      // or returns zero scores (spec #5).
+      var base = hasLiveScores() ? liveScoreCache : [].concat(SEED_SCORES, getStoredScores());
+      // map(withRating) ensures every row — live or fallback — carries a rating
+      // (derived via the shared ratingFor helper) before it is rendered.
+      return base.map(withRating).sort(sortFn);
     }
     // All scores incl. the player's just-submitted run, rated + de-duped. Used by
     // BOTH the Top 10 leaderboard and the BY HAMLET aggregation (so they agree).
@@ -1395,6 +1408,9 @@
     function renderLeaderboard() {
       var all = getScoresWithMine();
       var top = all.slice(0, 10);
+
+      // One dev-only line so the data source is obvious while testing.
+      devLog('[knx] leaderboard source: ' + (hasLiveScores() ? 'live' : 'fallback'));
 
       // Table
       var body = $('knx-lb-body');
