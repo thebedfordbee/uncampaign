@@ -342,6 +342,57 @@
       margin-bottom: 1rem;
     }
     .related-empty { font-size: 0.9375rem; color: var(--muted); font-style: italic; }
+
+    /* Related list — restrained editorial row: small thumb + title */
+    .related-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .related-item__link {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 0.5rem 0.25rem;
+      text-decoration: none;
+      color: inherit;
+      border-radius: var(--radius);
+      transition: background 0.15s ease;
+    }
+    .related-item__link:hover { background: rgba(248,245,239,0.7); }
+    .related-item__link:focus-visible {
+      outline: 2px solid var(--moss);
+      outline-offset: 2px;
+    }
+    .related-item__thumb {
+      width: 3rem;
+      aspect-ratio: 1 / 1;
+      flex-shrink: 0;
+      border-radius: 3px;
+      overflow: hidden;
+      background: linear-gradient(140deg, var(--moss) 0%, #4d6453 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .related-item__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .related-item__thumb svg { opacity: 0.3; }
+    .related-item__title {
+      font-size: 0.9375rem;
+      color: var(--moss);
+      line-height: 1.4;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .related-item__link { transition: none; }
+    }
     .article-cta-row {
       display: flex;
       flex-wrap: wrap;
@@ -715,11 +766,13 @@
       {
         slug: '../the-danger-of-one-party-towns/',
         title: 'The Danger of One-Party Towns',
+        img: '../../assets/img/blog/05062026-thumb.png',
         tags: ['local elections', 'one-party towns', 'local democracy', 'Bedford', 'Town Supervisor']
       },
       {
         slug: '../the-conversation-that-should-have-happened/',
         title: 'The Conversation That Should Have Happened',
+        img: '../../assets/img/blog/06222026-thumb.png',
         tags: ['civil discourse', 'bipartisanship', 'common ground', 'town halls', 'local democracy', 'Bedford']
       }
     ];
@@ -737,13 +790,36 @@
     var relatedList  = document.getElementById('related-list');
     var relatedEmpty = document.getElementById('related-empty');
 
+    function esc(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // Fallback document icon for related posts without a thumbnail — matches /blog list fallback
+    var RELATED_FALLBACK_SVG =
+      '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' +
+        '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>' +
+        '<polyline points="14 2 14 8 20 8"/>' +
+        '<line x1="16" y1="13" x2="8" y2="13"/>' +
+        '<line x1="16" y1="17" x2="8" y2="17"/>' +
+        '<polyline points="10 9 9 9 8 9"/>' +
+      '</svg>';
+
     if (related.length) {
       relatedEmpty.hidden = true;
       var ul = document.createElement('ul');
-      ul.style.cssText = 'list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;';
+      ul.className = 'related-list';
       related.forEach(function (a) {
         var li = document.createElement('li');
-        li.innerHTML = '<a href="' + a.slug + '" style="color:var(--moss);font-size:0.9375rem;">' + a.title + '</a>';
+        li.className = 'related-item';
+        // alt="" — title text beside the thumb is the accessible name; avoids redundant announcement
+        var thumb = a.img
+          ? '<span class="related-item__thumb"><img src="' + esc(a.img) + '" alt="" width="48" height="48" loading="lazy" decoding="async"></span>'
+          : '<span class="related-item__thumb" role="img" aria-label="' + esc(a.title) + ' thumbnail">' + RELATED_FALLBACK_SVG + '</span>';
+        li.innerHTML =
+          '<a class="related-item__link" href="' + esc(a.slug) + '">' +
+            thumb +
+            '<span class="related-item__title">' + esc(a.title) + '</span>' +
+          '</a>';
         ul.appendChild(li);
       });
       relatedList.insertBefore(ul, relatedEmpty);
