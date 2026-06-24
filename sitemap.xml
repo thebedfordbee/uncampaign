@@ -208,6 +208,14 @@
     <priority>0.6</priority>
   </url>
 
+  <!-- Help / 5-Minute Challenge -->
+  <url>
+    <loc>https://www.donforbedford.com/help/</loc>
+    <lastmod>2026-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Blog -->
   <url>
     <loc>https://www.donforbedford.com/blog</loc>

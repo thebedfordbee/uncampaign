@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style>
+      .bg { fill: #3E5240; }
+      .accent { fill: #7B8C79; }
+      .white { fill: #FFFFFF; }
+      .cream { fill: #F8F5EF; }
+      .serif { font-family: Georgia, 'Times New Roman', serif; }
+      .sans { font-family: system-ui, -apple-system, sans-serif; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" width="1200" height="630"/>
+
+  <!-- Subtle texture strip -->
+  <rect x="0" y="0" width="8" height="630" fill="#4a6050" opacity="0.6"/>
+  <rect x="1192" y="0" width="8" height="630" fill="#4a6050" opacity="0.6"/>
+
+  <!-- Bottom accent band -->
+  <rect x="0" y="540" width="1200" height="90" fill="#2d3e2f"/>
+
+  <!-- Decorative circle — soft ambient -->
+  <circle cx="980" cy="220" r="320" fill="#4a6050" opacity="0.35"/>
+
+  <!-- Eyebrow -->
+  <text
+    x="80" y="128"
+    class="sans"
+    font-size="22"
+    font-weight="600"
+    letter-spacing="4"
+    fill="#7B8C79"
+    text-transform="uppercase"
+  >THE UNCAMPAIGN</text>
+
+  <!-- Main headline -->
+  <text x="80" y="220" class="serif" font-size="72" fill="#FFFFFF" font-weight="normal">The 5-Minute</text>
+  <text x="80" y="312" class="serif" font-size="72" fill="#FFFFFF" font-weight="normal">Uncampaign Challenge</text>
+
+  <!-- Subline -->
+  <text x="80" y="390" class="sans" font-size="28" fill="rgba(255,255,255,0.72)">Seven steps. No lawn signs. No door knocking.</text>
+  <text x="80" y="428" class="sans" font-size="28" fill="rgba(255,255,255,0.72)">Just five minutes to help more Bedford residents</text>
+  <text x="80" y="466" class="sans" font-size="28" fill="rgba(255,255,255,0.72)">see what is being built here.</text>
+
+  <!-- Bottom bar content -->
+  <text x="80" y="588" class="serif" font-size="24" fill="rgba(255,255,255,0.55)">Don Scott for Bedford</text>
+  <text x="1120" y="588" class="sans" font-size="22" font-weight="600" fill="#7B8C79" text-anchor="end">DonForBedford.com</text>
+</svg>

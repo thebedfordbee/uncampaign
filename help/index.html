@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary meta -->
+  <title>The 5-Minute Uncampaign Challenge | Don Scott for Bedford</title>
+  <meta name="description" content="Seven simple ways to help more Bedford residents see what Don Scott is building — no lawn signs, no donations, no door knocking. Just five minutes of your time.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.donforbedford.com/help/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.donforbedford.com/help/">
+  <meta property="og:title" content="The 5-Minute Uncampaign Challenge | Don Scott for Bedford">
+  <meta property="og:description" content="Seven simple ways to help more Bedford residents see what Don Scott is building — no lawn signs, no donations, no door knocking. Just five minutes.">
+  <!-- TODO: Replace with custom PNG exported from assets/og/help-og.svg (1200×630) once rendered -->
+  <meta property="og:image" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The 5-Minute Uncampaign Challenge — Don Scott for Bedford">
+  <meta property="og:site_name" content="Don Scott for Bedford">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter/X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.donforbedford.com/help/">
+  <meta name="twitter:title" content="The 5-Minute Uncampaign Challenge | Don Scott for Bedford">
+  <meta name="twitter:description" content="Seven simple ways to help more Bedford residents see what Don Scott is building — no lawn signs, no donations, no door knocking.">
+  <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/og-image.png">
+  <meta name="twitter:image:alt" content="The 5-Minute Uncampaign Challenge — Don Scott for Bedford">
+
+  <!-- Favicons and browser theme -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4A5240">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#4A5240">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.donforbedford.com/#website",
+        "url": "https://www.donforbedford.com/",
+        "name": "Don Scott for Bedford",
+        "alternateName": "The Uncampaign",
+        "description": "The Uncampaign — Don Scott for Bedford Town Supervisor"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://www.donforbedford.com/#don-scott",
+        "name": "Don Scott",
+        "url": "https://www.donforbedford.com/",
+        "jobTitle": "Candidate for Bedford Town Supervisor",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bedford",
+          "addressRegion": "NY",
+          "addressCountry": "US"
+        },
+        "sameAs": [
+          "https://www.facebook.com/donforbedford",
+          "https://www.instagram.com/donforbedford/"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.donforbedford.com/help/#webpage",
+        "url": "https://www.donforbedford.com/help/",
+        "name": "The 5-Minute Uncampaign Challenge | Don Scott for Bedford",
+        "description": "Seven simple ways to help more Bedford residents see what Don Scott is building — no lawn signs, no donations, no door knocking. Just five minutes of your time.",
+        "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
+        "about": { "@id": "https://www.donforbedford.com/#don-scott" }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/site.css">
+
+  <style>
+    /* =============================================
+       HELP PAGE — 5-Minute Uncampaign Challenge
+       Page-specific overrides and components
+       ============================================= */
+
+    /* Hero note — small italic below lead */
+    .help-hero__note {
+      margin-top: 1.25rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.58);
+      font-style: italic;
+      max-width: 52ch;
+    }
+
+    /* =============================================
+       PROGRESS MODULE
+       ============================================= */
+    .help-progress-section {
+      padding-block: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .help-progress {
+      max-width: 680px;
+    }
+
+    .help-progress__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.875rem;
+      gap: 1rem;
+    }
+
+    .help-progress__label {
+      font-family: var(--sans);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--moss);
+    }
+
+    .help-progress__reset {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8125rem;
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      padding: 0;
+    }
+    .help-progress__reset:hover { color: var(--warm); }
+
+    .help-progress__bar-track {
+      width: 100%;
+      height: 10px;
+      background: var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+
+    .help-progress__bar-fill {
+      height: 100%;
+      background: var(--moss);
+      border-radius: 5px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .help-progress__bar-fill { transition: none; }
+    }
+
+    /* Step dots */
+    .help-progress__dots {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .help-progress__dot {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--muted);
+      transition: background 0.25s, color 0.25s;
+      flex-shrink: 0;
+    }
+
+    .help-progress__dot.is-done {
+      background: var(--moss);
+      color: var(--white);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .help-progress__dot { transition: none; }
+    }
+
+    /* =============================================
+       STEP CARDS
+       ============================================= */
+    .help-step {
+      padding-block: 2.5rem;
+    }
+
+    .help-step:nth-child(odd) {
+      background: var(--white);
+    }
+
+    .help-step.is-done {
+      background: rgba(62, 82, 64, 0.04);
+    }
+
+    .help-step.is-done:nth-child(odd) {
+      background: rgba(62, 82, 64, 0.04);
+    }
+
+    .help-step__inner {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      max-width: 720px;
+    }
+
+    @media (min-width: 768px) {
+      .help-step { padding-block: 3rem; }
+      .help-step__inner { gap: 2rem; }
+    }
+
+    /* Step badge — number circle */
+    .help-step__badge {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: var(--sage);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.25rem;
+      transition: background 0.25s;
+    }
+
+    .help-step.is-done .help-step__badge {
+      background: var(--moss);
+    }
+
+    .help-step__badge-check {
+      display: none;
+      font-style: normal;
+    }
+    .help-step__badge-num { display: block; }
+
+    .help-step.is-done .help-step__badge-check { display: block; }
+    .help-step.is-done .help-step__badge-num  { display: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .help-step__badge { transition: none; }
+    }
+
+    /* Step content */
+    .help-step__title {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    }
+
+    .help-step__desc {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.75;
+      max-width: 58ch;
+    }
+    .help-step__desc:last-child { margin-bottom: 0; }
+
+    .help-step__note {
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 1rem;
+      max-width: 52ch;
+    }
+
+    /* Done marker inline — shown after step is completed */
+    .help-step__done-inline {
+      display: none;
+      font-size: 0.875rem;
+      color: var(--moss);
+      font-weight: 600;
+      margin-top: 1rem;
+    }
+    .help-step.is-done .help-step__done-inline { display: block; }
+    .help-step.is-done .help-step__action-area { opacity: 0.55; }
+
+    /* =============================================
+       STEP 5 — EMAIL FORM
+       ============================================= */
+    .help-email-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      max-width: 400px;
+    }
+
+    .help-email-form__group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
+    .help-email-form__label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .help-email-form__optional {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.8125rem;
+    }
+
+    .help-email-form__input {
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.625rem 0.875rem;
+      width: 100%;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+
+    .help-email-form__input:focus {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(123, 140, 121, 0.18);
+    }
+
+    .help-email-form__input.is-invalid {
+      border-color: #c0392b;
+    }
+
+    .help-email-form__error {
+      font-size: 0.875rem;
+      color: #c0392b;
+    }
+    .help-email-form__error[hidden] { display: none; }
+
+    .help-email-form__success {
+      font-size: 0.9375rem;
+      color: var(--moss);
+      font-weight: 600;
+    }
+    .help-email-form__success[hidden] { display: none; }
+
+    /* =============================================
+       STEP 6 — TELL THREE PEOPLE
+       ============================================= */
+    .help-share-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .help-share__copy-confirm {
+      display: none;
+      font-size: 0.875rem;
+      color: var(--moss);
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    .help-share__copy-confirm.is-visible { display: block; }
+
+    /* =============================================
+       STEP 7 — LETTER GENERATOR
+       ============================================= */
+    .help-letter-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      max-width: 520px;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 540px) {
+      .help-letter-form { grid-template-columns: 1fr 1fr; }
+    }
+
+    .help-letter-form__group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+    }
+
+    .help-letter-form__group--full {
+      grid-column: 1 / -1;
+    }
+
+    .help-letter-form__label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .help-letter-form__input,
+    .help-letter-form__select {
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      color: var(--charcoal);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.625rem 0.875rem;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .help-letter-form__input:focus,
+    .help-letter-form__select:focus {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(123, 140, 121, 0.18);
+    }
+
+    .help-letter-form__select {
+      cursor: pointer;
+      appearance: auto;
+    }
+
+    .help-letter-output {
+      margin-top: 0.5rem;
+    }
+    .help-letter-output[hidden] { display: none; }
+
+    .help-letter-output__label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .help-letter-output__textarea {
+      font-family: var(--serif);
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: var(--charcoal);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      width: 100%;
+      min-height: 320px;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .help-letter-output__textarea:focus {
+      border-color: var(--sage);
+      box-shadow: 0 0 0 3px rgba(123, 140, 121, 0.18);
+    }
+
+    .help-letter-output__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .help-letter-copy-confirm {
+      display: none;
+      font-size: 0.875rem;
+      color: var(--moss);
+      font-weight: 600;
+      align-self: center;
+    }
+    .help-letter-copy-confirm.is-visible { display: block; }
+
+    .help-letter-form__error {
+      font-size: 0.875rem;
+      color: #c0392b;
+      margin-top: 0.375rem;
+    }
+    .help-letter-form__error[hidden] { display: none; }
+
+    /* =============================================
+       COMPLETION PANEL
+       ============================================= */
+    .help-completion {
+      background: var(--moss);
+      color: var(--white);
+      padding-block: 4rem;
+    }
+    .help-completion[hidden] { display: none; }
+
+    .help-completion__inner {
+      max-width: 600px;
+    }
+
+    .help-completion__check {
+      display: block;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--white);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .help-completion h2 {
+      color: var(--white);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .help-completion__list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .help-completion__list li {
+      font-size: 1.0625rem;
+      color: rgba(255, 255, 255, 0.82);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .help-completion__list li::before {
+      content: "✗";
+      position: absolute;
+      left: 0;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .help-completion__thanks {
+      font-size: 1.0625rem;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 52ch;
+    }
+
+    .help-completion__home {
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--white);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+    .help-completion__home:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.6);
+      color: var(--white);
+    }
+
+    /* =============================================
+       RESPONSIVE ADJUSTMENTS
+       ============================================= */
+    @media (max-width: 479px) {
+      .help-step__inner {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .help-step__badge {
+        width: 2.25rem;
+        height: 2.25rem;
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G7WVQR4MTH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G7WVQR4MTH');
+  </script>
+  <script src="/assets/js/analytics.js" defer></script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wis1l4ilnm");
+  </script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="/" class="site-logo" aria-label="Don Scott for Bedford — Home">
+        <span class="site-logo__name">Don Scott</span>
+        <span class="site-logo__race">for Bedford</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__links" role="list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/pages/rules">Rules</a></li>
+          <li><a href="/pages/issues">Issues</a></li>
+          <li><a href="/pages/ideas">Ideas</a></li>
+          <li><a href="/best-of-bedford">Best-Of</a></li>
+          <li><a href="/pages/recaps">Recaps</a></li>
+          <li><a href="/help/" aria-current="page">Help</a></li>
+        </ul>
+        <a href="#" data-subscribe-trigger class="btn btn--subscribe site-nav__cta">Subscribe</a>
+        <button
+          class="nav-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Open navigation menu"
+        >
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Mobile nav drawer -->
+    <nav id="mobile-nav" class="site-nav__mobile" aria-label="Mobile navigation">
+      <a href="/">Home</a>
+      <a href="/pages/rules">Rules</a>
+      <a href="/pages/issues">Issues</a>
+      <a href="/pages/ideas">Ideas</a>
+      <a href="/best-of-bedford">Best-Of</a>
+      <a href="/pages/recaps">Recaps</a>
+      <a href="/help/" aria-current="page">Help</a>
+      <a href="#" data-subscribe-trigger class="btn btn--subscribe">Subscribe</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="page-hero" aria-labelledby="help-headline">
+    <div class="container">
+      <p class="eyebrow">The Uncampaign</p>
+      <h1 id="help-headline">The 5-Minute Uncampaign Challenge</h1>
+      <p class="page-hero__lead">No lawn signs. No donations. No door knocking. No phone banking. Just seven simple ways to help more Bedford residents see what Don is building.</p>
+      <p class="help-hero__note">Some people will finish in 60 seconds. Some will take five minutes. Either way, this is the whole volunteer program.</p>
+    </div>
+  </section>
+
+  <main id="main-content">
+
+    <!-- PROGRESS MODULE -->
+    <section class="help-progress-section section--alt" aria-label="Your progress">
+      <div class="container">
+        <div class="help-progress">
+          <div class="help-progress__meta">
+            <span class="help-progress__label" id="progress-label" aria-live="polite">Step 0 of 7 complete</span>
+            <button type="button" class="help-progress__reset" id="help-reset" aria-label="Reset all progress">Reset progress</button>
+          </div>
+          <div
+            class="help-progress__bar-track"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="7"
+            aria-valuenow="0"
+            aria-label="Progress: 0 of 7 steps complete"
+            id="progress-bar-track"
+          >
+            <div class="help-progress__bar-fill" id="progress-bar-fill"></div>
+          </div>
+          <div class="help-progress__dots" aria-label="Step indicators" role="list">
+            <span class="help-progress__dot" id="step-dot-1" role="listitem" aria-label="Step 1: not complete">1</span>
+            <span class="help-progress__dot" id="step-dot-2" role="listitem" aria-label="Step 2: not complete">2</span>
+            <span class="help-progress__dot" id="step-dot-3" role="listitem" aria-label="Step 3: not complete">3</span>
+            <span class="help-progress__dot" id="step-dot-4" role="listitem" aria-label="Step 4: not complete">4</span>
+            <span class="help-progress__dot" id="step-dot-5" role="listitem" aria-label="Step 5: not complete">5</span>
+            <span class="help-progress__dot" id="step-dot-6" role="listitem" aria-label="Step 6: not complete">6</span>
+            <span class="help-progress__dot" id="step-dot-7" role="listitem" aria-label="Step 7: not complete">7</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         STEP 1: FOLLOW ON FACEBOOK
+         ==================================================== -->
+    <section class="help-step section" id="step-1-section" data-step="1" aria-labelledby="step-1-title">
+      <div class="container">
+        <div class="help-step__inner">
+          <div class="help-step__badge" aria-hidden="true">
+            <i class="help-step__badge-check">&#10003;</i>
+            <span class="help-step__badge-num">1</span>
+          </div>
+          <div class="help-step__content">
+            <h2 class="help-step__title" id="step-1-title">Follow Don on Facebook</h2>
+            <p class="help-step__desc">This is how people in Bedford will see updates when they show up — no algorithm required, just a follow.</p>
+            <div class="help-step__action-area">
+              <a
+                href="https://www.facebook.com/donforbedford"
+                class="btn btn--primary help-step__action"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="step-1-btn"
+                aria-label="Follow Don on Facebook (opens in new tab)"
+              >Follow on Facebook</a>
+              <p class="help-step__done-inline" aria-live="polite">&#10003; Done — thanks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         STEP 2: FOLLOW ON INSTAGRAM
+         ==================================================== -->
+    <section class="help-step section--alt" id="step-2-section" data-step="2" aria-labelledby="step-2-title">
+      <div class="container">
+        <div class="help-step__inner">
+          <div class="help-step__badge" aria-hidden="true">
+            <i class="help-step__badge-check">&#10003;</i>
+            <span class="help-step__badge-num">2</span>
+          </div>
+          <div class="help-step__content">
+            <h2 class="help-step__title" id="step-2-title">Follow Don on Instagram</h2>
+            <p class="help-step__desc">A follow helps the account reach more people in Bedford and Westchester when posts go out.</p>
+            <div class="help-step__action-area">
+              <a
+                href="https://www.instagram.com/donforbedford/"
+                class="btn btn--primary help-step__action"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="step-2-btn"
+                aria-label="Follow Don on Instagram (opens in new tab)"
+              >Follow on Instagram</a>
+              <p class="help-step__done-inline" aria-live="polite">&#10003; Done — thanks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         STEP 3: SUBSCRIBE ON YOUTUBE
+         ==================================================== -->
+    <section class="help-step section" id="step-3-section" data-step="3" aria-labelledby="step-3-title">
+      <div class="container">
+        <div class="help-step__inner">
+          <div class="help-step__badge" aria-hidden="true">
+            <i class="help-step__badge-check">&#10003;</i>
+            <span class="help-step__badge-num">3</span>
+          </div>
+          <div class="help-step__content">
+            <h2 class="help-step__title" id="step-3-title">Subscribe on YouTube</h2>
+            <p class="help-step__desc">Video is where more people will encounter this campaign. A subscription costs nothing and helps the channel get in front of Bedford residents.</p>
+            <div class="help-step__action-area">
+              <a
+                href="https://www.youtube.com/@DonScottForBedford"
+                class="btn btn--primary help-step__action"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="step-3-btn"
+                aria-label="Subscribe to Don Scott for Bedford on YouTube (opens in new tab)"
+              >Subscribe on YouTube</a>
+              <p class="help-step__done-inline" aria-live="polite">&#10003; Done — thanks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         STEP 4: SUBSCRIBE ON SPOTIFY
+         ==================================================== -->
+    <section class="help-step section--alt" id="step-4-section" data-step="4" aria-labelledby="step-4-title">
+      <div class="container">
+        <div class="help-step__inner">
+          <div class="help-step__badge" aria-hidden="true">
+            <i class="help-step__badge-check">&#10003;</i>
+            <span class="help-step__badge-num">4</span>
+          </div>
+          <div class="help-step__content">
+            <h2 class="help-step__title" id="step-4-title">Subscribe on Spotify</h2>
+            <p class="help-step__desc">The campaign podcast is a different way to encounter these ideas — on a walk, in the car, wherever. A follow helps it reach more people.</p>
+            <div class="help-step__action-area">
+              <a
+                href="https://open.spotify.com/show/6dLXuS4EPBukJ4Mo5Kycuy"
+                class="btn btn--primary help-step__action"
+                target="_blank"
+                rel="noopener noreferrer"
+                id="step-4-btn"
+                aria-label="Subscribe to Don Scott for Bedford on Spotify (opens in new tab)"
+              >Subscribe on Spotify</a>
+              <p class="help-step__done-inline" aria-live="polite">&#10003; Done — thanks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         STEP 5: GET DON'S EMAILS
+         ==================================================== -->
+    <section class="help-step section" id="step-5-section" data-step="5" aria-labelledby="step-5-title">
+      <div class="container">
+        <div class="help-step__inner">
+          <div class="help-step__badge" aria-hidden="true">
+            <i class="help-step__badge-check">&#10003;</i>
+            <span class="help-step__badge-num">5</span>
+          </div>
+          <div class="help-step__content">
+            <h2 class="help-step__title" id="step-5-title">Get Don&#8217;s Emails</h2>
+            <p class="help-step__desc">Occasional notes from Don — Bedford updates, campaign experiments, and things worth knowing. No spam, no fundraising, no pressure.</p>
+            <div class="help-step__action-area" id="step-5-form-area">
+              <!-- TODO: Connect to your email provider endpoint here.
+                   Currently wired to the same Google Apps Script endpoint used
+                   by the site-wide subscribe modal. Verify field compatibility
+                   if the backend schema changes. -->
+              <form class="help-email-form" id="help-email-form" novalidate aria-label="Email signup form">
+                <div class="help-email-form__group">
+                  <label class="help-email-form__label" for="help-email">
+                    Email address
+                  </label>
+                  <input
+                    class="help-email-form__input"
+                    type="email"
+                    id="help-email"
+                    name="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                  >
+                </div>
+                <div class="help-email-form__group">
+                  <label class="help-email-form__label" for="help-name">
+                    First name <span class="help-email-form__optional">(optional)</span>
+                  </label>
+                  <input
+                    class="help-email-form__input"
+                    type="text"
+                    id="help-name"
+                    name="name"
+                    placeholder="Your name"
+                    autocomplete="given-name"
+                  >
+                </div>
+                <p class="help-email-form__error" id="help-email-error" role="alert" hidden></p>
+                <button type="submit" class="btn btn--primary" id="help-email-submit">Sign Up</button>
+              </form>
+              <p class="help-email-form__success" id="help-email-success" hidden>&#10003; Thanks. You&#8217;re on the list.</p>
+              <p class="help-step__done-inline" aria-live="polite">&#10003; Done — you&#8217;re on the list.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         STEP 6: TELL THREE PEOPLE
+         ==================================================== -->
+    <section class="help-step section--alt" id="step-6-section" data-step="6" aria-labelledby="step-6-title">
+      <div class="container">
+        <div class="help-step__inner">
+          <div class="help-step__badge" aria-hidden="true">
+            <i class="help-step__badge-check">&#10003;</i>
+            <span class="help-step__badge-num">6</span>
+          </div>
+          <div class="help-step__content">
+            <h2 class="help-step__title" id="step-6-title">Tell Three People</h2>
+            <p class="help-step__desc">This is the most important step. The easiest way to help is not to argue politics. It is to send someone the website and let them decide what they think.</p>
+            <div class="help-step__action-area">
+              <div class="help-share-actions">
+                <a
+                  href="#"
+                  class="btn btn--primary"
+                  id="share-text-btn"
+                  aria-label="Text a friend about the campaign"
+                >Text a Friend</a>
+                <a
+                  href="#"
+                  class="btn btn--secondary"
+                  id="share-email-btn"
+                  aria-label="Email a friend about the campaign"
+                >Email a Friend</a>
+                <button
+                  type="button"
+                  class="btn btn--secondary"
+                  id="share-copy-btn"
+                  aria-label="Copy message to clipboard"
+                >Copy Message</button>
+              </div>
+              <p class="help-share__copy-confirm" id="share-copy-confirm" role="status">
+                &#10003; Copied. Send it to three people who care about Bedford.
+              </p>
+              <p class="help-step__note">You do not have to identify yourself publicly. Quiet support still helps.</p>
+              <p class="help-step__done-inline" aria-live="polite">&#10003; Done — thanks for spreading the word.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         STEP 7: WRITE A LETTER TO THE EDITOR
+         ==================================================== -->
+    <section class="help-step section" id="step-7-section" data-step="7" aria-labelledby="step-7-title">
+      <div class="container">
+        <div class="help-step__inner">
+          <div class="help-step__badge" aria-hidden="true">
+            <i class="help-step__badge-check">&#10003;</i>
+            <span class="help-step__badge-num">7</span>
+          </div>
+          <div class="help-step__content">
+            <h2 class="help-step__title" id="step-7-title">Write a Letter to the Editor</h2>
+            <p class="help-step__desc">A letter in the local paper from a real Bedford resident carries more weight than any campaign ad. This tool generates a draft you can edit and send to your local paper.</p>
+            <div class="help-step__action-area">
+              <form class="help-letter-form" id="help-letter-form" aria-label="Letter to the editor generator" novalidate>
+                <div class="help-letter-form__group">
+                  <label class="help-letter-form__label" for="letter-name">Your name</label>
+                  <input
+                    class="help-letter-form__input"
+                    type="text"
+                    id="letter-name"
+                    name="name"
+                    placeholder="Jane Smith"
+                    autocomplete="name"
+                    maxlength="80"
+                  >
+                </div>
+                <div class="help-letter-form__group">
+                  <label class="help-letter-form__label" for="letter-hamlet">Your hamlet / neighborhood</label>
+                  <select class="help-letter-form__select" id="letter-hamlet" name="hamlet">
+                    <option value="Bedford">Bedford</option>
+                    <option value="Bedford Hills">Bedford Hills</option>
+                    <option value="Bedford Village">Bedford Village</option>
+                    <option value="Katonah">Katonah</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="help-letter-form__group">
+                  <label class="help-letter-form__label" for="letter-type">I am a&#8230;</label>
+                  <select class="help-letter-form__select" id="letter-type" name="type">
+                    <option value="resident">Resident</option>
+                    <option value="parent">Parent</option>
+                    <option value="senior">Senior</option>
+                    <option value="small business owner">Small business owner</option>
+                    <option value="independent voter">Independent voter</option>
+                    <option value="registered Democrat">Democrat</option>
+                    <option value="registered Republican">Republican</option>
+                    <option value="first-time local voter">First-time local voter</option>
+                  </select>
+                </div>
+                <div class="help-letter-form__group help-letter-form__group--full">
+                  <label class="help-letter-form__label" for="letter-theme">Theme</label>
+                  <select class="help-letter-form__select" id="letter-theme" name="theme">
+                    <option value="1">Bedford deserves a contested election</option>
+                    <option value="2">The AI transparency is worth paying attention to</option>
+                    <option value="3">The no-fundraising approach is refreshing</option>
+                    <option value="4">Local government benefits from multiple perspectives</option>
+                    <option value="5">This campaign is not normal, and that is the point</option>
+                  </select>
+                </div>
+                <div class="help-letter-form__group help-letter-form__group--full">
+                  <p class="help-letter-form__error" id="letter-form-error" role="alert" hidden>Please enter your name to generate a draft.</p>
+                  <button type="submit" class="btn btn--primary">Generate Draft</button>
+                </div>
+              </form>
+
+              <!-- Generated letter output -->
+              <div class="help-letter-output" id="help-letter-output" hidden>
+                <label class="help-letter-output__label" for="letter-textarea">Your draft — edit it to make it yours</label>
+                <textarea
+                  class="help-letter-output__textarea"
+                  id="letter-textarea"
+                  spellcheck="true"
+                  aria-label="Generated letter draft — edit freely before copying"
+                ></textarea>
+                <div class="help-letter-output__actions">
+                  <button type="button" class="btn btn--primary" id="letter-copy-btn" aria-label="Copy letter to clipboard">Copy Letter</button>
+                  <button type="button" class="btn btn--secondary" id="letter-reset-btn" aria-label="Start over with new selections">Start Over</button>
+                  <span class="help-letter-copy-confirm" id="letter-copy-confirm" role="status">&#10003; Copied. Send it to your local paper.</span>
+                </div>
+              </div>
+              <p class="help-step__done-inline" aria-live="polite">&#10003; Done — thank you for writing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================
+         COMPLETION PANEL
+         ==================================================== -->
+    <section class="help-completion" id="completion-panel" aria-labelledby="completion-headline" hidden>
+      <div class="container">
+        <div class="help-completion__inner">
+          <span class="help-completion__check" aria-hidden="true">&#10003;</span>
+          <h2 id="completion-headline">That&#8217;s it.</h2>
+          <ul class="help-completion__list" aria-label="What you did not have to do">
+            <li>No door knocking.</li>
+            <li>No phone banking.</li>
+            <li>No fundraising.</li>
+            <li>No lawn signs.</li>
+          </ul>
+          <p class="help-completion__thanks">
+            You just completed the entire Uncampaign volunteer program. Thank you for helping more Bedford residents see what is being built here.
+          </p>
+          <a href="/" class="btn help-completion__home">&#8592; Back to the campaign</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <div class="footer-brand">
+          <a href="/" class="site-logo" aria-label="Don Scott for Bedford — Home">
+            <span class="site-logo__name">Don Scott</span>
+            <span class="site-logo__race">for Bedford</span>
+          </a>
+          <p class="footer-brand__tagline">Less Campaign. More Bedford.</p>
+          <div class="footer-social" aria-label="Social media links">
+            <a href="https://www.facebook.com/donforbedford" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/donforbedford/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@DonScottForBedford" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            </a>
+            <a href="https://open.spotify.com/show/6dLXuS4EPBukJ4Mo5Kycuy" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <p class="footer-nav__label">Pages</p>
+          <a href="/blog">Blog</a>
+          <a href="/election">Election Info</a>
+          <a href="/pages/ai">AI Transparency</a>
+          <a href="/help/">5-Minute Challenge</a>
+        </nav>
+
+        <div class="footer-cta">
+          <p class="footer-nav__label">Stay informed</p>
+          <a href="#" data-subscribe-trigger class="btn btn--ghost" id="subscribe">Subscribe</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/site.js"></script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* -------------------------------------------------------
+       CONSTANTS
+    ------------------------------------------------------- */
+    var STORAGE_KEY = 'uncampaign_help_steps_v1';
+
+    /* Share message — kept in one place so SMS, email, and copy are identical */
+    var SHARE_MSG = "Politics aside, you should take a look at what Don Scott is doing in Bedford.\n\nThis is probably the most unusual local campaign I’ve ever seen. No fundraising. No consultants. No mailers. Open use of AI. Full transparency about spending.\n\nEven if you do not agree with him politically, it is worth seeing what they are building.\n\nhttps://DonForBedford.com";
+
+    var SUBSCRIBE_ENDPOINT = "https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec";
+
+    /* -------------------------------------------------------
+       STATE
+    ------------------------------------------------------- */
+    function loadState() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+      catch (e) { return {}; }
+    }
+
+    function saveState(state) {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+      catch (e) {}
+    }
+
+    function markDone(step) {
+      var s = loadState();
+      s[step] = true;
+      saveState(s);
+      renderProgress(s);
+    }
+
+    function countDone(s) {
+      return [1,2,3,4,5,6,7].filter(function(n){ return s[n]; }).length;
+    }
+
+    /* -------------------------------------------------------
+       RENDER
+    ------------------------------------------------------- */
+    function renderProgress(state) {
+      state = state || loadState();
+      var done = countDone(state);
+      var pct  = (done / 7 * 100).toFixed(1);
+
+      var bar    = document.getElementById('progress-bar-fill');
+      var track  = document.getElementById('progress-bar-track');
+      var label  = document.getElementById('progress-label');
+      var panel  = document.getElementById('completion-panel');
+
+      if (bar)   bar.style.width = pct + '%';
+      if (track) {
+        track.setAttribute('aria-valuenow', done);
+        track.setAttribute('aria-label', 'Progress: ' + done + ' of 7 steps complete');
+      }
+      if (label) label.textContent = 'Step ' + done + ' of 7 complete';
+
+      for (var i = 1; i <= 7; i++) {
+        var dot     = document.getElementById('step-dot-' + i);
+        var section = document.getElementById('step-' + i + '-section');
+        var isDone  = !!state[i];
+
+        if (dot) {
+          dot.classList.toggle('is-done', isDone);
+          dot.setAttribute('aria-label', 'Step ' + i + ': ' + (isDone ? 'complete' : 'not complete'));
+          dot.textContent = isDone ? '✓' : String(i);
+        }
+
+        if (section) {
+          section.classList.toggle('is-done', isDone);
+        }
+      }
+
+      if (panel) panel.hidden = (done < 7);
+    }
+
+    /* -------------------------------------------------------
+       RESET
+    ------------------------------------------------------- */
+    var resetBtn = document.getElementById('help-reset');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', function () {
+        if (!confirm('Reset all progress? This cannot be undone.')) return;
+        try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+
+        /* Un-hide step-5 form, hide success messages */
+        var emailSuccess = document.getElementById('help-email-success');
+        var emailForm    = document.getElementById('help-email-form');
+        if (emailSuccess) emailSuccess.hidden = true;
+        if (emailForm)    emailForm.hidden    = false;
+
+        /* Un-hide letter generator, hide output */
+        var letterOutput = document.getElementById('help-letter-output');
+        if (letterOutput) letterOutput.hidden = true;
+
+        /* Hide share confirm */
+        var shareCfm = document.getElementById('share-copy-confirm');
+        if (shareCfm) shareCfm.classList.remove('is-visible');
+
+        renderProgress({});
+      });
+    }
+
+    /* -------------------------------------------------------
+       STEPS 1-4: EXTERNAL LINK COMPLETION
+    ------------------------------------------------------- */
+    [1, 2, 3, 4].forEach(function (num) {
+      var btn = document.getElementById('step-' + num + '-btn');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        setTimeout(function () { markDone(num); }, 300);
+      });
+    });
+
+    /* -------------------------------------------------------
+       STEP 5: EMAIL SIGNUP
+    ------------------------------------------------------- */
+    var emailForm    = document.getElementById('help-email-form');
+    var emailInput   = document.getElementById('help-email');
+    var nameInput    = document.getElementById('help-name');
+    var emailError   = document.getElementById('help-email-error');
+    var emailSuccess = document.getElementById('help-email-success');
+    var emailSubmit  = document.getElementById('help-email-submit');
+    var emailSubmitting = false;
+
+    function isValidEmail(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+    }
+
+    if (emailForm) {
+      emailForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (emailSubmitting) return;
+
+        var email = emailInput ? emailInput.value.trim() : '';
+        var name  = nameInput  ? nameInput.value.trim()  : '';
+
+        if (!email || !isValidEmail(email)) {
+          if (emailError) {
+            emailError.textContent = 'Please enter a valid email address.';
+            emailError.hidden = false;
+          }
+          if (emailInput) emailInput.classList.add('is-invalid');
+          return;
+        }
+
+        if (emailError)  { emailError.hidden = true; emailError.textContent = ''; }
+        if (emailInput)  emailInput.classList.remove('is-invalid');
+        emailSubmitting = true;
+        if (emailSubmit) { emailSubmit.disabled = true; emailSubmit.textContent = 'Signing up…'; }
+
+        var payload = {
+          action:     'subscribe',
+          email:      email,
+          name:       name,
+          source:     'help_page_challenge',
+          page:       window.location.pathname,
+          user_agent: navigator.userAgent
+        };
+
+        var body = JSON.stringify(payload);
+
+        fetch(SUBSCRIBE_ENDPOINT, {
+          method:  'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body:    body
+        })
+        .catch(function () {
+          return fetch(SUBSCRIBE_ENDPOINT, {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+            body:    new URLSearchParams({ payload: body }).toString()
+          });
+        })
+        .then(function (res) {
+          return res.json().catch(function () { return { result: 'success' }; });
+        })
+        .then(function () {
+          emailSubmitting = false;
+          if (emailForm)    emailForm.hidden    = true;
+          if (emailSuccess) emailSuccess.hidden = false;
+          markDone(5);
+        })
+        .catch(function () {
+          emailSubmitting = false;
+          if (emailSubmit) { emailSubmit.disabled = false; emailSubmit.textContent = 'Sign Up'; }
+          if (emailError) {
+            emailError.textContent = 'Something went wrong. Please try again, or reach Don via Facebook or Instagram.';
+            emailError.hidden = false;
+          }
+        });
+      });
+    }
+
+    /* -------------------------------------------------------
+       STEP 6: SHARE / TELL THREE PEOPLE
+    ------------------------------------------------------- */
+    var textBtn   = document.getElementById('share-text-btn');
+    var emailBtn  = document.getElementById('share-email-btn');
+    var copyBtn   = document.getElementById('share-copy-btn');
+    var copyConfirm = document.getElementById('share-copy-confirm');
+
+    if (textBtn) {
+      textBtn.href = 'sms:?body=' + encodeURIComponent(SHARE_MSG);
+    }
+
+    if (emailBtn) {
+      var emailSubject = 'Worth looking at this Bedford campaign';
+      emailBtn.href = 'mailto:?subject=' + encodeURIComponent(emailSubject) + '&body=' + encodeURIComponent(SHARE_MSG);
+    }
+
+    function clipboardFallback(text, cb) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+      document.body.appendChild(ta);
+      ta.focus(); ta.select();
+      try { if (document.execCommand('copy')) cb(); } catch(err) {}
+      document.body.removeChild(ta);
+    }
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function () {
+        function onCopied() {
+          if (copyConfirm) copyConfirm.classList.add('is-visible');
+          markDone(6);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(SHARE_MSG).then(onCopied).catch(function () {
+            clipboardFallback(SHARE_MSG, onCopied);
+          });
+        } else {
+          clipboardFallback(SHARE_MSG, onCopied);
+        }
+      });
+    }
+
+    /* -------------------------------------------------------
+       STEP 7: LETTER GENERATOR
+    ------------------------------------------------------- */
+    var letterForm    = document.getElementById('help-letter-form');
+    var letterOutput  = document.getElementById('help-letter-output');
+    var letterTextarea = document.getElementById('letter-textarea');
+    var letterFormError = document.getElementById('letter-form-error');
+    var letterCopyBtn  = document.getElementById('letter-copy-btn');
+    var letterResetBtn = document.getElementById('letter-reset-btn');
+    var letterCopyConfirm = document.getElementById('letter-copy-confirm');
+
+    var LETTER_TEMPLATES = {
+      '1': function(name, hamlet, type) {
+        return "To the Editor:\n\nI am a " + type + " in " + hamlet + ", and I want to say something I rarely see anyone say out loud: uncontested elections are not good for any community.\n\nDon Scott is running for Bedford Town Supervisor as a Republican in a town that leans heavily Democratic. A lot of people will dismiss his campaign for that reason alone. I think that is a mistake.\n\nWhat he is doing — running a low-cost, transparent campaign built around civic participation rather than pressure tactics — is worth paying attention to regardless of party. A contested election forces accountability. It gives residents a real choice. And it models something we could use more of in local politics: showing up and making the case rather than waiting for it to be handed to you.\n\nYou do not have to agree with him to appreciate what this campaign is doing for Bedford.\n\n" + (name || "Your Name") + "\n" + hamlet + ", New York";
+      },
+      '2': function(name, hamlet, type) {
+        return "To the Editor:\n\nI am a " + type + " in " + hamlet + ", and something unusual caught my attention about the Don Scott for Bedford campaign.\n\nMr. Scott is running for Town Supervisor while openly documenting how he uses AI tools to build and run the campaign. Every dollar spent is public. Every AI-assisted asset is disclosed. The total budget is under $50.\n\nI do not have strong feelings about his political positions. But I have strong feelings about transparency. And this is the most transparent local campaign I have seen in years. He is building in public, explaining his choices, and inviting residents to look under the hood.\n\nThat kind of transparency — regardless of party — is exactly what local government should be modeling. I thought it was worth saying.\n\n" + (name || "Your Name") + "\n" + hamlet + ", New York";
+      },
+      '3': function(name, hamlet, type) {
+        return "To the Editor:\n\nI am a " + type + " in " + hamlet + ", and I want to acknowledge something I never expected to see in a local campaign: a candidate who is not asking for money.\n\nDon Scott is running for Bedford Town Supervisor with a stated spending limit of $49.99. No fundraising events. No donor solicitations. No mail pieces paid for by contributors. He has made the choice to keep this campaign off the fundraising treadmill entirely.\n\nYou may agree or disagree with his positions. But the decision to run this way raises a useful question: why does a Town Supervisor race need $100,000 or more? The 2021 winning campaign spent over $118,000. What was it buying?\n\nI do not have a definitive answer, but I think the question is worth asking. And I am glad someone is asking it by example.\n\n" + (name || "Your Name") + "\n" + hamlet + ", New York";
+      },
+      '4': function(name, hamlet, type) {
+        return "To the Editor:\n\nI am a " + type + " in " + hamlet + ", and I want to make a simple point about local elections that often gets lost in the noise of national politics.\n\nLocal government works better when there is genuine debate. Not partisan performance, not ideological conflict — just actual competing ideas about how to run a town. When a race goes uncontested, or when only one perspective is represented, the quality of decision-making tends to suffer.\n\nDon Scott is running for Bedford Town Supervisor. He is not running a traditional campaign — no lawn signs, no mailers, no consultants, no fundraising. He is making the case that Bedford residents deserve a real choice.\n\nI think he is right about that, even if I might not agree with every position he holds. Bedford benefits from contested elections. It is that simple.\n\n" + (name || "Your Name") + "\n" + hamlet + ", New York";
+      },
+      '5': function(name, hamlet, type) {
+        return "To the Editor:\n\nI am a " + type + " in " + hamlet + ", and I want to describe something happening in local politics that I found genuinely surprising.\n\nDon Scott is running for Bedford Town Supervisor using what he calls the Uncampaign. The total budget is under $50. There are no lawn signs, no mailers, no robocalls, no door-knocking. The campaign uses AI tools and discloses exactly how. Spending is tracked publicly in real time.\n\nMost campaigns try to look like every other campaign. This one is deliberately doing the opposite.\n\nI do not endorse anyone here. But I think this approach deserves attention on its own terms, separate from any political positions. It demonstrates that a serious local campaign can be run for almost nothing — and that might matter for who chooses to run for office in Bedford in the future.\n\n" + (name || "Your Name") + "\n" + hamlet + ", New York";
+      }
+    };
+
+    function sanitize(str) {
+      return String(str)
+        .replace(/[<>]/g, '')
+        .trim()
+        .slice(0, 120);
+    }
+
+    if (letterForm) {
+      letterForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var nameEl   = document.getElementById('letter-name');
+        var hamletEl = document.getElementById('letter-hamlet');
+        var typeEl   = document.getElementById('letter-type');
+        var themeEl  = document.getElementById('letter-theme');
+
+        var name   = nameEl   ? sanitize(nameEl.value)   : '';
+        var hamlet = hamletEl ? sanitize(hamletEl.value)  : 'Bedford';
+        var type   = typeEl   ? sanitize(typeEl.value)    : 'resident';
+        var theme  = themeEl  ? themeEl.value             : '1';
+
+        if (!name) {
+          if (letterFormError) { letterFormError.hidden = false; }
+          if (nameEl) nameEl.focus();
+          return;
+        }
+        if (letterFormError) letterFormError.hidden = true;
+
+        var fn = LETTER_TEMPLATES[theme] || LETTER_TEMPLATES['1'];
+        var draft = fn(name, hamlet, type);
+
+        if (letterTextarea) letterTextarea.value = draft;
+        if (letterOutput)   letterOutput.hidden  = false;
+        if (letterCopyConfirm) letterCopyConfirm.classList.remove('is-visible');
+
+        setTimeout(function () {
+          if (letterOutput) letterOutput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 50);
+      });
+    }
+
+    if (letterCopyBtn) {
+      letterCopyBtn.addEventListener('click', function () {
+        var text = letterTextarea ? letterTextarea.value : '';
+        function onCopied() {
+          if (letterCopyConfirm) letterCopyConfirm.classList.add('is-visible');
+          markDone(7);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(onCopied).catch(function () {
+            clipboardFallback(text, onCopied);
+          });
+        } else {
+          clipboardFallback(text, onCopied);
+        }
+      });
+    }
+
+    if (letterResetBtn) {
+      letterResetBtn.addEventListener('click', function () {
+        if (letterOutput) letterOutput.hidden = true;
+        if (letterCopyConfirm) letterCopyConfirm.classList.remove('is-visible');
+        if (letterForm) letterForm.reset();
+        var nameEl = document.getElementById('letter-name');
+        if (nameEl) nameEl.focus();
+      });
+    }
+
+    /* -------------------------------------------------------
+       INIT — restore state on page load
+    ------------------------------------------------------- */
+    var initialState = loadState();
+
+    /* If step 5 was previously completed, hide form and show success */
+    if (initialState[5]) {
+      if (emailForm)    emailForm.hidden    = true;
+      if (emailSuccess) emailSuccess.hidden = false;
+    }
+
+    renderProgress(initialState);
+
+  }());
+  </script>
+
+</body>
+</html>
