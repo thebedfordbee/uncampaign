@@ -472,8 +472,84 @@
     }
     .help-letter-form__error[hidden] { display: none; }
 
-    .help-letter-output__submit {
-      margin-top: 0.75rem;
+    /* Submit CTA — lives OUTSIDE .help-step__action-area so completion-state opacity never applies */
+    .help-letter-submit {
+      margin-top: 1.75rem;
+    }
+    .help-letter-submit[hidden] { display: none; }
+
+    .help-letter-submit__btn {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      width: 100%;
+      padding: 1.0625rem 1.25rem;
+      background: var(--moss);
+      color: #fff;
+      border: 2px solid var(--moss);
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-family: var(--sans);
+      box-shadow: 0 2px 8px rgba(62, 82, 64, 0.28), 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      cursor: pointer;
+    }
+
+    .help-letter-submit__btn:hover,
+    .help-letter-submit__btn:focus-visible {
+      background: #2c3d2e;
+      border-color: #2c3d2e;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(62, 82, 64, 0.38), 0 2px 6px rgba(0, 0, 0, 0.12);
+      transform: translateY(-1px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .help-letter-submit__btn { transition: none; }
+    }
+
+    .help-letter-submit__icon-left {
+      font-size: 1.125rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .help-letter-submit__body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.125rem;
+      text-align: left;
+    }
+
+    .help-letter-submit__label {
+      display: block;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fff;
+    }
+
+    .help-letter-submit__sub {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.25;
+    }
+
+    .help-letter-submit__arrow {
+      font-size: 1.125rem;
+      flex-shrink: 0;
+      line-height: 1;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .help-letter-submit__hint {
+      font-size: 0.875rem;
+      color: var(--muted);
+      margin: 0.625rem 0 0;
     }
 
     /* =============================================
@@ -940,18 +1016,29 @@
                   <button type="button" class="btn btn--secondary" id="letter-reset-btn" aria-label="Start over with new selections">Start Over</button>
                   <span class="help-letter-copy-confirm" id="letter-copy-confirm" role="status">&#10003; Copied. Send it to your local paper.</span>
                 </div>
-                <div class="help-letter-output__submit">
-                  <a
-                    href="https://www.therecorder.org/forms-submissions"
-                    class="btn btn--ghost"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Submit letter to the editor at The Recorder (opens in new tab)"
-                  >Submit Letter to the Editor &#8599;</a>
-                </div>
               </div>
-              <p class="help-step__done-inline" aria-live="polite">&#10003; Done — thank you for writing.</p>
             </div>
+
+            <!-- Submit CTA — outside .help-step__action-area; never dimmed by completion state -->
+            <div class="help-letter-submit" id="help-letter-submit" hidden>
+              <a
+                href="https://www.therecorder.org/forms-submissions"
+                class="help-letter-submit__btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Submit your letter to the editor at The Recorder (opens in new tab)"
+              >
+                <span class="help-letter-submit__icon-left" aria-hidden="true">&#8599;</span>
+                <span class="help-letter-submit__body">
+                  <span class="help-letter-submit__label">Submit Letter To The Editor</span>
+                  <span class="help-letter-submit__sub">Opens in a new tab</span>
+                </span>
+                <span class="help-letter-submit__arrow" aria-hidden="true">&#8594;</span>
+              </a>
+              <p class="help-letter-submit__hint">🛡 Letters should be 300 words or fewer.</p>
+            </div>
+
+            <p class="help-step__done-inline" aria-live="polite">&#10003; Done &#8212; thank you for writing.</p>
           </div>
         </div>
       </div>
@@ -1120,7 +1207,8 @@
         if (emailForm)    emailForm.hidden    = false;
 
         var letterOutput = document.getElementById('help-letter-output');
-        if (letterOutput) letterOutput.hidden = true;
+        if (letterOutput)    letterOutput.hidden    = true;
+        if (letterSubmitDiv) letterSubmitDiv.hidden  = true;
 
         var shareCfm = document.getElementById('share-copy-confirm');
         if (shareCfm) shareCfm.classList.remove('is-visible');
@@ -1274,6 +1362,7 @@
     ------------------------------------------------------- */
     var letterForm        = document.getElementById('help-letter-form');
     var letterOutput      = document.getElementById('help-letter-output');
+    var letterSubmitDiv   = document.getElementById('help-letter-submit');
     var letterTextarea    = document.getElementById('letter-textarea');
     var letterFormError   = document.getElementById('letter-form-error');
     var letterCopyBtn     = document.getElementById('letter-copy-btn');
@@ -1341,8 +1430,9 @@
         var fn = LETTER_TEMPLATES[theme] || LETTER_TEMPLATES['1'];
         var draft = fn(name, hamlet, type);
 
-        if (letterTextarea) letterTextarea.value = draft;
-        if (letterOutput)   letterOutput.hidden  = false;
+        if (letterTextarea)  letterTextarea.value  = draft;
+        if (letterOutput)    letterOutput.hidden   = false;
+        if (letterSubmitDiv) letterSubmitDiv.hidden = false;
         if (letterCopyConfirm) letterCopyConfirm.classList.remove('is-visible');
 
         setTimeout(function () {
@@ -1370,7 +1460,8 @@
 
     if (letterResetBtn) {
       letterResetBtn.addEventListener('click', function () {
-        if (letterOutput) letterOutput.hidden = true;
+        if (letterOutput)    letterOutput.hidden    = true;
+        if (letterSubmitDiv) letterSubmitDiv.hidden  = true;
         if (letterCopyConfirm) letterCopyConfirm.classList.remove('is-visible');
         if (letterForm) letterForm.reset();
         var nameEl = document.getElementById('letter-name');
