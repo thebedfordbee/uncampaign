@@ -6,7 +6,7 @@
 
   <!-- Primary meta -->
   <title>Want To Help? | Don Scott for Bedford</title>
-  <meta name="description" content="Five simple things you can do in five minutes to help Don Scott's campaign in Bedford. No money, no volunteer hours — just a few ways to amplify what this campaign is about.">
+  <meta name="description" content="Five simple things you can do in five minutes to help amplify one of Bedford&#8217;s most unconventional local campaigns. No donations. No lawn signs. Just practical ways to help.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.donforbedford.com/help/">
 
@@ -14,13 +14,13 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/help/">
   <meta property="og:title" content="Want To Help? | Don Scott for Bedford">
-  <meta property="og:description" content="Five simple things you can do in five minutes to help Don Scott's campaign in Bedford. No money, no volunteer hours — just a few ways to amplify what this campaign is about.">
-  <meta property="og:image" content="https://www.donforbedford.com/assets/og/help-og.png">
-  <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/og/help-og.png">
-  <meta property="og:image:type" content="image/png">
+  <meta property="og:description" content="Five simple things you can do in five minutes to help amplify one of Bedford&#8217;s most unconventional local campaigns. No donations. No lawn signs. Just practical ways to help.">
+  <meta property="og:image" content="https://www.donforbedford.com/assets/img/help-og.jpg">
+  <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/img/help-og.jpg">
+  <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="5 Things You Can Do In 5 Minutes — Don Scott for Bedford">
+  <meta property="og:image:alt" content="Don Scott in Bedford, New York — Want To Help?">
   <meta property="og:site_name" content="Don Scott for Bedford">
   <meta property="og:locale" content="en_US">
 
@@ -28,9 +28,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/help/">
   <meta name="twitter:title" content="Want To Help? | Don Scott for Bedford">
-  <meta name="twitter:description" content="Five simple things you can do in five minutes to help Don Scott's campaign in Bedford. No money, no volunteer hours — just a few ways to amplify what this campaign is about.">
-  <meta name="twitter:image" content="https://www.donforbedford.com/assets/og/help-og.png">
-  <meta name="twitter:image:alt" content="5 Things You Can Do In 5 Minutes — Don Scott for Bedford">
+  <meta name="twitter:description" content="Five simple things you can do in five minutes to help amplify one of Bedford&#8217;s most unconventional local campaigns. No donations. No lawn signs. Just practical ways to help.">
+  <meta name="twitter:image" content="https://www.donforbedford.com/assets/img/help-og.jpg">
+  <meta name="twitter:image:alt" content="Don Scott in Bedford, New York — Want To Help?">
 
   <!-- Favicons and browser theme -->
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -78,7 +78,7 @@
         "@id": "https://www.donforbedford.com/help/#webpage",
         "url": "https://www.donforbedford.com/help/",
         "name": "Want To Help? | Don Scott for Bedford",
-        "description": "Five simple things you can do in five minutes to help Don Scott's campaign in Bedford. No money, no volunteer hours — just a few ways to amplify what this campaign is about.",
+        "description": "Five simple things you can do in five minutes to help amplify one of Bedford's most unconventional local campaigns. No donations. No lawn signs. Just practical ways to help.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
         "about": { "@id": "https://www.donforbedford.com/#don-scott" }
       }
@@ -93,6 +93,23 @@
        HELP PAGE — 5 Things You Can Do In 5 Minutes
        Page-specific styles
        ============================================= */
+
+    /* =============================================
+       HELP PAGE HERO IMAGE
+       ============================================= */
+    .help-hero-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    @media (min-width: 768px) {
+      .help-hero-img {
+        object-position: center center;
+      }
+    }
 
     /* =============================================
        PROGRESS MODULE
@@ -717,12 +734,13 @@
           <h1 id="help-headline">Want To Help?</h1>
         </div>
 
-        <div class="issues-hero__visual issues-hero__visual--static" aria-hidden="true">
+        <div class="issues-hero__visual issues-hero__visual--static">
           <img
-            src="/assets/img/help-hero-placeholder.svg"
-            alt="Help page hero — placeholder image"
-            width="1200"
-            height="900"
+            class="help-hero-img"
+            src="/assets/img/home-hero-don-scott-bedford.jpg"
+            alt="Don Scott in Bedford, New York."
+            width="1448"
+            height="1086"
             loading="eager"
             decoding="async"
           >
