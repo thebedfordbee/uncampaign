@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Primary meta -->
-  <title>5 Things You Can Do In 5 Minutes | Don Scott for Bedford</title>
-  <meta name="description" content="No lawn signs. No donations. No door knocking. Five simple ways to help more Bedford residents find what Don Scott is building — all in under five minutes.">
+  <title>Want To Help? | Don Scott for Bedford</title>
+  <meta name="description" content="Five simple things you can do in five minutes to help Don Scott's campaign in Bedford. No money, no volunteer hours — just a few ways to amplify what this campaign is about.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.donforbedford.com/help/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.donforbedford.com/help/">
-  <meta property="og:title" content="5 Things You Can Do In 5 Minutes | Don Scott for Bedford">
-  <meta property="og:description" content="No lawn signs. No donations. No door knocking. Five simple ways to help more Bedford residents find what Don Scott is building.">
+  <meta property="og:title" content="Want To Help? | Don Scott for Bedford">
+  <meta property="og:description" content="Five simple things you can do in five minutes to help Don Scott's campaign in Bedford. No money, no volunteer hours — just a few ways to amplify what this campaign is about.">
   <meta property="og:image" content="https://www.donforbedford.com/assets/og/help-og.png">
   <meta property="og:image:secure_url" content="https://www.donforbedford.com/assets/og/help-og.png">
   <meta property="og:image:type" content="image/png">
@@ -27,8 +27,8 @@
   <!-- Twitter/X Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.donforbedford.com/help/">
-  <meta name="twitter:title" content="5 Things You Can Do In 5 Minutes | Don Scott for Bedford">
-  <meta name="twitter:description" content="No lawn signs. No donations. No door knocking. Five simple ways to help more Bedford residents find what Don Scott is building.">
+  <meta name="twitter:title" content="Want To Help? | Don Scott for Bedford">
+  <meta name="twitter:description" content="Five simple things you can do in five minutes to help Don Scott's campaign in Bedford. No money, no volunteer hours — just a few ways to amplify what this campaign is about.">
   <meta name="twitter:image" content="https://www.donforbedford.com/assets/og/help-og.png">
   <meta name="twitter:image:alt" content="5 Things You Can Do In 5 Minutes — Don Scott for Bedford">
 
@@ -77,8 +77,8 @@
         "@type": "WebPage",
         "@id": "https://www.donforbedford.com/help/#webpage",
         "url": "https://www.donforbedford.com/help/",
-        "name": "5 Things You Can Do In 5 Minutes | Don Scott for Bedford",
-        "description": "No lawn signs. No donations. No door knocking. Five simple ways to help more Bedford residents find what Don Scott is building — all in under five minutes.",
+        "name": "Want To Help? | Don Scott for Bedford",
+        "description": "Five simple things you can do in five minutes to help Don Scott's campaign in Bedford. No money, no volunteer hours — just a few ways to amplify what this campaign is about.",
         "isPartOf": { "@id": "https://www.donforbedford.com/#website" },
         "about": { "@id": "https://www.donforbedford.com/#don-scott" }
       }
@@ -472,6 +472,10 @@
     }
     .help-letter-form__error[hidden] { display: none; }
 
+    .help-letter-output__submit {
+      margin-top: 0.75rem;
+    }
+
     /* =============================================
        COMPLETION PANEL
        ============================================= */
@@ -634,22 +638,22 @@
 
         <div class="issues-hero__copy-top">
           <p class="eyebrow">Don Scott Presents</p>
-          <h1 id="help-headline">5 Things You Can Do In 5 Minutes</h1>
+          <h1 id="help-headline">Want To Help?</h1>
         </div>
 
         <div class="issues-hero__visual issues-hero__visual--static" aria-hidden="true">
           <img
             src="/assets/img/help-hero-placeholder.svg"
             alt="Help page hero — placeholder image"
-            width="1536"
-            height="1024"
+            width="1200"
+            height="900"
             loading="eager"
             decoding="async"
           >
         </div>
 
         <div class="issues-hero__copy-bot">
-          <p class="issues-hero__deck">No lawn signs. No donations. No door knocking. Just five ways to help more Bedford residents find what Don is building — none of which require more than a few minutes of your time.</p>
+          <p class="issues-hero__deck">Here are five things you can do in five minutes that will help Don during this campaign. He is not asking for money or your hours. Just a few simple ways to amplify what this campaign is about.</p>
         </div>
 
       </div>
@@ -729,7 +733,7 @@
           </div>
           <div class="help-step__content">
             <h2 class="help-step__title" id="step-2-title">Follow Don on Instagram</h2>
-            <p class="help-step__desc">A follow helps the account reach more people in Bedford and Westchester when posts go out. One tap, no comment required.</p>
+            <p class="help-step__desc">A follow helps the account reach more people in Bedford when posts go out. One tap, no comment required.</p>
             <div class="help-step__action-area">
               <a
                 href="https://www.instagram.com/donforbedford/"
@@ -856,7 +860,7 @@
           </div>
           <div class="help-step__content">
             <h2 class="help-step__title" id="step-5-title">Write a Letter to the Editor</h2>
-            <p class="help-step__desc">A letter in the local paper from a real Bedford resident carries more weight than any campaign ad. This tool generates a draft you can edit and send to your local paper. It takes about two minutes.</p>
+            <p class="help-step__desc">A letter in the local paper from a real Bedford resident carries more weight than any campaign ad. This tool generates a draft you can edit and send to your local paper. It takes about two minutes. Letters should be 300 words or fewer.</p>
             <div class="help-step__action-area">
               <form class="help-letter-form" id="help-letter-form" aria-label="Letter to the editor generator" novalidate>
                 <div class="help-letter-form__group">
@@ -935,6 +939,15 @@
                   <button type="button" class="btn btn--primary" id="letter-copy-btn" aria-label="Copy letter to clipboard">Copy Letter</button>
                   <button type="button" class="btn btn--secondary" id="letter-reset-btn" aria-label="Start over with new selections">Start Over</button>
                   <span class="help-letter-copy-confirm" id="letter-copy-confirm" role="status">&#10003; Copied. Send it to your local paper.</span>
+                </div>
+                <div class="help-letter-output__submit">
+                  <a
+                    href="https://www.therecorder.org/forms-submissions"
+                    class="btn btn--ghost"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Submit letter to the editor at The Recorder (opens in new tab)"
+                  >Submit Letter to the Editor &#8599;</a>
                 </div>
               </div>
               <p class="help-step__done-inline" aria-live="polite">&#10003; Done — thank you for writing.</p>
@@ -1024,7 +1037,7 @@
     var TOTAL_STEPS = 5;
 
     /* Share message — same text for SMS, email, and clipboard */
-    var SHARE_MSG = "Politics aside, take a look at what Don Scott is building in Bedford. It’s a very different kind of local campaign: no fundraising, no mailers, no lawn signs everywhere, and a public running total of what it costs. Even if you don’t agree with him politically, the project is worth seeing.\n\nwww.DonForBedford.com";
+    var SHARE_MSG = "Take a look at what Don Scott is building in Bedford. It is a very different kind of local campaign, with some useful tools, clear spending transparency, and a refreshing approach to how local politics can work. Worth checking out: www.DonForBedford.com";
 
     /* Same endpoint as the site-wide subscribe modal in site.js */
     var SUBSCRIBE_ENDPOINT = "https://script.google.com/macros/s/AKfycbwjYjib02X1GLNhqqVnGCjEcAYPVNwSLceFhNUEFg5CvBIzqcBolAVeTMx09-i9_CFN/exec";

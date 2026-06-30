@@ -1,47 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1536 1024" width="1536" height="1024" role="img" aria-label="Help page hero placeholder — replace with final photograph">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-label="Help page hero placeholder — replace with final photograph">
   <title>Help Hero — Placeholder Image</title>
 
   <!-- Background -->
-  <rect width="1536" height="1024" fill="#F8F5EF"/>
+  <rect width="1200" height="900" fill="#F8F5EF"/>
 
   <!-- Subtle grid -->
-  <line x1="0" y1="341" x2="1536" y2="341" stroke="#E8E3DA" stroke-width="1"/>
-  <line x1="0" y1="682" x2="1536" y2="682" stroke="#E8E3DA" stroke-width="1"/>
-  <line x1="512" y1="0" x2="512" y2="1024" stroke="#E8E3DA" stroke-width="1"/>
-  <line x1="1024" y1="0" x2="1024" y2="1024" stroke="#E8E3DA" stroke-width="1"/>
+  <line x1="0" y1="300" x2="1200" y2="300" stroke="#E8E3DA" stroke-width="1"/>
+  <line x1="0" y1="600" x2="1200" y2="600" stroke="#E8E3DA" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="900" stroke="#E8E3DA" stroke-width="1"/>
+  <line x1="800" y1="0" x2="800" y2="900" stroke="#E8E3DA" stroke-width="1"/>
 
-  <!-- Center content frame — marks the "safe area" -->
-  <rect x="154" y="80" width="1228" height="864" rx="6" fill="none" stroke="#D8D2C8" stroke-width="1.5" stroke-dasharray="8 6"/>
+  <!-- Mobile safe area: middle 70% width / 75% height -->
+  <!-- 70% of 1200 = 840, offset = 180; 75% of 900 = 675, offset = 112.5 -->
+  <rect x="180" y="113" width="840" height="675" rx="6" fill="none" stroke="#C8C2B8" stroke-width="1.5" stroke-dasharray="8 6"/>
 
-  <!-- SAFE AREA label -->
-  <text x="768" y="124" font-family="Georgia, serif" font-size="13" fill="#B8B2A8" text-anchor="middle" letter-spacing="3">SAFE AREA — KEEP KEY SUBJECTS WITHIN THIS BOX</text>
-
-  <!-- Large "5" centerpiece -->
-  <text x="768" y="500" font-family="Georgia, 'Times New Roman', serif" font-size="320" fill="#3E5240" text-anchor="middle" opacity="0.07" font-weight="bold">5</text>
-
-  <!-- Main label -->
-  <text x="768" y="400" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#3E5240" text-anchor="middle" font-weight="bold">HELP HERO IMAGE</text>
-  <text x="768" y="448" font-family="Georgia, serif" font-size="20" fill="#7B8C79" text-anchor="middle">Don Scott for Bedford · /help/ page</text>
+  <!-- Main title -->
+  <text x="600" y="350" font-family="Georgia, 'Times New Roman', serif" font-size="32" fill="#3E5240" text-anchor="middle" font-weight="bold">Hero Image Placeholder</text>
 
   <!-- Divider -->
-  <line x1="380" y1="480" x2="1156" y2="480" stroke="#D8D2C8" stroke-width="1"/>
+  <line x1="340" y1="380" x2="860" y2="380" stroke="#D8D2C8" stroke-width="1"/>
 
-  <!-- Spec block -->
-  <text x="768" y="524" font-family="Georgia, serif" font-size="16" fill="#4A4540" text-anchor="middle" font-weight="bold">FINAL IMAGE SPECS</text>
+  <!-- Spec lines -->
+  <text x="600" y="420" font-family="Georgia, serif" font-size="18" fill="#5A554E" text-anchor="middle">Final Image: 1200 × 900 px</text>
+  <text x="600" y="453" font-family="Georgia, serif" font-size="18" fill="#5A554E" text-anchor="middle">Aspect Ratio: 4:3</text>
+  <text x="600" y="486" font-family="Georgia, serif" font-size="18" fill="#5A554E" text-anchor="middle">Keep Important Content Centered</text>
+  <text x="600" y="519" font-family="Georgia, serif" font-size="18" fill="#5A554E" text-anchor="middle">Mobile Safe Area: Middle 70% Width / 75% Height</text>
 
-  <text x="768" y="556" font-family="Georgia, serif" font-size="14" fill="#6A655E" text-anchor="middle">Dimensions: 1536 × 1024 px · 3:2 ratio · JPG or PNG</text>
-  <text x="768" y="580" font-family="Georgia, serif" font-size="14" fill="#6A655E" text-anchor="middle">Safe area: center 80% width · top 85% height (dashed border above)</text>
-  <text x="768" y="604" font-family="Georgia, serif" font-size="14" fill="#6A655E" text-anchor="middle">Mobile crop: top-center anchor · portrait shows ~70% width from center</text>
-
-  <!-- Content suggestion -->
-  <line x1="380" y1="628" x2="1156" y2="628" stroke="#E8E3DA" stroke-width="1"/>
-  <text x="768" y="660" font-family="Georgia, serif" font-size="15" fill="#4A4540" text-anchor="middle" font-weight="bold">SUGGESTED CONTENT</text>
-  <text x="768" y="688" font-family="Georgia, serif" font-size="13" fill="#6A655E" text-anchor="middle">A calm, warm scene suggesting community participation — a neighbor reading their phone,</text>
-  <text x="768" y="708" font-family="Georgia, serif" font-size="13" fill="#6A655E" text-anchor="middle">someone at a porch table with a laptop, or a relaxed outdoor Bedford setting.</text>
-  <text x="768" y="728" font-family="Georgia, serif" font-size="13" fill="#6A655E" text-anchor="middle">Palette: greens, creams, warm neutrals. No signage, no political props.</text>
-  <text x="768" y="748" font-family="Georgia, serif" font-size="13" fill="#6A655E" text-anchor="middle">Tone: neighborly, unhurried, lightly civic. Think: Bedford on a Tuesday morning.</text>
+  <!-- Safe area label -->
+  <text x="600" y="148" font-family="Georgia, serif" font-size="12" fill="#B8B2A8" text-anchor="middle" letter-spacing="2">MOBILE SAFE AREA</text>
 
   <!-- Bottom note -->
-  <line x1="0" y1="960" x2="1536" y2="960" stroke="#E8E3DA" stroke-width="1"/>
-  <text x="768" y="992" font-family="Georgia, serif" font-size="12" fill="#B8B2A8" text-anchor="middle" font-style="italic">Placeholder — replace with final photograph before launch</text>
+  <line x1="0" y1="860" x2="1200" y2="860" stroke="#E8E3DA" stroke-width="1"/>
+  <text x="600" y="884" font-family="Georgia, serif" font-size="12" fill="#B8B2A8" text-anchor="middle" font-style="italic">Placeholder — replace with final photograph before launch</text>
 </svg>
