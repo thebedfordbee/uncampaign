@@ -53,6 +53,7 @@ Total committed: $13.12 (domain registration only). Cap: $49.99 total.
 
 ## Key Pages (clean canonical URLs)
 - Homepage: https://www.donforbedford.com/
+- Blog (Don's bi-weekly newspaper column, adapted from print): https://www.donforbedford.com/blog
 - Campaign Rules: https://www.donforbedford.com/pages/rules
 - Bedford Roundtable (AI-assisted issue analysis): https://www.donforbedford.com/pages/issues
 - 100+ Ideas for Bedford (community voting): https://www.donforbedford.com/pages/ideas
