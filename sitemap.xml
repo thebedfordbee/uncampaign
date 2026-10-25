@@ -219,7 +219,12 @@
   <!-- Blog -->
   <url>
     <loc>https://www.donforbedford.com/blog</loc>
-    <lastmod>2026-10-08</lastmod>
+    <lastmod>2026-10-22</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.donforbedford.com/blog/why-tuesday</loc>
+    <lastmod>2026-10-22</lastmod>
   </url>
 
   <url>
